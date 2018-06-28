@@ -1,0 +1,40 @@
+.pagination{
+	justify-content:center;
+	li{
+		a{
+			padding:.5rem .75rem;
+			line-height:1.25;
+			border:1px solid #dee2e6;
+			border-right:0px solid;
+			
+			&:hover{
+				background:#e9ecef;
+			}
+		}
+		
+		&:first-child{
+			a{
+				border-radius:4px 0px 0px 4px;
+			}
+		}
+		
+		&:last-child{
+			a{
+				border-right:1px solid #dee2e6;
+				border-radius:0px 4px 4px 0px;
+			}
+		}
+		
+		&.active{
+			a{
+				background:#e9ecef;
+			}
+		}
+	}
+	
+	&.list-footer{
+		div{
+			margin:0 .75rem;
+		}
+	}	
+}

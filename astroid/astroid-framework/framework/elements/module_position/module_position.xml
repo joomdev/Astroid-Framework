@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<element>
+   <title>Module Position</title>
+   <description>Load a Position inside the area.</description>
+   <icon>fa fa-cube</icon>
+   <color>#00B8D8</color>
+   <form>
+      <fields>
+         <fieldset name="modulepositionsettings" label="ASTROID_ELEMENT_MODULE_POSITION_SETTINGS_LABEL" addfieldpath="/libraries/astroid/framework/fields">
+            <field description="" name="position" type="astroidmodulesposition" class="form-control" default="" label="ASTROID_ELEMENT_MODULE_POSITION_LABEL"></field>
+         </fieldset>
+      </fields>
+   </form>
+</element>

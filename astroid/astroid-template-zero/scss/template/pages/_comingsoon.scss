@@ -1,0 +1,30 @@
+.comingsoon-wrap{
+   box-sizing: border-box;
+   height: 100vh;
+   min-height: 100vh;
+   display: flex;
+   align-items: center;
+}
+
+.comingsoon-page-logo {
+    margin-bottom: 50px;
+}
+
+.comingsoon-content {
+    margin-bottom: 50px;
+}
+
+.comingsoon-date{
+	> div{
+		display: inline-block;
+		span{
+			display: block;
+			font-size: 18px;
+		}
+		.count{
+			font-size: 40px;
+			line-height: 40px;
+			font-weight: bold;
+		}
+	}
+}

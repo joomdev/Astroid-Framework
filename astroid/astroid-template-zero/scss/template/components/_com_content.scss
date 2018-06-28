@@ -1,0 +1,35 @@
+.article-info {
+   margin: 0px;
+   color: $text-muted;
+   a {
+      color: $text-muted;
+   }
+   > dd:not(:last-child) {
+      padding-right: 5px;
+   }
+}
+
+.astroid-compoenent-area {
+   .card-body {
+      padding-bottom: 0px;
+   }
+}
+
+/* Item View */
+.item-page {
+   .table {
+      margin-top: $paragraph-margin-bottom;
+      margin-bottom: $paragraph-margin-bottom;
+   }
+   code {
+      border: $border-width solid $border-color ;
+      border-radius: $border-radius;
+      display: block;
+      padding: $code-padding-y $code-padding-x;
+      margin-top: $paragraph-margin-bottom;
+      margin-bottom: $paragraph-margin-bottom;
+   }
+   img {
+      margin-bottom: $paragraph-margin-bottom;
+   }
+}

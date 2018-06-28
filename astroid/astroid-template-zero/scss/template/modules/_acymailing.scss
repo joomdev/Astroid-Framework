@@ -1,0 +1,29 @@
+// Horizontal Style
+.acymailing_module_form {
+   table.acymailing_form {
+      td {
+         margin: 0;
+         padding: 0 0.3rem;
+      }
+      .inputbox {
+         display: block;
+         width: 100%;
+         padding: $input-padding-y $input-padding-x;
+         font-size: 1.2rem;
+         line-height: 1.5;
+         color: $input-color;
+         background-color: $input-bg;
+         background-clip: padding-box;
+         border: $border-width solid $border-color !important; // Note: This has no effect on <select>s in some browsers, due to the limited stylability of `<select>`s in CSS.
+         @if $enable-rounded {
+            // Manually use the if/else instead of the mixin to account for iOS override
+            border-radius: $input-border-radius;
+         }
+         @else {
+            // Otherwise undo the iOS default
+            border-radius: 0;
+         }
+      }
+      .button {}
+   }
+}

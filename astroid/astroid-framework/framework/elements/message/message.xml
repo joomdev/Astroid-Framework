@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<element>
+   <title>Messages</title>
+   <description>System messages inside the area.</description>
+   <icon>fa fa-exclamation-triangle</icon>
+   <color>#17C671</color>
+   <info>System messages</info>
+   <multiple>false</multiple>
+   <info label="Animation" property="animation"></info>
+</element>

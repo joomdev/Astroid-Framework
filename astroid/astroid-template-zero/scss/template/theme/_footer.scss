@@ -1,0 +1,12 @@
+.astroid-footer {
+	a {
+		color: $body-color;
+	}
+	ul {
+		li {
+			&:not(:last-child) {
+				margin-right: 10px;
+			}
+		}
+	}	
+}

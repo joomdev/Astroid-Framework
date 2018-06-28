@@ -1,0 +1,19 @@
+.astroid-bottom {
+   a {
+      color: $body-color;
+   }
+   .list-group-item{
+      padding: 0.2rem 0rem;
+   }
+   .nav {
+      flex-direction: column;
+   }
+   .astroid-module-position {
+      margin-bottom: 15px;
+   }
+   @include media-breakpoint-down(sm) {
+      .moduletable {
+         margin-bottom: 30px;
+      }
+   }
+}

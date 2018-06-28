@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE install PUBLIC "-//Joomla! 2.5//DTD template 1.0//EN" "https://www.joomla.org/xml/dtd/1.6/template-install.dtd">
+<extension type="package" version="3.1" method="upgrade">
+   <name>Astroid Package</name>
+   <packagename>astroid</packagename>
+   <packager>JoomDev</packager>
+   <packagerurl>http://astroidframework.com</packagerurl>
+   <author>JoomDev</author>
+   <creationDate>June 2018</creationDate>
+   <version>1.0.0</version>
+   <url>http://www.joomdev.com</url>
+   <copyright>Copyright (C) 2018 Joomdev, Inc. All rights reserved.</copyright>
+   <license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+   <authorEmail>info@joomdev.com</authorEmail>
+   <authorUrl>http://www.joomdev.com</authorUrl>
+   <description></description>
+   <scriptfile>pkg_astroid.php</scriptfile>
+   <files folder="astroid">
+      <folder type="library" id="astroid" client="site">astroid-framework</folder>
+      <folder type="template" id="astroid_template_zero" client="site">astroid-template-zero</folder>
+   </files>
+   <updateservers>
+      <server type="extension" priority="1" name="Astroid Framework Package">https://cdn.joomdev.com/updates/astroid.xml</server>
+   </updateservers>
+</extension>

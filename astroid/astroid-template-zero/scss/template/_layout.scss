@@ -1,0 +1,162 @@
+/*
+* Body Wrapper
+*/
+
+html,body,.astroid-container,.astroid-content,.astroid-layout,.astroid-wrapper{
+   min-height: 100vh;
+}
+
+.astroid-container{
+   position: relative;
+}
+
+.astroid-layout{
+   position: relative;
+   .astroid-wrapper{
+      position: relative;
+   }
+   &.astroid-layout-boxed{
+      .astroid-wrapper{
+         max-width: 1140px;
+         margin: 0 auto;
+         box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+         background-color: $white;
+         min-height: 100%;
+      }
+   }
+}
+
+.astroid-content{
+   left: 0;
+   z-index: $zindex-modal-backdrop;
+   -webkit-transition: -webkit-transform 0.5s;
+   transition: transform 0.5s;
+   &:after{
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 0;
+      height: 0;
+      background: rgba(173, 181, 189, 0.7);
+      content: '';
+      opacity: 0;
+      -webkit-transition: opacity 0.5s, width 0.1s 0.5s, height 0.1s 0.5s;
+      transition: opacity 0.5s, width 0.1s 0.5s, height 0.1s 0.5s;
+      z-index: $zindex-modal-backdrop;
+   }
+}
+
+.astroid-offcanvas, .astroid-mobilemenu{
+   position: fixed;
+   top: 0;
+   left: 0;
+   z-index: $zindex-popover;
+   visibility: hidden;
+   height: 100%;
+   background: #ffffff;
+   -webkit-transition: all 0.5s;
+   transition: all 0.5s;
+   overflow-y: auto;
+   max-width: 100vw !important;
+   &:after {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(173, 181, 189,0.6);
+      content: '';
+      opacity: 1;
+      -webkit-transition: opacity 0.5s;
+      transition: opacity 0.5s;
+   }
+   @include media-breakpoint-down(sm) {
+      max-width: 280px !important;
+   }
+}
+
+.astroid-mobilemenu{
+   width: 280px;
+}
+
+body{
+   &.astroid-offcanvas-opened{
+      .astroid-content{
+         &:after{
+            width: 100%;
+            height: 100%;
+            opacity: 1;
+            -webkit-transition: opacity 0.5s;
+            transition: opacity 0.5s;
+         }
+      }
+      .astroid-offcanvas{
+         &:after{
+            width: 0;
+            height: 0;
+            opacity: 0;
+            -webkit-transition: opacity 0.5s, width 0.1s 0.5s, height 0.1s 0.5s;
+            transition: opacity 0.5s, width 0.1s 0.5s, height 0.1s 0.5s;
+         }
+      }
+   }
+   &.astroid-mobilemenu-opened{
+      background: rgb(173, 181, 189);
+      .astroid-content{
+         &:after{
+            width: 100%;
+            height: 100%;
+            opacity: 1;
+            -webkit-transition: opacity 0.5s;
+            transition: opacity 0.5s;
+         }
+      }
+      .astroid-mobilemenu{
+         &:after{
+            width: 0;
+            height: 0;
+            opacity: 0;
+            -webkit-transition: opacity 0.5s, width 0.1s 0.5s, height 0.1s 0.5s;
+            transition: opacity 0.5s, width 0.1s 0.5s, height 0.1s 0.5s;
+         }
+      }
+   }
+}
+
+.astroid-responsive-height{
+   width: auto;
+   max-width: none;
+   max-height: 100%;
+}
+
+.hideonxs{
+   @include media-breakpoint-only(xs) {
+      display: none !important;
+   }
+}
+.hideonsm{
+   @include media-breakpoint-only(sm) {
+      display: none !important;
+   }
+}
+.hideonmd{
+   @include media-breakpoint-only(md) {
+      display: none !important;
+   }
+}
+.hideonlg{
+   @include media-breakpoint-only(lg) {
+      display: none !important;
+   }
+}
+.hideonxl{
+   @include media-breakpoint-only(xl) {
+      display: none !important;
+   }
+}
+
+.no-container > .container{
+   width: 100%;
+   max-width: 100%;
+   padding: 0;
+}

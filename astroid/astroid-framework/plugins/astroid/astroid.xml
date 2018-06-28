@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="3.1" type="plugin" method="upgrade" group="system">
+   <name>Astroid Plugin</name>
+   <author>JoomDev</author>
+   <creationDate>June 2018</creationDate>
+   <version>1.0.0</version>
+   <url>http://www.joomdev.com</url>
+   <copyright>Copyright (C) 2018 Joomdev, Inc. All rights reserved.</copyright>
+   <license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+   <authorEmail>info@joomdev.com</authorEmail>
+   <authorUrl>http://www.joomdev.com</authorUrl>
+   <description>Astroid Framework Plugin Description Here</description>>
+   <files>
+      <filename plugin="astroid">astroid.php</filename>
+   </files>
+   <config>
+      <fields name="params">
+      </fields>
+   </config>
+   <updateservers>
+      <server type="extension" name="astroid_framework" priority="1">https://cdn.joomdev.com/updates/astroid_system_plugin.xml</server>
+   </updateservers>
+</extension>

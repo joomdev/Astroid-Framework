@@ -1,0 +1,26 @@
+.astroid-logo{
+   @include media-breakpoint-down(md) {
+      .astroid-logo-default {
+         display: none;
+      }
+   }
+   .astroid-logo-mobile{
+      max-width: 100%;
+      display: none;
+      @include media-breakpoint-down(md) {
+         display: block;
+      }
+   }
+   .astroid-logo-sticky{
+      display: none;
+   }
+}
+.fixed-header .astroid-logo{
+   .astroid-logo-default,
+   .astroid-logo-mobile{
+      display: none;
+   }
+   .astroid-logo-sticky{
+      display: block;
+   }
+}

@@ -324,6 +324,7 @@ class AstroidMenu {
             echo '</li>';
          }
       }
+      echo '</ul>';
    }
 
    public static function getMegaMenu($item, $astroid_menu_options, $items) {

@@ -49,7 +49,6 @@ $navClass = ['nav', 'astroid-nav', 'd-none', 'd-lg-flex'];
          // header nav starts
          AstroidMenu::getMenu($header_menu, $navClass, null, 'left', 'sticky');
          // header nav ends
-         $template->loadLayout('offcanvas');
          ?>
       </div>
       <?php if ($enable_offcanvas): ?>

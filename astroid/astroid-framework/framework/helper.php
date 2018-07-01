@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @package   Astroid Framework
  * @author    JoomDev https://www.joomdev.com
@@ -8,6 +9,7 @@
 defined('_JEXEC') or die;
 jimport('astroid.framework.constants');
 jimport('joomla.filesystem.file');
+jimport('astroid.framework.template');
 jimport('joomla.filesystem.folder');
 jimport('joomla.filesystem.element');
 
@@ -33,7 +35,7 @@ class AstroidFrameworkHelper {
          $xmlfile = $element_dir . '/' . (str_replace($template_elements_dir, '', str_replace($elements_dir, '', $element_dir))) . '.xml';
          if (file_exists($xmlfile)) {
             $xml = simplexml_load_file($xmlfile);
-            $type = str_replace($elements_dir, '', $element_dir);
+            $type = str_replace($template_elements_dir, '', str_replace($elements_dir, '', $element_dir));
             $element = self::getElementConfig($xml, $type, $default['icon'], $default['description'], $default['color'], $default['multiple'], $default['options']);
             $return[] = $element;
          }
@@ -60,8 +62,12 @@ class AstroidFrameworkHelper {
       foreach ($elements as $element_dir) {
          $xmlfile = $element_dir . '/' . (str_replace($template_elements_dir, '', str_replace($elements_dir, '', $element_dir))) . '.xml';
          if (file_exists($xmlfile)) {
-            $type = str_replace($elements_dir, '', $element_dir);
-            $element = new AstroidElement($type);
+            $type = str_replace($template_elements_dir, '', str_replace($elements_dir, '', $element_dir));
+
+            $template = new \stdClass();
+            $template->template = ASTROID_TEMPLATE_NAME;
+            $template = new AstroidFrameworkTemplate($template);
+            $element = new AstroidElement($type, [], $template);
             $return[] = $element;
          }
       }
@@ -421,9 +427,9 @@ class AstroidFrameworkHelper {
       }
       return $positions;
    }
-   
-   public static function isSystemFont($font){
-	   return isset(AstroidFrameworkConstants::$system_fonts[$font]);
+
+   public static function isSystemFont($font) {
+      return isset(AstroidFrameworkConstants::$system_fonts[$font]);
    }
 
 }

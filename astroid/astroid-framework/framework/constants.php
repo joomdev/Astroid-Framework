@@ -9,7 +9,7 @@ defined('_JEXEC') or die;
 
 class AstroidFrameworkConstants {
 
-   public static $astroid_version = '1.0.1';
+   public static $astroid_version = '1.0.2';
    public static $fontawesome_version = '5.1.0';
    public static $animatecss_version = '3.6';
    public static $animations = [

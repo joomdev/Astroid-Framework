@@ -66,6 +66,7 @@ class AstroidFrameworkHelper {
 
             $template = new \stdClass();
             $template->template = ASTROID_TEMPLATE_NAME;
+            $template->params = new \stdClass();
             $template = new AstroidFrameworkTemplate($template);
             $element = new AstroidElement($type, [], $template);
             $return[] = $element;

@@ -7,7 +7,7 @@ Navigate to `Extensions >> Manage >> Install`
 
 # Installation
 
-On the following screen, click the `browse for file` button and select the download files `astroid_vxxx.zip`, Joomla will automatically start the upload and & continue with the installation after selection of a valid zip file.
+On the following screen, click the `browse for file` button and select the download files `astroid_vxxx.zip`, Joomla will automatically start the upload and continue with the installation after selection of a valid zip file.
 
 After installation, you will screen a screen such as following with the success notification.
 

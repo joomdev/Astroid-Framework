@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<element>
+   <title>Banner</title>
+   <description>Load a Page Banner.</description>
+   <icon>fa fa-image</icon>
+   <color>#00B8D8</color>
+   <multiple>false</multiple>
+</element>

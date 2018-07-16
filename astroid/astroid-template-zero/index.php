@@ -10,9 +10,6 @@ defined('_JEXEC') or die;
 $doc = JFactory::getDocument();
 $app = JFactory::getApplication();
 
-// Remove Scripts
-$doc = JFactory::getDocument();
-
 /** @var JDocumentHtml $this */
 JLoader::import('joomla.filesystem.file');
 //JHtml::_('behavior.framework', true);
@@ -88,13 +85,6 @@ $template->loadTemplateCSS('custom');
    $template->loadLayout('typography');
    $template->loadLayout('colors');
    ?>
-   <script>
-      var BREAKPOINTS = {};
-      BREAKPOINTS.XL = 1200;
-      BREAKPOINTS.MD = 1024;
-      BREAKPOINTS.SM = 768;
-      BREAKPOINTS.XS = 480;
-   </script>
    <?php $template->head(); ?>
 </head>
 <body class="<?php echo $template->bodyClass($template->language, $template->direction); ?>">

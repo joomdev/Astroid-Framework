@@ -1,3 +1,11 @@
+> ```
+>                     __                    _        __
+>    ____ _   _____  / /_   _____  ____    (_)  ____/ /
+>   / __  /  / ___/ / __/  / ___/ / __ \  / /  / __  / 
+>  / /_/ /  (__  ) / /_   / /    / /_/ / / /  / /_/ /  
+>  \__ _/  /____/  \__/  /_/     \____/ /_/   \__ _/   
+>
+> ```                                                  
 # Introduction
 In this tutorial, we will be installing the template using Upload Feature in your Joomla Administration Control Panel.
 

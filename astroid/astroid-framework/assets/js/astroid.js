@@ -285,15 +285,6 @@ class AstroidAdmin {
                data: data,
                dataType: 'json',
                success: function (response) {
-                  if (response.status == 'error') {
-                     Admin.notify(response.message, 'error');
-                  }
-                  Admin.saved = true;
-                  if (!_export) {
-                     Admin.notify('Template Saved.', 'success');
-                  } else {
-                     Admin.exportSettings(response.data)
-                  }
                   $('#astroid-manager-disabled').hide();
 
                   $('#save-options').removeClass('d-none');
@@ -305,8 +296,17 @@ class AstroidAdmin {
                   $('#save-options').removeClass('disabled');
                   $('#export-options').removeClass('disabled');
                   $('#import-options').removeClass('disabled');
-
                   $('#export-form').val(0);
+                  if (response.status == 'error') {
+                     Admin.notify(response.message, 'error');
+                     return false;
+                  }
+                  Admin.saved = true;
+                  if (!_export) {
+                     Admin.notify('Template Saved.', 'success');
+                  } else {
+                     Admin.exportSettings(response.data)
+                  }
                }
             });
             return false;
@@ -360,23 +360,24 @@ class AstroidAdmin {
          $('#save-options').addClass('disabled');
          $('#export-options').addClass('disabled');
          $('#import-options').addClass('disabled');
-
+         var _token = $('#astroid-admin-token').val();
+         var _data = {params: _params};
+         _data[_token] = 1;
          $.ajax({
             method: "POST",
             url: $('#astroid-form').attr('action'),
-            data: {params: _params},
+            data: _data,
             dataType: 'json',
             success: function (response) {
                if (response.status == 'error') {
                   Admin.notify(response.message, 'error');
+               } else {
+                  Admin.saved = true;
+                  Admin.notify('Settings Imported.', 'success');
                }
-               Admin.saved = true;
-               Admin.notify('Settings Imported.', 'success');
-
                setTimeout(function () {
                   window.location = window.location;
                }, 1000);
-
             }
          });
       }

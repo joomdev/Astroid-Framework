@@ -121,6 +121,7 @@ foreach ($params as $key => $value) {
       </script>
    </head>
    <body ng-app="astroid-framework" ng-controller="astroidController">
+      <input type="hidden" id="astroid-admin-token" value="<?php echo JSession::getFormToken(); ?>" />
       <div class="astroid-loading" style="position: fixed;width: 100%;height: 100%;background: rgba(195, 195, 195, 0.9) url('<?php echo JURI::root() . 'media' . '/' . 'astroid' . '/' . 'assets' . '/' . 'images' . '/' . 'astroid.gif'; ?>') no-repeat center;z-index: 9999999;top: 0;left: 0;"></div>
       <!--<nav class="astroid-manager-navbar navbar fixed-top navbar-expand-lg navbar-light bg-white justify-content-between">
          <a class="navbar-brand" href="#"><img src="<?php echo JURI::root() . 'media' . '/' . 'astroid' . '/' . 'assets' . '/' . 'images' . '/' . 'favicon.png'; ?>" width="28" height="28" class="d-inline-block align-top" alt=""> Astroid Framework</a>
@@ -139,7 +140,7 @@ foreach ($params as $key => $value) {
                      <img width="80" src="<?php echo $assets . 'images' . '/' . 'icon-logo-dark.png'; ?>" /><div class="clearfix"></div>
                      <img width="110" src="<?php echo $assets . 'images' . '/' . 'logo-dark-wide.png'; ?>" />
                   </div>
-                  <div class="astroid-version" style="text-align: center;width: 100%;">version 1.0</div>
+                  <div class="astroid-version" style="text-align: center;width: 100%;">version <?php echo AstroidFrameworkConstants::$astroid_version; ?></div>
                </div>
                <ul id="astroid-menu" class="nav flex-column sidebar-nav" role="tablist">
                   <?php $active = false; ?>
@@ -170,22 +171,24 @@ foreach ($params as $key => $value) {
                      </li>
                      <?php $active = false; ?>
                   <?php } ?>
+                     <li class="nav-item row">
+                        <a id="export-options" class="nav-link col-12" href="javascript:void(0);">
+                           <i class="fa fa-download"></i>&nbsp;<?php echo JText::_('Export'); ?>
+                        </a>
+                     </li>
+                     <li class="nav-item row">
+                        <a id="import-options" class="nav-link col-12" href="javascript:void(0);">
+                           <i class="fa fa-upload"></i>&nbsp;<?php echo JText::_('Import'); ?>
+                        </a>
+                     </li>
                </ul>
             </div>
             <div id="astroid-content-wrapper" class="col">
                <nav class="astroid-manager-navbar navbar navbar-expand-lg navbar-light bg-white justify-content-between">
                   <div class="form-inline">
                      <a href="<?php echo $joomla_url; ?>" class="btn btn-white my-2 my-sm-0 btn-round"><i class="fab fa-joomla"></i> Back to Joomla</a>
-                     <div class="dropdown ml-2">
-                        <button class="btn btn-outline-primary dropdown-toggle btn-round" type="button" id="astroidOptionsMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                           <i class="fa fa-caret-down"></i>
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="astroidOptionsMenu">
-                           <a id="export-options" class="dropdown-item" href="javascript:void(0);"><i class="fa fa-download"></i>&nbsp;<?php echo JText::_('Export'); ?></a>
-                           <a id="import-options" class="dropdown-item" href="javascript:void(0);"><i class="fa fa-upload"></i>&nbsp;<?php echo JText::_('Import'); ?></a>
-                        </div>
-                     </div>
                   </div>
+                  <p class="navbar-brand m-0"><?php echo $template->title; ?></p>
                   <div class="form-inline">
                      <a href="<?php echo JURI::root(); ?>" target="_blank" class="btn btn-white my-2 mr-2 my-sm-0 btn-round"><i class="fas fa-external-link-alt"></i>&nbsp;<?php echo JText::_('ASTROID_TEMPLATE_PREVIEW'); ?></a>
                      <button id="clear-cache" class="btn btn-secondary my-2 mr-2 my-sm-0 btn-round btn-wide" type="button"><i class="fa fa-eraser"></i>&nbsp;<?php echo JText::_('ASTROID_TEMPLATE_CLEAR_CACHE'); ?></button>

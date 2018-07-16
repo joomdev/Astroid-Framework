@@ -44,6 +44,7 @@
                <option value="center bottom">Center Bottom</option>
             </field>
             <field ngShow="background" name="background_video" type="astroidmedia" media="videos" label="ASTROID_BACKGROUND_VIDEO_LABEL" description="ASTROID_BACKGROUND_VIDEO_DESC"/>
+            <field name="animation" type="astroidanimations" label="Animation" ></field>
          </fieldset>
          <fieldset name="responsive-settings" label="Responsive Settings" addfieldpath="/libraries/astroid/framework/fields">
             <field description="" name="device_settings" type="astroidheading" title="Device Visibility" />
@@ -52,9 +53,6 @@
             <field description="TPL_ASTROID_MEDIUM_DEVICES_DESC" name="hideonmd" type="astroidtext" astroid-switch="true" default="0" label="Hide on Medium Devices" />
             <field description="TPL_ASTROID_LARGE_DEVICES_DESC" name="hideonlg" type="astroidtext" astroid-switch="true" default="0" label="Hide on Large Devices" />
             <field description="TPL_ASTROID_EXTRA_LARGE_DEVICES_DESC" name="hideonxl" type="astroidtext" astroid-switch="true" default="0" label="Hide on Extra-Large Devices" />
-         </fieldset>
-         <fieldset name="animation-settings" label="Animation Settings" addfieldpath="/libraries/astroid/framework/fields">
-            <field name="animation" type="astroidanimations" label="Animation" ></field>
          </fieldset>
       </fields>
    </form>

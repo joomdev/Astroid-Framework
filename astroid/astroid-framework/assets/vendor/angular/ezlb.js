@@ -366,6 +366,7 @@ astroidFramework.controller('layoutController', function ($scope, $compile) {
       $scope.layout.sections[_sectionIndex].rows[_rowIndex].cols[_colIndex].elements = _elements;
       $scope.chooseElement = {open: 0, column: null, row: null, section: null, element: null};
       $scope.actionPreformed();
+      $scope.editElement(_element);
    };
 
    $scope.removeElement = function (_elementIndex, _colIndex, _rowIndex, _sectionIndex) {

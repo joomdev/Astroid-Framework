@@ -29,9 +29,9 @@
 }
 
 .astroid-header {
-      padding: 15px 0;
-      position: relative;
-      z-index: 1;
+   padding: 15px 0;
+   position: relative;
+   z-index: 1;
 }
 
 header {
@@ -53,9 +53,9 @@ header {
 }
 
 .megamenu-title {
-      font-weight: $font-weight-bold;
-      margin-bottom: 10px;
-      border-bottom: $border-width dashed $border-color ;
+   font-weight: $font-weight-bold;
+   margin-bottom: 10px;
+   border-bottom: $border-width dashed $border-color ;
 }
 @keyframes slide-down {
    0% {
@@ -522,5 +522,17 @@ $burger-layer-spacing : 7px !default;
       small{
          display: block !important;
       }
+   }
+}
+
+.astroid-banner{
+   background-repeat: no-repeat;
+   background-position: center;
+   background-size: cover;
+   .astroid-banner-title{
+ 
+   }
+   .astroid-banner-subtitle{
+
    }
 }

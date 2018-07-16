@@ -8,8 +8,8 @@
  */
 defined('_JEXEC') or die;
 jimport('astroid.framework.constants');
-jimport('joomla.filesystem.file');
 jimport('astroid.framework.template');
+jimport('joomla.filesystem.file');
 jimport('joomla.filesystem.folder');
 jimport('joomla.filesystem.element');
 
@@ -427,6 +427,34 @@ class AstroidFrameworkHelper {
          $positions[$p] = $p;
       }
       return $positions;
+   }
+
+   public static function getTemplatePartials($template) {
+      $template_dir = JPATH_SITE . '/' . 'templates' . '/' . $template . '/' . 'frontend' . '/partials/';
+      if (file_exists($template_dir)) {
+         $partials = self::getPartials($template_dir, $template_dir);
+         return $partials;
+      } else {
+         return $partials;
+      }
+   }
+
+   public static function getPartials($dir, $templatedir) {
+      $files = glob($dir . '*');
+      $partials = [];
+      foreach ($files as $file) {
+         if (!is_dir($file)) {
+            $extension = pathinfo($file, PATHINFO_EXTENSION);
+            if ($extension == 'php') {
+               $prefix = str_replace(DIRECTORY_SEPARATOR, '.', str_replace($templatedir, '', $dir));
+               $partials[] = $prefix . pathinfo($file, PATHINFO_FILENAME);
+            }
+         } else if ($file != "." && $file != ".." && is_dir($file)) {
+            $sub_partials = self::getPartials($file . '/', $templatedir);
+            $partials = array_merge($partials, $sub_partials);
+         }
+      }
+      return $partials;
    }
 
    public static function isSystemFont($font) {

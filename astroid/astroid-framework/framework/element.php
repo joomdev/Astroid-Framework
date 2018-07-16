@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @package   Astroid Framework
  * @author    JoomDev https://www.joomdev.com
@@ -278,7 +279,24 @@ class AstroidElement {
    public function getSectionLayoutType() {
       $params = $this->getParams();
       $container = $params->get('layout_type', '');
-      $container = $container == '' ? 'container' : $container;
+      $custom_class = $params->get('custom_container_class', '');
+      switch ($container) {
+         case '':
+            $container = 'container';
+            break;
+         case 'no-container':
+            $container = '';
+            break;
+         case 'container-with-no-gutters':
+            $container = 'container';
+            break;
+         case 'container-fluid-with-no-gutters':
+            $container = 'container-fluid';
+            break;
+      }
+      if (!empty($container) && !empty($custom_class)) {
+         $container .= ' ' . $custom_class;
+      }
       return $container;
    }
 

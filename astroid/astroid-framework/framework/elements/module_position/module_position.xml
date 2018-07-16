@@ -6,7 +6,7 @@
    <color>#00B8D8</color>
    <form>
       <fields>
-         <fieldset name="modulepositionsettings" label="ASTROID_ELEMENT_MODULE_POSITION_SETTINGS_LABEL" addfieldpath="/libraries/astroid/framework/fields">
+         <fieldset name="general-settings" label="General Settings" addfieldpath="/libraries/astroid/framework/fields">
             <field description="" name="position" type="astroidmodulesposition" class="form-control" default="" label="ASTROID_ELEMENT_MODULE_POSITION_LABEL"></field>
          </fieldset>
       </fields>

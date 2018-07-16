@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @package   Astroid Framework
  * @author    JoomDev https://www.joomdev.com
@@ -324,6 +325,7 @@ class AstroidMenu {
             echo '</li>';
          }
       }
+
       echo '</ul>';
    }
 
@@ -355,7 +357,7 @@ class AstroidMenu {
                         $module = JModuleHelper::getModule($element['module'], $element['title']);
                         if ($module->id) {
                            echo '<div class="mega-menu-item mega-menu-module">';
-                           echo JModuleHelper::renderModule($module, ['style' => 'none']);
+                           echo JModuleHelper::renderModule($module, ['style' => $module->style]);
                            echo "</div>";
                         }
                      } else {

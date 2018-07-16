@@ -99,9 +99,15 @@ body{
             transition: opacity 0.5s, width 0.1s 0.5s, height 0.1s 0.5s;
          }
       }
+      .astroid-offcanvas-open{
+         overflow-x: hidden;
+      }
    }
    &.astroid-mobilemenu-opened{
       background: rgb(173, 181, 189);
+      .astroid-mobilemenu-open{
+         overflow-x: hidden;
+      }
       .astroid-content{
          &:after{
             width: 100%;

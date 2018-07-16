@@ -45,10 +45,10 @@ $class = ['astroid-logo', 'astroid-logo-' . $logo_type, 'd-flex align-items-cent
       <?php if (!empty($default_logo)) { ?>
          <img src="<?php echo JURI::root() . '/images/' . $default_logo; ?>" alt="<?php echo $sitename; ?>" class="astroid-logo-default" />
       <?php } ?>
-      <?php if (!empty($default_logo)) { ?>
+      <?php if (!empty($mobile_logo)) { ?>
          <img src="<?php echo JURI::root() . '/images/' . $mobile_logo; ?>" alt="<?php echo $sitename; ?>" class="astroid-logo-mobile" />
       <?php } ?>
-      <?php if (!empty($default_logo)) { ?>
+      <?php if (!empty($stickey_header_logo)) { ?>
          <img src="<?php echo JURI::root() . '/images/' . $stickey_header_logo; ?>" alt="<?php echo $sitename; ?>" class="astroid-logo-sticky" />
       <?php } ?>
    </a>

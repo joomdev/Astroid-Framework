@@ -9,8 +9,6 @@ defined('_JEXEC') or die;
 JHtml::_('behavior.keepalive');
 JHtml::_('behavior.formvalidator');
 ?>
-	<link href="<?php echo JURI::root() .'templates/astroid_template_zero/html/com_users/registration/style.css' ?>" type="text/css"
-	   rel="stylesheet" />
 		<div class="d-flex justify-content-center">
 			<div class="col-lg-5 col-md-10 <?php echo $this->pageclass_sfx?>">
 				<?php if ($this->params->get('show_page_heading')) : ?>

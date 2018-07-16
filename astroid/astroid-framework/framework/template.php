@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @package   Astroid Framework
  * @author    JoomDev https://www.joomdev.com
@@ -103,30 +104,53 @@ class AstroidFrameworkTemplate {
          $sectionHTML = '';
          $this->setLog("Rending Section : " . $sectionObject->getValue('title'));
          $rowHTML = '';
+         $layout_type = $sectionObject->getValue('layout_type', '');
+         $section_layout_type = $sectionObject->getSectionLayoutType();
          foreach ($section['rows'] as $rowIndex => $row) {
             $columnHTML = '';
 
             $columnSizes = [];
             $bufferSize = 0;
-            foreach ($row['cols'] as $col) {
+            $hasComponent = FALSE;
+            $componentIndex = 0;
+
+            foreach ($row['cols'] as $colIndex => $col) {
+               foreach ($col['elements'] as $element) {
+                  if ($element['type'] == 'component') {
+                     $hasComponent = true;
+                     $componentIndex = $colIndex;
+                     break;
+                  }
+               }
+            }
+
+            foreach ($row['cols'] as $colIndex => $col) {
                $renderedHTML = '';
                foreach ($col['elements'] as $element) {
                   $el = new AstroidElement($element['type'], $element, $this);
                   $renderedHTML .= $el->render();
                }
-               if (!empty($renderedHTML)) {
-                  $columnSizes[] = $bufferSize + $col['size'];
-                  $bufferSize = 0;
+               if (empty($renderedHTML)) {
+                  $bufferSize = $col['size'];
                } else {
-                  $bufferSize = $bufferSize + $col['size'];
+                  if ($hasComponent) {
+                     $row['cols'][$componentIndex]['size'] = $row['cols'][$componentIndex]['size'] + $bufferSize;
+                     $bufferSize = 0;
+                  } else {
+                     $row['cols'][$colIndex]['size'] = $row['cols'][$colIndex]['size'] + $bufferSize;
+                     $bufferSize = 0;
+                  }
                }
             }
-            if ($bufferSize > 0 && !empty($columnSizes)) {
-               $lastIndex = count($columnSizes) - 1;
-               $columnSizes[$lastIndex] = $columnSizes[$lastIndex] + $bufferSize;
+
+            if ($bufferSize) {
+               if ($hasComponent) {
+                  $row['cols'][$componentIndex]['size'] = $row['cols'][$componentIndex]['size'] + $bufferSize;
+               } else {
+                  $row['cols'][count($row['cols']) - 1]['size'] = $row['cols'][count($row['cols']) - 1]['size'] + $bufferSize;
+               }
             }
 
-            $sizeIndex = 0;
             foreach ($row['cols'] as $col) {
                $renderedHTML = '';
                foreach ($col['elements'] as $element) {
@@ -139,23 +163,38 @@ class AstroidFrameworkTemplate {
                   }
                }
                if (!empty($renderedHTML)) {
-                  $columnSize = $columnSizes[$sizeIndex];
-                  $sizeIndex++;
-                  $columnHTML .= '<div class="col-lg-' . $columnSize . '">';
+                  $columnHTML .= '<div class="col-lg-' . $col['size'] . '">';
                   $columnHTML .= $renderedHTML;
                   $columnHTML .= '</div>';
                }
             }
             if (!empty($columnHTML)) {
-               $rowHTML .= '<div class="row">';
+
+               $no_gutter = false;
+               switch ($layout_type) {
+                  case 'no-container':
+                  case 'custom-container':
+                  case 'container-with-no-gutters':
+                  case 'container-fluid-with-no-gutters':
+                     $no_gutter = true;
+                     break;
+               }
+
+               $rowHTML .= '<div class="row' . ($no_gutter ? ' no-gutters' : '') . '">';
                $rowHTML .= $columnHTML;
                $rowHTML .= '</div>';
             }
          }
          if (!empty($rowHTML)) {
-            $sectionHTML .= "<section id='" . $sectionObject->getID() . "' class='" . $sectionObject->getClass() . "' style='" . $sectionObject->getStyles() . "' data-animation='" . $sectionObject->getAnimation() . "' " . $sectionObject->getAttributes() . "><div class='" . $sectionObject->getSectionLayoutType() . "'>";
+            $sectionHTML .= "<section id='" . $sectionObject->getID() . "' class='" . $sectionObject->getClass() . "' style='" . $sectionObject->getStyles() . "' data-animation='" . $sectionObject->getAnimation() . "' " . $sectionObject->getAttributes() . ">";
+            if (!empty($section_layout_type)) {
+               $sectionHTML .= "<div class='" . $section_layout_type . "'>";
+            }
             $sectionHTML .= $rowHTML;
-            $sectionHTML .= '</div></section>';
+            if (!empty($section_layout_type)) {
+               $sectionHTML .= '</div>';
+            }
+            $sectionHTML .= '</section>';
          }
          echo $sectionHTML;
       }

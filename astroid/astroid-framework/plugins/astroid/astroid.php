@@ -24,6 +24,13 @@ class plgSystemAstroid extends JPlugin {
 
    public function onBeforeRender() {
       if ($this->app->isAdmin()) {
+         if (JFactory::getUser()->id) {
+            $astroid_redirect = $this->app->input->get->get('ast', '');
+            if (!empty($astroid_redirect)) {
+               $this->app->redirect(base64_decode(urldecode($astroid_redirect)));
+            }
+         }
+
          $document = \JFactory::getDocument();
          $version = new \JVersion;
          $script = [];
@@ -50,6 +57,9 @@ class plgSystemAstroid extends JPlugin {
                   header('Access-Control-Allow-Origin: *');
                   $return = array();
                   try {
+                     if (!JSession::checkToken()) {
+                        throw new \Exception('The most recent request was denied because it contained an invalid security token. Please refresh the page and try again.');
+                     }
                      $params = $this->app->input->post->get('params', array(), 'RAW');
                      $export_settings = $this->app->input->post->get('export_settings', 0, 'INT');
                      if ($export_settings) {
@@ -157,6 +167,11 @@ class plgSystemAstroid extends JPlugin {
                   }
                   break;
                case "manager":
+                  if (!JFactory::getUser()->id) {
+                     $uri = JFactory::getURI();
+                     $return = $uri->toString();
+                     JFactory::getApplication()->redirect(JRoute::_('index.php?ast=' . urlencode(base64_encode($return))));
+                  }
                   require_once JPATH_LIBRARIES . '/' . 'astroid' . '/' . 'framework' . '/' . 'library' . '/' . 'scssphp' . '/' . 'scss.inc.php';
                   $id = $this->app->input->get('id', NULL, 'INT');
                   $template = AstroidFrameworkHelper::getTemplateById($id);
@@ -200,9 +215,58 @@ class plgSystemAstroid extends JPlugin {
       $data = (array) $data;
       $astroid_dir = 'libraries' . '/' . 'astroid';
       \JForm::addFormPath(JPATH_SITE . '/' . $astroid_dir . '/framework/forms');
-      if ($form->getName() == 'com_menus.item' && $data['level'] == 1) {
-         $form->loadFile('menu', false);
+      if ($form->getName() == 'com_menus.item') {
+         if ($data['level'] == 1) {
+            $form->loadFile('menu', false);
+         }
+         $form->loadFile('banner', false);
       }
+   }
+
+   public function onAfterRender() {
+      if ($this->app->isAdmin()) {
+         $body = $this->app->getBody();
+         $astroid_templates = $this->getAstroidTemplates();
+         $body = preg_replace_callback('/(<a\s[^>]*href=")([^"]*)("[^>]*>)(.*)(<\/a>)/siU', function($matches) use($astroid_templates) {
+            $html = $matches[0];
+            if (strpos($matches[2], 'task=style.edit')) {
+               $uri = new JUri($matches[2]);
+               $id = (int) $uri->getVar('id');
+
+               if ($id && in_array($uri->getVar('option'), array('com_templates')) && (in_array($id, $astroid_templates))) {
+                  $html = $matches[1] . $uri . $matches[3] . $matches[4] . $matches[5];
+                  $html .= ' <span class="label" style="background: linear-gradient(to right,#ff9966, #ff5e62); color:#fff;padding-left: 10px;padding-right: 10px;margin-left: 5px;">Astroid</span>';
+               }
+            }
+            return $html;
+         }, $body);
+         $this->app->setBody($body);
+      }
+   }
+
+   private function getAstroidTemplates() {
+      $db = JFactory::getDbo();
+      $query = $db
+              ->getQuery(true)
+              ->select('s.id, s.template')
+              ->from('#__template_styles as s')
+              ->where('s.client_id = 0')
+              ->where('e.enabled = 1')
+              ->leftJoin('#__extensions as e ON e.element=s.template AND e.type=' . $db->quote('template') . ' AND e.client_id=s.client_id');
+
+      $db->setQuery($query);
+      $templates = $db->loadObjectList();
+      $return = [];
+      foreach ($templates as $template) {
+         if ($this->isAstroidTemplate($template->template)) {
+            $return[] = $template->id;
+         }
+      }
+      return $return;
+   }
+
+   private function isAstroidTemplate($name) {
+      return file_exists(JPATH_SITE . "/templates/{$name}/frontend");
    }
 
 }

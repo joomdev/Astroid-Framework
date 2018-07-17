@@ -32,9 +32,9 @@
          <field astroidgroup="enable_back_to_top" ngShow="backtotop=='1'" description="TPL_ASTROID_BASIC_ICON_BACKGROUND_COLOR_DESC" name="backtotop_icon_bgcolor" type="astroidcolor"  default="" label="TPL_ASTROID_BASIC_ICON_BACKGROUND_COLOR_LABEL" />
 
          <field astroidgroup="enable_back_to_top" ngShow="backtotop=='1'" description="TPL_ASTROID_BASIC_ICON_STYLE_DESC" name="backtotop_icon_style" type="astroidlist" class="form-control" default="" label="TPL_ASTROID_BASIC_ICON_STYLE_LABEL">
-            <option value="circle">Circle</option>
-            <option value="rounded">Rounded</option>
-            <option value="square">Square</option>
+            <option value="circle">TPL_ASTROID_BASIC_ICON_STYLE_OPTIONS_CIRCLE</option>
+            <option value="rounded">TPL_ASTROID_BASIC_ICON_STYLE_OPTIONS_ROUNDED</option>
+            <option value="square">TPL_ASTROID_BASIC_ICON_STYLE_OPTIONS_SQUARE</option>
          </field>
 
          <field astroidgroup="enable_back_to_top" ngShow="backtotop=='1'" description="TPL_ASTROID_BASIC_DISABLE_TOP_ON_MOBILE_DESC" name="backtotop_on_mobile" type="astroidtext" astroid-switch="true" default="1" label="TPL_ASTROID_BASIC_DISABLE_TOP_ON_MOBILE_LABEL"></field>
@@ -48,36 +48,36 @@
          </field>
 
          <field astroidgroup="layout_setting" ngShow="template_layout=='boxed'" description="" name="layout_background_repeat" type="astroidlist" default="" class="form-control" label="ASTROID_BASIC_BACKGROUND_REPEAT_LABEL">
-            <option value="">Inherit</option>
-            <option value="no-repeat">No Repeat</option>
-            <option value="repeat">Repeat All</option>
-            <option value="repeat-x">Repeat Horizontally</option>
-            <option value="repeat-y">Repeat Vertically</option>
+            <option value="">ASTROID_BASIC_BACKGROUND_REPEAT_OPTIONS_INHERIT</option>
+            <option value="no-repeat">ASTROID_BASIC_BACKGROUND_REPEAT_OPTIONS_NO_REPEAT</option>
+            <option value="repeat">ASTROID_BASIC_BACKGROUND_REPEAT_OPTIONS_REPEAT_ALL</option>
+            <option value="repeat-x">ASTROID_BASIC_BACKGROUND_REPEAT_OPTIONS_REPEAT_HORIZONTALLY</option>
+            <option value="repeat-y">ASTROID_BASIC_BACKGROUND_REPEAT_OPTIONS_REPEAT_VERTICALLY</option>
          </field>
   
          <field astroidgroup="layout_setting" ngShow="template_layout=='boxed'" description="" name="layout_background_size" type="astroidlist" default="" class="form-control" label="ASTROID_BASIC_BACKGROUND_SIZE_LABEL">
-            <option value="">Inherit</option>
-            <option value="cover">Cover</option>
-            <option value="contain">Contain</option>
+            <option value="">ASTROID_BASIC_BACKGROUND_SIZE_OPTIONS_INHERIT</option>
+            <option value="cover">ASTROID_BASIC_BACKGROUND_SIZE_OPTIONS_COVER</option>
+            <option value="contain">ASTROID_BASIC_BACKGROUND_SIZE_OPTIONS_CONTAIN</option>
          </field>
   
          <field astroidgroup="layout_setting" ngShow="template_layout=='boxed'" description="" name="layout_background_position" type="astroidlist" class="form-control" default="" label="ASTROID_BASIC_BACKGROUND_POSITION_LABEL">
-            <option value="">Inherit</option>
-            <option value="left top">Left Top</option>
-            <option value="left center">Left Center</option>
-            <option value="left bottom">Left Bottom</option>
-            <option value="right top">Right Top</option>
-            <option value="right center">Right Center</option>
-            <option value="right bottom">Right Bottom</option>
-            <option value="center top">Center Top</option>
-            <option value="center center">Center Center</option>
-            <option value="center bottom">Center Bottom</option>
+            <option value="">ASTROID_BASIC_BACKGROUND_POSITION_OPTIONS_INHERIT</option>
+            <option value="left top">ASTROID_BASIC_BACKGROUND_POSITION_OPTIONS_LEFT_TOP</option>
+            <option value="left center">ASTROID_BASIC_BACKGROUND_POSITION_OPTIONS_LEFT_CENTER</option>
+            <option value="left bottom">ASTROID_BASIC_BACKGROUND_POSITION_OPTIONS_LEFT_BOTTOM</option>
+            <option value="right top">ASTROID_BASIC_BACKGROUND_POSITION_OPTIONS_RIGHT_TOP</option>
+            <option value="right center">ASTROID_BASIC_BACKGROUND_POSITION_OPTIONS_RIGHT_CENTER</option>
+            <option value="right bottom">ASTROID_BASIC_BACKGROUND_POSITION_OPTIONS_RIGHT_BOTTOM</option>
+            <option value="center top">ASTROID_BASIC_BACKGROUND_POSITION_OPTIONS_CENTER_TOP</option>
+            <option value="center center">ASTROID_BASIC_BACKGROUND_POSITION_OPTIONS_CENTER_CENTER</option>
+            <option value="center bottom">ASTROID_BASIC_BACKGROUND_POSITION_OPTIONS_CENTER_BOTTOM</option>
          </field>
 
-         <field astroidgroup="layout_setting"  ngShow="template_layout=='boxed'" description="" name="layout_background_attachment" type="astroidlist" class="form-control" default="" label="ASTROID_BASIC_BACKGROUND_ATTCHMENT_LABEL">
-            <option value="">Inherit</option>
-            <option value="scroll">Scroll</option>
-            <option value="fixed">Fixed</option>
+         <field astroidgroup="layout_setting"  ngShow="template_layout=='boxed'" description="" name="layout_background_attachment" type="astroidlist" class="form-control" default="" label="  ">
+            <option value="">ASTROID_BASIC_BACKGROUND_ATTCHMENT_OPTIONS_INHERIT</option>
+            <option value="scroll">ASTROID_BASIC_BACKGROUND_ATTCHMENT_OPTIONS_SCROLL</option>
+            <option value="fixed">ASTROID_BASIC_BACKGROUND_ATTCHMENT_OPTIONS_FIXED</option>
          </field>
       </fieldset>
    </fields>

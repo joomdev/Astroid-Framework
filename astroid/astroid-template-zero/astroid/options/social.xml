@@ -13,8 +13,8 @@
          </field>
          
          <field astroidgroup="social_profile" name="social_profiles_style" type="astroidlist" class="form-control" default="1" label="TPL_ASTROID_SOCIAL_STYLE" description="TPL_ASTROID_SOCIAL_STYLE_DESC">
-            <option value="1">Inherit color</option>
-            <option value="2">Brand color</option>
+            <option value="1">TPL_ASTROID_SOCIAL_STYLE_OPTIONS_INHERIT_COLOR</option>
+            <option value="2">TPL_ASTROID_SOCIAL_STYLE_OPTIONS_BRAND_COLOR</option>
          </field>
          
          <field astroidgroup="social_profile" name="social_profiles" type="astroidsocialprofiles"></field>

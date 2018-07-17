@@ -34,9 +34,9 @@
          </field>
 
          <field ngShow="header==true" astroidgroup="header_element" name="header_block_1_type" type="astroidlist" default="blank" class="form-control" label="TPL_ASTROID_HEADER_BLOCK_1_TYPE_LABEL" description="TPL_ASTROID_HEADER_BLOCK_1_TYPE_DESC">
-            <option value="blank">Blank</option>
-            <option value="position">Module Position</option>
-            <option value="custom">Custom HTML</option>
+            <option value="blank">TPL_ASTROID_HEADER_BLOCK_1_TYPE_OPTIONS_BLANK</option>
+            <option value="position">TPL_ASTROID_HEADER_BLOCK_1_TYPE_OPTIONS_MODULE_POSITION</option>
+            <option value="custom">TPL_ASTROID_HEADER_BLOCK_1_TYPE_OPTIONS_CUSTOM_HTML</option>
          </field>
 
          <field ngShow="header==true AND header_block_1_type=='position'" astroidgroup="header_element" name="header_block_1_position" type="astroidmodulesposition" class="form-control" label="TPL_ASTROID_HEADER_BLOCK_1_POSITION_LABEL" default="" description="TPL_ASTROID_HEADER_BLOCK_1_POSITION_DESC" />
@@ -55,22 +55,22 @@
 
          <field ngShow="header==true" astroidgroup="header_element" name="header_menu" type="menu" default="mainmenu" class="form-control astroid-select-ui" label="TPL_ASTROID_HEADER_MENU_LABEL" description="TPL_ASTROID_HEADER_MENU_DESC" />
                   
-         <field ngShow="header==true" astroidgroup="header_element" name="header_mobile_menu" type="menu" default="mainmenu" class="form-control astroid-select-ui" label="Select Mobile Menu" />
+         <field ngShow="header==true" astroidgroup="header_element" name="header_mobile_menu" type="menu" default="mainmenu" class="form-control astroid-select-ui" label="TPL_ASTROID_HEADER_MOBILE_MENU_LABEL" />
 
          <field ngShow="header==true" astroidgroup="header_element" description="TPL_ASTROID_MENU_DROPDOWN_ANIMATION_DESC" name="menuanimation" type="astroidlist" class="form-control" astroid-animation-selector="true" default="" label="TPL_ASTROID_MENU_DROPDOWN_ANIMATION_LABEL" >
-            <option value="">No Animation</option>
-            <option value="zoomIn">Zoom In</option>
-            <option value="fadeInUp">Fade In Up</option>
-            <option value="bounceInDown">Bounce in Down</option>
-            <option value="bounceInLeft">Bounce in Left</option>
-            <option value="bounceInRight">Bounce in Right</option>
+            <option value="">TPL_ASTROID_MENU_DROPDOWN_ANIMATION_OPTIONS_NO_ANIMATION</option>
+            <option value="zoomIn">TPL_ASTROID_MENU_DROPDOWN_ANIMATION_OPTIONS_ZOOM_IN</option>
+            <option value="fadeInUp">TPL_ASTROID_MENU_DROPDOWN_ANIMATION_OPTIONS_FADE_IN_UP</option>
+            <option value="bounceInDown">TPL_ASTROID_MENU_DROPDOWN_ANIMATION_OPTIONS_BOUNCE_IN_DOWN</option>
+            <option value="bounceInLeft">TPL_ASTROID_MENU_DROPDOWN_ANIMATION_OPTIONS_BOUNCE_IN_LEFT</option>
+            <option value="bounceInRight">TPL_ASTROID_MENU_DROPDOWN_ANIMATION_OPTIONS_BOUNCE_IN_RIGHT</option>
          </field>
         
          <field ngShow="header==true" astroidgroup="header_element" description="TPL_ASTROID_HEADER_LOGO_OPTION_DESC" title="TPL_ASTROID_HEADER_LOGO_OPTION" type="astroidheading" />
 
          <field ngShow="header==true" astroidgroup="header_element" description="TPL_ASTROID_BASIC_LOGO_TYPE_DESC" name="logo_type" ngModel="logo_type" type="astroidradio" default="image" label="TPL_ASTROID_BASIC_LOGO_TYPE_LABEL">
-            <option value="text">Text</option>
-            <option value="image">Image</option>
+            <option value="text">TPL_ASTROID_BASIC_LOGO_TYPE_OPTIONS_TEXT</option>
+            <option value="image">TPL_ASTROID_BASIC_LOGO_TYPE_OPTIONS_IMAGE</option>
          </field>
 
          <field astroidgroup="header_element" description="TPL_ASTROID_BASIC_LOGO_TEXT_DESC" ngShow="header==true AND logo_type=='text'" ngRequired="logo_type=='text'" name="logo_text" type="astroidtext" class="form-control" default="Astroid" label="TPL_ASTROID_BASIC_LOGO_TEXT_LABEL">
@@ -87,48 +87,48 @@
 
          <field ngShow="header==true" astroidgroup="header_element" description="TPL_ASTROID_HEADER_STICKY_HEADER_DESC" title="TPL_ASTROID_HEADER_STICKY_HEADER" type="astroidheading" />
 
-         <field ngShow="header==true" astroidgroup="header_element" class="sticky-header-switch" name="enable_sticky_menu" type="astroidtext" astroid-switch="true" default="0" label="Enable Sticky Header" description="Enable or Disable Sticky header"></field>
+         <field ngShow="header==true" astroidgroup="header_element" class="sticky-header-switch" name="enable_sticky_menu" type="astroidtext" astroid-switch="true" default="0" label="TPL_ASTROID_HEADER_STICKY_HEADER_ENABLE_LABEL" description="TPL_ASTROID_HEADER_STICKY_HEADER_ENABLE_DESC"></field>
 
          <field ngShow="header==true AND enable_sticky_menu==true AND logo_type=='image'" astroidgroup="header_element" description="TPL_ASTROID_BASIC_STICKY_HEADER_LOGO_DESC" name="stickey_header_logo" type="astroidmedia" label="TPL_ASTROID_BASIC_STICKY_HEADER_LOGO_LABEL">
          </field>
 		
          <field ngShow="header==true AND enable_sticky_menu==true" name="stickyheader" type="astroidlist" astroidgroup="header_element" class="form-control" default="sticky" label="TPL_ASTROID_HEADER_STICKY_HEADER_LABEL" description="TPL_ASTROID_HEADER_STICKY_HEADER_DESC">
-            <option value="sticky">Sticky</option>
-            <option value="stickyonscroll">Sticky On Scroll Up</option>
+            <option value="sticky">TPL_ASTROID_HEADER_STICKY_HEADER_OPTIONS_STICKY</option>
+            <option value="stickyonscroll">TPL_ASTROID_HEADER_STICKY_HEADER_OPTIONS_STICKY_ON_SCROLL_UP</option>
          </field>
 
          <field ngShow="header==true AND enable_sticky_menu==true" name="stickyheadertablet" type="astroidlist" astroidgroup="header_element" class="form-control" default="static" label="TPL_ASTROID_HEADER_STICKY_HEADER_ON_TABLETS_LABEL" description="TPL_ASTROID_HEADER_STICKY_HEADER_MOBILE_DESC">
-            <option value="static">Static</option>
-            <option value="sticky">Sticky</option>
-            <option value="stickyonscroll">Sticky On Scroll Up</option>
+            <option value="static">TPL_ASTROID_HEADER_STICKY_HEADER_OPTIONS_STATIC</option>
+            <option value="sticky">TPL_ASTROID_HEADER_STICKY_HEADER_OPTIONS_STICKY</option>
+            <option value="stickyonscroll">TPL_ASTROID_HEADER_STICKY_HEADER_OPTIONS_STICKY_ON_SCROLL_UP</option>
          </field>
 
          <field ngShow="header==true AND enable_sticky_menu==true" name="stickyheadermobile" type="astroidlist" astroidgroup="header_element" class="form-control" default="static" label="TPL_ASTROID_HEADER_STICKY_HEADER_ON_MOBILE_LABEL" description="TPL_ASTROID_HEADER_STICKY_HEADER_TABLET_DESC">
-            <option value="static">Static</option>
-            <option value="sticky">Sticky</option>
-            <option value="stickyonscroll">Sticky On Scroll Up</option>
+            <option value="static">TPL_ASTROID_HEADER_STICKY_HEADER_OPTIONS_STATIC</option>
+            <option value="sticky">TPL_ASTROID_HEADER_STICKY_HEADER_OPTIONS_STICKY</option>
+            <option value="stickyonscroll">TPL_ASTROID_HEADER_STICKY_HEADER_OPTIONS_STICKY_ON_SCROLL_UP</option>
          </field>
 
          <field ngShow="header==true" astroidgroup="header_element" description="TPL_ASTROID_HEADER_OFF_CANVAS_MENU_DESC" title="TPL_ASTROID_HEADER_OFF_CANVAS_MENU" type="astroidheading" />
 
-         <field ngShow="header==true" astroidgroup="header_element" class="astroid-offcanvas-switch" name="enable_offcanvas" type="astroidtext" astroid-switch="true" default="0" label="Enable Off-Canvas menu" description="Enable or Disable the Off-Canvas menu."></field>
+         <field ngShow="header==true" astroidgroup="header_element" class="astroid-offcanvas-switch" name="enable_offcanvas" type="astroidtext" astroid-switch="true" default="0" label="TPL_ASTROID_HEADER_OFF_CANVAS_MENU_ENABLE_LABEL" description="TPL_ASTROID_HEADER_OFF_CANVAS_MENU_ENABLE_DESC"></field>
          
          <field ngShow="header AND enable_offcanvas" astroidgroup="header_element" name="offcanvas_togglevisibility" type="astroidlist" class="form-control" label="TPL_ASTROID_TOGGLE_VISIBILITY_LABEL" description="TPL_ASTROID_TOGGLE_VISIBILITY_DESC" default="d-block">
-            <option value="d-block">Always</option>
-            <option value="d-block d-sm-none">Only on X-Small Devices</option>
-            <option value="d-block d-md-none">Upto Small Devices</option>
-            <option value="d-block d-lg-none">Upto Medium Devices</option>
-            <option value="d-block d-xl-none">Upto Large Devices</option>
-            <option value="d-none d-xl-block">ONly on X-Large Devices</option>
+            <option value="d-block">TPL_ASTROID_TOGGLE_VISIBILITY_OPTIONS_ALWAYS</option>
+            <option value="d-block d-sm-none">TPL_ASTROID_TOGGLE_VISIBILITY_OPTIONS_ONLY_SMALL_DEVICES</option>
+            <option value="d-block d-md-none">TPL_ASTROID_TOGGLE_VISIBILITY_OPTIONS_UPTO_SMALL_DEVICES</option>
+            <option value="d-block d-lg-none">TPL_ASTROID_TOGGLE_VISIBILITY_OPTIONS_UPTO_MEDIUM_DEVICES</option>
+            <option value="d-block d-xl-none">TPL_ASTROID_TOGGLE_VISIBILITY_OPTIONS_UPTO_LARGE_DEVICES</option>
+            <option value="d-none d-xl-block">TPL_ASTROID_TOGGLE_VISIBILITY_OPTIONS_UPTO_ONLY_X_LARGE_DEVICES</option>
          </field>
 
          <field ngShow="header==true AND enable_offcanvas==true" astroidgroup="header_element" name="offcanvas_panelwidth" class="form-control" type="astroidtext" label="TPL_ASTROID_PANEL_WIDTH_LABEL" default="320px" description="TPL_ASTROID_PANEL_WIDTH_DESC">
          </field>
 
          <field ngShow="header==true AND enable_offcanvas==true" astroidgroup="header_element" description="TPL_ASTROID_OFF_CANVAS_ANIMATION_DESC" name="offcanvas_animation" type="astroidlist" class="form-control" default="st-effect-1" label="TPL_ASTROID_OFF_CANVAS_ANIMATION_LABEL">
-            <option value="st-effect-1">Slide in On Top</option>
-            <option value="st-effect-2">Reveal</option>
-            <option value="st-effect-3">Push</option>
+            <option value="st-effect-1">TPL_ASTROID_OFF_CANVAS_ANIMATION_OPTIONS_SILDE_IN_ON_TOP</option>
+            <option value="st-effect-2">TPL_ASTROID_OFF_CANVAS_ANIMATION_OPTIONS_REVEAL</option>
+            <option value="st-effect-3">TPL_ASTROID_OFF_CANVAS_ANIMATION_OPTIONS_PUSH</option>
          </field>
 
       </fieldset>

@@ -12,7 +12,7 @@ $app = JFactory::getApplication();
 
 /** @var JDocumentHtml $this */
 JLoader::import('joomla.filesystem.file');
-//JHtml::_('behavior.framework', true);
+JHtml::_('behavior.framework', true);
 $lib = JPATH_SITE . '/libraries/astroid/framework/template.php';
 if (file_exists($lib)) {
    jimport('astroid.framework.template');

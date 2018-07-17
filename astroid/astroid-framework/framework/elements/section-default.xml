@@ -2,66 +2,66 @@
 <element>
    <form>
       <fields>
-         <fieldset name="general-settings" label="General Settings" addfieldpath="/libraries/astroid/framework/fields">
-            <field type="astroidtext" class="form-control" label="Section Title" name="title"></field>
-            <field type="astroidtext" class="form-control" label="Section Custom Class" name="customclass"></field>
-            <field type="astroidtext" class="form-control" label="Section ID" name="customid"></field>
-            <field description="" name="layout_type" type="astroidlist" default="" label="Section Layout" hint="Background Repeat">
-               <option value="">Container</option>
-               <option value="container-fluid">Container Fluid</option>
-               <option value="container-with-no-gutters">Container with No gutters</option>
+         <fieldset name="general-settings" label="ASTROID_ELEMENT_HEAD_GENERAL_SEETINGS_LABEL" addfieldpath="/libraries/astroid/framework/fields">
+            <field type="astroidtext" class="form-control" label="ASTROID_ELEMENT_TITLE_LABEL" name="title"></field>
+            <field type="astroidtext" class="form-control" label="ASTROID_ELEMENT_CUSTOM_CLASS_LABEL" name="customclass"></field>
+            <field type="astroidtext" class="form-control" label="ASTROID_ELEMENT_CUSTOM_ID_LABEL" name="customid"></field>
+            <field description="" name="layout_type" type="astroidlist" default="" label="ASTROID_ELEMENT_LAYOUT_SECTION_LAYOUT_LABEL" hint="Background Repeat">
+               <option value="">ASTROID_ELEMENT_LAYOUT_SECTION_LAYOUT_OPTIONS_CONTAINER</option>
+               <option value="container-fluid">ASTROID_ELEMENT_LAYOUT_SECTION_LAYOUT_OPTIONS_CONTAINER_FLUID</option>
+               <option value="container-with-no-gutters">ASTROID_ELEMENT_LAYOUT_SECTION_LAYOUT_OPTIONS_CONTAINER_WITH_NO_GUTTERS</option>
                <option value="container-fluid-with-no-gutters">Container Fluid with No gutters</option>
-               <option value="no-container">Without Container</option>
-               <option value="custom-container">Custom</option>
+               <option value="no-container">ASTROID_ELEMENT_LAYOUT_SECTION_LAYOUT_OPTIONS_WITHOUT_CONTAINER</option>
+               <option value="custom-container">ASTROID_ELEMENT_LAYOUT_SECTION_LAYOUT_OPTIONS_CUSTOM</option>
             </field>
-            <field type="astroidtext" class="form-control" label="Layout Custom Class" name="custom_container_class"></field>
+            <field type="astroidtext" class="form-control" label="ASTROID_ELEMENT_LAYOUT_CUSTOM_CLASS_LABEL" name="custom_container_class"></field>
          </fieldset>
-         <fieldset name="design-settings" label="Design Settings" addfieldpath="/libraries/astroid/framework/fields">
-            <field description="" name="background_settings" type="astroidheading" title="Background Options" />
-            <field description="" name="background" type="astroidtext" astroid-switch="true" default="0" label="Custom Background"  />
+         <fieldset name="design-settings" label="ASTROID_ELEMENT_HEAD_DESIGN_SEETINGS_LABEL" addfieldpath="/libraries/astroid/framework/fields">
+            <field description="" name="background_settings" type="astroidheading" title="ASTROID_ELEMENT_HEAD_BACKGROUND_OPTIONS_LABEL" />
+            <field description="" name="background" type="astroidtext" astroid-switch="true" default="0" label="ASTROID_ELEMENT_CUSTOM_BACKGROUND_LABEL"  />
             
             <field ngShow="background" description="ASTROID_ELEMNT_COLOR_PICKER_DESC" name="background_color" type="astroidcolor" default="" label="ASTROID_ELEMNT_COLOR_PICKER_LABEL" />
 
-            <field ngShow="background" name="background_image" type="astroidmedia" label="Background Image" description="ASTROID_ELEMNT_FILE_MANAGER_DESC"/>
+            <field ngShow="background" name="background_image" type="astroidmedia" label="ASTROID_ELEMNT_FILE_MANAGER_LABEL" description="ASTROID_ELEMNT_FILE_MANAGER_DESC"/>
             
             <field ngShow="background" description="" name="background_repeat" type="astroidlist" default="" label="ASTROID_ELEMNT_ELEMENT_BACK_REPEAT_LABEL" hint="Background Repeat">
-               <option value="">Inherit</option>
-               <option value="no-repeat">No Repeat</option>
-               <option value="repeat-x">Repeat horizontally</option>
-               <option value="repeat-y">Repeat Vertical</option>
+               <option value="">ASTROID_ELEMNT_ELEMENT_BACK_REPEAT_OPTIONS_INHERIT</option>
+               <option value="no-repeat">ASTROID_ELEMNT_ELEMENT_BACK_REPEAT_OPTIONS_NO_REPEAT</option>
+               <option value="repeat-x">ASTROID_ELEMNT_ELEMENT_BACK_REPEAT_OPTIONS_REPEAT_HORIZONTALLY</option>
+               <option value="repeat-y">ASTROID_ELEMNT_ELEMENT_BACK_REPEAT_OPTIONS_REPEAT_VERTICAL</option>
             </field>
             <field ngShow="background" description="" name="background_size" type="astroidlist" default="" label="ASTROID_ELEMNT_ELEMENT_BACK_SIZE_LABEL">
-               <option value="">Inherit</option>
-               <option value="cover">Cover</option>
-               <option value="contain">Contain</option>
+               <option value="">ASTROID_ELEMNT_ELEMENT_BACK_SIZE_LABEL_OPTIONS_INHERI</option>
+               <option value="cover">ASTROID_ELEMNT_ELEMENT_BACK_SIZE_LABEL_OPTIONS_COVER</option>
+               <option value="contain">ASTROID_ELEMNT_ELEMENT_BACK_SIZE_LABEL_OPTIONS_CANTAIN</option>
             </field>
             <field ngShow="background" description="" name="background_attchment" type="astroidlist" default="" label="ASTROID_ELEMNT_ELEMENT_BACK_ATTCHMENT_LABEL">
-               <option value="">Inherit</option>
-               <option value="scroll">Scroll</option>
-               <option value="fixed">Fixed</option>
+               <option value="">ASTROID_ELEMNT_ELEMENT_BACK_ATTCHMENT_OPTIONS_INHERIT</option>
+               <option value="scroll">ASTROID_ELEMNT_ELEMENT_BACK_ATTCHMENT_OPTIONS_SCROLL</option>
+               <option value="fixed">ASTROID_ELEMNT_ELEMENT_BACK_ATTCHMENT_OPTIONS_FIXED</option>
             </field>	  
             <field ngShow="background" description="" name="background_position" type="astroidlist" default="" label="ASTROID_ELEMNT_ELEMENT_BACK_POSITION_LABEL">
-               <option value="">Inherit</option>
-               <option value="left top">Left Top</option>
-               <option value="left center">Left Center</option>
-               <option value="left bottom">Left Bottom</option>
-               <option value="right top">Right Top</option>
-               <option value="right center">Right Center</option>
-               <option value="right bottom">Right Bottom</option>
-               <option value="center top">Center Top</option>
-               <option value="center center">Center Center</option>
-               <option value="center bottom">Center Bottom</option>
+               <option value="">ASTROID_BASIC_BACKGROUND_POSITION_OPTIONS_INHERIT</option>
+               <option value="left top">ASTROID_BASIC_BACKGROUND_POSITION_OPTIONS_LEFT_TOP</option>
+               <option value="left center">ASTROID_BASIC_BACKGROUND_POSITION_OPTIONS_LEFT_CENTER</option>
+               <option value="left bottom">ASTROID_BASIC_BACKGROUND_POSITION_OPTIONS_LEFT_BOTTOM</option>
+               <option value="right top">ASTROID_BASIC_BACKGROUND_POSITION_OPTIONS_RIGHT_TOP</option>
+               <option value="right center">ASTROID_BASIC_BACKGROUND_POSITION_OPTIONS_RIGHT_CENTER</option>
+               <option value="right bottom">ASTROID_BASIC_BACKGROUND_POSITION_OPTIONS_RIGHT_BOTTOM</option>
+               <option value="center top">ASTROID_BASIC_BACKGROUND_POSITION_OPTIONS_CENTER_TOP</option>
+               <option value="center center">ASTROID_BASIC_BACKGROUND_POSITION_OPTIONS_CENTER_CENTER</option>
+               <option value="center bottom">ASTROID_BASIC_BACKGROUND_POSITION_OPTIONS_CENTER_BOTTOM</option>
             </field>
             <field ngShow="background" name="background_video" type="astroidmedia" media="videos" label="ASTROID_BACKGROUND_VIDEO_LABEL" description="ASTROID_BACKGROUND_VIDEO_DESC"/>
-            <field name="animation" type="astroidanimations" label="Animation" ></field>
+            <field name="animation" type="astroidanimations" label="ASTROID_BACKGROUND_ANIMATION_LABEL" ></field>
          </fieldset>
-         <fieldset name="responsive-settings" label="Responsive Settings" addfieldpath="/libraries/astroid/framework/fields">
-            <field description="" name="device_settings" type="astroidheading" title="Device Visibility" />
-            <field description="TPL_ASTROID_EXTRA_SMALL_DEVICES_DESC" name="hideonxs" type="astroidtext" astroid-switch="true" default="0" label="Hide on Extra-Small Devices" />
-            <field description="TPL_ASTROID_SMALL_DEVICES_DESC" name="hideonsm" type="astroidtext" astroid-switch="true" default="0" label="Hide on Small Devices" />
-            <field description="TPL_ASTROID_MEDIUM_DEVICES_DESC" name="hideonmd" type="astroidtext" astroid-switch="true" default="0" label="Hide on Medium Devices" />
-            <field description="TPL_ASTROID_LARGE_DEVICES_DESC" name="hideonlg" type="astroidtext" astroid-switch="true" default="0" label="Hide on Large Devices" />
-            <field description="TPL_ASTROID_EXTRA_LARGE_DEVICES_DESC" name="hideonxl" type="astroidtext" astroid-switch="true" default="0" label="Hide on Extra-Large Devices" />
+         <fieldset name="responsive-settings" label="ASTROID_ELEMENT_HEAD_RESPONSIVE_SEETINGS_LABEL" addfieldpath="/libraries/astroid/framework/fields">
+            <field description="" name="device_settings" type="astroidheading" title="ASTROID_ELEMENT_HEAD_DEVICE_VISIBILITY_LABEL" />
+            <field description="TPL_ASTROID_EXTRA_SMALL_DEVICES_DESC" name="hideonxs" type="astroidtext" astroid-switch="true" default="0" label="TPL_ASTROID_EXTRA_SMALL_DEVICES_LABEL" />
+            <field description="TPL_ASTROID_SMALL_DEVICES_DESC" name="hideonsm" type="astroidtext" astroid-switch="true" default="0" label="TPL_ASTROID_SMALL_DEVICES_LABEL" />
+            <field description="TPL_ASTROID_MEDIUM_DEVICES_DESC" name="hideonmd" type="astroidtext" astroid-switch="true" default="0" label="TPL_ASTROID_MEDIUM_DEVICES_DESC" />
+            <field description="TPL_ASTROID_LARGE_DEVICES_DESC" name="hideonlg" type="astroidtext" astroid-switch="true" default="0" label="TPL_ASTROID_LARGE_DEVICES_LABEL" />
+            <field description="TPL_ASTROID_EXTRA_LARGE_DEVICES_DESC" name="hideonxl" type="astroidtext" astroid-switch="true" default="0" label="TPL_ASTROID_EXTRA_LARGE_DEVICES_LABEL" />
          </fieldset>
       </fields>
    </form>

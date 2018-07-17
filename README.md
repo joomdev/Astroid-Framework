@@ -9,13 +9,13 @@
 # Introduction
 In this tutorial, we will be installing the template using Upload Feature in your Joomla Administration Control Panel.
 
-Be sure you have downloaded the template are and logged into Joomla Administrator Control Panel.
+Be sure you have downloaded the template, and logged into Joomla Administrator Control Panel.
 
 Navigate to `Extensions >> Manage >> Install`
 
 # Installation
 
-On the following screen, click the `browse for file` button and select the download files `astroid_vxxx.zip`, Joomla will automatically start the upload and continue with the installation after selection of a valid zip file.
+In order to Install, click the `browse for file` button and select the download files `astroid_vxxx.zip`, Joomla will automatically start the upload and & continue with the installation after selection of a valid zip file.
 
 After installation, you will screen a screen such as following with the success notification.
 
@@ -81,10 +81,10 @@ Background Attachment | Fixed | Set the background image attachment style: `Scro
 ## Header
 Header section combines with the options such as logo, mega menu, mobile menu & off canvas menu etc that will appear at the top of each page when displayed. Disabling the header would disable all header options.
 
-#### Header Module Position
+### Header Module Position
 Here you can select a suitable module position where you want to display header.
 
-#### Header Mode
+### Header Mode
 You can select from 6 different header types, the header layouts provide a visual representation of what your header on the frontend would look like.
 
 1. **Horizontal layout** provides 3 different layouts with logo being on the left & mega menu being on the `left`, `center` or `right`.  You also have an option to publish a block on the right that can either be a module position or custom HTML.
@@ -97,22 +97,22 @@ You can select from 6 different header types, the header layouts provide a visua
 
 * **Stacked Divided:** This layout provides you with logo & menu on the left (on top of each other) with option to publish 2 blocks on the right, next to menu and/or the logo.
 
-#### Header Blocks
+### Header Blocks
 Header blocks are positions that let you publish content inside the header. Based on the layout selected you may see 1 or 2 blocks. You can either directly publish HTML in each block or select a module position of your choice and publish modules to the selected position.
 
-#### Mega Menu
+### Mega Menu
 You can select from the dropdown list which menu you’d like to publish as your main menu.
 
-#### Mobile Menu
+### Mobile Menu
 You can select from the dropdown list which menu you’d like to publish as your main menu on mobile.
 
-#### Dropdown Animation
+### Dropdown Animation
 This options decides the animation that will be used for displaying the dropdown menu.
 
 ### Logo Options
 You can select a logo for desktop view, mobile view and sticky header.
 
-#### Logo Type
+### Logo Type
 Logo type gives an option to set the image for logo or the logo text.
 
 * Text Logo Settings - You can enter the text for the logo and an optional tagline as well.
@@ -123,9 +123,8 @@ A sticky header is a menu or navigation bar that stays at the top of the page no
 You can enable or disable the sticky header option, By enabling the option the header will stick to the top when you reach its scroll position.
 
 There are 2 different ways you can show the sticky header
-*Sticky: A Sticky or Fixed header appears when a page is scrolled down.
-*Sticky on Scroll up: Sticky Header only appears when scrolled up to the page. 
-
+* Sticky: A Sticky or Fixed header appears when a page is scrolled down.
+* Sticky on Scroll up: Sticky Header only appears when scrolled up to the page. 
 
 Option | Default | Description
 ------------------ | ------- | -----------
@@ -234,14 +233,14 @@ Layout manager provides the ability to build flexible layout from the collection
 
 ![layout](https://raw.githubusercontent.com/hiteshaggarwal/Astroid-Documentation/master/source/images/Layout.png)
 
-#### Layout Structure
+### Layout Structure
 
 * Layout includes a responsive, mobile first fluid grid system that appropriately scales up to 12 columns as the device or viewport size increases. You can select the desired number of columns from the predefined columns grid. 
 
 * Icon with arrows allows you to change positions of rows by moving them up or down. Use plus icon to add new Row, then select column structure and insert module position(s) accordingly.
 * Sections, rows and elements can be added, edited, copied and deleted directly in the layout manager.
 
-#### Managing Layout  
+### Managing Layout  
 In the layout particular section can be edited, drag drop, copy, new section can be added and new row with in the section can also be added. Also we can edit, delete and copy particular column.
 
 * Drag and Drop: Click on Drag icon to Drag and Drop  rows/columns to arrange your layout.
@@ -253,7 +252,7 @@ In the layout particular section can be edited, drag drop, copy, new section can
 
 ![editoptions](https://raw.githubusercontent.com/hiteshaggarwal/Astroid-Documentation/master/source/images/LayoutOptions.png)
 
-#### Element
+### Element
 New elements can be created by clicking the Add icon that appears in bottom-center when hovering the element.
 
 Following are the elements within this section:
@@ -261,14 +260,15 @@ Following are the elements within this section:
 * Component Area
 * Messages
 
-`If we already added component area and messages before than we are not able to add them again`
+`If we already added component area and messages before than we are not able to add them again`<br />
+`Add messages element to display errors, warnings and notices, if you won't add it you won't be able to see the notifications messages.`
 
-#### Section
+### Section
 We can add new section by clicking on the add new section option given with in the row level options or we can also add new section by clicking on add section button.
 
 ![editoptions](https://raw.githubusercontent.com/hiteshaggarwal/Astroid-Documentation/master/source/images/NewSections.png)
 
-#### Edit Options of Element and Section
+### Edit Options of Element and Section
 Elements and section both have same edit options i.e General settings , Design Settings , Responsive settings , Animation Settings
 
 * **Position Settings:** In this we can set position of the modules.
@@ -506,9 +506,9 @@ Here we can add Custom CSS , Custom Javascript
 
 Option | Default | Description
 ------- | ----------- | -----------
-Tracking Code | none | 
-Space Before `</head>` | none
-Space before `</body>`| none
+Tracking Code | none | A tracking code is a snippet of JavaScript code that tracks the activity of a website user by collecting data and sending it to the analytics module. 
+Space Before `</head>` | none | For the javascript before `</head>`
+Space before `</body>`| none | For the javascript before `</body>`
 Custom CSS | none | Here you can add custom CSS to add your own styles or overwrite default CSS, Wrapped within `<style>` tags.
 Custom JS | none | Here you can add custom javascript code here, Wrapped within `<script>` tags.
 
@@ -522,10 +522,10 @@ In this section we have :
 * **Module Position :** Select a suitable module position where you want to display this feature.
 * **Social Load Position :** If there are other module(s) published to this module position, you can select weather the content of this feature should be displayed below the or after the module(s) published to this position.
 * **Style :** Choose the style how you want to show Social profile on your site , default value is Inherit color.
-   In style we have 2 Options to style our social icons:
+In style we have 2 Options to style our social icons:
    1. Inherit color.
    2. Brand color.
-* In this section we have in all 19 types of Social Profiles : 
+In this section we have in all 19 types of Social Profiles : 
   1. Facebook
   2. Instagram
   3. Youtube
@@ -611,7 +611,7 @@ Option | Default | Description
 ------- | ----------- | -----------
 Favicon image | none | Select an icon for a favicon, also known as a shortcut icon, website icon, tab icon, URL icon, or bookmark icon.
 
-![misfavicon](https://raw.githubusercontent.com/hiteshaggarwal/Astroid-Documentation/master/source/images/MisFavicon.png)
+![megamenu](https://raw.githubusercontent.com/hiteshaggarwal/Astroid-Documentation/master/source/images/MisFavicon.png)
 
 ## Mega Menu
 A mega menu is defined as a drop down interface that is triggered by the user hovering over a link or defined area. This dropdown usually shows all options in one main, mega-panel and oftentimes groups related topics into categories. In this section you can configure menu options.
@@ -619,6 +619,8 @@ A mega menu is defined as a drop down interface that is triggered by the user ho
 ### Mega Menu : Enable/disable Mega Menu option.
 
 * By default Mega Menu option is disable, you can set icon, subtitle, custom class, width and dropdown Alignment for your dropdown menu.
+
+![megamenu](https://raw.githubusercontent.com/hiteshaggarwal/Astroid-Documentation/master/source/images/Megamenu.png)
 
 Option | Description
 ------- | -----------
@@ -630,6 +632,8 @@ Width | You can set total width in pixel for submenu area.
 Custom CSS Class | allows you to add Custom CSS Class(es) to the menu item.
 
 * By enabling Mega Menu you can easily create and customize Mega Menu with sub menu items and modules, offers you different layouts with drag and drop menu building system. Each menu item contains Astroid Menu Options which provides ability to add rows, columns, links and more to a mega menu.
+
+![megamenu](https://raw.githubusercontent.com/hiteshaggarwal/Astroid-Documentation/master/source/images/Megamenu-enable.png)
 
 Option | Description
 ------- | -----------
@@ -763,7 +767,7 @@ Input Values:
 Name | Default value | Type | Description
 ------- | ----------- | -------- |---------
 font-face | Arial | STRING | font-face can be Arial, Times New Roman, Verdana and Trebuchet and other’s can be possible
-alt-font-face | Abel | STRING |
+alt-font-face | Abel | STRING | If the browser does not support the first font family, it tries the Alternate font family.
 font-color | White | STRING | Font-color can be Hex , RGB or RGBA
 font-size | 1 | INT | font-size property sets the size of a font
 font-unit | em | STRING | font-unit can be px , em pt , ex etc
@@ -894,6 +898,8 @@ The menu form field type provides a drop down list of the available menus from y
 ```
 Input Values: 
 
+Value | Description | Required
+------- | ----------- | -----------
 Name | Description | Required
 type | This is mandatory and must be menu | yes
 name | This is the unique name of the field | yes

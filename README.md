@@ -525,26 +525,27 @@ In this section we have :
 In style we have 2 Options to style our social icons:
    1. Inherit color.
    2. Brand color.
-In this section we have in all 19 types of Social Profiles : 
+In this section we have in all 20 types of Social Profiles : 
   1. Facebook
-  2. Instagram
-  3. Youtube
-  4. Twitter
-  5. Google+
-  6. LinkedIn
-  7. Google Drive
-  8. Play Store
-  9. Pinterest
-  10. Amazon
-  11. Github
-  12. App Store
-  13. Whatsapp
-  14. Soundcloud
-  15. Behance
-  16. Dribbble
-  17. Spotify
-  18. Tumblr
-  19. Reddit
+  2. Messenger
+  3. Twitter
+  4. YouTube
+  5. LinkedIn
+  6. Instagram
+  7. WhatsApp
+  8. Pinterest
+  9. Google Plus
+  10. GitHub
+  11. Tumblr
+  12. reddit
+  13. Telegram
+  14. Skype
+  15. Slack
+  16. SoundCloud
+  17. Behance
+  18. Dribbble
+  19. Spotify
+  20. Flickr
   
 ![social](https://raw.githubusercontent.com/hiteshaggarwal/Astroid-Documentation/master/source/images/Social.png)
 

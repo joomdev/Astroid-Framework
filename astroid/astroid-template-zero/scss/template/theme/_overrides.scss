@@ -6,11 +6,23 @@
    .chzn-choices{
       @extend .form-control;
       @extend .p-1;
+      .search-field{
+         @extend .w-100;
+         input{
+            @extend .w-100;
+         }
+      }
    }
    .chzn-single{
       @extend .form-control;
       @extend .p-1;
       @extend .h-100;
+      .search-field{
+         @extend .w-100;
+         input{
+            @extend .w-100;
+         }
+      }
    }
 }
 

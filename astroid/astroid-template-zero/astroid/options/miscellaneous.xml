@@ -18,10 +18,10 @@
 				<option value="before">TPL_ASTROID_BEFORE_MODULE</option>
 			</field>
 
-			<field astroidgroup="contact_info" name="contact_address" type="astroidtext" label="TPL_ASTROID_MISCELL_ADDRESS_LABEL" default="15 Barnes Wallis Way, West Road, Chorley, USA" description="TPL_ASTROID_MISCELL_ADDRESS_DESC" hint="15 Barnes Wallis Way, West Road, Chorley, USA" ngShow="contact_details=='1'" class="form-control">
+			<field astroidgroup="contact_info" name="contact_address" type="astroidtext" label="TPL_ASTROID_MISCELL_ADDRESS_LABEL" description="TPL_ASTROID_MISCELL_ADDRESS_DESC" hint="15 Barnes Wallis Way, West Road, Chorley, USA" ngShow="contact_details=='1'" class="form-control">
 			</field>
 			
-			<field astroidgroup="contact_info" name="contact_phone_number" type="astroidtext" label="TPL_ASTROID_MISCELL_PHONE_NUMBER_LABEL" description="TPL_ASTROID_MISCELL_PHONE_NUMBER_DESC" default="(888) 888-1234" hint="+1 123 456 7890" ngShow="contact_details=='1'" class="form-control">
+			<field astroidgroup="contact_info" name="contact_phone_number" type="astroidtext" label="TPL_ASTROID_MISCELL_PHONE_NUMBER_LABEL" description="TPL_ASTROID_MISCELL_PHONE_NUMBER_DESC" hint="+1 123 456 7890" ngShow="contact_details=='1'" class="form-control">
 			</field>
 
 			<field astroidgroup="contact_info" name="contact_mobile_number" type="astroidtext" label="TPL_ASTROID_MISCELL_MOBILE_NUMBER_LABEL" description="TPL_ASTROID_MISCELL_MOBILE_NUMBER_DESC" hint="+1 123 456 7890" ngShow="contact_details=='1'" class="form-control">

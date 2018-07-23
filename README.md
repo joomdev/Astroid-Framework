@@ -72,7 +72,7 @@ Background Image | none | Select a Background Image for boxed layout.
 Background Repeat | No-Repeat | Allows you to choose the repeat for the background image. You can select All Repeat, horizontal repeat, vertical repeat or disable repeat of the image.
 Background Size | inherit | Adjust the background image displaying. You can select one of the following values: `cover`, `contain` and `inherit`.
 Background Position | Center Top | Choose the position for the background image from the Dropdown list.
-Background Attachment | Fixed | Set the background image attachment style: `Scroll – background image scrolls with the content` , `Fixed – the background image is fixed and content scrolls over it` *(Select fixed if you want have parallax scrolling effect)*
+Background Attachment | Fixed | Set the background image attachment style: `Scroll – background image scrolls with the content`, `Fixed – the background image is fixed and content scrolls over it` *(Select fixed if you want have parallax scrolling effect)*
 
 ![Layoutsetting1](https://raw.githubusercontent.com/hiteshaggarwal/Astroid-Documentation/master/source/images/Layoutset1.png)
 
@@ -130,11 +130,11 @@ Option | Default | Description
 ------------------ | ------- | -----------
 Sticky Header Logo | none | Select an image for your sticky header logo (*Sticky header logo is only for desktop and will not be visible on the mobile sticky header*).
 Sticky Header on Desktop | Sticky | You can select whether you need the header to be sticky at all times or sticky on scroll up.
-Sticky Header on Tablets | Sticky | You can select whether you need the header to be sticky at all times , sticky on scroll up or to be static (not visible on scroll) in Tablet view.
-Sticky Header on Mobile | Sticky | You can select whether you need the header to be sticky at all times , sticky on scroll up or to be static (not visible on scroll) in mobile view.
+Sticky Header on Tablets | Sticky | You can select whether you need the header to be sticky at all times, sticky on scroll up or to be static (not visible on scroll) in Tablet view.
+Sticky Header on Mobile | Sticky | You can select whether you need the header to be sticky at all times, sticky on scroll up or to be static (not visible on scroll) in mobile view.
 
 ### OffCanvas Menu
-Here you can customize Off-Canvas style for your site. This is how an off-canvas menu works: The user clicks an icon or performs some sort of action (e.g. slide in on Top , Reveal , Push ) that results in a vertical navigation menu sliding into the screen from off canvas.
+Here you can customize Off-Canvas style for your site. This is how an off-canvas menu works: The user clicks an icon or performs some sort of action (e.g. slide in on Top, Reveal, Push ) that results in a vertical navigation menu sliding into the screen from off canvas.
 
 Option | Default | Description
 ------------------ | ------- | -----------
@@ -259,6 +259,7 @@ Following are the elements within this section:
 * Module Position
 * Component Area
 * Messages
+* Banner
 
 `If we already added component area and messages before than we are not able to add them again`<br />
 `Add messages element to display errors, warnings and notices, if you won't add it you won't be able to see the notifications messages.`
@@ -269,13 +270,13 @@ We can add new section by clicking on the add new section option given with in t
 ![editoptions](https://raw.githubusercontent.com/hiteshaggarwal/Astroid-Documentation/master/source/images/NewSections.png)
 
 ### Edit Options of Element and Section
-Elements and section both have same edit options i.e General settings , Design Settings , Responsive settings , Animation Settings
+Elements and section both have same edit options i.e General settings, Design Settings, Responsive settings, Animation Settings
 
 * **Position Settings:** In this we can set position of the modules.
 
 ![position-settings](https://raw.githubusercontent.com/hiteshaggarwal/Astroid-Documentation/master/source/images/Position.png) 
 
-* **General Settings:** general settings have Element Title , Custom Class and Custom ID options.
+* **General Settings:** general settings have Element Title, Custom Class and Custom ID options.
 
 ![general-settings](https://raw.githubusercontent.com/hiteshaggarwal/Astroid-Documentation/master/source/images/General.png)
 
@@ -289,7 +290,7 @@ Background Color | None | Set the Background color for the particular column
 Background Image | None | Set the Background image for the particular column
 Select Background Repeat | Inherit | Set the Background image of the particular column
 Select a background Size | Inherit | Adjust the background image displaying. You can select one of the following values: `cover`, `contain` and `inherit`
-Select a Background Attachment | Inherit | Set the background image attachment style: `Scroll – background image scrolls with the content` , `Fixed – the background image is fixed and content scrolls over it`
+Select a Background Attachment | Inherit | Set the background image attachment style: `Scroll – background image scrolls with the content`, `Fixed – the background image is fixed and content scrolls over it`
 Select a Background Position | Inherit | Choose the position for the background image from the Dropdown list.
 Background Video | None | Set the background video for the particular column
 
@@ -333,7 +334,7 @@ Text Transform | none | Set the font transformation, if needed (uppercase, capit
 ![bodytypogarphy](https://raw.githubusercontent.com/hiteshaggarwal/Astroid-Documentation/master/source/images/BodyTypography.png)
 
 ### Menu Typography
-This section allows to adjust typography settings for the Menu.If inherit selected then property will inherit its value from body typography properties.
+This section allows to adjust typography settings for the Menu. If inherit selected then property will inherit its value from body typography properties.
 
 Option | Default | Description
 ------- | ----------- | -----------
@@ -344,14 +345,14 @@ Font Size | 0.7 | Set the font size you need to use in the text element.
 Letter Spacing | 0 | Set the needed distance between letters.
 Line Height | 1 | line-height property specifies the height of a line.
 Text Transform | none | Set the font transformation, if needed (uppercase, capitalize and lowercase).
-Font-Color | #000 | set the color of the text. The color is specified by: `color name - like "red"` , `HEX value - like "#ff0000"` , `RGB value - like "rgb(255,0,0)"`.
+Font-Color | #000 | set the color of the text. The color is specified by: `color name - like "red"`, `HEX value - like "#ff0000"`, `RGB value - like "rgb(255,0,0)"`.
 
 ![menutypogarphy](https://raw.githubusercontent.com/hiteshaggarwal/Astroid-Documentation/master/source/images/MenuTypography1.png)
 
 ![menutypogarphy](https://raw.githubusercontent.com/hiteshaggarwal/Astroid-Documentation/master/source/images/MenuTypography2.png)
 
 ### SubMenu Typography
-This section allows to adjust typography settings for the SubMenu.If inherit selected then property will inherit its value from body typography properties. 
+This section allows to adjust typography settings for the SubMenu. If inherit selected then property will inherit its value from body typography properties. 
 
 Option | Default | Description
 ------- | ----------- | -----------
@@ -362,7 +363,7 @@ Font Size | 0.7 | Set the font size you need to use in the text element.
 Letter Spacing | 0 | Set the needed distance between letters.
 Line Height | 1 | line-height property specifies the height of a line.
 Text Transform | none | Set the font transformation, if needed (uppercase, capitalize and lowercase).
-Font-Color | #000 | set the color of the text. The color is specified by: `color name - like "red"` , `HEX value - like "#ff0000"` , `RGB value - like "rgb(255,0,0)"`.
+Font-Color | #000 | set the color of the text. The color is specified by: `color name - like "red"`, `HEX value - like "#ff0000"`, `RGB value - like "rgb(255,0,0)"`.
 
 ![submenutypogarphy](https://raw.githubusercontent.com/hiteshaggarwal/Astroid-Documentation/master/source/images/SubMenuTypography1.png)
 
@@ -386,7 +387,7 @@ Font Size | 3.5 | Set the font size you need to use in the text element.
 Letter Spacing | 0 | Set the needed distance between letters.
 Line Height | 1 | line-height property specifies the height of a line.
 Text Transform | none | Set the font transformation, if needed (uppercase, capitalize and lowercase).
-Font-Color | #000 | set the color of the text. The color is specified by: `color name - like "red"` , `HEX value - like "#ff0000"` , `RGB value - like "rgb(255,0,0)"`. 
+Font-Color | #000 | set the color of the text. The color is specified by: `color name - like "red"`, `HEX value - like "#ff0000"`, `RGB value - like "rgb(255,0,0)"`. 
 
 ![h1typogarphy](https://raw.githubusercontent.com/hiteshaggarwal/Astroid-Documentation/master/source/images/H1Typography1.png)
 
@@ -405,7 +406,7 @@ Font Size | 3 | Set the font size you need to use in the text element.
 Letter Spacing | 0 | Set the needed distance between letters.
 Line Height | 1 | line-height property specifies the height of a line.
 Text Transform | none | Set the font transformation, if needed (uppercase, capitalize and lowercase).
-Font-Color | #000 | set the color of the text. The color is specified by: `color name - like "red"` , `HEX value - like "#ff0000"` , `RGB value - like "rgb(255,0,0)"`.
+Font-Color | #000 | set the color of the text. The color is specified by: `color name - like "red"`, `HEX value - like "#ff0000"`, `RGB value - like "rgb(255,0,0)"`.
 
 ![h2typogarphy](https://raw.githubusercontent.com/hiteshaggarwal/Astroid-Documentation/master/source/images/H2Typography1.png)
 
@@ -424,7 +425,7 @@ Font Size | 2 | Set the font size you need to use in the text element.
 Letter Spacing | 0 | Set the needed distance between letters.
 Line Height | 1 | line-height property specifies the height of a line.
 Text Transform | none | Set the font transformation, if needed (uppercase, capitalize and lowercase).
-Font-Color | #000 | set the color of the text. The color is specified by: `color name - like "red"` , `HEX value - like "#ff0000"` , `RGB value - like "rgb(255,0,0)"`.
+Font-Color | #000 | set the color of the text. The color is specified by: `color name - like "red"`, `HEX value - like "#ff0000"`, `RGB value - like "rgb(255,0,0)"`.
 
 ![h3typogarphy](https://raw.githubusercontent.com/hiteshaggarwal/Astroid-Documentation/master/source/images/H3Typography1.png)
 
@@ -443,7 +444,7 @@ Font Size | 1.5 | Set the font size you need to use in the text element.
 Letter Spacing | 0 | Set the needed distance between letters.
 Line Height | 1 | line-height property specifies the height of a line.
 Text Transform | none | Set the font transformation, if needed (uppercase, capitalize and lowercase).
-Font-Color | #000 | set the color of the text. The color is specified by: `color name - like "red"` , `HEX value - like "#ff0000"` , `RGB value - like "rgb(255,0,0)"`.
+Font-Color | #000 | set the color of the text. The color is specified by: `color name - like "red"`, `HEX value - like "#ff0000"`, `RGB value - like "rgb(255,0,0)"`.
 
 ![h4typogarphy](https://raw.githubusercontent.com/hiteshaggarwal/Astroid-Documentation/master/source/images/H4Typography1.png)
 
@@ -462,7 +463,7 @@ Font Size | 1 | Set the font size you need to use in the text element.
 Letter Spacing | 0 | Set the needed distance between letters.
 Line Height | 1 | line-height property specifies the height of a line.
 Text Transform | none | Set the font transformation, if needed (uppercase, capitalize and lowercase).
-Font-Color | #000 | set the color of the text. The color is specified by: `color name - like "red"` , `HEX value - like "#ff0000"` , `RGB value - like "rgb(255,0,0)"`.
+Font-Color | #000 | set the color of the text. The color is specified by: `color name - like "red"`, `HEX value - like "#ff0000"`, `RGB value - like "rgb(255,0,0)"`.
 
 ![h5typogarphy](https://raw.githubusercontent.com/hiteshaggarwal/Astroid-Documentation/master/source/images/H5Typography1.png)
 
@@ -481,7 +482,7 @@ Font Size | 0.7 | Set the font size you need to use in the text element.
 Letter Spacing | 0 | Set the needed distance between letters.
 Line Height | 1 | line-height property specifies the height of a line.
 Text Transform | none | Set the font transformation, if needed (uppercase, capitalize and lowercase).
-Font-Color | #000 | set the color of the text. The color is specified by: `color name - like "red"` , `HEX value - like "#ff0000"` , `RGB value - like "rgb(255,0,0)"`.
+Font-Color | #000 | set the color of the text. The color is specified by: `color name - like "red"`, `HEX value - like "#ff0000"`, `RGB value - like "rgb(255,0,0)"`.
 
 ![h6typogarphy](https://raw.githubusercontent.com/hiteshaggarwal/Astroid-Documentation/master/source/images/H6Typography1.png)
 
@@ -502,7 +503,7 @@ Featue Load Position | After module | If there are other module(s) published to 
 
 ## Custom Code
 
-Here we can add Custom CSS , Custom Javascript 
+Here we can add Custom CSS, Custom Javascript 
 
 Option | Default | Description
 ------- | ----------- | -----------
@@ -519,32 +520,35 @@ Custom JS | none | Here you can add custom javascript code here, Wrapped within 
 This section allows you to display your social profiles on your site.
 
 In this section we have : 
-* **Module Position :** Select a suitable module position where you want to display this feature.
+* **Module Position:** Select a suitable module position where you want to display this feature.
 * **Social Load Position :** If there are other module(s) published to this module position, you can select weather the content of this feature should be displayed below the or after the module(s) published to this position.
-* **Style :** Choose the style how you want to show Social profile on your site , default value is Inherit color.
+* **Style:** Choose the style how you want to show Social profile on your site, default value is Inherit color.
+
 In style we have 2 Options to style our social icons:
-   1. Inherit color.
-   2. Brand color.
-In this section we have in all 19 types of Social Profiles : 
+   1. Inherit color
+   2. Brand color
+
+In this section we have in all 20 types of Social Profiles:
   1. Facebook
-  2. Instagram
-  3. Youtube
-  4. Twitter
-  5. Google+
-  6. LinkedIn
-  7. Google Drive
-  8. Play Store
-  9. Pinterest
-  10. Amazon
-  11. Github
-  12. App Store
-  13. Whatsapp
-  14. Soundcloud
-  15. Behance
-  16. Dribbble
-  17. Spotify
-  18. Tumblr
-  19. Reddit
+  2. Messenger
+  3. Twitter
+  4. YouTube
+  5. LinkedIn
+  6. Instagram
+  7. WhatsApp
+  8. Pinterest
+  9. Google Plus
+  10. GitHub
+  11. Tumblr
+  12. reddit
+  13. Telegram
+  14. Skype
+  15. Slack
+  16. SoundCloud
+  17. Behance
+  18. Dribbble
+  19. Spotify
+  20. Flickr
   
 ![social](https://raw.githubusercontent.com/hiteshaggarwal/Astroid-Documentation/master/source/images/Social.png)
 
@@ -564,7 +568,7 @@ Mobile Number | none | Add mobille number here. Leave blank if not required.
 Email | none | Add email address here. Leave blank if not required.
 Open Hours | none | Add Opening hour here. Leave blank if not required.
 Address | none | Add your address here. Leave blank if not required.
-Display | icons | Here you can choose to get the information (Phone number ,mobile number, Email, Open hours and Address) displays with Text or Icons.
+Display | icons | Here you can choose to get the information (Phone number, mobile number, Email, Open hours and Address) displays with Text or Icons.
 
 ![miscontact](https://raw.githubusercontent.com/hiteshaggarwal/Astroid-Documentation/master/source/images/MisContact.png)
 
@@ -644,7 +648,7 @@ Icon | You can set icon for your Menu Items.
 Mega menu Width | You can set total width in pixel for mega menu area.
 Custom CSS Class | allows you to add Custom CSS Class(es) to the menu item.
 
-* You can add rows by clicking the Add row button that appears in bottom-center , Upon clicking the Add Row button a pop-up will appear showing predefined 12 column grid Layout from here you can select the Menu layout.
+* You can add rows by clicking the Add row button that appears in bottom-center, Upon clicking the Add Row button a pop-up will appear showing predefined 12 column grid Layout from here you can select the Menu layout.
 
 * After selecting the menu layout an Add icon button will appear in center, you should be able to see submenu items and modules by clicking on that icon. You can select existing module(s) and submenu items for your column.
 
@@ -684,7 +688,7 @@ title | The title of the field that should be displayed in the left navigation &
 description | The description that will be displayed under the title (heading) | no
 
 ### Astroidmedia form field type
-The Astroidmedia form field type provides media option to upload images like background image , logo etc.
+The Astroidmedia form field type provides media option to upload images like background image, logo etc.
 
 `Example`
 
@@ -719,7 +723,7 @@ description | The description that will be displayed under the title (heading) |
 astroid-variable | Provided a value for drop down list (astroid list ). | yes
 
 ### Asrtroidswitch form field type
-The Asrtroidswitch form field provide a switch i.e a checkbox which enable user to make choice (binary choice) , a choice between one of two possible mutually exclusive options
+The Asrtroidswitch form field provide a switch i.e a checkbox which enable user to make choice (binary choice), a choice between one of two possible mutually exclusive options
 
 `Example`
 
@@ -768,14 +772,14 @@ Name | Default value | Type | Description
 ------- | ----------- | -------- |---------
 font-face | Arial | STRING | font-face can be Arial, Times New Roman, Verdana and Trebuchet and other’s can be possible
 alt-font-face | Abel | STRING | If the browser does not support the first font family, it tries the Alternate font family.
-font-color | White | STRING | Font-color can be Hex , RGB or RGBA
+font-color | White | STRING | Font-color can be Hex, RGB or RGBA
 font-size | 1 | INT | font-size property sets the size of a font
-font-unit | em | STRING | font-unit can be px , em pt , ex etc
+font-unit | em | STRING | font-unit can be px, em pt, ex etc
 letter-spacing | 0 | INT | letter-spacing property increases or decreases the space between characters in a text.
 line-height | 1 | INT | line-height property specifies the height of a line
-font-style | None | STRING | font-style can be  italic , oblique and many more
-font-weight | 400 | INT | font-weight property sets how thick or thin characters in text should be displayed. Font-weight can be normal , bold , bolder etc.
-text-transform | none | STRING | text-transform can be none , capitalize , uppercase , lowercase , initial , inherit.
+font-style | None | STRING | font-style can be  italic, oblique and many more
+font-weight | 400 | INT | font-weight property sets how thick or thin characters in text should be displayed. Font-weight can be normal, bold, bolder etc.
+text-transform | none | STRING | text-transform can be none, capitalize, uppercase, lowercase, initial, inherit.
 color-picker | true | STRING | Provides color picker popup. (You can send in false in order to turn off the color picker)
 
 ### Astroidrange form field type

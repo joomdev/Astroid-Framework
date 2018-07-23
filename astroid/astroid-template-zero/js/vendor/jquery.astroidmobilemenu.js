@@ -2,7 +2,6 @@
    $.fn.astroidMobileMenu = function () {
       this.each(function () {
          var _this = $(this);
-
          _this.find('li').addClass('menu-item');
          _this.find('li').each(function () {
             $(this).children('ul').addClass('dropdown-menus');
@@ -24,8 +23,6 @@
                _indicatorBack.append(sub_menu_lable);
                _indicatorBackItem.append(_indicatorBack);
 
-
-
                // Add Button For Toggle Sub Menu
                $(this).children('a').after(_indicator);
                // For Sub menu Open
@@ -40,8 +37,6 @@
                });
             }
          });
-
-
       });
       return this;
    };

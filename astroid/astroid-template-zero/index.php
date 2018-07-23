@@ -18,7 +18,7 @@ if (file_exists($lib)) {
    jimport('astroid.framework.template');
    jimport('astroid.framework.constants');
 } else {
-   die('Please install and activate <a href="https://www.joomdev.com/astroid/" target="_blank">Astroid Framework</a> in order to use this template.');
+   die('Please install and activate <a href="http://astroidframework.com/" target="_blank">Astroid Framework</a> in order to use this template.');
 }
 $template = new AstroidFrameworkTemplate($this);
 

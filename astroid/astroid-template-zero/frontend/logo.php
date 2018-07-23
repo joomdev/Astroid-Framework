@@ -17,6 +17,9 @@ $sitename = $app->get('sitename');
 $params = $app->getTemplate(true)->params;
 $logo_type = $params->get('logo_type', 'image'); // Logo Type
 
+$header_mode = $template->params->get('header_mode', 'horizontal');
+$header_stacked_menu_mode = $params->get('header_stacked_menu_mode', 'center');
+
 if ($logo_type == 'text') {
    $config = JFactory::getConfig();
    $logo_text = $params->get('logo_text', $config->get('sitename')); // Logo Text
@@ -33,7 +36,10 @@ $class = ['astroid-logo', 'astroid-logo-' . $logo_type, 'd-flex align-items-cent
 <!-- <div class="<?php /* echo implode(' ', $class); */ ?>"> -->
 <?php if ($logo_type == 'text'): ?>
    <!-- text logo starts -->
-   <div class="<?php echo implode(' ', $class); ?> flex-column mr-1">
+   <?php
+   $mr = ($header_mode == 'stacked' && $header_stacked_menu_mode == 'seperated') ? '' : ' mr-1';
+   ?>
+   <div class="<?php echo implode(' ', $class); ?> flex-column<?php echo $mr; ?>">
       <a class="site-title" href="<?php echo JURI::root(); ?>"><?php echo $logo_text; ?></a>
       <p class="site-tagline"><?php echo $tag_line; ?></p>
    </div>
@@ -41,7 +47,10 @@ $class = ['astroid-logo', 'astroid-logo-' . $logo_type, 'd-flex align-items-cent
 <?php endif; ?>
 <?php if ($logo_type == 'image'): ?>
    <!-- image logo starts -->
-   <a class="<?php echo implode(' ', $class); ?> mr-0 mr-lg-4" href="<?php echo JURI::root(); ?>">
+   <?php
+   $mr = ($header_mode == 'stacked' && $header_stacked_menu_mode == 'seperated') ? '' : ' mr-0 mr-lg-4';
+   ?>
+   <a class="<?php echo implode(' ', $class); ?><?php echo $mr; ?>" href="<?php echo JURI::root(); ?>">
       <?php if (!empty($default_logo)) { ?>
          <img src="<?php echo JURI::root() . '/images/' . $default_logo; ?>" alt="<?php echo $sitename; ?>" class="astroid-logo-default" />
       <?php } ?>

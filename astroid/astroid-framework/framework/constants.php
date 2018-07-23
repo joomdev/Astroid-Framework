@@ -9,7 +9,7 @@ defined('_JEXEC') or die;
 
 class AstroidFrameworkConstants {
 
-   public static $astroid_version = '1.1.0';
+   public static $astroid_version = '1.1.1';
    public static $fontawesome_version = '5.1.0';
    public static $animatecss_version = '3.6';
    public static $animations = [
@@ -219,6 +219,7 @@ class AstroidFrameworkConstants {
        ['title' => 'Dribbble', 'link' => '', 'icons' => ['fab fa-dribbble', 'fab fa-dribbble-square'], 'color' => '#F10A77', 'enabled' => false, 'icon' => 'fab fa-dribbble'],
        ['title' => 'Spotify', 'link' => '', 'icons' => ['fab fa-spotify'], 'color' => '#00E155', 'enabled' => false, 'icon' => 'fab fa-spotify'],
        ['title' => 'Flickr', 'link' => '', 'icons' => ['fab fa-flickr'], 'color' => '#0054E3', 'enabled' => false, 'icon' => 'fab fa-flickr'],
+       ['title' => 'vk', 'link' => '', 'icons' => ['fab fa-vk'], 'color' => '#4273AD', 'enabled' => false, 'icon' => 'fab fa-vk'],
    ];
    public static $system_fonts = [
        "Arial, Helvetica, sans-serif" => 'Arial, Helvetica',

@@ -131,7 +131,7 @@ class AstroidFrameworkTemplate {
                   $renderedHTML .= $el->render();
                }
                if (empty($renderedHTML)) {
-                  $bufferSize = $col['size'];
+                  $bufferSize += $col['size'];
                } else {
                   if ($hasComponent) {
                      $row['cols'][$componentIndex]['size'] = $row['cols'][$componentIndex]['size'] + $bufferSize;

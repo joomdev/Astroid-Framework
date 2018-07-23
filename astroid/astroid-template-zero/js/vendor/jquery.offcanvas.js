@@ -13,6 +13,7 @@
          var _trigger = $(this);
          var _effect = _trigger.data('effect');
          var _content = $(_trigger.data('offcanvas'));
+         var _close = $(_content).find('.offcanvas-close-btn');
          var _eventtype = _mobileCheck() ? 'touchstart' : 'click';
          var _container = $('.astroid-container');
          var _class = _content.data('class-prefix');
@@ -37,10 +38,16 @@
          };
 
          var _bodyClick = function (e) {
-            if (!_hasParentClass(e.target, _class)) {
+            if ($(e.target).hasClass('offcanvas-close-btn') || _hasParentClass(e.target, 'offcanvas-close-btn')) {
                _reset();
                $(document).unbind(_eventtype, _bodyClick);
+               $(_close).unbind(_eventtype, _bodyClick);
+            } else if (!_hasParentClass(e.target, _class)) {
+               _reset();
+               $(document).unbind(_eventtype, _bodyClick);
+               $(_close).unbind(_eventtype, _bodyClick);
             }
+
          };
 
          _content.addClass(_effect);
@@ -54,6 +61,7 @@
             }, 25);
             $('body').addClass(_class + '-opened');
             $(document).bind(_eventtype, _bodyClick);
+            $(_close).bind(_eventtype, _bodyClick);
          });
       });
    };

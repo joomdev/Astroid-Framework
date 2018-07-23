@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @package   Astroid Framework
  * @author    JoomDev https://www.joomdev.com
@@ -28,7 +29,7 @@ $main_link_color = $template->params->get('main_menu_link_color', '');
 $main_link_hover_color = $template->params->get('main_menu_link_hover_color', '');
 $main_link_active_color = $template->params->get('main_menu_link_active_color', '');
 
-// Dropdowns 
+// Dropdown Menu
 $dropdown_main_background_color = $template->params->get('dropdown_bg_color', '');
 $dropdown_main_link_color = $template->params->get('dropdown_link_color', '');
 $dropdown_main_hover_link_color = $template->params->get('dropdown_menu_link_hover_color', '');
@@ -44,7 +45,7 @@ $mobile_hover_background_color = $template->params->get('mobile_hover_background
 $mobile_active_link_color = $template->params->get('mobile_menu_active_link_color', '');
 $mobile_active_background_color = $template->params->get('mobile_menu_active_bg_color', '');
 
-//Footer
+// Footer
 $footer_background_color = $template->params->get('footer_bg_color', '');
 $footer_text_color = $template->params->get('footer_text_color', '');
 $footer_link_color = $template->params->get('footer_link_color', '');
@@ -71,28 +72,13 @@ if (!empty($body_link_hover_color)) {
 
 <?php
 
-// Main Menu Coloring
-$main_menu_styles = [];
-if (!empty($main_link_color)) {
-   $main_menu_styles[] = '.astroid-nav .nav-link,.astroid-nav .nav-link{ color: ' . $main_link_color . ' !important;}';
-}
-if (!empty($main_link_hover_color)) {
-   $main_menu_styles[] = '.astroid-nav .nav-link:hover, .astroid-nav .nav-link:hover{ color: ' . $main_link_hover_color . ' !important;}';
-}
-if (!empty($main_link_active_color)) {
-   $main_menu_styles[] = '.astroid-nav .nav-link.active, .astroid-nav .nav-link.active{ color: ' . $main_link_active_color . ' !important;}';
-}
-?>
-
-<?php
-
 // Header Coloring
 $header_styles = [];
 if (!empty($header_background_color)) {
-   $header_styles[] = 'header{ background-color: ' . $header_background_color . ' !important;}';
+   $header_styles[] = '.astroid-header-section{ background-color: ' . $header_background_color . ' !important;}';
 }
 if (!empty($header_text_color)) {
-   $header_styles[] = 'header *{ color: ' . $header_text_color . ' !important;}';
+   $header_styles[] = 'header{ color: ' . $header_text_color . ' !important;}';
 }
 if (!empty($header_logo_text_color)) {
    $header_styles[] = '.astroid-logo-text .site-title{ color: ' . $header_logo_text_color . ' !important;}';
@@ -107,10 +93,25 @@ if (!empty($sticky_header_background_color)) {
 
 <?php
 
+// Main Menu Coloring
+$main_menu_styles = [];
+if (!empty($main_link_color)) {
+   $main_menu_styles[] = '.astroid-nav .nav-link{ color: ' . $main_link_color . ' !important;}';
+}
+if (!empty($main_link_hover_color)) {
+   $main_menu_styles[] = '.astroid-nav .nav-link:hover, .astroid-nav .nav-link:focus{ color: ' . $main_link_hover_color . ' !important;}';
+}
+if (!empty($main_link_active_color)) {
+   $main_menu_styles[] = '.astroid-nav .nav-link.active{ color: ' . $main_link_active_color . ' !important;}';
+}
+?>
+
+<?php
+
 // Dropdown Coloring
 $dropdown_styles = [];
 if (!empty($dropdown_main_background_color)) {
-   $dropdown_styles[] = '.astroid-nav .navbar-subnav,.astroid-nav .has-subnav.nav-item-level-1.hovered:after,.astroid-nav .has-subnav.nav-item-level-1.hovered:before{ background: ' . $dropdown_main_background_color . ' !important;}';
+   $dropdown_styles[] = '.astroid-nav .navbar-subnav, .astroid-nav .has-subnav.nav-item-level-1.hovered:after, .astroid-nav .has-subnav.nav-item-level-1.hovered:before{ background: ' . $dropdown_main_background_color . ' !important;}';
    $dropdown_styles[] = '.astroid-nav .megamenu-container,.astroid-nav .has-megamenu.nav-item-level-1.hovered:after,.astroid-nav .has-megamenu.nav-item-level-1.hovered:before{ background: ' . $dropdown_main_background_color . ' !important;}';
 }
 if (!empty($dropdown_main_link_color)) {
@@ -137,7 +138,7 @@ if (!empty($dropdown_main_active_background_color)) {
 
 <?php
 
-// MobilemenuColoring
+// Mobile Menu Coloring
 $mobilemenu_styles = [];
 if (!empty($mobile_background_color)) {
    $mobilemenu_styles[] = '.astroid-mobilemenu-container .astroid-mobilemenu-inner .menu-item a,.astroid-mobilemenu-container .astroid-mobilemenu-inner .menu-item .menu-indicator,.astroid-mobilemenu-container .astroid-mobilemenu-inner .menu-indicator-back{ background-color: ' . $mobile_background_color . ' !important;}';
@@ -161,10 +162,10 @@ if (!empty($mobile_active_background_color)) {
 
 <?php
 
-// MobilemenuColoring
+// Footer Coloring
 $footer_styles = [];
 if (!empty($footer_background_color)) {
-   $footer_styles[] = '#astroid-footer{ background-color: ' . $footer_background_color . ' !important;}';
+   $footer_styles[] = '.astroid-footer-section{ background-color: ' . $footer_background_color . ' !important;}';
 }
 if (!empty($footer_text_color)) {
    $footer_styles[] = '#astroid-footer{ color: ' . $footer_text_color . ' !important;}';
@@ -182,8 +183,8 @@ if (!empty($footer_link_hover_color)) {
 $document = JFactory::getDocument();
 $document->addStyledeclaration(implode('', $body_styles));
 $document->addStyledeclaration(implode('', $header_styles));
+$document->addStyledeclaration(implode('', $main_menu_styles));
 $document->addStyledeclaration(implode('', $dropdown_styles));
 $document->addStyledeclaration(implode('', $mobilemenu_styles));
-$document->addStyledeclaration(implode('', $main_menu_styles));
 $document->addStyledeclaration(implode('', $footer_styles));
 ?>

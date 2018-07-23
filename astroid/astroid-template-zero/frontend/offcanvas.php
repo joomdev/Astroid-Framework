@@ -21,8 +21,15 @@ $effect = $params->get('offcanvas_animation', 'st-effect-1');
 $panelwidth = $params->get('offcanvas_panelwidth', '320px');
 $openfrom = $params->get('offcanvas_openfrom', 'left');
 ?>
-<div class="astroid-offcanvas d-none d-init p-3" id="astroid-offcanvas">
-   <?php echo $template->renderModulePosition($module_position, 'astroidxhtml'); ?>
+<div class="astroid-offcanvas d-none d-init" id="astroid-offcanvas">
+   <div class="burger-menu-button active">
+      <button type="button" class="button close-offcanvas offcanvas-close-btn">
+         <span class="box">
+            <span class="inner"></span>
+         </span>
+      </button>
+   </div>
+<?php echo $template->renderModulePosition($module_position, 'astroidxhtml'); ?>
 </div>
 
 <?php

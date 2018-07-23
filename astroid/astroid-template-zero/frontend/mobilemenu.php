@@ -21,6 +21,13 @@ if (empty($header_mobile_menu)) {
 }
 ?>
 <div class="astroid-mobilemenu d-none d-init" data-class-prefix="astroid-mobilemenu" id="astroid-mobilemenu">
+<div class="burger-menu-button active">
+   <button type="button" class="button close-offcanvas offcanvas-close-btn">
+      <span class="box">
+         <span class="inner"></span>
+      </span>
+   </button>
+</div>
    <?php AstroidMenu::getMobileMenu($header_mobile_menu); ?>
 </div>
 <?php

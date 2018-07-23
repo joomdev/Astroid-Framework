@@ -37,95 +37,12 @@ html,body,.astroid-container,.astroid-content,.astroid-layout,.astroid-wrapper{
       right: 0;
       width: 0;
       height: 0;
-      background: rgba(173, 181, 189, 0.7);
+      background: rgba(0, 0, 0, 0.8);
       content: '';
       opacity: 0;
       -webkit-transition: opacity 0.5s, width 0.1s 0.5s, height 0.1s 0.5s;
       transition: opacity 0.5s, width 0.1s 0.5s, height 0.1s 0.5s;
       z-index: $zindex-modal-backdrop;
-   }
-}
-
-.astroid-offcanvas, .astroid-mobilemenu{
-   position: fixed;
-   top: 0;
-   left: 0;
-   z-index: $zindex-popover;
-   visibility: hidden;
-   height: 100%;
-   background: #ffffff;
-   -webkit-transition: all 0.5s;
-   transition: all 0.5s;
-   overflow-y: auto;
-   max-width: 100vw !important;
-   &:after {
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(173, 181, 189,0.6);
-      content: '';
-      opacity: 1;
-      -webkit-transition: opacity 0.5s;
-      transition: opacity 0.5s;
-   }
-   @include media-breakpoint-down(sm) {
-      max-width: 280px !important;
-   }
-}
-
-.astroid-mobilemenu{
-   width: 280px;
-}
-
-body{
-   &.astroid-offcanvas-opened{
-      .astroid-content{
-         &:after{
-            width: 100%;
-            height: 100%;
-            opacity: 1;
-            -webkit-transition: opacity 0.5s;
-            transition: opacity 0.5s;
-         }
-      }
-      .astroid-offcanvas{
-         &:after{
-            width: 0;
-            height: 0;
-            opacity: 0;
-            -webkit-transition: opacity 0.5s, width 0.1s 0.5s, height 0.1s 0.5s;
-            transition: opacity 0.5s, width 0.1s 0.5s, height 0.1s 0.5s;
-         }
-      }
-      .astroid-offcanvas-open{
-         overflow-x: hidden;
-      }
-   }
-   &.astroid-mobilemenu-opened{
-      background: rgb(173, 181, 189);
-      .astroid-mobilemenu-open{
-         overflow-x: hidden;
-      }
-      .astroid-content{
-         &:after{
-            width: 100%;
-            height: 100%;
-            opacity: 1;
-            -webkit-transition: opacity 0.5s;
-            transition: opacity 0.5s;
-         }
-      }
-      .astroid-mobilemenu{
-         &:after{
-            width: 0;
-            height: 0;
-            opacity: 0;
-            -webkit-transition: opacity 0.5s, width 0.1s 0.5s, height 0.1s 0.5s;
-            transition: opacity 0.5s, width 0.1s 0.5s, height 0.1s 0.5s;
-         }
-      }
    }
 }
 

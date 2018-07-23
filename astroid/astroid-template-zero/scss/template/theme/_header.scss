@@ -10,13 +10,69 @@
    transform: translateZ(0px);
 }
 
+@-webkit-keyframes slideInUp {
+   from {
+      -webkit-transform: translate3d(0, 100%, 0);
+      transform: translate3d(0, 100%, 0);
+      visibility: visible;
+   }
+   to {
+      -webkit-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0);
+   }
+}
+
+@keyframes slideInUp {
+   from {
+      -webkit-transform: translate3d(0, 100%, 0);
+      transform: translate3d(0, 100%, 0);
+      visibility: visible;
+   }
+   to {
+      -webkit-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0);
+   }
+}
+
+@-webkit-keyframes slideInDown {
+   from {
+      -webkit-transform: translate3d(0, -100%, 0);
+      transform: translate3d(0, -100%, 0);
+      visibility: visible;
+   }
+   to {
+      -webkit-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0);
+   }
+}
+
+@keyframes slideInDown {
+   from {
+      -webkit-transform: translate3d(0, -100%, 0);
+      transform: translate3d(0, -100%, 0);
+      visibility: visible;
+   }
+   to {
+      -webkit-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0);
+   }
+}
+
 #astroid-sticky-header {
    position: fixed;
    top: 0;
    left: 0;
    width: 100%;
    z-index: $zindex-sticky;
-   .astroid-logo{
+   -webkit-animation-duration: 1s;
+   animation-duration: 1s;
+   -webkit-animation-fill-mode: both;
+   animation-fill-mode: both;
+   &.d-flex {
+      -webkit-animation-name: slideInDown;
+      animation-name: slideInDown;
+   }
+   .astroid-logo {
       .astroid-logo-default {
          display: none !important;
       }
@@ -32,6 +88,10 @@
    padding: 15px 0;
    position: relative;
    z-index: 1;
+}
+
+.astroid-header-sticky {
+   padding: 10px 0;
 }
 
 header {
@@ -55,26 +115,27 @@ header {
 .megamenu-title {
    font-weight: $font-weight-bold;
    margin-bottom: 10px;
-   border-bottom: $border-width dashed $border-color ;
+   border-bottom: $border-width dashed $border-color;
 }
+
 @keyframes slide-down {
    0% {
       opacity: 0;
       transform: translateY(-100%);
-   } 
+   }
    100% {
       opacity: 0.9;
       transform: translateY(0);
-   } 
+   }
 }
 
 .astroid-nav {
    li {
       &.has-subnav {
-         > a {
+         >a {
             position: relative;
-            span{
-               &:after{
+            span {
+               &:after {
                   content: "\f0da";
                   -moz-osx-font-smoothing: grayscale;
                   -webkit-font-smoothing: antialiased;
@@ -89,22 +150,22 @@ header {
             }
          }
          &.nav-item-level-1 {
-            > a {
-               span{
-                  &:after{
+            >a {
+               span {
+                  &:after {
                      content: "\f0d7";
                   }
                }
-               small{
+               small {
                   display: block;
                }
             }
          }
-         > .navbar-subnav {
+         >.navbar-subnav {
             padding: 1rem;
-            > li {
+            >li {
                border: 0px;
-               > a {
+               >a {
                   padding: 0.7rem 1rem;
                }
             }
@@ -113,10 +174,10 @@ header {
       &.has-megamenu {
          position: relative;
          &.nav-item-level-1 {
-            > a {
+            >a {
                position: relative;
-               span{
-                  &:after{
+               span {
+                  &:after {
                      content: "\f0d7";
                      -moz-osx-font-smoothing: grayscale;
                      -webkit-font-smoothing: antialiased;
@@ -129,7 +190,7 @@ header {
                      margin: 0 0 0 10px;
                   }
                }
-               small{
+               small {
                   display: block;
                }
             }
@@ -164,7 +225,7 @@ header {
                z-index: 1;
                border-radius: 3px;
             }
-            > a {
+            >a {
                &.nav-link {
                   color: $body-color;
                }
@@ -176,15 +237,14 @@ header {
 
 .astroid-horizontal-header {
    .astroid-nav {
-      > li {
+      >li {
          &.nav-item-level-1 {
-            > a {
+            >a {
                padding-top: 1rem;
                padding-bottom: 1rem;
             }
-
             &.has-subnav {
-               > a {
+               >a {
                   span {
                      &:after {
                         margin-top: 1rem;
@@ -193,9 +253,8 @@ header {
                   }
                }
             }
-
             &.has-megamenu {
-               > a {
+               >a {
                   span {
                      &:after {
                         margin-top: 1rem;
@@ -204,7 +263,6 @@ header {
                   }
                }
             }
-
          }
       }
    }
@@ -212,7 +270,7 @@ header {
 
 .has-subnav {
    position: relative;
-   > .navbar-subnav {
+   >.navbar-subnav {
       display: none;
       position: absolute;
       background: #ffffff;
@@ -223,32 +281,31 @@ header {
       margin-left: 2px;
       border-radius: 5px;
       box-shadow: 0px 0px 10px rgba(153, 153, 153, 0.22);
-      > li {
+      >li {
          border: 1px solid #eee;
          border-bottom-width: 0px;
          &:first-child {
             @include border-top-radius(5px);
          }
-
          &:last-child {
             margin-bottom: 0;
             @include border-bottom-radius(5px);
             border-bottom-width: 1px;
          }
-         > a {
+         >a {
             padding-top: $spacer;
             padding-bottom: $spacer;
             &:hover {
                color: $body-color;
             }
             &.active {
-               color: #000; 
+               color: #000;
             }
          }
       }
       &.level-1 {
          margin-left: 0px !important;
-         top:100%;
+         top: 100%;
       }
    }
    &.nav-item-level-1 {
@@ -286,7 +343,7 @@ header {
    }
    &.hovered {
       z-index: 3 !important;
-      > a {
+      >a {
          &.nav-link {
             color: $body-color;
          }
@@ -299,7 +356,7 @@ header {
    .navbar-subnav {
       min-width: 240px;
    }
-   > .navbar-subnav {
+   >.navbar-subnav {
       list-style-type: none;
       margin: 0;
       padding: 0;
@@ -321,11 +378,11 @@ header {
       background: none;
       border: none;
       box-shadow: none;
-      > li {
+      >li {
          background-color: none;
          border: none;
          border-radius: 0;
-         > a {
+         >a {
             padding: 0;
          }
       }
@@ -360,7 +417,7 @@ header {
    }
 }
 
-.astroid-stacked-seperated-header{
+.astroid-stacked-seperated-header {
    .astroid-logo-image {
       img {
          margin: auto;
@@ -368,11 +425,9 @@ header {
    }
 }
 
-
-$burger-layer-width : 30px !default;
-$burger-layer-height : 2px !default;
-$burger-layer-spacing : 7px !default;
-
+$burger-layer-width: 30px !default;
+$burger-layer-height: 2px !default;
+$burger-layer-spacing: 7px !default;
 .header-offcanvas-trigger {
    background: none;
    border: none;
@@ -390,12 +445,9 @@ $burger-layer-spacing : 7px !default;
       padding: 5px 0px;
       display: inline-block;
       cursor: pointer;
-
       transition-property: opacity, filter;
       transition-duration: 0.15s;
-      transition-timing-function: linear;
-
-      // Normalize (<button>)
+      transition-timing-function: linear; // Normalize (<button>)
       font: inherit;
       color: inherit;
       text-transform: none;
@@ -403,29 +455,25 @@ $burger-layer-spacing : 7px !default;
       border: 0;
       margin: 0;
       overflow: visible;
-
       &:hover {
          opacity: 0.7;
       }
       width: $burger-layer-width;
       height: $burger-layer-width;
       &:focus {
-         outline:0;
+         outline: 0;
       }
    }
-
    .box {
       width: $burger-layer-width;
       height: $burger-layer-height * 3 + $burger-layer-spacing * 2;
       display: inline-block;
       position: relative;
    }
-
    .inner {
       display: block;
       top: 50%;
       margin-top: $burger-layer-height / -2;
-
       &,
       &::before,
       &::after {
@@ -437,61 +485,48 @@ $burger-layer-spacing : 7px !default;
          transition-duration: 0.15s;
          transition-timing-function: ease;
       }
-
       &::before,
       &::after {
          content: "";
          display: block;
       }
-
       &::before {
          top: ($burger-layer-spacing + $burger-layer-height) * -1;
       }
-
       &::after {
          bottom: ($burger-layer-spacing + $burger-layer-height) * -1;
       }
    }
-
    .inner {
       transition-duration: 0.22s;
       transition-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
-
       &::before {
-         transition: top 0.1s 0.25s ease-in,
-            opacity 0.1s ease-in;
+         transition: top 0.1s 0.25s ease-in, opacity 0.1s ease-in;
       }
-
       &::after {
-         transition: bottom 0.1s 0.25s ease-in,
-            transform 0.22s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+         transition: bottom 0.1s 0.25s ease-in, transform 0.22s cubic-bezier(0.55, 0.055, 0.675, 0.19);
       }
    }
-
    &.active {
       .inner {
          transform: rotate(225deg);
          transition-delay: 0.12s;
          transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
-
          &::before {
             top: 0;
             opacity: 0;
-            transition: top 0.1s ease-out,
-               opacity 0.1s 0.12s ease-out;
+            transition: top 0.1s ease-out, opacity 0.1s 0.12s ease-out;
          }
-
          &::after {
             bottom: 0;
             transform: rotate(-90deg);
-            transition: bottom 0.1s ease-out,
-               transform 0.22s 0.12s cubic-bezier(0.215, 0.61, 0.355, 1);
+            transition: bottom 0.1s ease-out, transform 0.22s 0.12s cubic-bezier(0.215, 0.61, 0.355, 1);
          }
       }
    }
-   &.header-offcanvas-trigger{
+   &.header-offcanvas-trigger {
       .inner {
-         &::before{
+         &::before {
             width: $burger-layer-width - 10px;
             margin-left: 10px;
          }
@@ -502,7 +537,8 @@ $burger-layer-spacing : 7px !default;
       }
       &.active {
          .inner {
-            &::before,&::after {
+            &::before,
+            &::after {
                width: $burger-layer-width;
                margin-left: 0px;
             }
@@ -511,28 +547,20 @@ $burger-layer-spacing : 7px !default;
    }
 }
 
-#astroid-sticky-header{
-   background: #fff;
-}
-
 /* Subtitle hidden on Mobile */
 
-.astroid-mobilemenu{
-   a{
-      small{
+.astroid-mobilemenu {
+   a {
+      small {
          display: block !important;
       }
    }
 }
 
-.astroid-banner{
+.astroid-banner {
    background-repeat: no-repeat;
    background-position: center;
    background-size: cover;
-   .astroid-banner-title{
- 
-   }
-   .astroid-banner-subtitle{
-
-   }
+   .astroid-banner-title {}
+   .astroid-banner-subtitle {}
 }

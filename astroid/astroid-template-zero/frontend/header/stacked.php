@@ -35,7 +35,7 @@ $navClassLeft = ['nav', 'astroid-nav', 'justify-content-left', 'd-flex', 'align-
 $navClassDivided = ['nav', 'astroid-nav'];
 ?>
 <header id="astroid-header" class="<?php echo implode(' ', $class); ?>">
-   <div class="container d-flex">
+   <div class="d-flex">
       <div class="header-stacked-section d-flex justify-content-between flex-column w-100">
          <?php
          if ($mode == 'center') {

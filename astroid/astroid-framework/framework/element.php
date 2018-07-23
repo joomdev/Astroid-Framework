@@ -34,6 +34,7 @@ class AstroidElement {
       if (!empty($data)) {
          $this->id = $data['id'];
          $this->data = $data['params'];
+         $this->raw_data = $data;
       }
       $this->app = JFactory::getApplication();
 
@@ -209,6 +210,12 @@ class AstroidElement {
       $params = $this->getParams();
       $classes = [];
       $classes[] = $this->template->slugify('astroid-' . $this->type);
+      if ($this->type == 'section') {
+         $section_classes = $this->getSectionClasses();
+         if (!empty($section_classes)) {
+            $classes[] = $section_classes;
+         }
+      }
       $customclass = $params->get('customclass', '');
       if (!empty($customclass)) {
          $classes[] = $customclass;
@@ -235,6 +242,63 @@ class AstroidElement {
          $classes[] = 'hideonxl';
       }
 
+      return implode(' ', $classes);
+   }
+
+   public function getSectionClasses() {
+      $data = $this->raw_data;
+      $classes = [];
+
+      $header_module_position = $this->template->params->get('header_module_position', '');
+      $footer_module_position = $this->template->params->get('footer_module_position', '');
+
+      // check section has component
+      foreach ($data['rows'] as $row) {
+         foreach ($row['cols'] as $colIndex => $col) {
+            foreach ($col['elements'] as $element) {
+               if ($element['type'] == 'component') {
+                  $classes[] = 'astroid-component-section';
+                  break;
+               }
+            }
+         }
+      }
+
+      // check section has header
+      if (!empty($header_module_position)) {
+         foreach ($data['rows'] as $row) {
+            foreach ($row['cols'] as $colIndex => $col) {
+               foreach ($col['elements'] as $element) {
+                  if ($element['type'] == 'module_position') {
+                     $el = new AstroidElement('module_position', $element, $this->template);
+                     $position = $el->getValue('position', '');
+                     if ($position == $header_module_position) {
+                        $classes[] = 'astroid-header-section';
+                     }
+                  }
+                  break;
+               }
+            }
+         }
+      }
+
+      // check section has footer
+      if (!empty($header_module_position)) {
+         foreach ($data['rows'] as $row) {
+            foreach ($row['cols'] as $colIndex => $col) {
+               foreach ($col['elements'] as $element) {
+                  if ($element['type'] == 'module_position') {
+                     $el = new AstroidElement('module_position', $element, $this->template);
+                     $position = $el->getValue('position', '');
+                     if ($position == $footer_module_position) {
+                        $classes[] = 'astroid-footer-section';
+                     }
+                  }
+                  break;
+               }
+            }
+         }
+      }
       return implode(' ', $classes);
    }
 

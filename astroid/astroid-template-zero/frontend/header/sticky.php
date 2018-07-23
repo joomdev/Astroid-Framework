@@ -37,7 +37,7 @@ $navClass = ['nav', 'astroid-nav', 'd-none', 'd-lg-flex'];
 ?>
 <!-- header starts -->
 <div id="astroid-sticky-header" class="<?php echo implode(' ', $class); ?> d-none border-bottom shadow-sm">
-   <div class="container py-2 d-flex flex-row justify-content-between">
+   <div class="container d-flex flex-row justify-content-between">
       <div class="d-flex d-lg-none justify-content-start">
          <div class="header-mobilemenu-trigger d-lg-none burger-menu-button align-self-center" data-offcanvas="#astroid-mobilemenu" data-effect="mobilemenu-slide">
             <button class="button" type="button"><span class="box"><span class="inner"></span></span></button>

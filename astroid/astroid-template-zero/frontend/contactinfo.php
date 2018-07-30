@@ -63,7 +63,7 @@ $contact_display = $template->params->get('contact_display', 'icons');
             <i class="far fa-envelope mr-1"></i>
          <?php endif; ?>
          <?php if ($contact_display == "text") : ?>
-            <?php echo JText::_('TPL_ASTROID_EMAIL_LABEL'); ?>
+            <?php echo JText::_('JGLOBAL_EMAIL'); ?>
          <?php endif; ?>
          <a href="mailto:<?php echo $email; ?>"><?php echo $email; ?></a>
       </span>

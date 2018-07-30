@@ -37,7 +37,7 @@ $navClass = ['nav', 'astroid-nav', 'd-none', 'd-lg-flex'];
          <button class="button" type="button"><span class="box"><span class="inner"></span></span></button>
       </div>
    </div>
-   <div class="header-left-section d-flex justify-content-between px-2">
+   <div class="header-left-section d-flex justify-content-between">
       <?php $template->loadLayout('logo'); ?>
       <?php
       if ($mode == 'left') {

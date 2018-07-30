@@ -126,7 +126,7 @@ foreach ($params as $key => $value) {
       <!--<nav class="astroid-manager-navbar navbar fixed-top navbar-expand-lg navbar-light bg-white justify-content-between">
          <a class="navbar-brand" href="#"><img src="<?php echo JURI::root() . 'media' . '/' . 'astroid' . '/' . 'assets' . '/' . 'images' . '/' . 'favicon.png'; ?>" width="28" height="28" class="d-inline-block align-top" alt=""> Astroid Framework</a>
          <div class="form-inline">
-            <button id="save-options" class="btn btn-success my-2 my-sm-0" type="button"><i class="fa fa-save"></i>&nbsp;<?php echo JText::_('ASTROID_TEMPLATE_SAVE'); ?></button>
+            <button id="save-options" class="btn btn-success my-2 my-sm-0" type="button"><i class="fa fa-save"></i>&nbsp;<?php echo JText::_('JSAVE'); ?></button>
             <button id="saving-options" class="btn btn-blue disabled my-2 my-sm-0 d-none" type="button"><i class="fa fa-circle-notch fa-spin"></i>&nbsp;<?php echo JText::_('ASTROID_TEMPLATE_SAVING'); ?></button>
             <a href="<?php echo $joomla_url; ?>" class="btn btn-link my-2 my-sm-0 text-white"><i class="fab fa-joomla"></i></a>
          </div>
@@ -193,7 +193,7 @@ foreach ($params as $key => $value) {
                      <a href="<?php echo JURI::root(); ?>" target="_blank" class="btn btn-white my-2 mr-2 my-sm-0 btn-round"><i class="fas fa-external-link-alt"></i>&nbsp;<?php echo JText::_('ASTROID_TEMPLATE_PREVIEW'); ?></a>
                      <button id="clear-cache" class="btn btn-secondary my-2 mr-2 my-sm-0 btn-round btn-wide" type="button"><i class="fa fa-eraser"></i>&nbsp;<?php echo JText::_('ASTROID_TEMPLATE_CLEAR_CACHE'); ?></button>
                      <button id="clearing-cache" class="btn disabled btn-secondary my-2 mr-2 my-sm-0 btn-round btn-wide d-none" type="button"><i class="fa fa-circle-notch fa-spin"></i>&nbsp;<?php echo JText::_('ASTROID_TEMPLATE_CLEARING_CACHE'); ?></button>
-                     <button id="save-options" class="btn btn-success my-2 my-sm-0 btn-round btn-wide" type="button"><i class="fa fa-save"></i>&nbsp;<?php echo JText::_('ASTROID_TEMPLATE_SAVE'); ?></button>
+                     <button id="save-options" class="btn btn-success my-2 my-sm-0 btn-round btn-wide" type="button"><i class="fa fa-save"></i>&nbsp;<?php echo JText::_('JSAVE'); ?></button>
                      <button id="saving-options" class="btn btn-blue disabled my-2 my-sm-0 btn-round btn-wide d-none" type="button"><i class="fa fa-circle-notch fa-spin"></i>&nbsp;<?php echo JText::_('ASTROID_TEMPLATE_SAVING'); ?></button>
                   </div>
                </nav>

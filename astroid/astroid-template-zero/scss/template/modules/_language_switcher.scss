@@ -1,0 +1,22 @@
+body div.mod-languages {
+   .btn {
+      padding: 0 10px;
+   }
+   img {
+      display: inline-block;
+   }
+   ul.lang-block {
+      >li {
+         display: block;
+         margin: 0;
+         padding: 5px 10px;
+         text-align: right;
+         a {
+            display: block;
+         }
+         &:not(:last-child) {
+            border-bottom: 1px solid #ddd;
+         }
+      }
+   }
+}

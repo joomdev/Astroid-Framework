@@ -328,18 +328,37 @@ class AstroidFrameworkTemplate {
       return $return;
    }
 
-   public function getStyleName($template_directory) {
-      $scss_files = $this->getDir($template_directory . 'scss', 'scss');
-      $name = '';
-      foreach ($scss_files as $scss) {
-         $name .= md5_file($scss['basepath']);
+   public function getStyleName($template_directory, $custom = false) {
+      if (!$custom) {
+         $scss_files = $this->getDir($template_directory . 'scss', 'scss');
+         $name = '';
+         foreach ($scss_files as $scss) {
+            $name .= md5_file($scss['basepath']);
+         }
+         $cssname = 'style-' . md5($name);
+         if (!file_exists($template_directory . 'css/' . $cssname . '.css')) {
+            //ini_set('xdebug.max_nesting_level', 3000);
+            AstroidFrameworkHelper::compileSass($template_directory . 'scss', $template_directory . 'css', 'style.scss', $cssname . '.css');
+         }
+         return $cssname . '.css';
+      } else {
+
+         if (!file_exists($template_directory . 'scss/custom') || !file_exists($template_directory . 'scss/custom/custom.scss')) {
+            return '';
+         }
+
+         $scss_files = $this->getDir($template_directory . 'scss/custom', 'scss');
+         $name = '';
+         foreach ($scss_files as $scss) {
+            $name .= md5_file($scss['basepath']);
+         }
+         $cssname = 'custom-' . md5($name);
+         if (!file_exists($template_directory . 'css/' . $cssname . '.css')) {
+            //ini_set('xdebug.max_nesting_level', 3000);
+            AstroidFrameworkHelper::compileSass($template_directory . 'scss/custom', $template_directory . 'css', 'custom.scss', $cssname . '.css');
+         }
+         return $cssname . '.css';
       }
-      $cssname = 'style-' . md5($name);
-      if (!file_exists($template_directory . 'css/' . $cssname . '.css')) {
-         //ini_set('xdebug.max_nesting_level', 3000);
-         AstroidFrameworkHelper::compileSass($template_directory . 'scss', $template_directory . 'css', 'style.scss', $cssname . '.css');
-      }
-      return $cssname . '.css';
    }
 
    public function getColors() {
@@ -378,6 +397,10 @@ class AstroidFrameworkTemplate {
       $this->setLog("Loading Stylesheets");
       $components = explode(',', $components);
       $template_directory = JPATH_THEMES . "/" . $this->template . "/css/";
+      $custom_compiled_css = $this->getStyleName(JPATH_THEMES . "/" . $this->template . '/', true);
+      if (!empty($custom_compiled_css)) {
+         array_unshift($components, $custom_compiled_css);
+      }
       $compiled_css = $this->getStyleName(JPATH_THEMES . "/" . $this->template . '/');
       array_unshift($components, $compiled_css);
       $document = JFactory::getDocument();

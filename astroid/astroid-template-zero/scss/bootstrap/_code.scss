@@ -3,7 +3,6 @@ code {
   font-size: $code-font-size;
   color: $code-color;
   word-break: break-word;
-  background: $code-bg;
 
   // Streamline the style when inside anchors to avoid broken underline and more
   a > & {

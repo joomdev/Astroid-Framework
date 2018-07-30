@@ -36,10 +36,10 @@ if ($astroid_banner_enabled) {
    }
    $style = !empty($style) ? 'style="' . implode(';', $style) . '"' : '';
    ?>
-   <div <?php echo $style; ?> class="<?php echo!empty($astroid_banner_class) ? ' ' . $astroid_banner_class : ''; ?>">
+   <div <?php echo $style; ?> class="astroid-banner-inner <?php echo!empty($astroid_banner_class) ? ' ' . $astroid_banner_class : ''; ?>">
       <?php
       if (!empty($astroid_banner_wrapper)) {
-         echo '<div class="astroid-banner ' . $astroid_banner_wrapper . '">';
+         echo '<div class="' . $astroid_banner_wrapper . '">';
       }
       echo '<' . $astroid_banner_title_tag . ' class="astroid-banner-title">' . $astroid_banner_title . '</' . $astroid_banner_title_tag . '>';
       if (!empty($astroid_banner_subtitle)) {

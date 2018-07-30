@@ -154,7 +154,7 @@ foreach ($items as $i => $item) {
                      </div>
                   </div>
                   <div class="col-4">
-                     <label class="astroid-label" id="<?php echo $id; ?>_customclass-lbl" for="<?php echo $id; ?>_customclass"><?php echo JText::_('TPL_ASTROID_CUSTOM_CLASS'); ?></label>
+                     <label class="astroid-label" id="<?php echo $id; ?>_customclass-lbl" for="<?php echo $id; ?>_customclass"><?php echo JText::_('ASTROID_CUSTOM_CLASS'); ?></label>
                      <input type="text" name="<?php echo $name; ?>[customclass]" id="<?php echo $id; ?>_customclass" class="form-control" value="<?php echo $customclass; ?>" />
                   </div>
                </div>
@@ -176,9 +176,9 @@ foreach ($items as $i => $item) {
                         <i class="dropdown icon"></i>
                         <div class="default text"><?php echo JText::_('TPL_ASTROID_MENU_OPTIONS_SELECT_ALIGNMENT'); ?></div>
                         <div class="menu">
-                           <div class="item" data-value="left"><i class="fas fa-align-left"></i> <?php echo JText::_('TPL_ASTROID_LEFT'); ?></div>
-                           <div class="item" data-value="right"><i class="fas fa-align-right"></i> <?php echo JText::_('TPL_ASTROID_RIGHT'); ?></div>
-                           <div class="item" data-value="center"><i class="fas fa-align-center"></i> <?php echo JText::_('TPL_ASTROID_CENTER'); ?></div>
+                           <div class="item" data-value="left"><i class="fas fa-align-left"></i> <?php echo JText::_('JGLOBAL_LEFT'); ?></div>
+                           <div class="item" data-value="right"><i class="fas fa-align-right"></i> <?php echo JText::_('JGLOBAL_RIGHT'); ?></div>
+                           <div class="item" data-value="center"><i class="fas fa-align-center"></i> <?php echo JText::_('JGLOBAL_CENTER'); ?></div>
                         </div>
                      </div>
                   </div>
@@ -189,9 +189,9 @@ foreach ($items as $i => $item) {
                         <i class="dropdown icon"></i>
                         <div class="default text"><?php echo JText::_('TPL_ASTROID_MENU_OPTIONS_SELECT_DIRECTION'); ?></div>
                         <div class="menu">
-                           <div class="item" data-value="left"><i class="fas fa-align-left"></i> <?php echo JText::_('TPL_ASTROID_LEFT'); ?></div>
-                           <div class="item" data-value="right"><i class="fas fa-align-right"></i> <?php echo JText::_('TPL_ASTROID_RIGHT'); ?></div>
-                           <div class="item" data-value="center"><i class="fas fa-align-center"></i> <?php echo JText::_('TPL_ASTROID_CENTER'); ?></div>
+                           <div class="item" data-value="left"><i class="fas fa-align-left"></i> <?php echo JText::_('JGLOBAL_LEFT'); ?></div>
+                           <div class="item" data-value="right"><i class="fas fa-align-right"></i> <?php echo JText::_('JGLOBAL_RIGHT'); ?></div>
+                           <div class="item" data-value="center"><i class="fas fa-align-center"></i> <?php echo JText::_('JGLOBAL_CENTER'); ?></div>
                            <div class="item" data-value="full"><i class="fas fa-align-center"></i> <?php echo JText::_('TPL_ASTROID_FULL'); ?></div>
                         </div>
                      </div>
@@ -207,7 +207,7 @@ foreach ($items as $i => $item) {
          <p><?php echo JText::_('TPL_ASTROID_MEGA_MENU_TEXT'); ?></p>
          <textarea style="display: none" name="<?php echo $name; ?>[rows]">{{ rows}}</textarea>
          <div class="row">
-            <div class="col-12" style="padding: 0px 60px;">
+            <div class="col-12" style="padding: 0 60px;">
                <div class="ezlb">
                   <div class="ezlb-section row my-3">
                      <div class="col-12 ezlb-content" ng-sortable="{draggable:'.ezlb-row', animation: 100, handle: '.ezlb-row-handle'}">

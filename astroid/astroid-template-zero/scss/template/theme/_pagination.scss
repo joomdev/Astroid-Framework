@@ -14,14 +14,14 @@
 		
 		&:first-child{
 			a{
-				border-radius:4px 0px 0px 4px;
+				@include border-left-radius($border-radius);
 			}
 		}
 		
 		&:last-child{
 			a{
 				border-right:1px solid #dee2e6;
-				border-radius:0px 4px 4px 0px;
+				@include border-right-radius($border-radius);
 			}
 		}
 		

@@ -29,7 +29,7 @@ $this->setHtml5(true);
 JHtml::_('stylesheet', 'templates/system/css/system.css', array('version' => 'auto'));
 
 // Astroid Assets
-$template->loadTemplateCSS('custom');
+$template->loadTemplateCSS('custom.css');
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo $template->language; ?>" dir="<?php echo $template->direction; ?>">

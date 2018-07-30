@@ -1,10 +1,8 @@
 $secondary-font-familiy: "Nunito" !default;
-
 $topbar-height: 54px;
 $topbar-border-color: #dddddd;
 $topbar-color: #656972;
 $topbar-font-size: 1rem;
-
 a,
 a:hover,
 a:focus,
@@ -18,85 +16,85 @@ img {
     max-width: 100%;
 }
 
-.astroid-top-bar{
-   line-height: $topbar-height;
-   border-bottom: 1px solid;
-   border-color: $topbar-border-color;
+.astroid-top-bar {
+    line-height: $topbar-height;
+    border-bottom: 1px solid;
+    border-color: $topbar-border-color;
 }
 
 //Astroid Social icons
-
 $socialicons-color: $topbar-color;
 $socialicons-font-size: $topbar-font-size;
+.astroid-social-icons {
+    li {
+        display: inline-block;
+        width: 40px;
+        text-align: center;
+        a {
+            color: $socialicons-color;
+            font-size: $socialicons-font-size;
+            &:hover {
+                color: $primary;
+            }
+        }
+    }
+}
 
-.astroid-social-icons{
-   li{
-      display: inline-block;
-      width: 40px;
+.astroid-featured-1 {
+    .fa,
+    .fab,
+    .fas {
+        font-size: 46px;
+    }
+}
 
-      text-align: center;
-      a{
-         color: $socialicons-color;
-         font-size: $socialicons-font-size;
-         &:hover{
+.astroid-featured-list {
+    text-align: left;
+    li {
+        font-size: 20px;
+        font-weight: 600;
+        line-height: 30px;
+        margin-bottom: 10px;
+        span {
+            font-size: 23px;
+            display: inline-block;
+            background: #fff;
             color: $primary;
-         }
-      }
-   }
+            width: 53px;
+            height: 53px;
+            border-radius: 100%;
+            text-align: center;
+            line-height: 53px;
+            border: 1px solid #eeeeee;
+        }
+    }
 }
 
-.astroid-featured-1{
-   .fa,
-   .fab,
-   .fas{
-      font-size: 46px;
-   }
-}
-.astroid-featured-list{
-   text-align: left;
-   li{
-      font-size: 20px;
-      font-weight: 600;
-      line-height: 30px;
-      margin-bottom: 10px;
-      span{
-         font-size: 23px;
-         display: inline-block;
-         background: #fff;
-         color: $primary;
-         width: 53px;
-         height: 53px;
-         border-radius: 100%;
-         text-align: center;
-         line-height: 53px;
-         border: 1px solid #eeeeee;
-      }
-   }
+.hide-mobile {
+    @include media-breakpoint-between(xs, sm) {
+        display: none !important;
+    }
 }
 
-.hide-mobile{
-   @include media-breakpoint-between(xs, sm) {
-      display: none !important;
-   }
-}
-.hide-tablet{
-   @include media-breakpoint-only(md) {
-      display: none !important;
-   }
-}
-.hide-desktop{
-   @include media-breakpoint-between(lg, xl) {
-      display: none !important;
-   }
+.hide-tablet {
+    @include media-breakpoint-only(md) {
+        display: none !important;
+    }
 }
 
-.fa-ul{
-	li{
-		font-size: 1.3rem;
-	}
+.hide-desktop {
+    @include media-breakpoint-between(lg, xl) {
+        display: none !important;
+    }
 }
 
-.address-details{
+.fa-ul {
+    li {
+        font-size: 1.3rem;
+    }
+}
+
+.address-details {
     padding-top: 10px;
     .address-info {
         clear: left;
@@ -113,17 +111,17 @@ $socialicons-font-size: $topbar-font-size;
     }
 }
 
-.team-section{
-    .card{
+.team-section {
+    .card {
         transition: $transition-base;
-        &:hover{
+        &:hover {
             box-shadow: $box-shadow;
         }
-        .profile-link{
-            a{
+        .profile-link {
+            a {
                 color: $body-color;
                 &:hover,
-                &:focus{
+                &:focus {
                     color: $primary;
                 }
             }
@@ -132,7 +130,7 @@ $socialicons-font-size: $topbar-font-size;
 }
 
 .hover_shadow {
-    > div {
+    >div {
         transition: $transition-base;
         &:hover {
             box-shadow: $box-shadow;
@@ -147,9 +145,8 @@ $socialicons-font-size: $topbar-font-size;
 }
 
 //Actions
-
 ul.actions {
-	list-style-type: none;
+    list-style-type: none;
     text-align: right;
     a {
         padding: 0;
@@ -160,15 +157,15 @@ ul.actions {
 }
 
 //Articleinfo
-
 .article-info {
-	overflow: hidden;
+    overflow: hidden;
     .article-info-term {
         display: none;
     }
     dd {
         float: left;
         padding: 0 5px;
+        margin: 0;
         span {
             text-transform: none;
             display: inline-block;

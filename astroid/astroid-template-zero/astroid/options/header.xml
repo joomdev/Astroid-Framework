@@ -35,7 +35,7 @@
 
          <field ngShow="header==true" astroidgroup="header_element" name="header_block_1_type" type="astroidlist" default="blank" class="form-control" label="TPL_ASTROID_HEADER_BLOCK_1_TYPE_LABEL" description="TPL_ASTROID_HEADER_BLOCK_1_TYPE_DESC">
             <option value="blank">TPL_ASTROID_HEADER_BLOCK_1_TYPE_OPTIONS_BLANK</option>
-            <option value="position">TPL_ASTROID_HEADER_BLOCK_1_TYPE_OPTIONS_MODULE_POSITION</option>
+            <option value="position">TPL_ASTROID_MODULE_POSITION_LABEL</option>
             <option value="custom">TPL_ASTROID_HEADER_BLOCK_1_TYPE_OPTIONS_CUSTOM_HTML</option>
          </field>
 

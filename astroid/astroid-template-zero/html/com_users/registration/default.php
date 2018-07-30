@@ -53,7 +53,7 @@ JHtml::_('behavior.formvalidator');
 							<?php echo JHtml::_('form.token'); ?>
 						</div>
 						<div class="form-check d-flex justify-content-end">
-							<a href="<?php echo JRoute::_('index.php?option=com_users&view=login'); ?>">Have an account ?</a>
+							<a href="<?php echo JRoute::_('index.php?option=com_users&view=login'); ?>"><?php echo JText::_('TPL_HAVE_AN_ACCOUNT');?></a>
 						</div>
 					</div>
 				</form>

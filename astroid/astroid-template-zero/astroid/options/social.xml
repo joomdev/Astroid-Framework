@@ -5,9 +5,9 @@
          
          <field type="astroidgroup" name="social_profile" title="TPL_ASTROID_SOCIAL_TITLE_LABEL" description="TPL_ASTROID_SOCIAL_TITLE_DESC"></field>		 
                     
-         <field astroidgroup="social_profile" name="social_profiles_position" astroid-content-layout="social" type="astroidmodulesposition" default="astroid-top-social" label="TPL_ASTROID_MISCELL_MODULE_POSITION_LABEL" description="TPL_ASTROID_MISCELL_MODULE_POSITION_DESC" class="form-control"></field>
+         <field astroidgroup="social_profile" name="social_profiles_position" astroid-content-layout="social" type="astroidmodulesposition" default="astroid-top-social" label="TPL_ASTROID_MODULE_POSITION_LABEL" description="TPL_ASTROID_MISCELL_MODULE_POSITION_DESC" class="form-control"></field>
          
-         <field astroidgroup="social_profile" name="social_profiles_load_position" type="astroidlist" label="Social Load Position" description="TPL_ASTROID_CUSTOM_ENABLE_DESC" class="form-control" astroid-content-layout-load="social_profiles_position" default="after">
+         <field astroidgroup="social_profile" name="social_profiles_load_position" type="astroidlist" label="TPL_ASTROID_FEATURE_LOAD_POSITION_LABEL" description="TPL_ASTROID_CUSTOM_ENABLE_DESC" class="form-control" astroid-content-layout-load="social_profiles_position" default="after">
             <option value="after">TPL_ASTROID_AFTER_MODULE</option>
             <option value="before">TPL_ASTROID_BEFORE_MODULE</option>
          </field>

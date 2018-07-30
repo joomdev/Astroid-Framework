@@ -20,7 +20,7 @@ if (empty($value)) {
    <textarea class="d-none" name="<?php echo $name; ?>">{{ profiles}}</textarea>
    <div class="row">
       <div class="col-sm-9">
-         <h2 ng-hide="profiles.length" class="text-center my-5">No Profile Selected</h2>
+         <h2 ng-hide="profiles.length" class="text-center my-5"><?php echo JText::_('TPL_ASTROID_NO_PROFILE_SELECTED'); ?></h2>
 
          <div ng-show="profiles.length" ng-sortable="{draggable: '.social-profile-item',animation: 100}">
             <div ng-repeat="profile in profiles track by $index" class="card mb-2 social-profile-item" ng-init="profileIndex = $index">
@@ -32,10 +32,10 @@ if (empty($value)) {
                <div class="card-body">
                   <div class="row" ng-class="{'mb-2':profile.icons.length > 1}">
                      <div class="col-sm-3">
-                        <label class="astroid-label" ng-show="profile.id != 'whatsapp' && profile.id != 'skype' && profile.id != 'telegram'">Link</label>
-                        <label class="astroid-label" ng-show="profile.id == 'whatsapp'">Mobile Number</label>
-                        <label class="astroid-label" ng-show="profile.id == 'telegram'">Mobile or Username</label>
-                        <label class="astroid-label" ng-show="profile.id == 'skype'">Skype ID</label>
+                        <label class="astroid-label" ng-show="profile.id != 'whatsapp' && profile.id != 'skype' && profile.id != 'telegram'"><?php echo JText::_('TPL_ASTROID_LINK'); ?></label>
+                        <label class="astroid-label" ng-show="profile.id == 'whatsapp'"><?php echo JText::_('TPL_ASTROID_MOBILE_NUMBER'); ?></label>
+                        <label class="astroid-label" ng-show="profile.id == 'telegram'"><?php echo JText::_('TPL_ASTROID_MOBILE_USERNAME'); ?></label>
+                        <label class="astroid-label" ng-show="profile.id == 'skype'"><?php echo JText::_('TPL_ASTROID_SKYPE_ID'); ?></label>
                      </div>
                      <div class="col-sm-9">
                         <input type="text" ng-model="profile.link" class="form-control" autocomplete="off">
@@ -43,7 +43,7 @@ if (empty($value)) {
                   </div>
                   <div class="row" ng-show="profile.icons.length > 1">
                      <div class="col-sm-3">
-                        <label class="astroid-label">Icon</label>
+                        <label class="astroid-label"><?php echo JText::_('TPL_ASTROID_ICON'); ?></label>
                      </div>
                      <div class="col-sm-9">
                         <ul class="list-inline m-0">
@@ -57,9 +57,9 @@ if (empty($value)) {
 
       </div>
       <div class="col-sm-3">
-         <h3>Social Brands</h3>
+         <h3><?php echo JText::_('TPL_ASTROID_SOCIAL_BRANDS'); ?></h3>
          <input type="text" ng-model="searchSocialProfile" placeholder="Search Brand" class="form-control mb-3" />
-         <small><em class="mb-3 d-block text-center text-info">Click to Add Profile</em></small>
+         <small><em class="mb-3 d-block text-center text-info"><?php echo JText::_('TPL_ASTROID_ADD_PROFILE'); ?></em></small>
          <div ng-click="selectSocialProfile(profile)" ng-repeat="profile in astroidsocialprofiles| filter:searchSocialProfile track by $index" class="card mb-2 social-profile-item" style="cursor: pointer">
             <div class="border radius p-2"><i class="{{ profile.icon}}"></i> {{ profile.title}}</div>
          </div>

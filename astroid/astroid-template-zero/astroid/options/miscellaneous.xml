@@ -10,7 +10,7 @@
 			<field astroidgroup="contact_info" name="contact_details" type="astroidtext" astroid-switch="true" default="1" label="TPL_ASTROID_MISCELL_CONTACT_DEATILS_LABEL" description="TPL_ASTROID_MISCELL_CONTACT_DEATILS_DESC">	 
 			</field>
 
-			<field astroidgroup="contact_info" name="contact_module_position" astroid-content-layout="contactinfo" type="astroidmodulesposition" default="astroid-top-contact" label="TPL_ASTROID_MISCELL_MODULE_POSITION_LABEL" description="TPL_ASTROID_MISCELL_MODULE_POSITION_DESC" class="form-control" ngShow="contact_details" ngRequired="contact_details">
+			<field astroidgroup="contact_info" name="contact_module_position" astroid-content-layout="contactinfo" type="astroidmodulesposition" default="astroid-top-contact" label="TPL_ASTROID_MODULE_POSITION_LABEL" description="TPL_ASTROID_MISCELL_MODULE_POSITION_DESC" class="form-control" ngShow="contact_details" ngRequired="contact_details">
 			</field>
 
 			<field astroidgroup="contact_info" name="contact_feature_load_position" type="astroidlist" label="TPL_ASTROID_MISCELL_FEATURE_LOAD_POSITION_LABEL" description="TPL_ASTROID_MISCELL_FEATURE_LOAD_POSITION_DESC" class="form-control" astroid-content-layout-load="contact_module_position" default="after" ngShow="contact_details=='1'" ngRequired="contact_details=='1'">
@@ -50,10 +50,10 @@
 			<field astroidgroup="coming_soon" name="coming_soon_countdown_date" type="astroidcalendar" label="TPL_ASTROID_MISCELL_COMING_COUNTDOWN_DATE_LABEL" description="TPL_ASTROID_MISCELL_COMING_COUNTDOWN_DATE_DESC" default="2019-01-01" ngShow="developemnt_mode=='1'" ngRequired="developemnt_mode=='1'">
 			</field>
 			
-			<field astroidgroup="coming_soon" name="coming_soon_background_image" type="astroidmedia" label="TPL_ASTROID_MISCELL_COMING_SOON_BACKGROUND_IMAGE_LABEL" description="TPL_ASTROID_MISCELL_COMING_SOON_BACKGROUND_IMAGE_DESC" default="" ngShow="developemnt_mode=='1'" ngRequired="developemnt_mode=='1'" class="form-control">
+			<field astroidgroup="coming_soon" name="coming_soon_background_image" type="astroidmedia" label="TPL_ASTROID_BACKGROUND_IMAGE_LABEL" description="TPL_ASTROID_MISCELL_COMING_SOON_BACKGROUND_IMAGE_DESC" default="" ngShow="developemnt_mode=='1'" ngRequired="developemnt_mode=='1'" class="form-control">
 			</field>
 
-			<field astroidgroup="coming_soon" ngShow="developemnt_mode=='1'" description="" name="coming_soon_background_repeat" type="astroidlist" default="inherit" class="form-control" label="TPL_ASTROID_MISCELL_BACKGROUND_REPEAT_LABEL">
+			<field astroidgroup="coming_soon" ngShow="developemnt_mode=='1'" description="" name="coming_soon_background_repeat" type="astroidlist" default="inherit" class="form-control" label="TPL_ASTROID_BACKGROUND_REPEAT_LABEL">
 			<option value="inherit">Inherit</option>
 			<option value="no-repeat">No Repeat</option>
 			<option value="repeat">Repeat All</option>
@@ -61,13 +61,13 @@
 			<option value="repeat-y">Repeat Vertically</option>
 			</field>
 
-			<field astroidgroup="coming_soon" ngShow="developemnt_mode=='1'" description="" name="coming_soon_background_size" type="astroidlist" default="inherit" class="form-control" label="TPL_ASTROID_MISCELL_BACKGROUND_SIZE_LABEL">
+			<field astroidgroup="coming_soon" ngShow="developemnt_mode=='1'" description="" name="coming_soon_background_size" type="astroidlist" default="inherit" class="form-control" label="TPL_ASTROID_BACKGROUND_SIZE_LABEL">
 			<option value="inherit">Inherit</option>
 			<option value="cover">Cover</option>
 			<option value="contain">Contain</option>
 			</field>
 
-			<field astroidgroup="coming_soon" ngShow="developemnt_mode=='1'" description="" name="coming_soon_background_position" type="astroidlist" class="form-control" default="inherit" label="TPL_ASTROID_MISCELL_BACKGROUND_POSITION_LABEL">
+			<field astroidgroup="coming_soon" ngShow="developemnt_mode=='1'" description="" name="coming_soon_background_position" type="astroidlist" class="form-control" default="inherit" label="TPL_ASTROID_BACKGROUND_POSITION_LABEL">
 			 <option value="inherit">Inherit</option>
 			 <option value="left top">Left Top</option>
 			 <option value="left center">Left Center</option>

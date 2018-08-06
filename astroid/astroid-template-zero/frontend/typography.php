@@ -28,7 +28,7 @@ $style = '';
 // Body, H1 - H6 font styles.
 foreach ($typography as $typo) {
    $typoType = $template->params->get($typo . '_typography');
-   if (trim($typoType) == 'custom' || $typo == 'body') {
+   if (trim($typoType) == 'custom') {
       $typoOption = $typo . '_typography_options';
       $typoParams = $template->params->get($typoOption);
       $fontface = explode(":", $typoParams->font_face);
@@ -41,19 +41,22 @@ foreach ($typography as $typo) {
          //$document->addStyleSheet('https://fonts.googleapis.com/css?family='.$fontface[0]);
       }
       if (isset($typoParams->font_size)) {
-         $style .= 'font-size: ' . $typoParams->font_size . 'em;';
+         $font_size_unit = isset($typoParams->font_size_unit) ? $typoParams->font_size_unit : 'em';
+         $style .= 'font-size: ' . $typoParams->font_size . $font_size_unit . ';';
       }
       if (isset($typoParams->font_color) && !empty($typoParams->font_color)) {
          $style .= 'color: ' . $typoParams->font_color . ';';
       }
       if (isset($typoParams->letter_spacing)) {
-         $style .= 'letter-spacing: ' . $typoParams->letter_spacing . 'em;';
+         $letter_spacing_unit = isset($typoParams->letter_spacing_unit) ? $typoParams->letter_spacing_unit : 'em';
+         $style .= 'letter-spacing: ' . $typoParams->letter_spacing . $letter_spacing_unit . ';';
       }
       if (isset($typoParams->font_weight)) {
          $style .= 'font-weight: ' . $typoParams->font_weight . ';';
       }
       if (isset($typoParams->line_height)) {
-         $style .= 'line-height: ' . $typoParams->line_height . 'em;';
+         $line_height_unit = isset($typoParams->line_height_unit) ? $typoParams->line_height_unit : 'em';
+         $style .= 'line-height: ' . $typoParams->line_height . $line_height_unit . ';';
       }
       if (isset($typoParams->text_transform)) {
          $style .= 'text-transform: ' . $typoParams->text_transform . ';';

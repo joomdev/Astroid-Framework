@@ -9,7 +9,12 @@
 defined('_JEXEC') or die;
 
 JHtml::addIncludePath(JPATH_COMPONENT . '/helpers');
-
+if (version_compare(JVERSION, '3.99999.99999', 'le'))
+{
+	JHtml::_('behavior.caption');
+} else {
+	// No alternate for caption.js yet in Joomla 4.
+}
 // Create shortcuts to some parameters.
 $params  = $this->item->params;
 $images  = json_decode($this->item->images);
@@ -25,7 +30,7 @@ $url  	= $root->getScheme() . '://' . $root->getHost() . $url;
 
 // Check if associations are implemented. If they are, define the parameter.
 $assocParam = (JLanguageAssociations::isEnabled() && $params->get('show_associations'));
-JHtml::_('behavior.caption');
+
 
 ?>
 <div class="item-page<?php echo $this->pageclass_sfx; ?>" itemscope itemtype="https://schema.org/Article">

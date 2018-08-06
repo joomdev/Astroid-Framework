@@ -84,7 +84,7 @@ foreach ($params as $key => $value) {
    <head>
       <meta charset="utf-8" />
       <meta name="generator" content="Astroid Framework | Template Manager" />
-      <title>Astroid Framework | Template Manager</title>
+      <title><?php echo $template->title; ?></title>
       <link href="<?php echo $assets . 'images' . '/' . 'favicon.png'; ?>" rel="shortcut icon" type="image/vnd.microsoft.icon" />
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
       <?php
@@ -186,7 +186,7 @@ foreach ($params as $key => $value) {
             <div id="astroid-content-wrapper" class="col">
                <nav class="astroid-manager-navbar navbar navbar-expand-lg navbar-light bg-white justify-content-between">
                   <div class="form-inline">
-                     <a href="<?php echo $joomla_url; ?>" class="btn btn-white my-2 my-sm-0 btn-round"><i class="fab fa-joomla"></i> Back to Joomla</a>
+                     <a href="<?php echo $joomla_url; ?>" class="btn btn-white my-2 my-sm-0 btn-round"><i class="fab fa-joomla"></i> <?php echo JText::_('TPL_ASTROID_BACK_TO_JOOMLA'); ?></a>
                   </div>
                   <p class="navbar-brand m-0"><?php echo $template->title; ?></p>
                   <div class="form-inline">
@@ -299,7 +299,7 @@ foreach ($params as $key => $value) {
             <div class="astroid-ring-loading"></div>
             <div id="element-settings-form" ng-bind-html="elementFormContent"></div>
             <div class="ezlb-pop-footer text-right">
-               <button type="button" id="element-settings-save" class="btn btn-outline-dark">Save</button>
+               <button type="button" id="element-settings-save" class="btn btn-dark"><?php echo JText::_('JSAVE'); ?></button>
             </div>
          </div>
       </div>
@@ -318,32 +318,31 @@ foreach ($params as $key => $value) {
       ?>
       <script src="<?php echo $assets . 'js' . '/' . 'astroid.js?v=' . $document->getMediaVersion(); ?>"></script>
       <script type="text/javascript">
-                     astroidFramework.controller('astroidController', function ($scope) {
-<?php foreach ($fieldsets as $key => $fieldset) { ?>
-   <?php $fields = $form->getFieldset($key); ?>
-   <?php
-   foreach ($fields as $key => $field) {
-      if (strtolower($field->type) == "astroidtextarea" || $field->type == "astroidheading") {
-         continue;
-      }
-      if (is_string($field->value)) {
-         $value = "'" . addslashes($field->value) . "'";
-      } elseif (is_array($field->value)) {
-         $value = \json_encode($value);
-      } elseif (is_object($field->value)) {
-         $value = \json_encode($field->value);
-      } else {
-         $value = $field->value;
-      }
-      echo '$scope.' . $field->fieldname . ' = ' . $value . ';';
-      if ($field->type == "layout") {
-         echo '$scope.layoutfield = "' . $field->fieldname . '";';
-      }
-   }
-   ?>
-<?php } ?>
-                     });
+      astroidFramework.controller('astroidController', function ($scope) {
+            <?php foreach ($fieldsets as $key => $fieldset) { ?>
+                  <?php $fields = $form->getFieldset($key); ?>
+                  <?php
+                  foreach ($fields as $key => $field) {
+                        if (strtolower($field->type) == "astroidtextarea" || $field->type == "astroidheading") {
+                        continue;
+                        }
+                        if (is_string($field->value)) {
+                        $value = "'" . addslashes($field->value) . "'";
+                        } elseif (is_array($field->value)) {
+                        $value = \json_encode($value);
+                        } elseif (is_object($field->value)) {
+                        $value = \json_encode($field->value);
+                        } else {
+                        $value = $field->value;
+                        }
+                        echo '$scope.' . $field->fieldname . ' = ' . $value . ';';
+                        if ($field->type == "layout") {
+                        echo '$scope.layoutfield = "' . $field->fieldname . '";';
+                        }
+                  }
+                  ?>
+            <?php } ?>
+      });
       </script>
    </body>
 </html>
-

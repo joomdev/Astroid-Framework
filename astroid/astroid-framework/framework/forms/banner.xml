@@ -2,7 +2,7 @@
 <form>
    <fields name="params">
       <fieldset label="ASTROID_BANNER_MIAN_TITLE_LABEL" name="astroid_banner" addfieldpath="/libraries/astroid/framework/fields">
-         <field name="banner_note" type="note" class="alert alert-info" label="" description="ASTROID_BANNER_MIAN_TITLE_DESC" />
+         <field name="banner_note" type="note" class="alert alert-info" description="ASTROID_BANNER_MIAN_TITLE_DESC" />
          <field name="astroid_banner_enabled" type="radio" default="0" label="ASTROID_BANNER_ENABLE_LABEL" description="ASTROID_BANNER_ENABLE_BANNNER_DESC" class="btn-group btn-group-yesno">
             <option value="1">JYES</option>
             <option value="0">JNO</option>
@@ -11,7 +11,7 @@
          </field>
          <field showon="astroid_banner_enabled:1" name="astroid_banner_subtitle" type="text" default="" label="ASTROID_BANNER_SUBTITLE_LABEL">
          </field>
-         <field showon="astroid_banner_enabled:1" name="astroid_banner_bgcolor" type="color" default="" label="ASTROID_BANNER_BACKGROUND_COLOR_LABEL">
+         <field showon="astroid_banner_enabled:1" name="astroid_banner_bgcolor" type="color" default="" label="TPL_ASTROID_BACKGROUND_COLOR_LABEL">
          </field>
          <field showon="astroid_banner_enabled:1" name="astroid_banner_bgimage" type="media" default="" label="ASTROID_BANNER_BACKGROUD_IMAGE_LABEL">
          </field>
@@ -20,9 +20,9 @@
          <field showon="astroid_banner_enabled:1" name="astroid_banner_class" type="text" default="" label="ASTROID_BANNER_CLASS_LABEL">
          </field>
          <field showon="astroid_banner_enabled:1" name="astroid_banner_wrapper" type="list" default="" label="ASTROID_BANNER_LAUOUT_LABEL">
-            <option value="">Default</option>
-            <option value="container">Container</option>
-            <option value="container-fluid">Container Fluid</option>
+            <option value="">TPL_ASTROID_DEFAULT</option>
+            <option value="container">ASTROID_CONTAINER</option>
+            <option value="container-fluid">ASTROID_CONTAINER_FLUID</option>
          </field>
       </fieldset>
    </fields>

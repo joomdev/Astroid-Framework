@@ -33,10 +33,13 @@ class JFormFieldAstroidTypography extends JFormField {
           'font_face' => '',
           'alt_font_face' => '',
           'font_size' => '',
+          'font_size_unit' => 'em',
           'font_unit' => '',
           'font_color' => '',
           'letter_spacing' => '',
+          'letter_spacing_unit' => 'em',
           'line_height' => '',
+          'line_height_unit' => 'em',
           'font_style' => [],
           'font_weight' => '',
           'text_transform' => '',
@@ -66,6 +69,10 @@ class JFormFieldAstroidTypography extends JFormField {
       if (isset($this->element['font-size'])) {
          $defaults['font_size'] = $this->element['font-size'];
       }
+      
+      if (isset($this->element['font-size-unit'])) {
+         $defaults['font_size_unit'] = $this->element['font-size-unit'];
+      }
 
       if (isset($this->element['font-color'])) {
          $defaults['font_color'] = $this->element['font-color'];
@@ -74,9 +81,17 @@ class JFormFieldAstroidTypography extends JFormField {
       if (isset($this->element['letter-spacing'])) {
          $defaults['letter_spacing'] = $this->element['letter-spacing'];
       }
+      
+      if (isset($this->element['letter-spacing-unit'])) {
+         $defaults['letter_spacing_unit'] = $this->element['letter-spacing-unit'];
+      }
 
       if (isset($this->element['line-height'])) {
          $defaults['line_height'] = $this->element['line-height'];
+      }
+      
+      if (isset($this->element['line-height-unit'])) {
+         $defaults['line_height_unit'] = $this->element['line-height-unit'];
       }
 
       if (isset($this->element['font-style'])) {

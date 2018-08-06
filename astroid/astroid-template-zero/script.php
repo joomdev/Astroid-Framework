@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @package   Astroid Framework
  * @author    JoomDev https://www.joomdev.com
@@ -61,12 +62,18 @@ class astroid_template_zeroInstallerScript {
    public function postflight($type, $parent) {
       $template = $parent->getElement();
       if ($type == 'install') {
+
+         $db = JFactory::getDbo();
+         $query = "ALTER TABLE `#__template_styles` CHANGE `params` `params` LONGTEXT NOT NULL;";
+         $db->setQuery($query);
+         $db->execute();
+
          if (file_exists(JPATH_SITE . '/templates/' . $template . '/astroid/default.json')) {
             $params = file_get_contents(JPATH_SITE . '/templates/' . $template . '/astroid/default.json');
             $db = JFactory::getDbo();
             $object = new stdClass();
             $object->template = $template;
-            
+
             $params = str_replace('TEMPLATE_NAME', $template, $params);
             $object->params = $params;
             $db->updateObject('#__template_styles', $object, 'template');

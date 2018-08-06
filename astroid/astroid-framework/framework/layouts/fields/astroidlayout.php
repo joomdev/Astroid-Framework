@@ -10,7 +10,7 @@
       <div class="ezlb-pop-overlay"></div>
       <div class="ezlb-pop-body">
          <div class="ezlb-pop-header">
-            <span class="title">SELECT A GRID LAYOUT</span>
+            <span class="title"><?php echo JText::_('TPL_ASTROID_SELECT_GRID_LAYOUT'); ?></span>
             <span class="dismiss" ng-click="chooseRow.open = 0; chooseRow.section = null;"><i class="fa fa-times"></i></span>
          </div>
          <div class="ezlb-grid-items">
@@ -28,7 +28,7 @@
       <div class="ezlb-pop-overlay"></div>
       <div class="ezlb-pop-body">
          <div class="ezlb-pop-header">
-            <span class="title">SELECT A GRID LAYOUT</span>
+            <span class="title"><?php echo JText::_('TPL_ASTROID_SELECT_GRID_LAYOUT'); ?></span>
             <span class="dismiss" ng-click="chooseRowColumns.open = 0; chooseRowColumns.section = null; chooseRowColumns.row = null;"><i class="fa fa-times"></i></span>
          </div>
          <div class="ezlb-grid-items">
@@ -46,7 +46,7 @@
       <div class="ezlb-pop-overlay"></div>
       <div class="ezlb-pop-body">
          <div class="ezlb-pop-header">
-            <span class="title">SELECT AN ELEMENT</span>
+            <span class="title"><?php echo JText::_('TPL_ASTROID_SELECT_AN_ELEMENT'); ?></span>
             <span class="dismiss" ng-click="chooseElement.open = 0; chooseElement.row = null; chooseElement.column = null; chooseElement.section = null; chooseElement.element = null;"><i class="fa fa-times"></i></span>
             <span class="compress"><i class="fa fa-compress"></i></span>
             <span class="expand"><i class="fa fa-expand"></i></span>
@@ -93,8 +93,8 @@
             <span class="ezlb-action" ng-click="editElement(section)"><i class="fa fa-pencil-alt"></i></span>
             <span class="ezlb-action" ng-click="duplicateSection(sectionIndex)"><i class="fa fa-copy"></i></span>
             <span class="ezlb-action text-danger" ng-show="layout.sections.length > 1" ng-click="removeSection(sectionIndex);"><i class="fa fa-trash"></i></span>
-            <span class="ezlb-action" ng-click="addingRow(sectionIndex)"><i class="fa fa-align-left"></i> New Row</span>
-            <span class="ezlb-action" ng-click="addSection(sectionIndex)"><i class="fa fa-plus"></i> New Section</span>
+            <span class="ezlb-action" ng-click="addingRow(sectionIndex)"><i class="fa fa-align-left"></i> <?php echo JText::_('TPL_ASTROID_NEW_ROW'); ?></span>
+            <span class="ezlb-action" ng-click="addSection(sectionIndex)"><i class="fa fa-plus"></i> <?php echo JText::_('TPL_ASTROID_NEW_SECTION'); ?></span>
          </span>
          <div class="col-12 ezlb-content" ng-sortable="{draggable:'.ezlb-row', animation: 100, handle: '.ezlb-row-handle'}">
             <div ng-repeat="row in section.rows track by $index" class="ezlb-row row ezlb-row-{{ sectionIndex}}-{{ rowIndex}}" ng-init="rowIndex = $index">
@@ -140,7 +140,7 @@
    </div>
    <br/>
    <div class="text-center mb-4">
-      <span ng-click="addSection(null)" class="d-inline ezlb-btn"><i class="fa fa-plus"></i> Add Section</span>
+      <span ng-click="addSection(null)" class="d-inline ezlb-btn"><i class="fa fa-plus"></i> <?php echo JText::_('TPL_ASTROID_ADD_SECTION'); ?></span>
    </div>
    <br/>
 </div>

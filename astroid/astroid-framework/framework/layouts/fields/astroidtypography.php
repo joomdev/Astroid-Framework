@@ -18,9 +18,12 @@ $font_face = (string) $value['font_face'];
 $alt_font_face = (string) $value['alt_font_face'];
 $font_unit = (string) $value['font_unit'];
 $font_size = (string) $value['font_size'];
+$font_size_unit = (string) $value['font_size_unit'];
 $font_color = (string) $value['font_color'];
 $letter_spacing = (string) $value['letter_spacing'];
+$letter_spacing_unit = (string) $value['letter_spacing_unit'];
 $line_height = (string) $value['line_height'];
+$line_height_unit = (string) $value['line_height_unit'];
 $font_style = (array) $value['font_style'];
 $font_weight = (string) $value['font_weight'];
 $text_transform = (string) $value['text_transform'];
@@ -62,7 +65,7 @@ foreach ($fonts as $font) {
                   <div class="menu"></div>
                </div>
 
-               <div class="clearfix"></div>
+               <div class="clearfix mb-4"></div>
                <label class="astroid-label"><?php echo JText::_('TPL_ASTROID_TYPOGRAPHY_ALT_FONT_FAMILY_LABEL'); ?></label>
 
                <select data-placeholder="Inherit" name="<?php echo $name; ?>[alt_font_face]" ng-model="<?php echo $id; ?>_alt_font_face" ng-init="<?php echo $id; ?>_alt_font_face = '<?php echo $alt_font_face; ?>'" class="form-control" select-ui>
@@ -72,7 +75,7 @@ foreach ($fonts as $font) {
                </select>
 
 
-               <div class="clearfix"></div>
+               <div class="clearfix mb-4"></div>
             <?php } ?>
             <?php if ($weightpicker) { ?>
                <label class="astroid-label"><?php echo JText::_('TPL_ASTROID_TYPOGRAPHY_FONT_WEIGHT_LABEL'); ?></label>
@@ -88,26 +91,30 @@ foreach ($fonts as $font) {
          </div>
          <div class="col-4">
             <?php if ($sizepicker) { ?>
-               <div>
-                  <label class="astroid-label"><?php echo JText::_('TPL_ASTROID_TYPOGRAPHY_FONT_SIZE_LABEL'); ?></label>
-                  <span class="range-slider-value"></span>
-                  <input data-typography-field="<?php echo $id; ?>" data-typography-property="font-size" name="<?php echo $name; ?>[font_size]" data-slider-min="0" data-slider-step="<?php echo $font_unit == 'px' ? 1 : '0.1'; ?>" data-unit="<?php echo $font_unit; ?>" data-slider-max="<?php echo $font_unit == 'px' ? 160 : 10; ?>" data-prefix="" data-postfix=" <?php echo $font_unit; ?>" type="text" data-slider-value="<?php echo $font_size; ?>" value="<?php echo $font_size; ?>" id="<?php echo $id; ?>_font_size" data-slider-id="<?php echo $id; ?>_font_size" range-slider ng-model="<?php echo $id; ?>_font_size">
+               <label class="astroid-label d-inline-block"><?php echo JText::_('TPL_ASTROID_TYPOGRAPHY_FONT_SIZE_LABEL'); ?></label>
+               <div class="mb-4 position-relative">
+                  <span class="range-slider-value d-none"></span>
+                  <input data-unit-slider-id="<?php echo $id; ?>_font_size" ng-init="<?php echo $id; ?>_font_size_unit = '<?php echo $font_size_unit; ?>'" value="<?php echo $letter_spacing_unit; ?>" type="hidden" name="<?php echo $name; ?>[font_size_unit]" ng-model="<?php echo $id; ?>_font_size_unit" unit-picker />
+                  <div class="clearfix"></div>
+                  <input data-typography-field="<?php echo $id; ?>" data-typography-property="font-size" name="<?php echo $name; ?>[font_size]" data-slider-min="0" data-slider-step="0.01" data-unit="<?php echo $font_size_unit; ?>" data-slider-max="100" data-prefix="" data-postfix="" type="number" data-slider-value="<?php echo $font_size; ?>" id="<?php echo $id; ?>_font_size" data-slider-id="<?php echo $id; ?>_font_size" range-slider ng-model="<?php echo $id; ?>_font_size">
                </div>
                <div class="clearfix"></div>
             <?php } ?>
             <?php if ($letterspacingpicker) { ?>
-               <div>
-                  <label class="astroid-label"><?php echo JText::_('TPL_ASTROID_TYPOGRAPHY_LETTER_SPACING_LABEL'); ?></label>
-                  <span class="range-slider-value"></span>
-                  <input data-typography-field="<?php echo $id; ?>" data-typography-property="letter-spacing" name="<?php echo $name; ?>[letter_spacing]" data-slider-min="0" data-slider-step="0.1" data-slider-max="10" data-prefix="" data-postfix=" <?php echo $font_unit; ?>" data-unit="<?php echo $font_unit; ?>" type="text" data-slider-value="<?php echo $letter_spacing; ?>" value="<?php echo $letter_spacing; ?>" id="<?php echo $id; ?>_letter_spacing" data-slider-id="<?php echo $id; ?>_letter_spacing" range-slider ng-model="<?php echo $id; ?>_letter_spacing">
+               <label class="astroid-label d-inline-block"><?php echo JText::_('TPL_ASTROID_TYPOGRAPHY_LETTER_SPACING_LABEL'); ?></label>
+               <div class="mb-4 position-relative">
+                  <span class="range-slider-value d-none"></span><input data-unit-slider-id="<?php echo $id; ?>_letter_spacing" ng-init="<?php echo $id; ?>_letter_spacing_unit = '<?php echo $letter_spacing_unit; ?>'" value="<?php echo $letter_spacing_unit; ?>" type="hidden" name="<?php echo $name; ?>[letter_spacing_unit]" ng-model="<?php echo $id; ?>_letter_spacing_unit" unit-picker />
+                  <div class="clearfix"></div>
+                  <input data-typography-field="<?php echo $id; ?>" data-typography-property="letter-spacing" name="<?php echo $name; ?>[letter_spacing]" data-slider-min="0" data-slider-step="0.01" data-slider-max="100" data-prefix="" data-postfix="" data-unit="<?php echo $letter_spacing_unit; ?>" type="number" data-slider-value="<?php echo $letter_spacing; ?>" id="<?php echo $id; ?>_letter_spacing" data-slider-id="<?php echo $id; ?>_letter_spacing" range-slider ng-model="<?php echo $id; ?>_letter_spacing">
                </div>
                <div class="clearfix"></div>
             <?php } ?>
             <?php if ($lineheightpicker) { ?>
-               <div>
-                  <label class="astroid-label"><?php echo JText::_('TPL_ASTROID_TYPOGRAPHY_LINE_HEIGHT_LABEL'); ?></label>
-                  <span class="range-slider-value"></span>
-                  <input data-typography-field="<?php echo $id; ?>" data-typography-property="line-height" name="<?php echo $name; ?>[line_height]" data-slider-min="0" data-slider-step="0.1" data-slider-max="5" data-prefix="" data-postfix=" <?php echo $font_unit; ?>" data-unit="<?php echo $font_unit; ?>" type="text" data-slider-value="<?php echo $line_height; ?>" value="<?php echo $line_height; ?>" id="<?php echo $id; ?>_line_height" data-slider-id="<?php echo $id; ?>_line_height" range-slider ng-model="<?php echo $id; ?>_line_height">
+               <label class="astroid-label"><?php echo JText::_('TPL_ASTROID_TYPOGRAPHY_LINE_HEIGHT_LABEL'); ?></label>
+               <div class="mb-4 position-relative">
+                  <span class="range-slider-value d-none"></span><input data-unit-slider-id="<?php echo $id; ?>_line_height" ng-init="<?php echo $id; ?>_line_height_unit = '<?php echo $line_height_unit; ?>'" value="<?php echo $line_height_unit; ?>" type="hidden" name="<?php echo $name; ?>[line_height_unit]" ng-model="<?php echo $id; ?>_line_height_unit" unit-picker />
+                  <div class="clearfix"></div>
+                  <input data-typography-field="<?php echo $id; ?>" data-typography-property="line-height" name="<?php echo $name; ?>[line_height]" data-slider-min="0" data-slider-step="0.01" data-slider-max="100" data-prefix="" data-postfix="" data-unit="<?php echo $line_height_unit; ?>" type="number" data-slider-value="<?php echo $line_height; ?>" id="<?php echo $id; ?>_line_height" data-slider-id="<?php echo $id; ?>_line_height" range-slider ng-model="<?php echo $id; ?>_line_height">
                </div>
             <?php } ?>
          </div>
@@ -115,7 +122,7 @@ foreach ($fonts as $font) {
             <?php if ($colorpicker) { ?>
                <label class="astroid-label"><?php echo JText::_('TPL_ASTROID_TYPOGRAPHY_FONT_COLOR_LABEL'); ?></label>
                <input color-picker data-typography-field="<?php echo $id; ?>" data-typography-property="color" type="text" name="<?php echo $name; ?>[font_color]" id="<?php echo $id; ?>_font_color" ng-model="<?php echo $id; ?>_font_color" data-value="<?php echo $font_color; ?>" value="<?php echo $font_color; ?>" class="form-control astroid-color-picker" />
-               <div class="clearfix"></div>
+               <div class="clearfix mb-1"></div>
             <?php } ?>
             <?php if ($stylepicker) { ?>
                <label class="astroid-label"><?php echo JText::_('TPL_ASTROID_TYPOGRAPHY_FONT_STYLE_LABEL'); ?></label>

@@ -647,8 +647,9 @@ var Admin = new AstroidAdmin();
             var _value = _field.val();
             _preview.css(_property, _value + _unit);
             _field.change(function () {
+               var _u = $(this).attr('data-unit');
                var _value = _field.val();
-               _preview.css(_property, _value + _unit);
+               _preview.css(_property, _value + _u);
             });
          }
       });

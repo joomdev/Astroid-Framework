@@ -3,9 +3,9 @@
    <fields name="params">
       <fieldset icon="fa fa-font" label="ASTROID_OPTIONS_TYPOGRAPHY" name="astroid_typography" addfieldpath="/libraries/astroid/framework/fields" order="6">
 
-         <field type="astroidgroup" name="body_typography" title="TPL_ASTROID_TYPOGRAPHY_BODY" description="TPL_ASTROID_TYPOGRAPHY_BODY_DESC" />
-		 <field type="astroidgroup" name="menu_typography" title="TPL_ASTROID_TYPOGRAPHY_MENU" description="TPL_ASTROID_TYPOGRAPHY_MENU_DESC" />
-		 <field type="astroidgroup" name="submenu_typography" title="TPL_ASTROID_TYPOGRAPHY_SUBMENU" description="TPL_ASTROID_TYPOGRAPHY_SUBMENU_DESC" />
+         <field type="astroidgroup" name="body_typography_group" title="TPL_ASTROID_TYPOGRAPHY_BODY" description="TPL_ASTROID_TYPOGRAPHY_BODY_DESC" />
+         <field type="astroidgroup" name="menu_typography" title="TPL_ASTROID_TYPOGRAPHY_MENU" description="TPL_ASTROID_TYPOGRAPHY_MENU_DESC" />
+         <field type="astroidgroup" name="submenu_typography" title="TPL_ASTROID_TYPOGRAPHY_SUBMENU" description="TPL_ASTROID_TYPOGRAPHY_SUBMENU_DESC" />
          <field type="astroidgroup" name="h1_header_typography" title="TPL_ASTROID_TYPOGRAPHY_H1" description="TPL_ASTROID_TYPOGRAPHY_H1_DESC" />
          <field type="astroidgroup" name="h2_header_typography" title="TPL_ASTROID_TYPOGRAPHY_H2" description="TPL_ASTROID_TYPOGRAPHY_H2_DESC" />
          <field type="astroidgroup" name="h3_header_typography" title="TPL_ASTROID_TYPOGRAPHY_H3" description="TPL_ASTROID_TYPOGRAPHY_H3_DESC" />
@@ -13,24 +13,30 @@
          <field type="astroidgroup" name="h5_header_typography" title="TPL_ASTROID_TYPOGRAPHY_H5" description="TPL_ASTROID_TYPOGRAPHY_H5_DESC" />
          <field type="astroidgroup" name="h6_header_typography" title="TPL_ASTROID_TYPOGRAPHY_H6" description="TPL_ASTROID_TYPOGRAPHY_H6_DESC" />
 
-         <!-- Body Typography Options -->
-         <field astroidgroup="body_typography" name="body_typography_options" type="astroidtypography" font-style-picker="false" font-face="Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" alt-font-face="Arial, Helvetica, sans-serif" font-color="#000" font-size="1" font-unit="em" letter-spacing="0" line-height="1" font-style="" font-weight="400" text-transform="none" color-picker="false"></field>
          
-		 <!-- Menu Typography Options -->
+         <field astroidgroup="body_typography_group" description="TPL_ASTROID_TYPOGRAPHY_OPTION_DESC" name="body_typography" type="astroidradio" default="default" label="TPL_ASTROID_TYPOGRAPHY_OPTIONS_LABEL">
+            <option value="default">TPL_ASTROID_TYPOGRAPHY_OPTIONS_DEFAULT</option>
+            <option value="custom">TPL_ASTROID_TYPOGRAPHY_OPTIONS_CUSTOM</option>
+         </field>
+         
+         <!-- Body Typography Options -->
+         <field ngShow="body_typography=='custom'" astroidgroup="body_typography_group" name="body_typography_options" type="astroidtypography" font-style-picker="false" font-face="Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" alt-font-face="Arial, Helvetica, sans-serif" font-color="#000" font-size="1" font-unit="em" letter-spacing="0" line-height="1" font-style="" font-weight="400" text-transform="none" color-picker="false"></field>
+         
+         <!-- Menu Typography Options -->
          <field astroidgroup="menu_typography" description="TPL_ASTROID_TYPOGRAPHY_OPTION_DESC" name="menus_typography" type="astroidradio" default="inherit" label="TPL_ASTROID_TYPOGRAPHY_OPTIONS_LABEL">
             <option value="inherit">TPL_ASTROID_TYPOGRAPHY_OPTIONS_INHERIT</option>
             <option value="custom">TPL_ASTROID_TYPOGRAPHY_OPTIONS_CUSTOM</option>
          </field>
 		 
-		 <field astroidgroup="menu_typography" ngShow="menus_typography=='custom'" name="menu_typography_options" type="astroidtypography" font-style-picker="false" font-face="Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" alt-font-face="Arial, Helvetica, sans-serif" font-color="#000" font-size="1" font-unit="em" letter-spacing="0" line-height="1" font-style="" font-weight="400" text-transform="none" color-picker="false"></field>
+         <field astroidgroup="menu_typography" ngShow="menus_typography=='custom'" name="menu_typography_options" type="astroidtypography" font-style-picker="false" font-face="Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" alt-font-face="Arial, Helvetica, sans-serif" font-color="#000" font-size="1" font-unit="em" letter-spacing="0" line-height="1" font-style="" font-weight="400" text-transform="none" color-picker="false"></field>
 
-		 <!-- Sub Menu Typography Options -->
+         <!-- Sub Menu Typography Options -->
          <field astroidgroup="submenu_typography" description="TPL_ASTROID_TYPOGRAPHY_OPTION_DESC" name="submenus_typography" type="astroidradio" default="inherit" label="TPL_ASTROID_TYPOGRAPHY_OPTIONS_LABEL">
             <option value="inherit">TPL_ASTROID_TYPOGRAPHY_OPTIONS_INHERIT</option>
             <option value="custom">TPL_ASTROID_TYPOGRAPHY_OPTIONS_CUSTOM</option>
          </field>
 		 
-		 <field astroidgroup="submenu_typography" ngShow="submenus_typography=='custom'" name="submenu_typography_options" type="astroidtypography" font-style-picker="false" font-face="Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" alt-font-face="Arial, Helvetica, sans-serif" font-color="#000" font-size="1" font-unit="em" letter-spacing="0" line-height="1" font-style="" font-weight="400" text-transform="none" color-picker="false"></field>
+         <field astroidgroup="submenu_typography" ngShow="submenus_typography=='custom'" name="submenu_typography_options" type="astroidtypography" font-style-picker="false" font-face="Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" alt-font-face="Arial, Helvetica, sans-serif" font-color="#000" font-size="1" font-unit="em" letter-spacing="0" line-height="1" font-style="" font-weight="400" text-transform="none" color-picker="false"></field>
 		 
          <!--  More Options: 
          font-picker="false" letter-spacing-picker="false" line-height-picker="false" font-style-picker="false" font-weight-picker="false" text-transform-picker="false" font-size-picker="false"  -->

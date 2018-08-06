@@ -24,7 +24,7 @@ if ($astroid_banner_enabled) {
    $astroid_banner_title_class = $params->get('astroid_banner_title_class', '');
    $astroid_banner_subtitle_class = $params->get('astroid_banner_subtitle_class', '');
    $astroid_banner_wrapper = $params->get('astroid_banner_wrapper', '');
-   $astroid_banner_title = empty($astroid_banner_title) ? (empty($params->get('page_heading', '')) ? $item->title : $params->get('page_heading', '')) : $astroid_banner_title;
+   $astroid_banner_title = !empty($astroid_banner_title) ? $astroid_banner_title : '';
 
 
    $style = [];
@@ -41,7 +41,9 @@ if ($astroid_banner_enabled) {
       if (!empty($astroid_banner_wrapper)) {
          echo '<div class="' . $astroid_banner_wrapper . '">';
       }
-      echo '<' . $astroid_banner_title_tag . ' class="astroid-banner-title">' . $astroid_banner_title . '</' . $astroid_banner_title_tag . '>';
+	  if (!empty($astroid_banner_title)) {
+		echo '<' . $astroid_banner_title_tag . ' class="astroid-banner-title">' . $astroid_banner_title . '</' . $astroid_banner_title_tag . '>';
+	  }
       if (!empty($astroid_banner_subtitle)) {
          echo '<span class="astroid-banner-subtitle">' . $astroid_banner_subtitle . '</span>';
       }

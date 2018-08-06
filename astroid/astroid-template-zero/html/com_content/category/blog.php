@@ -7,7 +7,7 @@
  */
 
 defined('_JEXEC') or die;
-require_once("components/com_content/models/category.php");
+require_once(JPATH_COMPONENT."/models/category.php");
 JHtml::addIncludePath(JPATH_COMPONENT . '/helpers');
 $category = new ContentModelCategory();
 $articles = $category->getItems();

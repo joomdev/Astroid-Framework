@@ -487,7 +487,11 @@ class AstroidFrameworkTemplate {
 
    public function loadLayout($partial = '', $display = true) {
       $this->setLog("Rending template partial : " . $partial);
-      $layout = new JLayoutFile($partial, JPATH_SITE . '/templates/' . $this->template . '/frontend');
+      if (file_exists(JPATH_SITE . '/templates/' . $this->template . '/html/frontend/' . str_replace('.', '/', $partial) . '.php')) {
+         $layout = new JLayoutFile($partial, JPATH_SITE . '/templates/' . $this->template . '/html/frontend');
+      } else {
+         $layout = new JLayoutFile($partial, JPATH_SITE . '/templates/' . $this->template . '/frontend');
+      }
       if ($display) {
          echo $layout->render(['template' => $this]);
       } else {

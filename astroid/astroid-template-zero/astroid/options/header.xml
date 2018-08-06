@@ -58,12 +58,12 @@
          <field ngShow="header==true" astroidgroup="header_element" name="header_mobile_menu" type="menu" default="mainmenu" class="form-control astroid-select-ui" label="TPL_ASTROID_HEADER_MOBILE_MENU_LABEL" />
 
          <field ngShow="header==true" astroidgroup="header_element" description="TPL_ASTROID_MENU_DROPDOWN_ANIMATION_DESC" name="menuanimation" type="astroidlist" class="form-control" astroid-animation-selector="true" default="" label="TPL_ASTROID_MENU_DROPDOWN_ANIMATION_LABEL" >
-            <option value="">TPL_ASTROID_MENU_DROPDOWN_ANIMATION_OPTIONS_NO_ANIMATION</option>
-            <option value="zoomIn">TPL_ASTROID_MENU_DROPDOWN_ANIMATION_OPTIONS_ZOOM_IN</option>
-            <option value="fadeInUp">TPL_ASTROID_MENU_DROPDOWN_ANIMATION_OPTIONS_FADE_IN_UP</option>
-            <option value="bounceInDown">TPL_ASTROID_MENU_DROPDOWN_ANIMATION_OPTIONS_BOUNCE_IN_DOWN</option>
-            <option value="bounceInLeft">TPL_ASTROID_MENU_DROPDOWN_ANIMATION_OPTIONS_BOUNCE_IN_LEFT</option>
-            <option value="bounceInRight">TPL_ASTROID_MENU_DROPDOWN_ANIMATION_OPTIONS_BOUNCE_IN_RIGHT</option>
+            <option value="">TPL_ASTROID_NO_ANIMATION</option>
+            <option value="zoomIn">TPL_ASTROID_ZOOM_IN</option>
+            <option value="fadeInUp">TPL_ASTROID_FADE_IN_UP</option>
+            <option value="bounceInDown">TPL_ASTROID_BOUNCE_IN_DOWN</option>
+            <option value="bounceInLeft">TPL_ASTROID_BOUNCE_IN_LEFT</option>
+            <option value="bounceInRight">TPL_ASTROID_BOUNCE_IN_RIGHT</option>
          </field>
         
          <field ngShow="header==true" astroidgroup="header_element" description="TPL_ASTROID_HEADER_LOGO_OPTION_DESC" title="TPL_ASTROID_HEADER_LOGO_OPTION" type="astroidheading" />

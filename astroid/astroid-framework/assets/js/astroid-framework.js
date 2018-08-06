@@ -263,13 +263,70 @@ astroidFramework.directive('rangeSlider', function () {
       restrict: 'A',
       require: 'ngModel',
       link: function (scope, element, attrs, ngModel) {
+
+         setTimeout(function () {
+            ngModel.$setViewValue(parseFloat($(element).data('slider-value')));
+            scope.$apply();
+         }, 10);
+
+
+         setTimeout(function () {
+            $(element).slider(rangeConfig);
+            $(element).slider('setValue', parseFloat($(element).data('slider-value')));
+         }, 100);
+
+
          setTimeout(function () {
             var _prefix = $(element).data('prefix');
             var _postfix = $(element).data('postfix');
-            $(element).slider(rangeConfig).on('slide', function (e) {
+            $(element).on('slide', function (e) {
                $(element).siblings('.range-slider-value').text(_prefix + e.value + _postfix);
             });
             $(element).siblings('.range-slider-value').text(_prefix + $(element).val() + _postfix);
+
+            var setRange = function () {
+               $(element).slider('setValue', ngModel.$modelValue);
+            }
+
+            scope.$watch(attrs['ngModel'], setRange);
+         }, 200);
+
+      },
+   };
+});
+
+astroidFramework.directive('unitPicker', function () {
+   return {
+      restrict: 'A',
+      scope: true,
+      require: 'ngModel',
+      link: function ($scope, element, attrs, ngModel) {
+         if (typeof $ == 'undefined') {
+            var $ = jQuery;
+         }
+         setTimeout(function () {
+            $(element).wrap('<div class="d-inline-block margin-left-50px" />');
+            $(element).after('<ul class="list-inline unit-picker"><li class="list-inline-item" data-value="px">px</li><li class="list-inline-item" data-value="em">em</li><li class="list-inline-item" data-value="rem">rem</li><li class="list-inline-item" data-value="pt">pt</li><li class="list-inline-item" data-value="%">%</li></ul>');
+            $(element).parent('div').find('.unit-picker').children('li').bind('click', function () {
+               $(this).siblings().removeClass('active');
+               $(this).addClass('active');
+               $(element).val($(this).data('value'));
+               ngModel.$setViewValue($(this).data('value'));
+               $scope.$apply();
+            });
+
+            if (ngModel.$modelValue != '') {
+               $(element).parent('div').find('.unit-picker').children('li[data-value="' + ngModel.$modelValue + '"]').addClass('active');
+            }
+
+            var setUnit = function () {
+               var _slider = $('[data-slider-id="' + $(element).data('unit-slider-id') + '"]');
+               $(_slider).attr('data-unit', ngModel.$modelValue);
+               $(_slider).trigger('change');
+            };
+
+            $scope.$watch(attrs['ngModel'], setUnit);
+
          }, 100);
       },
    };
@@ -479,6 +536,35 @@ astroidFramework.directive('popover', function () {
          setTimeout(function () {
             $(element).popover();
          }, 100);
+      }
+   };
+});
+
+
+astroidFramework.directive('convertToNumber', function () {
+   return {
+      require: 'ngModel',
+      link: function (scope, element, attrs, ngModel) {
+         ngModel.$parsers.push(function (val) {
+            return val != null ? parseInt(val, 10) : null;
+         });
+         ngModel.$formatters.push(function (val) {
+            return val != null ? '' + val : null;
+         });
+      }
+   };
+});
+
+astroidFramework.directive('convertToString', function () {
+   return {
+      require: 'ngModel',
+      link: function (scope, element, attrs, ngModel) {
+         ngModel.$parsers.push(function (val) {
+            return val != null ? val + '' : null;
+         });
+         ngModel.$formatters.push(function (val) {
+            return val != null ? '' + val : null;
+         });
       }
    };
 });

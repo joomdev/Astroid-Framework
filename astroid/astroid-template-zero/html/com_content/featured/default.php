@@ -8,8 +8,12 @@
 defined('_JEXEC') or die;
 
 JHtml::addIncludePath(JPATH_COMPONENT . '/helpers');
-
-JHtml::_('behavior.caption');
+if (version_compare(JVERSION, '3.99999.99999', 'le'))
+{
+	JHtml::_('behavior.caption');
+} else {
+	// No alternate for caption.js yet in Joomla 4.
+}
 
 // If the page class is defined, add to class as suffix.
 // It will be a separate class if the user starts it with a space

@@ -3,18 +3,9 @@
    <form>
       <fields>
          <fieldset name="general-settings" label="TPL_ASTROID_GENERAL_SETTINGS_LABEL" addfieldpath="/libraries/astroid/framework/fields">
-            <field type="astroidtext" class="form-control" label="ASTROID_ELEMENT_TITLE_LABEL" name="title"></field>
+            <field type="astroidtext" class="form-control" label="ASTROID_COLUMN_TITLE_LABEL" name="title"></field>
             <field type="astroidtext" class="form-control" label="ASTROID_CUSTOM_CLASS" name="customclass"></field>
             <field type="astroidtext" class="form-control" label="ASTROID_CUSTOM_ID" name="customid"></field>
-            <field name="layout_type" type="astroidlist" default="" label="ASTROID_ELEMENT_LAYOUT_SECTION_LAYOUT_LABEL" hint="Background Repeat">
-               <option value="">ASTROID_CONTAINER</option>
-               <option value="container-fluid">ASTROID_CONTAINER_FLUID</option>
-               <option value="container-with-no-gutters">ASTROID_CONTAINER_WITH_NO_GUTTERS</option>
-               <option value="container-fluid-with-no-gutters">ASTROID_CONTAINER_FLUID_WITH_NO_GUTTERS</option>
-               <option value="no-container">ASTROID_ELEMENT_LAYOUT_SECTION_LAYOUT_OPTIONS_WITHOUT_CONTAINER</option>
-               <option value="custom-container">ASTROID_ELEMENT_LAYOUT_SECTION_LAYOUT_OPTIONS_CUSTOM</option>
-            </field>
-            <field type="astroidtext" class="form-control" label="ASTROID_ELEMENT_LAYOUT_CUSTOM_CLASS_LABEL" name="custom_container_class"></field>
          </fieldset>
          <fieldset name="design-settings" label="ASTROID_ELEMENT_HEAD_DESIGN_SEETINGS_LABEL" addfieldpath="/libraries/astroid/framework/fields">
             <field name="animation" type="astroidanimations" label="ASTROID_ANIMATION" ></field>
@@ -54,17 +45,15 @@
                <option value="center bottom">ASTROID_BACKGROUND_POSITION_CENTER_BOTTOM</option>
             </field>
             <field ngShow="background" name="background_video" type="astroidmedia" media="videos" label="TPL_ASTROID_BACKGROUND_VIDEO_LABEL" description="TPL_ASTROID_BACKGROUND_VIDEO_DESC"/>
-            
-            <field name="colors_settings" type="astroidheading" title="ASTROID_ELEMENT_HEAD_COLOR_OPTIONS_LABEL" />
-            
-            <field name="custom_colors" type="astroidtext" astroid-switch="true" default="0" label="ASTROID_ELEMENT_CUSTOM_COLORS_LABEL"  />
-            
-            <field ngShow="custom_colors" name="text_color" type="astroidcolor" default="" label="TPL_ASTROID_TEXT_COLOR_LABEL" />
-            <field ngShow="custom_colors" name="link_color" type="astroidcolor" default="" label="TPL_ASTROID_LINK_COLOR_LABEL" />
-            <field ngShow="custom_colors" name="link_hover_color" type="astroidcolor" default="" label="TPL_ASTROID_LINK_HOVER_COLOR_LABEL" />
-            
          </fieldset>
          <fieldset name="responsive-settings" label="ASTROID_ELEMENT_HEAD_RESPONSIVE_SEETINGS_LABEL" addfieldpath="/libraries/astroid/framework/fields">
+            <field type="astroidlist" label="ASTROID_COLUMN_BREAKPOINT" name="breakpoint">
+               <option value="xs">Extra Small Screen - XS</option>   
+               <option value="sm">Small Screen - SM</option>   
+               <option value="md">Medium Screen - MD</option>   
+               <option value="">Large Screen - LG</option>   
+               <option value="xl">Extra Large Screen - XL</option>   
+            </field>
             <field description="" name="device_settings" type="astroidheading" title="ASTROID_ELEMENT_HEAD_DEVICE_VISIBILITY_LABEL" />
             <field description="TPL_ASTROID_EXTRA_SMALL_DEVICES_DESC" name="hideonxs" type="astroidtext" astroid-switch="true" default="0" label="TPL_ASTROID_EXTRA_SMALL_DEVICES_LABEL" />
             <field description="TPL_ASTROID_SMALL_DEVICES_DESC" name="hideonsm" type="astroidtext" astroid-switch="true" default="0" label="TPL_ASTROID_SMALL_DEVICES_LABEL" />

@@ -20,6 +20,11 @@
                      <div ng-repeat="gridsize in grid track by $index" class="ezlb-grid-item-col col-{{ gridsize}}"><span>{{ gridsize}}</span></div>
                   </div>
                </div>
+               <div ng-click="addRow(chooseRow.section, 'custom');" class="col-3 ezlb-grid-item">
+                  <div class="row m-0 p-0">
+                     <div class="ezlb-grid-item-col col-12"><span class="gradiant-light-bg">Custom</span></div>
+                  </div>
+               </div>
             </div>
          </div>
       </div>
@@ -36,6 +41,11 @@
                <div ng-click="updateRow(chooseRowColumns.row, chooseRowColumns.section, grid);" ng-repeat="grid in grids track by $index" class="col-3 ezlb-grid-item">
                   <div class="row m-0 p-0">
                      <div ng-repeat="gridsize in grid track by $index" class="ezlb-grid-item-col col-{{ gridsize}}"><span>{{ gridsize}}</span></div>
+                  </div>
+               </div>
+               <div ng-click="updateRow(chooseRowColumns.row, chooseRowColumns.section, 'custom');" class="col-3 ezlb-grid-item">
+                  <div class="row m-0 p-0">
+                     <div class="ezlb-grid-item-col col-12"><span class="gradiant-light-bg">Custom</span></div>
                   </div>
                </div>
             </div>
@@ -87,28 +97,28 @@
    </div>
    <div ng-sortable="{draggable: '.ezlb-section',animation: 100,handle:'.ezlb-section-handle'}" class="ezlb">
       <div ng-repeat="section in layout.sections track by $index" class="ezlb-section row my-3" ng-init="sectionIndex = $index">
-         <span class="ezlb-title"><input type="text" autocomplete="off" ng-show="false" /><span ng-click="editElement(section, 'title')" data-astroid-tooltip="Click to edit Title">{{ getParam(section, 'title')}}</span></span>
+         <span class="ezlb-title"><input type="text" autocomplete="off" ng-show="false" /><span ng-click="editElement(section, 'title')" data-astroid-tooltip="<?php echo JText::_('TPL_ASTROID_EDIT_SECTION_TITLE'); ?>">{{ getParam(section, 'title')}}</span></span>
          <span class="ezlb-toolbar">
             <span class="ezlb-action ezlb-section-handle"><i class="fa fa-arrows-alt"></i></span>
-            <span class="ezlb-action" ng-click="editElement(section)"><i class="fa fa-pencil-alt"></i></span>
-            <span class="ezlb-action" ng-click="duplicateSection(sectionIndex)"><i class="fa fa-copy"></i></span>
-            <span class="ezlb-action text-danger" ng-show="layout.sections.length > 1" ng-click="removeSection(sectionIndex);"><i class="fa fa-trash"></i></span>
-            <span class="ezlb-action" ng-click="addingRow(sectionIndex)"><i class="fa fa-align-left"></i> <?php echo JText::_('TPL_ASTROID_NEW_ROW'); ?></span>
-            <span class="ezlb-action" ng-click="addSection(sectionIndex)"><i class="fa fa-plus"></i> <?php echo JText::_('TPL_ASTROID_NEW_SECTION'); ?></span>
+            <span data-astroid-tooltip="<?php echo JText::_('TPL_ASTROID_EDIT_SECTION'); ?>" class="ezlb-action" ng-click="editElement(section)"><i class="fa fa-pencil-alt"></i></span>
+            <span data-astroid-tooltip="<?php echo JText::_('TPL_ASTROID_DUPLICATE_SECTION'); ?>" class="ezlb-action" ng-click="duplicateSection(sectionIndex)"><i class="fa fa-copy"></i></span>
+            <span data-astroid-tooltip="<?php echo JText::_('TPL_ASTROID_REMOVE_SECTION'); ?>" class="ezlb-action text-danger" ng-show="layout.sections.length > 1" ng-click="removeSection(sectionIndex);"><i class="fa fa-trash"></i></span>
+            <span data-astroid-tooltip="<?php echo JText::_('TPL_ASTROID_NEW_ROW'); ?>" class="ezlb-action" ng-click="addingRow(sectionIndex)"><i class="fa fa-align-left"></i> <span class="hidein-live-preview"><?php echo JText::_('TPL_ASTROID_NEW_ROW'); ?></span></span>
+            <span data-astroid-tooltip="<?php echo JText::_('TPL_ASTROID_NEW_SECTION'); ?>" class="ezlb-action" ng-click="addSection(sectionIndex)"><i class="fa fa-plus"></i> <span class="hidein-live-preview"><?php echo JText::_('TPL_ASTROID_NEW_SECTION'); ?></span></span>
          </span>
          <div class="col-12 ezlb-content" ng-sortable="{draggable:'.ezlb-row', animation: 100, handle: '.ezlb-row-handle'}">
             <div ng-repeat="row in section.rows track by $index" class="ezlb-row row ezlb-row-{{ sectionIndex}}-{{ rowIndex}}" ng-init="rowIndex = $index">
                <span class="ezlb-toolbar">
-                  <span class="ezlb-action" ng-click="editRow(rowIndex, sectionIndex)"><i class="fa fa-columns"></i></span>
-                  <span ng-click="duplicateRow(rowIndex, sectionIndex)" class="ezlb-action"><i class="fa fa-copy"></i></span>
-                  <span ng-show="section.rows.length > 1" ng-click="removeRow(rowIndex, sectionIndex)" class="ezlb-action text-danger"><i class="fa fa-trash"></i></span>
+                  <span data-astroid-tooltip="<?php echo JText::_('TPL_ASTROID_EDIT_GRID_ROW'); ?>" class="ezlb-action" ng-click="editRow(rowIndex, sectionIndex)"><i class="fa fa-columns"></i></span>
+                  <span data-astroid-tooltip="<?php echo JText::_('TPL_ASTROID_DUPLICATE_ROW'); ?>" ng-click="duplicateRow(rowIndex, sectionIndex)" class="ezlb-action"><i class="fa fa-copy"></i></span>
+                  <span data-astroid-tooltip="<?php echo JText::_('TPL_ASTROID_REMOVE_ROW'); ?>" ng-show="section.rows.length > 1" ng-click="removeRow(rowIndex, sectionIndex)" class="ezlb-action text-danger"><i class="fa fa-trash"></i></span>
                </span>
                <span class="ezlb-toolbar toolbar-left">
                   <span class="ezlb-action ezlb-row-handle" ng-show="section.rows.length > 1"><i class="fa fa-arrows-alt"></i></span>
                </span>
                <div class="col-12">
                   <div class="row" ng-sortable="{draggable: '.ezlb-col',animation: 100}">
-                     <div ng-repeat="column in row.cols track by $index" class="ezlb-col col-{{ column.size}} ezlb-col-{{ sectionIndex}}-{{ rowIndex}}-{{ columnIndex}} {{ column.elements.length == 0 ? 'ezlb-col-empty' : '' }}" ng-init="columnIndex = $index">
+                     <div ng-repeat="column in row.cols track by $index" class="ezlb-col col-{{ column.size}} ezlb-col-{{ sectionIndex}}-{{ rowIndex}}-{{ columnIndex}} {{ column.elements.length == 0 ? 'ezlb-col-empty' : '' }}" ng-init="columnIndex = $index; column.type='column'">
                         <div ng-if="column.elements.length != 0" class="ezlb-col-overlay"></div>
                         <div ng-if="column.elements.length == 0" ng-click="addingElement(columnIndex, rowIndex, sectionIndex, null)" class="ezlb-add-element">
                         </div>
@@ -116,17 +126,18 @@
                         <div ng-if="column.elements.length != 0" ng-click="addingElement(columnIndex, rowIndex, sectionIndex, null)" class="ezlb-add-element">
                         </div>
                         <div ng-show="column.elements.length != 0" class="ezlb-elements" ng-sortable="{draggable: '.ezlb-element',animation: 100, 'handle': '.ezlb-element-handle'}">
+                           <span data-astroid-tooltip="<?php echo JText::_('TPL_ASTROID_EDIT_COLUMN'); ?>" ng-click="editElement(column)" class="ezlb-element-col-edit d-none"><i class="fa fa-pencil-alt"></i></span>
                            <div ng-repeat="element in column.elements track by $index" ng-init="elementIndex = $index" class="ezlb-element">
 
                               <span class="ezlb-toolbar">
-                                 <span class="ezlb-action" ng-click="editElement(element)"><i class="fa fa-pencil-alt"></i></span>
-                                 <span class="ezlb-action" ng-show="canAddElement(getElementByType(element.type))" ng-click="duplicateElement(elementIndex, columnIndex, rowIndex, sectionIndex)"><i class="fa fa-copy"></i></span>
+                                 <span data-astroid-tooltip="<?php echo JText::_('TPL_ASTROID_EDIT_ELEMENT'); ?>" class="ezlb-action" ng-click="editElement(element)"><i class="fa fa-pencil-alt"></i></span>
+                                 <span data-astroid-tooltip="<?php echo JText::_('TPL_ASTROID_DUPLICATE_ELEMENT'); ?>" class="ezlb-action" ng-show="canAddElement(getElementByType(element.type))" ng-click="duplicateElement(elementIndex, columnIndex, rowIndex, sectionIndex)"><i class="fa fa-copy"></i></span>
                                  <span ng-show="column.elements.length > 1" class="ezlb-action ezlb-element-handle"><i class="fa fa-arrows-alt"></i></span>
-                                 <span class="ezlb-action text-danger" ng-click="removeElement(elementIndex, columnIndex, rowIndex, sectionIndex);"><i class="fa fa-trash"></i></span>
+                                 <span data-astroid-tooltip="<?php echo JText::_('TPL_ASTROID_REMOVE_ELEMENT'); ?>" class="ezlb-action text-danger" ng-click="removeElement(elementIndex, columnIndex, rowIndex, sectionIndex);"><i class="fa fa-trash"></i></span>
                               </span>
 
                               <span class="element-title"><i class="{{ getElementByType(element.type).icon}}"></i> {{ getParam(element, 'title')}}</span>
-                              <span ng-click="addingElement(columnIndex, rowIndex, sectionIndex, elementIndex)" class="ezlb-add-element"><i class="fa fa-plus"></i></span>
+                              <span data-astroid-tooltip="<?php echo JText::_('TPL_ASTROID_ADD_ELEMENT_COLUMN'); ?>" ng-click="addingElement(columnIndex, rowIndex, sectionIndex, elementIndex)" class="ezlb-add-element"><i class="fa fa-plus"></i></span>
                            </div>
                         </div>
                      </div> 
@@ -164,4 +175,9 @@ foreach ($astroidElements as $astroidElement) {
 <?php $sectionElement = new AstroidElement('section'); ?>
 <script type="text/ng-template" id="element-form-template-section">
    <?php echo $sectionElement->renderForm(); ?>
+</script>
+
+<?php $columnElement = new AstroidElement('column'); ?>
+<script type="text/ng-template" id="element-form-template-column">
+   <?php echo $columnElement->renderForm(); ?>
 </script>

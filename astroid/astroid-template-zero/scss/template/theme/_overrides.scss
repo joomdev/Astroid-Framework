@@ -55,43 +55,9 @@
    }
 }
 
-.com-media{
-   &.view-imagesList{
-      &.layout-default{
-         .thumbnails{
-            .thumbnail{
-               a{
-                  .height-50{
-                     @extend .h-75;
-                     @extend .d-flex;
-                     @extend .align-items-center;
-                     @extend .justify-content-center;
-                     .icon-folder-2{
-                        @extend .fa;
-                        @extend .fa-folder;
-                        font-size: 32px;
-                        font-family: "Font Awesome 5 Free";
-                     }
-                  }
-               }
-            }
-         }
-      }
-   }
-}
-
 .alert-message{
    @extend .alert-success;
 }
 .alert-error{
    @extend .alert-danger;
-}
-
-.btn.jmodedit{
-   @extend .btn-dark;
-   .icon-edit{
-      @extend .fa;
-      @extend .fa-edit;
-      font-family: "Font Awesome 5 Free";
-   }
 }

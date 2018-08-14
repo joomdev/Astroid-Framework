@@ -31,30 +31,48 @@ if (empty($value)) {
                </div>
                <div class="card-body">
                   <div class="row" ng-class="{'mb-2':profile.icons.length > 1}">
-                     <div class="col-sm-3">
+                     <div class="col-sm-4">
                         <label class="astroid-label" ng-show="profile.id != 'whatsapp' && profile.id != 'skype' && profile.id != 'telegram'"><?php echo JText::_('TPL_ASTROID_LINK'); ?></label>
                         <label class="astroid-label" ng-show="profile.id == 'whatsapp'"><?php echo JText::_('TPL_ASTROID_MOBILE_NUMBER'); ?></label>
                         <label class="astroid-label" ng-show="profile.id == 'telegram'"><?php echo JText::_('TPL_ASTROID_MOBILE_USERNAME'); ?></label>
                         <label class="astroid-label" ng-show="profile.id == 'skype'"><?php echo JText::_('TPL_ASTROID_SKYPE_ID'); ?></label>
                      </div>
-                     <div class="col-sm-9">
+                     <div class="col-sm-8">
                         <input type="text" ng-model="profile.link" class="form-control" autocomplete="off">
                      </div>
                   </div>
-                  <div class="row" ng-show="profile.icons.length > 1">
-                     <div class="col-sm-3">
+                  <div ng-if="profile.id=='custom'" class="row mt-2">
+                     <div class="col-sm-4">
+                        <label class="astroid-label"><?php echo JText::_('TPL_ASTROID_ICON_CLASS'); ?></label>
+                     </div>
+                     <div class="col-sm-8">
+                        <input type="text" ng-model="profile.icon" class="form-control" autocomplete="off">
+                     </div>
+                  </div>
+                  <div ng-if="profile.id!='custom'" class="row mt-2" ng-show="profile.icons.length > 1">
+                     <div class="col-sm-4">
                         <label class="astroid-label"><?php echo JText::_('TPL_ASTROID_ICON'); ?></label>
                      </div>
-                     <div class="col-sm-9">
+                     <div class="col-sm-8">
                         <ul class="list-inline m-0">
                            <li class="select-icon" ng-click="profile.icon = icon" ng-class="{'active':icon == profile.icon}" ng-repeat="icon in profile.icons"><i class="{{ icon}}"></i></li>
                         </ul>
                      </div>
                   </div>
+                  <div ng-if="profile.id=='custom'" class="mt-2 row">
+                     <div class="col-sm-4">
+                        <label class="astroid-label"><?php echo JText::_('TPL_ASTROID_COLOR'); ?></label>
+                     </div>
+                     <div class="col-sm-8">
+                        <input type="text" color-picker ng-model="profile.color" class="form-control" autocomplete="off">
+                     </div>
+                  </div>
                </div>
             </div>
          </div>
-
+         <div class="mt-4 text-center">
+            <button ng-click="addCustomProfile()" type="button" class="btn btn-lg btn-dark">Add Custom Profile</button>
+         </div>
       </div>
       <div class="col-sm-3">
          <h3><?php echo JText::_('TPL_ASTROID_SOCIAL_BRANDS'); ?></h3>

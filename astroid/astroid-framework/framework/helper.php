@@ -131,7 +131,12 @@ class AstroidFrameworkHelper {
       $query = "SELECT * FROM `#__template_styles` WHERE `id`='$id'";
       $db->setQuery($query);
       $result = $db->loadObject();
-      return $result;
+      if (!empty($result)) {
+         $template = new AstroidFrameworkTemplate($result);
+         return $template;
+      }else{
+         return null;
+      }
    }
 
    public static function compileSass($sass_path, $css_path, $sass, $css, $variables = array()) {

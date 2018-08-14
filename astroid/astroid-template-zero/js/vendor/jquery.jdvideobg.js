@@ -3,6 +3,8 @@
       return this.each(function () {
          var _url = $(this).data('jd-video-bg');
          $(this).css('position', 'relative');
+         $(this).children().css('position', 'relative');
+         $(this).children().css('z-index', '1');
 
          var _container = $('<div/>');
          _container.css('position', 'absolute');

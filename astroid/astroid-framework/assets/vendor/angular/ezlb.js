@@ -111,6 +111,13 @@ class AstroidColumn {
       this.id = generateID();
       this.elements = [];
       this.size = 12;
+      this.type = "column";
+      this.params = [
+         {
+            name: 'title',
+            value: ''
+         }
+      ];
    }
 }
 
@@ -119,37 +126,7 @@ astroidFramework.controller('layoutController', function ($scope, $compile) {
 
    // Global Variables
    // All Types of Grid
-   $scope.grids = [
-      [12],
-      [6, 6],
-      [4, 8],
-      [8, 4],
-      [3, 3, 6],
-      [6, 3, 3],
-      [3, 6, 3],
-      [4, 4, 4],
-      [3, 3, 3, 3],
-      [7, 5],
-      [5, 7],
-      [9, 3],
-      [3, 9],
-      [2, 10],
-      [10, 2],
-      [2, 2, 2, 2, 2, 2],
-      [2, 8, 2],
-      [2, 2, 8],
-      [8, 2, 2],
-      [4, 4, 2, 2],
-      [2, 4, 4, 2],
-      [2, 2, 4, 4],
-      [2, 4, 4, 2],
-      [4, 2, 4, 2],
-      [6, 2, 2, 2],
-      [2, 6, 2, 2],
-      [2, 2, 6, 2],
-      [2, 2, 2, 6],
-      [2, 3, 4, 6],
-   ];
+   $scope.grids = ASTROID_GRIDS;
 
    // All types of Elements
    $scope.elements = AstroidLayoutBuilderElements;
@@ -269,6 +246,14 @@ astroidFramework.controller('layoutController', function ($scope, $compile) {
    };
 
    $scope.updateRow = function (_rowIndex, _sectionIndex, _grid) {
+
+      if (_grid == 'custom') {
+         var _grid = $scope.getCustomGrid();
+         if (_grid === false) {
+            return false;
+         }
+      }
+
       var _columns = $scope.layout.sections[_sectionIndex].rows[_rowIndex].cols;
       var _updatedColumns = [];
 
@@ -307,6 +292,32 @@ astroidFramework.controller('layoutController', function ($scope, $compile) {
       $scope.actionPreformed();
    };
 
+   $scope.getCustomGrid = function () {
+      var grid = prompt("Please enter custom grid size (eg. 2+3+6+1)", "");
+      if (grid != null) {
+         grid = grid.split('+');
+         if ($scope.isValidGrid(grid)) {
+            return grid;
+         } else {
+            alert("Invalid grid size.");
+            return false;
+         }
+      }
+      return false;
+   };
+
+   $scope.isValidGrid = function (_grid) {
+      var _total = 0;
+      _grid.forEach(function (_g) {
+         _total += parseInt(_g);
+      });
+      if (_total == 12) {
+         return true;
+      } else {
+         return false;
+      }
+   };
+
    $scope.duplicateRow = function (_rowIndex, _sectionIndex) {
       var _row = angular.copy($scope.layout.sections[_sectionIndex].rows[_rowIndex]);
 
@@ -324,6 +335,14 @@ astroidFramework.controller('layoutController', function ($scope, $compile) {
    };
 
    $scope.addRow = function (_index, _layout) {
+
+      if (_layout == 'custom') {
+         var _layout = $scope.getCustomGrid();
+         if (_layout === false) {
+            return false;
+         }
+      }
+
       var _section = $scope.layout.sections[_index];
       var _row = new AstroidRow();
       _layout.forEach(function (_size) {
@@ -350,6 +369,11 @@ astroidFramework.controller('layoutController', function ($scope, $compile) {
    };
 
    // Element Functions
+   $scope.setColumn = function (_column) {
+      if (typeof _column.type == 'undefined') {
+         _column.type = 'column';
+      }
+   };
 
    $scope.addingElement = function (_colIndex, _rowIndex, _sectionIndex, _elementIndex) {
       $scope.chooseElement = {open: 1, column: _colIndex, row: _rowIndex, section: _sectionIndex, element: _elementIndex};
@@ -410,9 +434,11 @@ astroidFramework.controller('layoutController', function ($scope, $compile) {
          $('#element-settings').addClass('open');
          var _params = {};
          //console.log(_element.params);
-         _element.params.forEach(function (_p) {
-            _params[_p.name] = _p.value;
-         });
+         if (typeof _element.params != 'undefined') {
+            _element.params.forEach(function (_p) {
+               _params[_p.name] = _p.value;
+            });
+         }
          $scope.elementParams = _params;
          setTimeout(function () {
             Admin.ringLoading($('#element-settings').children('.ezlb-pop-body'), false);

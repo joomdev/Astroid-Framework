@@ -210,6 +210,21 @@ astroidFramework.directive('astroidsocialprofiles', ['$http', function ($http) {
                });
                $scope.profiles = _profiles;
             };
+
+            $scope.addCustomProfile = function () {
+               var _profile = {
+                  color: '#495057',
+                  enabled: false,
+                  icon: '',
+                  icons: [],
+                  id: "custom",
+                  link: "#",
+                  title: "Custom social profile"
+               };
+               var _profiles = $scope.profiles;
+               _profiles.push(angular.copy(_profile));
+               $scope.profiles = _profiles;
+            };
          }
       };
    }
@@ -267,12 +282,12 @@ astroidFramework.directive('rangeSlider', function () {
          setTimeout(function () {
             ngModel.$setViewValue(parseFloat($(element).data('slider-value')));
             scope.$apply();
-         }, 10);
+         }, 50);
 
 
          setTimeout(function () {
             $(element).slider(rangeConfig);
-            $(element).slider('setValue', parseFloat($(element).data('slider-value')));
+            //$(element).slider('setValue', parseFloat($(element).data('slider-value')));
          }, 100);
 
 
@@ -295,43 +310,6 @@ astroidFramework.directive('rangeSlider', function () {
    };
 });
 
-astroidFramework.directive('unitPicker', function () {
-   return {
-      restrict: 'A',
-      scope: true,
-      require: 'ngModel',
-      link: function ($scope, element, attrs, ngModel) {
-         if (typeof $ == 'undefined') {
-            var $ = jQuery;
-         }
-         setTimeout(function () {
-            $(element).wrap('<div class="d-inline-block margin-left-50px" />');
-            $(element).after('<ul class="list-inline unit-picker"><li class="list-inline-item" data-value="px">px</li><li class="list-inline-item" data-value="em">em</li><li class="list-inline-item" data-value="rem">rem</li><li class="list-inline-item" data-value="pt">pt</li><li class="list-inline-item" data-value="%">%</li></ul>');
-            $(element).parent('div').find('.unit-picker').children('li').bind('click', function () {
-               $(this).siblings().removeClass('active');
-               $(this).addClass('active');
-               $(element).val($(this).data('value'));
-               ngModel.$setViewValue($(this).data('value'));
-               $scope.$apply();
-            });
-
-            if (ngModel.$modelValue != '') {
-               $(element).parent('div').find('.unit-picker').children('li[data-value="' + ngModel.$modelValue + '"]').addClass('active');
-            }
-
-            var setUnit = function () {
-               var _slider = $('[data-slider-id="' + $(element).data('unit-slider-id') + '"]');
-               $(_slider).attr('data-unit', ngModel.$modelValue);
-               $(_slider).trigger('change');
-            };
-
-            $scope.$watch(attrs['ngModel'], setUnit);
-
-         }, 100);
-      },
-   };
-});
-
 astroidFramework.directive('colorPicker', function ($parse) {
    return {
       restrict: 'A',
@@ -342,7 +320,7 @@ astroidFramework.directive('colorPicker', function ($parse) {
          }
          var _value = $(element).val();
          if ($(element).hasClass('color-picker-lg')) {
-            var spectrumConfigExtend = spectrumConfig;
+            var spectrumConfigExtend = angular.copy(spectrumConfig);
             spectrumConfigExtend.replacerClassName = 'color-picker-lg';
             $(element).spectrum(spectrumConfigExtend);
          } else {

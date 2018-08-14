@@ -5,15 +5,15 @@
 			<field type="astroidgroup" name="contact_info" title="TPL_ASTROID_MISCELL_MAIN_CONTACT_US_TITLE_LABEL"/>
 			<field type="astroidgroup" name="coming_soon" title="TPL_ASTROID_MISCELL_MAIN_COMMING_NOON_TITLE_LABEL" />
 			<field type="astroidgroup" name="error_404" title="TPL_ASTROID_MISCELL_MAIN_ERROE_TITLE_LABEL" />
-			<field type="astroidgroup" name="favicongroup" title="TPL_ASTROID_FAVICON_LABEL"/>
+			<field type="astroidgroup" name="favicongroup" title="TPL_ASTROID_FAVICON_TITLE_LABEL"/>
 
-			<field astroidgroup="contact_info" name="contact_details" type="astroidtext" astroid-switch="true" default="1" label="TPL_ASTROID_MISCELL_CONTACT_DEATILS_LABEL" description="TPL_ASTROID_MISCELL_CONTACT_DEATILS_DESC">	 
+			<field astroidgroup="contact_info" name="contact_details" type="astroidtext" astroid-switch="true" default="1" label="TPL_ASTROID_CONTACT_DEATILS_LABEL" description="TPL_ASTROID_CONTACT_DEATILS_DESC">	 
 			</field>
 
-			<field astroidgroup="contact_info" name="contact_module_position" astroid-content-layout="contactinfo" type="astroidmodulesposition" default="astroid-top-contact" label="TPL_ASTROID_MODULE_POSITION_LABEL" description="TPL_ASTROID_MISCELL_MODULE_POSITION_DESC" class="form-control" ngShow="contact_details" ngRequired="contact_details">
+			<field astroidgroup="contact_info" name="contact_module_position" astroid-content-layout="contactinfo" type="astroidmodulesposition" default="astroid-top-contact" label="TPL_ASTROID_MODULE_POSITION_LABEL" description="TPL_ASTROID_MODULE_POSITION_DESC" class="form-control" ngShow="contact_details" ngRequired="contact_details">
 			</field>
 
-			<field astroidgroup="contact_info" name="contact_feature_load_position" type="astroidlist" label="TPL_ASTROID_MISCELL_FEATURE_LOAD_POSITION_LABEL" description="TPL_ASTROID_MISCELL_FEATURE_LOAD_POSITION_DESC" class="form-control" astroid-content-layout-load="contact_module_position" default="after" ngShow="contact_details=='1'" ngRequired="contact_details=='1'">
+			<field astroidgroup="contact_info" name="contact_feature_load_position" type="astroidlist" label="TPL_ASTROID_FEATURE_LOAD_POSITION_LABEL" description="TPL_ASTROID_FEATURE_LOAD_POSITION_DESC" class="form-control" astroid-content-layout-load="contact_module_position" default="after" ngShow="contact_details=='1'" ngRequired="contact_details=='1'">
 				<option value="after">TPL_ASTROID_AFTER_MODULE</option>
 				<option value="before">TPL_ASTROID_BEFORE_MODULE</option>
 			</field>

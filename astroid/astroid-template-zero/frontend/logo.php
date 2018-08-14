@@ -14,7 +14,7 @@ $app = JFactory::getApplication();
 $sitename = $app->get('sitename');
 
 // Getting params from template
-$params = $app->getTemplate(true)->params;
+$params = $template->params;
 $logo_type = $params->get('logo_type', 'image'); // Logo Type
 
 $header_mode = $template->params->get('header_mode', 'horizontal');
@@ -37,7 +37,7 @@ $class = ['astroid-logo', 'astroid-logo-' . $logo_type, 'd-flex align-items-cent
 <?php if ($logo_type == 'text'): ?>
    <!-- text logo starts -->
    <?php
-   $mr = ($header_mode == 'stacked' && $header_stacked_menu_mode == 'seperated') ? '' : ' mr-1';
+   $mr = ($header_mode == 'stacked' && $header_stacked_menu_mode == 'seperated') ? '' : ' mr-0 mr-lg-4';
    ?>
    <div class="<?php echo implode(' ', $class); ?> flex-column<?php echo $mr; ?>">
       <a class="site-title" href="<?php echo JURI::root(); ?>"><?php echo $logo_text; ?></a>

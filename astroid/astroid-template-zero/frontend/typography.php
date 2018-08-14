@@ -31,7 +31,7 @@ foreach ($typography as $typo) {
    if (trim($typoType) == 'custom') {
       $typoOption = $typo . '_typography_options';
       $typoParams = $template->params->get($typoOption);
-      $fontface = explode(":", $typoParams->font_face);
+      $fontface = str_replace('+', ' ', explode(":", $typoParams->font_face));
       $style .= $typo . ',.' . $typo . '{';
       if (isset($fontface[0]) && !empty($fontface[0])) {
          $style .= 'font-family: ' . $fontface[0] . ',' . $typoParams->alt_font_face . ';';
@@ -78,19 +78,22 @@ if (trim($menuType) == 'custom') {
       }
    }
    if (isset($menu_font->font_size)) {
-      $menu_style .= 'font-size: ' . $menu_font->font_size . 'em;';
+      $font_size_unit = isset($menu_font->font_size_unit) ? $menu_font->font_size_unit : 'em';
+      $menu_style .= 'font-size: ' . $menu_font->font_size . $font_size_unit . ';';
    }
-   if (isset($menu_font->font_color) && !empty($typoParams->font_color)) {
+   if (isset($menu_font->font_color) && !empty($menu_font->font_color)) {
       $menu_style .= 'color: ' . $menu_font->font_color . ';';
    }
    if (isset($menu_font->letter_spacing)) {
-      $menu_style .= 'letter-spacing: ' . $menu_font->letter_spacing . 'em;';
+      $letter_spacing_unit = isset($menu_font->letter_spacing_unit) ? $menu_font->letter_spacing_unit : 'em';
+      $menu_style .= 'letter-spacing: ' . $menu_font->letter_spacing . $letter_spacing_unit . ';';
    }
    if (isset($menu_font->font_weight)) {
       $menu_style .= 'font-weight: ' . $menu_font->font_weight . ';';
    }
    if (isset($menu_font->line_height)) {
-      $menu_style .= 'line-height: ' . $menu_font->line_height . 'em;';
+      $line_height_unit = isset($menu_font->line_height_unit) ? $menu_font->line_height_unit : 'em';
+      $menu_style .= 'line-height: ' . $menu_font->line_height . $line_height_unit . ';';
    }
    if (isset($menu_font->text_transform) && !empty($menu_font->text_transform)) {
       $menu_style .= 'text-transform: ' . $menu_font->text_transform . ';';
@@ -111,19 +114,22 @@ if (trim($submenuType) == 'custom') {
       }
    }
    if (isset($submenu_font->font_size)) {
-      $submenu_style .= 'font-size: ' . $submenu_font->font_size . 'em;';
+      $font_size_unit = isset($submenu_font->font_size_unit) ? $submenu_font->font_size_unit : 'em';
+      $submenu_style .= 'font-size: ' . $submenu_font->font_size . $font_size_unit . ';';
    }
-   if (isset($submenu_font->font_color) && !empty($typoParams->font_color)) {
+   if (isset($submenu_font->font_color) && !empty($submenu_font->font_color)) {
       $submenu_style .= 'color: ' . $submenu_font->font_color . ';';
    }
    if (isset($submenu_font->letter_spacing)) {
-      $submenu_style .= 'letter-spacing: ' . $submenu_font->letter_spacing . 'em;';
+      $letter_spacing_unit = isset($submenu_font->letter_spacing_unit) ? $submenu_font->letter_spacing_unit : 'em';
+      $submenu_style .= 'letter-spacing: ' . $submenu_font->letter_spacing . $letter_spacing_unit . ';';
    }
    if (isset($submenu_font->font_weight)) {
       $submenu_style .= 'font-weight: ' . $submenu_font->font_weight . ';';
    }
    if (isset($submenu_font->line_height)) {
-      $submenu_style .= 'line-height: ' . $submenu_font->line_height . 'em;';
+      $line_height_unit = isset($submenu_font->line_height_unit) ? $submenu_font->line_height_unit : 'em';
+      $submenu_style .= 'line-height: ' . $submenu_font->line_height . $line_height_unit . ';';
    }
    if (isset($submenu_font->text_transform) && !empty($submenu_font->text_transform)) {
       $submenu_style .= 'text-transform: ' . $submenu_font->text_transform . ';';

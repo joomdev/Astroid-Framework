@@ -7,9 +7,13 @@
             <option value="1">JYES</option>
             <option value="0">JNO</option>
          </field>
-         <field showon="astroid_banner_enabled:1" name="astroid_banner_title" type="text" default="" label="ASTROID_BANNER_TITLE_LABEL">
+         <field showon="astroid_banner_enabled:1" name="astroid_banner_title_enabled" type="radio" default="1" label="ASTROID_BANNER_ENABLE_TITLE_LABEL" description="ASTROID_BANNER_ENABLE_BANNNER_TITLE_DESC" class="btn-group btn-group-yesno">
+            <option value="1">JYES</option>
+            <option value="0">JNO</option>
          </field>
-         <field showon="astroid_banner_enabled:1" name="astroid_banner_subtitle" type="text" default="" label="ASTROID_BANNER_SUBTITLE_LABEL">
+         <field showon="astroid_banner_title_enabled:1[AND]astroid_banner_enabled:1" name="astroid_banner_title" type="text" default="" label="ASTROID_BANNER_TITLE_LABEL">
+         </field>
+         <field showon="astroid_banner_title_enabled:1[AND]astroid_banner_enabled:1" name="astroid_banner_subtitle" type="text" default="" label="ASTROID_BANNER_SUBTITLE_LABEL">
          </field>
          <field showon="astroid_banner_enabled:1" name="astroid_banner_bgcolor" type="color" default="" label="TPL_ASTROID_BACKGROUND_COLOR_LABEL">
          </field>

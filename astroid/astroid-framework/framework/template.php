@@ -15,6 +15,7 @@ class AstroidFrameworkTemplate {
    public $template;
    public $params;
    public $language;
+   public $title = "";
    public $direction;
    protected $logs;
    protected $debug = false;
@@ -24,7 +25,14 @@ class AstroidFrameworkTemplate {
          define('ASTROID_TEMPLATE_NAME', $template->template);
       }
       $this->template = $template->template;
-      $this->params = $template->params;
+      if (isset($template->title)) {
+         $this->title = $template->title;
+      }
+      if (isset($template->id)) {
+         $this->params = $this->getTemplateParams($template->id);
+      } else {
+         $this->params = $this->getTemplateParams();
+      }
       if (isset($template->language)) {
          $this->language = $template->language;
       }
@@ -32,6 +40,25 @@ class AstroidFrameworkTemplate {
          $this->direction = $template->direction;
       }
       $this->initAgent();
+   }
+
+   protected function getTemplateParams($id = null) {
+      if (empty($id)) {
+         $template = JFactory::getApplication()->getTemplate(true);
+         if (isset($template->id)) {
+            $id = $template->id;
+         } else {
+            $params = new JRegistry();
+            return $params;
+         }
+      }
+      $db = JFactory::getDbo();
+      $query = "SELECT * FROM `#__astroid_templates` WHERE `template_id`='" . $id . "'";
+      $db->setQuery($query);
+      $result = $db->loadObject();
+      $params = new JRegistry();
+      $params->loadString($result->params, 'JSON');
+      return $params;
    }
 
    public function head() {
@@ -124,6 +151,7 @@ class AstroidFrameworkTemplate {
                }
             }
 
+            $prevColIndex = null;
             foreach ($row['cols'] as $colIndex => $col) {
                $renderedHTML = '';
                foreach ($col['elements'] as $element) {
@@ -132,14 +160,20 @@ class AstroidFrameworkTemplate {
                }
                if (empty($renderedHTML)) {
                   $bufferSize += $col['size'];
+                  unset($row['cols'][$colIndex]);
                } else {
                   if ($hasComponent) {
                      $row['cols'][$componentIndex]['size'] = $row['cols'][$componentIndex]['size'] + $bufferSize;
                      $bufferSize = 0;
                   } else {
-                     $row['cols'][$colIndex]['size'] = $row['cols'][$colIndex]['size'] + $bufferSize;
+                     if (isset($row['cols'][$prevColIndex])) {
+                        $row['cols'][$prevColIndex]['size'] = $row['cols'][$prevColIndex]['size'] + $bufferSize;
+                     } else {
+                        $row['cols'][$colIndex]['size'] = $row['cols'][$colIndex]['size'] + $bufferSize;
+                     }
                      $bufferSize = 0;
                   }
+                  $prevColIndex = $colIndex;
                }
             }
 
@@ -147,7 +181,9 @@ class AstroidFrameworkTemplate {
                if ($hasComponent) {
                   $row['cols'][$componentIndex]['size'] = $row['cols'][$componentIndex]['size'] + $bufferSize;
                } else {
-                  $row['cols'][count($row['cols']) - 1]['size'] = $row['cols'][count($row['cols']) - 1]['size'] + $bufferSize;
+                  if ($prevColIndex !== null) {
+                     $row['cols'][$prevColIndex]['size'] = $row['cols'][$prevColIndex]['size'] + $bufferSize;
+                  }
                }
             }
 
@@ -163,7 +199,8 @@ class AstroidFrameworkTemplate {
                   }
                }
                if (!empty($renderedHTML)) {
-                  $columnHTML .= '<div class="col-lg-' . $col['size'] . '">';
+                  $columnObject = new AstroidElement("column", $col, $this);
+                  $columnHTML .= '<div id="' . $columnObject->getID() . '" class="' . $columnObject->getClass() . '" style="' . $columnObject->getStyles() . '" data-animation="' . $columnObject->getAnimation() . '" ' . $columnObject->getAttributes() . '>';
                   $columnHTML .= $renderedHTML;
                   $columnHTML .= '</div>';
                }

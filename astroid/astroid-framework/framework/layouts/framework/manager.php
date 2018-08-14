@@ -87,6 +87,9 @@ foreach ($params as $key => $value) {
       <title><?php echo $template->title; ?></title>
       <link href="<?php echo $assets . 'images' . '/' . 'favicon.png'; ?>" rel="shortcut icon" type="image/vnd.microsoft.icon" />
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <script>
+         var ASTROID_GRIDS = <?php echo \json_encode(AstroidFrameworkConstants::$layout_grids); ?>;
+      </script>
       <?php
       foreach ($stylesheets as $stylesheet) {
          echo '<link href="' . $stylesheet . '" type="text/css" rel="stylesheet" />';
@@ -142,6 +145,16 @@ foreach ($params as $key => $value) {
                   </div>
                   <div class="astroid-version" style="text-align: center;width: 100%;">version <?php echo AstroidFrameworkConstants::$astroid_version; ?></div>
                </div>
+               <div class="astroid-logo text-center row d-none">
+                  <div class="logo-image">
+                     <img width="40" src="<?php echo $assets . 'images' . '/' . 'icon-logo-dark.png'; ?>" />
+                     <div class="d-inline ml-2">
+                     <img width="110" src="<?php echo $assets . 'images' . '/' . 'logo-dark-wide.png'; ?>" />
+                     <div class="clearfix"></div>
+                     <small style="position: relative;top: -12px;margin-left: 128px;" class="astroid-version">v <?php echo AstroidFrameworkConstants::$astroid_version; ?></small>
+                     </div>
+                  </div>
+               </div>
                <ul id="astroid-menu" class="nav flex-column sidebar-nav" role="tablist">
                   <?php $active = false; ?>
                   <?php foreach ($fieldsets as $key => $fieldset) { ?>
@@ -181,16 +194,27 @@ foreach ($params as $key => $value) {
                            <i class="fa fa-upload"></i>&nbsp;<?php echo JText::_('Import'); ?>
                         </a>
                      </li>
+                     <li class="nav-item row showin-live-preview">
+                        <a class="nav-link col-12" href="javascript:void(0);" onclick="Admin.closeLivePreview()">
+                           <i class="fa fa-eye"></i>&nbsp;<?php echo JText::_('Close Live Preview'); ?>
+                        </a>
+                     </li>
+                     <li class="nav-item row showin-live-preview">
+                        <a class="nav-link col-12" href="<?php echo $joomla_url; ?>">
+                           <i class="fab fa-joomla"></i>&nbsp;<?php echo JText::_('TPL_ASTROID_BACK_TO_JOOMLA'); ?>
+                        </a>
+                     </li>
                </ul>
             </div>
             <div id="astroid-content-wrapper" class="col">
                <nav class="astroid-manager-navbar navbar navbar-expand-lg navbar-light bg-white justify-content-between">
-                  <div class="form-inline">
+                  <div class="hidein-live-preview form-inline">
                      <a href="<?php echo $joomla_url; ?>" class="btn btn-white my-2 my-sm-0 btn-round"><i class="fab fa-joomla"></i> <?php echo JText::_('TPL_ASTROID_BACK_TO_JOOMLA'); ?></a>
                   </div>
-                  <p class="navbar-brand m-0"><?php echo $template->title; ?></p>
+                  <p class="hidein-live-preview navbar-brand m-0"><?php echo $template->title; ?></p>
                   <div class="form-inline">
-                     <a href="<?php echo JURI::root(); ?>" target="_blank" class="btn btn-white my-2 mr-2 my-sm-0 btn-round"><i class="fas fa-external-link-alt"></i>&nbsp;<?php echo JText::_('ASTROID_TEMPLATE_PREVIEW'); ?></a>
+                     <a href="javascript:void(0);" onclick="Admin.livePreview()" class="btn-live-preview btn btn-white my-2 mr-2 my-sm-0 btn-round hidein-live-preview d-none"><i class="fas fa-eye"></i>&nbsp;<?php echo JText::_('Live Preview'); ?></a>
+                     <a href="<?php echo JURI::root(); ?>" target="_blank" class="btn btn-white my-2 mr-2 my-sm-0 btn-round hidein-live-preview"><i class="fas fa-external-link-alt"></i>&nbsp;<?php echo JText::_('ASTROID_TEMPLATE_PREVIEW'); ?></a>
                      <button id="clear-cache" class="btn btn-secondary my-2 mr-2 my-sm-0 btn-round btn-wide" type="button"><i class="fa fa-eraser"></i>&nbsp;<?php echo JText::_('ASTROID_TEMPLATE_CLEAR_CACHE'); ?></button>
                      <button id="clearing-cache" class="btn disabled btn-secondary my-2 mr-2 my-sm-0 btn-round btn-wide d-none" type="button"><i class="fa fa-circle-notch fa-spin"></i>&nbsp;<?php echo JText::_('ASTROID_TEMPLATE_CLEARING_CACHE'); ?></button>
                      <button id="save-options" class="btn btn-success my-2 my-sm-0 btn-round btn-wide" type="button"><i class="fa fa-save"></i>&nbsp;<?php echo JText::_('JSAVE'); ?></button>
@@ -203,6 +227,9 @@ foreach ($params as $key => $value) {
                      <?php echo JHtml::_('form.token'); ?>
                      <input type="hidden" id="export-form" name="export_settings" value="0" />
                      <div class="tab-content">
+                        <div class="live-preview-toolbar">
+                           <span onclick="Admin.showOptions()" class="btn btn-round btn-wide btn-white"><i class="fa fa-chevron-left"></i> Back</span>
+                        </div>
                         <?php $active = false; ?>
                         <?php foreach ($fieldsets as $key => $fieldset) { ?>
                            <div class="astroid-tab-pane tab-pane<?php echo $active ? ' active' : ''; ?>" id="astroid-tab-<?php echo $fieldset->name; ?>" role="tabpanel" aria-labelledby="<?php echo $fieldset->name; ?>-astroid-tab" astroid-type="<?php echo isset($fieldset->astroidtype) ? $fieldset->astroidtype : ''; ?>">
@@ -289,6 +316,20 @@ foreach ($params as $key => $value) {
                         <?php } ?>
                      </div>
                   </form>
+               </div>
+            </div>
+            <div id="astroid-preview-wrapper" class="col showin-live-preview">
+               <div class="d-flex justify-content-center" style="margin: 10px 0px;">
+                  <ul class="list-inline viewport-options">
+                     <li class="list-inline-item"><a onclick="Admin.setPreviewViewport('desktop', this)" href="javascript:void(0);"><i class="fa fa-desktop"></i></a></li>
+                     <li class="list-inline-item"><a onclick="Admin.setPreviewViewport('tablet portrait', this)" href="javascript:void(0);"><i class="fa fa-tablet-alt"></i></a></li>
+                     <li class="list-inline-item"><a onclick="Admin.setPreviewViewport('mobile portrait', this)" href="javascript:void(0);"><i class="fa fa-mobile-alt"></i></a></li>
+                  </ul>
+               </div>
+               <div class="d-flex justify-content-center" style="height: calc(100% - (56px + 1rem));">
+                  <div id="live-preview-viewport" class="desktop">
+                     <iframe id="live-preview" src="<?php echo JURI::root(); ?>"></iframe>
+                  </div>
                </div>
             </div>
          </div>

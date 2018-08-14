@@ -33,7 +33,7 @@ class AstroidElement {
       $this->type = $type;
       if (!empty($data)) {
          $this->id = $data['id'];
-         $this->data = $data['params'];
+         $this->data = isset($data['params']) ? $data['params'] : [];
          $this->raw_data = $data;
       }
       $this->app = JFactory::getApplication();
@@ -53,6 +53,9 @@ class AstroidElement {
       switch ($this->type) {
          case 'section':
             $this->default_xml_file = $library_elements_directory . 'section-default.xml';
+            break;
+         case 'column':
+            $this->default_xml_file = $library_elements_directory . 'column-default.xml';
             break;
          default:
             $this->default_xml_file = $library_elements_directory . 'default.xml';
@@ -202,7 +205,8 @@ class AstroidElement {
       if (!empty($customid)) {
          return $customid;
       } else {
-         return $this->template->slugify($params->get('title') . '-' . $this->id);
+         $prefix = !empty($params->get('title')) ? $params->get('title') : 'astroid-' . $this->type;
+         return $this->template->slugify($prefix . '-' . $this->id);
       }
    }
 
@@ -214,6 +218,12 @@ class AstroidElement {
          $section_classes = $this->getSectionClasses();
          if (!empty($section_classes)) {
             $classes[] = $section_classes;
+         }
+      }
+      if ($this->type == 'column') {
+         $column_classes = $this->getColumnClasses();
+         if (!empty($column_classes)) {
+            $classes[] = $column_classes;
          }
       }
       $customclass = $params->get('customclass', '');
@@ -302,6 +312,20 @@ class AstroidElement {
       return implode(' ', $classes);
    }
 
+   public function getColumnClasses() {
+      $data = $this->raw_data;
+      $class[] = "col";
+      $params = $this->getParams();
+      $breakpoint = $params->get('breakpoint', '');
+      $breakpoint = empty($breakpoint) ? 'lg' : $breakpoint;
+      $breakpoint = $breakpoint == 'xs' ? '' : $breakpoint;
+      if (!empty($breakpoint)) {
+         $class[] = $breakpoint;
+      }
+      $class[] = $data['size'];
+      return implode('-', $class);
+   }
+
    public function getAnimation() {
       $params = $this->getParams();
       $animation = $params->get('animation', '');
@@ -312,6 +336,7 @@ class AstroidElement {
       $params = $this->getParams();
       $styles = [];
       $background = $params->get('background', 0);
+      $custom_colors = $params->get('custom_colors', 0);
       if ($background) {
          $background_color = $params->get('background_color', '');
          if (!empty($background_color)) {
@@ -335,6 +360,25 @@ class AstroidElement {
             $background_position = $params->get('background_position', '');
             $background_position = empty($background_position) ? 'inherit' : $background_position;
             $styles[] = 'background-position:' . $background_position;
+         }
+      }
+      if ($custom_colors) {
+         $text_color = $params->get('text_color', '');
+         $link_color = $params->get('link_color', '');
+         $link_hover_color = $params->get('link_hover_color', '');
+         $color_styles = [];
+         if (!empty($text_color)) {
+            $color_styles[] = 'section#' . $this->getID() . '{color:' . $text_color . ' !important; }';
+         }
+         if (!empty($link_color)) {
+            $color_styles[] = 'section#' . $this->getID() . ' a{color:' . $link_color . ' !important; }';
+         }
+         if (!empty($link_hover_color)) {
+            $color_styles[] = 'section#' . $this->getID() . ' a:hover{color:' . $link_hover_color . ' !important; }';
+         }
+         if (!empty($color_styles)) {
+            $document = JFactory::getDocument();
+            $document->addStyleDeclaration(implode('', $color_styles));
          }
       }
       return implode(';', $styles);

@@ -477,7 +477,7 @@ class AstroidMenu {
          $return .= '<span>' . $item->title . '</span>';
       }
 
-      if (!empty($item->subtitle) && empty($item->showtitle)) {
+      if ($item->level <= 1 && !empty($item->subtitle) && empty($item->showtitle)) {
          $return .= '<small>' . $item->subtitle . '</small>';
       }
 

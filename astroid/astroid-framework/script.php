@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @package   Astroid Framework
  * @author    JoomDev https://www.joomdev.com
@@ -76,6 +77,83 @@ class astroidInstallerScript {
             $this->installPlugin($plugin, $plugin_dir);
          }
       }
+      $this->astroidTemplateTableMigration();
+   }
+
+   public function astroidTemplateTableMigration() {
+      if (!$this->isTableExists()) {
+         $this->createTable();
+      }
+      $ast_templates = $this->getAstroidTemplates();
+      foreach ($ast_templates as $ast_template) {
+         $this->checkAndUpgrade($ast_template);
+      }
+   }
+
+   public function checkAndUpgrade($template) {
+      $db = JFactory::getDbo();
+      $query = "SELECT * FROM `#__astroid_templates` WHERE `template_id`='" . $template->id . "'";
+      $db->setQuery($query);
+      $result = $db->loadObject();
+      if (empty($result)) {
+         $this->moveParamsJSON($template);
+      }
+   }
+
+   public function moveParamsJSON($template) {
+      $db = JFactory::getDbo();
+      $object = new stdClass();
+      $object->id = null;
+      $object->template_id = $template->id;
+      $object->title = $template->title;
+      $object->params = $template->params;
+      $object->created = time();
+      $object->updated = time();
+      $db->insertObject('#__astroid_templates', $object);
+
+      $object = new stdClass();
+      $object->id = $template->id;
+      $object->params = "";
+      $db->updateObject('#__template_styles', $object, 'id');
+   }
+
+   public function getAstroidTemplates() {
+      $db = JFactory::getDbo();
+      $query = "SELECT * FROM `#__template_styles`";
+      $db->setQuery($query);
+      $templates = $db->loadObjectList();
+      $return = array();
+      foreach ($templates as $template) {
+         if ($this->isAstroidTemplate($template->template)) {
+            $return[] = $template;
+         }
+      }
+      return $return;
+   }
+
+   public function isAstroidTemplate($name) {
+      return file_exists(JPATH_SITE . "/templates/{$name}/frontend");
+   }
+
+   public function isTableExists() {
+      $tables = JFactory::getDbo()->getTableList();
+      $table = JFactory::getDbo()->getPrefix() . 'astroid_templates';
+      return in_array($table, $tables);
+   }
+
+   public function createTable() {
+      $db = JFactory::getDbo();
+      $query = "CREATE TABLE `#__astroid_templates` (
+            `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+            `template_id` int(11) NOT NULL,
+            `title` varchar(255) NOT NULL,
+            `params` longtext NOT NULL,
+            `created` bigint(11) NOT NULL,
+            `updated` bigint(11) NOT NULL,
+            PRIMARY KEY (`id`)
+          );";
+      $db->setQuery($query);
+      $db->execute();
    }
 
    public function installPlugin($plugin, $plugin_dir) {

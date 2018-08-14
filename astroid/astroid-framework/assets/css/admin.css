@@ -182,7 +182,24 @@
 
 .unit-picker li{
    cursor: pointer;
-   line-height: 26px;
+   line-height: 30px;
+}
+
+.unit-picker li label{
+   cursor: pointer;
+   line-height: 30px;
+}
+
+.unit-picker li label input[type="radio"]{
+   opacity: 0;
+   width: 0;
+   height: 0;
+}
+
+.unit-picker li label input[type="radio"]:checked ~ span{
+   color: #000;
+   font-weight: bold;
+   border-bottom: 1px dashed;
 }
 
 .unit-picker li.active{
@@ -199,7 +216,7 @@
    border: none;
    line-height: 24px;
    background: none;
-   width: 40px;
+   width: 50px;
    text-align: center;
    border: none !important;
    border-bottom: 1px dashed !important;
@@ -209,7 +226,7 @@
 }
 
 .margin-left-50px{
-   margin-left: 50px;
+   margin-left: 55px;
 }
 
 [range-slider].d-none{

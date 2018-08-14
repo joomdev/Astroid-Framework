@@ -22,7 +22,6 @@ class JFormFieldAstroidMenuOptions extends JFormField {
    public function getInput() {
       $renderer = new JLayoutFile('fields.astroidmenuoptions', JPATH_LIBRARIES . '/astroid/framework/layouts');
       $data = $this->getLayoutData();
-
       if (!is_array($this->value) && empty($this->value)) {
          //$value = [];
          $value = [
@@ -41,7 +40,7 @@ class JFormFieldAstroidMenuOptions extends JFormField {
       }
 
       $menu_item = $this->form->getData()->toObject();
-
+     
       $extraData = array(
           'value' => $value,
           'fieldname' => $this->fieldname,
@@ -49,6 +48,7 @@ class JFormFieldAstroidMenuOptions extends JFormField {
           'ngHide' => $this->element['ngHide'],
           'menu_type' => $menu_item->menutype,
           'menu_item_id' => $menu_item->id,
+          'menu_item_level' => $menu_item->level,
       );
 
       //$extraData['defaults'] = $defaults;

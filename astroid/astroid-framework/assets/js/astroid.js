@@ -183,6 +183,17 @@ class AstroidAdmin {
       this.initSidebar = function () {
          var _class = this;
          $('.sidebar-nav > li > a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+            $('body').removeClass('show-options');
+            if ($('body').hasClass('astroid-live-preview')) {
+               _class.refreshPreviewScrolls();
+            }
+
+            if ($(e.target).attr('data-target') == '#astroid-tab-astroid_layout') {
+               $('body').addClass('astroid-layout-tab-selected');
+            } else {
+               $('body').removeClass('astroid-layout-tab-selected');
+            }
+
             $.cookie("astroid-default-tab", $(e.target).attr('data-target'));
             $('.sidebar-submenu').slideUp(500);
             $(e.target).siblings('.sidebar-submenu').slideDown(500);
@@ -190,7 +201,9 @@ class AstroidAdmin {
                $('body, html').animate({
                   scrollTop: 0
                }, 0);
-               _class.refreshScroll();
+               if (!$('body').hasClass('astroid-live-preview')) {
+                  _class.refreshScroll();
+               }
             }, 510);
             $('body, html').animate({
                scrollTop: 2
@@ -256,6 +269,63 @@ class AstroidAdmin {
          }, 300);
       };
 
+      this.livePreview = function () {
+         $('body').addClass('astroid-live-preview');
+         $('body').addClass('show-options');
+         setTimeout(function () {
+            Admin.livePreviewScrolls();
+            //Admin.refreshScroll();
+         }, 220);
+         Admin.hideAllTabs();
+      };
+
+      this.reloadPreview = function () {
+         if ($('body').hasClass('astroid-live-preview')) {
+            var iframe = document.getElementById('live-preview');
+            iframe.src = iframe.src + '?ts=' + generateID();
+         }
+      };
+
+      this.hideAllTabs = function () {
+         $('#astroid-menu li a').removeClass('active');
+         $('#astroid-menu li a').removeClass('show');
+         $('#astroid-menu li a').prop('aria-selected', false);
+      };
+
+      this.closeLivePreview = function () {
+         $('body').removeClass('astroid-live-preview');
+         $('body').removeClass('show-options');
+         setTimeout(function () {
+            $('#astroid-content-wrapper').getNiceScroll().remove();
+            Admin.refreshScroll();
+         }, 220);
+      };
+
+      this.livePreviewScrolls = function () {
+         $('#astroid-content-wrapper').niceScroll({autohidemode: 'leave', cursoropacitymin: 0.4, background: 'rgba(243,243,243,1)', cursorcolor: '#4A5768', cursorwidth: '7px', cursorborderradius: 0, cursorborder: 'none'});
+         Admin.refreshPreviewScrolls();
+      };
+
+      this.setPreviewViewport = function (_class, _obj) {
+         $('#live-preview-viewport').removeClass().addClass(_class);
+         $('.viewport-options').find('a').removeClass('active');
+         $(_obj).addClass('active');
+      };
+
+      this.refreshPreviewScrolls = function () {
+         setTimeout(function () {
+            $('#astroid-content-wrapper').getNiceScroll().resize();
+            $("#astroid-sidebar-wrapper").getNiceScroll().resize();
+         }, 50);
+      };
+
+      this.showOptions = function () {
+         $('body').addClass('show-options');
+         $('body').removeClass('astroid-layout-tab-selected');
+         Admin.refreshPreviewScrolls();
+         Admin.hideAllTabs();
+      }
+
       // form functions
       this.initForm = function () {
          $('#astroid-form').parsley({
@@ -302,6 +372,7 @@ class AstroidAdmin {
                      return false;
                   }
                   Admin.saved = true;
+                  Admin.reloadPreview();
                   if (!_export) {
                      Admin.notify('Template Saved.', 'success');
                   } else {
@@ -373,6 +444,7 @@ class AstroidAdmin {
                   Admin.notify(response.message, 'error');
                } else {
                   Admin.saved = true;
+                  Admin.reloadPreview();
                   Admin.notify('Settings Imported.', 'success');
                }
                setTimeout(function () {
@@ -514,6 +586,14 @@ class AstroidAdmin {
          var _this = this;
 
          var _defaultTab = $.cookie("astroid-default-tab");
+
+
+         if (_defaultTab == '#astroid-tab-astroid_layout') {
+            $('body').addClass('astroid-layout-tab-selected');
+         } else {
+            $('body').removeClass('astroid-layout-tab-selected');
+         }
+
          if (typeof _defaultTab == 'undefined') {
             $('#astroid-menu li:first-child a').tab('show');
          } else {
@@ -523,10 +603,14 @@ class AstroidAdmin {
                $('#astroid-menu li a[data-target="' + _defaultTab + '"]').tab('show');
             }
          }
-
+         //Admin.livePreview();
          setTimeout(function () {
             _this.loading(false);
-         }, 500);
+            Admin.saved = true;
+         }, 150);
+         setTimeout(function () {
+            _this.loading(false);
+         }, 300);
          this.initCodeArea();
       };
 
@@ -552,7 +636,6 @@ var Admin = new AstroidAdmin();
       Admin.init();
       getGoogleFonts();
       initAstroidUploader();
-      initAstroidTypographyField();
       $('.astroid-code-editor-exit-fs').click(function () {
          $(this).parent('.head').parent('.astroid-code-editor').removeClass('full-screen');
       });
@@ -574,6 +657,7 @@ var Admin = new AstroidAdmin();
          $(this).parent('div').parent('.body').parent('.astroid-preloaders-selector').parent('.astroid-preloader-field').children('.select-preloader').html($(this).html());
          $(this).parent('div').parent('.body').parent('.astroid-preloaders-selector').removeClass('open');
       });
+      initAstroidUnitPicker();
    };
 
    var initAstroidTypographyField = function () {
@@ -648,6 +732,9 @@ var Admin = new AstroidAdmin();
             _preview.css(_property, _value + _unit);
             _field.change(function () {
                var _u = $(this).attr('data-unit');
+               if (typeof _u == 'undefined') {
+                  _u = '';
+               }
                var _value = _field.val();
                _preview.css(_property, _value + _u);
             });
@@ -771,7 +858,15 @@ var Admin = new AstroidAdmin();
       Dropzone.autoDiscover = false;
    };
 
+   var initAstroidUnitPicker = function () {
+      $('.unit-picker').children('li').children('label').children('input[type=radio]').change(function () {
+         var _sliderid = $(this).data('sid');
+         $('[data-slider-id="' + _sliderid + '"]').attr('data-unit', $(this).val()).trigger('change');
+      });
+   };
+
    var winLoad = function () {
+      initAstroidTypographyField();
       Admin.load();
    };
 

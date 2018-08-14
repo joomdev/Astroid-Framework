@@ -44,12 +44,6 @@ $mobile_menu_text_color = $template->params->get('mobile_menu_text_color', '');
 $mobile_hover_background_color = $template->params->get('mobile_hover_background_color', '');
 $mobile_active_link_color = $template->params->get('mobile_menu_active_link_color', '');
 $mobile_active_background_color = $template->params->get('mobile_menu_active_bg_color', '');
-
-// Footer
-$footer_background_color = $template->params->get('footer_bg_color', '');
-$footer_text_color = $template->params->get('footer_text_color', '');
-$footer_link_color = $template->params->get('footer_link_color', '');
-$footer_link_hover_color = $template->params->get('footer_link_hover_color', '');
 ?>
 
 <?php
@@ -162,29 +156,10 @@ if (!empty($mobile_active_background_color)) {
 
 <?php
 
-// Footer Coloring
-$footer_styles = [];
-if (!empty($footer_background_color)) {
-   $footer_styles[] = '.astroid-footer-section{ background-color: ' . $footer_background_color . ' !important;}';
-}
-if (!empty($footer_text_color)) {
-   $footer_styles[] = '#astroid-footer{ color: ' . $footer_text_color . ' !important;}';
-}
-if (!empty($footer_link_color)) {
-   $footer_styles[] = '#astroid-footer a{ color: ' . $footer_link_color . ' !important;}';
-}
-if (!empty($footer_link_hover_color)) {
-   $footer_styles[] = '#astroid-footer a:hover{ color: ' . $footer_link_hover_color . ' !important;}';
-}
-?>
-
-<?php
-
 $document = JFactory::getDocument();
 $document->addStyledeclaration(implode('', $body_styles));
 $document->addStyledeclaration(implode('', $header_styles));
 $document->addStyledeclaration(implode('', $main_menu_styles));
 $document->addStyledeclaration(implode('', $dropdown_styles));
 $document->addStyledeclaration(implode('', $mobilemenu_styles));
-$document->addStyledeclaration(implode('', $footer_styles));
 ?>

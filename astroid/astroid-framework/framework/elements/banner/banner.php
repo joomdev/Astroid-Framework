@@ -15,16 +15,17 @@ $params = new JRegistry();
 $params->loadString($item->params);
 $astroid_banner_enabled = $params->get('astroid_banner_enabled');
 if ($astroid_banner_enabled) {
-   $astroid_banner_title = $params->get('astroid_banner_title', '');
-   $astroid_banner_subtitle = $params->get('astroid_banner_subtitle', '');
+   $astroid_banner_title_enabled = $params->get('astroid_banner_title_enabled', 1);
+   if ($astroid_banner_title_enabled) {
+      $astroid_banner_title = $params->get('astroid_banner_title', '');
+      $astroid_banner_subtitle = $params->get('astroid_banner_subtitle', '');
+      $astroid_banner_title = empty($astroid_banner_title) ? $item->title : $astroid_banner_title;
+      $astroid_banner_title_tag = $params->get('astroid_banner_title_tag', 'h3');
+   }
    $astroid_banner_bgcolor = $params->get('astroid_banner_bgcolor', '');
    $astroid_banner_bgimage = $params->get('astroid_banner_bgimage', '');
    $astroid_banner_class = $params->get('astroid_banner_class', '');
-   $astroid_banner_title_tag = $params->get('astroid_banner_title_tag', 'h3');
-   $astroid_banner_title_class = $params->get('astroid_banner_title_class', '');
-   $astroid_banner_subtitle_class = $params->get('astroid_banner_subtitle_class', '');
    $astroid_banner_wrapper = $params->get('astroid_banner_wrapper', '');
-   $astroid_banner_title = !empty($astroid_banner_title) ? $astroid_banner_title : '';
 
 
    $style = [];
@@ -41,11 +42,11 @@ if ($astroid_banner_enabled) {
       if (!empty($astroid_banner_wrapper)) {
          echo '<div class="' . $astroid_banner_wrapper . '">';
       }
-	  if (!empty($astroid_banner_title)) {
-		echo '<' . $astroid_banner_title_tag . ' class="astroid-banner-title">' . $astroid_banner_title . '</' . $astroid_banner_title_tag . '>';
-	  }
-      if (!empty($astroid_banner_subtitle)) {
-         echo '<span class="astroid-banner-subtitle">' . $astroid_banner_subtitle . '</span>';
+      if ($astroid_banner_title_enabled) {
+         echo '<' . $astroid_banner_title_tag . ' class="astroid-banner-title">' . $astroid_banner_title . '</' . $astroid_banner_title_tag . '>';
+         if (!empty($astroid_banner_subtitle)) {
+            echo '<span class="astroid-banner-subtitle">' . $astroid_banner_subtitle . '</span>';
+         }
       }
       if (!empty($astroid_banner_wrapper)) {
          echo '</div>';

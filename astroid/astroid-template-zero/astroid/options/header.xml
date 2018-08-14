@@ -17,26 +17,26 @@
          </field>
 
          <field ngShow="header==true AND header_mode=='horizontal'" astroidgroup="header_element" name="header_horizontal_menu_mode" type="astroidradio" image-width="150" radio-image="true" default="left" label="TPL_ASTROID_HEADER_HORIZONTAL_HEADER_MODE_LABEL" description="TPL_ASTROID_HEADER_HORIZONTAL_HEADER_MODE_DESC">
-            <option label="Left" value="left">header/horizontal-left.svg</option>
-            <option label="Center" value="center">header/horizontal-center.svg</option>
-            <option label="Right" value="right">header/horizontal-right.svg</option>
+            <option label="JGLOBAL_LEFT" value="left">header/horizontal-left.svg</option>
+            <option label="JGLOBAL_CENTER" value="center">header/horizontal-center.svg</option>
+            <option label="JGLOBAL_RIGHT" value="right">header/horizontal-right.svg</option>
          </field>
 
          <field ngShow="header==true AND header_mode=='stacked'" astroidgroup="header_element" name="header_stacked_menu_mode" type="astroidradio" image-width="150" radio-image="true" default="seperated" label="TPL_ASTROID_HEADER_STACKED_HEADER_MODE_LABEL" description="TPL_ASTROID_HEADER_STACKED_HEADER_MODE_DESC">
-            <option label="TPL_ASTROID_HEADER_STACKED_CENTER" value="center">header/stacked_style1.svg</option>
-            <option label="TPL_ASTROID_HEADER_STACKED_SEPERATED" value="seperated">header/stacked_style2.svg</option>
-            <option label="TPL_ASTROID_HEADER_STACKED_DIVIDED" value="divided">header/stacked_style3.svg</option>
+            <option label="TPL_ASTROID_STACKED_CENTER" value="center">header/stacked_style1.svg</option>
+            <option label="TPL_ASTROID_STACKED_SEPERATED" value="seperated">header/stacked_style2.svg</option>
+            <option label="TPL_ASTROID_STACKED_DIVIDED" value="divided">header/stacked_style3.svg</option>
          </field>
 
          <field ngShow="header==true AND header_mode=='stacked' AND header_stacked_menu_mode=='seperated'" astroidgroup="header_element" description="Select where you want to place the extra menu item in case of Odd number of menu items." name="odd_menu_items" ngModel="odd_menu_items" type="astroidradio" default="left" label="Odd number menu item position">
-            <option value="left">Left</option>
-            <option value="right">Right</option>
+            <option value="left">JGLOBAL_LEFT</option>
+            <option value="right">JGLOBAL_RIGHT</option>
          </field>
 
          <field ngShow="header==true" astroidgroup="header_element" name="header_block_1_type" type="astroidlist" default="blank" class="form-control" label="TPL_ASTROID_HEADER_BLOCK_1_TYPE_LABEL" description="TPL_ASTROID_HEADER_BLOCK_1_TYPE_DESC">
-            <option value="blank">TPL_ASTROID_HEADER_BLOCK_1_TYPE_OPTIONS_BLANK</option>
+            <option value="blank">TPL_ASTROID_BLANK_OPTIONS</option>
             <option value="position">TPL_ASTROID_MODULE_POSITION_LABEL</option>
-            <option value="custom">TPL_ASTROID_HEADER_BLOCK_1_TYPE_OPTIONS_CUSTOM_HTML</option>
+            <option value="custom">TPL_ASTROID_CUSTOM_HTML_OPTIONS</option>
          </field>
 
          <field ngShow="header==true AND header_block_1_type=='position'" astroidgroup="header_element" name="header_block_1_position" type="astroidmodulesposition" class="form-control" label="TPL_ASTROID_HEADER_BLOCK_1_POSITION_LABEL" default="" description="TPL_ASTROID_HEADER_BLOCK_1_POSITION_DESC" />
@@ -85,28 +85,28 @@
          <field astroidgroup="header_element" description="TPL_ASTROID_BASIC_MOBILE_LOGO_DESC" ngShow="header==true AND logo_type=='image'" ngRequired="logo_type=='image'" name="mobile_logo" type="astroidmedia" label="TPL_ASTROID_BASIC_MOBILE_LOGO_LABEL">
          </field>
 
-         <field ngShow="header==true" astroidgroup="header_element" description="TPL_ASTROID_HEADER_STICKY_HEADER_DESC" title="TPL_ASTROID_HEADER_STICKY_HEADER" type="astroidheading" />
+         <field ngShow="header==true" astroidgroup="header_element" description="TPL_ASTROID_HEADER_STICKY_HEADER_DESC" title="TPL_ASTROID_HEADER_STICKY_HEADER_LABEL" type="astroidheading" />
 
          <field ngShow="header==true" astroidgroup="header_element" class="sticky-header-switch" name="enable_sticky_menu" type="astroidtext" astroid-switch="true" default="0" label="TPL_ASTROID_HEADER_STICKY_HEADER_ENABLE_LABEL" description="TPL_ASTROID_HEADER_STICKY_HEADER_ENABLE_DESC"></field>
 
          <field ngShow="header==true AND enable_sticky_menu==true AND logo_type=='image'" astroidgroup="header_element" description="TPL_ASTROID_BASIC_STICKY_HEADER_LOGO_DESC" name="stickey_header_logo" type="astroidmedia" label="TPL_ASTROID_BASIC_STICKY_HEADER_LOGO_LABEL">
          </field>
 		
-         <field ngShow="header==true AND enable_sticky_menu==true" name="stickyheader" type="astroidlist" astroidgroup="header_element" class="form-control" default="sticky" label="TPL_ASTROID_HEADER_STICKY_HEADER_LABEL" description="TPL_ASTROID_HEADER_STICKY_HEADER_DESC">
-            <option value="sticky">TPL_ASTROID_HEADER_STICKY_HEADER_OPTIONS_STICKY</option>
-            <option value="stickyonscroll">TPL_ASTROID_HEADER_STICKY_HEADER_OPTIONS_STICKY_ON_SCROLL_UP</option>
+         <field ngShow="header==true AND enable_sticky_menu==true" name="stickyheader" type="astroidlist" astroidgroup="header_element" class="form-control" default="sticky" label="TPL_ASTROID_STICKY_HEADER_ON_DESKTOP_LABEL" description="TPL_ASTROID_STICKY_HEADER_ON_DESKTOP_DESC">
+            <option value="sticky">TPL_ASTROID_STICKY_OPTIONS</option>
+            <option value="stickyonscroll">TPL_ASTROID_STICKY_ON_SCROLL_UP</option>
          </field>
 
-         <field ngShow="header==true AND enable_sticky_menu==true" name="stickyheadertablet" type="astroidlist" astroidgroup="header_element" class="form-control" default="static" label="TPL_ASTROID_HEADER_STICKY_HEADER_ON_TABLETS_LABEL" description="TPL_ASTROID_HEADER_STICKY_HEADER_MOBILE_DESC">
-            <option value="static">TPL_ASTROID_HEADER_STICKY_HEADER_OPTIONS_STATIC</option>
-            <option value="sticky">TPL_ASTROID_HEADER_STICKY_HEADER_OPTIONS_STICKY</option>
-            <option value="stickyonscroll">TPL_ASTROID_HEADER_STICKY_HEADER_OPTIONS_STICKY_ON_SCROLL_UP</option>
+         <field ngShow="header==true AND enable_sticky_menu==true" name="stickyheadertablet" type="astroidlist" astroidgroup="header_element" class="form-control" default="static" label="TPL_ASTROID_STICKY_HEADER_ON_TABLETS_LABEL" description="TPL_ASTROID_STICKY_HEADER_ON_TABLETS_DESC">
+            <option value="static">TPL_ASTROID_STATIC_OPTIONS</option>
+            <option value="sticky">TPL_ASTROID_STICKY_OPTIONS</option>
+            <option value="stickyonscroll">TPL_ASTROID_STICKY_ON_SCROLL_UP</option>
          </field>
 
-         <field ngShow="header==true AND enable_sticky_menu==true" name="stickyheadermobile" type="astroidlist" astroidgroup="header_element" class="form-control" default="static" label="TPL_ASTROID_HEADER_STICKY_HEADER_ON_MOBILE_LABEL" description="TPL_ASTROID_HEADER_STICKY_HEADER_TABLET_DESC">
-            <option value="static">TPL_ASTROID_HEADER_STICKY_HEADER_OPTIONS_STATIC</option>
-            <option value="sticky">TPL_ASTROID_HEADER_STICKY_HEADER_OPTIONS_STICKY</option>
-            <option value="stickyonscroll">TPL_ASTROID_HEADER_STICKY_HEADER_OPTIONS_STICKY_ON_SCROLL_UP</option>
+         <field ngShow="header==true AND enable_sticky_menu==true" name="stickyheadermobile" type="astroidlist" astroidgroup="header_element" class="form-control" default="static" label="TPL_ASTROID_STICKY_HEADER_ON_MOBILE_LABEL" description="TPL_ASTROID_STICKY_HEADER_ON_MOBILE_DESC">
+            <option value="static">TPL_ASTROID_STATIC_OPTIONS</option>
+            <option value="sticky">TPL_ASTROID_STICKY_OPTIONS</option>
+            <option value="stickyonscroll">TPL_ASTROID_STICKY_ON_SCROLL_UP</option>
          </field>
 
          <field ngShow="header==true" astroidgroup="header_element" description="TPL_ASTROID_HEADER_OFF_CANVAS_MENU_DESC" title="TPL_ASTROID_HEADER_OFF_CANVAS_MENU" type="astroidheading" />

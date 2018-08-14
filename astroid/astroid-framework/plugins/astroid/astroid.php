@@ -68,12 +68,12 @@ class plgSystemAstroid extends JPlugin {
                         $return["data"] = $params;
                      } else {
                         $template = new \stdClass();
-                        $template->id = $this->app->input->get('id', NULL, 'INT');
+                        $template->template_id = $this->app->input->get('id', NULL, 'INT');
                         $template->params = \json_encode($params);
                         $db = JFactory::getDbo();
-                        $db->updateObject('#__template_styles', $template, 'id');
+                        $db->updateObject('#__astroid_templates', $template, 'template_id');
 
-                        $templateObj = AstroidFrameworkHelper::getTemplateById($template->id);
+                        $templateObj = AstroidFrameworkHelper::getTemplateById($template->template_id);
                         //AstroidFrameworkHelper::clearCache($templateObj->template);
                         $return["status"] = "success";
                         $return["code"] = 200;
@@ -175,7 +175,9 @@ class plgSystemAstroid extends JPlugin {
                   require_once JPATH_LIBRARIES . '/' . 'astroid' . '/' . 'framework' . '/' . 'library' . '/' . 'scssphp' . '/' . 'scss.inc.php';
                   $id = $this->app->input->get('id', NULL, 'INT');
                   $template = AstroidFrameworkHelper::getTemplateById($id);
-                  define('ASTROID_TEMPLATE_NAME', $template->template);
+                  if (!defined('ASTROID_TEMPLATE_NAME')) {
+                     define('ASTROID_TEMPLATE_NAME', $template->template);
+                  }
                   // render manager scss | for developer use only
 
                   $scss_file = JPATH_SITE . '/' . 'media' . '/' . 'astroid' . '/' . 'assets' . '/' . 'scss' . '/' . 'bootstrap.scss';
@@ -212,13 +214,10 @@ class plgSystemAstroid extends JPlugin {
    }
 
    public function onContentPrepareForm($form, $data) {
-      $data = (array) $data;
       $astroid_dir = 'libraries' . '/' . 'astroid';
       \JForm::addFormPath(JPATH_SITE . '/' . $astroid_dir . '/framework/forms');
       if ($form->getName() == 'com_menus.item') {
-         if ($data['level'] == 1) {
-            $form->loadFile('menu', false);
-         }
+         $form->loadFile('menu', false);
          $form->loadFile('banner', false);
       }
    }

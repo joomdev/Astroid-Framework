@@ -91,11 +91,11 @@ foreach ($items as $i => $item) {
                   <div class="col-8">
                      <div class="row">
                         <div class="col-12">
-                        <h3><?php echo JText::_('TPL_ASTROID_MENU_MODULES'); ?></h3>
+                           <h3><?php echo JText::_('TPL_ASTROID_MENU_MODULES'); ?></h3>
                         </div>
-                        <div ng-click="addElement(module)" ng-repeat="module in joomla_modules | filter:searchModule track by $index" class="col-6 ezlb-grid-item">
+                        <div ng-click="addElement(module)" ng-repeat="module in joomla_modules| filter:searchModule track by $index" class="col-6 ezlb-grid-item">
                            <div class="row m-0 p-0">
-                              <div class="ezlb-grid-item-col col-12"><span class="title"><span style="border: none; display: inline;" ng-class="{'published':module.published == 1,'unpublished':module.published == 0}"><i class="fas fa-circle"></i></span> {{ module.title }} <span style="border: none; display: inline;line-height:30px;" class="info" popover data-html="true" data-placement="bottom" data-content="Status: <strong>{{ module.published==1 ? 'Published' : 'Unpublished' }}</strong><br/>Show Title: <strong>{{ module.showtitle ? 'Enabled' : 'Disabled' }}</strong><br/>Access: <strong>{{ module.access_title}}</strong><br/>Position: <strong>{{ module.position}}</strong>" data-trigger="hover" data-title="{{ module.title}}"><i class="fas fa-info-circle"></i></span></span></div>
+                              <div class="ezlb-grid-item-col col-12"><span class="title"><span style="border: none; display: inline;" ng-class="{'published':module.published == 1,'unpublished':module.published == 0}"><i class="fas fa-circle"></i></span> {{ module.title}} <span style="border: none; display: inline;line-height:30px;" class="info" popover data-html="true" data-placement="bottom" data-content="Status: <strong>{{ module.published==1 ? 'Published' : 'Unpublished' }}</strong><br/>Show Title: <strong>{{ module.showtitle ? 'Enabled' : 'Disabled' }}</strong><br/>Access: <strong>{{ module.access_title}}</strong><br/>Position: <strong>{{ module.position}}</strong>" data-trigger="hover" data-title="{{ module.title}}"><i class="fas fa-info-circle"></i></span></span></div>
                            </div>
                         </div>
                      </div>
@@ -103,19 +103,19 @@ foreach ($items as $i => $item) {
                   <div class="col-4">
                      <h3><?php echo JText::_('TPL_ASTROID_MENU_SUB_MENUS'); ?></h3>
                      <div class="row">
-                     <?php foreach ($children as $child) { ?>
-                     <div class="col-12 ezlb-grid-item">
-                        <div class="row m-0 p-0">
-                           <div ng-click="addElement({'type':'submenu', 'title':'<?php echo $child->title; ?> (Child Item)','id':'<?php echo $child->id; ?>'})" class="ezlb-grid-item-col col-12">
-                              <span class="title"><?php echo $child->title; ?></span>
+                        <?php foreach ($children as $child) { ?>
+                           <div class="col-12 ezlb-grid-item">
+                              <div class="row m-0 p-0">
+                                 <div ng-click="addElement({'type':'submenu', 'title':'<?php echo $child->title; ?> (Child Item)', 'id':'<?php echo $child->id; ?>'})" class="ezlb-grid-item-col col-12">
+                                    <span class="title"><?php echo $child->title; ?></span>
+                                 </div>
+                              </div>
                            </div>
-                        </div>
-                     </div>
-                     <?php } ?>
+                        <?php } ?>
                      </div>
                   </div>
                </div>
-               
+
             </div>
          </div>
       </div>
@@ -123,43 +123,43 @@ foreach ($items as $i => $item) {
       <p><?php echo JText::_('TPL_ASTROID_MENU_TEXT'); ?></p>
       <div class="astroid-form-fieldset-section">
          <div class="row">
-            <div class="col-3">
+            <div class="col-<?php echo $menu_item_level != 1 ? 'auto' : '3'; ?>">
                <div class="row">
-                  <div class="col-6">
+                  <div class="col-6" style="<?php echo $menu_item_level != 1 ? 'display:none' : ''; ?>">
                      <label class="astroid-label" id="<?php echo $id; ?>_megamenu-lbl" for="<?php echo $id; ?>_megamenu"><?php echo JText::_('TPL_ASTROID_MEGA_MENU'); ?></label>
                      <input value="<?php echo $megamenu; ?>" type="hidden" ng-model="<?php echo $id; ?>_megamenu" astroid-switch name="<?php echo $name; ?>[megamenu]" id="<?php echo $id; ?>_megamenu" />
                   </div>
-                  <div class="col-6">
+                  <div class="col-<?php echo $menu_item_level != 1 ? '12' : '6'; ?>">
                      <label class="astroid-label" id="<?php echo $id; ?>_showtitle-lbl" for="<?php echo $id; ?>_showtitle">
-                     <?php echo JText::_('TPL_ASTROID_SHOW_TITLE'); ?></label>
+                        <?php echo JText::_('TPL_ASTROID_SHOW_TITLE'); ?></label>
                      <input value="<?php echo $showtitle; ?>" type="hidden" ng-model="<?php echo $id; ?>_showtitle" astroid-switch name="<?php echo $name; ?>[showtitle]" id="<?php echo $id; ?>_showtitle" />
                   </div>
                </div>
             </div>
-            <div class="col-5">
+            <div class="col-<?php echo $menu_item_level != 1 ? '4' : '5'; ?>">
                <div class="row">
-                  <div class="col-4">
+                  <div style="<?php echo $menu_item_level != 1 ? 'display:none' : ''; ?>" class="col-4">
                      <label class="astroid-label" id="<?php echo $id; ?>_subtitle-lbl" for="<?php echo $id; ?>_subtitle"><?php echo JText::_('TPL_ASTROID_SUBTITLE'); ?></label>
                      <input type="text" name="<?php echo $name; ?>[subtitle]" id="<?php echo $id; ?>_subtitle" class="form-control" value="<?php echo $subtitle; ?>" />
                   </div>
-                  <div class="col-4">
+                  <div class="col-<?php echo $menu_item_level != 1 ? '6' : '4'; ?>">
                      <label class="astroid-label" id="<?php echo $id; ?>_icon-lbl" for="<?php echo $id; ?>_icon"><?php echo JText::_('TPL_ASTROID_ICON'); ?></label>
                      <div>
-                     <div class="ui fluid search selection dropdown astroid-icon-selector">
-                        <input type="hidden" value="<?php echo $icon; ?>" name="<?php echo $name; ?>[icon]">
-                        <i class="dropdown icon"></i>
-                        <div class="default text"><?php echo JText::_('TPL_ASTROID_SELECT_ICON'); ?></div>
-                        <div class="menu"></div>
-                     </div>
+                        <div class="ui fluid search selection dropdown astroid-icon-selector">
+                           <input type="hidden" value="<?php echo $icon; ?>" name="<?php echo $name; ?>[icon]">
+                           <i class="dropdown icon"></i>
+                           <div class="default text"><?php echo JText::_('TPL_ASTROID_SELECT_ICON'); ?></div>
+                           <div class="menu"></div>
+                        </div>
                      </div>
                   </div>
-                  <div class="col-4">
+                  <div class="col-<?php echo $menu_item_level != 1 ? '6' : '4'; ?>">
                      <label class="astroid-label" id="<?php echo $id; ?>_customclass-lbl" for="<?php echo $id; ?>_customclass"><?php echo JText::_('ASTROID_CUSTOM_CLASS'); ?></label>
                      <input type="text" name="<?php echo $name; ?>[customclass]" id="<?php echo $id; ?>_customclass" class="form-control" value="<?php echo $customclass; ?>" />
                   </div>
                </div>
             </div>
-            <div class="col-4">
+            <div style="<?php echo $menu_item_level != 1 ? 'display:none' : ''; ?>" class="col-4">
                <div class="row">
                   <div ng-hide="<?php echo $id; ?>_megamenu" class="col-6">
                      <label class="astroid-label" id="<?php echo $id; ?>_width-lbl" for="<?php echo $id; ?>_width"><?php echo JText::_('TPL_ASTROID_MENU_OPTIONS_WIDTH'); ?></label>
@@ -225,7 +225,7 @@ foreach ($items as $i => $item) {
                                     <div ng-if="column.elements.length != 0" class="ezlb-col-overlay"></div>
                                     <div ng-if="column.elements.length == 0" ng-click="chooseModule.open = 1;chooseModule.row = rowIndex; chooseModule.column = columnIndex;" class="ezlb-add-element">
                                     </div>
-                                    
+
                                     <div ng-show="column.elements.length != 0" class="ezlb-elements" ng-sortable="{draggable: '.ezlb-element',animation: 100, 'handle': '.ezlb-element-handle'}">
                                        <div ng-repeat="element in column.elements track by $index" ng-init="elementIndex = $index" class="ezlb-element">
 
@@ -234,7 +234,7 @@ foreach ($items as $i => $item) {
                                              <span class="ezlb-action text-danger" ng-click="removeElement(elementIndex, columnIndex, rowIndex);"><i class="fa fa-trash"></i></span>
                                           </span>
 
-                                          <span class="element-title">{{ element.title }}</span>
+                                          <span class="element-title">{{ element.title}}</span>
                                           <span ng-show="elementIndex == column.elements.length - 1" ng-click="chooseModule.open = 1;chooseModule.row = rowIndex; chooseModule.column = columnIndex;" class="ezlb-add-element"><i class="fa fa-plus"></i></span>
                                        </div>
                                     </div>
@@ -260,23 +260,23 @@ foreach ($items as $i => $item) {
    </div>
 </div>
 <script>
-var spectrumConfig = {
-   showInput: true,
-   showInitial: false,
-   allowEmpty: true,
-   showAlpha: true,
-   disabled: false,
-   showPalette: true,
-   showPaletteOnly: false,
-   showSelectionPalette: true,
-   showButtons: false,
-   localStorageKey: "astroid.colors",
-   preferredFormat: "rgb",
-   palette: [
-      ["#fff", "#f8f9fa", "#dee2e6", "#adb5bd", "#495057", "#343a40", "#212529", "#000"],
-      ["#007bff", "#8445f7", "#ff4169", "#c4183c", "#fb7906", "#ffb400", "#17c671", "#00b8d8"]
-   ],
-};
+   var spectrumConfig = {
+      showInput: true,
+      showInitial: false,
+      allowEmpty: true,
+      showAlpha: true,
+      disabled: false,
+      showPalette: true,
+      showPaletteOnly: false,
+      showSelectionPalette: true,
+      showButtons: false,
+      localStorageKey: "astroid.colors",
+      preferredFormat: "rgb",
+      palette: [
+         ["#fff", "#f8f9fa", "#dee2e6", "#adb5bd", "#495057", "#343a40", "#212529", "#000"],
+         ["#007bff", "#8445f7", "#ff4169", "#c4183c", "#fb7906", "#ffb400", "#17c671", "#00b8d8"]
+      ],
+   };
 </script>
 <?php
 $semanticComponents = ['icon', 'transition', 'api', 'dropdown'];
@@ -301,11 +301,10 @@ $scripts[] = $assets . 'js' . '/' . 'astroid-framework.js?v=' . $document->getMe
 foreach ($scripts as $script) {
    echo "<script src='" . $script . "'></script>";
 }
-
 ?>
 <script>
-   (function($){
-      $(function(){
+   (function ($) {
+      $(function () {
          $('.astroid-icon-selector').addClass('ui fluid search selection dropdown').dropdown({
             placeholder: false,
             apiSettings: {
@@ -317,7 +316,7 @@ foreach ($scripts as $script) {
    })(jQuery);
 </script>
 <script>
-   
+
    class AstroidRow {
       constructor() {
          this.cols = [];
@@ -330,35 +329,21 @@ foreach ($scripts as $script) {
          this.size = 12;
       }
    }
-   
+
    astroidFramework.controller('astroidMenuController', function ($scope) {
-      
+
       // Global Variables
       // All Types of Grid
-      $scope.grids = [
-         [12],
-         [6, 6],
-         [4, 8],
-         [8, 4],
-         [3, 3, 6],
-         [3, 6, 3],
-         [6, 3, 3],
-         [4, 4, 4],
-         [3, 3, 3, 3],
-         [7, 5],
-         [5, 7],
-         [9, 3],
-         [3, 9],
-      ];
-      
+      $scope.grids = <?php echo \json_encode(AstroidFrameworkConstants::$layout_grids); ?>;
+
       $scope.<?php echo $id; ?>_megamenu = <?php echo $megamenu; ?>;
       $scope.<?php echo $id; ?>_showtitle = <?php echo $showtitle; ?>;
       $scope.joomla_modules = <?php echo \json_encode(AstroidFrameworkHelper::getModules()); ?>;
       $scope.rows = <?php echo json_encode($rows); ?>;
-      
+
       $scope.chooseRowColumns = {open: 0, row: null};
-      $scope.chooseModule = {open: 0, row: null, column : null};
-      
+      $scope.chooseModule = {open: 0, row: null, column: null};
+
       $scope.addingRow = function (_index) {
          $scope.chooseRow = {open: 1, section: _index};
       };
@@ -375,7 +360,7 @@ foreach ($scripts as $script) {
          $scope.chooseRowColumns.open = 1;
          $scope.chooseRowColumns.row = (_rows.length - 1);
       };
-      
+
       $scope.updateRow = function (_rowIndex, _grid) {
          var _columns = $scope.rows[_rowIndex].cols;
          var _updatedColumns = [];
@@ -413,7 +398,7 @@ foreach ($scripts as $script) {
          $scope.rows[_rowIndex].cols = _updatedColumns;
          $scope.chooseRowColumns = {open: 0, row: null};
       };
-      
+
       $scope.removeRow = function (_rowIndex) {
          var c = confirm('Are you sure?');
          if (c) {
@@ -422,8 +407,8 @@ foreach ($scripts as $script) {
             $scope.rows = _rows;
          }
       };
-      
-      $scope.addElement = function(module){
+
+      $scope.addElement = function (module) {
          var elements = angular.copy($scope.rows[$scope.chooseModule.row].cols[$scope.chooseModule.column].elements);
          var _element = angular.copy(module);
          elements.push(_element);
@@ -432,7 +417,7 @@ foreach ($scripts as $script) {
          $scope.chooseModule.column = null;
          $scope.chooseModule.open = 0;
       };
-      
+
       $scope.removeElement = function (_elementIndex, _colIndex, _rowIndex) {
          var c = confirm('Are you sure?');
          if (c) {
@@ -441,6 +426,6 @@ foreach ($scripts as $script) {
             $scope.rows[_rowIndex].cols[_colIndex].elements = _elements;
          }
       };
-      
+
    });
 </script>

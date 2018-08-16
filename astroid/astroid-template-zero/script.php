@@ -98,6 +98,11 @@ class astroid_template_zeroInstallerScript {
          $object->created = time();
          $object->updated = time();
          $db->insertObject('#__astroid_templates', $object);
+
+         $object = new stdClass();
+         $object->id = $template->id;
+         $object->params = \json_encode(["astroid_template_id" => $db->insertid()]);
+         $db->updateObject('#__template_styles', $object, 'id');
       }
    }
 
@@ -111,10 +116,11 @@ class astroid_template_zeroInstallerScript {
       $object->created = time();
       $object->updated = time();
       $db->insertObject('#__astroid_templates', $object);
+      $ast_id = $db->insertid();
 
       $object = new stdClass();
       $object->id = $template->id;
-      $object->params = "";
+      $object->params = \json_encode(["astroid_template_id" => $ast_id]);
       $db->updateObject('#__template_styles', $object, 'id');
    }
 
@@ -125,6 +131,11 @@ class astroid_template_zeroInstallerScript {
       $result = $db->loadObject();
       if (empty($result)) {
          $this->moveParamsJSON($template);
+      } else {
+         $object = new stdClass();
+         $object->id = $template->id;
+         $object->params = \json_encode(["astroid_template_id" => $result->id]);
+         $db->updateObject('#__template_styles', $object, 'id');
       }
    }
 

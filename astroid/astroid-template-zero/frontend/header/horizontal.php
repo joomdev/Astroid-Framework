@@ -28,6 +28,7 @@ $offcanvas_togglevisibility = $params->get('offcanvas_togglevisibility', 'd-bloc
 $class = ['astroid-header', 'astroid-horizontal-header', 'astroid-horizontal-' . $mode . '-header'];
 
 $navClass = ['nav', 'astroid-nav', 'd-none', 'd-lg-flex'];
+$navWrapperClass = ['align-self-center', 'px-2','d-none', 'd-lg-block'];
 ?>
 <!-- header starts -->
 <header id="astroid-header" class="<?php echo implode(' ', $class); ?>">
@@ -42,7 +43,7 @@ $navClass = ['nav', 'astroid-nav', 'd-none', 'd-lg-flex'];
       <?php
       if ($mode == 'left') {
          // header nav starts
-         AstroidMenu::getMenu($header_menu, $navClass);
+         AstroidMenu::getMenu($header_menu, $navClass, null, 'left', 'horizontal', $navWrapperClass);
          // header nav ends
       }
       ?>
@@ -51,7 +52,7 @@ $navClass = ['nav', 'astroid-nav', 'd-none', 'd-lg-flex'];
    if ($mode == 'center') {
       echo '<div class="header-center-section d-flex justify-content-center">';
       // header nav starts
-      AstroidMenu::getMenu($header_menu, $navClass);
+      AstroidMenu::getMenu($header_menu, $navClass, null, 'left', 'horizontal', $navWrapperClass);
       // header nav ends
       echo '</div>';
    }
@@ -61,7 +62,7 @@ $navClass = ['nav', 'astroid-nav', 'd-none', 'd-lg-flex'];
          <?php
          if ($mode == 'right') {
             // header nav starts
-            AstroidMenu::getMenu($header_menu, $navClass);
+            AstroidMenu::getMenu($header_menu, $navClass, null, 'left', 'horizontal', $navWrapperClass);
             // header nav ends
          }
          ?>

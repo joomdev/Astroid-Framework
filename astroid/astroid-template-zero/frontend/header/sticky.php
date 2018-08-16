@@ -34,6 +34,7 @@ $stickyheadertablet = $params->get('stickyheadertablet', 'static');
 $class[] = 'header-' . $stickyheadertablet . '-tablet';
 
 $navClass = ['nav', 'astroid-nav', 'd-none', 'd-lg-flex'];
+$navWrapperClass = ['align-self-center', 'px-2','d-none', 'd-lg-block', 'mr-auto'];
 ?>
 <!-- header starts -->
 <div id="astroid-sticky-header" class="<?php echo implode(' ', $class); ?> d-none border-bottom shadow-sm">
@@ -47,7 +48,7 @@ $navClass = ['nav', 'astroid-nav', 'd-none', 'd-lg-flex'];
          <?php
          $template->loadLayout('logo');
          // header nav starts
-         AstroidMenu::getMenu($header_menu, $navClass, null, 'left', 'sticky');
+         AstroidMenu::getMenu($header_menu, $navClass, null, 'left', 'sticky', $navWrapperClass);
          // header nav ends
          ?>
       </div>

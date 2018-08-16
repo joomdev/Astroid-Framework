@@ -33,6 +33,7 @@ $offcanvas_togglevisibility = $params->get('offcanvas_togglevisibility', 'd-bloc
 $navClass = ['nav', 'astroid-nav', 'justify-content-center', 'd-flex', 'align-items-center'];
 $navClassLeft = ['nav', 'astroid-nav', 'justify-content-left', 'd-flex', 'align-items-left'];
 $navClassDivided = ['nav', 'astroid-nav'];
+$navWrapperClass = ['align-self-center', 'px-2','d-none', 'd-lg-block', 'w-100'];
 ?>
 <header id="astroid-header" class="<?php echo implode(' ', $class); ?>">
    <div class="d-flex">
@@ -66,7 +67,7 @@ $navClassDivided = ['nav', 'astroid-nav'];
             echo '</div>';
             // header nav starts -->
             echo '<div class="w-100 d-none d-lg-flex justify-content-center py-3">';
-            AstroidMenu::getMenu($header_menu, array_merge($navClass), null, 'left', 'stacked');
+            AstroidMenu::getMenu($header_menu, array_merge($navClass), null, 'left', 'stacked', $navWrapperClass);
             echo '</div>';
             // header nav ends
             // header block starts
@@ -108,7 +109,7 @@ $navClassDivided = ['nav', 'astroid-nav'];
             echo '<div class="d-lg-none">';
             $template->loadLayout('logo');
             echo '</div>';
-            AstroidMenu::getMenu($header_menu, $navClass, true, $odd_menu_items, 'stacked');
+            AstroidMenu::getMenu($header_menu, $navClass, true, $odd_menu_items, 'stacked', $navWrapperClass);
             echo '</div>';
             if ($enable_offcanvas) {
                ?>
@@ -185,7 +186,7 @@ $navClassDivided = ['nav', 'astroid-nav'];
             // header nav starts -->
             echo '<div class="w-100 d-none d-lg-flex">';
             echo '<div class="d-flex justify-content-start py-3 flex-grow-1">';
-            AstroidMenu::getMenu($header_menu, $navClassLeft, null, 'left', 'stacked');
+            AstroidMenu::getMenu($header_menu, $navClassLeft, null, 'left', 'stacked', $navWrapperClass);
             echo '</div>';
             // header nav ends
             // header block starts

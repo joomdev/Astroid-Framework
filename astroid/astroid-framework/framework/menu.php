@@ -12,7 +12,7 @@ jimport('joomla.application.module.helper');
 
 class AstroidMenu {
 
-   public static function getMenu($menutype = '', $nav_class = [], $logo = null, $logoOdd = 'left', $headerType = 'horizontal') {
+   public static function getMenu($menutype = '', $nav_class = [], $logo = null, $logoOdd = 'left', $headerType = 'horizontal', $nav_wrapper_class = []) {
       if (empty($menutype)) {
          return '';
       }
@@ -27,7 +27,7 @@ class AstroidMenu {
       $showAll = 1;
 
       $return = [];
-      echo '<div class="align-self-center px-2 d-none d-lg-block' . ($headerType == 'stacked' ? ' w-100' : '') . '' . ($headerType == 'sticky' ? ' mr-auto' : '') . '"><ul class="' . implode(' ', $nav_class) . '">';
+      echo '<div class="' . (!empty($nav_wrapper_class) ? ' ' . implode(' ', $nav_wrapper_class) : '') . '"><ul class="' . implode(' ', $nav_class) . '">';
       $megamenu = false;
 
       $count_menu = 0;

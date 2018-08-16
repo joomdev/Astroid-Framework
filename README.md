@@ -988,7 +988,26 @@ and that should do it, the overrides are applicable to all files under the front
 
 Here is record of all notable changes made to a Astroid Framework.
 
-## v1.2.1
+## v1.2.1: 16-August-2018
+
+* Split title module chrome Added
+* Performance improvement in header
+* Duplicating Astroid Template issue resolved
+
+## v1.2.0: 14-August-2018
+
+* Custom Grid Options Added
+* Section Color Options Added
+* Sub level Menu Options Added
+* Custom Social Profile Option Added
+* Column Resizing Logic Updated
+* Font Awesome Library updated
+* Moved all astroid based templates params to #__astroid_templates table.
+* Footer section renamed to copyright section and merged in miscellaneous section
+* Footer Color Option removed
+* Bug Fixes
+
+## v1.1.3: 6-August-2018
 
 * Social Profile list ordering
 * Missing Social icons added in Social Profile list
@@ -999,14 +1018,14 @@ Here is record of all notable changes made to a Astroid Framework.
 * Frontend folder override functionality added.
 * Language filtered
 
-## v1.1.2
+## v1.1.2: 30-July-2018
 
 * Frontend and Backend RTL Compatible
 * Google font loading bug fixed
 * Custom CSS and SCSS functionality added. (Now, you can create your own custom CSS and SCSS file)
 * Bootstrap version updated to v4.1.3
 
-## v1.1.1
+## v1.1.1: 23-July-2018
 
 * Removed Extra container from Stacked Layout
 * VK Social profile Added
@@ -1017,7 +1036,7 @@ Here is record of all notable changes made to a Astroid Framework.
 * Removed extra margin on logo from Stacked Style 2
 * Main menu Color improvement
 
-## v1.1.0
+## v1.1.0: 18-July-2018
 
 * Section container layouts with more options
 * Frontend editing overrides
@@ -1032,17 +1051,17 @@ Here is record of all notable changes made to a Astroid Framework.
 * Updated language file
 * Some other bug fixed
 
-## v1.0.2
+## v1.0.2: 3-July-2018
 
 * Critical and minor HTML bug resolved
 
-## v1.0.1
+## v1.0.1: 1-July-2018
 
 * Default Parameter updated
 * Default parameter updated
 * Off-Canvas and Mobile Menu bug fixed
 
 
-## v1.0.0
+## v1.0.0: 28-June-2018
 
 * Initial Release

@@ -970,7 +970,7 @@ You can use the Custom CSS to customize the appearance.
 ## Frontend Folder Overrides
 By default in astroid framework, majority of the HTML rendered can be edited via the /frontend/ folder in your template. However, updating astroid to newer version would overwrite your modifications with that or core astroid files.
 
-Starting Astroid 1.2.0, You can override the frontend folder as well.
+Starting Astroid 1.2.1, You can override the frontend folder as well.
 
 If you'd like to override the the header layout file **header.php**
 ```html
@@ -988,7 +988,7 @@ and that should do it, the overrides are applicable to all files under the front
 
 Here is record of all notable changes made to a Astroid Framework.
 
-## v1.2.0
+## v1.2.1
 
 * Social Profile list ordering
 * Missing Social icons added in Social Profile list

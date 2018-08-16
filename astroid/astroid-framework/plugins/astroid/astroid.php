@@ -41,6 +41,32 @@ class plgSystemAstroid extends JPlugin {
       }
    }
 
+   public function onExtensionAfterSave($context, $table, $isNew) {
+      if ($this->app->isAdmin() && $context == "com_templates.style" && $isNew && $this->isAstroidTemplate($table->template)) {
+         $db = JFactory::getDbo();
+         $params = \json_decode($table->params, TRUE);
+         $ast_id = $params['astroid_template_id'];
+         $query = "SELECT * FROM `#__astroid_templates` WHERE `id`='" . $ast_id . "'";
+         $db->setQuery($query);
+         $astroid_template = $db->loadObject();
+
+         $object = new stdClass();
+         $object->id = null;
+         $object->template_id = $table->id;
+         $object->title = $table->title;
+         $object->params = $astroid_template->params;
+         $object->created = time();
+         $object->updated = time();
+         $db->insertObject('#__astroid_templates', $object);
+         $ast_id = $db->insertid();
+
+         $object = new stdClass();
+         $object->id = $table->id;
+         $object->params = \json_encode(["astroid_template_id" => $ast_id]);
+         $db->updateObject('#__template_styles', $object, 'id');
+      }
+   }
+
    public function onAfterRoute() {
       $option = $this->app->input->get('option', '');
       $astroid = $this->app->input->get('astroid', '');

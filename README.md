@@ -1,3 +1,8 @@
+![Github All Releases](https://img.shields.io/github/downloads/joomdev/Astroid-Framework/total.svg)
+![AUR](https://img.shields.io/aur/license/yaourt.svg)
+![GitHub release](https://img.shields.io/github/release/joomdev/Astroid-Framework.svg)
+
+
 > ```
 >                     __                    _        __
 >    ____ _   _____  / /_   _____  ____    (_)  ____/ /

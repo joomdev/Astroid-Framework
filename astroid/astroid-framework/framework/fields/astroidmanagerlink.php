@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @package   Astroid Framework
  * @author    JoomDev https://www.joomdev.com
@@ -53,7 +54,7 @@ a.astroidlink{
 	text-decoration:none;
 }
 a.astroidlink:hover {box-shadow:inset 0 0 1px 0 rgba(0,0,0,0.5), 0 8px 24px rgba(106,71,195,0.2);}
-</style>';
+</style><input type="hidden" value="' . $id . '" name="' . $this->name . '" />';
    }
 
 }

@@ -126,7 +126,7 @@
                         <div ng-if="column.elements.length != 0" ng-click="addingElement(columnIndex, rowIndex, sectionIndex, null)" class="ezlb-add-element">
                         </div>
                         <div ng-show="column.elements.length != 0" class="ezlb-elements" ng-sortable="{draggable: '.ezlb-element',animation: 100, 'handle': '.ezlb-element-handle'}">
-                           <span data-astroid-tooltip="<?php echo JText::_('TPL_ASTROID_EDIT_COLUMN'); ?>" ng-click="editElement(column)" class="ezlb-element-col-edit d-none"><i class="fa fa-pencil-alt"></i></span>
+                           <span data-astroid-tooltip="<?php echo JText::_('TPL_ASTROID_EDIT_COLUMN'); ?>" ng-click="editElement(column)" class="ezlb-element-col-edit"><i class="fa fa-pencil-alt"></i></span>
                            <div ng-repeat="element in column.elements track by $index" ng-init="elementIndex = $index" class="ezlb-element">
 
                               <span class="ezlb-toolbar">

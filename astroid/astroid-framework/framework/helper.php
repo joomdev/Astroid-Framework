@@ -134,7 +134,7 @@ class AstroidFrameworkHelper {
       if (!empty($result)) {
          $template = new AstroidFrameworkTemplate($result);
          return $template;
-      }else{
+      } else {
          return null;
       }
    }

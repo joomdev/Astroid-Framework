@@ -11,7 +11,7 @@
             <option value="1">JYES</option>
             <option value="0">JNO</option>
          </field>
-         <field showon="astroid_banner_title_enabled:1[AND]astroid_banner_enabled:1" name="astroid_banner_title" type="text" default="" label="ASTROID_BANNER_TITLE_LABEL">
+         <field showon="astroid_banner_title_enabled:1[AND]astroid_banner_enabled:1" name="astroid_banner_title" filter="RAW" type="text" default="" label="ASTROID_BANNER_TITLE_LABEL">
          </field>
          <field showon="astroid_banner_title_enabled:1[AND]astroid_banner_enabled:1" name="astroid_banner_subtitle" type="text" default="" label="ASTROID_BANNER_SUBTITLE_LABEL">
          </field>

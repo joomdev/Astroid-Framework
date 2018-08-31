@@ -9,7 +9,7 @@
    <authorUrl>http://www.joomdev.com</authorUrl>
    <copyright>Copyright (C) 2018 Joomdev, Inc. All rights reserved.</copyright>
    <license>GNU General Public License version 2 or later; see LICENSE.txt</license>
-   <version>1.2.1</version>
+   <version>1.3.0</version>
    <description>TPL_ASTROID_XML_DESCRIPTION</description>
 
    <updateservers>
@@ -75,7 +75,6 @@
       <fields name="params">
          <fieldset name="basic" addfieldpath="/libraries/astroid/framework/fields">
             <field name="astroid" type="astroidmanagerlink"></field>
-            <field name="astroid_template_id" default="0" type="hidden"></field>
          </fieldset>
       </fields>
    </config>

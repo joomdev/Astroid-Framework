@@ -42,6 +42,9 @@
 }
 
 .astroid-mobilemenu-container{
+   overflow-y: auto;
+   overflow-x: hidden;
+   height: 100%;
    .astroid-mobilemenu-inner {
       ul{
          padding: 0px;
@@ -99,6 +102,10 @@
    }
 }
 
+.astroid-offcanvas{
+   overflow-y: auto;
+   overflow-x: hidden;
+}
 .astroid-offcanvas, .astroid-mobilemenu{
    position: fixed;
    top: 0;

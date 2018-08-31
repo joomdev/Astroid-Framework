@@ -77,49 +77,55 @@ class astroidInstallerScript {
             $this->installPlugin($plugin, $plugin_dir);
          }
       }
-      $this->astroidTemplateTableMigration();
+
+      $this->migrateFromAstroidTable();
+      $this->migrateFromJoomlaTable();
    }
 
-   public function astroidTemplateTableMigration() {
+   public function migrateFromAstroidTable() {
       if (!$this->isTableExists()) {
-         $this->createTable();
+         return;
       }
-      $ast_templates = $this->getAstroidTemplates();
-      foreach ($ast_templates as $ast_template) {
-         $this->checkAndUpgrade($ast_template);
-      }
-   }
-
-   public function checkAndUpgrade($template) {
       $db = JFactory::getDbo();
-      $query = "SELECT * FROM `#__astroid_templates` WHERE `template_id`='" . $template->id . "'";
+      $query = "SELECT * FROM `#__astroid_templates`";
       $db->setQuery($query);
-      $result = $db->loadObject();
-      if (empty($result)) {
-         $this->moveParamsJSON($template);
-      } else {
-         $object = new stdClass();
-         $object->id = $template->id;
-         $object->params = \json_encode(["astroid_template_id" => $result->id]);
-         $db->updateObject('#__template_styles', $object, 'id');
+      $templates = $db->loadObjectList();
+      foreach ($templates as $template) {
+         $this->createTemplateParamsJSON($template->template_id, $template->params);
+      }
+      $db->setQuery("DROP TABLE `#__astroid_templates`");
+      $db->execute();
+   }
+
+   public function migrateFromJoomlaTable() {
+      $db = JFactory::getDbo();
+      $query = "SELECT * FROM `#__template_styles`";
+      $db->setQuery($query);
+      $templates = $db->loadObjectList();
+      foreach ($templates as $template) {
+         if ($this->isAstroidTemplate($template->template) && !file_exists(JPATH_SITE . "/templates/{$template->template}/params/" . $template->id . '.json')) {
+            $this->createTemplateParamsJSON($template->id, $template->params);
+         }
+         if ($this->isAstroidTemplate($template->template)) {
+            $object = new stdClass();
+            $object->id = $template->id;
+            $object->params = \json_encode(["astroid" => $template->id]);
+            $db->updateObject('#__template_styles', $object, 'id');
+         }
       }
    }
 
-   public function moveParamsJSON($template) {
+   public function createTemplateParamsJSON($id, $params) {
       $db = JFactory::getDbo();
-      $object = new stdClass();
-      $object->id = null;
-      $object->template_id = $template->id;
-      $object->title = $template->title;
-      $object->params = $template->params;
-      $object->created = time();
-      $object->updated = time();
-      $db->insertObject('#__astroid_templates', $object);
-      
-      $object = new stdClass();
-      $object->id = $template->id;
-      $object->params = \json_encode(["astroid_template_id" => $db->insertid()]);
-      $db->updateObject('#__template_styles', $object, 'id');
+      $query = "SELECT * FROM `#__template_styles` WHERE `id`='{$id}'";
+      $db->setQuery($query);
+      $template = $db->loadObject();
+      if ($template && file_exists(JPATH_SITE . "/templates/{$template->template}")) {
+         if (!file_exists(JPATH_SITE . "/templates/{$template->template}/params")) {
+            mkdir(JPATH_SITE . "/templates/{$template->template}/params");
+         }
+         file_put_contents(JPATH_SITE . "/templates/{$template->template}/params" . '/' . $id . '.json', $params);
+      }
    }
 
    public function getAstroidTemplates() {
@@ -144,21 +150,6 @@ class astroidInstallerScript {
       $tables = JFactory::getDbo()->getTableList();
       $table = JFactory::getDbo()->getPrefix() . 'astroid_templates';
       return in_array($table, $tables);
-   }
-
-   public function createTable() {
-      $db = JFactory::getDbo();
-      $query = "CREATE TABLE `#__astroid_templates` (
-            `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-            `template_id` int(11) NOT NULL,
-            `title` varchar(255) NOT NULL,
-            `params` longtext NOT NULL,
-            `created` bigint(11) NOT NULL,
-            `updated` bigint(11) NOT NULL,
-            PRIMARY KEY (`id`)
-          );";
-      $db->setQuery($query);
-      $db->execute();
    }
 
    public function installPlugin($plugin, $plugin_dir) {

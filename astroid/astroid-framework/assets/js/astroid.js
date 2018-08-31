@@ -468,12 +468,18 @@ class AstroidAdmin {
 
       this.exportSettings = function (_settings) {
          let dataStr = JSON.stringify(_settings);
-         let dataUri = 'data:application/json;charset=utf-8,' + encodeURIComponent(dataStr);
-         let exportFileDefaultName = 'astroid-settings.json';
-         let linkElement = document.createElement('a');
-         linkElement.setAttribute('href', dataUri);
-         linkElement.setAttribute('download', exportFileDefaultName);
-         linkElement.click();
+         let dataUri = 'data:text/json;charset=utf-8,' + encodeURIComponent(dataStr);
+         var date = new Date();
+         var year = date.getFullYear();
+         var month = date.getMonth() + 1;
+         var day = date.getDate();
+         var hours = date.getHours();
+         var minutes = date.getMinutes();
+         var seconds = date.getSeconds();
+         let exportFileDefaultName = $('#export-link').data('template-name') + ' ' + (year + "-" + month + "-" + day + " " + hours + ":" + minutes + ":" + seconds) + '.json';
+         $('#export-link').attr('href', dataUri);
+         $('#export-link').attr('download', exportFileDefaultName);
+         $('#export-link')[0].click();
       }
 
       this.watchForm = function () {

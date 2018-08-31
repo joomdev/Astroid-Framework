@@ -52,12 +52,11 @@ class AstroidFrameworkTemplate {
             return $params;
          }
       }
-      $db = JFactory::getDbo();
-      $query = "SELECT * FROM `#__astroid_templates` WHERE `template_id`='" . $id . "'";
-      $db->setQuery($query);
-      $result = $db->loadObject();
+
+      $params_path = JPATH_SITE . "/templates/{$this->template}/params/" . $id . '.json';
+      $json = file_get_contents($params_path);
       $params = new JRegistry();
-      $params->loadString($result->params, 'JSON');
+      $params->loadString($json, 'JSON');
       return $params;
    }
 
@@ -375,6 +374,7 @@ class AstroidFrameworkTemplate {
          $cssname = 'style-' . md5($name);
          if (!file_exists($template_directory . 'css/' . $cssname . '.css')) {
             //ini_set('xdebug.max_nesting_level', 3000);
+            AstroidFrameworkHelper::clearCache($this->template);
             AstroidFrameworkHelper::compileSass($template_directory . 'scss', $template_directory . 'css', 'style.scss', $cssname . '.css');
          }
          return $cssname . '.css';
@@ -392,6 +392,7 @@ class AstroidFrameworkTemplate {
          $cssname = 'custom-' . md5($name);
          if (!file_exists($template_directory . 'css/' . $cssname . '.css')) {
             //ini_set('xdebug.max_nesting_level', 3000);
+            AstroidFrameworkHelper::clearCache($this->template);
             AstroidFrameworkHelper::compileSass($template_directory . 'scss/custom', $template_directory . 'css', 'custom.scss', $cssname . '.css');
          }
          return $cssname . '.css';
@@ -522,17 +523,22 @@ class AstroidFrameworkTemplate {
       return implode(' ', $class);
    }
 
-   public function loadLayout($partial = '', $display = true) {
+   public function loadLayout($partial = '', $display = true, $params = null) {
       $this->setLog("Rending template partial : " . $partial);
       if (file_exists(JPATH_SITE . '/templates/' . $this->template . '/html/frontend/' . str_replace('.', '/', $partial) . '.php')) {
          $layout = new JLayoutFile($partial, JPATH_SITE . '/templates/' . $this->template . '/html/frontend');
       } else {
          $layout = new JLayoutFile($partial, JPATH_SITE . '/templates/' . $this->template . '/frontend');
       }
+      $data = [];
+      $data['template'] = $this;
+      if (!empty($params)) {
+         $data['params'] = $params;
+      }
       if ($display) {
-         echo $layout->render(['template' => $this]);
+         echo $layout->render($data);
       } else {
-         return $layout->render(['template' => $this]);
+         return $layout->render($data);
       }
       $this->setLog("Template partial rendered!: " . $partial, 'success');
    }

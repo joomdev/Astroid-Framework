@@ -17,10 +17,10 @@ $config = JFactory::getConfig();
 
 $id = $application->input->get('id', NULL, 'INT');
 
-$joomla_url = JRoute::_('index.php?option=com_templates&view=style&layout=edit&id=' . $id);
-$save_url = JRoute::_('index.php?option=com_ajax&astroid=save&id=' . $id);
-
 $template = AstroidFrameworkHelper::getTemplateById($id);
+
+$joomla_url = JRoute::_('index.php?option=com_templates&view=style&layout=edit&id=' . $id);
+$save_url = JRoute::_('index.php?option=com_ajax&astroid=save&id=' . $id . '&template=' . $template->template);
 
 if (empty($template)) {
    $application->redirect('index.php?option=com_templates');
@@ -123,7 +123,7 @@ foreach ($params as $key => $value) {
          var SYSTEM_FONTS = <?php echo json_encode(array_keys(AstroidFrameworkConstants::$system_fonts)); ?>;
       </script>
    </head>
-   <body ng-app="astroid-framework" ng-controller="astroidController">
+   <body ng-app="astroid-framework" id="astroid-framework" ng-controller="astroidController">
       <input type="hidden" id="astroid-admin-token" value="<?php echo JSession::getFormToken(); ?>" />
       <div class="astroid-loading" style="position: fixed;width: 100%;height: 100%;background: rgba(195, 195, 195, 0.9) url('<?php echo JURI::root() . 'media' . '/' . 'astroid' . '/' . 'assets' . '/' . 'images' . '/' . 'astroid.gif'; ?>') no-repeat center;z-index: 9999999;top: 0;left: 0;"></div>
       <!--<nav class="astroid-manager-navbar navbar fixed-top navbar-expand-lg navbar-light bg-white justify-content-between">
@@ -149,9 +149,9 @@ foreach ($params as $key => $value) {
                   <div class="logo-image">
                      <img width="40" src="<?php echo $assets . 'images' . '/' . 'icon-logo-dark.png'; ?>" />
                      <div class="d-inline ml-2">
-                     <img width="110" src="<?php echo $assets . 'images' . '/' . 'logo-dark-wide.png'; ?>" />
-                     <div class="clearfix"></div>
-                     <small style="position: relative;top: -12px;margin-left: 128px;" class="astroid-version">v <?php echo AstroidFrameworkConstants::$astroid_version; ?></small>
+                        <img width="110" src="<?php echo $assets . 'images' . '/' . 'logo-dark-wide.png'; ?>" />
+                        <div class="clearfix"></div>
+                        <small style="position: relative;top: -12px;margin-left: 128px;" class="astroid-version">v <?php echo AstroidFrameworkConstants::$astroid_version; ?></small>
                      </div>
                   </div>
                </div>
@@ -184,26 +184,26 @@ foreach ($params as $key => $value) {
                      </li>
                      <?php $active = false; ?>
                   <?php } ?>
-                     <li class="nav-item row">
-                        <a id="export-options" class="nav-link col-12" href="javascript:void(0);">
-                           <i class="fa fa-download"></i>&nbsp;<?php echo JText::_('Export'); ?>
-                        </a>
-                     </li>
-                     <li class="nav-item row">
-                        <a id="import-options" class="nav-link col-12" href="javascript:void(0);">
-                           <i class="fa fa-upload"></i>&nbsp;<?php echo JText::_('Import'); ?>
-                        </a>
-                     </li>
-                     <li class="nav-item row showin-live-preview">
-                        <a class="nav-link col-12" href="javascript:void(0);" onclick="Admin.closeLivePreview()">
-                           <i class="fa fa-eye"></i>&nbsp;<?php echo JText::_('Close Live Preview'); ?>
-                        </a>
-                     </li>
-                     <li class="nav-item row showin-live-preview">
-                        <a class="nav-link col-12" href="<?php echo $joomla_url; ?>">
-                           <i class="fab fa-joomla"></i>&nbsp;<?php echo JText::_('TPL_ASTROID_BACK_TO_JOOMLA'); ?>
-                        </a>
-                     </li>
+                  <li class="nav-item row">
+                     <a id="export-options" class="nav-link col-12" href="javascript:void(0);">
+                        <i class="fa fa-download"></i>&nbsp;<?php echo JText::_('Export'); ?>
+                     </a>
+                  </li>
+                  <li class="nav-item row">
+                     <a id="import-options" class="nav-link col-12" href="javascript:void(0);">
+                        <i class="fa fa-upload"></i>&nbsp;<?php echo JText::_('Import'); ?>
+                     </a>
+                  </li>
+                  <li class="nav-item row showin-live-preview">
+                     <a class="nav-link col-12" href="javascript:void(0);" onclick="Admin.closeLivePreview()">
+                        <i class="fa fa-eye"></i>&nbsp;<?php echo JText::_('Close Live Preview'); ?>
+                     </a>
+                  </li>
+                  <li class="nav-item row showin-live-preview">
+                     <a class="nav-link col-12" href="<?php echo $joomla_url; ?>">
+                        <i class="fab fa-joomla"></i>&nbsp;<?php echo JText::_('TPL_ASTROID_BACK_TO_JOOMLA'); ?>
+                     </a>
+                  </li>
                </ul>
             </div>
             <div id="astroid-content-wrapper" class="col">
@@ -359,31 +359,32 @@ foreach ($params as $key => $value) {
       ?>
       <script src="<?php echo $assets . 'js' . '/' . 'astroid.js?v=' . $document->getMediaVersion(); ?>"></script>
       <script type="text/javascript">
-      astroidFramework.controller('astroidController', function ($scope) {
-            <?php foreach ($fieldsets as $key => $fieldset) { ?>
-                  <?php $fields = $form->getFieldset($key); ?>
-                  <?php
-                  foreach ($fields as $key => $field) {
-                        if (strtolower($field->type) == "astroidtextarea" || $field->type == "astroidheading") {
-                        continue;
-                        }
-                        if (is_string($field->value)) {
-                        $value = "'" . addslashes($field->value) . "'";
-                        } elseif (is_array($field->value)) {
-                        $value = \json_encode($value);
-                        } elseif (is_object($field->value)) {
-                        $value = \json_encode($field->value);
-                        } else {
-                        $value = $field->value;
-                        }
-                        echo '$scope.' . $field->fieldname . ' = ' . $value . ';';
-                        if ($field->type == "layout") {
-                        echo '$scope.layoutfield = "' . $field->fieldname . '";';
-                        }
-                  }
-                  ?>
-            <?php } ?>
-      });
+                     astroidFramework.controller('astroidController', function ($scope) {
+<?php foreach ($fieldsets as $key => $fieldset) { ?>
+   <?php $fields = $form->getFieldset($key); ?>
+   <?php
+   foreach ($fields as $key => $field) {
+      if (strtolower($field->type) == "astroidtextarea" || $field->type == "astroidheading") {
+         continue;
+      }
+      if (is_string($field->value)) {
+         $value = "'" . addslashes($field->value) . "'";
+      } elseif (is_array($field->value)) {
+         $value = \json_encode($value);
+      } elseif (is_object($field->value)) {
+         $value = \json_encode($field->value);
+      } else {
+         $value = $field->value;
+      }
+      echo '$scope.' . $field->fieldname . ' = ' . $value . ';';
+      if ($field->type == "layout") {
+         echo '$scope.layoutfield = "' . $field->fieldname . '";';
+      }
+   }
+   ?>
+<?php } ?>
+                     });
       </script>
+      <a href="#" class="d-none" data-template-name="<?php echo JFilterOutput::stringURLSafe($template->title); ?>" id="export-link">Export Settings</a>
    </body>
 </html>

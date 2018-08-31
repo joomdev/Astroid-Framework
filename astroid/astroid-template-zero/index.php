@@ -62,20 +62,20 @@ $template->loadTemplateCSS('custom.css');
     * 	Will move them somewhere else later, May be a head layout which has all of this
     * 	Setting will only take effect is layout is boxed.
     */
-   if ($this->params->get('template_layout') == 'boxed') {
+   if ($template->params->get('template_layout') == 'boxed') {
       $styles = '';
       // Background color
-      if ($this->params->get('color_body_background_color')) {
-         $styles .= 'background-color: ' . $this->params->get('color_body_background_color') . ';';
+      if ($template->params->get('color_body_background_color')) {
+         $styles .= 'background-color: ' . $template->params->get('color_body_background_color') . ';';
       }
       // Let's add the image styles only if an image is selected.
-      if ($this->params->get('basic_background_image')) {
+      if ($template->params->get('basic_background_image')) {
          $styles .= '
-				background-image: url("' . JURI::root() . 'images/' . $this->params->get('basic_background_image') . '");
-				background-repeat: ' . $this->params->get('basic_background_repeat') . ';
-				background-size: ' . $this->params->get('basic_background_size') . ';
-				background-position: ' . str_replace('_', ' ', $this->params->get('basic_background_position')) . ';
-				background-attachment: ' . $this->params->get('basic_background_attachment') . ';
+				background-image: url("' . JURI::root() . 'images/' . $template->params->get('basic_background_image') . '");
+				background-repeat: ' . $template->params->get('basic_background_repeat') . ';
+				background-size: ' . $template->params->get('basic_background_size') . ';
+				background-position: ' . str_replace('_', ' ', $template->params->get('basic_background_position')) . ';
+				background-attachment: ' . $template->params->get('basic_background_attachment') . ';
 			';
       }
 
@@ -89,7 +89,7 @@ $template->loadTemplateCSS('custom.css');
 </head>
 <body class="<?php echo $template->bodyClass($template->language, $template->direction); ?>">
    <?php
-   if ($this->params->get('developemnt_mode', 0)) {
+   if ($template->params->get('developemnt_mode', 0)) {
       $template->loadLayout('comingsoon');
    } else {
       $template->loadLayout('preloader');

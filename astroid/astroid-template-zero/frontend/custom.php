@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @package   Astroid Framework
  * @author    JoomDev https://www.joomdev.com
@@ -19,9 +20,27 @@ $customcss = $template->params->get('customcss', '');
 if (!empty($customcss)) {
    $document->addStyledeclaration($customcss);
 }
+$customcssfiles = $template->params->get('customcssfiles', '');
+if (!empty($customcssfiles)) {
+   $customcssfiles = explode("\n", $customcssfiles);
+   foreach ($customcssfiles as $customcssfile) {
+      if (!empty($customcssfile)) {
+         $document->addStyleSheet($customcssfile);
+      }
+   }
+}
 $customjs = $template->params->get('customjs', '');
 if (!empty($customjs)) {
    $document->addScriptdeclaration($customjs);
+}
+$customjsfiles = $template->params->get('customjsfiles', '');
+if (!empty($customjsfiles)) {
+   $customjsfiles = explode("\n", $customjsfiles);
+   foreach ($customjsfiles as $customjsfile) {
+      if (!empty($customjsfile)) {
+         $document->addScript($customjsfile);
+      }
+   }
 }
 $beforehead = $template->params->get('beforehead', '');
 if (!empty($beforehead)) {

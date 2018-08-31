@@ -37,7 +37,7 @@ $class = ['astroid-logo', 'astroid-logo-' . $logo_type, 'd-flex align-items-cent
 <?php if ($logo_type == 'text'): ?>
    <!-- text logo starts -->
    <?php
-   $mr = ($header_mode == 'stacked' && $header_stacked_menu_mode == 'seperated') ? '' : ' mr-0 mr-lg-4';
+   $mr = ($header_mode == 'stacked' && ($header_stacked_menu_mode == 'seperated' || $header_stacked_menu_mode == 'center')) ? '' : ' mr-0 mr-lg-4';
    ?>
    <div class="<?php echo implode(' ', $class); ?> flex-column<?php echo $mr; ?>">
       <a class="site-title" href="<?php echo JURI::root(); ?>"><?php echo $logo_text; ?></a>
@@ -48,7 +48,7 @@ $class = ['astroid-logo', 'astroid-logo-' . $logo_type, 'd-flex align-items-cent
 <?php if ($logo_type == 'image'): ?>
    <!-- image logo starts -->
    <?php
-   $mr = ($header_mode == 'stacked' && $header_stacked_menu_mode == 'seperated') ? '' : ' mr-0 mr-lg-4';
+   $mr = ($header_mode == 'stacked' && ($header_stacked_menu_mode == 'seperated' || $header_stacked_menu_mode == 'center')) ? '' : ' mr-0 mr-lg-4';
    ?>
    <a class="<?php echo implode(' ', $class); ?><?php echo $mr; ?>" href="<?php echo JURI::root(); ?>">
       <?php if (!empty($default_logo)) { ?>

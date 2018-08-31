@@ -11,13 +11,17 @@ defined('_JEXEC') or die;
 jimport('joomla.filesystem.helper');
 
 extract($displayData);
-$document = JFactory::getDocument();
 //Font family
 $ast_fontfamily = array();
 // Body Font Styles
 $body_font = $template->params->get('body_typography_options', NULL);
 if ($body_font === NULL) {
    $body_font = new \stdClass();
+}
+
+$in_head = true;
+if (isset($params) && !empty($params) && !$params['in_head']) {
+   $in_head = false;
 }
 
 $style = $menu_style = $submenu_style = "";
@@ -139,10 +143,22 @@ if (trim($submenuType) == 'custom') {
 
 // Let's add combined style sheet here
 $ast_fontfamily_list = implode("|", str_replace(" ", "+", $ast_fontfamily));
-if (!empty($ast_fontfamily_list)) {
-   $document->addStyleSheet('https://fonts.googleapis.com/css?family=' . $ast_fontfamily_list);
+if ($in_head) {
+   $document = JFactory::getDocument();
+   if (!empty($ast_fontfamily_list)) {
+      $document->addStyleSheet('https://fonts.googleapis.com/css?family=' . $ast_fontfamily_list);
+   }
+   $document->addStyleDeclaration($style);
+   $document->addStyleDeclaration($menu_style);
+   $document->addStyleDeclaration($submenu_style);
+} else {
+   if (!empty($ast_fontfamily_list)) {
+      echo '<link href="' . 'https://fonts.googleapis.com/css?family=' . $ast_fontfamily_list . '" rel="stylesheet" type="text/css" />';
+   }
+   echo "<style>";
+   echo $style;
+   echo $menu_style;
+   echo $submenu_style;
+   echo "</style>";
 }
-$document->addStyleDeclaration($style);
-$document->addStyleDeclaration($menu_style);
-$document->addStyleDeclaration($submenu_style);
 ?>

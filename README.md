@@ -12,8 +12,8 @@
 >
 > ```                                                  
 # Requirements
-* Joomla: 3.8 +
-* PHP : 5.6+
+* Joomla: 3.8+
+* PHP: 5.6+
 
 # Browser Support
 | ![Chrome](https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png)|![Firefox](https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png)|![Edge](https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png)|![Safari](https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png)|
@@ -975,7 +975,7 @@ You can use the Custom CSS to customize the appearance.
 ## Frontend Folder Overrides
 By default in astroid framework, majority of the HTML rendered can be edited via the /frontend/ folder in your template. However, updating astroid to newer version would overwrite your modifications with that or core astroid files.
 
-Starting Astroid 1.2.1, You can override the frontend folder as well.
+Starting Astroid 1.3.0, You can override the frontend folder as well.
 
 If you'd like to override the the header layout file **header.php**
 ```html
@@ -989,84 +989,161 @@ ROOT/templates/astroid_template_zero/html/frontend/header.php
 
 and that should do it, the overrides are applicable to all files under the frontend folder.
 
-# Changelog
+**Changelog**
 
 Here is record of all notable changes made to a Astroid Framework.
 
-## v1.2.1: 16-August-2018
+# v1.3.0: 31-August-2018
+## Added
+* Column Level Class and ID
+* Users can use html tag in **banner title** input field.
+* Functionality to add Custom CSS and JS files. [#15](https://github.com/joomdev/Astroid-Framework/issues/15)
 
+## Updated
+* FontAwesome updated to 5.3.1
+
+## Fixes
+* Coming Soon page fixed
+* Error page Typography fixed
+* Debug & Error reporting is now working on Error page
+* Setting export functionality fixed for Firefox ![alt text](https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_16x16.png
+"Firefox")
+* Mobile menu issue fixed
+* Body background color issue fixed in boxed layout
+* Fixed menu assignment in quickstart package. [#16](https://github.com/joomdev/Astroid-Framework/issues/16)
+
+## Removed
+* Removed `error.php` file from template frontend folder.
+
+---
+
+# v1.2.1: 16-August-2018
+
+## Added
 * Split title module chrome Added
+
+## Fixes
 * Performance improvement in header
 * Duplicating Astroid Template issue resolved
 
-## v1.2.0: 14-August-2018
+---
 
+# v1.2.0: 14-August-2018
+
+## Added
 * Custom Grid Options Added
 * Section Color Options Added
 * Sub level Menu Options Added
 * Custom Social Profile Option Added
+
+## Updated
 * Column Resizing Logic Updated
 * Font Awesome Library updated
-* Moved all astroid based templates params to #__astroid_templates table.
-* Footer section renamed to copyright section and merged in miscellaneous section
-* Footer Color Option removed
+
+## Fixes
 * Bug Fixes
+* Footer section renamed to copyright section and merged in miscellaneous section
+* Moved all astroid based templates params to #__astroid_templates table.
 
-## v1.1.3: 6-August-2018
+## Removed
+* Footer Color Option removed
 
-* Social Profile list ordering
-* Missing Social icons added in Social Profile list
-* WhatsApp language Added
-* Joomla 3.8.11 Compatible
-* px, em, rem, pt, % Units added in Typography
-* Banner Element Improved
+---
+
+# v1.1.3: 6-August-2018
+
+## Added 
 * Frontend folder override functionality added.
+* WhatsApp language Added
+* Missing Social icons added in Social Profile list
+* px, em, rem, pt, % Units added in Typography
+
+## Fixes
 * Language filtered
+* Banner Element improved
+* Joomla 3.8.11 compatible
+* Social Profile list ordering improved
 
-## v1.1.2: 30-July-2018
+---
 
+# v1.1.2: 30-July-2018
+
+## Added
 * Frontend and Backend RTL Compatible
-* Google font loading bug fixed
 * Custom CSS and SCSS functionality added. (Now, you can create your own custom CSS and SCSS file)
+
+## Updated
 * Bootstrap version updated to v4.1.3
 
-## v1.1.1: 23-July-2018
+## Fixes
+* Google font loading bug fixed
 
-* Removed Extra container from Stacked Layout
+---
+
+# v1.1.1: 23-July-2018
+
+## Added
 * VK Social profile Added
 * Close icon(X) on offcanvas and mobile menu Added
-* Sticky header Improved
 * Favicon added on 404 page
-* Removed default location and phone number from Contact information
-* Removed extra margin on logo from Stacked Style 2
+
+## Fixes
+* Sticky header Improved
 * Main menu Color improvement
 
-## v1.1.0: 18-July-2018
+## Removed
+* Removed Extra container from Stacked Layout
+* Removed default location and phone number from Contact information
+* Removed extra margin on logo from Stacked Style 2
+
+---
+
+# v1.1.0: 18-July-2018
+
+## Added
 
 * Section container layouts with more options
 * Frontend editing overrides
-* Column calculation with component area
 * Added Banner Element
 * Added Banner option in Menu item settings
 * Added Flickr icon to the Social Profiles
-* CRSF Token on post requests
-* Astroid admin security
-* Backend UI/UX improved
-* Import/Export buttons for better positioning.
-* Updated language file
-* Some other bug fixed
 
-## v1.0.2: 3-July-2018
+## Updated
+
+* Updated language file
+
+## Fixes
+
+* Some other bug fixed
+* Backend UI/UX improved
+* Column calculation with component area
+* Astroid admin security
+* CRSF Token on post requests
+* Import/Export buttons for better positioning.
+
+---
+
+# v1.0.2: 3-July-2018
+
+## Fixes
 
 * Critical and minor HTML bug resolved
 
-## v1.0.1: 1-July-2018
+---
+
+# v1.0.1: 1-July-2018
+
+## Updated
 
 * Default Parameter updated
 * Default parameter updated
+
+## Fixes
+
 * Off-Canvas and Mobile Menu bug fixed
 
+---
 
-## v1.0.0: 28-June-2018
+# v1.0.0: 28-June-2018
 
 * Initial Release

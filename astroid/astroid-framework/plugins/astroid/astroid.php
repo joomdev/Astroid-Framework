@@ -43,27 +43,25 @@ class plgSystemAstroid extends JPlugin {
 
    public function onExtensionAfterSave($context, $table, $isNew) {
       if ($this->app->isAdmin() && $context == "com_templates.style" && $isNew && $this->isAstroidTemplate($table->template)) {
+
          $db = JFactory::getDbo();
          $params = \json_decode($table->params, TRUE);
-         $ast_id = $params['astroid_template_id'];
-         $query = "SELECT * FROM `#__astroid_templates` WHERE `id`='" . $ast_id . "'";
-         $db->setQuery($query);
-         $astroid_template = $db->loadObject();
-
-         $object = new stdClass();
-         $object->id = null;
-         $object->template_id = $table->id;
-         $object->title = $table->title;
-         $object->params = $astroid_template->params;
-         $object->created = time();
-         $object->updated = time();
-         $db->insertObject('#__astroid_templates', $object);
-         $ast_id = $db->insertid();
+         $parent_id = $params['astroid'];
 
          $object = new stdClass();
          $object->id = $table->id;
-         $object->params = \json_encode(["astroid_template_id" => $ast_id]);
+         $object->params = \json_encode(["astroid" => $table->id]);
          $db->updateObject('#__template_styles', $object, 'id');
+
+         if (file_exists(JPATH_SITE . "/templates/{$table->template}/params/" . $parent_id . '.json')) {
+            $params = file_get_contents(JPATH_SITE . "/templates/{$table->template}/params" . '/' . $parent_id . '.json');
+            file_put_contents(JPATH_SITE . "/templates/{$table->template}/params" . '/' . $table->id . '.json', $params);
+         } else if (file_exists(JPATH_SITE . "/templates/{$table->template}/astroid/default.json")) {
+            $params = file_get_contents(JPATH_SITE . "/templates/{$table->template}/astroid/default.json");
+            file_put_contents(JPATH_SITE . "/templates/{$table->template}/params" . '/' . $table->id . '.json', $params);
+         } else {
+            file_put_contents(JPATH_SITE . "/templates/{$table->template}/params" . '/' . $table->id . '.json', '');
+         }
       }
    }
 
@@ -93,17 +91,12 @@ class plgSystemAstroid extends JPlugin {
                         $return["code"] = 200;
                         $return["data"] = $params;
                      } else {
-                        $template = new \stdClass();
-                        $template->template_id = $this->app->input->get('id', NULL, 'INT');
-                        $template->params = \json_encode($params);
-                        $db = JFactory::getDbo();
-                        $db->updateObject('#__astroid_templates', $template, 'template_id');
-
-                        $templateObj = AstroidFrameworkHelper::getTemplateById($template->template_id);
-                        //AstroidFrameworkHelper::clearCache($templateObj->template);
+                        $template_id = $this->app->input->get('id', NULL, 'INT');
+                        $template_name = $this->app->input->get('template', NULL, 'RAW');
+                        $params = \json_encode($params);
+                        file_put_contents(JPATH_SITE . "/templates/{$template_name}/params" . '/' . $template_id . '.json', $params);
                         $return["status"] = "success";
                         $return["code"] = 200;
-                        $return["data"] = $template;
                      }
                   } catch (\Exception $e) {
                      $return["status"] = "error";

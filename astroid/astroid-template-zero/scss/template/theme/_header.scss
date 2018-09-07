@@ -131,6 +131,13 @@ header {
 
 .astroid-nav {
    li {
+      &.nav-item-level-1 {
+         >a {
+            small {
+               display: block;
+            }
+         }
+      }
       &.has-subnav {
          >a {
             position: relative;

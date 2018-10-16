@@ -113,7 +113,7 @@ if($media=='videos'){
                   <div class="row mt-2">
                      <div class="col-12">
                         <div class="row">
-                           <div class="col-9">
+                           <div class="col">
                               <nav aria-label="breadcrumb" ng-if="bradcrumb.length >= 2 && folder != ''">
                                  <ol class="breadcrumb">
                                     <li ng-repeat="item in bradcrumb" class="breadcrumb-item" ng-class="{'active':$last}"><a ng-if="!$last" ng-click="getLibrary(item.url,'astroid-media-tab-library-<?php echo $id; ?>')" href="javascript:void(0);">{{ item.name}}</a><span ng-if="$last">{{ item.name}}</span></li>
@@ -125,15 +125,18 @@ if($media=='videos'){
                                  </ol>
                               </nav>
                            </div>
-                           <div class="col-3 py-1">
+                           <div class="col-auto py-1">
                               <div class="btn-toolbar" role="toolbar">
                                  <div class="btn-group mr-1" role="group">
                                     <a ng-click="newFolder('astroid-media-tab-library-<?php echo $id; ?>')" href="javascript:void(0);" class="btn btn-secondary"><i class="fa fa-plus"></i> <?php echo JText::_('TPL_ASTROID_NEW_FOLDER'); ?></a>
                                  </div>
-                                 <div data-media="<?php echo $media; ?>" data-dropzone-dir="true" dropzone data-dropzone-id="<?php echo $id; ?>" class="dropzone btn-group p-0 border-0" role="group">
+                                 <div data-media="<?php echo $media; ?>" data-dropzone-dir="true" dropzone data-dropzone-id="<?php echo $id; ?>" class="dropzone btn-group p-0 border-0 mr-1" role="group">
                                     <div class="dz-message m-0">
-                                    <button type="button" class="dz-message-button btn btn-dark"><i class="fa fa-cloud-upload-alt"></i> Upload</button>
+                                    <button type="button" class="dz-message-button btn btn-dark"><i class="fa fa-cloud-upload-alt"></i> <?php echo JText::_('TPL_ASTROID_UPLOAD_BTN_LBL');?></button>
                                     </div>
+                                 </div>
+                                 <div class="btn-group" role="group">
+                                    <a ng-click="getLibrary(folder, 'astroid-media-tab-library-<?php echo $id; ?>')" href="javascript:void(0);" class="btn btn-white"><i class="fa fa-sync-alt"></i> <?php echo JText::_('TPL_ASTROID_REFRESH'); ?></a>
                                  </div>
                               </div>
                            </div>

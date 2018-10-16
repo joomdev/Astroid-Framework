@@ -1,3 +1,27 @@
+"use strict";
+
+function _possibleConstructorReturn(self, call) {
+   if (!self) {
+      throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+   }
+   return call && (typeof call === "object" || typeof call === "function") ? call : self;
+}
+
+function _inherits(subClass, superClass) {
+   if (typeof superClass !== "function" && superClass !== null) {
+      throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);
+   }
+   subClass.prototype = Object.create(superClass && superClass.prototype, {constructor: {value: subClass, enumerable: false, writable: true, configurable: true}});
+   if (superClass)
+      Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
+}
+
+function _classCallCheck(instance, Constructor) {
+   if (!(instance instanceof Constructor)) {
+      throw new TypeError("Cannot call a class as a function");
+   }
+}
+
 String.prototype.shuffle = function () {
    var a = this.split(""),
            n = a.length;
@@ -9,11 +33,21 @@ String.prototype.shuffle = function () {
       a[j] = tmp;
    }
    return a.join("");
-}
+};
 
 function generateID() {
+   var r = Math.random() >= 0.5;
+   if (r) {
+      var x = Math.floor((Math.random() * 10) + 1);
+      var y = Math.floor((Math.random() * 100) + 1);
+      var z = Math.floor((Math.random() * 10) + 1);
+   } else {
+      var x = Math.floor((Math.random() * 10) + 1);
+      var y = Math.floor((Math.random() * 10) + 1);
+      var z = Math.floor((Math.random() * 100) + 1);
+   }
    var t = Date.now();
-   return t.toString();
+   return x + y + z + t.toString();
 }
 
 function refreshID(_object, _type) {
@@ -47,80 +81,90 @@ function refreshID(_object, _type) {
    }
 }
 
-class AstroidElement {
-   constructor(type, title) {
+var AstroidElement = function AstroidElement(type, title) {
+   _classCallCheck(this, AstroidElement);
+
+   this.id = generateID();
+   this.type = type;
+   this.params = [{
+         name: 'title',
+         value: title
+      }];
+   this.refreshID = function () {
       this.id = generateID();
-      this.type = type;
-      this.params = [
-         {
-            name: 'title',
-            value: title
-         }
-      ];
-      this.refreshID = function () {
-         this.id = generateID();
-      }
-   }
-}
+   };
+};
 
+var AstroidSection = function AstroidSection(type, title) {
+   _classCallCheck(this, AstroidSection);
 
-class AstroidSection {
-   constructor(type, title) {
+   this.id = generateID();
+   this.type = type;
+   this.rows = [];
+   this.params = [{
+         name: 'title',
+         value: title
+      }];
+   this.refreshID = function () {
       this.id = generateID();
-      this.type = type;
-      this.rows = [];
-      this.params = [
-         {
-            name: 'title',
-            value: title
-         }
-      ];
-      this.refreshID = function () {
-         this.id = generateID();
-      }
-   }
-}
+   };
+};
 
-class AstroidRegularSection extends AstroidSection {
-   constructor() {
-      super('regular-section', 'Astroid Section');
-   }
-}
+var AstroidRegularSection = function (_AstroidSection) {
+   _inherits(AstroidRegularSection, _AstroidSection);
 
-class AstroidFullWidthSection extends AstroidSection {
-   constructor() {
-      super('ful-width', 'Full Width');
-   }
-}
+   function AstroidRegularSection() {
+      _classCallCheck(this, AstroidRegularSection);
 
-class AstroidSpecialSection extends AstroidSection {
-   constructor() {
-      super('special', 'Special Section');
+      return _possibleConstructorReturn(this, (AstroidRegularSection.__proto__ || Object.getPrototypeOf(AstroidRegularSection)).call(this, 'regular-section', 'Astroid Section'));
    }
-}
 
-class AstroidRow {
-   constructor() {
-      this.id = generateID();
-      this.cols = [];
+   return AstroidRegularSection;
+}(AstroidSection);
+
+var AstroidFullWidthSection = function (_AstroidSection2) {
+   _inherits(AstroidFullWidthSection, _AstroidSection2);
+
+   function AstroidFullWidthSection() {
+      _classCallCheck(this, AstroidFullWidthSection);
+
+      return _possibleConstructorReturn(this, (AstroidFullWidthSection.__proto__ || Object.getPrototypeOf(AstroidFullWidthSection)).call(this, 'ful-width', 'Full Width'));
    }
-}
 
-class AstroidColumn {
-   constructor() {
-      this.id = generateID();
-      this.elements = [];
-      this.size = 12;
-      this.type = "column";
-      this.params = [
-         {
-            name: 'title',
-            value: ''
-         }
-      ];
+   return AstroidFullWidthSection;
+}(AstroidSection);
+
+var AstroidSpecialSection = function (_AstroidSection3) {
+   _inherits(AstroidSpecialSection, _AstroidSection3);
+
+   function AstroidSpecialSection() {
+      _classCallCheck(this, AstroidSpecialSection);
+
+      return _possibleConstructorReturn(this, (AstroidSpecialSection.__proto__ || Object.getPrototypeOf(AstroidSpecialSection)).call(this, 'special', 'Special Section'));
    }
-}
 
+   return AstroidSpecialSection;
+}(AstroidSection);
+
+var AstroidRow = function AstroidRow() {
+   _classCallCheck(this, AstroidRow);
+
+   this.id = generateID();
+   this.cols = [];
+};
+
+var AstroidColumn = function AstroidColumn() {
+   _classCallCheck(this, AstroidColumn);
+
+   this.id = generateID();
+   this.elements = [];
+   this.size = 12;
+   this.type = "column";
+   this.params = [{
+         name: 'title',
+         value: ''
+      }];
+};
 
 astroidFramework.controller('layoutController', function ($scope, $compile) {
 
@@ -160,7 +204,7 @@ astroidFramework.controller('layoutController', function ($scope, $compile) {
       setTimeout(function () {
          $($event.currentTarget).siblings('input').focus();
       }, 50);
-   }
+   };
 
    $scope.layoutHistory = [];
    $scope.historyIndex = -1;
@@ -168,7 +212,7 @@ astroidFramework.controller('layoutController', function ($scope, $compile) {
    // Global Functions
 
    $scope.getObject = function (_class) {
-      return (new _class());
+      return new _class();
    };
 
    // Section Functions
@@ -202,7 +246,6 @@ astroidFramework.controller('layoutController', function ($scope, $compile) {
       $scope.editRow(0, sectionIndex);
 
       $scope.actionPreformed();
-
    };
 
    $scope.duplicateSection = function (_sectionIndex) {
@@ -256,7 +299,6 @@ astroidFramework.controller('layoutController', function ($scope, $compile) {
 
       var _columns = $scope.layout.sections[_sectionIndex].rows[_rowIndex].cols;
       var _updatedColumns = [];
-
 
       if (_grid.length < _columns.length) {
          // decresing columns
@@ -328,7 +370,7 @@ astroidFramework.controller('layoutController', function ($scope, $compile) {
       _rows.splice(_rowIndex + 1, 0, _row);
       $scope.layout.sections[_sectionIndex].rows = _rows;
       $scope.actionPreformed();
-   }
+   };
 
    $scope.addingRow = function (_index) {
       $scope.chooseRow = {open: 1, section: _index};
@@ -547,7 +589,6 @@ astroidFramework.controller('layoutController', function ($scope, $compile) {
 
    $scope.saveHistory();
 
-
    $scope.setFormData = function (form, data) {
       $.each(data, function () {
          var key = this.name;
@@ -607,30 +648,30 @@ astroidFramework.controller('layoutController', function ($scope, $compile) {
          });
       });
       return _has;
-   }
+   };
 
    $scope.back = function () {
-//      if ($scope.backIndex < 0) {
-//         console.log("No more history");
-//         return;
-//      }
-//      $scope.layout = angular.copy($scope.layoutHistory[$scope.backIndex].layout);
-//      $scope.backIndex = $scope.backIndex - 1;
+      //      if ($scope.backIndex < 0) {
+      //         console.log("No more history");
+      //         return;
+      //      }
+      //      $scope.layout = angular.copy($scope.layoutHistory[$scope.backIndex].layout);
+      //      $scope.backIndex = $scope.backIndex - 1;
    };
 
    $scope.forward = function () {
-//                           if (typeof $scope.layoutHistory[$scope.historyIndex + 1] == 'undefined') {
-//                              return;
-//                           }
-//                           $scope.layout = $scope.layoutHistory[$scope.historyIndex + 1].layout;
-   }
+      //                           if (typeof $scope.layoutHistory[$scope.historyIndex + 1] == 'undefined') {
+      //                              return;
+      //                           }
+      //                           $scope.layout = $scope.layoutHistory[$scope.historyIndex + 1].layout;
+   };
 
    $scope.exportLayout = function () {
       var _layout = angular.copy($scope.layout);
-      let dataStr = JSON.stringify(_layout);
-      let dataUri = 'data:application/json;charset=utf-8,' + encodeURIComponent(dataStr);
-      let exportFileDefaultName = 'astroid-layout.json';
-      let linkElement = document.createElement('a');
+      var dataStr = JSON.stringify(_layout);
+      var dataUri = 'data:application/json;charset=utf-8,' + encodeURIComponent(dataStr);
+      var exportFileDefaultName = 'astroid-layout.json';
+      var linkElement = document.createElement('a');
       linkElement.setAttribute('href', dataUri);
       linkElement.setAttribute('download', exportFileDefaultName);
       linkElement.click();
@@ -638,14 +679,14 @@ astroidFramework.controller('layoutController', function ($scope, $compile) {
 
    $scope.importLayout = function () {
       $('#astroid-layout-import').click();
-//      var _layout = angular.copy($scope.layout);
-//      let dataStr = JSON.stringify(_layout);
-//      let dataUri = 'data:application/json;charset=utf-8,' + encodeURIComponent(dataStr);
-//      let exportFileDefaultName = 'astroid-layout.json';
-//      let linkElement = document.createElement('a');
-//      linkElement.setAttribute('href', dataUri);
-//      linkElement.setAttribute('download', exportFileDefaultName);
-//      linkElement.click();
+      //      var _layout = angular.copy($scope.layout);
+      //      let dataStr = JSON.stringify(_layout);
+      //      let dataUri = 'data:application/json;charset=utf-8,' + encodeURIComponent(dataStr);
+      //      let exportFileDefaultName = 'astroid-layout.json';
+      //      let linkElement = document.createElement('a');
+      //      linkElement.setAttribute('href', dataUri);
+      //      linkElement.setAttribute('download', exportFileDefaultName);
+      //      linkElement.click();
    };
 });
 (function ($) {
@@ -675,11 +716,8 @@ astroidFramework.controller('layoutController', function ($scope, $compile) {
 function uploadLayoutJSON() {
    var input = document.getElementById('astroid-layout-import');
    if (!input) {
-
    } else if (!input.files) {
-
    } else if (!input.files[0]) {
-
    } else {
       var file = input.files[0];
       var reader = new FileReader();
@@ -699,9 +737,7 @@ function uploadLayoutJSON() {
 }
 
 function checkUploadedJSON(text) {
-   if (/^[\],:{}\s]*$/.test(text.replace(/\\["\\\/bfnrtu]/g, '@').
-           replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g, ']').
-           replace(/(?:^|:|,)(?:\s*\[)+/g, ''))) {
+   if (/^[\],:{}\s]*$/.test(text.replace(/\\["\\\/bfnrtu]/g, '@').replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g, ']').replace(/(?:^|:|,)(?:\s*\[)+/g, ''))) {
       var json = JSON.parse(text);
    } else {
       Admin.notify('Invalid JSON');

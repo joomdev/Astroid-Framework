@@ -12,15 +12,17 @@ extract($displayData);
 $doc = JFactory::getDocument();
 $doc->addScript(JURI::root() . 'templates/' . $template->template . '/js/vendor/jquery.countdown.min.js');
 $app = JFactory::getApplication();
-//background image
+// Background Image
 $background_image = $template->params->get('coming_soon_background_image');
 $styles = [];
 if (!empty($background_image)) {
    $background_repeat = $template->params->get('coming_soon_background_repeat', 'inherit');
    $background_size = $template->params->get('coming_soon_background_size', 'inherit');
    $background_position = $template->params->get('coming_soon_background_position', 'inherit');
+   $background_attachment = $template->params->get('coming_soon_background_attachment', 'inherit');
    $styles[] = 'background-image:url(' . JURI::root() . 'images/' . $background_image . ')';
    $styles[] = 'background-repeat:' . $background_repeat;
+   $styles[] = 'background-attachment:' . $background_attachment;
    $styles[] = 'background-position:' . $background_position;
    $styles[] = 'background-size:' . $background_size;
 }
@@ -53,22 +55,27 @@ $comingsoon_date = $template->params->get("coming_soon_countdown_date", '2019-01
                <div id="astroid-countdown" class="comingsoon-date text-center">
                   <div class="days mx-4">
                      <span class="count">-</span>
-                     <span class="label">Days</span>
+                     <span class="label"><?php echo JText::_('ASTROID_DAYS'); ?></span>
                   </div>
                   <div class="hours mx-4">
                      <span class="count">-</span>
-                     <span class="label">Hours</span>
+                     <span class="label"><?php echo JText::_('ASTROID_HOURS'); ?></span>
                   </div>
                   <div class="minutes mx-4">
                      <span class="count">-</span>
-                     <span class="label">Minutes</span>
+                     <span class="label"><?php echo JText::_('ASTROID_MINUTES'); ?></span>
                   </div>
                   <div class="seconds mx-4">
                      <span class="count">-</span>
-                     <span class="label">Seconds</span>
+                     <span class="label"><?php echo JText::_('ASTROID_SECONDS'); ?></span>
                   </div>
                </div>
             <?php } ?>
+            <?php
+            if ($template->params->get('coming_soon_social', 1)) {
+               $template->loadLayout('social', true, ['class' => 'd-inline-block mt-5']);
+            }
+            ?>
          </div>
       </div>
    </div>

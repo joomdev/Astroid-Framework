@@ -9,6 +9,7 @@
 defined('_JEXEC') or die;
 jimport('astroid.framework.constants');
 jimport('joomla.application.module.helper');
+jimport('astroid.framework.template');
 
 class AstroidMenu {
 
@@ -25,11 +26,15 @@ class AstroidMenu {
       $default_id = $default->id;
       $path = $base->tree;
       $showAll = 1;
+      $template = new AstroidFrameworkTemplate(JFactory::getApplication()->getTemplate(true));
 
       $return = [];
-      echo '<div class="' . (!empty($nav_wrapper_class) ? ' ' . implode(' ', $nav_wrapper_class) : '') . '"><ul class="' . implode(' ', $nav_class) . '">';
-      $megamenu = false;
+      // Menu Wrapper
+      echo '<div class="' . (!empty($nav_wrapper_class) ? ' ' . implode(' ', $nav_wrapper_class) : '') . '">'
+      . '<ul class="' . implode(' ', $nav_class) . '">';
 
+
+      $megamenu = false;
       $count_menu = 0;
       foreach ($list as $i => &$item) {
          if ($item->level == 1) {
@@ -44,68 +49,14 @@ class AstroidMenu {
 
       $logo_position_count = 0;
       $astroid_menu_options = new stdClass();
+      $li_content = [];
+
       foreach ($list as $i => &$item) {
-         $params_astroid_menu_options = $item->params->get('astroid_menu_options', NULL);
-         if ($params_astroid_menu_options !== NULL) {
-            $astroid_menu_options = $params_astroid_menu_options;
-         } else if ($item->level != 1 && $params_astroid_menu_options == NULL) {
-            $parent_options = new stdClass();
-            $parent_options->width = (string) @$astroid_menu_options->width;
-            $astroid_menu_options = $parent_options;
-         }
-
-         if ($item->level == 1 && $params_astroid_menu_options == NULL) {
-            $astroid_menu_options = new stdClass();
-         }
+         $options = self::getAstroidMenuOptions($item, $list);
+         $class = self::getLiClass($item, $options, $default_id, $active_id, $path);
 
          if ($item->level == 1) {
-            $megamenu = (bool) @$astroid_menu_options->megamenu;
-         }
-
-         $class = ['nav-item', 'nav-item-level-' . $item->level];
-         $class[] = 'item-' . $item->id;
-
-         if ($item->id == $default_id) {
-            $class[] = 'default';
-         }
-
-         if ($item->id == $active_id || ($item->type === 'alias' && $item->params->get('aliasoptions') == $active_id)) {
-            $class [] = 'current';
-         }
-
-         if (in_array($item->id, $path)) {
-            $class[] = 'active';
-         } elseif ($item->type === 'alias') {
-            $aliasToId = $item->params->get('aliasoptions');
-
-            if (count($path) > 0 && $aliasToId == $path[count($path) - 1]) {
-               $class[] = 'active';
-            } elseif (in_array($aliasToId, $path)) {
-               $class[] = 'alias-parent-active';
-            }
-         }
-
-         if ($item->type === 'separator') {
-            $class[] = 'divider';
-         }
-
-         if ($item->deeper) {
-            $class[] = 'deeper';
-         }
-
-         if ($item->parent) {
-            $class[] = 'parent';
-         }
-
-         if ($megamenu) {
-            $class[] = 'has-megamenu';
-         } else {
-            if ($item->parent) {
-               $class[] = 'has-subnav';
-            }
-         }
-
-         if ($item->level == 1) {
+            // Code for adding Centered Logo
             if (($logo_position_count == $logo_position) && $logo !== null) {
                $app = JFactory::getApplication();
                $template = $app->getTemplate(true);
@@ -117,46 +68,28 @@ class AstroidMenu {
             $logo_position_count++;
          }
 
-         $customclass = (string) @$astroid_menu_options->customclass;
-         $icon = (string) @$astroid_menu_options->icon;
-         $showtitle = (string) @$astroid_menu_options->showtitle;
-         $subtitle = (string) @$astroid_menu_options->subtitle;
-         $width = (string) @$astroid_menu_options->width;
-         $width = empty($width) ? '280px' : $width;
 
-         $alignment = (string) @$astroid_menu_options->alignment;
-         $alignment = empty($alignment) ? 'left' : $alignment;
 
-         $item->icon = $icon;
-         $item->showtitle = $showtitle;
-         $item->subtitle = $subtitle;
-         if (!empty($customclass)) {
-            $class[] = $customclass;
-         }
-
-         if ($megamenu && $item->level == 1) {
+         if ($options->megamenu && $item->level == 1) {
             echo '<li class="' . \implode(' ', $class) . '">';
-            echo self::getAnchor($item, in_array('active', $class));
-            echo self::getMegaMenu($item, $astroid_menu_options, $list);
+            echo $template->loadLayout('header.menu.link', false, ['item' => $item, 'options' => $options, 'mobilemenu' => false, 'active' => in_array('nav-item-active', $class), 'header' => $headerType]);
+            echo self::getMegaMenu($item, $options, $list);
             echo '</li>';
-         } elseif (!$megamenu) {
+         } elseif (!$options->megamenu) {
             echo '<li class="' . \implode(' ', $class) . '">';
-
-            echo self::getAnchor($item, in_array('active', $class));
+            echo $template->loadLayout('header.menu.link', false, ['item' => $item, 'options' => $options, 'mobilemenu' => false, 'active' => in_array('nav-item-active', $class), 'header' => $headerType]);
 
             // The next item is deeper.
             if ($item->deeper) {
-               $styles = [];
-               if (!empty($width)) {
-                  $styles[] = 'width:' . $width;
-               }
-
-               echo '<ul style="' . implode($styles) . '" class="nav-child list-group navbar-subnav level-' . $item->level . '" data-align="' . $alignment . '">';
+               echo '<div' . ($item->level == 1 ? ' data-width="' . $options->width . '"' : '') . ' class="jddrop-content nav-submenu-container nav-item-level-' . $item->level . '">'
+               . '<ul class="nav-submenu">';
             }
             // The next item is shallower.
             elseif ($item->shallower) {
                echo '</li>';
-               echo str_repeat('</ul></li>', $item->level_diff);
+               echo str_repeat('</ul>'
+                       . '</div>'
+                       . '</li>', $item->level_diff);
             }
             // The next item is on the same level.
             else {
@@ -164,216 +97,62 @@ class AstroidMenu {
             }
          }
       }
-      echo '</ul></div>';
+      echo '</ul>'
+      . '</div>';
    }
 
-   public static function getMegaMenuSubItems($parent, $listAll) {
-      $base = self::getBase();
-      $active = self::getActive();
-      $default = self::getDefault();
-      $active_id = $active->id;
-      $default_id = $default->id;
-      $path = $base->tree;
+   // Joomla Functions
 
-      $return = [];
-
-      $list = [];
-
-      foreach ($listAll as $i => &$item) {
-         if ($item->parent_id != $parent->id) {
-            continue;
-         }
-         $list[] = $item;
-      }
-
-      echo '<ul class="nav-child list-group navbar-subnav level-' . $parent->level . '">';
-      foreach ($list as $i => &$item) {
-
-         $class = ['nav-item', 'nav-item-level-' . $item->level];
-         $class[] = 'item-' . $item->id;
-
-         if ($item->id == $default_id) {
-            $class[] = 'default';
-         }
-
-         if ($item->id == $active_id || ($item->type === 'alias' && $item->params->get('aliasoptions') == $active_id)) {
-            $class [] = 'current';
-         }
-
-         if (in_array($item->id, $path)) {
-            $class[] = 'active';
-         } elseif ($item->type === 'alias') {
-            $aliasToId = $item->params->get('aliasoptions');
-
-            if (count($path) > 0 && $aliasToId == $path[count($path) - 1]) {
-               $class[] = 'active';
-            } elseif (in_array($aliasToId, $path)) {
-               $class[] = 'alias-parent-active';
-            }
-         }
-
-         if ($item->type === 'separator') {
-            $class[] = 'divider';
-         }
-
-         if ($item->deeper) {
-            $class[] = 'deeper';
-         }
-
-         if ($item->parent) {
-            $class[] = 'parent';
-         }
-
-         if ($item->parent) {
-            $class[] = 'has-subnav';
-         }
-
-         echo '<li class="' . \implode(' ', $class) . '">';
-         echo self::getAnchor($item, in_array('active', $class));
-         if ($item->parent) {
-            self::getMegaMenuSubItems($item, $listAll);
-         }
-         echo '</li>';
-      }
-      echo '</ul>';
-   }
-
-   public static function getMobileMenu($menutype = '') {
-      if (empty($menutype)) {
-         return '';
-      }
-
-      //echo '<button type="button" class="btn btn-primary mobile-trigger d-lg-none"><i class="fas fa-bars"></i></button>';
-
-      $list = self::getList($menutype);
-      $base = self::getBase();
-      $active = self::getActive();
-      $default = self::getDefault();
-      $active_id = $active->id;
-      $default_id = $default->id;
-      $path = $base->tree;
-      $showAll = 1;
-
-      $return = [];
-      echo '<ul class="astroid-mobile-menu d-none">';
-      $megamenu = false;
-      $count_menu = 0;
-      foreach ($list as $i => &$item) {
-         if ($item->level == 1) {
-            $count_menu++;
-         }
-      }
-
-      foreach ($list as $i => &$item) {
-
-         $astroid_menu_options = $item->params->get('astroid_menu_options', []);
-         if ($item->level == 1) {
-            $megamenu = (bool) @$astroid_menu_options->megamenu;
-         }
-
-         $class = ['nav-item', 'nav-item-level-' . $item->level];
-         $class[] = 'item-' . $item->id;
-
-         if ($item->id == $default_id) {
-            $class[] = 'default';
-         }
-
-         if ($item->id == $active_id || ($item->type === 'alias' && $item->params->get('aliasoptions') == $active_id)) {
-            $class [] = 'current';
-         }
-
-         if (in_array($item->id, $path)) {
-            $class[] = 'active';
-         } elseif ($item->type === 'alias') {
-            $aliasToId = $item->params->get('aliasoptions');
-
-            if (count($path) > 0 && $aliasToId == $path[count($path) - 1]) {
-               $class[] = 'active';
-            } elseif (in_array($aliasToId, $path)) {
-               $class[] = 'alias-parent-active';
-            }
-         }
-
-         if ($item->deeper) {
-            
-         }
-
-         if ($item->parent) {
-            
-         }
-
-         $customclass = (string) @$astroid_menu_options->customclass;
-         $icon = (string) @$astroid_menu_options->icon;
-         $showtitle = (string) @$astroid_menu_options->showtitle;
-         $subtitle = (string) @$astroid_menu_options->subtitle;
-         $width = (string) @$astroid_menu_options->width;
-         $alignment = (string) @$astroid_menu_options->alignment;
-         $item->icon = $icon;
-         $item->showtitle = $showtitle;
-         $item->subtitle = $subtitle;
-         if (!empty($customclass)) {
-            $class[] = $customclass;
-         }
-         echo '<li class="' . \implode(' ', $class) . '">';
-         echo self::getAnchor($item, in_array('active', $class));
-         if ($item->deeper) {
-            echo '<ul class="nav-child list-group navbar-subnav level-' . $item->level . '" data-align="' . $alignment . '">';
-         } elseif ($item->shallower) {
-            echo '</li>';
-            echo str_repeat('</ul></li>', $item->level_diff);
-         } else {
-            echo '</li>';
-         }
-      }
-
-      echo '</ul>';
-   }
-
-   public static function getMegaMenu($item, $astroid_menu_options, $items) {
-      $showtitle = (bool) @$astroid_menu_options->showtitle;
-      $icon = (string) @$astroid_menu_options->icon;
-      $customclass = (string) @$astroid_menu_options->customclass;
-      $megamenu_width = (string) @$astroid_menu_options->megamenu_width;
-      $rows = (string) @$astroid_menu_options->rows;
-      $megamenu_direction = (string) @$astroid_menu_options->megamenu_direction;
-      $rows = !empty($rows) ? json_decode($rows, true) : [];
-
-      $styles = [];
-      if (!empty($megamenu_width)) {
-         $styles[] = 'width:' . $megamenu_width;
-      }
-
-
-      echo '<div class="megamenu-container" data-align="' . $megamenu_direction . '" style="' . implode(';', $styles) . '">';
-      if (!empty($rows)) {
-         foreach ($rows as $row) {
-            echo '<div class="row">';
+   public static function getMegaMenu($item, $options, $items) {
+      $template = new AstroidFrameworkTemplate(JFactory::getApplication()->getTemplate(true));
+      echo '<div data-width="' . $options->width . '" class="jddrop-content megamenu-container">';
+      if (!empty($options->rows)) {
+         foreach ($options->rows as $row) {
+            echo '<div class="row m-0">';
             foreach ($row['cols'] as $col) {
                echo '<div class="col col-md-' . $col['size'] . '">';
                try {
-
                   foreach ($col['elements'] as $element) {
                      if ($element['type'] == "module") {
-                        $module = JModuleHelper::getModule($element['module'], $element['title']);
-                        if ($module->id) {
-                           echo '<div class="mega-menu-item mega-menu-module">';
-                           echo JModuleHelper::renderModule($module, ['style' => $module->style]);
-                           echo "</div>";
+                        $modules = JModuleHelper::getModuleList();
+                        foreach ($modules as $module) {
+                           if ($module->id == $element['id']) {
+                              $params = \json_decode($module->params, true);
+                              $style = $params['style'];
+                              if (empty($style)) {
+                                 $style = "html5";
+                              }
+                              echo '<div class="megamenu-item megamenu-module">';
+                              echo JModuleHelper::renderModule($module, ['style' => $style]);
+                              echo "</div>";
+                           }
                         }
-                     } else {
-                        echo '<div class="mega-menu-item mega-menu-submenus">';
+                     } else if ($item->parent) {
+                        $base = self::getBase();
+                        $active = self::getActive();
+                        $default = self::getDefault();
+                        $active_id = $active->id;
+                        $default_id = $default->id;
+                        $path = $base->tree;
+                        echo '<div class="megamenu-item megamenu-menu-container">';
+                        echo '<ul class="megamenu-menu">';
                         foreach ($items as $i => $subitem) {
                            if ($subitem->id != $element['id']) {
                               continue;
                            }
                            $subitem->anchor_css = empty($subitem->anchor_css) ? 'megamenu-title' : ' ' . $subitem->anchor_css;
-                           echo self::getAnchor($subitem);
+                           $options = self::getAstroidMenuOptions($subitem, $items);
+                           $class = self::getLiClass($subitem, $options, $default_id, $active_id, $path);
+                           echo '<li class="megamenu-menu-item">';
+                           echo $template->loadLayout('header.menu.link', false, ['item' => $subitem, 'options' => $options, 'mobilemenu' => true, 'active' => in_array('nav-item-active', $class)]);
                            if ($subitem->parent) {
-                              echo '<div class="megamenu-subnav">';
+                              echo '<div class="megamenu-submenu-container">';
                               self::getMegaMenuSubItems($subitem, $items);
                               echo '</div>';
                            }
+                           echo '</li>';
                         }
+                        echo '</ul>';
                         echo "</div>";
                      }
                   }
@@ -388,101 +167,39 @@ class AstroidMenu {
       echo '</div>';
    }
 
-   public static function renderModuleById($name, $title) {
+   public static function getMegaMenuSubItems($parent, $listAll) {
+      $base = self::getBase();
+      $active = self::getActive();
+      $default = self::getDefault();
+      $active_id = $active->id;
+      $default_id = $default->id;
+      $path = $base->tree;
+      $template = new AstroidFrameworkTemplate(JFactory::getApplication()->getTemplate(true));
 
-      $module = JModuleHelper::getModule($name, $title);
+      $return = [];
 
-//      
-//      
-//      $db = JFactory::getDbo();
-//      $query = "SELECT * FROM `#__modules` WHERE `id`='$id'";
-//      $db->setQuery($query);
-//      $result = $db->loadObject();
-//
-//      if (empty($result)) {
-//         throw new \Exception("Module Not found", 404);
-//      }
-//
-//      $module = new \stdClass;
-//      $module->id = $result->id;
-//      $module->title = $result->title;
-//      $module->module = $result->module;
-//      $module->position = $result->position;
-//      $module->content = $result->content;
-//      $module->showtitle = $result->showtitle;
-//      $module->control = $result->showtitle;
-//      $module->params = '';
-   }
+      $list = [];
 
-   public static function getAnchor($item, $active = false) {
-      $attributes = [];
-      if ($item->anchor_title) {
-         $attributes['title'] = $item->anchor_title;
-      } else {
-         $attributes['title'] = $item->title;
-      }
-
-      if ($item->anchor_css) {
-         $attributes['class'] = 'nav-link ' . $item->anchor_css;
-      } else {
-         $attributes['class'] = 'nav-link';
-      }
-
-      if ($active) {
-         $attributes['class'] .= ' active';
-      }
-
-      if ($item->anchor_rel) {
-         $attributes['rel'] = $item->anchor_rel;
-      }
-
-      $linktype = $item->title;
-
-      if ($item->menu_image) {
-         if ($item->menu_image_css) {
-            $image_attributes['class'] = $item->menu_image_css;
-            $linktype = JHtml::_('image', $item->menu_image, $item->title, $image_attributes);
-         } else {
-            $linktype = JHtml::_('image', $item->menu_image, $item->title);
+      foreach ($listAll as $i => &$item) {
+         if ($item->parent_id != $parent->id) {
+            continue;
          }
+         $list[] = $item;
+      }
 
-         if ($item->params->get('menu_text', 1)) {
-            $linktype .= '<span class="image-title">' . $item->title . '</span>';
+      echo '<ul class="megamenu-submenu">';
+      foreach ($list as $i => &$item) {
+         $options = self::getAstroidMenuOptions($item, $list);
+         $class = self::getLiClass($item, $options, $default_id, $active_id, $path);
+
+         echo '<li class="' . \implode(' ', $class) . '">';
+         echo $template->loadLayout('header.menu.link', false, ['item' => $item, 'options' => $options, 'mobilemenu' => true, 'active' => in_array('nav-item-active', $class)]);
+         if ($item->parent) {
+            self::getMegaMenuSubItems($item, $listAll);
          }
+         echo '</li>';
       }
-
-      if ($item->browserNav == 1) {
-         $attributes['target'] = '_blank';
-         $attributes['rel'] = 'noopener noreferrer';
-      } elseif ($item->browserNav == 2) {
-         $options = 'toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes';
-         $attributes['onclick'] = "window.open(this.href, 'targetWindow', '" . $options . "'); return false;";
-      }
-
-      //return JHtml::_('link', JFilterOutput::ampReplace(htmlspecialchars($item->flink, ENT_COMPAT, 'UTF-8', false)), $linktype, $attributes);
-
-      $attr = [];
-      foreach ($attributes as $key => $attribute) {
-         $attr[] = $key . '="' . $attribute . '"';
-      }
-
-
-
-      $return = '<a href="' . $item->flink . '" ' . implode(' ', $attr) . '>';
-
-      if (!empty($item->icon)) {
-         $return .= '<i class="' . $item->icon . '"></i> ';
-      }
-      if (empty($item->showtitle)) {
-         $return .= '<span>' . $item->title . '</span>';
-      }
-
-      if ($item->level <= 1 && !empty($item->subtitle) && empty($item->showtitle)) {
-         $return .= '<small>' . $item->subtitle . '</small>';
-      }
-
-      $return .= '</a>';
-      return $return;
+      echo '</ul>';
    }
 
    public static function getList($menutype) {
@@ -616,6 +333,186 @@ class AstroidMenu {
       } else {
          return $menu->getDefault();
       }
+   }
+
+   public static function getAstroidMenuOptions($item, $list) {
+      $astroid_menu_options = $item->params->get('astroid_menu_options', []);
+      $astroid_menu_options = (array) $astroid_menu_options;
+      // set defaults
+      $data = new \stdClass();
+      $data->megamenu = 0;
+      $data->icononly = 0;
+      $data->subtitle = '';
+      $data->icon = '';
+      $data->customclass = '';
+      $data->width = '';
+      $data->alignment = '';
+      $data->rows = [];
+
+
+      if (isset($astroid_menu_options['megamenu']) && $astroid_menu_options['megamenu']) {
+         $data->megamenu = 1;
+      }
+      if (isset($astroid_menu_options['showtitle']) && $astroid_menu_options['showtitle']) {
+         $data->icononly = 1;
+      }
+      if (isset($astroid_menu_options['subtitle']) && !empty($astroid_menu_options['subtitle'])) {
+         $data->subtitle = $astroid_menu_options['subtitle'];
+      }
+      if (isset($astroid_menu_options['icon']) && !empty($astroid_menu_options['icon'])) {
+         $data->icon = $astroid_menu_options['icon'];
+      }
+      if (isset($astroid_menu_options['customclass']) && !empty($astroid_menu_options['customclass'])) {
+         $data->customclass = $astroid_menu_options['customclass'];
+      }
+      if (isset($astroid_menu_options['rows']) && !empty($astroid_menu_options['rows'])) {
+         $data->rows = \json_decode($astroid_menu_options['rows'], true);
+      }
+      if (!$data->megamenu) {
+         if (isset($astroid_menu_options['width']) && !empty($astroid_menu_options['width'])) {
+            $data->width = $astroid_menu_options['width'];
+         }
+         if (isset($astroid_menu_options['alignment']) && !empty($astroid_menu_options['alignment'])) {
+            $data->alignment = $astroid_menu_options['alignment'];
+         } else {
+            $data->alignment = 'right';
+         }
+      } else {
+         if (isset($astroid_menu_options['megamenu_width']) && !empty($astroid_menu_options['megamenu_width'])) {
+            $data->width = $astroid_menu_options['megamenu_width'];
+         }
+         if (isset($astroid_menu_options['megamenu_direction']) && !empty($astroid_menu_options['megamenu_direction'])) {
+            $data->alignment = $astroid_menu_options['megamenu_direction'];
+         } else {
+            $data->alignment = 'center';
+         }
+      }
+      if ($data->alignment == 'full') {
+         $data->width = 'container';
+         $data->alignment = 'center';
+      }
+      if ($data->alignment == 'edge') {
+         $data->width = '100vw';
+         $data->alignment = 'center';
+      }
+
+      if ($item->level > 1) {
+         $data->megamenu = self::isParentMegamenu($item->parent_id, $list);
+      }
+
+      return $data;
+   }
+
+   public static function isParentMegamenu($pid, $list) {
+      $parent = null;
+      foreach ($list as $item) {
+         if ($item->id == $pid) {
+            $parent = $item;
+            break;
+         }
+      }
+      if ($parent === null) {
+         return 0;
+      }
+      if ($parent->level > 1) {
+         return self::isParentMegamenu($parent->parent_id, $list);
+      } else {
+         $options = self::getAstroidMenuOptions($parent, $list);
+         return $options->megamenu;
+      }
+   }
+
+   public static function getLiClass($item, $options, $default_id, $active_id, $path) {
+      $class = [];
+      if ($item->level != 1) {
+         $class[] = 'nav-item-submenu';
+      } else {
+         $class[] = 'nav-item';
+      }
+      $class[] = 'nav-item-id-' . $item->id;
+      $class[] = 'nav-item-level-' . $item->level;
+
+      if ($item->id == $default_id) {
+         $class[] = 'nav-item-default';
+      }
+
+      if ($item->id == $active_id || ($item->type === 'alias' && $item->params->get('aliasoptions') == $active_id)) {
+         $class [] = 'nav-item-current';
+      }
+
+      if (in_array($item->id, $path)) {
+         $class[] = 'nav-item-active';
+      } elseif ($item->type === 'alias') {
+         $aliasToId = $item->params->get('aliasoptions');
+         if (count($path) > 0 && $aliasToId == $path[count($path) - 1]) {
+            $class[] = 'nav-item-active';
+         } elseif (in_array($aliasToId, $path)) {
+            $class[] = 'nav-item-alias-parent-active';
+         }
+      }
+
+      if ($item->type === 'separator') {
+         $class[] = 'nav-item-divider';
+      }
+
+      if ($item->deeper) {
+         $class[] = 'nav-item-deeper';
+      }
+
+      if ($item->parent || $options->megamenu) {
+         $class[] = 'nav-item-parent';
+      }
+
+      if ($options->megamenu) {
+         $class[] = 'nav-item-megamenu';
+      } else if ($item->parent) {
+         $class[] = 'nav-item-dropdown';
+      }
+
+      if (!empty($options->customclass)) {
+         $class[] = $options->customclass;
+      }
+      return $class;
+   }
+
+   public static function getMobileMenu($menutype = '') {
+      if (empty($menutype)) {
+         return '';
+      }
+
+      $list = self::getList($menutype);
+      $base = self::getBase();
+      $active = self::getActive();
+      $default = self::getDefault();
+      $active_id = $active->id;
+      $default_id = $default->id;
+      $path = $base->tree;
+      $showAll = 1;
+      $template = new AstroidFrameworkTemplate(JFactory::getApplication()->getTemplate(true));
+
+      echo '<ul class="astroid-mobile-menu d-none">';
+      $megamenu = false;
+      $count_menu = 0;
+      foreach ($list as $i => &$item) {
+         if ($item->level == 1) {
+            $count_menu++;
+         }
+      }
+      foreach ($list as $i => &$item) {
+         $options = self::getAstroidMenuOptions($item, $list);
+         $class = self::getLiClass($item, $options, $default_id, $active_id, $path);
+         echo '<li class="' . \implode(' ', $class) . '">';
+         echo $template->loadLayout('header.menu.link', false, ['item' => $item, 'options' => $options, 'mobilemenu' => true, 'active' => in_array('nav-item-active', $class)]);
+         if ($item->deeper) {
+            echo '<ul class="nav-child list-group navbar-subnav level-' . $item->level . '">';
+         } elseif ($item->shallower) {
+            echo '</li>';
+            echo str_repeat('</ul></li>', $item->level_diff);
+         } else {
+            echo '</li>';
+         }
+      }
+      echo '</ul>';
    }
 
 }

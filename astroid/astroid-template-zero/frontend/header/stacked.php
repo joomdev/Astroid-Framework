@@ -11,29 +11,22 @@ extract($displayData);
 
 $params = $template->params;
 $mode = $params->get('header_stacked_menu_mode', 'center');
-
 $block_1_type = $params->get('header_block_1_type', 'blank');
 $block_1_position = $params->get('header_block_1_position', '');
 $block_1_custom = $params->get('header_block_1_custom', '');
-
-
 $block_2_type = $params->get('header_block_2_type', 'blank');
 $block_2_position = $params->get('header_block_2_position', '');
 $block_2_custom = $params->get('header_block_2_custom', '');
-
 $header_menu = $params->get('header_menu', '');
 $odd_menu_items = $params->get('odd_menu_items', 'left');
-
 $class = ['astroid-header', 'astroid-stacked-header', 'astroid-stacked-' . $mode . '-header'];
-
 $enable_offcanvas = $params->get('enable_offcanvas', FALSE);
 $offcanvas_animation = $params->get('offcanvas_animation', 'st-effect-1');
 $offcanvas_togglevisibility = $params->get('offcanvas_togglevisibility', 'd-block');
-
 $navClass = ['nav', 'astroid-nav', 'justify-content-center', 'd-flex', 'align-items-center'];
 $navClassLeft = ['nav', 'astroid-nav', 'justify-content-left', 'd-flex', 'align-items-left'];
 $navClassDivided = ['nav', 'astroid-nav'];
-$navWrapperClass = ['align-self-center', 'px-2','d-none', 'd-lg-block', 'w-100'];
+$navWrapperClass = ['astroid-nav-wraper', 'align-self-center', 'px-2', 'd-none', 'd-lg-block', 'w-100'];
 ?>
 <header id="astroid-header" class="<?php echo implode(' ', $class); ?>">
    <div class="d-flex">
@@ -73,7 +66,7 @@ $navWrapperClass = ['align-self-center', 'px-2','d-none', 'd-lg-block', 'w-100']
             // header block starts
             if ($block_1_type == 'position') {
                echo '<div class="w-100 header-block-item d-none d-lg-flex justify-content-center py-3">';
-               echo $template->renderModulePosition($block_1_position);
+               echo $template->renderModulePosition($block_1_position, 'xhtml');
                echo '</div>';
             }
             if ($block_1_type == 'custom') {
@@ -88,7 +81,7 @@ $navWrapperClass = ['align-self-center', 'px-2','d-none', 'd-lg-block', 'w-100']
             // header block starts
             if ($block_1_type == 'position') {
                echo '<div class="w-100 header-block-item d-none d-lg-flex justify-content-center py-3">';
-               echo $template->renderModulePosition($block_1_position);
+               echo $template->renderModulePosition($block_1_position, 'xhtml');
                echo '</div>';
             }
             if ($block_1_type == 'custom') {
@@ -97,7 +90,7 @@ $navWrapperClass = ['align-self-center', 'px-2','d-none', 'd-lg-block', 'w-100']
                echo '</div>';
             }
             // header nav starts   
-            echo '<div class="w-100 d-flex justify-content-center">';
+            echo '<div class="header-stacked-inner w-100 d-flex justify-content-center">';
             ?>
             <div class="d-flex d-lg-none justify-content-start">
                <div class="header-mobilemenu-trigger d-lg-none burger-menu-button align-self-center" data-offcanvas="#astroid-mobilemenu" data-effect="mobilemenu-slide">
@@ -129,7 +122,7 @@ $navWrapperClass = ['align-self-center', 'px-2','d-none', 'd-lg-block', 'w-100']
             // header block starts
             if ($block_2_type == 'position') {
                echo '<div class="w-100 header-block-item d-none d-lg-flex justify-content-center py-3">';
-               echo $template->renderModulePosition($block_2_position);
+               echo $template->renderModulePosition($block_2_position, 'xhtml');
                echo '</div>';
             }
             if ($block_2_type == 'custom') {
@@ -159,7 +152,7 @@ $navWrapperClass = ['align-self-center', 'px-2','d-none', 'd-lg-block', 'w-100']
             // header block starts
             if ($block_1_type == 'position') {
                echo '<div class="d-none d-lg-flex w-100 header-block-item justify-content-end py-3 align-items-center">';
-               echo $template->renderModulePosition($block_1_position);
+               echo $template->renderModulePosition($block_1_position, 'xhtml');
                echo '</div>';
             }
             if ($block_1_type == 'custom') {
@@ -192,7 +185,7 @@ $navWrapperClass = ['align-self-center', 'px-2','d-none', 'd-lg-block', 'w-100']
             // header block starts
             if ($block_2_type == 'position') {
                echo '<div class="d-flex header-block-item justify-content-end py-3 align-items-center">';
-               echo $template->renderModulePosition($block_2_position);
+               echo $template->renderModulePosition($block_2_position, 'xhtml');
                echo '</div>';
             }
             if ($block_2_type == 'custom') {

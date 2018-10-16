@@ -53,7 +53,7 @@ if (isset($images) && $images == 'true') {
  *     %3 - value
  *     %4 = any other attributes
  */
-$format = '<label class="btn-radio-astroid' . (!$imageRadio ? ' btn-round' : ' btn-image') . ' btn-wide btn" ng-class="{\'btn-white\':' . $fieldname . '!=\'%3$s\',\'' . ($imageRadio ? 'btn-light' : 'btn-success') . '\':' . $fieldname . '==\'%3$s\'}" for="%1$s" ng-class="%6$s"><input ng-model="' . $fieldname . '" ' . (!empty($ngRequired) ? ' ng-required="' . $ngRequired . '"' : '') . ' autocomplete="off" type="radio" id="%1$s" name="%2$s" value="%3$s" %4$s />%5$s</label>';
+$format = '<label class="btn-radio-astroid' . (!$imageRadio ? ' btn-round' : ' btn-image') . ' btn-wide btn" ng-class="{\'btn-white\':' . $fieldname . '!=\'%3$s\',\'%7$s\':' . $fieldname . '==\'%3$s\'}" for="%1$s" ng-class="%6$s"><input ng-model="' . $fieldname . '" ' . (!empty($ngRequired) ? ' ng-required="' . $ngRequired . '"' : '') . ' autocomplete="off" type="radio" id="%1$s" name="%2$s" value="%3$s" %4$s />%5$s</label>';
 $alt = preg_replace('/[^a-zA-Z0-9_\-]/', '_', $name);
 ?>
 <div id="<?php echo $id; ?>" class="<?php echo $imageRadio ? '' : 'btn-group astroid-radio-btn'; ?> btn-group-toggle"
@@ -84,11 +84,14 @@ $alt = preg_replace('/[^a-zA-Z0-9_\-]/', '_', $name);
 
          <?php
          $optiontext = $option->text;
+         $optionclass = $option->class;
+         $optionclass = empty($optionclass) ? 'btn-success' : $optionclass;
          if ($imageRadio) {
-            $optiontext = '<img ' . (!empty($imageWidth) ? 'width="' . $imageWidth . '"' : '') . ' src="' . JURI::root() . 'media/astroid/assets/images/' . $optiontext . '" />' . (!empty($option->label) ? '<span>' . $option->label . '</span>' : '');
+            $optionclass = 'btn-light';
+            $optiontext = '<img ' . (!empty($imageWidth) ? 'width="' . $imageWidth . '"' : '') . ' src="' . JURI::root() . $optiontext . '" />' . (!empty($option->label) ? '<span>' . $option->label . '</span>' : '');
          }
          ?>
-         <?php echo sprintf($format, $oid, $name, $ovalue, implode(' ', $attributes), $optiontext, $ngClass); ?>
+         <?php echo sprintf($format, $oid, $name, $ovalue, implode(' ', $attributes), $optiontext, $ngClass, $optionclass); ?>
       <?php endforeach; ?>
    <?php endif; ?>
 </div>

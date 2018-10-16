@@ -34,7 +34,6 @@ $template->loadTemplateCSS('custom.css');
 <!DOCTYPE html>
 <html lang="<?php echo $template->language; ?>" dir="<?php echo $template->direction; ?>">
    <head>
-      <meta charset="utf-8" />
       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <meta name="HandheldFriendly" content="true" />
@@ -52,15 +51,15 @@ $template->loadTemplateCSS('custom.css');
 // Adding basic Scripts, jQuery & Bootstrap JS
 
    if (isset($doc->_scripts[JURI::root(true) . '/media/jui/js/jquery.min.js'])) {
-      $template->loadTemplateJS('vendor/bootstrap/popper.min.js,vendor/bootstrap/bootstrap.min.js,vendor/jquery.astroidmobilemenu.js,vendor/jquery.jdvideobg.js,vendor/jquery.offcanvas.js,script.js,custom.js');
+      $template->loadTemplateJS('vendor/jquery.easing.min.js,vendor/bootstrap/popper.min.js,vendor/bootstrap/bootstrap.min.js,vendor/jquery.astroidmobilemenu.js,vendor/jquery.jdvideobg.js,vendor/jquery.jddrop.js,vendor/jquery.offcanvas.js,script.js,custom.js');
    } else {
-      $template->loadTemplateJS('vendor/bootstrap/jquery.min.js,vendor/bootstrap/popper.min.js,vendor/bootstrap/bootstrap.min.js,vendor/jquery.astroidmobilemenu.js,vendor/jquery.jdvideobg.js,vendor/jquery.offcanvas.js,script.js,custom.js');
+      $template->loadTemplateJS('vendor/bootstrap/jquery.min.js,vendor/jquery.easing.min.js,vendor/bootstrap/popper.min.js,vendor/bootstrap/bootstrap.min.js,vendor/jquery.astroidmobilemenu.js,vendor/jquery.jdvideobg.js,vendor/jquery.jddrop.js,vendor/jquery.offcanvas.js,script.js,custom.js');
    }
 
    /*
-    * 	Basic Layout Background settings here for now
-    * 	Will move them somewhere else later, May be a head layout which has all of this
-    * 	Setting will only take effect is layout is boxed.
+    * 	Basic Layout Background settings added here for now.
+    * 	Will be positioned larer in ther future.
+    * 	Only takes effect, if layout is boxed.
     */
    if ($template->params->get('template_layout') == 'boxed') {
       $styles = '';

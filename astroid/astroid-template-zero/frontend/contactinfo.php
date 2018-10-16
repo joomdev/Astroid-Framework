@@ -20,14 +20,14 @@ $address = $template->params->get('contact_address', '');
 $contact_display = $template->params->get('contact_display', 'icons');
 ?>
 
-<div class="astroid-contact-info py-3">
+<div class="astroid-contact-info">
    <?php if (!empty($address)) { ?>
       <span class="mr-3 d-inline-block">
          <?php if ($contact_display == "icons") : ?>
             <i class="fas fa-map-marker-alt mr-1"></i>
          <?php endif; ?>
          <?php if ($contact_display == "text") : ?>
-            <?php echo JText::_('TPL_ASTROID_ADDRESS_LABEL'); ?>
+            <?php echo JText::_('TPL_ASTROID_ADDRESS_LABEL'); ?>:
          <?php endif; ?>
          <?php echo $address; ?>
       </span>
@@ -39,7 +39,7 @@ $contact_display = $template->params->get('contact_display', 'icons');
             <i class="fas fa-phone fa-rotate-90 mr-1"></i>
          <?php endif; ?>
          <?php if ($contact_display == "text") : ?>
-            <?php echo JText::_('TPL_ASTROID_PHONE_LABEL'); ?>
+            <?php echo JText::_('TPL_ASTROID_PHONE_LABEL'); ?>:
          <?php endif; ?>
          <a href="tel:<?php echo $phone; ?>"><?php echo $phone; ?></a>
       </span>
@@ -51,7 +51,7 @@ $contact_display = $template->params->get('contact_display', 'icons');
             <i class="fas fa-mobile-alt mr-1"></i>
          <?php endif; ?>
          <?php if ($contact_display == "text") : ?>
-            <?php echo JText::_('TPL_ASTROID_MOBILE_LABEL'); ?>
+            <?php echo JText::_('TPL_ASTROID_MOBILE_LABEL'); ?>:
          <?php endif; ?>
          <a href="tel:<?php echo $mobile; ?>"><?php echo $mobile; ?></a>
       </span>
@@ -63,7 +63,7 @@ $contact_display = $template->params->get('contact_display', 'icons');
             <i class="far fa-envelope mr-1"></i>
          <?php endif; ?>
          <?php if ($contact_display == "text") : ?>
-            <?php echo JText::_('JGLOBAL_EMAIL'); ?>
+            <?php echo JText::_('JGLOBAL_EMAIL'); ?>:
          <?php endif; ?>
          <a href="mailto:<?php echo $email; ?>"><?php echo $email; ?></a>
       </span>
@@ -74,7 +74,7 @@ $contact_display = $template->params->get('contact_display', 'icons');
          <?php if ($contact_display == "icons") : ?>
             <i class="far fa-clock mr-1"></i>
          <?php endif; ?>
-         <?php if ($contact_display == "text") : ?>
+         <?php if ($contact_display == "text") : ?>:
             <?php echo JText::_('TPL_ASTROID_OPENHOURS_LABEL'); ?>
          <?php endif; ?>
          <?php echo $openhours; ?>

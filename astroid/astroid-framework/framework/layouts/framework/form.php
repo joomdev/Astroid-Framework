@@ -59,7 +59,7 @@ $active = false;
                           continue;
                        }
                        ?>
-                     <div>
+                     <div class="pb-4">
                         <?php
                         if (!empty($group['title']) && !empty($group['fields'])) {
                            echo '<h3>' . (!empty($group['icon']) ? '<i class="' . $group['icon'] . '"></i>&nbsp;' : '') . JText::_($group['title']) . '</h3>';

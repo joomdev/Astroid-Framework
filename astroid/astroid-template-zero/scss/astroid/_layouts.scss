@@ -1,0 +1,136 @@
+/*
+* Body Wrapper
+*/
+
+html,
+body,
+.astroid-container,
+.astroid-content,
+.astroid-layout,
+.astroid-wrapper {
+	min-height: 100vh;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+img {
+	width: auto\9;
+	height: auto;
+	max-width: 100%;
+	display: inline-block;
+	vertical-align: middle;
+	border: 0;
+	-ms-interpolation-mode: bicubic;
+}
+
+.hero-section {
+	padding: 50px 0;
+}
+
+.navVerticalView {
+	li {
+		margin: 0 5px;
+
+		&:last-child {
+			margin-right: 0;
+		}
+	}
+}
+
+::selection {
+	background: $selection-bg;
+	color: $selection-text-color;
+}
+
+.moduletable {
+	margin: $module-margin-y $module-margin-x;
+	padding: $module-padding-y $module-padding-x;
+
+	&:first-child {
+		margin-top: 0;
+		padding-top: 0;
+	}
+
+	&:last-child {
+		margin-bottom: 0;
+		padding-bottom: 0;
+	}
+}
+
+.astroid-container {
+	position: relative;
+}
+
+.astroid-layout {
+	position: relative;
+
+	.astroid-wrapper {
+		position: relative;
+	}
+
+	&.astroid-layout-boxed {
+		.astroid-wrapper {
+			max-width: 1140px;
+			margin: 0 auto;
+			box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+			background-color: $white;
+			min-height: 100%;
+		}
+	}
+}
+
+.astroid-content {
+	left: 0;
+	z-index: $zindex-modal-backdrop;
+	-webkit-transition: -webkit-transform 0.5s;
+	transition: transform 0.5s;
+
+	&:after {
+		position: absolute;
+		top: 0;
+		right: 0;
+		width: 0;
+		height: 0;
+		background: rgba(0, 0, 0, 0.8);
+		content: '';
+		opacity: 0;
+		-webkit-transition: opacity 0.5s, width 0.1s 0.5s, height 0.1s 0.5s;
+		transition: opacity 0.5s, width 0.1s 0.5s, height 0.1s 0.5s;
+		z-index: $zindex-modal-backdrop;
+	}
+}
+
+blockquote {
+	border-left: 5px solid #ddd;
+	padding-left: 20px;
+	font-style: italic;
+	font-weight: 600;
+}
+
+.no-container {
+	>.container {
+		width: 100%;
+		max-width: 100%;
+		padding: 0;
+	}
+}
+
+.module-title {
+	margin-bottom: 15px;
+}
+
+.split-title-module{
+   .split-title{
+		[class*="split-"] {
+			display: block;
+			font-size: 18px;
+			font-weight: normal;
+		}
+		[class*="split-1"]{
+			font-size: inherit;
+			font-weight: inherit
+		}
+   }
+}

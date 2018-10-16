@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form>
+   <fields name="attribs">
+      <fieldset label="ASTROID_ARTICLE_BLOG_OPTIONS_TITLE_LABEL" name="articleblogoptions">
+         <field
+            type="radio"
+            name="astroid_relatedposts"
+            label="ASTROID_RELATED_POSTS"
+            class="btn-group"
+            default=""
+         >
+            <option value="">JGLOBAL_INHERIT</option>
+            <option value="1">JSHOW</option>
+            <option value="0">JHIDE</option>
+         </field>
+         <field
+            type="radio"
+            name="astroid_socialshare"
+            label="ASTROID_SOCIAL_SHARE"
+            class="btn-group"
+            default=""
+         >
+            <option value="">JGLOBAL_INHERIT</option>
+            <option value="1">JSHOW</option>
+            <option value="0">JHIDE</option>
+         </field>
+         <field
+            type="radio"
+            name="astroid_comments"
+            label="ASTROID_COMMENTS"
+            class="btn-group"
+            default=""
+         >
+            <option value="">JGLOBAL_INHERIT</option>
+            <option value="1">JSHOW</option>
+            <option value="0">JHIDE</option>
+         </field>
+         <field
+            type="radio"
+            name="astroid_posttype"
+            label="ASTROID_POST_TYPE_ICONS"
+            class="btn-group"
+            default=""
+         >
+            <option value="">JGLOBAL_INHERIT</option>
+            <option value="1">JSHOW</option>
+            <option value="0">JHIDE</option>
+         </field>
+         <field
+            type="radio"
+            name="astroid_readtime"
+            label="ASTROID_READ_TIME"
+            class="btn-group"
+            default=""
+         >
+            <option value="">JGLOBAL_INHERIT</option>
+            <option value="1">JSHOW</option>
+            <option value="0">JHIDE</option>
+         </field>
+         <field
+            type="radio"
+            name="astroid_authorinfo"
+            label="ASTROID_AUTHOR_INFO"
+            class="btn-group"
+            default=""
+         >
+            <option value="">JGLOBAL_INHERIT</option>
+            <option value="1">JSHOW</option>
+            <option value="0">JHIDE</option>
+         </field>
+         <field
+            type="radio"
+            name="astroid_rating"
+            label="ASTROID_ARTICLE_RATING"
+            class="btn-group"
+            default=""
+         >
+            <option value="">JGLOBAL_INHERIT</option>
+            <option value="1">JSHOW</option>
+            <option value="0">JHIDE</option>
+         </field>
+      </fieldset>
+   </fields>
+</form>

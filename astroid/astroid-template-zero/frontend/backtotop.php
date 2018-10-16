@@ -16,7 +16,7 @@ if (!$enable_backtotop) {
 
 $style = '';
 $astyle = '';
-$class = '';
+$class = [];
 $html = '';
 $backtotop_icon = $template->params->get('backtotop_icon', 'fas fa-arrow-up');
 $backtotop_icon_size = $template->params->get('backtotop_icon_size', 20);
@@ -27,20 +27,26 @@ $backtotop_on_mobile = $template->params->get('backtotop_on_mobile', 1);
 $paddingpercent = 10;
 $padding = ($backtotop_icon_size / $paddingpercent);
 $style .= 'font-size:' . $backtotop_icon_size . 'px; color:' . $backtotop_icon_color . ';';
-if ($backtotop_icon_style == 'circle') {
-   $style .= 'height:' . $backtotop_icon_size . 'px; width:' . $backtotop_icon_size . 'px; line-height:' . $backtotop_icon_size . 'px; text-align:center;';
-} elseif ($backtotop_icon_style == 'rounded') {
-   $astyle .= 'border-radius : ' . round($padding) . 'px;';
-} else {
-   $style .= 'line-height:' . $backtotop_icon_size . 'px;  padding: ' . round($padding) . 'px';
+
+switch ($backtotop_icon_style) {
+   case 'rounded':
+      $astyle .= 'border-radius : ' . round($padding) . 'px;';
+      break;
+   case 'square':
+      $style .= 'line-height:' . $backtotop_icon_size . 'px;  padding: ' . round($padding) . 'px';
+      break;
+   default:
+      $style .= 'height:' . $backtotop_icon_size . 'px; width:' . $backtotop_icon_size . 'px; line-height:' . $backtotop_icon_size . 'px; text-align:center;';
+      break;
 }
 $astyle .= 'background:' . $backtotop_icon_bgcolor . ';';
-$class .= 'icon-style-' . $backtotop_icon_style;
-if ($backtotop_on_mobile == 0) {
-   $html .= '<a id="astroid-backtotop" class="hide-sm ' . $backtotop_icon_style . '" href="javascript:void(0)" style="' . $astyle . '"><i class="' . $backtotop_icon . ' " style="' . $style . '"></i></a>';
-} else {
-   $html .= '<a id="astroid-backtotop" class="' . $backtotop_icon_style . '" href="javascript:void(0)" style="' . $astyle . '"><i class="' . $backtotop_icon . '" style="' . $style . '"></i></a>';
+$class[] = $backtotop_icon_style;
+
+if (!$backtotop_on_mobile) {
+   $class[] = 'hideonsm';
+   $class[] = 'hideonxs';
 }
+
+$html .= '<a id="astroid-backtotop" class="' . implode(' ', $class) . '" href="javascript:void(0)" style="' . $astyle . '"><i class="' . $backtotop_icon . '" style="' . $style . '"></i></a>';
 echo $html;
 ?>
-

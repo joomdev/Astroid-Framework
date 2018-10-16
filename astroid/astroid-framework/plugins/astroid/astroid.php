@@ -30,38 +30,14 @@ class plgSystemAstroid extends JPlugin {
                $this->app->redirect(base64_decode(urldecode($astroid_redirect)));
             }
          }
-
-         $document = \JFactory::getDocument();
-         $version = new \JVersion;
-         $script = [];
-         $script[] = "jQuery(document).ready(function(){"
-                 . "jQuery('body').addClass('joomla-" . ((int) $version->getShortVersion()) . "')"
-                 . "})";
-         $document->addScriptdeclaration(implode(';', $script));
       }
    }
 
    public function onExtensionAfterSave($context, $table, $isNew) {
       if ($this->app->isAdmin() && $context == "com_templates.style" && $isNew && $this->isAstroidTemplate($table->template)) {
-
-         $db = JFactory::getDbo();
          $params = \json_decode($table->params, TRUE);
          $parent_id = $params['astroid'];
-
-         $object = new stdClass();
-         $object->id = $table->id;
-         $object->params = \json_encode(["astroid" => $table->id]);
-         $db->updateObject('#__template_styles', $object, 'id');
-
-         if (file_exists(JPATH_SITE . "/templates/{$table->template}/params/" . $parent_id . '.json')) {
-            $params = file_get_contents(JPATH_SITE . "/templates/{$table->template}/params" . '/' . $parent_id . '.json');
-            file_put_contents(JPATH_SITE . "/templates/{$table->template}/params" . '/' . $table->id . '.json', $params);
-         } else if (file_exists(JPATH_SITE . "/templates/{$table->template}/astroid/default.json")) {
-            $params = file_get_contents(JPATH_SITE . "/templates/{$table->template}/astroid/default.json");
-            file_put_contents(JPATH_SITE . "/templates/{$table->template}/params" . '/' . $table->id . '.json', $params);
-         } else {
-            file_put_contents(JPATH_SITE . "/templates/{$table->template}/params" . '/' . $table->id . '.json', '');
-         }
+         AstroidFrameworkHelper::setTemplateDefaults($table->template, $table->id, $parent_id);
       }
    }
 
@@ -82,7 +58,7 @@ class plgSystemAstroid extends JPlugin {
                   $return = array();
                   try {
                      if (!JSession::checkToken()) {
-                        throw new \Exception('The most recent request was denied because it contained an invalid security token. Please refresh the page and try again.');
+                        throw new \Exception(\JText::_('ASTROID_AJAX_ERROR'));
                      }
                      $params = $this->app->input->post->get('params', array(), 'RAW');
                      $export_settings = $this->app->input->post->get('export_settings', 0, 'INT');
@@ -191,24 +167,13 @@ class plgSystemAstroid extends JPlugin {
                      $return = $uri->toString();
                      JFactory::getApplication()->redirect(JRoute::_('index.php?ast=' . urlencode(base64_encode($return))));
                   }
-                  require_once JPATH_LIBRARIES . '/' . 'astroid' . '/' . 'framework' . '/' . 'library' . '/' . 'scssphp' . '/' . 'scss.inc.php';
                   $id = $this->app->input->get('id', NULL, 'INT');
                   $template = AstroidFrameworkHelper::getTemplateById($id);
                   if (!defined('ASTROID_TEMPLATE_NAME')) {
                      define('ASTROID_TEMPLATE_NAME', $template->template);
                   }
-                  // render manager scss | for developer use only
-
-                  $scss_file = JPATH_SITE . '/' . 'media' . '/' . 'astroid' . '/' . 'assets' . '/' . 'scss' . '/' . 'bootstrap.scss';
-
-                  if (file_exists($scss_file)) {
-                     $cssversion = filemtime(JPATH_SITE . '/' . 'media' . '/' . 'astroid' . '/' . 'assets' . '/' . 'css' . '/' . 'astroid-framework.css');
-                     $scssversion = filemtime(JPATH_SITE . '/' . 'media' . '/' . 'astroid' . '/' . 'assets' . '/' . 'scss' . '/' . 'bootstrap.scss');
-
-                     if ($cssversion == $scssversion && COMPILE_SASS) {
-                        AstroidFrameworkHelper::compileSass(JPATH_SITE . '/' . 'media' . '/' . 'astroid' . '/' . 'assets' . '/' . 'scss', JPATH_SITE . '/' . 'media' . '/' . 'astroid' . '/' . 'assets' . '/' . 'css', "bootstrap.scss", 'astroid-framework.css');
-                     }
-                  }
+                  $lang->load('tpl_' . ASTROID_TEMPLATE_NAME, JPATH_SITE);
+                  $lang->load(ASTROID_TEMPLATE_NAME, JPATH_SITE);
 
                   // render manager
                   $layout = new JLayoutFile('framework.manager', JPATH_LIBRARIES . '/astroid/framework/layouts');
@@ -230,6 +195,49 @@ class plgSystemAstroid extends JPlugin {
             }
          }
       }
+
+      if ($this->app->isSite()) {
+         if ($option == 'com_ajax') {
+            switch ($astroid) {
+               case "rate":
+                  header('Content-Type: application/json');
+                  header('Access-Control-Allow-Origin: *');
+                  $lang = JFactory::getLanguage();
+                  $lang->load("com_content", JPATH_SITE);
+                  $return = array();
+                  try {
+                     if (!JSession::checkToken()) {
+                        throw new \Exception(\JText::_('ASTROID_AJAX_ERROR'));
+                     }
+                     $id = $this->app->input->post->get('id', 0, 'INT');
+                     $vote = $this->app->input->post->get('vote', 0, 'INT');
+                     if (empty($id)) {
+                        throw new \Exception(\JText::_('ASTROID_ARTICLE_NOT_FOUND'), 404);
+                     }
+                     if ($vote < 0 || $vote > 5) {
+                        throw new \Exception(\JText::_('ASTROID_INVALID_RATING'), 0);
+                     }
+                     jimport('joomla.application.component.model');
+                     JModelLegacy::addIncludePath(JPATH_SITE . '/components/com_content/models', 'ContentModel');
+                     $model = JModelLegacy::getInstance('Article', 'ContentModel');
+                     if ($model->storeVote($id, $vote)) {
+                        $return["status"] = "success";
+                        $return["code"] = 200;
+                        $return["message"] = JText::_('COM_CONTENT_ARTICLE_VOTE_SUCCESS');
+                     } else {
+                        throw new \Exception('COM_CONTENT_ARTICLE_VOTE_FAILURE', 0);
+                     }
+                  } catch (\Exception $e) {
+                     $return["status"] = "error";
+                     $return["code"] = $e->getCode();
+                     $return["message"] = JText::_($e->getMessage());
+                  }
+                  echo \json_encode($return);
+                  die();
+                  break;
+            }
+         }
+      }
    }
 
    public function onContentPrepareForm($form, $data) {
@@ -238,6 +246,20 @@ class plgSystemAstroid extends JPlugin {
       if ($form->getName() == 'com_menus.item') {
          $form->loadFile('menu', false);
          $form->loadFile('banner', false);
+      }
+
+      if ($form->getName() == 'com_content.article') {
+         $form->loadFile('article', false);
+         $form->loadFile('blog', false);
+         $form->loadFile('opengraph', false);
+      }
+
+      if ($form->getName() == 'com_menus.item' && (isset($data->request['option']) && $data->request['option'] == 'com_content') && (isset($data->request['view']) && $data->request['view'] == 'category')) {
+         $form->loadFile('menu_blog', false);
+      }
+
+      if ($form->getName() == 'com_users.user' || $form->getName() == 'com_admin.profile') {
+         $form->loadFile('author', false);
       }
    }
 
@@ -253,7 +275,7 @@ class plgSystemAstroid extends JPlugin {
 
                if ($id && in_array($uri->getVar('option'), array('com_templates')) && (in_array($id, $astroid_templates))) {
                   $html = $matches[1] . $uri . $matches[3] . $matches[4] . $matches[5];
-                  $html .= ' <span class="label" style="background: linear-gradient(to right,#ff9966, #ff5e62); color:#fff;padding-left: 10px;padding-right: 10px;margin-left: 5px;">Astroid</span>';
+                  $html .= ' <span class="label" style="background: rgba(0, 0, 0, 0) linear-gradient(to right, #8E2DE2, #4A00E0) repeat scroll 0 0; color:#fff;padding-left: 10px;padding-right: 10px;margin-left: 5px;border-radius: 30px;box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.20);">Astroid</span>';
                }
             }
             return $html;
@@ -277,6 +299,7 @@ class plgSystemAstroid extends JPlugin {
       $return = [];
       foreach ($templates as $template) {
          if ($this->isAstroidTemplate($template->template)) {
+            AstroidFrameworkHelper::setTemplateDefaults($template->template, $template->id);
             $return[] = $template->id;
          }
       }
@@ -285,6 +308,19 @@ class plgSystemAstroid extends JPlugin {
 
    private function isAstroidTemplate($name) {
       return file_exists(JPATH_SITE . "/templates/{$name}/frontend");
+   }
+
+   public function onAfterGetMenuTypeOptions(&$list) {
+//      $types = [];
+//      $o = new JObject;
+//      $o->title = 'ASTROID_LINKS_ONEPAGE_TITLE';
+//      $o->type = 'astroid_onepage';
+//      $o->description = 'ASTROID_LINKS_ONEPAGE_DESC';
+//      $o->request = ['astroid_onepage' => 1];
+//      $types[] = $o;
+//
+//      $list['ASTROID_LINKS'] = $types;
+//      return $list;
    }
 
 }

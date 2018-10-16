@@ -1,13 +1,14 @@
 <?php
 /**
- * @package   Astroid Framework
- * @author    JoomDev https://www.joomdev.com
- * @copyright Copyright (C) 2009 - 2018 JoomDev.
- * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
+ * @package     Joomla.Site
+ * @subpackage  mod_articles_categories
+ *
+ * @copyright   Copyright (C) 2005 - 2018 Open Source Matters, Inc. All rights reserved.
+ * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
 defined('_JEXEC') or die;
 ?>
-<ul class="categories-module<?php echo $moduleclass_sfx; ?> list-group list-group-flush">
-<?php require JModuleHelper::getLayoutPath('mod_articles_categories', $params->get('layout', 'default') . '_items'); ?>
+<ul class="categories-module list-group list-group-flush <?php echo $moduleclass_sfx; ?>">
+   <?php require JModuleHelper::getLayoutPath('mod_articles_categories', $params->get('layout', 'default') . '_items'); ?>
 </ul>

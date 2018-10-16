@@ -1,0 +1,112 @@
+.astroid-nav .megamenu-container a.nav-link.megamenu-title:hover {
+   background: inherit !important;
+   color: currentColor !important;
+}
+
+/* Header Section */
+.astroid-header-section {
+   width: 100%;
+   left: 0;
+   z-index: $header-section-zindex;
+   background: $header-section-bg;
+   border-bottom: $header-section-border-bottom;
+
+   /* Header Element */
+   header {
+      &.astroid-header {
+         padding: $header-padding-y $header-padding-x;
+         z-index: 1;
+      }
+
+      /* Stacked Header */
+      &.header-stacked {
+         position: fixed;
+         top: 0;
+         left: 0;
+         height: 100%;
+         width: 100%;
+         display: none;
+         background: $stacked-header-bg;
+         z-index: $stacked-header-zindex;
+      }
+   }
+
+   /* Sticky Header */
+   .astroid-header-sticky {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      -webkit-animation-fill-mode: both;
+      animation-fill-mode: both;
+      z-index: $sticky-header-zindex;
+      -webkit-animation-duration: $sticky-header-animation-duration;
+      animation-duration: $sticky-header-animation-duration;
+      padding: $sticky-header-padding-y $sticky-header-padding-x;
+
+      &.d-flex {
+         -webkit-animation-name: slideInDown;
+         animation-name: slideInDown;
+      }
+
+      .astroid-logo {
+         .astroid-logo-default {
+            display: none !important;
+         }
+
+         .astroid-logo-sticky {
+            @include media-breakpoint-between(lg, xl) {
+               display: block !important;
+            }
+         }
+      }
+   }
+}
+
+.astroid-logo {
+   @include media-breakpoint-down(md) {
+      .astroid-logo-default {
+         display: none;
+      }
+   }
+
+   img {
+      max-width: 250px;
+      max-height: 65px;
+   }
+
+   .astroid-logo-mobile {
+      max-width: 100%;
+      display: none;
+
+      @include media-breakpoint-down(md) {
+         display: block;
+      }
+   }
+
+   .astroid-logo-sticky {
+      display: none;
+   }
+}
+
+.fixed-header {
+   .astroid-logo {
+
+      .astroid-logo-default,
+      .astroid-logo-mobile {
+         display: none;
+      }
+
+      .astroid-logo-sticky {
+         display: block;
+      }
+   }
+}
+
+.astroid-stacked-seperated-header {
+   .astroid-logo-image {
+      img {
+         margin: auto;
+      }
+   }
+}

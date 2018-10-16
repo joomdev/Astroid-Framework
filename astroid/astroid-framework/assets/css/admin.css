@@ -68,25 +68,6 @@
    top: 0;
    bottom: 0;
 }
-.slider-selection {
-   background-color: #17C671;
-   background-image: -webkit-gradient(linear, left top, right top, from(#ff9966), to(#ff5e62));
-   background-image: -webkit-linear-gradient(left, #ff9966, #ff5e62);
-   background-image: -o-linear-gradient(left, #ff9966, #ff5e62);
-   background-image: linear-gradient(to right, #ff9966, #ff5e62);
-   background-repeat: repeat-x;
-   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#009A4F',endColorstr='#17C671',GradientType=0);
-   -webkit-box-shadow: inset 0 -1px 0 rgba(0,0,0,0.15);
-   -moz-box-shadow: inset 0 -1px 0 rgba(0,0,0,0.15);
-   box-shadow: inset 0 -1px 0 rgba(0,0,0,0.15);
-   -webkit-box-sizing: border-box;
-   -moz-box-sizing: border-box;
-   box-sizing: border-box;
-   -webkit-border-radius: 6px;
-   -moz-border-radius: 6px;
-   border-radius: 6px;
-   position: absolute;
-}
 .slider-handle {
    background-color: #f2f2f2;
    background-image: -moz-linear-gradient(top,#f8f8f8,#ebebeb);
@@ -142,7 +123,7 @@
    width: 100%;
 }
 .notifyjs-bootstrap-success:after{
-   background: rgba(0, 0, 0, 0) linear-gradient(to right, #ff9966, #ff5e62) repeat scroll 0 0 !important;
+   background: rgba(0, 0, 0, 0) linear-gradient(to right, #6ae34b, #4bdce3) repeat scroll 0 0 !important;
 }
 .notifyjs-bootstrap-error:after{
    background: rgba(0, 0, 0, 0) linear-gradient(to right, #c4183c, #c4183c) repeat scroll 0 0 !important;
@@ -167,12 +148,6 @@
 .slider-horizontal{
    width: 100% !important;
    max-width: 270px;
-}
-
-.range-slider-value{
-   color: #ef6d60;
-   border-bottom: 1px dashed;
-   margin-left: 5px;
 }
 
 .unit-picker{
@@ -208,29 +183,8 @@
    border-bottom: 1px dashed;
 }
 
-[range-slider]{
-   display: block !important;
-   position: absolute;
-   top: 0px;
-   left: 0px;
-   border: none;
-   line-height: 24px;
-   background: none;
-   width: 50px;
-   text-align: center;
-   border: none !important;
-   border-bottom: 1px dashed !important;
-   outline: none !important;
-   box-shadow: none !important;
-   color: #ef6d60 !important;
-}
-
 .margin-left-50px{
    margin-left: 55px;
-}
-
-[range-slider].d-none{
-   display: none !important;
 }
 
 /* For Firefox */

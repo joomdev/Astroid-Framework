@@ -1,22 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE install PUBLIC "-//Joomla! 2.5//DTD template 1.0//EN" "https://www.joomla.org/xml/dtd/1.6/template-install.dtd">
 <extension version="3.1" type="template" client="site" method="upgrade">
-   <name>Astroid Template Zero</name>
-   <element>astroid_template_zero</element>
+   <name>astroid_template_zero</name>
    <creationDate>July 2018</creationDate>
    <author>JoomDev</author>
    <authorEmail>info@joomdev.com</authorEmail>
    <authorUrl>http://www.joomdev.com</authorUrl>
    <copyright>Copyright (C) 2018 Joomdev, Inc. All rights reserved.</copyright>
    <license>GNU General Public License version 2 or later; see LICENSE.txt</license>
-   <version>1.3.0</version>
+   <version>2.0.0</version>
    <description>TPL_ASTROID_XML_DESCRIPTION</description>
 
    <updateservers>
       <server type="extension" name="astroid_framework" priority="1">https://cdn.joomdev.com/updates/astroid_template_zero.xml</server>
    </updateservers>
 
-   <scriptfile>script.php</scriptfile>
    <files>
       <folder>css</folder>
       <folder>scss</folder>
@@ -32,9 +30,10 @@
       <filename>template_thumbnail.png</filename>
       <filename>component.php</filename>
       <filename>error.php</filename>
-      <filename>script.php</filename>
    </files>
    <positions>
+      <position>topbar-1</position>
+      <position>topbar-2</position>
       <position>header</position>
       <position>hero-section</position>
       <position>language-switcher</position>
@@ -44,6 +43,8 @@
       <position>astroid-home-page</position>
       <position>astroid-header</position>
       <position>astroid-footer</position>
+      <position>content-top</position>
+      <position>content-bottom</position>
       <position>breadcrumbs</position>
       <position>position-1</position>
       <position>position-2</position>
@@ -63,6 +64,8 @@
       <position>bottom-4</position>
       <position>footer-1</position>
       <position>footer-2</position>
+      <position>footer-3</position>
+      <position>footer-4</position>
       <position>fullwidth</position>
       <position>offcanvas</position>
       <position>debug</position>

@@ -52,7 +52,3 @@ if (!empty($beforebody)) {
    . $beforebody
    . '</script>';
 }
-
-// Template Variables
-$menuanimation = $template->params->get('menuanimation', '');
-$document->addScriptdeclaration('var ASTROID_MENU_ANIMATION="' . $menuanimation . '"');

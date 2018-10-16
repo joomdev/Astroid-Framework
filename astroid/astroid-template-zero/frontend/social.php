@@ -8,7 +8,7 @@
 // No direct access.
 defined('_JEXEC') or die;
 extract($displayData);
-
+$class = @$params['class'];
 $social_profiles = $template->params->get('social_profiles', []);
 $style = $template->params->get('social_profiles_style', 1);
 if (!empty($social_profiles)) {
@@ -16,7 +16,7 @@ if (!empty($social_profiles)) {
 }
 ?>
 
-<ul class="m-0 list-unstyled astroid-social-icons">
+<ul class="nav navVerticalView astroid-social-icons<?php echo!empty($class) ? ' ' . $class : ''; ?>">
    <?php
    foreach ($social_profiles as $social_profile) {
       switch ($social_profile->id) {
@@ -33,7 +33,7 @@ if (!empty($social_profiles)) {
             $social_profile_link = $social_profile->link;
             break;
       }
-      echo '<li><a style="color:' . ($style == 1 ? 'inherit' : $social_profile->color) . '" href="' . $social_profile_link . '" target="_blank"><i class="' . $social_profile->icon . '"></i></a></li>';
+      echo '<li><a style="color:' . ($style == 1 ? 'inherit' : $social_profile->color) . '" href="' . $social_profile_link . '" target="_blank" rel="noopener"><i class="' . $social_profile->icon . '"></i></a></li>';
    }
    ?>
 </ul>

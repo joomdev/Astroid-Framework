@@ -13,28 +13,31 @@ jimport('astroid.framework.menu');
 extract($displayData);
 
 $params = $template->params;
-
 $header_menu = $params->get('header_menu', 'mainmenu');
-
 $enable_offcanvas = $params->get('enable_offcanvas', FALSE);
 $offcanvas_animation = $params->get('offcanvas_animation', 'st-effect-1');
 $offcanvas_togglevisibility = $params->get('offcanvas_togglevisibility', 'd-block');
-
-
-
 $class = ['astroid-header', 'astroid-header-sticky'];
-
 $stickyheader = $params->get('stickyheader', 'static');
 $class[] = 'header-' . $stickyheader . '-desktop';
-
 $stickyheadermobile = $params->get('stickyheadermobile', 'static');
 $class[] = 'header-' . $stickyheadermobile . '-mobile';
-
 $stickyheadertablet = $params->get('stickyheadertablet', 'static');
 $class[] = 'header-' . $stickyheadertablet . '-tablet';
-
 $navClass = ['nav', 'astroid-nav', 'd-none', 'd-lg-flex'];
-$navWrapperClass = ['align-self-center', 'px-2','d-none', 'd-lg-block', 'mr-auto'];
+$navWrapperClass = ['astroid-nav-wraper', 'align-self-center', 'px-2', 'd-none', 'd-lg-block'];
+$mode = $params->get('header_horizontal_menu_mode', 'left');
+switch ($mode) {
+   case 'left':
+      $navWrapperClass[] = 'mr-auto';
+      break;
+   case 'right':
+      $navWrapperClass[] = 'ml-auto';
+      break;
+   case 'center':
+      $navWrapperClass[] = 'mx-auto';
+      break;
+}
 ?>
 <!-- header starts -->
 <div id="astroid-sticky-header" class="<?php echo implode(' ', $class); ?> d-none border-bottom shadow-sm">

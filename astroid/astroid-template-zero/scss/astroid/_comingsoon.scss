@@ -1,0 +1,30 @@
+.comingsoon-wrap{
+   box-sizing: border-box;
+   height: 100vh;
+   min-height: 100vh;
+   display: flex;
+   align-items: center;
+}
+
+.comingsoon-page-logo {
+   margin-bottom: $comingsoon-logo-margin-bottom;
+}
+
+.comingsoon-content {
+   margin-bottom: $comingsoon-content-margin-bottom;
+}
+
+.comingsoon-date{
+   > div{
+      display: inline-block;
+      span{
+         display: block;
+         font-size: $comingsoon-count-title-font-size;
+      }
+      .count{
+         font-weight: $comingsoon-count-font-weight;
+         font-size: $comingsoon-count-font-size;
+         line-height: $comingsoon-count-line-height;
+      }
+   }
+}

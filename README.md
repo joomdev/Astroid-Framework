@@ -1,14 +1,7 @@
-> ```
->                     __                    _        __
->    ____ _   _____  / /_   _____  ____    (_)  ____/ /
->   / __  /  / ___/ / __/  / ___/ / __ \  / /  / __  / 
->  / /_/ /  (__  ) / /_   / /    / /_/ / / /  / /_/ /  
->  \__ _/  /____/  \__/  /_/     \____/ /_/   \__ _/   
->
-> ```                                                  
+
 # Requirements
-* Joomla: 3.8+
-* PHP: 5.6+
+* Joomla: 3.8 +
+* PHP : 5.6+
 
 # Browser Support
 | ![Chrome](https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png)|![Firefox](https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png)|![Edge](https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png)|![Safari](https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png)|
@@ -234,19 +227,6 @@ Active Background Color | #007bff |Set the Background color for the active links
 
 ![offcanvas-color](https://cdn.joomdev.com/documentation/astroid-framework/images/offcanvascolor.jpg)
 
-### Footer
-
-Here you can set the Footer color schemes for your site.
-
-Option | Default | Description
-------- | ----------- | -----------
-Background Color | #333 | Set the default Background color for the Footer.
-Text Color | #fff | Set the Text color for the Footer items.
-Link Color | #007bff | Set the color of the link in the dropdown menu for submenu items.
-Link Hover Color | #007bff | Set the color for hovered links; links hover when the mouse moves over it.
-
-![footer-color](https://cdn.joomdev.com/documentation/astroid-framework/images/footercolor.jpg)
-
 ## Layout Manager
 Layout manager provides the ability to build flexible layout from the collection of available elements. A layout consist of sections, grids and  elements that can be easily managed with the built in drag and drop functionality. It allows customization of each section with Design Settings, Responsive Settings, Animation Settings and others.
 
@@ -254,7 +234,7 @@ Layout manager provides the ability to build flexible layout from the collection
 
 ### Layout Structure
 
-* Layout based on module positions includes a responsive, grid system that appropriately scales up to 12 columns as the device or viewport size increases. You can select the desired number of columns from the predefined columns grid. 
+* Layout based on module positions includes a responsive, grid system that appropriately scales up to 12 columns as the device or viewport size increases. You can select the desired number of columns from the predefined columns grid or can create your own custom grid layout. 
 
 * Icon with arrows allows you to change positions of rows by moving them up or down. Use plus icon to add new Row, then select column structure and insert module position(s) accordingly.
 * Sections, rows and elements can be added, edited, copied and deleted directly in the layout manager.
@@ -312,9 +292,9 @@ Background Video | None | Set the background video for the particular column
 
 ![design-settings](https://cdn.joomdev.com/documentation/astroid-framework/images/design.jpg)
 
-* **Animation Settings:** In this we have different animation options which make possible to animate particular column.
+* **Animation Settings:** Here you will get different animation options which make possible to animate particular column, section and element. You can define animation delay time which will specify a delay for the start of an animation.
 
-* **Responsive settings:** This allows you to control visibility of columns. You can hide columns on selected devices
+* **Responsive settings:** This allows you to control visibility of the columns. You can use breakpoints to define differing content layouts based on device width, you can set the column size to the content layout to ensure that your layout is responsive. And also you can hide components for specific device layouts.
 
 Following are the options for ResponsiveSettings:
 
@@ -333,7 +313,7 @@ This is a fully customizable font-related section. You can change the fonts and 
 
 ### Body Typography
 
-It allows you to adjust typography settings for the Body on the site.
+It allows you to adjust typography settings for the Body on the site. If default selected then properties will inherit from CSS code.
 
 Option | Default | Description
 ------- | ----------- | -----------
@@ -344,7 +324,7 @@ Font Size | 1 | Set the font size you need to use in the text element.
 Letter Spacing | 0 | Set the needed distance between letters.
 Line Height | 1 | line-height property specifies the height of a line.
 Text Transform | none | Set the font transformation, if needed (uppercase, capitalize and lowercase).
-
+![bodytypogarphy](https://cdn.joomdev.com/documentation/astroid-framework/images/bodytypogarphy1.jpg)
 ![bodytypogarphy](https://cdn.joomdev.com/documentation/astroid-framework/images/bodytypogarphy.jpg)
 
 ### Menu Typography
@@ -502,18 +482,78 @@ Font-Color | #000 | set the color of the text. The color is specified by: `color
 
 ![h6typogarphy](https://cdn.joomdev.com/documentation/astroid-framework/images/h6typogarphy2.jpg)
 
-## Footer
+## Article/Blog
+Article/Blog settings allows you to customize the blog and article layout of website.
 
-Footer is a small section at the bottom of each page. You can Enable or Disable the footer copyright bar, by enabling this section it enables you to edit the content of the bottom copyright information of the page.
+### Basic Settings
+This section allows you to configure the following options.
+
+#### Article type Icons: 
+Article type icons are for further more illustration to show which type of content the particular article (post) have. Tha icon will appear on the top right corner of the article.
+
+##### Article Type options
+The article type icon can be customize in the Administrator (Back-end) by clicking on the Content menu, in the respective article you will get the following options:
+
+###### Article Type
+
+###### Regular: 
+Same as of the default joomla article.
+
+###### Video: 
+Select the video type and enter the respective video URL.  
+For both YouTube video ID and Vimeo ID. First, go to the video webpage. Copy the URL and you just need to paste in the Video URL field.
+
+###### Gallery: 
+For Gallery Type article you need to upload a Gallery Image and define a title and a small description for it. You can add multiple Items to your article.
 
 
-Option | Default | Description
-------- | ----------- | -----------
-Custom HTML | none | Here we can enter the text that displays in the copyright bar.
-Module Position | astroid-footer | Select a suitable module position where you want to display this feature.
-Featue Load Position | After module | If there are other module(s) published to this module position, you can select to display the content of this feature either below or after the module(s) published to this position.
+###### Audio: 
+You can Choose from Soundcloud or spotify.
+To get an embed code for your track or playlist, click the 'Share' button below the waveform and an overlay will appear. Click on the embed tab to view what options you have to embed your player. Copy-paste the embed code in the code editor.
 
-![footer](https://cdn.joomdev.com/documentation/astroid-framework/images/footer.jpg)
+For Spotify : To retrieve a Spotify song URL, on the web player click on the three dots on a song and choose copy song Link and then copy and paste it in the spotify field.
+
+
+###### Review:
+You can easily add a detail review for your single article by giving star rating followed by detail description.
+
+###### Qoute:
+You can add words from a text or speech written or spoken by another person or author. 
+
+###### Article Badge
+Use article badge to indicate a specific post. It will appear on the top left corner of the respective post. Here you will get the option to choose between predefined badges or you can create your own.
+
+
+#### Read Time: 
+Enables this option shows the estimated reading time of article.
+
+### Single Article Options:
+
+#### Author Info: 
+The Author information is displays underneath the article, the author information is updated the in the Author profile in User Tab.
+
+#### Article Rating: 
+Article rating/review shows the star rating for a single article and allows user to give a star rating.
+
+#### Related Posts: 
+Allows you to display a list of related posts underneath the article post. The list is based on the meta keyword of the post which makes them more relevant and more likely to display. 
+The settings also allows to display number of related post you want to display.
+
+#### Social Buttons Type: 
+You can also enable Social Share buttons under each article. You can use AddThis or ShareThis content sharing platform in order to add social buttons. 
+
+##### AddThis: 
+Customize the button you would like to use on your site. Copy the code and paste in the code editor.
+
+##### ShareThis: 
+Customize the button you would like to use on your site .Copy the property Id and Paste in the Input field. Under Property Settings page you should see the Property ID.
+
+#### Open Graph
+Open grapgh allows you to identify which elements of your page you want to show when someone share's your page.
+
+#### Comments
+This option allows a comment system on the each article post so that users will be able to leave comments under their own name.
+Choose between the platforms facebook, disqus, HyperComments or IntenseDebate.
 
 ## Custom Code
 
@@ -542,7 +582,7 @@ In style we have 2 Options to style our social icons:
    1. Inherit color.
    2. Brand color.
 
-In this section we have in all 21 types of Social Profiles : 
+In this section we have in all 21 types of Predefined Social Profiles and also to add Custom social Profile : 
   1. Facebook
   2. Messenger
   3. Twitter
@@ -565,10 +605,25 @@ In this section we have in all 21 types of Social Profiles :
   20. Flickr
   21. VK
   
+  
 ![social](https://cdn.joomdev.com/documentation/astroid-framework/images/social.jpg)
 
 ## Miscellaneous
-In this section, you can add contact Information, customize coming soon and 404 page, set favicon for your site and can also define the responsive breakpoints for your site.
+
+In this section, you can add footer copyright bar, contact Information, customize coming soon and 404 page, set favicon for your site and can also define the responsive breakpoints for your site.
+
+### Copyright
+
+Copyright is a small section at the bottom of each page. You can Enable or Disable the footer copyright bar, by enabling this section it enables you to edit the content of the bottom copyright information of the page.
+
+
+Option | Default | Description
+------- | ----------- | -----------
+Custom HTML | none | Here we can enter the text that displays in the copyright bar.
+Module Position | astroid-footer | Select a suitable module position where you want to display this feature.
+Featue Load Position | After module | If there are other module(s) published to this module position, you can select to display the content of this feature either below or after the module(s) published to this position.
+
+![footer](https://cdn.joomdev.com/documentation/astroid-framework/images/footer.jpg)
 
 ### Contact Information
 
@@ -599,6 +654,7 @@ Logo | none | Here you can select a logo which will display on your coming soon 
 Background Image | none | You can select a Background image for your coming soon page.
 Title | Coming Soon |  Here you can Enter the Title for your Coming Soon Page which will be displayed when your site is under construction.
 Countdown Date | 2017-05-15 | Here you can set a date for countdown exactly when your site is going to be live.
+Social Icon | Icons will appear those which are configured in social section | Enable social Icon
 Content | none | Enter description for your coming soon page.
 Background Repeat | No Repeat | Set if/how a background image will be repeated.
 Background Size | Inherit | This property specifies the size of the background images.
@@ -643,7 +699,7 @@ A mega menu is defined as a drop down interface that is triggered by the user ho
 
 Option | Description
 ------- | -----------
-Dropdown Alignment | allows you choose align (left/right/centre) dropdown position.
+Dropdown Alignment | allows you choose align (left/right/centre/Container/Full) dropdown position.
 Subtitle | allows you to set subtitle for your menu item.
 Icon Only | When you want to show only icon for your Menu instead full title you can enable this option.
 Icon | You can set icon for your Menu Items. 
@@ -688,7 +744,8 @@ Banner Layout | You can set Banner Layout as Container or Container Fluid, The c
 
 `NOTE: In order to make this feature work you have to publish the Banner element using the layout manager.`
 In Layout Manager Add a Section where you want to show your banner and select a Banner Element in it.
-
+![banner](https://cdn.joomdev.com/documentation/astroid-framework/images/banner-disable.jpg)
+![banner](https://cdn.joomdev.com/documentation/astroid-framework/images/banner-enable.jpg)
 
 # Developer Documentation
 
@@ -970,7 +1027,7 @@ You can use the Custom CSS to customize the appearance.
 ## Frontend Folder Overrides
 By default in astroid framework, majority of the HTML rendered can be edited via the /frontend/ folder in your template. However, updating astroid to newer version would overwrite your modifications with that or core astroid files.
 
-Starting Astroid 1.3.0, You can override the frontend folder as well.
+Starting Astroid 1.1.3, You can override the frontend folder as well.
 
 If you'd like to override the the header layout file **header.php**
 ```html
@@ -984,161 +1041,85 @@ ROOT/templates/astroid_template_zero/html/frontend/header.php
 
 and that should do it, the overrides are applicable to all files under the frontend folder.
 
-**Changelog**
+# Changelog
 
 Here is record of all notable changes made to a Astroid Framework.
 
-# v1.3.0: 31-August-2018
-## Added
-* Column Level Class and ID
-* Users can use html tag in **banner title** input field.
-* Functionality to add Custom CSS and JS files. [#15](https://github.com/joomdev/Astroid-Framework/issues/15)
+## v1.2.1: 16-August-2018
 
-## Updated
-* FontAwesome updated to 5.3.1
-
-## Fixes
-* Coming Soon page fixed
-* Error page Typography fixed
-* Debug & Error reporting is now working on Error page
-* Setting export functionality fixed for Firefox ![alt text](https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_16x16.png
-"Firefox")
-* Mobile menu issue fixed
-* Body background color issue fixed in boxed layout
-* Fixed menu assignment in quickstart package. [#16](https://github.com/joomdev/Astroid-Framework/issues/16)
-
-## Removed
-* Removed `error.php` file from template frontend folder.
-
----
-
-# v1.2.1: 16-August-2018
-
-## Added
 * Split title module chrome Added
-
-## Fixes
 * Performance improvement in header
 * Duplicating Astroid Template issue resolved
 
----
+## v1.2.0: 14-August-2018
 
-# v1.2.0: 14-August-2018
-
-## Added
 * Custom Grid Options Added
 * Section Color Options Added
 * Sub level Menu Options Added
 * Custom Social Profile Option Added
-
-## Updated
 * Column Resizing Logic Updated
 * Font Awesome Library updated
-
-## Fixes
-* Bug Fixes
-* Footer section renamed to copyright section and merged in miscellaneous section
 * Moved all astroid based templates params to #__astroid_templates table.
-
-## Removed
+* Footer section renamed to copyright section and merged in miscellaneous section
 * Footer Color Option removed
+* Bug Fixes
 
----
+## v1.1.3: 6-August-2018
 
-# v1.1.3: 6-August-2018
-
-## Added 
-* Frontend folder override functionality added.
-* WhatsApp language Added
+* Social Profile list ordering
 * Missing Social icons added in Social Profile list
+* WhatsApp language Added
+* Joomla 3.8.11 Compatible
 * px, em, rem, pt, % Units added in Typography
-
-## Fixes
+* Banner Element Improved
+* Frontend folder override functionality added.
 * Language filtered
-* Banner Element improved
-* Joomla 3.8.11 compatible
-* Social Profile list ordering improved
 
----
+## v1.1.2: 30-July-2018
 
-# v1.1.2: 30-July-2018
-
-## Added
 * Frontend and Backend RTL Compatible
+* Google font loading bug fixed
 * Custom CSS and SCSS functionality added. (Now, you can create your own custom CSS and SCSS file)
-
-## Updated
 * Bootstrap version updated to v4.1.3
 
-## Fixes
-* Google font loading bug fixed
+## v1.1.1: 23-July-2018
 
----
-
-# v1.1.1: 23-July-2018
-
-## Added
+* Removed Extra container from Stacked Layout
 * VK Social profile Added
 * Close icon(X) on offcanvas and mobile menu Added
-* Favicon added on 404 page
-
-## Fixes
 * Sticky header Improved
-* Main menu Color improvement
-
-## Removed
-* Removed Extra container from Stacked Layout
+* Favicon added on 404 page
 * Removed default location and phone number from Contact information
 * Removed extra margin on logo from Stacked Style 2
+* Main menu Color improvement
 
----
-
-# v1.1.0: 18-July-2018
-
-## Added
+## v1.1.0: 18-July-2018
 
 * Section container layouts with more options
 * Frontend editing overrides
+* Column calculation with component area
 * Added Banner Element
 * Added Banner option in Menu item settings
 * Added Flickr icon to the Social Profiles
-
-## Updated
-
-* Updated language file
-
-## Fixes
-
-* Some other bug fixed
-* Backend UI/UX improved
-* Column calculation with component area
-* Astroid admin security
 * CRSF Token on post requests
+* Astroid admin security
+* Backend UI/UX improved
 * Import/Export buttons for better positioning.
+* Updated language file
+* Some other bug fixed
 
----
-
-# v1.0.2: 3-July-2018
-
-## Fixes
+## v1.0.2: 3-July-2018
 
 * Critical and minor HTML bug resolved
 
----
-
-# v1.0.1: 1-July-2018
-
-## Updated
+## v1.0.1: 1-July-2018
 
 * Default Parameter updated
 * Default parameter updated
-
-## Fixes
-
 * Off-Canvas and Mobile Menu bug fixed
 
----
 
-# v1.0.0: 28-June-2018
+## v1.0.0: 28-June-2018
 
 * Initial Release
+

@@ -122,7 +122,7 @@
 
             // Add editing button with tooltip:
             $(this).addClass('jmodinside')
-                    .prepend('<a class="btn jmodedit" href="#" target="' + moduleTarget + '"><span class="icon-edit"></span></a>')
+                    .prepend('<a class="btn jmodedit" href="#" target="' + moduleTarget + '"><i class="fas fa-edit"></i></a>')
                     .children(":first").attr('href', moduleEditUrl).attr('title', moduleTip)
                     .tooltip({"container": false, html: true, placement: tooltipPlacer})
                     .jEditMakeAbsolute(true);

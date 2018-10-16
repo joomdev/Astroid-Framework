@@ -8,16 +8,14 @@
 
 defined('_JEXEC') or die;
 ?>
-   <div class="latestnews<?php echo $moduleclass_sfx; ?>">
-      <ul class="latestnews list-group list-group-flush">
-         <?php foreach ($list as $item) : $image = json_decode($item->images); ?>
-         <li class="list-group-item pb-2 px-0">
-            <h6>
-               <a class="article-title" href="<?php echo $item->link; ?>" class="">
-                  <?php echo $item->title; ?>
-               </a>
-            </h6>
-         </li>
-         <?php endforeach; ?>
-      </ul>
-   </div>
+<div class="latestnews menu list-inline<?php echo $moduleclass_sfx; ?>">
+	<ul class="menu list-inline">
+		<?php foreach ($list as $item) : $image = json_decode($item->images); ?>
+			<li>
+				<a class="article-title" href="<?php echo $item->link; ?>" class="">
+					<?php echo $item->title; ?>
+				</a>
+			</li>
+		<?php endforeach; ?>
+	</ul>
+</div>

@@ -1,3 +1,7 @@
+[![Github All Releases](https://img.shields.io/github/downloads/joomdev/Astroid-Framework/total.svg)](https://github.com/joomdev/Astroid-Framework/releases)
+![AUR](https://img.shields.io/aur/license/yaourt.svg)
+[![GitHub release](https://img.shields.io/github/release/joomdev/Astroid-Framework.svg)](https://github.com/joomdev/Astroid-Framework/releases)
+
 # Requirements
 * Joomla: 3.8 +
 * PHP : 5.6+

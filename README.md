@@ -1,4 +1,3 @@
-
 # Requirements
 * Joomla: 3.8 +
 * PHP : 5.6+
@@ -1122,4 +1121,3 @@ Here is record of all notable changes made to a Astroid Framework.
 ## v1.0.0: 28-June-2018
 
 * Initial Release
-

@@ -1,19 +1,35 @@
 <?php
 /**
- * @package   Astroid Framework
- * @author    JoomDev https://www.joomdev.com
- * @copyright Copyright (C) 2009 - 2018 JoomDev.
- * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
+ * @package     Joomla.Site
+ * @subpackage  mod_articles_categories
+ *
+ * @copyright   Copyright (C) 2005 - 2018 Open Source Matters, Inc. All rights reserved.
+ * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
+
 defined('_JEXEC') or die;
+
+$input  = JFactory::getApplication()->input;
+$option = $input->getCmd('option');
+$view   = $input->getCmd('view');
+$id     = $input->getInt('id');
+
 foreach ($list as $item) : ?>
-	<li class="list-group-item border-0 py-1 px-0" <?php if ($_SERVER['PHP_SELF'] == JRoute::_(ContentHelperRoute::getCategoryRoute($item->id))) echo ' class="active"';?>>
+	<?php
+		$classes = ['list-group-item','border-0','py-0','px-0'];
+	?>
+	<?php if ($id == $item->id && $view == 'category' && $option == 'com_content') $classes[] = "active"; ?>
+	<li class="<?php echo implode(' ',$classes)?>"> <?php $levelup = $item->level - $startLevel - 1; ?>
+
+		<h<?php echo $params->get('item_heading') + $levelup; ?>>
 		<a href="<?php echo JRoute::_(ContentHelperRoute::getCategoryRoute($item->id)); ?>">
-		<?php echo $item->title;?>
+		<?php echo $item->title; ?>
 			<?php if ($params->get('numitems')) : ?>
 				(<?php echo $item->numitems; ?>)
 			<?php endif; ?>
 		</a>
+		</h<?php echo $params->get('item_heading') + $levelup; ?>>
+
 		<?php if ($params->get('show_description', 0)) : ?>
 			<?php echo JHtml::_('content.prepare', $item->description, $item->getParams(), 'mod_articles_categories.content'); ?>
 		<?php endif; ?>

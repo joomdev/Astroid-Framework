@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @package   Astroid Framework
  * @author    JoomDev https://www.joomdev.com
@@ -9,7 +10,6 @@
 defined('_JEXEC') or die('Restricted access');
 
 jimport('joomla.form.formfield');
-jimport('astroid.framework.fields');
 
 class JFormFieldLayout extends JFormField {
 
@@ -22,7 +22,7 @@ class JFormFieldLayout extends JFormField {
    public function getInput() {
       $value = $this->value;
       if (empty($value)) {
-         $options = AstroidFrameworkFields::getDefaultLayout();
+         $options = \json_decode(\file_get_contents(JPATH_SITE . '/' . 'media' . '/' . 'astroid' . '/' . 'assets' . '/' . 'json' . '/' . 'layouts' . '/' . 'default.json'), TRUE);
       } else {
          $options = \json_decode($value, true);
       }

@@ -1,0 +1,8 @@
+div .jd-simple-contact-form .btn-primary {
+   background-color: $primary;
+   border-color: $primary;
+   &:hover, &:focus {
+      background: darken($primary);
+      border-color: darken($primary);
+   }
+}

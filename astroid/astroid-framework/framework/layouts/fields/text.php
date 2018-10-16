@@ -76,5 +76,4 @@ if (isset($isSwitch) && $isSwitch) {
 ?>
 <input type="<?php echo $inputType; ?>" name="<?php echo $name; ?>" id="<?php echo $id; ?>" value="<?php echo htmlspecialchars($value, ENT_COMPAT, 'UTF-8'); ?>" <?php echo (isset($colorpicker) && $colorpicker === true) ? 'color-picker' : ''; ?> <?php echo implode(' ', $attributes); ?> />
 <?php if (isset($colorpicker) && $colorpicker === true && !empty($sassVariable)) { ?>
-   <input type="hidden" name="params[sass_variables][<?php echo $sassVariable; ?>]" value="<?php echo $fieldname; ?>" />
 <?php } ?>

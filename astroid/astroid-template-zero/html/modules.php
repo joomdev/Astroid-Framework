@@ -18,7 +18,7 @@ function modChrome_card($module, &$params, &$attribs) {
 
    // Temporarily store header class in variable
    $headerClass = $params->get('header_class');
-   $headerClass = $headerClass ? ' class="module-title pb-2 ' . htmlspecialchars($headerClass, ENT_COMPAT, 'UTF-8') . '"' : ' class="module-title pb-2"';
+   $headerClass = $headerClass ? ' class="module-title' . htmlspecialchars($headerClass, ENT_COMPAT, 'UTF-8') . '"' : ' class="module-title"';
 
    $content = trim($module->content);
 
@@ -26,7 +26,7 @@ function modChrome_card($module, &$params, &$attribs) {
       echo '<div class="card">';
       echo '<div class="card-body">';
       ?>
-      <<?php echo $moduleTag; ?> class="module<?php echo htmlspecialchars($params->get('moduleclass_sfx'), ENT_COMPAT, 'UTF-8') . $moduleClass; ?>">
+      <<?php echo $moduleTag; ?> class="moduletable <?php echo htmlspecialchars($params->get('moduleclass_sfx'), ENT_COMPAT, 'UTF-8') . $moduleClass; ?>">
       <?php if ($module->showtitle != 0) : ?>
          <<?php echo $headerTag . $headerClass . '>' . $module->title; ?></<?php echo $headerTag; ?>>
       <?php endif; ?>
@@ -47,14 +47,14 @@ function modChrome_border_layout($module, &$params, &$attribs) {
 
    // Temporarily store header class in variable
    $headerClass = $params->get('header_class');
-   $headerClass = $headerClass ? ' class="module-title pb-2 ' . htmlspecialchars($headerClass, ENT_COMPAT, 'UTF-8') . '"' : ' class="module-title pb-2"';
+   $headerClass = $headerClass ? ' class="module-title' . htmlspecialchars($headerClass, ENT_COMPAT, 'UTF-8') . '"' : ' class="module-title"';
 
    $content = trim($module->content);
 
    if (!empty($content)) :
       echo '<div class="border rounded p-3 mb-4">';
       ?>
-      <<?php echo $moduleTag; ?> class="module<?php echo htmlspecialchars($params->get('moduleclass_sfx'), ENT_COMPAT, 'UTF-8') . $moduleClass; ?>">
+      <<?php echo $moduleTag; ?> class="moduletable <?php echo htmlspecialchars($params->get('moduleclass_sfx'), ENT_COMPAT, 'UTF-8') . $moduleClass; ?>">
       <?php if ($module->showtitle != 0) : ?>
          <<?php echo $headerTag . $headerClass . '>' . $module->title; ?></<?php echo $headerTag; ?>>
       <?php endif; ?>
@@ -74,13 +74,13 @@ function modChrome_astroidxhtml($module, &$params, &$attribs) {
 
    // Temporarily store header class in variable
    $headerClass = $params->get('header_class');
-   $headerClass = $headerClass ? ' class="module-title pb-2 ' . htmlspecialchars($headerClass, ENT_COMPAT, 'UTF-8') . '"' : ' class="module-title pb-2"';
+   $headerClass = $headerClass ? ' class="module-title' . htmlspecialchars($headerClass, ENT_COMPAT, 'UTF-8') . '"' : ' class="module-title"';
 
    $content = trim($module->content);
 
    if (!empty($content)) :
       ?>
-      <<?php echo $moduleTag; ?> class="module<?php echo htmlspecialchars($params->get('moduleclass_sfx'), ENT_COMPAT, 'UTF-8') . $moduleClass; ?>">
+      <<?php echo $moduleTag; ?> class="moduletable <?php echo htmlspecialchars($params->get('moduleclass_sfx'), ENT_COMPAT, 'UTF-8') . $moduleClass; ?>">
       <?php if ($module->showtitle != 0) : ?>
          <<?php echo $headerTag . $headerClass . '>' . $module->title; ?></<?php echo $headerTag; ?>>
       <?php endif; ?>
@@ -103,13 +103,14 @@ function modChrome_split_title($module, &$params, &$attribs) {
       if ($module->showtitle) {
          $title = explode('|', $module->title);
          $html = '';
-         $html .= '<' . $headerTag . ' class="split-title' . $headerClass . '">';
+         $html .= '<' . $headerTag . ' class="split-title ' . $headerClass . '">';
          $index = 1;
          foreach ($title as $title_text) {
             $html .= '<span class="split-' . $index . '">' . $title_text . '</span>';
             $index++;
          }
          $html .= '</' . $headerTag . '>';
+         echo $html;
       }
 
       echo $module->content;

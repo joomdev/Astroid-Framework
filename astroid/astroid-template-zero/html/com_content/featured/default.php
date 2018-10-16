@@ -32,7 +32,7 @@ if (version_compare(JVERSION, '3.99999.99999', 'le'))
 <div class="items-leading clearfix">
   <?php foreach ($this->lead_items as &$item) : ?>
     <article class="item leading-<?php echo $leadingcount; ?><?php echo $item->state == 0 ? ' system-unpublished' : null; ?> clearfix" 
-      itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+      itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
       <?php
         $this->item = &$item;
         echo $this->loadTemplate('item');
@@ -61,7 +61,7 @@ if (version_compare(JVERSION, '3.99999.99999', 'le'))
     <div class="row cols-<?php echo (int) $this->columns;?>">
     <?php endif; ?>
       <article class="item column-<?php echo $rowcount;?><?php echo $item->state == 0 ? ' system-unpublished' : null; ?> col-sm-<?php echo round((12 / $this->columns));?>"
-        itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+        itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
       <?php
           $this->item = &$item;
           echo $this->loadTemplate('item');
@@ -79,7 +79,11 @@ if (version_compare(JVERSION, '3.99999.99999', 'le'))
 
 <?php if (!empty($this->link_items)) : ?>
   <div class="items-more">
-  <?php echo $this->loadTemplate('links'); ?>
+    <ul class="menu list-inline">
+     <li>
+        <?php echo $this->loadTemplate('links'); ?>
+      </li>
+  </ul>
   </div>
 <?php endif; ?>
 

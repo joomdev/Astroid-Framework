@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @package   Astroid Framework
  * @author    JoomDev https://www.joomdev.com
@@ -44,10 +43,12 @@ $mobile_menu_text_color = $template->params->get('mobile_menu_text_color', '');
 $mobile_hover_background_color = $template->params->get('mobile_hover_background_color', '');
 $mobile_active_link_color = $template->params->get('mobile_menu_active_link_color', '');
 $mobile_active_background_color = $template->params->get('mobile_menu_active_bg_color', '');
+
+//Miscellaneous -> Contact Us
+$icon_color = $template->params->get('icon_color', '');
 ?>
 
 <?php
-
 // Body Coloring
 $body_styles = [];
 if (!empty($body_background_color)) {
@@ -65,7 +66,6 @@ if (!empty($body_link_hover_color)) {
 ?>
 
 <?php
-
 // Header Coloring
 $header_styles = [];
 if (!empty($header_background_color)) {
@@ -86,7 +86,6 @@ if (!empty($sticky_header_background_color)) {
 ?>
 
 <?php
-
 // Main Menu Coloring
 $main_menu_styles = [];
 if (!empty($main_link_color)) {
@@ -101,37 +100,29 @@ if (!empty($main_link_active_color)) {
 ?>
 
 <?php
-
 // Dropdown Coloring
 $dropdown_styles = [];
 if (!empty($dropdown_main_background_color)) {
-   $dropdown_styles[] = '.astroid-nav .navbar-subnav, .astroid-nav .has-subnav.nav-item-level-1.hovered:after, .astroid-nav .has-subnav.nav-item-level-1.hovered:before{ background: ' . $dropdown_main_background_color . ' !important;}';
-   $dropdown_styles[] = '.astroid-nav .megamenu-container,.astroid-nav .has-megamenu.nav-item-level-1.hovered:after,.astroid-nav .has-megamenu.nav-item-level-1.hovered:before{ background: ' . $dropdown_main_background_color . ' !important;}';
+   $dropdown_styles[] = '.nav-submenu-container, .megamenu-container{ background: ' . $dropdown_main_background_color . ' !important;}';
 }
 if (!empty($dropdown_main_link_color)) {
-   $dropdown_styles[] = '.astroid-nav .navbar-subnav a.nav-link{ color: ' . $dropdown_main_link_color . ' !important;}';
-   $dropdown_styles[] = '.astroid-nav .megamenu-container a.nav-link{ color: ' . $dropdown_main_link_color . ' !important;}';
+   $dropdown_styles[] = '.nav-submenu-container .nav-submenu > li > a, .megamenu-submenu-container .nav-submenu > li > a{ color: ' . $dropdown_main_link_color . ' !important;}';
 }
 if (!empty($dropdown_main_hover_link_color)) {
-   $dropdown_styles[] = '.astroid-nav .navbar-subnav a.nav-link:hover{ color: ' . $dropdown_main_hover_link_color . ' !important;}';
-   $dropdown_styles[] = '.astroid-nav .megamenu-container a.nav-link:hover{ color: ' . $dropdown_main_hover_link_color . ' !important;}';
+   $dropdown_styles[] = '.nav-submenu-container .nav-submenu > li > a:hover, .megamenu-submenu-container .nav-submenu > li > a:hover{ color: ' . $dropdown_main_hover_link_color . ' !important;}';
 }
 if (!empty($dropdown_main_hover_background_color)) {
-   $dropdown_styles[] = '.astroid-nav .navbar-subnav a.nav-link:hover{ background-color: ' . $dropdown_main_hover_background_color . ' !important;}';
-   $dropdown_styles[] = '.astroid-nav .megamenu-container a.nav-link:hover{ background-color: ' . $dropdown_main_hover_background_color . ' !important;}';
+   $dropdown_styles[] = '.nav-submenu-container .nav-submenu > li > a:hover, .megamenu-submenu-container .nav-submenu > li > a:hover{ background-color: ' . $dropdown_main_hover_background_color . ' !important;}';
 }
 if (!empty($dropdown_main_active_link_color)) {
-   $dropdown_styles[] = '.astroid-nav .navbar-subnav a.nav-link.active{ color: ' . $dropdown_main_active_link_color . ' !important;}';
-   $dropdown_styles[] = '.astroid-nav .megamenu-container a.nav-link.active{ color: ' . $dropdown_main_active_link_color . ' !important;}';
+   $dropdown_styles[] = '.nav-submenu-container .nav-submenu > li.nav-item-active > a:hover, .megamenu-submenu-container .nav-submenu > li.nav-item-active > a{ color: ' . $dropdown_main_active_link_color . ' !important;}';
 }
 if (!empty($dropdown_main_active_background_color)) {
-   $dropdown_styles[] = '.astroid-nav .navbar-subnav a.nav-link.active{ background-color: ' . $dropdown_main_active_background_color . ' !important;}';
-   $dropdown_styles[] = '.astroid-nav .megamenu-container a.nav-link.active{ background-color: ' . $dropdown_main_active_background_color . ' !important;}';
+   $dropdown_styles[] = '.nav-submenu-container .nav-submenu > li.nav-item-active > a:hover, .megamenu-submenu-container .nav-submenu > li.nav-item-active > a{ background-color: ' . $dropdown_main_active_background_color . ' !important;}';
 }
 ?>
 
 <?php
-
 // Mobile Menu Coloring
 $mobilemenu_styles = [];
 if (!empty($mobile_background_color)) {
@@ -147,7 +138,7 @@ if (!empty($mobile_hover_background_color)) {
    $mobilemenu_styles[] = '.astroid-mobilemenu-container .astroid-mobilemenu-inner .menu-item a:hover{ background-color: ' . $mobile_hover_background_color . ' !important;}';
 }
 if (!empty($mobile_active_link_color)) {
-   $mobilemenu_styles[] = '.astroid-mobilemenu-container .astroid-mobilemenu-inner .menu-item a.active{ color: ' . $mobile_active_link_color . ' !important;}';
+   $mobilemenu_styles[] = '.astroid-mobilemenu-container .astroid-mobilemenu-inner .menu-item.active a{ color: ' . $mobile_active_link_color . ' !important;}';
 }
 if (!empty($mobile_active_background_color)) {
    $mobilemenu_styles[] = '.astroid-mobilemenu-container .astroid-mobilemenu-inner .menu-item a.active{ background-color: ' . $mobile_active_background_color . ' !important;}';
@@ -155,11 +146,19 @@ if (!empty($mobile_active_background_color)) {
 ?>
 
 <?php
+//
+$contact_icon_color = '';
+if (!empty($icon_color)) {
+   $contact_icon_color = '.astroid-contact-info i[class*="fa-"]{color:' . $icon_color . ';}';
+}
+?>
 
-$document = JFactory::getDocument();
-$document->addStyledeclaration(implode('', $body_styles));
-$document->addStyledeclaration(implode('', $header_styles));
-$document->addStyledeclaration(implode('', $main_menu_styles));
-$document->addStyledeclaration(implode('', $dropdown_styles));
-$document->addStyledeclaration(implode('', $mobilemenu_styles));
+<?php
+   $document = JFactory::getDocument();
+   $document->addStyledeclaration(implode('', $body_styles));
+   $document->addStyledeclaration(implode('', $header_styles));
+   $document->addStyledeclaration(implode('', $main_menu_styles));
+   $document->addStyledeclaration(implode('', $dropdown_styles));
+   $document->addStyledeclaration(implode('', $mobilemenu_styles));
+   $document->addStyledeclaration($contact_icon_color);
 ?>

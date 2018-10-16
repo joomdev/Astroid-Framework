@@ -112,14 +112,14 @@ astroidFramework.directive('astroidmediagallery', ['$http', function ($http) {
             };
 
             $scope.newFolder = function (_id) {
-               var name = prompt("Please enter folder name.", "");
+               var name = prompt(TPL_ASTROID_NEW_FOLDER_NAME_LBL, "");
                if (name === "") {
                   return false;
                } else if (name) {
 
                   var re = /^[a-zA-Z].*/;
                   if (!re.test(name) || (/\s/.test(name))) {
-                     Admin.notify('Invalid folder name.', "error");
+                     Admin.notify(TPL_ASTROID_NEW_FOLDER_NAME_INVALID, "error");
                      return false;
                   }
 
@@ -318,7 +318,6 @@ astroidFramework.directive('colorPicker', function ($parse) {
          if (typeof $ == 'undefined') {
             var $ = jQuery;
          }
-         var _value = $(element).val();
          if ($(element).hasClass('color-picker-lg')) {
             var spectrumConfigExtend = angular.copy(spectrumConfig);
             spectrumConfigExtend.replacerClassName = 'color-picker-lg';
@@ -335,9 +334,10 @@ astroidFramework.directive('colorPicker', function ($parse) {
             $(element).spectrum("set", ngModel.$modelValue);
          };
          setTimeout(function () {
+            var _value = $(element).val();
             $(element).spectrum("set", _value);
             scope.$watch(attrs['ngModel'], setColor);
-         }, 100);
+         }, 200);
       },
    };
 });
@@ -546,3 +546,67 @@ astroidFramework.directive('convertToString', function () {
       }
    };
 });
+
+astroidFramework.directive('astroidresponsive', ['$http', function ($http) {
+      return {
+         restrict: 'A',
+         scope: true,
+         require: 'ngModel',
+         link: function ($scope, $element, $attrs, ngModel) {
+            if (typeof $ == 'undefined') {
+               var $ = jQuery;
+            }
+            $($element).parent('.astroidresponsive').append($('#column-responsive-field-template').html());
+
+            var bindFields = function () {
+               $($element).parent('.astroidresponsive').find('.responsive-field').bind('change', function () {
+                  var _params = [];
+                  $('.responsive-field').each(function () {
+                     var _param = {};
+                     _param.name = $(this).data('name');
+                     if ($(this).hasClass('jd-switch')) {
+                        _param.value = $(this).is(':checked') ? 1 : 0;
+                     } else {
+                        _param.value = $(this).val();
+                     }
+                     _params.push(_param);
+                  });
+                  var _params = JSON.stringify(_params);
+                  ngModel.$setViewValue(_params);
+                  $($element).val(_params);
+                  $scope.$apply();
+               });
+            };
+
+            var _initValue = false;
+            var setValue = function () {
+               if (!_initValue) {
+                  _initValue = true;
+                  if (typeof ngModel.$modelValue != 'undefined') {
+                     var _params = JSON.parse(ngModel.$modelValue);
+                  } else {
+                     var _params = [];
+                  }
+                  _params.forEach(function (_param) {
+                     var _field = $($element).parent('.astroidresponsive').find('.responsive-field[data-name="' + _param.name + '"]');
+                     if (_field.hasClass('jd-switch')) {
+                        if (_param.value) {
+                           _field.prop('checked', true);
+                        } else {
+                           _field.prop('checked', false);
+                        }
+                     } else {
+                        _field.val(_param.value);
+                     }
+                  });
+                  setTimeout(function () {
+                     bindFields();
+                  }, 50);
+               }
+            };
+            setTimeout(function () {
+               setValue()
+            }, 100);
+         }
+      };
+   }]);

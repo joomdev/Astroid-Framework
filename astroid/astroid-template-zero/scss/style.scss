@@ -1,17 +1,12 @@
 // Bootstrap 4.1.3 variables override
 @import "bootstrap/functions";
-@import "template/bootstrap_variables";
-
-@import "template/bootstrap_type";
-@import "template/bootstrap_borders";
+@import "zero/variables_override";
 
 // Bootstrap Default 4.1.3
 @import "bootstrap/bootstrap";
 
-// Astroid Template
-@import "template/buttons";
-@import "template/template";
+// Astroid Framework
+@import "astroid/astroid";
 
-// Custom
-@import "custom";
-@import "template/rtl";
+// Theme
+@import "zero/style";

@@ -1,9 +1,10 @@
 <?php
 /**
- * @package   Astroid Framework
- * @author    JoomDev https://www.joomdev.com
- * @copyright Copyright (C) 2009 - 2018 JoomDev.
- * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
+ * @package     Joomla.Site
+ * @subpackage  mod_search
+ *
+ * @copyright   Copyright (C) 2005 - 2018 Open Source Matters, Inc. All rights reserved.
+ * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
 defined('_JEXEC') or die;
@@ -24,25 +25,19 @@ else
 	$width = '';
 }
 ?>
-
-<div class="search<?php echo $moduleclass_sfx; ?> input-group mb-3">
-	<form action="<?php echo JRoute::_('index.php'); ?>" method="post" class="form-inline w-100">
+<div class="search<?php echo $moduleclass_sfx; ?>">
+	<form action="<?php echo JRoute::_('index.php'); ?>" method="post" class="form-group">
+	<div class="input-group">
 		<?php
-		    $output = '<div class="input-group w-100">
-		    <input type="text" class="form-control p-1" name="searchword" id="mod-search-searchword' . $module->id . '">';
-
-		    if (!$button) :
-		    $output .= '
-            <div class="input-group-append">
-            <span class="input-group-text p-2"><i class="fas fa-search"></i></span>
-            </div></div>';
-			endif;			
+			$output = '<!-- <label for="mod-search-searchword' . $module->id . '" class="element-invisible">' . $label . '</label> -->';
+			$output .= '<input name="searchword" id="mod-search-searchword' . $module->id . '" maxlength="' . $maxlength . '"  class="inputbox form-control search-query input-medium" type="search"' . $width;
+			$output .= ' placeholder="' . $text . '" />';
 
 			if ($button) :
 				if ($imagebutton) :
-					$btn_output = '<div class="input-group-append"><input type="image" alt="' . $button_text . '" class="button" src="' . $img . '" onclick="this.form.searchword.focus();"/></div></div>';
+					$btn_output = ' <div class="input-group-prepend"><input type="image" alt="' . $button_text . '" class="button btn btn-primary" src="' . $img . '" onclick="this.form.searchword.focus();"/></div>';
 				else :
-					$btn_output = '<div class="input-group-append"><button class="button btn btn-primary p-1" onclick="this.form.searchword.focus();">' . $button_text . '</button></div></div>';
+					$btn_output = ' <div class="input-group-prepend"><button class="button btn btn-primary" onclick="this.form.searchword.focus();">' . $button_text . '</button></div>';
 				endif;
 
 				switch ($button_pos) :
@@ -70,5 +65,6 @@ else
 		<input type="hidden" name="task" value="search" />
 		<input type="hidden" name="option" value="com_search" />
 		<input type="hidden" name="Itemid" value="<?php echo $mitemid; ?>" />
+	</div>
 	</form>
 </div>

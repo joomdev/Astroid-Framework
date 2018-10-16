@@ -60,7 +60,7 @@ foreach ($fonts as $font) {
 
                <div data-preview="<?php echo $id; ?>-astroid-typography-preview" data-value="<?php echo $font_face; ?>" class="ui selection dropdown search optgroup astroid-font-selector form-control">
                   <input type="hidden" name="<?php echo $name; ?>[font_face]" ng-model="<?php echo $id; ?>_font_face" value="<?php echo $font_face; ?>" />
-                  <div class="text">Inherit</div>
+                  <div class="text"><?php echo JText::_('JGLOBAL_INHERIT'); ?></div>
                   <i class="dropdown icon"></i>
                   <div class="menu"></div>
                </div>
@@ -68,7 +68,7 @@ foreach ($fonts as $font) {
                <div class="clearfix mb-4"></div>
                <label class="astroid-label"><?php echo JText::_('TPL_ASTROID_ALT_FONT_FAMILY_LABEL'); ?></label>
 
-               <select data-placeholder="Inherit" name="<?php echo $name; ?>[alt_font_face]" ng-model="<?php echo $id; ?>_alt_font_face" ng-init="<?php echo $id; ?>_alt_font_face = '<?php echo $alt_font_face; ?>'" class="form-control" select-ui>
+               <select data-placeholder="<?php echo JText::_('JGLOBAL_INHERIT'); ?>" name="<?php echo $name; ?>[alt_font_face]" ng-model="<?php echo $id; ?>_alt_font_face" ng-init="<?php echo $id; ?>_alt_font_face = '<?php echo $alt_font_face; ?>'" class="form-control" select-ui>
                   <?php foreach (AstroidFrameworkConstants::$system_fonts as $s_font_value => $s_font_title) { ?>
                      <option value="<?php echo $s_font_value; ?>"><?php echo $s_font_title; ?></option>
                   <?php } ?>
@@ -80,7 +80,7 @@ foreach ($fonts as $font) {
             <?php if ($weightpicker) { ?>
                <label class="astroid-label"><?php echo JText::_('TPL_ASTROID_FONT_WEIGHT_LABEL'); ?></label>
                <select data-typography-field="<?php echo $id; ?>" data-typography-property="font-weight" name="<?php echo $name; ?>[font_weight]" class="form-control" select-ui-div>
-                  <option <?php echo ($font_weight == '' ? ' selected' : ''); ?> value="">Default</option>
+                  <option <?php echo ($font_weight == '' ? ' selected' : ''); ?> value=""><?php JText::_('JDEFAULT'); ?></option>
                   <?php
                   foreach (array(100, 200, 300, 400, 500, 600, 700, 800, 900) as $weight) {
                      echo '<option ' . ($font_weight == $weight ? ' selected' : '') . ' value="' . $weight . '">' . $weight . '</option>';
@@ -140,7 +140,7 @@ foreach ($fonts as $font) {
          <div class="col-4">
             <?php if ($colorpicker) { ?>
                <label class="astroid-label"><?php echo JText::_('TPL_ASTROID_FONT_COLOR_LABEL'); ?></label>
-               <input color-picker data-typography-field="<?php echo $id; ?>" data-typography-property="color" type="text" name="<?php echo $name; ?>[font_color]" id="<?php echo $id; ?>_font_color" ng-model="<?php echo $id; ?>_font_color" data-value="<?php echo $font_color; ?>" value="<?php echo $font_color; ?>" class="form-control astroid-color-picker" />
+               <input color-picker data-typography-field="<?php echo $id; ?>" data-typography-property="color" type="text" name="<?php echo $name; ?>[font_color]" id="<?php echo $id; ?>_font_color" ng-init="<?php echo $id; ?>_font_color='<?php echo $font_color; ?>'" ng-model="<?php echo $id; ?>_font_color" data-value="<?php echo $font_color; ?>" value="<?php echo $font_color; ?>" class="form-control astroid-color-picker" />
                <div class="clearfix mb-1"></div>
             <?php } ?>
             <?php if ($stylepicker) { ?>
@@ -156,10 +156,10 @@ foreach ($fonts as $font) {
             <?php if ($transformpicker) { ?>
                <label class="astroid-label"><?php echo JText::_('TPL_ASTROID_TEXT_TRANSFORM_LABEL'); ?></label>
                <select data-typography-field="<?php echo $id; ?>" data-typography-property="text-transform" ng-model="<?php echo $id; ?>_text_transform" name="<?php echo $name; ?>[text_transform]" class="form-control" select-ui>
-                  <option <?php echo ($text_transform == '' ? ' selected' : ''); ?> value="">None</option>
+                  <option <?php echo ($text_transform == '' ? ' selected' : ''); ?> value=""><?php echo JText::_('JNONE'); ?></option>
                   <?php
-                  foreach (array('uppercase' => 'UPPERCASE', 'lowercase' => 'lowercase', 'capitalize' => 'Capitalize') as $transform => $transform_title) {
-                     echo '<option ' . ($text_transform == $transform ? ' selected' : '') . ' value="' . $transform . '">' . $transform_title . '</option>';
+                  foreach (array('uppercase' => 'JGLOBAL_UPPERCASE', 'lowercase' => 'JGLOBAL_LOWERCASE', 'capitalize' => 'JGLOBAL_CAPITALIZE') as $transform => $transform_title) {
+                     echo '<option ' . ($text_transform == $transform ? ' selected' : '') . ' value="' . $transform . '">' . JText::_($transform_title) . '</option>';
                   }
                   ?>
                </select>

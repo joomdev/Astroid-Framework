@@ -1,18 +1,27 @@
 <?php
 
 /**
- * @package   Astroid Framework
- * @author    JoomDev https://www.joomdev.com
- * @copyright Copyright (C) 2009 - 2018 JoomDev.
- * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
+ * @package		Astroid Framework
+ * @author		JoomDev https://www.joomdev.com
+ * @copyright	Copyright (C) 2009 - 2018 JoomDev.
+ * @license		http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
  */
 defined('_JEXEC') or die;
+jimport('astroid.framework.constants');
 
 class AstroidFrameworkConstants {
 
-   public static $astroid_version = '1.3.0';
+   public static $astroid_version = '2.0.0';
    public static $fontawesome_version = '5.3.1';
    public static $animatecss_version = '3.6';
+   public static $forum_link = 'https://www.joomdev.com/forum/astroid-framework';
+   public static $documentation_link = 'http://joomdev.com/documentation/astroid-framework';
+   public static $github_link = 'http://github.com/joomdev/astroid-framework';
+   public static $download_link = 'https://github.com/joomdev/Astroid-Framework/releases/latest';
+   public static $releases_link = 'https://github.com/joomdev/Astroid-Framework/releases';
+   public static $joomdev_link = 'https://www.joomdev.com';
+   public static $joomdev_products_link = 'https://www.joomdev.com/products';
+   public static $joomdev_templates_link = 'https://www.joomdev.com/products/templates';
    public static $animations = [
        '' => ['' => 'None'],
        'Attention Seekers' => [
@@ -300,4 +309,5 @@ class AstroidFrameworkConstants {
        [3, 3, 3, 3],
        [2, 2, 2, 2, 2, 2]
    ];
+
 }

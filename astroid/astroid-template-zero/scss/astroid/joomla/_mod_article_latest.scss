@@ -1,0 +1,15 @@
+ul.latestnews {
+   &.style1 {
+      li {
+         .ArticlesLatestDate {
+            width: 180px;
+         }
+         .ArticlesLatestTitle {
+            flex: 1;
+         }
+         .ArticlesLatestReadmore {
+
+         }
+      }
+   }
+}

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form>
+   <fieldset name="astroid_author_social_item">
+      <field name="icon"
+             label="ASTROID_AUTHOR_ICON_LABEL"
+             description="ASTROID_AUTHOR_ICON_DESC"
+             type="faicons" />
+      <field name="link"
+             label="ASTROID_AUTHOR_ICON_LINK_LABEL"
+             description="ASTROID_AUTHOR_ICON_LINK_DESC"
+             type="text"  />
+   </fieldset>
+</form>

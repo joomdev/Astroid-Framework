@@ -188,7 +188,7 @@ class AstroidElement {
 
       $return = '';
       if (!empty($html)) {
-         $return .= '<div class="' . $this->getClass() . '" id="' . $this->getID() . '" style="' . $this->getStyles() . '" data-animation="' . $this->getAnimation() . '" ' . $this->getAttributes() . '>' . $html . '</div>';
+         $return .= '<div class="' . $this->getClass() . '" id="' . $this->getID() . '" style="' . $this->getStyles() . '" data-animation="' . $this->getAnimation() . '" data-animation-delay="' . $this->getAnimationDelay() . '" ' . $this->getAttributes() . '>' . $html . '</div>';
       }
       return $return;
    }
@@ -314,22 +314,47 @@ class AstroidElement {
 
    public function getColumnClasses() {
       $data = $this->raw_data;
-      $class[] = "col";
+      $class = [];
       $params = $this->getParams();
-      $breakpoint = $params->get('breakpoint', '');
-      $breakpoint = empty($breakpoint) ? 'lg' : $breakpoint;
-      $breakpoint = $breakpoint == 'xs' ? '' : $breakpoint;
-      if (!empty($breakpoint)) {
-         $class[] = $breakpoint;
+      $responsive = $params->get('responsive', '');
+      if (!empty($responsive)) {
+         $responsive = \json_decode($responsive, true);
+      } else {
+         $responsive = [];
       }
-      $class[] = $data['size'];
-      return implode('-', $class);
+      $responsive_utilities = [];
+      foreach ($responsive as $responsive_utility) {
+         $responsive_utilities[$responsive_utility['name']] = $responsive_utility['value'];
+      }
+      $sizes = ['xs', 'sm', 'md', 'lg', 'xl'];
+      foreach ($sizes as $size) {
+         if ($size == 'lg') {
+            $class[] = 'col-' . $size . '-' . $data['size'];
+            if (isset($responsive_utilities['hide_' . $size]) && $responsive_utilities['hide_' . $size] != 1) {
+               $class[] = 'hideon' . $size;
+            }
+         } else {
+            if (isset($responsive_utilities['size_' . $size]) && $responsive_utilities['size_' . $size] != 'inherit') {
+               $class[] = $size == 'xs' ? 'col-' . $responsive_utilities['size_' . $size] : 'col-' . $size . '-' . $responsive_utilities['size_' . $size];
+            }
+            if (isset($responsive_utilities['hide_' . $size]) && $responsive_utilities['hide_' . $size] != 1) {
+               $class[] = 'hideon' . $size;
+            }
+         }
+      }
+      return implode(' ', $class);
    }
 
    public function getAnimation() {
       $params = $this->getParams();
       $animation = $params->get('animation', '');
       return $animation;
+   }
+
+   public function getAnimationDelay() {
+      $params = $this->getParams();
+      $animation_delay = $params->get('animation_delay', 0);
+      return $animation_delay;
    }
 
    public function getStyles() {
@@ -368,13 +393,13 @@ class AstroidElement {
          $link_hover_color = $params->get('link_hover_color', '');
          $color_styles = [];
          if (!empty($text_color)) {
-            $color_styles[] = 'section#' . $this->getID() . '{color:' . $text_color . ' !important; }';
+            $color_styles[] = '#' . $this->getID() . '{color:' . $text_color . ' !important; }';
          }
          if (!empty($link_color)) {
-            $color_styles[] = 'section#' . $this->getID() . ' a{color:' . $link_color . ' !important; }';
+            $color_styles[] = '#' . $this->getID() . ' a{color:' . $link_color . ' !important; }';
          }
          if (!empty($link_hover_color)) {
-            $color_styles[] = 'section#' . $this->getID() . ' a:hover{color:' . $link_hover_color . ' !important; }';
+            $color_styles[] = '#' . $this->getID() . ' a:hover{color:' . $link_hover_color . ' !important; }';
          }
          if (!empty($color_styles)) {
             $document = JFactory::getDocument();

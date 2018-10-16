@@ -71,12 +71,12 @@ if (empty($value)) {
             </div>
          </div>
          <div class="mt-4 text-center">
-            <button ng-click="addCustomProfile()" type="button" class="btn btn-lg btn-dark">Add Custom Profile</button>
+            <button ng-click="addCustomProfile()" type="button" class="btn btn-round btn-wide btn-lg btn-astroid"><?php echo JText::_('TPL_ASTROID_ADD_CUSTOM_SOCIAL_LABEL'); ?></button>
          </div>
       </div>
       <div class="col-sm-3">
          <h3><?php echo JText::_('TPL_ASTROID_SOCIAL_BRANDS'); ?></h3>
-         <input type="text" ng-model="searchSocialProfile" placeholder="Search Brand" class="form-control mb-3" />
+         <input type="text" ng-model="searchSocialProfile" placeholder="<?php echo JText::_('TPL_ASTROID_SOCIAL_SEARCH_LABEL'); ?>" class="form-control mb-3" />
          <small><em class="mb-3 d-block text-center text-info"><?php echo JText::_('TPL_ASTROID_ADD_PROFILE'); ?></em></small>
          <div ng-click="selectSocialProfile(profile)" ng-repeat="profile in astroidsocialprofiles| filter:searchSocialProfile track by $index" class="card mb-2 social-profile-item" style="cursor: pointer">
             <div class="border radius p-2"><i class="{{ profile.icon}}"></i> {{ profile.title}}</div>

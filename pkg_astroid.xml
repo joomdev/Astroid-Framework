@@ -7,12 +7,12 @@
    <packagerurl>http://astroidframework.com</packagerurl>
    <author>JoomDev</author>
    <creationDate>July 2018</creationDate>
-   <version>1.3.0</version>
-   <url>http://www.joomdev.com</url>
+   <version>2.0.0</version>
+   <url>https://www.joomdev.com</url>
    <copyright>Copyright (C) 2018 Joomdev, Inc. All rights reserved.</copyright>
    <license>GNU General Public License version 2 or later; see LICENSE.txt</license>
    <authorEmail>info@joomdev.com</authorEmail>
-   <authorUrl>http://www.joomdev.com</authorUrl>
+   <authorUrl>https://www.joomdev.com</authorUrl>
    <description></description>
    <scriptfile>pkg_astroid.php</scriptfile>
    <files folder="astroid">

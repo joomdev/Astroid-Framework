@@ -119,6 +119,7 @@ class AstroidFrameworkTemplate {
       }
       $this->setLog("Rending Layout");
       $template_layout = $this->params->get('template_layout', 'wide');
+      $sppb = $this->isSPPageBuilder();
       echo '<div class="astroid-container">';
       $this->loadLayout('offcanvas');
       $this->loadLayout('mobilemenu');
@@ -199,13 +200,13 @@ class AstroidFrameworkTemplate {
                }
                if (!empty($renderedHTML)) {
                   $columnObject = new AstroidElement("column", $col, $this);
-                  $columnHTML .= '<div id="' . $columnObject->getID() . '" class="' . $columnObject->getClass() . '" style="' . $columnObject->getStyles() . '" data-animation="' . $columnObject->getAnimation() . '" ' . $columnObject->getAttributes() . '>';
+                  $columnHTML .= '<div id="' . $columnObject->getID() . '" class="' . $columnObject->getClass() . '" style="' . $columnObject->getStyles() . '" data-animation="' . $columnObject->getAnimation() . '" data-animation-delay="' . $columnObject->getAnimationDelay() . '" ' . $columnObject->getAttributes() . '>';
                   $columnHTML .= $renderedHTML;
                   $columnHTML .= '</div>';
                }
             }
             if (!empty($columnHTML)) {
-
+               $layout_type = ($sppb && $hasComponent) ? 'no-container' : $layout_type;
                $no_gutter = false;
                switch ($layout_type) {
                   case 'no-container':
@@ -222,7 +223,8 @@ class AstroidFrameworkTemplate {
             }
          }
          if (!empty($rowHTML)) {
-            $sectionHTML .= "<section id='" . $sectionObject->getID() . "' class='" . $sectionObject->getClass() . "' style='" . $sectionObject->getStyles() . "' data-animation='" . $sectionObject->getAnimation() . "' " . $sectionObject->getAttributes() . ">";
+            $sectionHTML .= "<section id='" . $sectionObject->getID() . "' class='" . $sectionObject->getClass() . "' style='" . $sectionObject->getStyles() . "' data-animation='" . $sectionObject->getAnimation() . "' data-animation-delay='" . $sectionObject->getAnimationDelay() . "' " . $sectionObject->getAttributes() . ">";
+            $section_layout_type = ($sppb && $hasComponent) ? '' : $section_layout_type;
             if (!empty($section_layout_type)) {
                $sectionHTML .= "<div class='" . $section_layout_type . "'>";
             }
@@ -553,6 +555,17 @@ class AstroidFrameworkTemplate {
          echo $log->render();
       }
       echo '</div>';
+   }
+
+   public function isSPPageBuilder() {
+      $jinput = JFactory::getApplication()->input;
+      $option = $jinput->get('option', '');
+      $view = $jinput->get('view', '');
+      if ($option == "com_sppagebuilder" && $view == "page") {
+         return TRUE;
+      } else {
+         return FALSE;
+      }
    }
 
 }

@@ -470,4 +470,39 @@ class AstroidFrameworkHelper {
       return isset(AstroidFrameworkConstants::$system_fonts[$font]);
    }
 
+   public static function setTemplateDefaults($template, $id, $parent_id = 0) {
+      $params_path = JPATH_SITE . "/templates/{$template}/params/{$id}.json";
+      if (!file_exists($params_path)) {
+         if (!empty($parent_id) && file_exists(JPATH_SITE . "/templates/{$template}/params/" . $parent_id . '.json')) {
+            $params = file_get_contents(JPATH_SITE . "/templates/{$template}/params" . '/' . $parent_id . '.json');
+            file_put_contents(JPATH_SITE . "/templates/{$template}/params" . '/' . $id . '.json', $params);
+         } else if (file_exists(JPATH_SITE . '/templates/' . $template . '/astroid/default.json')) {
+            $params = file_get_contents(JPATH_SITE . '/templates/' . $template . '/astroid/default.json');
+            if (!file_exists(JPATH_SITE . "/templates/{$template}/params")) {
+               mkdir(JPATH_SITE . "/templates/{$template}/params");
+            }
+            $params = str_replace('TEMPLATE_NAME', $template, $params);
+            file_put_contents(JPATH_SITE . "/templates/{$template}/params" . '/' . $id . '.json', $params);
+         } else {
+            if (!file_exists(JPATH_SITE . "/templates/{$template}/params")) {
+               mkdir(JPATH_SITE . "/templates/{$template}/params");
+            }
+            file_put_contents(JPATH_SITE . "/templates/{$template}/params" . '/' . $id . '.json', '');
+         }
+         $db = JFactory::getDbo();
+         $object = new stdClass();
+         $object->id = $id;
+         $object->params = \json_encode(["astroid" => $id]);
+         $db->updateObject('#__template_styles', $object, 'id');
+         self::uploadTemplateDefaults($template, $id);
+      }
+   }
+
+   public static function uploadTemplateDefaults($template, $id) {
+      $source = JPATH_SITE . '/templates/' . $template . '/images/default';
+      $destination = JPATH_SITE . '/images/' . $template;
+      $files = JFolder::files($source);
+      JFolder::copy($source, $destination, '', true);
+   }
+
 }

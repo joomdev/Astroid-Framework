@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form>
+   <fields name="params">
+      <fieldset label="ASTROID_AUTHOR_PROFILE_TAB_LABEL" name="astroid_author" addfieldpath="/libraries/astroid/framework/fields">
+         <field
+            type="radio"
+            name="astroid_author_picture"
+            label="ASTROID_AUTHOR_PICTURE_LABEL"
+            description="ASTROID_AUTHOR_PICTURE_DESC"
+            class="btn-group"
+            default="0"
+         >
+            <option value="0">JNONE</option>
+            <option value="gravatar">ASTROID_AUTHOR_PICTURE_GRAVATAR</option>
+            <option value="upload">ASTROID_AUTHOR_PICTURE_UPLOAD</option>
+         </field>
+         <field type="media" showon="astroid_author_picture:upload" name="upload" label="ASTROID_AUTHOR_PICTURE_UPLOAD_IMG_LABEL" description="ASTROID_AUTHOR_PICTURE_UPLOAD_IMG_DESC"></field>
+         <field  name="astroid_author_aboutme" label="ASTROID_AUTHOR_ABOUTME_LABEL" description="ASTROID_AUTHOR_ABOUTME_DESC" cols="30"  filter="raw" rows="5" type="textarea"></field>
+         <field name="astroid_author_social" type="subform" formsource="libraries/astroid/framework/forms/social_item.xml" layout="joomla.form.field.subform.repeatable-table" multiple="true" label="ASTROID_AUTHOR_PROFILE_SOCIAL_LABEL" description="ASTROID_AUTHOR_PROFILE_SOCIAL_DESC" />
+      </fieldset>
+   </fields>
+</form>

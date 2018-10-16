@@ -1,0 +1,114 @@
+.jddrop-content{
+   display: none;
+   z-index: 1;
+}
+
+// megamenu dropdown
+.megamenu-container{
+   border: 1px solid #eee;
+   padding: 15px 10px;
+   max-height: 60vh;
+   overflow-y: auto;
+   .megamenu-menu-container{
+      .megamenu-menu{
+         margin: 0;
+         padding: 0;
+         list-style-type: none;
+      }
+      .megamenu-menu-item{
+         display: block;
+         > a{
+            display: block;
+            text-decoration: none;
+            padding: 5px 15px;
+            &.megamenu-title{
+               border-bottom: 1px solid #eee;
+               margin-bottom: 10px;
+               padding-bottom: 15px;
+               display: block;
+            }
+         }
+      }
+   }
+   .megamenu-submenu-container{
+      &:not(.nav-item-level-1){
+         margin-top: -1px;
+      }
+      .nav-submenu{
+         margin: 0;
+         padding: 0;
+         list-style-type: none;
+         > li{
+            display: block;
+            > a{
+               text-decoration: none;
+               padding: 5px 15px;
+            }
+         }
+      }
+   }
+}
+
+// Submenu dropdowns
+.nav-submenu-container{
+   border: 1px solid #eee;
+   max-height: 75vh;
+   &:not(.nav-item-level-1){
+      margin-top: -1px;
+   }
+   .nav-submenu{
+      margin: 0;
+      padding: 0;
+      list-style-type: none;
+      min-width: 250px;
+      > li{
+         display: block;
+         > a{
+            text-decoration: none;
+            display: block;
+            padding: 5px 15px;
+         }
+      }
+   }
+}
+
+.astroid-nav{
+   .nav-title{
+      display: block;
+      position: relative;
+   }
+   .nav-subtitle{
+      display: block;
+      padding: 5px 0px;
+      opacity: 0.6;
+      font-size: 70%;
+   }
+   .nav-item-parent{
+      .nav-title{
+         padding-right: 25px;
+         > .nav-item-caret{
+            right: 0px;
+            position: absolute;
+            top: 50%;
+            font-size: 75%;
+            width: 20px;
+            height: 20px;
+            line-height: 20px;
+            text-align: center;
+            margin-top: -10px;
+         }
+      }
+   }
+}
+
+ul{
+   &.megamenu-submenu{
+      list-style-type: none;
+      padding: 0px;
+      > li{
+         > .megamenu-submenu{
+            padding-left: 15px;
+         }
+      }
+   }
+}

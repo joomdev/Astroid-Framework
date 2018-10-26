@@ -25,12 +25,12 @@ In order to Install, click the `browse for file` button and select the download 
 
 After installation, you will be notified with a success notification as following screen.
 
-![Installation Successfull](https://cdn.joomdev.com/documentation/astroid-framework/images/sucess-install.jpg)
+![Installation Successfull](https://cdn.joomdev.com/documentation/astroid-framework/images/v2.0.0/sucess_installation.png)
 
 ## Setting Astroid as the default template
 
 You can now navigate to `Extensions >> Templates >> Styles` and set Astroid as your default template by clicking the (star) icon next to the template.
-![Set Astroid as your Default template](https://cdn.joomdev.com/documentation/astroid-framework/images/set-default.jpg)
+![Set Astroid as your Default template](https://cdn.joomdev.com/documentation/astroid-framework/images/v2.0.0/set_default.png)
 # Template Options
 Template options are divided in multiple sections and then sub sections under them. You can see the sections on the left side of the screen and we will go through all the sections one by one.
 ## Basic
@@ -51,7 +51,9 @@ Color | inherit | Here you can set the color of the animated element of a preloa
 Background | inherit | Here you can select the preloader background color which is to be displayed as a background for the preloader.
 Size | inherit | This option allow you to set the size of the preloader.
 
-![preloader](https://cdn.joomdev.com/documentation/astroid-framework/images/preloader.jpg)
+![preloader](https://cdn.joomdev.com/documentation/astroid-framework/images/v2.0.0/preloader.png)
+
+![preloader style icon](https://cdn.joomdev.com/documentation/astroid-framework/images/v2.0.0/preloader_style_icon.png)
 
 Preloader is rendered from the following file, learn more about astroid overrides [here](#frontend-folder-overrides).
 ```html
@@ -72,7 +74,7 @@ Shape | Circle | You can select Back to top Icon shape i.e. `Circle`, `Round` an
 ### Back To Top Button On Mobile
 By Default the Back to Top Button will be enabled on mobile, disable the button if you don’t want this feature in mobile view.
 
-![backtotop](https://cdn.joomdev.com/documentation/astroid-framework/images/backtotop.jpg)
+![backtotop](https://cdn.joomdev.com/documentation/astroid-framework/images/v2.0.0/back_to_top.png)
 Back To Top button is rendered from the following file, learn more about astroid overrides [here](#frontend-folder-overrides).
 ```html
 ROOT/templates/astroid_template_zero/frontend/backtotop.php
@@ -89,9 +91,8 @@ Background Size | inherit | Adjust the background image displaying. You can sele
 Background Position | Center Top | Choose the position for the background image from the Dropdown list.
 Background Attachment | Fixed | Set the background image attachment style: `Scroll – background image scrolls with the content` , `Fixed – the background image is fixed and content scrolls over it` *(Select fixed if you want have parallax scrolling effect)*
 
-![Layoutsetting1](https://cdn.joomdev.com/documentation/astroid-framework/images/layoutset1.jpg)
 
-![Layoutsetting2](https://cdn.joomdev.com/documentation/astroid-framework/images/layoutset2.jpg)
+![Layoutsetting2](https://cdn.joomdev.com/documentation/astroid-framework/images/v2.0.0/layout_settings.png)
 
 ## Header
 The header section contains your logo, mega menu, module menu & off canvas menu. Disabling the header would disable all these elements.
@@ -121,8 +122,7 @@ You can select from the dropdown list which Joomla! menu you’d like to publish
 ### Mobile Menu
 You can select from the dropdown list which Joomla! menu you’d like to publish as your mobile menu.
 
-### Dropdown Animation
-This options decides the animation that will be used for displaying the dropdown menu.
+![Header settings](https://cdn.joomdev.com/documentation/astroid-framework/images/v2.0.0/header_settings.png)
 
 ### Logo Options
 You can select a logo for desktop view, mobile view and sticky header.
@@ -148,6 +148,8 @@ Sticky Header on Desktop | Sticky | You can select whether you need the header t
 Sticky Header on Tablets | Sticky | You can select whether you need the header to be sticky at all times , sticky on scroll up or to be static (not visible on scroll) in Tablet view.
 Sticky Header on Mobile | Sticky | You can select whether you need the header to be sticky at all times , sticky on scroll up or to be static (not visible on scroll) in mobile view.
 
+![Header logo settings](https://cdn.joomdev.com/documentation/astroid-framework/images/v2.0.0/header_logo_settings.png)
+
 ### OffCanvas Menu
 Here you can customize Off-Canvas style for your site. This is how an off-canvas menu works: The user clicks an icon or performs some sort of action (e.g. slide in on Top , Reveal , Push ) that results in a vertical navigation menu sliding into the screen from off canvas.
 
@@ -157,7 +159,18 @@ Toggle Visibility | Always | You can select whether you need offcanvas enabled o
 Panel Width | 240 | You can set the width of the offcanvas navbar (in pixels), default is 240px.
 Off canvas Animation | Slide in on Top | You can select the animation that will be used for opening the offcanvas bar.
 
-![header](https://cdn.joomdev.com/documentation/astroid-framework/images/header.jpg)
+![Header offcanvas settings](https://cdn.joomdev.com/documentation/astroid-framework/images/v2.0.0/header_offcanvas_settings.png)
+
+### Animation
+Here you can customize the dropdown animation for both the mega menu as well as for dropdown menu. You can control the speed of an animation by setting a value with the range indicator in a horizontal fashion and also ease in and ease out the animation.
+
+Option | Default | Description
+------------------ | ------- | -----------
+ Animation| Fade | You can select whether you want animation as fade or slide can also select none if you don't want animation.
+Animation speed | 300 ms | Set a value by moving an indicator in a horizontal fashion.
+Easing | Linear | You can select the animation from dropdown list.
+
+![Header offcanvas settings](https://cdn.joomdev.com/documentation/astroid-framework/images/v2.0.0/header_animation_settings.png)
 
 ## Colors
 This section allows you to style the color schemes on your site.
@@ -173,7 +186,7 @@ Text Color | #333 | Set the Text color of the Body Content.
 Link Color | #007bff | Set the color of the link in the Body Content.
 Link Hover Color | #007bff | Set the color for hovered links; links hover when the mouse moves over it.
 
-![bodycolor](https://cdn.joomdev.com/documentation/astroid-framework/images/bodycolor.jpg)
+![bodycolor](https://cdn.joomdev.com/documentation/astroid-framework/images/v2.0.0/body_color.png)
 
 ### Header 
 
@@ -187,7 +200,7 @@ Logo Text Color | #007bff  | Set color for your text logo.
 Logo Tag Line Color | #007bff  | Set color for Tag Line in your text logo.
 Backgroud Color for sticky header | #fff | Set background color of the Sticky Header.
 
-![header-color](https://cdn.joomdev.com/documentation/astroid-framework/images/headercolor.jpg)
+![header-color](https://cdn.joomdev.com/documentation/astroid-framework/images/v2.0.0/header_color.png)
 
 ### Main Menu
 
@@ -199,7 +212,7 @@ Link Color | #333 | Set the link color for the main menu.
 Link Hover Color | #007bff | Set the link hover color for the main menu.
 Link Active Color | #007bff | Set the appearance of a link while it is being activated.
 
-![mainmenu-color](https://cdn.joomdev.com/documentation/astroid-framework/images/mainmenucolor.jpg)
+![mainmenu-color](https://cdn.joomdev.com/documentation/astroid-framework/images/v2.0.0/main_menucolor.png)
 
 ### Dropdown Menu
 
@@ -214,7 +227,7 @@ Hover Background Color | #007bff | Set the Background color for the hovered link
 Active Link Color | #fff | Set the color for the active links; links become active once you click on them.
 Active Background Color | #007bff | Set the Background color for the active links.
 
-![dropdownmenu-color](https://cdn.joomdev.com/documentation/astroid-framework/images/dropdownmenucolor.jpg)
+![dropdownmenu-color](https://cdn.joomdev.com/documentation/astroid-framework/images/v2.0.0/dropdown_menucolor.png)
 
 ### Off-Canvas
 
@@ -228,12 +241,12 @@ Link Color | #333 | Set the color of the link in the Off-Canvas menu for menu an
 Active Link Color | #fff | Set the color for the active links (links become active once you click on them).
 Active Background Color | #007bff |Set the Background color for the active links.
 
-![offcanvas-color](https://cdn.joomdev.com/documentation/astroid-framework/images/offcanvascolor.jpg)
+![offcanvas-color](https://cdn.joomdev.com/documentation/astroid-framework/images/v2.0.0/offcanvas_color.png)
 
 ## Layout Manager
 Layout manager provides the ability to build flexible layout from the collection of available elements. A layout consist of sections, grids and  elements that can be easily managed with the built in drag and drop functionality. It allows customization of each section with Design Settings, Responsive Settings, Animation Settings and others.
 
-![layout](https://cdn.joomdev.com/documentation/astroid-framework/images/layout.jpg)
+![layout](https://cdn.joomdev.com/documentation/astroid-framework/images/v2.0.0/Layout.png)
 
 ### Layout Structure
 
@@ -252,7 +265,6 @@ In the layout particular section can be edited, drag drop, copy, new section can
 * New row: Click on New row to add new row.
 * New Section: Click on New section to add new section below to the targeted section.
 
-![editoptions](https://cdn.joomdev.com/documentation/astroid-framework/images/layoutoptions.jpg)
 
 ### Element
 New elements can be created by clicking the Add icon that appears in bottom-center when hovering the element.
@@ -269,7 +281,6 @@ Following are the elements within this section:
 ### Section
 We can add new section by clicking on the add new section option given with in the row level options or we can also add new section by clicking on add section button.
 
-![editoptions](https://cdn.joomdev.com/documentation/astroid-framework/images/newsections.jpg)
 
 ### Edit Options of Element and Section
 Elements and section both have same edit options i.e General Settings, Design Settings and Responsive Settings.
@@ -277,7 +288,7 @@ Elements and section both have same edit options i.e General Settings, Design Se
 
 * **General Settings:** general settings have options to set module position, Title, Custom Class and Custom ID of an element.
 
-![general-settings](https://cdn.joomdev.com/documentation/astroid-framework/images/general.jpg)
+![general-settings](https://cdn.joomdev.com/documentation/astroid-framework/images/v2.0.0/layout_general.png)
 
 * **Design Settings:** In this we have Animation and Custom Background options. To enable Background options we need to switch on the Custom Background Option.
 
@@ -293,7 +304,7 @@ Select a Background Attachment | Inherit | Set the background image attachment s
 Select a Background Position | Inherit | Choose the position for the background image from the Dropdown list.
 Background Video | None | Set the background video for the particular column
 
-![design-settings](https://cdn.joomdev.com/documentation/astroid-framework/images/design.jpg)
+![design-settings](https://cdn.joomdev.com/documentation/astroid-framework/images/v2.0.0/layout_design.png)
 
 * **Animation Settings:** Here you will get different animation options which make possible to animate particular column, section and element. You can define animation delay time which will specify a delay for the start of an animation.
 
@@ -309,7 +320,7 @@ Hide on Medium device | Enable to hide this section on Medium Devices.
 Hide on Large Device |  Enable to hide this section on Large Devices.                                                   
 Hide on Extra Large Device | Enable to hide this section on Extra-Large Devices.
 
-![responsive-settings](https://cdn.joomdev.com/documentation/astroid-framework/images/responsive.jpg)
+![responsive-settings](https://cdn.joomdev.com/documentation/astroid-framework/images/v2.0.0/layout_responsive.png)
 
 ## Typography
 This is a fully customizable font-related section. You can change the fonts and their style accordingly, you can easily customize typography for all body text and the Responsive Headings, that define the Headings H1-H6.
@@ -327,8 +338,10 @@ Font Size | 1 | Set the font size you need to use in the text element.
 Letter Spacing | 0 | Set the needed distance between letters.
 Line Height | 1 | line-height property specifies the height of a line.
 Text Transform | none | Set the font transformation, if needed (uppercase, capitalize and lowercase).
-![bodytypogarphy](https://cdn.joomdev.com/documentation/astroid-framework/images/bodytypogarphy1.jpg)
-![bodytypogarphy](https://cdn.joomdev.com/documentation/astroid-framework/images/bodytypogarphy.jpg)
+
+
+![bodytypogarphy](https://cdn.joomdev.com/documentation/astroid-framework/images/v2.0.0/body_typography.png)
+
 
 ### Menu Typography
 This section allows to adjust typography settings for the Menu. If inherit selected then property will inherit its value from body typography properties.
@@ -344,9 +357,8 @@ Line Height | 1 | line-height property specifies the height of a line.
 Text Transform | none | Set the font transformation, if needed (uppercase, capitalize and lowercase).
 Font-Color | #000 | set the color of the text. The color is specified by: `color name - like "red"` , `HEX value - like "#ff0000"` , `RGB value - like "rgb(255,0,0)"`.
 
-![menutypogarphy](https://cdn.joomdev.com/documentation/astroid-framework/images/menutypogarphy1.jpg)
+![menutypogarphy](https://cdn.joomdev.com/documentation/astroid-framework/images/v2.0.0/menu_typography.png)
 
-![menutypogarphy](https://cdn.joomdev.com/documentation/astroid-framework/images/menutypogarphy2.jpg)
 
 ### SubMenu Typography
 This section allows to adjust typography settings for the SubMenu. If inherit selected then property will inherit its value from body typography properties. 
@@ -362,9 +374,8 @@ Line Height | 1 | line-height property specifies the height of a line.
 Text Transform | none | Set the font transformation, if needed (uppercase, capitalize and lowercase).
 Font-Color | #000 | set the color of the text. The color is specified by: `color name - like "red"` , `HEX value - like "#ff0000"` , `RGB value - like "rgb(255,0,0)"`.
 
-![submenutypogarphy](https://cdn.joomdev.com/documentation/astroid-framework/images/submenutypogarphy1.jpg)
+![submenutypogarphy](https://cdn.joomdev.com/documentation/astroid-framework/images/v2.0.0/submenu_typograpghy.png)
 
-![submenutypogarphy](https://cdn.joomdev.com/documentation/astroid-framework/images/submenutypogarphy2.jpg)
 
 ### Headings (H1-H6) Typography
 This section allows to adjust typography settings for the headings(H1-H6) used on the site. If inherit selected then property will inherit its value from body typography properties. 
@@ -386,9 +397,8 @@ Line Height | 1 | line-height property specifies the height of a line.
 Text Transform | none | Set the font transformation, if needed (uppercase, capitalize and lowercase).
 Font-Color | #000 | set the color of the text. The color is specified by: `color name - like "red"` , `HEX value - like "#ff0000"` , `RGB value - like "rgb(255,0,0)"`. 
 
-![h1typogarphy](https://cdn.joomdev.com/documentation/astroid-framework/images/h1typogarphy1.jpg)
+![h1typogarphy](https://cdn.joomdev.com/documentation/astroid-framework/images/v2.0.0/h1typography.png)
 
-![h1typogarphy](https://cdn.joomdev.com/documentation/astroid-framework/images/h1typogarphy2.jpg)
 
 * **H2 Typography**
 
@@ -405,9 +415,8 @@ Line Height | 1 | line-height property specifies the height of a line.
 Text Transform | none | Set the font transformation, if needed (uppercase, capitalize and lowercase).
 Font-Color | #000 | set the color of the text. The color is specified by: `color name - like "red"` , `HEX value - like "#ff0000"` , `RGB value - like "rgb(255,0,0)"`.
 
-![h2typogarphy](https://cdn.joomdev.com/documentation/astroid-framework/images/h2typogarphy1.jpg)
+![h2typogarphy](https://cdn.joomdev.com/documentation/astroid-framework/images/v2.0.0/h2typography.png)
 
-![h2typogarphy](https://cdn.joomdev.com/documentation/astroid-framework/images/h2typogarphy2.jpg)
 
 * **H3 Typography**
 
@@ -424,9 +433,7 @@ Line Height | 1 | line-height property specifies the height of a line.
 Text Transform | none | Set the font transformation, if needed (uppercase, capitalize and lowercase).
 Font-Color | #000 | set the color of the text. The color is specified by: `color name - like "red"` , `HEX value - like "#ff0000"` , `RGB value - like "rgb(255,0,0)"`.
 
-![h3typogarphy](https://cdn.joomdev.com/documentation/astroid-framework/images/h3typogarphy1.jpg)
-
-![h3typogarphy](https://cdn.joomdev.com/documentation/astroid-framework/images/h3typogarphy2.jpg)
+![h3typogarphy](https://cdn.joomdev.com/documentation/astroid-framework/images/v2.0.0/h3typography.png)
 
 * **H4 Typography**
 
@@ -443,9 +450,8 @@ Line Height | 1 | line-height property specifies the height of a line.
 Text Transform | none | Set the font transformation, if needed (uppercase, capitalize and lowercase).
 Font-Color | #000 | set the color of the text. The color is specified by: `color name - like "red"` , `HEX value - like "#ff0000"` , `RGB value - like "rgb(255,0,0)"`.
 
-![h4typogarphy](https://cdn.joomdev.com/documentation/astroid-framework/images/h4typogarphy1.jpg)
+![h4typogarphy](https://cdn.joomdev.com/documentation/astroid-framework/images/v2.0.0/h4typography.png)
 
-![h4typogarphy](https://cdn.joomdev.com/documentation/astroid-framework/images/h4typogarphy2.jpg)
 
 * **H5 Typography**
 
@@ -462,9 +468,8 @@ Line Height | 1 | line-height property specifies the height of a line.
 Text Transform | none | Set the font transformation, if needed (uppercase, capitalize and lowercase).
 Font-Color | #000 | set the color of the text. The color is specified by: `color name - like "red"` , `HEX value - like "#ff0000"` , `RGB value - like "rgb(255,0,0)"`.
 
-![h5typogarphy](https://cdn.joomdev.com/documentation/astroid-framework/images/h5typogarphy1.jpg)
+![h5typogarphy](https://cdn.joomdev.com/documentation/astroid-framework/images/v2.0.0/h5typography.png)
 
-![h5typogarphy](https://cdn.joomdev.com/documentation/astroid-framework/images/h5typogarphy2.jpg)
 
 * **H6 Typography**
 
@@ -481,9 +486,8 @@ Line Height | 1 | line-height property specifies the height of a line.
 Text Transform | none | Set the font transformation, if needed (uppercase, capitalize and lowercase).
 Font-Color | #000 | set the color of the text. The color is specified by: `color name - like "red"` , `HEX value - like "#ff0000"` , `RGB value - like "rgb(255,0,0)"`.
 
-![h6typogarphy](https://cdn.joomdev.com/documentation/astroid-framework/images/h6typogarphy1.jpg)
+![h6typogarphy](https://cdn.joomdev.com/documentation/astroid-framework/images/v2.0.0/h6typography.png)
 
-![h6typogarphy](https://cdn.joomdev.com/documentation/astroid-framework/images/h6typogarphy2.jpg)
 
 ## Article/Blog
 Article/Blog settings allows you to customize the blog and article layout of website.
@@ -502,13 +506,18 @@ The article type icon can be customize in the Administrator (Back-end) by clicki
 ###### Regular: 
 Same as of the default joomla article.
 
+![Regular type](https://cdn.joomdev.com/documentation/astroid-framework/images/v2.0.0/article_regular.png)
+
 ###### Video: 
 Select the video type and enter the respective video URL.  
 For both YouTube video ID and Vimeo ID. First, go to the video webpage. Copy the URL and you just need to paste in the Video URL field.
 
+![Video type](https://cdn.joomdev.com/documentation/astroid-framework/images/v2.0.0/article_video.png)
+
 ###### Gallery: 
 For Gallery Type article you need to upload a Gallery Image and define a title and a small description for it. You can add multiple Items to your article.
 
+![Gallery type](https://cdn.joomdev.com/documentation/astroid-framework/images/v2.0.0/article_gallery.png)
 
 ###### Audio: 
 You can Choose from Soundcloud or spotify.
@@ -516,12 +525,17 @@ To get an embed code for your track or playlist, click the 'Share' button below 
 
 For Spotify : To retrieve a Spotify song URL, on the web player click on the three dots on a song and choose copy song Link and then copy and paste it in the spotify field.
 
+![Audio type](https://cdn.joomdev.com/documentation/astroid-framework/images/v2.0.0/article_audio.png)
 
 ###### Review:
 You can easily add a detail review for your single article by giving star rating followed by detail description.
 
+![Review type](https://cdn.joomdev.com/documentation/astroid-framework/images/v2.0.0/article_review.png)
+
 ###### Qoute:
 You can add words from a text or speech written or spoken by another person or author. 
+
+![Qoute type](https://cdn.joomdev.com/documentation/astroid-framework/images/v2.0.0/article_qoute.png)
 
 ###### Article Badge
 Use article badge to indicate a specific post. It will appear on the top left corner of the respective post. Here you will get the option to choose between predefined badges or you can create your own.
@@ -534,6 +548,8 @@ Enables this option shows the estimated reading time of article.
 
 #### Author Info: 
 The Author information is displays underneath the article, the author information is updated the in the Author profile in User Tab.
+
+![Authorinfo](https://cdn.joomdev.com/documentation/astroid-framework/images/v2.0.0/user.png)
 
 #### Article Rating: 
 Article rating/review shows the star rating for a single article and allows user to give a star rating.
@@ -553,10 +569,16 @@ Customize the button you would like to use on your site .Copy the property Id an
 
 #### Open Graph
 Open grapgh allows you to identify which elements of your page you want to show when someone share's your page.
+Here you don't need to mess with scripts or tags. Simply add your Facebook App ID and Twitter Username.
+You can even set different OG Title, OG Description and OG Image for each article.
+
+![Opengrapgh](https://cdn.joomdev.com/documentation/astroid-framework/images/v2.0.0/open_grapgh.png)
 
 #### Comments
 This option allows a comment system on the each article post so that users will be able to leave comments under their own name.
 Choose between the platforms facebook, disqus, HyperComments or IntenseDebate.
+
+![Article/Blog](https://cdn.joomdev.com/documentation/astroid-framework/images/v2.0.0/article_blog.png)
 
 ## Custom Code
 
@@ -570,7 +592,7 @@ Space before `</body>`| none | For the javascript before `</body>`
 Custom CSS | none | Here you can add custom CSS to add your own styles or overwrite default CSS, Wrapped within `<style>` tags.
 Custom JS | none | Here you can add custom javascript code here, Wrapped within `<script>` tags.
 
-![customcode](https://cdn.joomdev.com/documentation/astroid-framework/images/customcode.jpg)
+![customcode](https://cdn.joomdev.com/documentation/astroid-framework/images/v2.0.0/custom_code.png)
 
 ## Social Profile
 
@@ -609,7 +631,7 @@ In this section we have in all 21 types of Predefined Social Profiles and also t
   21. VK
   
   
-![social](https://cdn.joomdev.com/documentation/astroid-framework/images/social.jpg)
+![social](https://cdn.joomdev.com/documentation/astroid-framework/images/v2.0.0/social.png)
 
 ## Miscellaneous
 
@@ -626,7 +648,7 @@ Custom HTML | none | Here we can enter the text that displays in the copyright b
 Module Position | astroid-footer | Select a suitable module position where you want to display this feature.
 Featue Load Position | After module | If there are other module(s) published to this module position, you can select to display the content of this feature either below or after the module(s) published to this position.
 
-![footer](https://cdn.joomdev.com/documentation/astroid-framework/images/footer.jpg)
+![Copyright](https://cdn.joomdev.com/documentation/astroid-framework/images/v2.0.0/copyright.png)
 
 ### Contact Information
 
@@ -643,7 +665,7 @@ Open Hours | none | Add Opening hour here. Leave blank if not required.
 Address | none | Add your address here. Leave blank if not required.
 Display | icons | Here you can choose to get the information (Phone number ,mobile number, Email, Open hours and Address) displays with Text or Icons.
 
-![miscontact](https://cdn.joomdev.com/documentation/astroid-framework/images/miscontact.jpg)
+![miscontact](https://cdn.joomdev.com/documentation/astroid-framework/images/v2.0.0/contact_information.png)
 
 ### Coming Soon
 
@@ -663,9 +685,7 @@ Background Repeat | No Repeat | Set if/how a background image will be repeated.
 Background Size | Inherit | This property specifies the size of the background images.
 Background Position | Center Top | This property sets the starting position of a background image.
 
-![miscomingsoon](https://cdn.joomdev.com/documentation/astroid-framework/images/miscomingsoon1.jpg)
-
-![miscomingsoon](https://cdn.joomdev.com/documentation/astroid-framework/images/miscomingsoon2.jpg)
+![miscomingsoon](https://cdn.joomdev.com/documentation/astroid-framework/images/v2.0.0/coming_soon.png)
 
 ### 404 Error
 
@@ -679,7 +699,7 @@ Logo | default template logo | Set a logo for 404 Error Page, default template l
 Call To Action | text | Enter text to dislay on Call To Action Button.
 404 Page Content | tinyMCE | Enter the content of your 404 page.
 
-![mis404](https://cdn.joomdev.com/documentation/astroid-framework/images/mis404.jpg)
+![mis404](https://cdn.joomdev.com/documentation/astroid-framework/images/v2.0.0/404error.png)
 
 ### Favicon
 
@@ -689,7 +709,7 @@ Option | Default | Description
 ------- | ----------- | -----------
 Favicon image | none | Select an icon for a favicon, also known as a shortcut icon, website icon, tab icon, URL icon, or bookmark icon.
 
-![megamenu](https://cdn.joomdev.com/documentation/astroid-framework/images//misfavicon.jpg)
+![favicon](https://cdn.joomdev.com/documentation/astroid-framework/images/v2.0.0/favicon.png)
 
 ## Astroid Mega Menu
 A mega menu is defined as a drop down interface that is triggered by the user hovering over a link or defined area. This dropdown usually shows all options in one main, mega-panel and oftentimes groups related topics into categories. In this section you can configure menu options.
@@ -698,7 +718,6 @@ A mega menu is defined as a drop down interface that is triggered by the user ho
 
 * By default Mega Menu option is disable, you can set icon, subtitle, custom class, width and dropdown Alignment for your dropdown menu.
 
-![megamenu](https://cdn.joomdev.com/documentation/astroid-framework/images/megamenu.jpg)
 
 Option | Description
 ------- | -----------
@@ -711,7 +730,7 @@ Custom CSS Class | allows you to add Custom CSS Class(es) to the menu item.
 
 * By enabling Mega Menu you can easily create and customize Mega Menu with sub menu items and modules, offers you different layouts with drag and drop menu building system. Each menu item contains Astroid Menu Options which provides ability to add rows, columns, links and more to a mega menu.
 
-![megamenu](https://cdn.joomdev.com/documentation/astroid-framework/images/megamenu-enable.jpg)
+![megamenu](https://cdn.joomdev.com/documentation/astroid-framework/images/v2.0.0/mega_menu.png)
 
 Option | Description
 ------- | -----------
@@ -747,8 +766,7 @@ Banner Layout | You can set Banner Layout as Container or Container Fluid, The c
 
 `NOTE: In order to make this feature work you have to publish the Banner element using the layout manager.`
 In Layout Manager Add a Section where you want to show your banner and select a Banner Element in it.
-![banner](https://cdn.joomdev.com/documentation/astroid-framework/images/banner-disable.jpg)
-![banner](https://cdn.joomdev.com/documentation/astroid-framework/images/banner-enable.jpg)
+![banner](https://cdn.joomdev.com/documentation/astroid-framework/images/v2.0.0/banner.png)
 
 # Developer Documentation
 
@@ -899,7 +917,6 @@ default | Default attribute specifies the default value of astroidrange like def
 
 `Output`
 
-![footer](https://cdn.joomdev.com/documentation/astroid-framework/images/rangeoutput.jpg)
 
 ### astroidcalendar form field type
 Astroidcalendar field type let the user select date from the calendar like Countdown date.
@@ -986,7 +1003,6 @@ default | With default value we can set which value is by default selected in dr
 
 `Output`	
 
-![footer](https://cdn.joomdev.com/documentation/astroid-framework/images/iconoutput.jpg)
 
 ### Menu form field type
 The menu form field type provides a drop down list of the available menus from your Joomla! site. If the field has a saved value this is selected when the page is first loaded. If not, the default value (if any) is selected.
@@ -1047,6 +1063,75 @@ and that should do it, the overrides are applicable to all files under the front
 # Changelog
 
 Here is record of all notable changes made to a Astroid Framework.
+
+## v2.0.0: 16-October-2018
+
+## Added
+* Animation delay now possible on columns, section & element level.
+* **Added new blog article types**: Astroid now comes with inbuilt integration for the following article types.
+Video :: Add youtube or vimeo video (demo: http://bit.ly/2yDmuhH).
+Gallery :: Create an image carousel (demo: http://bit.ly/2yGIDvB).
+Audio :: Add Sound Cloud or Spotify audio (demo: http://bit.ly/2OsaNF9).
+Review :: Add a review with rating's (demo: http://bit.ly/2ynSerL).
+Quote :: Add a beautiful quote with author's name (demo: http://bit.ly/2J0qYUj).
+* Custom badges for articles (Editor's Choice, Best Seller, Best Price, Hot. Trending, Custom)
+* Open graph : Add custom open graph title, image and description for each article.
+* Column responsive settings : Manage width of each column for all bootstrap breakpoints.
+* Contact information icon color picker added : easily change color of the contact information section icons now.
+* Custom color options in column level.
+* Refresh button added in media manager.
+* Menu module overrides added.
+* JD Simple Contact Form added in quickstart package.
+* JD Profiles lite added in quickstart package.
+* JD SkillSet added in quickstart package.
+* Added option to display social icons on coming soon page.
+
+## Updated
+* Joomla 3.8.13 updated in quickstart package.
+
+## Fixes
+* IE11 compatibility issues fixed.
+* Header Block module title issues fixed.
+* Sp Page Builder compatibility issues fixed.
+* Module title now displays for modules rendering in the Mega menu.
+* Template COPY issue fixed (copying a template from Joomla template manager failed earlier).
+* Improved Frontend UI
+* Improved Backend UI
+* Improved mod_articles_categories overrides
+* Improved search module
+* Improved Search Results page
+* Improved Language
+* Improved Typography
+* Improved articles latest module overrides
+
+## Removed
+* AcyMailing from QuickStart Package
+* ChronoForms from QuickStart Package
+* Pagination overrides deleted (**Path:** html/layout/joomla/pagination)
+* media.php overrides deleted (**Path:** html/mod_articles_latest/)
+* mod_custom overrides deleted from quickstart package (**Path:** html/mod_custom)
+
+## v1.3.0: 31-August-2018
+
+### Added
+* Column Level Class and ID
+* Users can use html tag in banner title input field.
+* Functionality to add Custom CSS and JS files. #15
+* Updated
+* FontAwesome updated to 5.3.1
+* Joomla 3.8.12 updated in quickstart package
+* Register Login 1.9 updated in quickstart package
+* Fixes
+* Coming Soon page fixed
+* Error page Typography fixed
+* Debug & Error reporting is now working on Error page
+* Setting export functionality fixed for Firefox alt text
+* Mobile menu issue fixed
+* Body background color issue fixed in boxed layout
+* Fixed menu assignment in quickstart package. #16
+
+### Removed
+* Removed error.php file from template frontend folder.
 
 ## v1.2.1: 16-August-2018
 
@@ -1125,3 +1210,4 @@ Here is record of all notable changes made to a Astroid Framework.
 ## v1.0.0: 28-June-2018
 
 * Initial Release
+

@@ -8,7 +8,7 @@
 
 defined('_JEXEC') or die;
 ?>
-<div class="latestnews menu list-inline<?php echo $moduleclass_sfx; ?>">
+<div class="latestnews menu list-inline">
 	<ul class="menu list-inline">
 		<?php foreach ($list as $item) : $image = json_decode($item->images); ?>
 			<li>

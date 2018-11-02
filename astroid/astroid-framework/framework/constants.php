@@ -11,9 +11,9 @@ jimport('astroid.framework.constants');
 
 class AstroidFrameworkConstants {
 
-   public static $astroid_version = '2.0.0';
-   public static $fontawesome_version = '5.3.1';
-   public static $animatecss_version = '3.6';
+   public static $astroid_version = '2.0.1';
+   public static $fontawesome_version = '5.4.2';
+   public static $animatecss_version = '3.7.0';
    public static $forum_link = 'https://www.joomdev.com/forum/astroid-framework';
    public static $documentation_link = 'http://joomdev.com/documentation/astroid-framework';
    public static $github_link = 'http://github.com/joomdev/astroid-framework';
@@ -33,21 +33,15 @@ class AstroidFrameworkConstants {
            'swing' => 'swing',
            'tada' => 'tada',
            'wobble' => 'wobble',
-           'jello' => 'jello'
+           'jello' => 'jello',
+           'heartBeat' => 'heartBeat'
        ],
        'Bouncing Entrances' => [
            'bounceIn' => 'bounceIn',
            'bounceInDown' => 'bounceInDown',
            'bounceInLeft' => 'bounceInLeft',
            'bounceInRight' => 'bounceInRight',
-           'bounceInUp' => 'bounceInUp',
-       ],
-       'Bouncing Exits' => [
-           'bounceOut' => 'bounceOut',
-           'bounceOutDown' => 'bounceOutDown',
-           'bounceOutLeft' => 'bounceOutLeft',
-           'bounceOutRight' => 'bounceOutRight',
-           'bounceOutUp' => 'bounceOutUp',
+           'bounceInUp' => 'bounceInUp'
        ],
        'Fading Entrances' => [
            'fadeIn' => 'fadeIn',
@@ -58,55 +52,28 @@ class AstroidFrameworkConstants {
            'fadeInRight' => 'fadeInRight',
            'fadeInRightBig' => 'fadeInRightBig',
            'fadeInUp' => 'fadeInUp',
-           'fadeInUpBig' => 'fadeInUpBig',
+           'fadeInUpBig' => 'fadeInUpBig'
        ],
-       'Fading Exits' => [
-           'fadeOut' => 'fadeOut',
-           'fadeOutDown' => 'fadeOutDown',
-           'fadeOutDownBig' => 'fadeOutDownBig',
-           'fadeOutLeft' => 'fadeOutLeft',
-           'fadeOutLeftBig' => 'fadeOutLeftBig',
-           'fadeOutRight' => 'fadeOutRight',
-           'fadeOutRightBig' => 'fadeOutRightBig',
-           'fadeOutUp' => 'fadeOutUp',
-           'fadeOutUpBig' => 'fadeOutUpBig',
-       ],
-       'Flippers' => [
+       'Flippers Entrances' => [
            'flip' => 'flip',
            'flipInX' => 'flipInX',
-           'flipInY' => 'flipInY',
-           'flipOutX' => 'flipOutX',
-           'flipOutY' => 'flipOutY',
+           'flipInY' => 'flipInY'
        ],
-       'Lightspeed' => [
+       'Lightspeed Entrances' => [
            'lightSpeedIn' => 'lightSpeedIn',
-           'lightSpeedOut' => 'lightSpeedOut',
        ],
        'Rotating Entrances' => [
            'rotateIn' => 'rotateIn',
            'rotateInDownLeft' => 'rotateInDownLeft',
            'rotateInDownRight' => 'rotateInDownRight',
            'rotateInUpLeft' => 'rotateInUpLeft',
-           'rotateInUpRight' => 'rotateInUpRight',
-       ],
-       'Rotating Exits' => [
-           'rotateOut' => 'rotateOut',
-           'rotateOutDownLeft' => 'rotateOutDownLeft',
-           'rotateOutDownRight' => 'rotateOutDownRight',
-           'rotateOutUpLeft' => 'rotateOutUpLeft',
-           'rotateOutUpRight' => 'rotateOutUpRight',
+           'rotateInUpRight' => 'rotateInUpRight'
        ],
        'Sliding Entrances' => [
            'slideInUp' => 'slideInUp',
            'slideInDown' => 'slideInDown',
            'slideInLeft' => 'slideInLeft',
            'slideInRight' => 'slideInRight',
-       ],
-       'Sliding Exits' => [
-           'slideOutUp' => 'slideOutUp',
-           'slideOutDown' => 'slideOutDown',
-           'slideOutLeft' => 'slideOutLeft',
-           'slideOutRight' => 'slideOutRight',
        ],
        'Zoom Entrances' => [
            'zoomIn' => 'zoomIn',
@@ -115,17 +82,10 @@ class AstroidFrameworkConstants {
            'zoomInRight' => 'zoomInRight',
            'zoomInUp' => 'zoomInUp',
        ],
-       'Zoom Exits' => [
-           'zoomOut' => 'zoomOut',
-           'zoomOutDown' => 'zoomOutDown',
-           'zoomOutLeft' => 'zoomOutLeft',
-           'zoomOutUp' => 'zoomOutUp',
-       ],
        'Specials' => [
            'hinge' => 'hinge',
            'jackInTheBox' => 'jackInTheBox',
            'rollIn' => 'rollIn',
-           'rollOut' => 'rollOut'
        ],
    ];
    public static $menu_animations = [
@@ -135,7 +95,7 @@ class AstroidFrameworkConstants {
            'bounceInDown' => 'bounceInDown',
            'bounceInLeft' => 'bounceInLeft',
            'bounceInRight' => 'bounceInRight',
-           'bounceInUp' => 'bounceInUp',
+           'bounceInUp' => 'bounceInUp'
        ],
        'Fading Entrances' => [
            'fadeIn' => 'fadeIn',
@@ -146,27 +106,27 @@ class AstroidFrameworkConstants {
            'fadeInRight' => 'fadeInRight',
            'fadeInRightBig' => 'fadeInRightBig',
            'fadeInUp' => 'fadeInUp',
-           'fadeInUpBig' => 'fadeInUpBig',
+           'fadeInUpBig' => 'fadeInUpBig'
        ],
        'Rotating Entrances' => [
            'rotateIn' => 'rotateIn',
            'rotateInDownLeft' => 'rotateInDownLeft',
            'rotateInDownRight' => 'rotateInDownRight',
            'rotateInUpLeft' => 'rotateInUpLeft',
-           'rotateInUpRight' => 'rotateInUpRight',
+           'rotateInUpRight' => 'rotateInUpRight'
        ],
        'Sliding Entrances' => [
            'slideInUp' => 'slideInUp',
            'slideInDown' => 'slideInDown',
            'slideInLeft' => 'slideInLeft',
-           'slideInRight' => 'slideInRight',
+           'slideInRight' => 'slideInRight'
        ],
        'Zoom Entrances' => [
            'zoomIn' => 'zoomIn',
            'zoomInDown' => 'zoomInDown',
            'zoomInLeft' => 'zoomInLeft',
            'zoomInRight' => 'zoomInRight',
-           'zoomInUp' => 'zoomInUp',
+           'zoomInUp' => 'zoomInUp'
        ],
        'Specials' => [
            'hinge' => 'hinge',

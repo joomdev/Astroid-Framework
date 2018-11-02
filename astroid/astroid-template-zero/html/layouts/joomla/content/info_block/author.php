@@ -16,6 +16,6 @@ defined('JPATH_BASE') or die;
 		<?php JHtml::_('link', $displayData['item']->contact_link, $author, array('itemprop' => 'url')); ?>
 	<?php else : ?>
 	<i class="far fa-user"></i>	
-	<?php echo $author; ?>
+		<?php echo $author; ?>
 	<?php endif; ?>
 </dd>

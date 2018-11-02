@@ -115,6 +115,7 @@
                }
                var _this = this;
                setTimeout(function () {
+                  $(_this).css('visibility', 'visible');
                   $(_this).addClass('animated');
                   $(_this).addClass(_animation);
                   $(_this).addClass('animation-done');

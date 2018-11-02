@@ -14,7 +14,7 @@ $msgList = $displayData['msgList'];
    <?php if (is_array($msgList) && !empty($msgList)) : ?>
       <div id="system-message">
          <?php foreach ($msgList as $type => $msgs) : ?>
-            <div class="alert alert-<?php echo $type == "error" ? "danger" : $type; ?>">
+            <div class="alert alert-<?php echo $type == "error" ? "danger" : ($type == "message" ? "info" : $type); ?>">
                <?php // This requires JS so we should add it through JS. Progressive enhancement and stuff. ?>
                <a class="close" data-dismiss="alert">×</a>
 

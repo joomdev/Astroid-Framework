@@ -285,6 +285,9 @@ class plgSystemAstroid extends JPlugin {
    }
 
    private function getAstroidTemplates() {
+	  if(!file_exists(JPATH_LIBRARIES.'/astroid/framework/helper.php')){
+		  return [];
+	  }
       $db = JFactory::getDbo();
       $query = $db
               ->getQuery(true)

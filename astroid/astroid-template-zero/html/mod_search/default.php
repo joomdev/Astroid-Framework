@@ -25,7 +25,7 @@ else
 	$width = '';
 }
 ?>
-<div class="search<?php echo $moduleclass_sfx; ?>">
+<div class="search">
 	<form action="<?php echo JRoute::_('index.php'); ?>" method="post" class="form-group">
 	<div class="input-group">
 		<?php

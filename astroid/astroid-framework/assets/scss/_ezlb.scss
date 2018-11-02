@@ -1,0 +1,570 @@
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+   display: none !important;
+}
+
+$gradiant-header-height: 6px;
+$gradiant-header-height-hover: 6px;
+
+.ezlb{
+   div[class^="ezlb-"] {
+      .ezlb-toolbar{
+         line-height: 40px;
+         font-size: 14px;
+         padding: 0px 10px;
+         display: none;
+         .ezlb-action{
+            padding: 0px 5px;
+            text-align: center;
+            display: inline-block;
+            cursor: pointer;
+            opacity: 0.6;
+            line-height: 20px;
+            &:hover{
+               opacity: 1;
+            }
+         }
+      }
+      &:hover{
+         > .ezlb-toolbar{
+            display: block;
+         }
+      }
+      .ezlb-title{
+         font-size: 15px;
+         line-height: 40px;
+         position: relative;
+         input[type=text]{
+            background: none;
+            border: none !important;
+            outline: none !important;
+            box-shadow: none !important;
+         }
+         &:after{
+            content:attr(data-info);
+            position: absolute;
+            width: 100%;
+            text-align: left;
+            top: 30px;
+            left: 2px;
+            font-size: 10px;
+            text-transform: uppercase;
+            opacity: 0.8;
+            height: 20px;
+            line-height: 20px;
+            white-space: nowrap;
+         }
+      }
+   }
+   .ezlb-section{
+      .ezlb-content{
+         .ezlb-row{
+            position: relative;
+            padding: 0px;
+            padding-top: 1.5rem;
+            > .ezlb-toolbar{
+               position: absolute;
+               right: -30px;
+               top: 0px;
+               width: 30px;
+               padding: 0px 3px;
+               padding-top: 1.5rem;
+               line-height: 24px;
+               height: 100%;
+               &.toolbar-left{
+                  left: -30px;
+                  right: auto;
+               }
+            }
+            &.sortable-chosen{
+               opacity: 0.3;
+            }
+            .ezlb-col{
+               min-height: 70px;
+               flex: auto;
+               flex-direction: column;
+               display: flex;
+               padding: 0px;
+               background: #fff;
+               -webkit-transition: all 0.1s ease-in;
+               -moz-transition: all 0.1s ease-in;
+               -ms-transition: all 0.1s ease-in;
+               -o-transition: all 0.1s ease-in;
+               transition: all 0.1s ease-in;
+               border: 1px solid #e1e1e1;
+               border-left-width: 0px;
+               &:first-child{
+                  border-left-width: 1px;
+                  border-top-left-radius: 5px;
+                  border-bottom-left-radius: 5px;
+                  .ezlb-elements{
+                     .ezlb-element{
+                        &:first-child{
+                           border-top-left-radius: 5px;
+                        }
+                        &:last-child{
+                           border-bottom-left-radius: 5px;
+                        }
+                     }
+                  }
+               }
+               &:last-child{
+                  border-top-right-radius: 5px;
+                  border-bottom-right-radius: 5px;
+                  .ezlb-elements{
+                     .ezlb-element{
+                        &:first-child{
+                           border-top-right-radius: 5px;
+                        }
+                        &:last-child{
+                           border-bottom-right-radius: 5px;
+                        }
+                     }
+                  }
+               }
+               &.sortable-chosen{
+                  opacity: 0.3;
+               }
+               .ezlb-col-overlay{
+                  position: absolute;
+                  width: 100%;
+                  height: 100%;
+                  top: 0;
+                  left: 0;
+                  z-index: 3;
+                  display: block;
+               }
+               &:hover{
+                  .ezlb-col-overlay{
+                     display: none;
+                  }
+               }
+               &[draggable="true"]{
+                  ~ .ezlb-col{
+                     &[draggable="false"]{
+                        .ezlb-col-overlay{
+                           display: block !important;
+                        }
+                        border-left-width: 1px !important;
+                     }
+                     .ezlb-elements{
+                        .ezlb-element{
+                           .ezlb-add-element{
+                              display: none !important;
+                           }
+                           > .ezlb-toolbar{
+                              display: none !important;
+                           }
+                        }
+                     }
+                  }
+               }
+               &.ezlb-col-empty{
+                  cursor: pointer;
+                  &:after{
+                     content: '+';
+                     font-size: 24px;
+                     width: 120px;
+                     height: 40px;
+                     position: absolute;
+                     top: 50%;
+                     left: 50%;
+                     margin-left: -60px;
+                     margin-top: -20px;
+                     text-align: center;
+                     line-height: 40px;
+                     opacity: 0.6;
+                  }
+                  &:hover{
+                     &:after{
+                        opacity: 1;
+                     }
+                  }
+                  .ezlb-add-element{
+                     position: absolute;
+                     top: 0;
+                     left: 0;
+                     width: 100%;
+                     height: 100%;
+                     z-index: 1;
+                  }
+               }
+               .ezlb-element-col-edit{
+                  width: 30px;
+                  height: 30px;
+                  text-align: center;
+                  line-height: 30px;
+                  position: absolute;
+                  top: -15px;
+                  left: 50%;
+                  margin-left: -15px;
+                  background: #fff;
+                  border-radius: 30px;
+                  z-index: 4;
+                  opacity: 0.6;
+                  font-size: 12px;
+                  cursor: pointer;
+                  display:none;
+                  border: 1px solid #e1e1e1;
+                  &:hover{
+                     opacity: 1;
+                  }
+               }
+               &:hover{
+                  .ezlb-element-col-edit{
+                     display: block;
+                  }
+               } 
+               .ezlb-elements{
+                  display: flex;
+                  flex: 1;
+                  flex-direction: column;
+                  width:100%;
+                  max-width:100%;
+                  .ezlb-element{
+                     justify-content: center;
+                     align-items: center;
+                     display: flex;
+                     width: 100%;
+                     max-width: 100%;
+                     background: #f9f8fd;
+                     flex: 1;
+                     padding: 20px 0px;
+                     position: relative;
+                     border-bottom: 1px solid #e1e1e1;
+                     &:last-child{ 
+                        border-bottom: none;
+                     }
+                     > .ezlb-toolbar{
+                        position: absolute;
+                        top: 0;
+                        right: 0;
+                        background: #e9eaf1;
+                        padding: 0px 5px;
+                        line-height: 30px;
+                        border-bottom-left-radius: 5px;
+                        border-left: 1px solid #e1e1e1;
+                        border-bottom: 1px solid #e1e1e1;
+                     }
+                     .element-title{
+                        font-size: 14px;
+                        font-weight: $font-weight-normal;
+                        padding: 0px 10px;
+                        @extend .text-ellipsis;
+                     }
+                     .ezlb-add-element{
+                        width: 30px;
+                        height: 30px;
+                        text-align: center;
+                        line-height: 30px;
+                        position: absolute;
+                        bottom: -15px;
+                        left: 50%;
+                        margin-left: -15px;
+                        background: #fff;
+                        border-radius: 30px;
+                        z-index: 4;
+                        opacity: 0.6;
+                        font-size: 12px;
+                        cursor: pointer;
+                        display:none;
+                        border: 1px solid #e1e1e1;
+                        &:hover{
+                           opacity: 1;
+                        }
+                     }
+                     &:hover{
+                        .ezlb-add-element{
+                           display: block;
+                        }
+                     }
+                     &[draggable="true"]{
+                        .ezlb-add-element{
+                           display: none !important;
+                        }
+                     }
+                  }
+               }
+            }
+         }
+      }
+   }
+}
+
+.ezlb-pop{
+   position: fixed;
+   width: 100%;
+   height: 100%;
+   top: 0;
+   left: 0;
+   z-index: 99999;
+   display: none;
+   &.open{
+      display: block;
+   }
+   .ezlb-pop-overlay{
+      background: rgba(0,0,0,0.6);
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      position: absolute;
+      z-index: 1;
+   }
+   .ezlb-pop-body{
+      width: 100%;
+      height: 100%;
+      max-width: 70vw;
+      max-height: 70vh;
+      left: 15vw;
+      top: 15vh;
+      background: #fff;
+      z-index: 2;
+      position: absolute;
+      overflow-x: hidden;
+      overflow-y: auto;
+      padding-top: 60px;
+      padding-bottom: 60px;
+      border-radius: $modal-radius;
+      .astroid-tab-pane{
+         .astroid-form-fieldset-section{
+            box-shadow: none;
+         }
+      }
+
+
+      .ezlb-pop-header{
+         height: 60px;
+         background: $gradiant-background-orange;
+         position: fixed;
+         z-index: 3;
+         width: 100%;
+         max-width: 70vw;
+         left: 15vw;
+         top: 15vh;
+         width: 100%;
+         .title, .compress, .expand, .dismiss{
+            color: #fff;
+            font-size: 18px;
+            line-height: 60px;
+            padding: 0px 20px;
+            -webkit-transition: all 0.1s ease-in;
+            -moz-transition: all 0.1s ease-in;
+            -ms-transition: all 0.1s ease-in;
+            -o-transition: all 0.1s ease-in;
+            transition: all 0.1s ease-in;
+            &:hover{
+               -webkit-transition: all 0.1s ease-in;
+               -moz-transition: all 0.1s ease-in;
+               -ms-transition: all 0.1s ease-in;
+               -o-transition: all 0.1s ease-in;
+               transition: all 0.1s ease-in;
+            }
+         }
+         .expand{
+            display: none;
+         }
+         .compress, .expand, .dismiss{
+            float: right;
+            cursor: pointer;
+            &:hover{
+               transform: scale(1.2);
+            }
+         }
+         .nav-link{
+            padding: 0px 15px;
+            height: 60px;
+            line-height: 60px;
+            border: none !important;
+            color: #eee3ff;
+            font-size: 16px;
+            border-radius: 0px !important;
+            &:hover{
+               color: #fff;
+            }
+            &.active{
+               color: #000 !important;
+               background-color: #fff !important;
+            }
+         }
+         .nav-tabs{
+            border: none !important;
+            float: left;
+            .nav-item{
+               margin-bottom: 0px !important;
+            }
+         }
+      }
+      .ezlb-pop-footer{
+         height: 60px;
+         line-height: 60px;
+         background: #f3f3f3;
+         border-top: 1px solid #e1e1e1;
+         position: fixed;
+         z-index: 3;
+         max-width: 70vw;
+         left: 15vw;
+         bottom: 15vh;
+         width: 100%;
+         padding: 0px 20px;
+      }
+      &.sm-h{
+         max-width: 40vw;
+         max-height: 40vh;
+         left: 30vw;
+         top: 30vh;
+         .ezlb-pop-header{
+            max-width: 40vw;
+            left: 30vw;
+            top: 30vh;
+         }
+         .ezlb-pop-footer{
+            max-width: 40vw;
+            left: 30vw;
+            bottom: 30vh;
+         }
+      }
+      &.sm-v{
+         max-width: 30vw;
+         max-height: 70vh;
+         left: 35vw;
+         top: 15vh;
+         .ezlb-pop-header{
+            max-width: 30vw;
+            left: 35vw;
+            top: 15vh;
+         }
+         .ezlb-pop-footer{
+            max-width: 30vw;
+            left: 35vw;
+            bottom: 15vh;
+         }
+      }
+      &.tiny-v{
+         max-width: 30vw;
+         max-height: 50vh;
+         left: 35vw;
+         top: 25vh;
+         .ezlb-pop-header{
+            max-width: 30vw;
+            left: 35vw;
+            top: 25vh;
+         }
+         .ezlb-pop-footer{
+            max-width: 30vw;
+            left: 35vw;
+            bottom: 25vh;
+         }
+      }
+      &.left-push{
+         max-width: 50vw;
+         max-height: 100vh;
+         left: 0;
+         top: 0;
+         .ezlb-pop-header{
+            max-width: 50vw;
+            left: 0;
+            top: 0;
+         }
+         .ezlb-pop-footer{
+            max-width: 50vw;
+            left: 0;
+            bottom: 0;
+         }
+      }
+      &.left-push{
+         .ezlb-pop-header{
+            .expand{
+               display: block;
+            }
+            .compress{
+               display: none;
+            }
+         }
+      }
+   }
+}
+
+.ezlb-grid-items{
+   margin-top: 30px;
+   .ezlb-grid-item{
+      .row{
+         .ezlb-grid-item-col{
+            position: relative;
+            padding: 0px 3px;
+            margin-bottom: 30px;
+            span{
+               min-height: 120px;
+               line-height: 120px;
+               text-align: center;
+               border: 2px solid #000000;
+               display: block;
+               color: #000000;
+               border-radius: 4px;
+               -webkit-transition: all 0.1s ease-in;
+               -moz-transition: all 0.1s ease-in;
+               -ms-transition: all 0.1s ease-in;
+               -o-transition: all 0.1s ease-in;
+               transition: all 0.1s ease-in;
+            }
+         }
+         .ezlb-grid-item-element{
+            position: relative;
+            padding: 0px 3px;
+            margin-bottom: 30px;
+            > span{
+               padding: 20px 5px;
+               line-height: 30px;
+               text-align: center;
+               border: 2px solid #000000;
+               display: block;
+               color: #000000;
+               border-radius: 4px;
+               -webkit-transition: all 0.1s ease-in;
+               -moz-transition: all 0.1s ease-in;
+               -ms-transition: all 0.1s ease-in;
+               -o-transition: all 0.1s ease-in;
+               transition: all 0.1s ease-in;
+               .title{
+                  display: block; 
+               }
+               .sub-title{
+                  display: block;
+                  font-size: 11px;
+               }
+            }
+         }
+      }
+      &:hover{
+         cursor: pointer;
+         .row{
+            .ezlb-grid-item-col{
+               span{
+                  background: #f3f3f3;
+               }
+            }
+            .ezlb-grid-item-element{
+               > span{
+                  background: #f3f3f3;
+               }
+            }
+         }
+      }
+   }
+}
+
+.ezlb-btn{
+   border: 2px solid #000000;
+   color: #000000;
+   text-align: center;
+   border-radius: 4px;
+   padding: 10px;
+   cursor: pointer;
+   &.ezlb-btn-sm{
+      font-size: 12px;
+      padding: 7px;
+   }
+   &.ezlb-btn-tiny{
+      font-size: 11px;
+      padding: 5px;
+   }
+}

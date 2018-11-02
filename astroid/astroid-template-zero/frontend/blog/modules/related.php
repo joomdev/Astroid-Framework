@@ -22,18 +22,14 @@ if (empty($items)) {
                <?php
                if (!empty($images->image_intro)) {
                   ?>
-                  <img class="card-img-top" src="<?php echo $images->image_intro; ?>" data-holder-rendered="true">
+                  <a href="<?php echo $item->route; ?>">
+                     <img class="card-img-top" src="<?php echo $images->image_intro; ?>" data-holder-rendered="true">
+                  </a>
                <?php } ?>
                <div class="card-body">
+                  <small class="text-muted"> <?php echo $item->category_title; ?></small>
                   <a href="<?php echo $item->route; ?>"><h3><?php echo $item->title; ?></h3></a>
-                  <p class="card-text"><?php echo $item->introtext; ?></p>
-                  <div class="d-flex justify-content-between align-items-center">
-                     <div class="btn-group">
-                        <button type="button" class="btn btn-sm btn-outline-secondary" data-toggle="tooltip" data-placement="top" title="<?php echo JText::_('JGLOBAL_HITS'); ?>"><?php echo $item->hits; ?></button>
-                        <button type="button" class="btn btn-sm btn-outline-secondary" data-toggle="tooltip" data-placement="top" title="<?php echo JText::_('JDATE'); ?>"><?php echo JHtml::_('date', $item->created, JText::_('DATE_FORMAT_LC4')); ?></button>
-                     </div>
-                     <small class="text-muted"> <?php echo $item->category_title; ?></small>
-                  </div>
+                  <?php echo $item->introtext; ?>
                </div>
             </div>
          </div>

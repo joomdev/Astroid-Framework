@@ -19,6 +19,7 @@ $offcanvas_animation = $params->get('offcanvas_animation', 'st-effect-1');
 $offcanvas_togglevisibility = $params->get('offcanvas_togglevisibility', 'd-block');
 $class = ['astroid-header', 'astroid-header-sticky'];
 $stickyheader = $params->get('stickyheader', 'static');
+$header_mobile_menu = $params->get('header_mobile_menu', '');
 $class[] = 'header-' . $stickyheader . '-desktop';
 $stickyheadermobile = $params->get('stickyheadermobile', 'static');
 $class[] = 'header-' . $stickyheadermobile . '-mobile';
@@ -42,11 +43,13 @@ switch ($mode) {
 <!-- header starts -->
 <div id="astroid-sticky-header" class="<?php echo implode(' ', $class); ?> d-none border-bottom shadow-sm">
    <div class="container d-flex flex-row justify-content-between">
-      <div class="d-flex d-lg-none justify-content-start">
-         <div class="header-mobilemenu-trigger d-lg-none burger-menu-button align-self-center" data-offcanvas="#astroid-mobilemenu" data-effect="mobilemenu-slide">
-            <button class="button" type="button"><span class="box"><span class="inner"></span></span></button>
+      <?php if (empty($header_mobile_menu)) { ?>
+         <div class="d-flex d-lg-none justify-content-start">
+            <div class="header-mobilemenu-trigger d-lg-none burger-menu-button align-self-center" data-offcanvas="#astroid-mobilemenu" data-effect="mobilemenu-slide">
+               <button class="button" type="button"><span class="box"><span class="inner"></span></span></button>
+            </div>
          </div>
-      </div>
+      <?php } ?>
       <div class="header-left-section d-flex justify-content-center flex-grow-1">
          <?php
          $template->loadLayout('logo');

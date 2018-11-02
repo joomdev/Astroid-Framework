@@ -17,6 +17,7 @@ $block_1_custom = $params->get('header_block_1_custom', '');
 $block_2_type = $params->get('header_block_2_type', 'blank');
 $block_2_position = $params->get('header_block_2_position', '');
 $block_2_custom = $params->get('header_block_2_custom', '');
+$header_mobile_menu = $params->get('header_mobile_menu', '');
 $header_menu = $params->get('header_menu', '');
 $odd_menu_items = $params->get('odd_menu_items', 'left');
 $class = ['astroid-header', 'astroid-stacked-header', 'astroid-stacked-' . $mode . '-header'];
@@ -35,11 +36,13 @@ $navWrapperClass = ['astroid-nav-wraper', 'align-self-center', 'px-2', 'd-none',
          if ($mode == 'center') {
             echo '<div class="w-100 d-flex justify-content-center">';
             ?>
-            <div class="d-flex d-lg-none justify-content-start">
-               <div class="header-mobilemenu-trigger d-lg-none burger-menu-button align-self-center" data-offcanvas="#astroid-mobilemenu" data-effect="mobilemenu-slide">
-                  <button class="button" type="button"><span class="box"><span class="inner"></span></span></button>
+            <?php if (empty($header_mobile_menu)) { ?>
+               <div class="d-flex d-lg-none justify-content-start">
+                  <div class="header-mobilemenu-trigger d-lg-none burger-menu-button align-self-center" data-offcanvas="#astroid-mobilemenu" data-effect="mobilemenu-slide">
+                     <button class="button" type="button"><span class="box"><span class="inner"></span></span></button>
+                  </div>
                </div>
-            </div>
+            <?php } ?>
             <?php
             echo '<div class="d-flex w-100 justify-content-center">';
             $template->loadLayout('logo');
@@ -92,12 +95,14 @@ $navWrapperClass = ['astroid-nav-wraper', 'align-self-center', 'px-2', 'd-none',
             // header nav starts   
             echo '<div class="header-stacked-inner w-100 d-flex justify-content-center">';
             ?>
-            <div class="d-flex d-lg-none justify-content-start">
-               <div class="header-mobilemenu-trigger d-lg-none burger-menu-button align-self-center" data-offcanvas="#astroid-mobilemenu" data-effect="mobilemenu-slide">
-                  <button class="button" type="button"><span class="box"><span class="inner"></span></span></button>
+            <?php if (empty($header_mobile_menu)) { ?>
+               <div class="d-flex d-lg-none justify-content-start">
+                  <div class="header-mobilemenu-trigger d-lg-none burger-menu-button align-self-center" data-offcanvas="#astroid-mobilemenu" data-effect="mobilemenu-slide">
+                     <button class="button" type="button"><span class="box"><span class="inner"></span></span></button>
+                  </div>
                </div>
-            </div>
-            <?php
+               <?php
+            }
             echo '<div class="d-flex w-100 justify-content-center">';
             echo '<div class="d-lg-none">';
             $template->loadLayout('logo');
@@ -135,12 +140,14 @@ $navWrapperClass = ['astroid-nav-wraper', 'align-self-center', 'px-2', 'd-none',
          if ($mode == 'divided') {
             echo '<div class="w-100 d-flex justify-content-center">';
             ?>
-            <div class="d-flex d-lg-none justify-content-start">
-               <div class="header-mobilemenu-trigger d-lg-none burger-menu-button align-self-center" data-offcanvas="#astroid-mobilemenu" data-effect="mobilemenu-slide">
-                  <button class="button" type="button"><span class="box"><span class="inner"></span></span></button>
+            <?php if (empty($header_mobile_menu)) { ?>
+               <div class="d-flex d-lg-none justify-content-start">
+                  <div class="header-mobilemenu-trigger d-lg-none burger-menu-button align-self-center" data-offcanvas="#astroid-mobilemenu" data-effect="mobilemenu-slide">
+                     <button class="button" type="button"><span class="box"><span class="inner"></span></span></button>
+                  </div>
                </div>
-            </div>
-            <?php
+               <?php
+            }
             if (!empty($block_1_type)) {
                echo '<div class="d-flex w-100 justify-content-center justify-content-lg-start">';
             } else {

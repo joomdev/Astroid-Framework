@@ -23,19 +23,23 @@ function modChrome_card($module, &$params, &$attribs) {
    $content = trim($module->content);
 
    if (!empty($content)) :
+      ?>
+      <<?php echo $moduleTag; ?> class="moduletable <?php echo htmlspecialchars($params->get('moduleclass_sfx'), ENT_COMPAT, 'UTF-8') . $moduleClass; ?>">
+      <?php 
       echo '<div class="card">';
       echo '<div class="card-body">';
       ?>
-      <<?php echo $moduleTag; ?> class="moduletable <?php echo htmlspecialchars($params->get('moduleclass_sfx'), ENT_COMPAT, 'UTF-8') . $moduleClass; ?>">
       <?php if ($module->showtitle != 0) : ?>
          <<?php echo $headerTag . $headerClass . '>' . $module->title; ?></<?php echo $headerTag; ?>>
       <?php endif; ?>
 
       <?php echo $content; ?>
-      </<?php echo $moduleTag; ?>>
       <?php
       echo '</div>';
       echo '</div>';
+      ?>
+      </<?php echo $moduleTag; ?>>
+      <?php
    endif;
 }
 
@@ -52,17 +56,21 @@ function modChrome_border_layout($module, &$params, &$attribs) {
    $content = trim($module->content);
 
    if (!empty($content)) :
-      echo '<div class="border rounded p-3 mb-4">';
       ?>
       <<?php echo $moduleTag; ?> class="moduletable <?php echo htmlspecialchars($params->get('moduleclass_sfx'), ENT_COMPAT, 'UTF-8') . $moduleClass; ?>">
+      <?php
+      echo '<div class="border rounded p-3 mb-4">';
+      ?>
       <?php if ($module->showtitle != 0) : ?>
          <<?php echo $headerTag . $headerClass . '>' . $module->title; ?></<?php echo $headerTag; ?>>
       <?php endif; ?>
 
       <?php echo $content; ?>
-      </<?php echo $moduleTag; ?>>
       <?php
       echo '</div>';
+      ?>
+      </<?php echo $moduleTag; ?>>
+      <?php
    endif;
 }
 

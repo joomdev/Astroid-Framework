@@ -1,0 +1,181 @@
+// Easings
+$ease-in-out-circ: cubic-bezier(.27,.01,.38,1.06);
+
+
+// Transitions
+$transition-duration:     250ms;
+$transition-base:         all $transition-duration $ease-in-out-circ !default;
+$transition-fade:         opacity 200ms ease-in-out !default;
+$transition-collapse:     height 350ms ease-in-out !default;
+
+$custom-toggle-width: 70px !default;
+$custom-toggle-height: 35px !default;
+$custom-toggle-border-width: 1px !default;
+$custom-toggle-border: $custom-toggle-border-width solid rgba(34,36,38,.15) !default;
+$custom-toggle-background-color: $white !default;
+$custom-toggle-border-radius: 100px !default;
+
+$custom-toggle-focus-box-shadow: none !default;
+
+$custom-toggle-checked-background: theme-color("success") !default;
+$custom-toggle-checked-border-color: $custom-toggle-checked-background !default;
+$custom-toggle-checked-knob-background: $white !default;
+
+$custom-toggle-knob-width: 27px !default;
+$custom-toggle-knob-height: 27px !default;
+$custom-toggle-knob-border-radius: 100px !default;
+$custom-toggle-knob-active-width: 26px !default;
+
+$custom-toggle-invalid-knob-background-color: #eb8c95 !default;
+$custom-toggle-invalid-background-color: $white !default;
+
+$custom-control-indicator-size:       1.125rem !default;
+$custom-control-indicator-bg:         $white !default;
+$custom-control-indicator-bg-size:    50% 50% !default;
+$custom-control-indicator-box-shadow: none !default;
+$custom-control-indicator-border: 1px solid $border-color !default;
+$custom-checkbox-indicator-transition: transform $transition-duration $ease-in-out-circ,
+border $transition-duration $ease-in-out-circ !default;
+
+$custom-control-indicator-disabled-bg:       $gray-200 !default;
+$custom-control-description-disabled-color:  $gray-600 !default;
+
+$custom-control-indicator-checked-color:      $white !default;
+$custom-control-indicator-checked-bg:         theme-color("primary") !default;
+$custom-control-indicator-checked-box-shadow: none !default;
+
+$custom-control-indicator-focus-box-shadow: $input-focus-box-shadow !default;
+
+$custom-control-indicator-active-color:      $white !default;
+$custom-control-indicator-active-bg:         lighten(theme-color("primary"), 35%) !default;
+$custom-control-indicator-active-box-shadow: none !default;
+
+.custom-control-label {
+   &:hover {
+      cursor: pointer;
+   }
+
+   // Background-color and (when enabled) gradient
+   &::before {
+      top: (($line-height-base - $custom-control-indicator-size) / 2);
+      width: $custom-control-indicator-size;
+      height: $custom-control-indicator-size;
+      background-color: $custom-control-indicator-bg;
+      border: $custom-control-indicator-border;
+      transition: all 250ms cubic-bezier(.27,.01,.38,1.06);
+      @include box-shadow($custom-control-indicator-box-shadow);
+   }
+
+   // Foreground (icon)
+   &::after {
+      top: (($line-height-base - $custom-control-indicator-size) / 2);
+      width: $custom-control-indicator-size;
+      height: $custom-control-indicator-size;
+      background-size: $custom-control-indicator-bg-size;
+   }
+}
+
+// Custom toggle
+.custom-toggle {
+   position: relative;
+   padding-left: ($custom-toggle-width + 10px);
+
+   .custom-control-label {
+      // Background
+      &::before {
+         position: absolute;
+         top: 0;
+         left: 0;
+         display: block;
+         width: $custom-toggle-width;
+         height: $custom-toggle-height;
+         background: $custom-toggle-background-color;
+         border-radius: $custom-toggle-border-radius;
+         border: $custom-toggle-border;
+         pointer-events: all;
+      }
+      &:hover{
+         &::before {
+            border-color: $ui-border-hover-color;
+         }
+      }
+
+      // Knob
+      &::after {
+         content: '';
+         position: absolute;
+         top: 4px;
+         left: 4px;
+         width: $custom-toggle-knob-width;
+         height: $custom-toggle-knob-height;
+         background: rgba(34,36,38,.15);
+         border-radius: $custom-toggle-knob-border-radius;
+         transition: 350ms;
+      }
+   }
+
+   // Checked state 
+   .custom-control-input:checked ~ .custom-control-label {
+      // Background
+      &::before {
+         background: $custom-toggle-checked-background;
+         border-color: $custom-toggle-checked-border-color;
+      }
+
+      // Knob
+      &::after {
+         left: $custom-toggle-width - $custom-toggle-border-width - 3px;
+         transform: translateX(-100%);
+         background: $custom-toggle-checked-knob-background;
+      }
+   }
+
+   // Disabled and checked state
+   .custom-control-input:checked:disabled ~ .custom-control-label {
+      &::before {
+         background: $custom-control-indicator-disabled-bg;
+         border-color: $border-color;
+      }
+
+      &::after {
+         background: $border-color;
+      }
+   }
+
+   // Active state
+   .custom-control-input:active:not(:disabled) ~ .custom-control-label {
+      // Knob
+      &::after {
+         width: $custom-toggle-knob-active-width;
+      }
+   }
+
+   // Active, but not checked.
+   .custom-control-input:active:not(:checked) ~ .custom-control-label {
+      &::before {
+         background-color: $custom-toggle-background-color;
+      }
+   }
+
+   // Disabled and active.
+   .custom-control-input:disabled:active ~ .custom-control-label {
+      &::before {
+         background-color: $custom-control-indicator-disabled-bg;
+      }
+   }
+
+   // Focus state
+   .custom-control-input:focus {
+      & ~ .custom-control-label {
+         &::before {
+            box-shadow: $custom-toggle-focus-box-shadow;
+         }
+      }
+
+      &:not(:checked) ~ .custom-control-label {
+         &::before {
+            box-shadow: $custom-toggle-focus-box-shadow;
+         }
+      }
+   }
+}

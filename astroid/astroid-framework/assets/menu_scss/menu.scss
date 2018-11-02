@@ -1,0 +1,674 @@
+/*!
+ * Bootstrap v4.0.0 (https://getbootstrap.com)
+ * Copyright 2011-2018 The Bootstrap Authors
+ * Copyright 2011-2018 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ */
+
+@import "./../scss/functions";
+@import "./../scss/variables";
+@import "./../scss/mixins";
+@import "./../scss/root";
+@import "./../scss/list-group";
+@import "./../scss/custom-forms";
+@import "./../scss/dropzone";
+@import "./../scss/spectrum";
+@import "./../scss/astroidframework";
+
+#astroid-menu-options{
+   margin-left: -180px;
+}
+
+#astroid-menu-options{
+   padding: 20px;
+   background: $white;
+   color: $body-color;
+   border: 2px solid #eaeaea;
+   font-size: 0.875rem;
+   font-family: "Nunito", sans-serif;
+   letter-spacing: 0.06em;
+   *, *::before, *::after{
+      box-sizing: border-box;
+   }
+   .m-0{
+      margin: 0px !important;
+   }
+   .p-0{
+      padding: 0px !important;
+   }
+   h1, h2, h3, h4, h5, h6{
+      margin-top: 0;
+      margin-bottom: 0.5rem;
+      font-family: inherit;
+      font-weight: 600;
+      line-height: 1.2;
+      color: inherit;
+   }
+   h3{
+      font-size: 1.53125rem;
+   }
+   p{
+      margin-top: 0;
+      margin-bottom: 1rem;
+      font-weight: 300;
+   }
+   // Container widths
+   //
+   // Set the container width, and override it for fixed navbars in media queries.
+
+   @if $enable-grid-classes {
+      .container {
+         @include make-container();
+         @include make-container-max-widths();
+      }
+   }
+
+   // Fluid container
+   //
+   // Utilizes the mixin meant for fixed width containers, but with 100% width for
+   // fluid, full width layouts.
+
+   @if $enable-grid-classes {
+      .container-fluid {
+         @include make-container();
+      }
+   }
+
+   // Row
+   //
+   // Rows contain and clear the floats of your columns.
+
+   @if $enable-grid-classes {
+      .row {
+         @include make-row();
+      }
+
+      // Remove the negative margin from default .row, then the horizontal padding
+      // from all immediate children columns (to prevent runaway style inheritance).
+      .no-gutters {
+         margin-right: 0;
+         margin-left: 0;
+
+         > .col,
+         > [class*="col-"] {
+            padding-right: 0;
+            padding-left: 0;
+         }
+      }
+   }
+
+   // Columns
+   //
+   // Common styles for small and large grid columns
+
+   @if $enable-grid-classes {
+      @include make-grid-columns();
+   }
+
+   // stylelint-disable selector-no-qualifying-type
+
+   //
+   // Textual form controls
+   //
+
+   .form-control {
+      display: block;
+      width: 100%;
+      padding: $input-padding-y $input-padding-x;
+      font-size: $font-size-base;
+      line-height: $input-line-height + .25;
+      color: $input-color;
+      background-color: $input-bg;
+      background-clip: padding-box;
+      border: $input-border-width solid $input-border-color;
+      font-weight: normal;
+      color: #000 !important;
+      height: auto !important;
+      // Note: This has no effect on <select>s in some browsers, due to the limited stylability of `<select>`s in CSS.
+      @if $enable-rounded {
+         // Manually use the if/else instead of the mixin to account for iOS override
+         border-radius: $input-border-radius;
+      } @else {
+         // Otherwise undo the iOS default
+         border-radius: 0;
+      }
+
+      @include box-shadow($input-box-shadow);
+      @include transition($input-transition);
+
+      // Unstyle the caret on `<select>`s in IE10+.
+      &::-ms-expand {
+         background-color: transparent;
+         border: 0;
+      }
+
+      // Customize the `:focus` state to imitate native WebKit styles.
+      @include form-control-focus();
+
+      // Placeholder
+      &::placeholder {
+         color: $input-placeholder-color;
+         // Override Firefox's unusual default opacity; see https://github.com/twbs/bootstrap/pull/11526.
+         opacity: 1;
+      }
+
+      // Disabled and read-only inputs
+      //
+      // HTML5 says that controls under a fieldset > legend:first-child won't be
+      // disabled if the fieldset is disabled. Due to implementation difficulty, we
+      // don't honor that edge case; we style them as disabled anyway.
+      &:disabled,
+         &[readonly] {
+         background-color: $input-disabled-bg;
+         // iOS fix for unreadable disabled content; see https://github.com/twbs/bootstrap/issues/11655.
+         opacity: 1;
+      }
+   }
+
+   select.form-control {
+      &:not([size]):not([multiple]) {
+         height: $input-height;
+      }
+
+      &:focus::-ms-value {
+         // Suppress the nested default white text on blue background highlight given to
+         // the selected option text when the (still closed) <select> receives focus
+         // in IE and (under certain conditions) Edge, as it looks bad and cannot be made to
+         // match the appearance of the native widget.
+         // See https://github.com/twbs/bootstrap/issues/19398.
+         color: $input-color;
+         background-color: $input-bg;
+      }
+   }
+
+   // Make file inputs better match text inputs by forcing them to new lines.
+   .form-control-file,
+   .form-control-range {
+      display: block;
+      width: 100%;
+   }
+
+
+   //
+   // Labels
+   //
+
+   // For use with horizontal and inline forms, when you need the label (or legend)
+   // text to align with the form controls.
+   .col-form-label {
+      padding-top: calc(#{$input-padding-y} + #{$input-border-width});
+      padding-bottom: calc(#{$input-padding-y} + #{$input-border-width});
+      margin-bottom: 0; // Override the `<label>/<legend>` default
+      font-size: inherit; // Override the `<legend>` default
+      line-height: $input-line-height;
+   }
+
+   .col-form-label-lg {
+      padding-top: calc(#{$input-padding-y-lg} + #{$input-border-width});
+      padding-bottom: calc(#{$input-padding-y-lg} + #{$input-border-width});
+      font-size: $font-size-lg;
+      line-height: $input-line-height-lg;
+   }
+
+   .col-form-label-sm {
+      padding-top: calc(#{$input-padding-y-sm} + #{$input-border-width});
+      padding-bottom: calc(#{$input-padding-y-sm} + #{$input-border-width});
+      font-size: $font-size-sm;
+      line-height: $input-line-height-sm;
+   }
+
+
+   // Readonly controls as plain text
+   //
+   // Apply class to a readonly input to make it appear like regular plain
+   // text (without any border, background color, focus indicator)
+
+   .form-control-plaintext {
+      display: block;
+      width: 100%;
+      padding-top: $input-padding-y;
+      padding-bottom: $input-padding-y;
+      margin-bottom: 0; // match inputs if this class comes on inputs with default margins
+      line-height: $input-line-height;
+      background-color: transparent;
+      border: solid transparent;
+      border-width: $input-border-width 0;
+
+      &.form-control-sm,
+      &.form-control-lg {
+         padding-right: 0;
+         padding-left: 0;
+      }
+   }
+
+
+   // Form control sizing
+   //
+   // Build on `.form-control` with modifier classes to decrease or increase the
+   // height and font-size of form controls.
+   //
+   // The `.form-group-* form-control` variations are sadly duplicated to avoid the
+   // issue documented in https://github.com/twbs/bootstrap/issues/15074.
+
+   .form-control-sm {
+      padding: $input-padding-y-sm $input-padding-x-sm;
+      font-size: $font-size-sm;
+      line-height: $input-line-height-sm;
+      @include border-radius($input-border-radius-sm);
+   }
+
+   select.form-control-sm {
+      &:not([size]):not([multiple]) {
+         height: $input-height-sm;
+      }
+   }
+
+   .form-control-lg {
+      padding: $input-padding-y-lg $input-padding-x-lg;
+      font-size: $font-size-lg;
+      line-height: $input-line-height-lg;
+      @include border-radius($input-border-radius-lg);
+   }
+
+   select.form-control-lg {
+      &:not([size]):not([multiple]) {
+         height: $input-height-lg;
+      }
+   }
+
+
+   // Form groups
+   //
+   // Designed to help with the organization and spacing of vertical forms. For
+   // horizontal forms, use the predefined grid classes.
+
+   .form-group {
+      margin-bottom: $form-group-margin-bottom;
+   }
+
+   .form-text {
+      display: block;
+      margin-top: $form-text-margin-top;
+   }
+
+
+   // Form grid
+   //
+   // Special replacement for our grid system's `.row` for tighter form layouts.
+
+   .form-row {
+      display: flex;
+      flex-wrap: wrap;
+      margin-right: -5px;
+      margin-left: -5px;
+
+      > .col,
+      > [class*="col-"] {
+         padding-right: 5px;
+         padding-left: 5px;
+      }
+   }
+
+
+   // Checkboxes and radios
+   //
+   // Indent the labels to position radios/checkboxes as hanging controls.
+
+   .form-check {
+      position: relative;
+      display: block;
+      padding-left: $form-check-input-gutter;
+   }
+
+   .form-check-input {
+      position: absolute;
+      margin-top: $form-check-input-margin-y;
+      margin-left: -$form-check-input-gutter;
+
+      &:disabled ~ .form-check-label {
+         color: $text-muted;
+      }
+   }
+
+   .form-check-label {
+      margin-bottom: 0; // Override default `<label>` bottom margin
+   }
+
+   .form-check-inline {
+      display: inline-flex;
+      align-items: center;
+      padding-left: 0; // Override base .form-check
+      margin-right: $form-check-inline-margin-x;
+
+      // Undo .form-check-input defaults and add some `margin-right`.
+      .form-check-input {
+         position: static;
+         margin-top: 0;
+         margin-right: $form-check-inline-input-margin-x;
+         margin-left: 0;
+      }
+   }
+
+
+   // Form validation
+   //
+   // Provide feedback to users when form field values are valid or invalid. Works
+   // primarily for client-side validation via scoped `:invalid` and `:valid`
+   // pseudo-classes but also includes `.is-invalid` and `.is-valid` classes for
+   // server side validation.
+
+   @include form-validation-state("valid", $form-feedback-valid-color);
+   @include form-validation-state("invalid", $form-feedback-invalid-color);
+
+   // Inline forms
+   //
+   // Make forms appear inline(-block) by adding the `.form-inline` class. Inline
+   // forms begin stacked on extra small (mobile) devices and then go inline when
+   // viewports reach <768px.
+   //
+   // Requires wrapping inputs and labels with `.form-group` for proper display of
+   // default HTML form controls and our custom form controls (e.g., input groups).
+
+   .form-inline {
+      display: flex;
+      flex-flow: row wrap;
+      align-items: center; // Prevent shorter elements from growing to same height as others (e.g., small buttons growing to normal sized button height)
+
+      // Because we use flex, the initial sizing of checkboxes is collapsed and
+      // doesn't occupy the full-width (which is what we want for xs grid tier),
+      // so we force that here.
+      .form-check {
+         width: 100%;
+      }
+
+      // Kick in the inline
+      @include media-breakpoint-up(sm) {
+         label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0;
+         }
+
+         // Inline-block all the things for "inline"
+         .form-group {
+            display: flex;
+            flex: 0 0 auto;
+            flex-flow: row wrap;
+            align-items: center;
+            margin-bottom: 0;
+         }
+
+         // Allow folks to *not* use `.form-group`
+         .form-control {
+            display: inline-block;
+            width: auto; // Prevent labels from stacking above inputs in `.form-group`
+            vertical-align: middle;
+         }
+
+         // Make static controls behave like regular ones
+         .form-control-plaintext {
+            display: inline-block;
+         }
+
+         .input-group {
+            width: auto;
+         }
+
+         // Remove default margin on radios/checkboxes that were used for stacking, and
+         // then undo the floating of radios and checkboxes to match.
+         .form-check {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: auto;
+            padding-left: 0;
+         }
+         .form-check-input {
+            position: relative;
+            margin-top: 0;
+            margin-right: $form-check-input-margin-x;
+            margin-left: 0;
+         }
+
+         .custom-control {
+            align-items: center;
+            justify-content: center;
+         }
+         .custom-control-label {
+            margin-bottom: 0;
+         }
+      }
+   }
+
+   .astroid-remove-item{
+      position: absolute;
+      right: 0;
+      height: 100%;
+      width: 40px;
+      top: 0;
+      display: none;
+      opacity: 0.7;
+      cursor: pointer;
+      &:before{
+         content: "\2715";
+         position: absolute;
+         width: 20px;
+         height: 20px;
+         top: 50%;
+         left: 50%;
+         margin-left: -10px;
+         margin-top: -10px;
+         text-align: center;
+         line-height: 20px;
+         font-weight: bolder;
+      }
+      &:hover{
+         opacity: 1;
+      }
+   }
+
+   .astroid-menu-options-submenu{
+      display: block;
+      background: #fafafa;
+      border: 1px solid #dededf;
+      margin-bottom: 5px;
+      position: relative;
+      padding: 10px 30px;
+      margin:0px;
+      &.ui-draggable-dragging{
+         background: $gradiant-background-orange;
+         color: #ffffff;
+         border: none;
+      }
+   }
+
+   .astroid-menu-options-modules{
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+      li{
+         display: block;
+         background: #fafafa;
+         border: 1px solid #dededf;
+         padding: 10px;
+         margin-bottom: 5px;
+         position: relative;
+         padding-right: 30px;
+         .info{
+            position: absolute;
+            right: 0;
+            top: 0;
+            margin: 10px;
+         }
+         &.ui-draggable-dragging{
+            background: $gradiant-background-orange;
+            color: #ffffff;
+            padding-right: 10px;
+            border: none;
+            span{
+               &.title{
+                  .published{
+                     display: none;
+                  }
+                  .unpublished{
+                     display: none;
+                  }
+               }
+            }
+            .info{
+               display: none;
+            }        
+         }
+      }
+   }
+
+   .menu-row{
+      background: #fafafa;
+      border-radius: 4px;
+      padding: 15px 10px;
+      border: 1px solid #eaeaea;
+      margin-top: 15px !important;
+      margin-left: 10px !important;
+      margin-right: 0px !important;
+      cursor: move;
+      position: relative;
+      @include transition(all linear 0.1s);
+      .module-col{
+         min-height: 40px;
+         background: #eaeaea;
+         border-radius: 4px;
+         overflow: hidden;
+         position: relative;
+         .modules-col-empty{
+            color: #a7a7a7;
+            display: block;
+            text-align: center;
+            line-height: 40px;
+         }
+         .modules-col-nonempty{
+            color: #ffffff;
+            display: block;
+            text-align: center;
+            line-height: 40px;
+            background: $primary;
+            &.modules-col-menuitem{
+               background: $success;
+            }
+         }
+         &:hover{
+            .astroid-remove-item{
+               display: block;
+            }
+         }
+      }
+      &:hover{
+         padding-right: 25px;
+         .astroid-remove-item{
+            display: block;
+         }
+      }
+      &.placeholder{
+         opacity: 0.3;
+         @include transition(all linear 0.1s);
+         padding-right: 10px;
+      }
+   }
+   @import "./../scss/ezlb";
+   .ezlb-grid-items{
+      .ezlb-grid-item{
+         .row{
+            .ezlb-grid-item-col{
+               margin-bottom: 10px;
+               span{
+                  min-height: 50px;
+                  line-height: 50px;
+               }
+            }
+         }
+      }
+   }
+}
+
+.disabled-submenu{
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   background: rgba(255,255,255,0.8);
+   z-index: 1;
+   user-select: none;
+   cursor: not-allowed;
+   display:none;
+   &.active{
+      display: block;
+   }
+}
+
+.btn-astroid-add{
+   color: $primary;
+   overflow: hidden;
+   font-size: 16px;
+   box-shadow: none;
+   font-weight: 400;
+   padding: 10px 30px;
+   border-radius: 4px;
+   background: #fff;
+   line-height: normal;
+   border: 1px solid $primary;
+   position: relative;
+}
+
+span{
+   &.title{
+      .published{
+         color: #00CF6C !important;
+      }
+      .unpublished{
+         color: #D4002E !important;
+      }
+      .popover{
+         min-width: 250px;
+         line-height: 30px;
+         min-height: inherit;
+      }
+   }
+}
+
+.astroid-module-search{
+   display: inline-block !important;
+   width: 400px !important;
+   margin: 0px;
+   border: none !important;
+   border-radius: 0px !important;
+   padding: 0px 20px !important;
+   background: none !important;
+   color: #fff !important;
+   font-size: 16px !important;
+}
+
+.astroid-module-search::placeholder, .astroid-module-search:-ms-input-placeholder, .astroid-module-search::-ms-input-placeholder{
+   color: #fff !important;
+}
+
+.ezlb-grid-item{
+   .list-group{
+      li{
+         padding: 20px 1.25rem;
+         border: none;
+         border-bottom: 2px solid #000000 !important;
+         margin: 0px;
+         &:last-child{
+            border-bottom: none !important;
+         }
+      }
+   }
+   &:hover{
+      .list-group{
+         li{
+            background: #f3f3f3;
+         }
+      }
+   }
+}

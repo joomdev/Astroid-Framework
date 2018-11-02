@@ -8,12 +8,14 @@
 
 defined('_JEXEC') or die;
 ?>
-   <div class="latestnews<?php echo $moduleclass_sfx; ?>">
+   <div class="latestnews">
       <ul class="list-group list-group-flush">
          <?php foreach ($list as $item) : $image = json_decode($item->images); ?>
          <li class="list-group-item px-0">
             <?php if($image->image_intro != "") : ?>
-            <img class="card-img-top pb-2" src="<?php echo JURI::root().$image->image_intro; ?>" alt="<?php echo htmlspecialchars($image->image_fulltext_alt); ?>">
+               <a class="article-title" href="<?php echo $item->link; ?>" class="">
+                  <img class="card-img-top pb-2" src="<?php echo JURI::root().$image->image_intro; ?>" alt="<?php echo htmlspecialchars($image->image_fulltext_alt); ?>">
+               </a>
             <?php endif; ?>
             <h6>
                <a class="article-title" href="<?php echo $item->link; ?>" class="">

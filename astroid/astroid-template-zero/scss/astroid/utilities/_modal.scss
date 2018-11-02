@@ -9,3 +9,7 @@ a.modal {
    outline: inherit;
    z-index: inherit;
 }
+
+#sbox-window {
+   box-sizing: content-box;
+}

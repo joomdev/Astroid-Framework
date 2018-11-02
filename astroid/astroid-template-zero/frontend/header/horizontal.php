@@ -19,6 +19,7 @@ $block_1_position = $params->get('header_block_1_position', '');
 $block_1_custom = $params->get('header_block_1_custom', '');
 $header_menu = $params->get('header_menu', 'mainmenu');
 $enable_offcanvas = $params->get('enable_offcanvas', FALSE);
+$header_mobile_menu = $params->get('header_mobile_menu', '');
 $offcanvas_animation = $params->get('offcanvas_animation', 'st-effect-1');
 $offcanvas_togglevisibility = $params->get('offcanvas_togglevisibility', 'd-block');
 $class = ['astroid-header', 'astroid-horizontal-header', 'astroid-horizontal-' . $mode . '-header'];
@@ -28,11 +29,13 @@ $navWrapperClass = ['align-self-center', 'px-2', 'd-none', 'd-lg-block'];
 <!-- header starts -->
 <header id="astroid-header" class="<?php echo implode(' ', $class); ?>">
    <div class="d-flex flex-row justify-content-between">
-      <div class="d-flex d-lg-none justify-content-start">
-         <div class="header-mobilemenu-trigger d-lg-none burger-menu-button align-self-center" data-offcanvas="#astroid-mobilemenu" data-effect="mobilemenu-slide">
-            <button class="button" type="button"><span class="box"><span class="inner"></span></span></button>
+      <?php if (empty($header_mobile_menu)) { ?>
+         <div class="d-flex d-lg-none justify-content-start">
+            <div class="header-mobilemenu-trigger d-lg-none burger-menu-button align-self-center" data-offcanvas="#astroid-mobilemenu" data-effect="mobilemenu-slide">
+               <button class="button" type="button"><span class="box"><span class="inner"></span></span></button>
+            </div>
          </div>
-      </div>
+      <?php } ?>
       <div class="header-left-section d-flex justify-content-between">
          <?php $template->loadLayout('logo'); ?>
          <?php

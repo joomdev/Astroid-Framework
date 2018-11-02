@@ -406,6 +406,9 @@ class AstroidElement {
             $document->addStyleDeclaration(implode('', $color_styles));
          }
       }
+      if (!empty($this->getAnimation())) {
+         $styles[] = 'visibility: hidden';
+      }
       return implode(';', $styles);
    }
 

@@ -583,7 +583,11 @@ astroidFramework.directive('astroidresponsive', ['$http', function ($http) {
                if (!_initValue) {
                   _initValue = true;
                   if (typeof ngModel.$modelValue != 'undefined') {
-                     var _params = JSON.parse(ngModel.$modelValue);
+                     try {
+                        var _params = JSON.parse(ngModel.$modelValue);
+                     } catch (e) {
+                        var _params = [];
+                     }
                   } else {
                      var _params = [];
                   }

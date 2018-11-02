@@ -67,17 +67,6 @@
             <option value="1">JSHOW</option>
             <option value="0">JHIDE</option>
          </field>
-         <field
-            type="radio"
-            name="astroid_rating"
-            label="Article Rating"
-            class="btn-group"
-            default=""
-         >
-            <option value="">JGLOBAL_INHERIT</option>
-            <option value="1">JSHOW</option>
-            <option value="0">JHIDE</option>
-         </field>
       </fieldset>
    </fields>
 </form>

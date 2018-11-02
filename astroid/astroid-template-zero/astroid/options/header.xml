@@ -52,9 +52,13 @@
 
          <field ngShow="header==true AND header_mode=='stacked' AND header_block_2_type=='custom' AND header_stacked_menu_mode!='center'" astroidgroup="header_element" name="header_block_2_custom" type="astroidtextarea" filter="raw" class="form-control" label="TPL_ASTROID_HEADER_BLOCK_2_CUSTOM_LABEL" description="TPL_ASTROID_HEADER_BLOCK_2_CUSTOM_DESC" />
 
-         <field ngShow="header==true" astroidgroup="header_element" name="header_menu" type="menu" default="mainmenu" class="form-control astroid-select-ui" label="TPL_ASTROID_HEADER_MENU_LABEL" description="TPL_ASTROID_HEADER_MENU_DESC" />
+         <field ngShow="header==true" astroidgroup="header_element" name="header_menu" type="sql" query="SELECT * FROM #__menu_types" default="mainmenu" class="form-control astroid-select-ui" key_field="menutype" value_field="title" label="TPL_ASTROID_HEADER_MENU_LABEL" description="TPL_ASTROID_HEADER_MENU_DESC">
+            <option value="">JNONE</option>
+         </field>
 
-         <field ngShow="header==true" astroidgroup="header_element" name="header_mobile_menu" type="menu" default="mainmenu" class="form-control astroid-select-ui" label="TPL_ASTROID_HEADER_MOBILE_MENU_LABEL" />
+         <field ngShow="header==true" astroidgroup="header_element" name="header_mobile_menu" type="sql" query="SELECT * FROM #__menu_types" default="mainmenu" class="form-control astroid-select-ui" key_field="menutype" value_field="title" label="TPL_ASTROID_HEADER_MOBILE_MENU_LABEL">
+            <option value="">JNONE</option>
+         </field>
 
          <field ngShow="header==true" astroidgroup="header_element" description="TPL_ASTROID_HEADER_LOGO_OPTION_DESC" title="TPL_ASTROID_HEADER_LOGO_OPTION" type="astroidheading" />
 

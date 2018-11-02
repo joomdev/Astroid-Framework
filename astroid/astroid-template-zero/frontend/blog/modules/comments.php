@@ -97,6 +97,11 @@ if ($article_comments == 'hyper') {
             </script>
          </div>
       </div>
+   <?php } else { ?>
+      <div class="alert alert-danger" role="alert">
+         <h4 class="alert-heading"><?php echo JText::_('ASTROID_HYPER_COMMENT_ERROR_LBL'); ?></h4>
+         <p><?php echo JText::_('ASTROID_HYPER_COMMENT_ERROR_DESC'); ?></h4>
+      </div>
    <?php } ?>
 <?php } ?>
 <!--- Hyper Comment Section End --->
@@ -118,6 +123,12 @@ if ($article_comments == 'intense') {
             <script type='text/javascript' src='https://www.intensedebate.com/js/genericCommentWrapperV2.js'></script>
          </div>
       </div>
+   <?php } else { ?>
+      <div class="alert alert-danger" role="alert">
+         <h4 class="alert-heading"><?php echo JText::_('ASTROID_INTENSE_COMMENT_ERROR_LBL'); ?></h4>
+         <p><?php echo JText::_('ASTROID_INTENSE_COMMENT_ERROR_DESC'); ?></h4>
+      </div>
    <?php } ?>
+
 <?php } ?>
 <!--- Intense Comment Section End --->

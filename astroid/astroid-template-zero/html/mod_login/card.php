@@ -14,14 +14,14 @@ JHtml::_('bootstrap.tooltip');
 ?>
 <div class="card bg-light">
    <div class="card-body">
-      <form action="<?php echo JRoute::_('index.php', true, $params->get('usesecure')); ?>" method="post" id="login-form" class="form-signin">
+      <form action="<?php echo JRoute::_('index.php', true, $params->get('usesecure', 0)); ?>" method="post" id="login-form" class="form-signin">
          <?php if ($params->get('pretext')) : ?>
             <div class="pretext">
                <p class="mb-3 text-muted"><?php echo $params->get('pretext'); ?></p>
             </div>
          <?php endif; ?>
          <div id="form-login-username">
-            <?php if (!$params->get('usetext')) : ?>
+            <?php if (!$params->get('usetext', 0)) : ?>
                <label for="modlgn-username" class="sr-only"><?php echo JText::_('MOD_LOGIN_VALUE_USERNAME'); ?></label>
                <div class="input-group mb-3">
                   <div class="input-group-prepend">
@@ -38,7 +38,7 @@ JHtml::_('bootstrap.tooltip');
 
          <div id="form-login-password">
 
-            <?php if (!$params->get('usetext')) : ?>
+            <?php if (!$params->get('usetext', 0)) : ?>
                <label for="modlgn-passwd" class="sr-only"><?php echo JText::_('JGLOBAL_PASSWORD'); ?></label>
                <div class="input-group mb-3">
                   <div class="input-group-prepend">
@@ -55,7 +55,7 @@ JHtml::_('bootstrap.tooltip');
 
          <?php if (count($twofactormethods) > 1) : ?>
             <div id="form-login-secretkey">
-               <?php if (!$params->get('usetext')) : ?>
+               <?php if (!$params->get('usetext', 0)) : ?>
                   <label for="modlgn-secretkey" class="sr-only"><?php echo JText::_('JGLOBAL_SECRETKEY'); ?></label>
 
                   <div class="input-group mb-3">

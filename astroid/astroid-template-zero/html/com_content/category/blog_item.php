@@ -43,7 +43,7 @@ $post_format = $post_attribs->get('post_format', 'standard');
       $astroidArticle->template->loadLayout('blog.modules.image', true, ['image' => $image, 'title' => $this->item->title]);
    }
 
-   $astroid_article_badge = $template->params->get('astroid_badge', 1) ? ($astroidArticle->article->params->get('astroid_article_badge', 0) ? 1 : 0) : 0;
+   $astroid_article_badge = $template->params->get('astroid_article_badge', 1) ? ($astroidArticle->article->params->get('astroid_article_badge', 0) ? 1 : 0) : 0;
    ?>
    <div class="card-body<?php echo $tpl_params->get('show_post_format') ? ' has-post-format' : ''; ?><?php echo $astroid_article_badge ? ' has-badge' : ''; ?><?php echo (!empty($image) ? ' has-image' : ''); ?>">
       <?php if ($template->params->get('astroid_badge', 1)) { ?>
@@ -70,8 +70,11 @@ $post_format = $post_attribs->get('post_format', 'standard');
 
       <?php echo $this->item->introtext; ?>
 
-      <?php if ($useDefList && ($info == 1 || $info == 2)) : ?>
-         <?php echo JLayoutHelper::render('joomla.content.info_block.block', array('item' => $this->item, 'params' => $params, 'astroidArticle' => $astroidArticle, 'position' => 'below')); ?>
+      <?php if ($info == 1 || $info == 2) : ?>
+         <?php if ($useDefList) : ?>
+            <?php // Todo: for Joomla4 joomla.content.info_block.block can be changed to joomla.content.info_block ?>
+            <?php echo JLayoutHelper::render('joomla.content.info_block.block', array('item' => $this->item, 'params' => $params, 'astroidArticle' => $astroidArticle, 'position' => 'below')); ?>
+         <?php endif; ?>
       <?php endif; ?>
 
       <?php if (!$params->get('show_intro')) : ?>

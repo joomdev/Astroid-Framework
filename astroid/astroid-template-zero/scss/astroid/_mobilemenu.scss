@@ -1,7 +1,28 @@
-/* Subtitle hidden on Mobile */
-
-.astroid-mobilemenu {
+.astroid-mobilemenu{
+   position: fixed;
+   top: 0;
+   left: 0;
+   bottom: 0;
+   z-index: $zindex-popover;
+   visibility: hidden;
+   height: 100%;
    width: 280px;
+   background: $white;
+   -webkit-transition: all 0.5s;
+   transition: all 0.5s;
+   max-width: 100vw !important;
+   &:after {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(173, 181, 189,0.6);
+      content: '';
+      opacity: 1;
+      -webkit-transition: opacity 0.5s;
+      transition: opacity 0.5s;
+   }
    a {
       small {
          display: block !important;
@@ -12,7 +33,7 @@
 .astroid-mobilemenu-container{
    .astroid-mobilemenu-inner {
       ul{
-         padding: 0px;
+         padding: 0;
          overflow-x: auto;
       }
       .menu-item {
@@ -26,7 +47,7 @@
             text-decoration: none;
             vertical-align: middle;
             display: table-cell;
-            color: #000;
+            color: $black;
             padding: 15px 15px;
          }
          .menu-indicator {
@@ -45,7 +66,7 @@
          width: 100%;
          height: 100vh;
          transition: all 0.5s;
-         background: #fff;
+         background: $white;
          .menu-indicator-back {
             text-align: left;
             width: 100%;
@@ -68,34 +89,6 @@
    }
 }
 
-.astroid-mobilemenu{
-   position: fixed;
-   top: 0;
-   left: 0;
-   bottom: 0;
-   z-index: $zindex-popover;
-   visibility: hidden;
-   height: 100%;
-   background: #ffffff;
-   -webkit-transition: all 0.5s;
-   transition: all 0.5s;
-   max-width: 100vw !important;
-   overflow-x: hidden;
-   overflow-y: auto;
-   &:after {
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(173, 181, 189,0.6);
-      content: '';
-      opacity: 1;
-      -webkit-transition: opacity 0.5s;
-      transition: opacity 0.5s;
-   }
-}
-
 .astroid-mobilemenu-open{
    &:after {
       display: inline;
@@ -104,8 +97,9 @@
    }
    .close-offcanvas, .close-offcanvas:hover {
       color: $black;
+      background: $white;
       display: block;
-      margin-top: 6px;
+      margin-top: 0;
       position: absolute;
       right: -35px;
       z-index: 999999;
@@ -113,7 +107,7 @@
    .burger-menu-button .inner,
    .burger-menu-button .inner::before,
    .burger-menu-button .inner::after {
-      background-color: $white;
+      background-color: $black;
       opacity: 1;
    }
 }

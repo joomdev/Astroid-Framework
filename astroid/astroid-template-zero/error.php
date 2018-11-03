@@ -8,14 +8,12 @@
 defined('_JEXEC') or die;
 ?>
 
-
 <?php
 /**
- * @package     Joomla.Site
- * @subpackage  Templates.protostar
- *
- * @copyright   Copyright (C) 2005 - 2018 Open Source Matters, Inc. All rights reserved.
- * @license     GNU General Public License version 2 or later; see LICENSE.txt
+ * @package     Astroid Framework
+ * @author    JoomDev https://www.joomdev.com
+ * @copyright Copyright (C) 2009 - 2018 JoomDev.
+ * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
  */
 defined('_JEXEC') or die;
 
@@ -46,7 +44,7 @@ $errorButton = $template->params->get('error_call_to_action', '');
       }
       ?>
    </head>
-   <body>
+   <body class="error-page">
 	 <div class="container">
 		<div class="row" style="height: 100vh;">
 		   <div class="col-12 text-center align-self-center">
@@ -78,10 +76,10 @@ $errorButton = $template->params->get('error_call_to_action', '');
 		   <?php if ($this->debug) : ?>
 			  <div class="mb-5">
 				 <?php echo $this->renderBacktrace(); ?>
-				 <?php // Check if there are more Exceptions and render their data as well   ?>
+				 <?php // Check if there are more Exceptions and render their data as well ?>
 				 <?php if ($this->error->getPrevious()) : ?>
 					<?php $loop = true; ?>
-					<?php // Reference $this->_error here and in the loop as setError() assigns errors to this property and we need this for the backtrace to work correctly  ?>
+					<?php // Reference $this->_error here and in the loop as setError() assigns errors to this property and we need this for the backtrace to work correctly ?>
 					<?php // Make the first assignment to setError() outside the loop so the loop does not skip Exceptions ?>
 					<?php $this->setError($this->_error->getPrevious()); ?>
 					<?php while ($loop === true) : ?>

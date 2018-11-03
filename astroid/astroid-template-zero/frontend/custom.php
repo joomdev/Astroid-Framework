@@ -44,11 +44,9 @@ if (!empty($customjsfiles)) {
 }
 $beforehead = $template->params->get('beforehead', '');
 if (!empty($beforehead)) {
-   $document->addScriptdeclaration($beforehead);
+   $document->addCustomTag($beforehead);
 }
 $beforebody = $template->params->get('beforebody', '');
 if (!empty($beforebody)) {
-   echo '<script type="text/javascript">'
-   . $beforebody
-   . '</script>';
+   echo $beforebody;
 }

@@ -11,11 +11,13 @@ defined('_JEXEC') or die;
 <div class="latestnews menu list-inline">
 	<ul class="menu list-inline">
 		<?php foreach ($list as $item) : $image = json_decode($item->images); ?>
-			<li>
-				<a class="article-title" href="<?php echo $item->link; ?>" class="">
+		<li itemscope itemtype="https://schema.org/Article">
+			<a class="article-title" href="<?php echo $item->link; ?>" itemprop="url" class="">
+				<span itemprop="name">
 					<?php echo $item->title; ?>
-				</a>
-			</li>
+				</span>
+			</a>
+		</li>
 		<?php endforeach; ?>
 	</ul>
 </div>

@@ -381,4 +381,16 @@ class AstroidFrameworkArticle {
       }
    }
 
+   public static function getArticleRating($id) {
+      $db = JFactory::getDbo();
+      $query = "SELECT * FROM `#__content_rating` WHERE `content_id`='$id'";
+      $db->setQuery($query);
+      $result = $db->loadObject();
+      if (empty($result)) {
+         return 0;
+      } else {
+         return ceil($result->rating_sum / $result->rating_count);
+      }
+   }
+
 }

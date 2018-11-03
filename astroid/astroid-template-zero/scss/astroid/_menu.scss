@@ -1,6 +1,7 @@
 .jddrop-content{
    display: none;
    z-index: 1;
+   z-index: 99;
 }
 
 // megamenu dropdown
@@ -79,7 +80,7 @@
    }
    .nav-subtitle{
       display: block;
-      padding: 5px 0px;
+      padding: 5px 0;
       opacity: 0.6;
       font-size: 70%;
    }
@@ -87,7 +88,7 @@
       .nav-title{
          padding-right: 25px;
          > .nav-item-caret{
-            right: 0px;
+            right: 0;
             position: absolute;
             top: 50%;
             font-size: 75%;
@@ -104,7 +105,7 @@
 ul{
    &.megamenu-submenu{
       list-style-type: none;
-      padding: 0px;
+      padding: 0;
       > li{
          > .megamenu-submenu{
             padding-left: 15px;

@@ -11,7 +11,7 @@
    line-height: $article-badge-height;
    font-size: 14px;
    color: #fff;
-   padding: 0px 10px;
+   padding: 0 10px;
    &.article-badge-1{
       background: $article-badge-2-bg;
       &:before {
@@ -93,7 +93,7 @@
       }
       &.has-image{
          .item-title{
-            margin-top: 0px;
+            margin-top: 0;
          }
       }
    }

@@ -19,7 +19,7 @@ if (empty($id)) {
    return;
 }
 ?>
-<div itemprop="video" itemscope itemtype="http://schema.org/VideoObject" class="embed-responsive embed-responsive-16by9 mb-3">
+<div itemprop="video" itemscope itemtype="https://schema.org/VideoObject" class="embed-responsive embed-responsive-16by9 mb-3">
    <meta itemprop="name" content="<?php echo $article->title; ?>" />
    <?php
    switch ($type) {

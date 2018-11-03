@@ -12,7 +12,7 @@ JHtml::_('behavior.formvalidator');
 ?>
 	<div class="d-flex justify-content-center login-form ">
 	<div class="col-lg-5 col-md-10 ">
-		<div class="login<?php echo $this->pageclass_sfx?> item-title" >
+		<div class="login item-title" >
 			<?php if ($this->params->get('show_page_heading')) : ?>
 				<h1>
 					<?php echo $this->escape($this->params->get('page_heading')); ?>
@@ -41,14 +41,14 @@ JHtml::_('behavior.formvalidator');
 					$this->form->setFieldAttribute( 'password', 'hint', JText::_('JGLOBAL_PASSWORD') );
 					$this->form->setFieldAttribute( 'secretkey', 'hint', JText::_('JGLOBAL_SECRETKEY') );
 				?>
-             <div class="form-group">
-				<div class="control-label">
-					<label id="username-lbl" for="username" class="required">
-					<?php echo JText::_('COM_USERS_LOGIN_USERNAME_LABEL'); ?><span class="text-danger">&nbsp;*</span></label>
-				</div>
-				<div class="controls">
-					<input name="username" id="username" value="" class="validate-username required form-control invalid" size="25" required="required" aria-required="true" autofocus="" aria-invalid="true" type="text">
-				</div>
+            <div class="form-group">
+					<div class="control-label">
+						<label id="username-lbl" for="username" class="required">
+						<?php echo JText::_('COM_USERS_LOGIN_USERNAME_LABEL'); ?><span class="text-danger">&nbsp;*</span></label>
+					</div>
+					<div class="controls">
+						<input name="username" id="username" value="" class="validate-username required form-control invalid" size="25" required="required" aria-required="true" autofocus="" aria-invalid="true" type="text">
+					</div>
 		     </div>
 		     <div class="form-group">
 				<div class="control-label">

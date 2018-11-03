@@ -11,11 +11,11 @@ jimport('astroid.framework.constants');
 
 class AstroidFrameworkConstants {
 
-   public static $astroid_version = '2.0.1';
+   public static $astroid_version = '2.0.2';
    public static $fontawesome_version = '5.4.2';
    public static $animatecss_version = '3.7.0';
    public static $forum_link = 'https://www.joomdev.com/forum/astroid-framework';
-   public static $documentation_link = 'http://joomdev.com/documentation/astroid-framework';
+   public static $documentation_link = 'https://www.joomdev.com/documentation/astroid-framework';
    public static $github_link = 'http://github.com/joomdev/astroid-framework';
    public static $download_link = 'https://github.com/joomdev/Astroid-Framework/releases/latest';
    public static $releases_link = 'https://github.com/joomdev/Astroid-Framework/releases';

@@ -4,10 +4,10 @@
    <name>Astroid Package</name>
    <packagename>astroid</packagename>
    <packager>JoomDev</packager>
-   <packagerurl>http://astroidframework.com</packagerurl>
+   <packagerurl>http://www.astroidframework.com</packagerurl>
    <author>JoomDev</author>
-   <creationDate>October 2018</creationDate>
-   <version>2.0.1</version>
+   <creationDate>Nov 2018</creationDate>
+   <version>2.0.2</version>
    <url>https://www.joomdev.com</url>
    <copyright>Copyright (C) 2018 Joomdev, Inc. All rights reserved.</copyright>
    <license>GNU General Public License version 2 or later; see LICENSE.txt</license>

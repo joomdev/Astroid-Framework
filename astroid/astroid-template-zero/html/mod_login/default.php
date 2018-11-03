@@ -12,14 +12,14 @@ JLoader::register('UsersHelperRoute', JPATH_SITE . '/components/com_users/helper
 JHtml::_('behavior.keepalive');
 JHtml::_('bootstrap.tooltip');
 ?>
-<form action="<?php echo JRoute::_('index.php', true, $params->get('usesecure')); ?>" method="post" id="login-form" class="form-signin">
+<form action="<?php echo JRoute::_('index.php', true, $params->get('usesecure', 0)); ?>" method="post" id="login-form" class="form-signin">
    <?php if ($params->get('pretext')) : ?>
       <div class="pretext">
          <p class="mb-3 text-muted"><?php echo $params->get('pretext'); ?></p>
       </div>
    <?php endif; ?>
    <div id="form-login-username">
-      <?php if (!$params->get('usetext')) : ?>
+      <?php if (!$params->get('usetext', 0)) : ?>
          <label for="modlgn-username" class="sr-only"><?php echo JText::_('MOD_LOGIN_VALUE_USERNAME'); ?></label>
          <div class="input-group mb-3">
             <div class="input-group-prepend">
@@ -33,10 +33,8 @@ JHtml::_('bootstrap.tooltip');
       <?php endif; ?>
    </div>
 
-
    <div id="form-login-password">
-
-      <?php if (!$params->get('usetext')) : ?>
+      <?php if (!$params->get('usetext', 0)) : ?>
          <label for="modlgn-passwd" class="sr-only"><?php echo JText::_('JGLOBAL_PASSWORD'); ?></label>
          <div class="input-group mb-3">
             <div class="input-group-prepend">
@@ -48,12 +46,11 @@ JHtml::_('bootstrap.tooltip');
          <label for="modlgn-passwd" class="sr-only"><?php echo JText::_('JGLOBAL_PASSWORD'); ?></label>
          <input id="modlgn-passwd" type="password" name="password" class="form-control" tabindex="0" size="18" placeholder="<?php echo JText::_('JGLOBAL_PASSWORD'); ?>" />
       <?php endif; ?>
-
    </div>
 
    <?php if (count($twofactormethods) > 1) : ?>
       <div id="form-login-secretkey">
-         <?php if (!$params->get('usetext')) : ?>
+         <?php if (!$params->get('usetext', 0)) : ?>
             <label for="modlgn-secretkey" class="sr-only"><?php echo JText::_('JGLOBAL_SECRETKEY'); ?></label>
 
             <div class="input-group mb-3">
@@ -106,5 +103,4 @@ JHtml::_('bootstrap.tooltip');
             <?php echo JText::_('MOD_LOGIN_FORGOT_YOUR_PASSWORD'); ?></a>
       </li>
    </ul>
-
 </form>

@@ -10,6 +10,7 @@ defined('_JEXEC') or die;
 define('COMPILE_SASS', 0);
 jimport('astroid.framework.helper');
 jimport('astroid.framework.template');
+jimport('astroid.framework.article');
 
 use Leafo\ScssPhp\Compiler;
 
@@ -224,6 +225,7 @@ class plgSystemAstroid extends JPlugin {
                         $return["status"] = "success";
                         $return["code"] = 200;
                         $return["message"] = JText::_('COM_CONTENT_ARTICLE_VOTE_SUCCESS');
+                        $return["rating"] = AstroidFrameworkArticle::getArticleRating($id);
                      } else {
                         throw new \Exception('COM_CONTENT_ARTICLE_VOTE_FAILURE', 0);
                      }

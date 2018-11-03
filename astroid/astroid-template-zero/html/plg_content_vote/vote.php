@@ -105,9 +105,11 @@ if (!$template->params->get('article_rating', 1)) {
                            _votes = parseInt(_votes) + 1;
                            _text = 'vote' + (_votes == 1 ? '' : 's');
                            $('.vote-count').text('(' + _votes + ' ' + _text + ')').addClass('change');
-                           lastrate = lastrate + 1;
+                           lastrate = response.rating;
                            setTimeout(function () {
                               $('.vote-count').removeClass('change');
+                              call = false;
+                              $('#<?php echo 'content_vote_' . (int) $row->id; ?>').rating('set rating', lastrate);
                            }, 300);
                         }
                         if (response.status == 'error') {

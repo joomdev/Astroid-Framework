@@ -5,10 +5,10 @@
    <creationDate>Nov 2018</creationDate>
    <author>JoomDev</author>
    <authorEmail>info@joomdev.com</authorEmail>
-   <authorUrl>http://www.joomdev.com</authorUrl>
+   <authorUrl>https://www.joomdev.com</authorUrl>
    <copyright>Copyright (C) 2018 Joomdev, Inc. All rights reserved.</copyright>
    <license>GNU General Public License version 2 or later; see LICENSE.txt</license>
-   <version>2.0.1</version>
+   <version>2.0.2</version>
    <description>TPL_ASTROID_XML_DESCRIPTION</description>
 
    <updateservers>

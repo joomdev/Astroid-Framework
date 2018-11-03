@@ -36,7 +36,7 @@ $navWrapperClass = ['astroid-nav-wraper', 'align-self-center', 'px-2', 'd-none',
          if ($mode == 'center') {
             echo '<div class="w-100 d-flex justify-content-center">';
             ?>
-            <?php if (empty($header_mobile_menu)) { ?>
+            <?php if (!empty($header_mobile_menu)) { ?>
                <div class="d-flex d-lg-none justify-content-start">
                   <div class="header-mobilemenu-trigger d-lg-none burger-menu-button align-self-center" data-offcanvas="#astroid-mobilemenu" data-effect="mobilemenu-slide">
                      <button class="button" type="button"><span class="box"><span class="inner"></span></span></button>
@@ -95,7 +95,7 @@ $navWrapperClass = ['astroid-nav-wraper', 'align-self-center', 'px-2', 'd-none',
             // header nav starts   
             echo '<div class="header-stacked-inner w-100 d-flex justify-content-center">';
             ?>
-            <?php if (empty($header_mobile_menu)) { ?>
+            <?php if (!empty($header_mobile_menu)) { ?>
                <div class="d-flex d-lg-none justify-content-start">
                   <div class="header-mobilemenu-trigger d-lg-none burger-menu-button align-self-center" data-offcanvas="#astroid-mobilemenu" data-effect="mobilemenu-slide">
                      <button class="button" type="button"><span class="box"><span class="inner"></span></span></button>
@@ -140,7 +140,7 @@ $navWrapperClass = ['astroid-nav-wraper', 'align-self-center', 'px-2', 'd-none',
          if ($mode == 'divided') {
             echo '<div class="w-100 d-flex justify-content-center">';
             ?>
-            <?php if (empty($header_mobile_menu)) { ?>
+            <?php if (!empty($header_mobile_menu)) { ?>
                <div class="d-flex d-lg-none justify-content-start">
                   <div class="header-mobilemenu-trigger d-lg-none burger-menu-button align-self-center" data-offcanvas="#astroid-mobilemenu" data-effect="mobilemenu-slide">
                      <button class="button" type="button"><span class="box"><span class="inner"></span></span></button>

@@ -1,9 +1,5 @@
 .article-badge{
    position: absolute;
-   &:before, &:after {
-      content: "";
-      position: absolute;
-   }
    height: $article-badge-height;
    left: -8px;
    top: 15px;
@@ -12,6 +8,10 @@
    font-size: 14px;
    color: #fff;
    padding: 0 10px;
+   &:before, &:after {
+      content: "";
+      position: absolute;
+   }
    &.article-badge-1{
       background: $article-badge-2-bg;
       &:before {
@@ -84,6 +84,24 @@
          right: -15px;
       }
    }
+	&.article-badge-custom{
+		&:after {
+			height: 0;
+			width: 0;
+			border-top: 20px solid transparent;
+			border-bottom: 20px solid transparent;
+			border-left: 15px solid transparent;
+			right: -15px;
+		}
+		&:before {
+			height: 0;
+			width: 0;
+			border-left: 8px solid transparent;
+			border-bottom: 8px solid #000;
+			top: -8px;
+			left: 0;
+		}
+	}
 }
 
 .card-body{

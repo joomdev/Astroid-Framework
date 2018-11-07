@@ -106,7 +106,7 @@ foreach ($items as $i => $item) {
                         <?php foreach ($children as $child) { ?>
                            <div class="col-12 ezlb-grid-item">
                               <div class="row m-0 p-0">
-                                 <div ng-click="addElement({'type':'submenu', 'title':'<?php echo $child->title; ?> (Child Item)', 'id':'<?php echo $child->id; ?>'})" class="ezlb-grid-item-col col-12">
+                                 <div ng-click="addElement({'type':'submenu', 'title':'<?php echo addslashes($child->title); ?> (Child Item)', 'id':'<?php echo $child->id; ?>'})" class="ezlb-grid-item-col col-12">
                                     <span class="title"><?php echo $child->title; ?></span>
                                  </div>
                               </div>

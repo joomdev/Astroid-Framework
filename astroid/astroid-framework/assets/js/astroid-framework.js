@@ -372,6 +372,23 @@ astroidFramework.directive('selectUi', function () {
    };
 });
 
+astroidFramework.directive('selectUiAddable', function () {
+   return {
+      restrict: 'A',
+      require: 'ngModel',
+      link: function (scope, element, attrs, ngModel) {
+         if (typeof $ == 'undefined') {
+            var $ = jQuery;
+         }
+         setTimeout(function () {
+            var _placeholder = $(element).data('placeholder');
+            _placeholder = typeof _placeholder == 'undefined' ? false : _placeholder;
+            $(element).addClass('astroid-select-ui search selection').dropdown({placeholder: _placeholder, fullTextSearch: true});
+         }, 200);
+      },
+   };
+});
+
 astroidFramework.directive('selectUiDiv', function () {
    return {
       restrict: 'A',

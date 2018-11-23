@@ -50,6 +50,5 @@ switch ($effect) {
       $style .= '.st-effect-9.astroid-container{-webkit-perspective:1500px;perspective:1500px;}.st-effect-9 .astroid-content{-webkit-transform-style:preserve-3d;transform-style:preserve-3d;}.st-effect-9.astroid-offcanvas-open .astroid-content{-webkit-transform:translate3d(0, 0, -' . $panelwidth . ');transform:translate3d(0, 0, -' . $panelwidth . ');}.st-effect-9.astroid-offcanvas{opacity:1;-webkit-transform:translate3d(-100%, 0, 0);transform:translate3d(-100%, 0, 0);}.st-effect-9.astroid-offcanvas-open .st-effect-9.astroid-offcanvas{visibility:visible;-webkit-transition:-webkit-transform 0.5s;transition:transform 0.5s;-webkit-transform:translate3d(0, 0, 0);transform:translate3d(0, 0, 0);}.st-effect-9.astroid-offcanvas::after{display:none;}';
       break;
 }
-$document = JFactory::getDocument();
-$document->addStyledeclaration($style);
+$template->addStyledeclaration($style);
 ?>

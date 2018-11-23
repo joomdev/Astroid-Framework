@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @package   Astroid Framework
  * @author    JoomDev https://www.joomdev.com
@@ -34,13 +35,14 @@ class JFormFieldAstroidMenuOptions extends JFormField {
              'alignment' => 'right',
              'megamenu_direction' => 'right',
              'subtitle' => '',
+             'dropeffect' => 'hover'
          ];
       } else {
          $value = (array) $this->value;
       }
 
       $menu_item = $this->form->getData()->toObject();
-     
+
       $extraData = array(
           'value' => $value,
           'fieldname' => $this->fieldname,

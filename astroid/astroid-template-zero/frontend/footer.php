@@ -18,7 +18,7 @@ if ($enable_footer) {
    $find = array('{year}', '{sitename}');
    $replace = array($year, $sitename);
    $footertext = str_replace($find, $replace, $footer_copyright);
-   $html = '<div id="astroid-footer" class="py-3">' . $footertext . ' <br><a href="https://www.joomdev.com/products/templates" target="_blank">Free Joomla Templates</a> by <a href="https://www.joomdev.com" target="_blank">JoomDev</a></div>';
+   $html = '<div id="astroid-footer" class="py-3">' . $footertext . ' <br><a href="https://www.joomdev.com/products/templates" target="_blank">Joomla Templates</a> by <a href="https://www.joomdev.com" target="_blank">JoomDev</a></div>';
    echo $html;
 }
 ?> 

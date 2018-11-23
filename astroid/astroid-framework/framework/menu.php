@@ -348,6 +348,7 @@ class AstroidMenu {
       $data->width = '';
       $data->alignment = '';
       $data->rows = [];
+      $data->dropeffect = 'hover';
 
 
       if (isset($astroid_menu_options['megamenu']) && $astroid_menu_options['megamenu']) {
@@ -355,6 +356,12 @@ class AstroidMenu {
       }
       if (isset($astroid_menu_options['showtitle']) && $astroid_menu_options['showtitle']) {
          $data->icononly = 1;
+      }
+      if (isset($astroid_menu_options['dropeffect']) && !empty($astroid_menu_options['dropeffect'])) {
+         $data->dropeffect = $astroid_menu_options['dropeffect'];
+         if ($data->dropeffect != 'hover' && $data->dropeffect != 'click') {
+            $data->dropeffect = 'hover';
+         }
       }
       if (isset($astroid_menu_options['subtitle']) && !empty($astroid_menu_options['subtitle'])) {
          $data->subtitle = $astroid_menu_options['subtitle'];

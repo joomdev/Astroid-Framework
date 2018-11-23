@@ -21,7 +21,7 @@ if (file_exists($lib)) {
    die('Please install and activate <a href="http://www.astroidframework.com/" target="_blank">Astroid Framework</a> in order to use this template.');
 }
 $template = new AstroidFrameworkTemplate($this);
-
+$template->cleanAstroidCSS();
 // Output as HTML5
 $this->setHtml5(true);
 
@@ -79,7 +79,7 @@ $template->loadTemplateCSS('custom.css');
       }
 
       $bodystyle = 'body {' . $styles . '}';
-      $doc->addStyleDeclaration($bodystyle);
+      $template->addStyleDeclaration($bodystyle);
    }
    $template->loadLayout('typography');
    $template->loadLayout('colors');
@@ -97,6 +97,9 @@ $template->loadTemplateCSS('custom.css');
    }
    ?>
 <jdoc:include type="modules" name="debug" />
-<?php $template->body(); ?>
+<?php
+$template->body();
+$template->loadCSSFile();
+?>
 </body>
 </html>

@@ -32,6 +32,5 @@ if (empty($header_mobile_menu)) {
 </div>
 <?php
 $style = '.mobilemenu-slide.astroid-mobilemenu{visibility:visible;-webkit-transform:translate3d(-100%, 0, 0);transform:translate3d(-100%, 0, 0);}.mobilemenu-slide.astroid-mobilemenu-open .mobilemenu-slide.astroid-mobilemenu {visibility:visible;-webkit-transform:translate3d(0, 0, 0);transform:translate3d(0, 0, 0);}.mobilemenu-slide.astroid-mobilemenu::after{display:none;}';
-$document = JFactory::getDocument();
-$document->addStyledeclaration($style);
+$template->addStyledeclaration($style);
 ?>

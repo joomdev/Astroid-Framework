@@ -56,7 +56,7 @@ if ($item->browserNav == 1) {
    $iframe_options = 'toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes';
    $attributes['onclick'] = "window.open(this.href, 'targetWindow', '" . $iframe_options . "'); return false;";
 }
-
+$attributes['data-drop-action'] = 'hover';
 if (($options->megamenu || $item->parent) && !$is_mobile_menu) {
    $attributes['data-jddrop'] = "";
    $attributes['data-jddrop-align'] = ($item->level != 1 ? 'right' : $options->alignment);
@@ -70,7 +70,12 @@ if (($options->megamenu || $item->parent) && !$is_mobile_menu) {
       } else {
          $attributes['data-jddrop-offset'] = '17px';
       }
+      $attributes['data-drop-action'] = $options->dropeffect;
    }
+}
+
+if($attributes['data-drop-action']=='click'){
+   $item->flink = 'javascript:void(0);';
 }
 
 $attr = [];

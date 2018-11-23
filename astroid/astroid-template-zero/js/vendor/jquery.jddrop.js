@@ -2,6 +2,7 @@
    $.fn.JDDrop = function () {
       this.each(function () {
          var _this = $(this);
+         var _action = _this.data('drop-action');
          _this.parent().css('position', 'relative');
          _this.css('position', 'relative');
          var _content = _this.data('jddrop');
@@ -112,45 +113,48 @@
             },
          });
 
-         drop.hover(function () {
-            popper.update();
-            switch (_effect) {
-               case 'slide':
-                  content.stop(true, true).slideDown({
-                     duration: _speed,
-                     easing: _easing,
-                     complete: function () {
+
+         if (_action == 'click') {
+            drop.click(function () {
+               var open = $(this).data('click-open');
+               if (open == '1') {
+                  $(this).data('click-open', 0);
+                  switch (_effect) {
+                     case 'slide':
+                        content.stop(true, true).slideUp({
+                           duration: _speed,
+                           easing: _easing,
+                           complete: function () {
+                              popper.update();
+                           },
+                           start: function () {
+                              popper.update();
+                           }
+                        });
+                        break;
+                     case 'fade':
+                        content.stop(true, true).fadeOut({
+                           duration: _speed,
+                           easing: _easing,
+                           complete: function () {
+                              popper.update();
+                           },
+                           start: function () {
+                              popper.update();
+                           }
+                        });
+                        break;
+                     default:
+                        content.stop(true, true).hide();
                         popper.update();
-                     },
-                     start: function () {
-                        popper.update();
-                     }
-                  });
-                  break;
-               case 'fade':
-                  content.stop(true, true).fadeIn({
-                     duration: _speed,
-                     easing: _easing,
-                     complete: function () {
-                        popper.update();
-                     },
-                     start: function () {
-                        popper.update();
-                     }
-                  });
-                  break;
-               default:
-                  content.stop(true, true).show();
+                        break;
+                  }
+               } else {
+                  $(this).data('click-open', 1);
                   popper.update();
-                  break;
-
-            }
-         }, function () {
-            setTimeout(function () {
-               if (!content.is(':hover')) {
                   switch (_effect) {
                      case 'slide':
-                        content.stop(true, true).slideUp({
+                        content.stop(true, true).slideDown({
                            duration: _speed,
                            easing: _easing,
                            complete: function () {
@@ -162,7 +166,7 @@
                         });
                         break;
                      case 'fade':
-                        content.stop(true, true).fadeOut({
+                        content.stop(true, true).fadeIn({
                            duration: _speed,
                            easing: _easing,
                            complete: function () {
@@ -174,50 +178,121 @@
                         });
                         break;
                      default:
-                        content.stop(true, true).hide();
+                        content.stop(true, true).show();
                         popper.update();
                         break;
-                  }
-               }
-            }, 250);
-         });
 
-         content.hover(function () {}, function () {
-            setTimeout(function () {
-               if (!drop.is(':hover')) {
-                  switch (_effect) {
-                     case 'slide':
-                        content.stop(true, true).slideUp({
-                           duration: _speed,
-                           easing: _easing,
-                           complete: function () {
-                              popper.update();
-                           },
-                           start: function () {
-                              popper.update();
-                           }
-                        });
-                        break;
-                     case 'fade':
-                        content.stop(true, true).fadeOut({
-                           duration: _speed,
-                           easing: _easing,
-                           complete: function () {
-                              popper.update();
-                           },
-                           start: function () {
-                              popper.update();
-                           }
-                        });
-                        break;
-                     default:
-                        content.stop(true, true).hide();
-                        popper.update();
-                        break;
                   }
                }
-            }, 250);
-         });
+            });
+         } else {
+            drop.hover(function () {
+               popper.update();
+               switch (_effect) {
+                  case 'slide':
+                     content.stop(true, true).slideDown({
+                        duration: _speed,
+                        easing: _easing,
+                        complete: function () {
+                           popper.update();
+                        },
+                        start: function () {
+                           popper.update();
+                        }
+                     });
+                     break;
+                  case 'fade':
+                     content.stop(true, true).fadeIn({
+                        duration: _speed,
+                        easing: _easing,
+                        complete: function () {
+                           popper.update();
+                        },
+                        start: function () {
+                           popper.update();
+                        }
+                     });
+                     break;
+                  default:
+                     content.stop(true, true).show();
+                     popper.update();
+                     break;
+
+               }
+            }, function () {
+               setTimeout(function () {
+                  if (!content.is(':hover')) {
+                     switch (_effect) {
+                        case 'slide':
+                           content.stop(true, true).slideUp({
+                              duration: _speed,
+                              easing: _easing,
+                              complete: function () {
+                                 popper.update();
+                              },
+                              start: function () {
+                                 popper.update();
+                              }
+                           });
+                           break;
+                        case 'fade':
+                           content.stop(true, true).fadeOut({
+                              duration: _speed,
+                              easing: _easing,
+                              complete: function () {
+                                 popper.update();
+                              },
+                              start: function () {
+                                 popper.update();
+                              }
+                           });
+                           break;
+                        default:
+                           content.stop(true, true).hide();
+                           popper.update();
+                           break;
+                     }
+                  }
+               }, 250);
+            });
+
+            content.hover(function () {}, function () {
+               setTimeout(function () {
+                  if (!drop.is(':hover')) {
+                     switch (_effect) {
+                        case 'slide':
+                           content.stop(true, true).slideUp({
+                              duration: _speed,
+                              easing: _easing,
+                              complete: function () {
+                                 popper.update();
+                              },
+                              start: function () {
+                                 popper.update();
+                              }
+                           });
+                           break;
+                        case 'fade':
+                           content.stop(true, true).fadeOut({
+                              duration: _speed,
+                              easing: _easing,
+                              complete: function () {
+                                 popper.update();
+                              },
+                              start: function () {
+                                 popper.update();
+                              }
+                           });
+                           break;
+                        default:
+                           content.stop(true, true).hide();
+                           popper.update();
+                           break;
+                     }
+                  }
+               }, 250);
+            });
+         }
       });
    }
 }(jQuery));

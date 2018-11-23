@@ -74,6 +74,8 @@ class plgSystemAstroid extends JPlugin {
                         file_put_contents(JPATH_SITE . "/templates/{$template_name}/params" . '/' . $template_id . '.json', $params);
                         $return["status"] = "success";
                         $return["code"] = 200;
+                        $version = new \JVersion;
+                        $version->refreshMediaVersion();
                      }
                   } catch (\Exception $e) {
                      $return["status"] = "error";
@@ -248,6 +250,7 @@ class plgSystemAstroid extends JPlugin {
       if ($form->getName() == 'com_menus.item') {
          $form->loadFile('menu', false);
          $form->loadFile('banner', false);
+         $form->loadFile('og', false);
       }
 
       if ($form->getName() == 'com_content.article') {
@@ -287,9 +290,9 @@ class plgSystemAstroid extends JPlugin {
    }
 
    private function getAstroidTemplates() {
-	  if(!file_exists(JPATH_LIBRARIES.'/astroid/framework/helper.php')){
-		  return [];
-	  }
+      if (!file_exists(JPATH_LIBRARIES . '/astroid/framework/helper.php')) {
+         return [];
+      }
       $db = JFactory::getDbo();
       $query = $db
               ->getQuery(true)

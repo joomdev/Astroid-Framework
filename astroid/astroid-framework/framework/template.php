@@ -19,6 +19,7 @@ class AstroidFrameworkTemplate {
    public $direction;
    protected $logs;
    protected $debug = false;
+   public $cssFile = true;
 
    public function __construct($template) {
       if (!defined('ASTROID_TEMPLATE_NAME')) {
@@ -40,6 +41,73 @@ class AstroidFrameworkTemplate {
          $this->direction = $template->direction;
       }
       $this->initAgent();
+      $this->addMeta();
+   }
+
+   public function addMeta() {
+      $app = JFactory::getApplication();
+      $itemid = $app->input->get('Itemid', '', 'INT');
+
+      $menu = $app->getMenu();
+      $item = $menu->getItem($itemid);
+
+      if (empty($item)) {
+         return;
+      }
+      $params = new JRegistry();
+      $params->loadString($item->params);
+
+      $enabled = $params->get('astroid_opengraph', 0);
+      if (empty($enabled)) {
+         return;
+      }
+
+      $fb_id = $this->params->get('article_opengraph_facebook', '');
+      $tw_id = $this->params->get('article_opengraph_twitter', '');
+
+      $config = JFactory::getConfig();
+      $og_title = $item->title;
+      if (!empty($params->get('astroid_og_title', ''))) {
+         $og_title = $params->get('astroid_og_title', '');
+      }
+      $og_description = '';
+      if (!empty($params->get('astroid_og_desc', ''))) {
+         $og_description = $params->get('astroid_og_desc', '');
+      }
+      $og_image = '';
+      if (!empty($params->get('astroid_og_image', ''))) {
+         $og_image = JURI::base() . $params->get('astroid_og_image', '');
+      }
+
+      $og_sitename = $config->get('sitename');
+      $og_siteurl = JURI::getInstance();
+
+      $meta = [];
+      $meta[] = '<meta property="og:type" content="article">';
+      $meta[] = '<meta name="twitter:card" content="summary" />';
+      if (!empty($og_title)) {
+         $meta[] = '<meta property="og:title" content="' . $og_title . '">';
+      }
+      if (!empty($og_sitename)) {
+         $meta[] = '<meta property="og:site_name" content="' . $og_sitename . '">';
+      }
+      if (!empty($og_siteurl)) {
+         $meta[] = '<meta property="og:url" content="' . $og_siteurl . '">';
+      }
+      if (!empty($og_description)) {
+         $meta[] = '<meta property="og:description" content="' . substr($og_description, 0, 200) . '">';
+      }
+      if (!empty($fb_id)) {
+         $meta[] = '<meta property="fb:app_id" content="' . $fb_id . '" />';
+      }
+      if (!empty($tw_id)) {
+         $meta[] = '<meta name="twitter:creator" content="@' . $tw_id . '" />';
+      }
+      $meta = implode('', $meta);
+      if (!empty($meta)) {
+         $document = JFactory::getDocument();
+         $document->addCustomTag($meta);
+      }
    }
 
    protected function getTemplateParams($id = null) {
@@ -565,6 +633,41 @@ class AstroidFrameworkTemplate {
          return TRUE;
       } else {
          return FALSE;
+      }
+   }
+
+   public function addStyledeclaration($styles) {
+      if ($this->cssFile) {
+         $template_dir = JPATH_SITE . '/templates/' . $this->template . '/css';
+         $document = JFactory::getDocument();
+         $mediaVersion = $document->getMediaVersion();
+         file_put_contents($template_dir . '/astroid-' . $mediaVersion . '.css', $styles . PHP_EOL, FILE_APPEND | LOCK_EX);
+      } else {
+         $document = JFactory::getDocument();
+         $document->addStyledeclaration($styles);
+      }
+   }
+
+   public function cleanAstroidCSS() {
+      if ($this->cssFile) {
+         $template_dir = JPATH_SITE . '/templates/' . $this->template . '/css';
+         $document = JFactory::getDocument();
+         $mediaVersion = $document->getMediaVersion();
+         if (!file_exists($template_dir . '/astroid-' . $mediaVersion . '.css')) {
+            $styles = preg_grep('~^astroid-.*\.(css)$~', scandir($template_dir));
+            foreach ($styles as $style) {
+               unlink($template_dir . '/' . $style);
+            }
+            file_put_contents($template_dir . '/astroid-' . $mediaVersion . '.css', '');
+         }
+      }
+   }
+
+   public function loadCSSFile() {
+      if ($this->cssFile) {
+         $document = JFactory::getDocument();
+         $mediaVersion = $document->getMediaVersion();
+         $document->addStyleSheet(JURI::root() . 'templates/' . $this->template . '/css/astroid-' . $mediaVersion . '.css');
       }
    }
 

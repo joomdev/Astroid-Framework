@@ -97,7 +97,7 @@ class JFormFieldAstroidModulesPosition extends JFormFieldList {
       if (isset($this->element['astroid-animation-selector']) && $this->element['astroid-animation-selector'] == true) {
          $attr .= ' animation-selector';
       } else {
-         $attr .= ' select-ui';
+         $attr .= ' select-ui-addable';
       }
 
       // Get the field options.

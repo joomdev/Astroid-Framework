@@ -146,9 +146,9 @@ if ($in_head) {
    if (!empty($ast_fontfamily_list)) {
       $document->addStyleSheet('https://fonts.googleapis.com/css?family=' . $ast_fontfamily_list);
    }
-   $document->addStyleDeclaration($style);
-   $document->addStyleDeclaration($menu_style);
-   $document->addStyleDeclaration($submenu_style);
+   $template->addStyleDeclaration($style);
+   $template->addStyleDeclaration($menu_style);
+   $template->addStyleDeclaration($submenu_style);
 } else {
    if (!empty($ast_fontfamily_list)) {
       echo '<link href="' . 'https://fonts.googleapis.com/css?family=' . $ast_fontfamily_list . '" rel="stylesheet" type="text/css" />';

@@ -368,6 +368,10 @@ class AstroidFrameworkHelper {
       foreach ($custom_styles as $style) {
          unlink($template_dir . '/' . $style);
       }
+      $astroid_styles = preg_grep('~^astroid-.*\.(css)$~', scandir($template_dir));
+      foreach ($astroid_styles as $style) {
+         unlink($template_dir . '/' . $style);
+      }
       return $styles;
    }
 

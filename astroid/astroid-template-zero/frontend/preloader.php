@@ -68,9 +68,8 @@ switch ($preloader_animation) {
       $preloaderStyles = '';
       break;
 }
-$document = JFactory::getDocument();
-$document->addStyledeclaration('#astroid-preloader{background:' . $preloader_bgcolor . ';height:100%;left:0;position:fixed;top:0;width:100%;z-index:99999}');
-$document->addStyledeclaration($preloaderStyles);
+$template->addStyledeclaration('#astroid-preloader{background:' . $preloader_bgcolor . ';height:100%;left:0;position:fixed;top:0;width:100%;z-index:99999}');
+$template->addStyledeclaration($preloaderStyles);
 ?>
 <div id="astroid-preloader" class="d-flex align-items-center">
    <?php echo $preloaderHTML; ?>

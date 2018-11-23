@@ -154,11 +154,10 @@ if (!empty($icon_color)) {
 ?>
 
 <?php
-   $document = JFactory::getDocument();
-   $document->addStyledeclaration(implode('', $body_styles));
-   $document->addStyledeclaration(implode('', $header_styles));
-   $document->addStyledeclaration(implode('', $main_menu_styles));
-   $document->addStyledeclaration(implode('', $dropdown_styles));
-   $document->addStyledeclaration(implode('', $mobilemenu_styles));
-   $document->addStyledeclaration($contact_icon_color);
+   $template->addStyledeclaration(implode('', $body_styles));
+   $template->addStyledeclaration(implode('', $header_styles));
+   $template->addStyledeclaration(implode('', $main_menu_styles));
+   $template->addStyledeclaration(implode('', $dropdown_styles));
+   $template->addStyledeclaration(implode('', $mobilemenu_styles));
+   $template->addStyledeclaration($contact_icon_color);
 ?>

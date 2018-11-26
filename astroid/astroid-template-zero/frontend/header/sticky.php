@@ -50,7 +50,7 @@ switch ($mode) {
             </div>
          </div>
       <?php } ?>
-      <div class="header-left-section d-flex justify-content-center flex-grow-1">
+      <div class="header-left-section d-flex justify-content-start flex-grow-1">
          <?php
          $template->loadLayout('logo');
          // header nav starts

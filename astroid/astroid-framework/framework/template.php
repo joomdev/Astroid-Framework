@@ -116,8 +116,12 @@ class AstroidFrameworkTemplate {
          if (isset($template->id)) {
             $id = $template->id;
          } else {
-            $params = new JRegistry();
-            return $params;
+            $astroid_id = $template->params->get('astroid', 0);
+            if (empty($astroid_id)) {
+               $params = new JRegistry();
+               return $params;
+            }
+            $id = $astroid_id;
          }
       }
 

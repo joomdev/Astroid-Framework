@@ -40,8 +40,6 @@ $alignment = (string) @$value['alignment'];
 $alignment = !empty($alignment) ? $alignment : 'left';
 $megamenu_direction = (string) @$value['megamenu_direction'];
 $megamenu_direction = !empty($megamenu_direction) ? $megamenu_direction : 'left';
-$dropeffect = (string) @$value['dropeffect'];
-$dropeffect = !empty($dropeffect) ? $dropeffect : 'hover';
 $rows = !empty($rows) ? json_decode($rows) : [];
 
 $app = JFactory::getApplication('site');
@@ -125,32 +123,20 @@ foreach ($items as $i => $item) {
       <p><?php echo JText::_('TPL_ASTROID_MENU_TEXT'); ?></p>
       <div class="astroid-form-fieldset-section">
          <div class="row">
-            <div class="col-<?php echo $menu_item_level != 1 ? 'auto' : '4'; ?>">
+            <div class="col-<?php echo $menu_item_level != 1 ? 'auto' : '3'; ?>">
                <div class="row">
-                  <div class="col-3" style="<?php echo $menu_item_level != 1 ? 'display:none' : ''; ?>">
+                  <div class="col-6" style="<?php echo $menu_item_level != 1 ? 'display:none' : ''; ?>">
                      <label class="astroid-label" id="<?php echo $id; ?>_megamenu-lbl" for="<?php echo $id; ?>_megamenu"><?php echo JText::_('TPL_ASTROID_MEGA_MENU'); ?></label>
                      <input value="<?php echo $megamenu; ?>" type="hidden" ng-model="<?php echo $id; ?>_megamenu" astroid-switch name="<?php echo $name; ?>[megamenu]" id="<?php echo $id; ?>_megamenu" />
                   </div>
-                  <div class="col-5" style="<?php echo $menu_item_level != 1 ? 'display:none' : ''; ?>">
-                     <label class="astroid-label" id="<?php echo $id; ?>_dropeffect-lbl" for="<?php echo $id; ?>_dropeffect"><?php echo JText::_('TPL_ASTROID_DROPDOWN_ACTION'); ?></label>
-                     <div class="ui fluid search selection dropdown astroid-select-ui" select-ui-div>
-                        <input type="hidden" value="<?php echo $dropeffect; ?>" name="<?php echo $name; ?>[dropeffect]" id="<?php echo $id; ?>_dropeffect">
-                        <i class="dropdown icon"></i>
-                        <div class="default text"><?php echo JText::_('TPL_ASTROID_MENU_OPTIONS_SELECT_ACTION'); ?></div>
-                        <div class="menu">
-                           <div class="item" data-value="hover"><?php echo JText::_('JGLOBAL_HOVER'); ?></div>
-                           <div class="item" data-value="click"><?php echo JText::_('JGLOBAL_CLICK'); ?></div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="col-<?php echo $menu_item_level != 1 ? '12' : '4'; ?>">
+                  <div class="col-<?php echo $menu_item_level != 1 ? '12' : '6'; ?>">
                      <label class="astroid-label" id="<?php echo $id; ?>_showtitle-lbl" for="<?php echo $id; ?>_showtitle">
                         <?php echo JText::_('TPL_ASTROID_SHOW_TITLE'); ?></label>
                      <input value="<?php echo $showtitle; ?>" type="hidden" ng-model="<?php echo $id; ?>_showtitle" astroid-switch name="<?php echo $name; ?>[showtitle]" id="<?php echo $id; ?>_showtitle" />
                   </div>
                </div>
             </div>
-            <div class="col-<?php echo $menu_item_level != 1 ? '4' : '5'; ?>">
+            <div class="col-<?php echo $menu_item_level != 1 ? '5' : '6'; ?>">
                <div class="row">
                   <div style="<?php echo $menu_item_level != 1 ? 'display:none' : ''; ?>" class="col-3">
                      <label class="astroid-label" id="<?php echo $id; ?>_subtitle-lbl" for="<?php echo $id; ?>_subtitle"><?php echo JText::_('TPL_ASTROID_SUBTITLE'); ?></label>

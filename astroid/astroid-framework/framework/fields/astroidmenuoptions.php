@@ -34,8 +34,7 @@ class JFormFieldAstroidMenuOptions extends JFormField {
              'megamenu_width' => '1200px',
              'alignment' => 'right',
              'megamenu_direction' => 'right',
-             'subtitle' => '',
-             'dropeffect' => 'hover'
+             'subtitle' => ''
          ];
       } else {
          $value = (array) $this->value;

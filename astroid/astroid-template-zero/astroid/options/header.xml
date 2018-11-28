@@ -57,6 +57,13 @@
          <field ngShow="header==true" astroidgroup="header_element" name="header_mobile_menu" type="sql" query="SELECT * FROM #__menu_types" default="mainmenu" class="form-control astroid-select-ui" key_field="menutype" value_field="title" label="TPL_ASTROID_HEADER_MOBILE_MENU_LABEL">
             <option value="">JNONE</option>
          </field>
+         
+         
+         <field ngShow="header==true" astroidgroup="header_element" description="" name="menudropeffect" ngModel="menudropeffect" type="astroidradio" default="hover" label="TPL_ASTROID_MENU_OPTIONS_SELECT_ACTION">
+            <option value="hover">JGLOBAL_HOVER</option>
+            <option value="click">JGLOBAL_CLICK</option>
+         </field>
+         
 
          <field ngShow="header==true" astroidgroup="header_element" description="TPL_ASTROID_HEADER_LOGO_OPTION_DESC" title="TPL_ASTROID_HEADER_LOGO_OPTION" type="astroidheading" />
 

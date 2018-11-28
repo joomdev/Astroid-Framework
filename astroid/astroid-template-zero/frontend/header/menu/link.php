@@ -70,7 +70,7 @@ if (($options->megamenu || $item->parent) && !$is_mobile_menu) {
       } else {
          $attributes['data-jddrop-offset'] = '17px';
       }
-      $attributes['data-drop-action'] = $options->dropeffect;
+      $attributes['data-drop-action'] = $template->params->get('menudropeffect', 'hover');
    }
 }
 

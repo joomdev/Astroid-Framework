@@ -74,7 +74,7 @@ if (($options->megamenu || $item->parent) && !$is_mobile_menu) {
    }
 }
 
-if($attributes['data-drop-action']=='click'){
+if ($attributes['data-drop-action'] == 'click') {
    $item->flink = 'javascript:void(0);';
 }
 
@@ -90,7 +90,16 @@ foreach ($attributes as $key => $attribute) {
          <i class="<?php echo $options->icon; ?>"></i>
       <?php } ?>
       <?php if (!$options->icononly) { ?>
-         <?php echo $item->title; ?>
+         <?php if (!empty($item->menu_image)) { ?>
+            <img src="<?php echo JURI::root() . $item->menu_image; ?>" />
+         <?php } ?>
+         <?php if (!empty($item->menu_image) && $item->params->get('menu_text', 1)) { ?>
+            <?php echo $item->title; ?>
+         <?php } else if (!empty($item->menu_image) && !$item->params->get('menu_text', 1)) { ?>
+
+         <?php } else { ?>
+            <?php echo $item->title; ?>
+         <?php } ?>
       <?php } ?>
       <?php if (!$is_mobile_menu && $item->level == 1 && ($item->parent || $options->megamenu)) { ?>
          <i class="fa fa-chevron-down nav-item-caret"></i>

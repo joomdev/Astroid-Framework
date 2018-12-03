@@ -46,6 +46,26 @@ class AstroidFrameworkArticle {
 
    public function addMeta() {
 
+      $app = JFactory::getApplication();
+      $itemid = $app->input->get('Itemid', '', 'INT');
+
+      $menu = $app->getMenu();
+      $item = $menu->getItem($itemid);
+
+      if (!empty($item)) {
+         $params = new JRegistry();
+         $params->loadString($item->params);
+
+         $enabled = $params->get('astroid_opengraph', 0);
+         if (!empty($enabled)) {
+            return;
+         }
+      }
+
+      if (!(JFactory::getApplication()->input->get('option', '') == 'com_content' && JFactory::getApplication()->input->get('view', '') == 'article')) {
+         return;
+      }
+
       $enabled = $this->template->params->get('article_opengraph', 0);
       $fb_id = $this->template->params->get('article_opengraph_facebook', '');
       $tw_id = $this->template->params->get('article_opengraph_twitter', '');

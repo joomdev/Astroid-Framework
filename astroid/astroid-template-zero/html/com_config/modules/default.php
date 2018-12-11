@@ -74,10 +74,10 @@ JFactory::getDocument()->addScriptDeclaration("
 
 			<div>
 				<?php echo JText::_('COM_CONFIG_MODULES_MODULE_NAME'); ?>
-				<span class="label label-default"><?php echo $this->item['title']; ?></span>
+				<span class="label label-default bg-dark text-white p-1 rounded"><?php echo $this->item['title']; ?></span>
 				&nbsp;&nbsp;
 				<?php echo JText::_('COM_CONFIG_MODULES_MODULE_TYPE'); ?>
-				<span class="label label-default"><?php echo $this->item['module']; ?></span>
+				<span class="label label-default bg-dark text-white p-1 rounded"><?php echo $this->item['module']; ?></span>
 			</div>
 			<hr />
 

@@ -11,7 +11,7 @@ jimport('astroid.framework.constants');
 
 class AstroidFrameworkConstants {
 
-   public static $astroid_version = '2.0.2';
+   public static $astroid_version = '2.0.2-dev';
    public static $fontawesome_version = '5.4.2';
    public static $animatecss_version = '3.7.0';
    public static $forum_link = 'https://www.joomdev.com/forum/astroid-framework';

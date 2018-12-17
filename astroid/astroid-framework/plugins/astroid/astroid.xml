@@ -15,6 +15,12 @@
    </files>
    <config>
       <fields name="params">
+         <fieldset name="basic">
+            <field name="astroid_manager_loader" type="radio" default="1" label="ASTROID_MANAGER_LOADER" description="" class="btn-group btn-group-yesno">
+               <option value="1">JYES</option>
+               <option value="0">JNO</option>
+            </field>
+         </fieldset>
       </fields>
    </config>
    <updateservers>

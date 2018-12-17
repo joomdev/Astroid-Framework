@@ -82,6 +82,11 @@ $fieldsets = AstroidFrameworkHelper::getAstroidFieldsets($form);
 foreach ($params as $key => $value) {
    $form->setValue($key, 'params', $value);
 }
+
+
+$plugin = JPluginHelper::getPlugin('system', 'astroid');
+$plugin_params = new JRegistry($plugin->params);
+$astroid_manager_loader = $plugin_params->get('astroid_manager_loader', 1);
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo strtolower($lang->getTag()); ?>" dir="<?php echo $langdir; ?>">
@@ -122,27 +127,29 @@ foreach ($params as $key => $value) {
    </head>
    <body ng-app="astroid-framework" id="astroid-framework" ng-controller="astroidController">
       <input type="hidden" id="astroid-admin-token" value="<?php echo JSession::getFormToken(); ?>" />
-      <div class="astroid-loading falling-astroid-container">
-         <div class="falling-astroid-logo">
-            <div class="falling-astroid-imgs">
-               <span></span>
-               <span></span>
-               <span></span>
-               <span></span>
+      <?php if ($astroid_manager_loader) { ?>
+         <div class="astroid-loading falling-astroid-container">
+            <div class="falling-astroid-logo">
+               <div class="falling-astroid-imgs">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+               </div>
+               <div class="falling-astroid-img"></div>
+            </div>
+            <div class="falling-astroid">
                <span></span>
                <span></span>
                <span></span>
                <span></span>
             </div>
-            <div class="falling-astroid-img"></div>
          </div>
-      <div class="falling-astroid">
-         <span></span>
-         <span></span>
-         <span></span>
-         <span></span>
-      </div>
-      </div>
+      <?php } ?>
       <!--<nav class="astroid-manager-navbar navbar fixed-top navbar-expand-lg navbar-light bg-white justify-content-between">
          <a class="navbar-brand" href="#"><img src="<?php echo JURI::root() . 'media' . '/' . 'astroid' . '/' . 'assets' . '/' . 'images' . '/' . 'favicon.png'; ?>" width="28" height="28" class="d-inline-block align-top" alt=""> Astroid Framework</a>
          <div class="form-inline">

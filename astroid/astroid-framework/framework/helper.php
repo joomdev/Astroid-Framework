@@ -509,4 +509,45 @@ class AstroidFrameworkHelper {
       JFolder::copy($source, $destination, '', true);
    }
 
+   public static function getUploadedFonts($template) {
+      require_once JPATH_LIBRARIES . '/' . 'astroid' . '/' . 'framework' . '/' . 'library' . '/' . 'FontLib' . '/' . 'Autoloader.php';
+      $template_fonts_path = JPATH_SITE . "/templates/{$template}/fonts";
+      if (!file_exists($template_fonts_path)) {
+         return [];
+      }
+      $fonts = [];
+      $font_extensions = ['otf', 'ttf', 'woff'];
+      foreach (scandir($template_fonts_path) as $font_path) {
+         if (is_file($template_fonts_path . '/' . $font_path)) {
+            $pathinfo = pathinfo($template_fonts_path . '/' . $font_path);
+            if (in_array($pathinfo['extension'], $font_extensions)) {
+               $font = \FontLib\Font::load($template_fonts_path . '/' . $font_path);
+               $font->parse();
+               $fontname = $font->getFontFullName();
+               $fontid = 'library-font-' . JFilterOutput::stringURLSafe($fontname);
+               if (!isset($fonts[$fontid])) {
+                  $fonts[$fontid] = [];
+                  $fonts[$fontid]['id'] = $fontid;
+                  $fonts[$fontid]['name'] = $fontname;
+                  $fonts[$fontid]['files'] = [];
+               }
+               $fonts[$fontid]['files'][] = './../fonts/' . $font_path;
+            }
+         }
+      }
+      return $fonts;
+   }
+
+   public static function loadLibraryFont($font, $template) {
+      if (empty($font)) {
+         return;
+      }
+      $style = '';
+      foreach ($font['files'] as $file) {
+         $style .= '@font-face { font-family: "' . $font['name'] . '"; src: url("' . $file . '");
+}';
+      }
+      $template->addStyleDeclaration($style);
+   }
+
 }

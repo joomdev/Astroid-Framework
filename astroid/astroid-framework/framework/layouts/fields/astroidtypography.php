@@ -172,6 +172,7 @@ foreach ($fonts as $font) {
 <div class="row">
    <div class="col-12">
       <label class="astroid-label"><?php echo JText::_('TPL_ASTROID_OPTIONS_PREVIEW_LABEL'); ?></label>
+      <small class="library-font-warning text-danger d-none">* <?php echo JText::_('TPL_ASTROID_OPTIONS_LIBRARY_FONT_WARNING'); ?></small>
       <?php
       $alphas = range('A', 'Z');
 

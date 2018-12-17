@@ -135,6 +135,17 @@ class plgSystemAstroid extends JPlugin {
                         $return .= '<div class="item" data-value="' . $name . '">' . $system_font . '</div>';
                      }
 
+                     $template = $this->app->input->get('template', '', 'RAW');
+
+                     $uploadedFonts = AstroidFrameworkHelper::getUploadedFonts($template);
+
+                     if (!empty($uploadedFonts)) {
+                        $return .= '<div class="ui horizontal divider">Library Fonts</div>';
+                        foreach ($uploadedFonts as $uploaded_font) {
+                           $return .= '<div class="item" data-value="' . $uploaded_font['id'] . '">' . $uploaded_font['name'] . '</div>';
+                        }
+                     }
+
                      $return .= '<div class="ui horizontal divider">Google Fonts</div>';
                      foreach ($options as $group => $fonts) {
                         foreach ($fonts as $fontValue => $font) {

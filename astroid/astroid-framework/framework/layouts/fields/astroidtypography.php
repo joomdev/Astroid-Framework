@@ -9,9 +9,7 @@ defined('JPATH_BASE') or die;
 jimport('astroid.framework.constants');
 
 extract($displayData);
-
 $value = array_merge($defaults, $value);
-
 $fonts = AstroidFrameworkHelper::getGoogleFonts();
 
 $font_face = (string) $value['font_face'];
@@ -27,7 +25,6 @@ $line_height_unit = (string) $value['line_height_unit'];
 $font_style = (array) $value['font_style'];
 $font_weight = (string) $value['font_weight'];
 $text_transform = (string) $value['text_transform'];
-
 $options = [];
 $unit_options = ['px', 'em', 'rem', 'pt'];
 foreach ($fonts as $font) {
@@ -156,10 +153,10 @@ foreach ($fonts as $font) {
             <?php if ($transformpicker) { ?>
                <label class="astroid-label"><?php echo JText::_('TPL_ASTROID_TEXT_TRANSFORM_LABEL'); ?></label>
                <select data-typography-field="<?php echo $id; ?>" data-typography-property="text-transform" ng-model="<?php echo $id; ?>_text_transform" name="<?php echo $name; ?>[text_transform]" class="form-control" select-ui>
-                  <option <?php echo ($text_transform == '' ? ' selected' : ''); ?> value=""><?php echo JText::_('JNONE'); ?></option>
+                  <option <?php echo ($text_transform == '' ? ' selected="selected"' : ''); ?> value=""><?php echo JText::_('JNONE'); ?></option>
                   <?php
                   foreach (array('uppercase' => 'JGLOBAL_UPPERCASE', 'lowercase' => 'JGLOBAL_LOWERCASE', 'capitalize' => 'JGLOBAL_CAPITALIZE') as $transform => $transform_title) {
-                     echo '<option ' . ($text_transform == $transform ? ' selected' : '') . ' value="' . $transform . '">' . JText::_($transform_title) . '</option>';
+                     echo '<option ' . ($text_transform == $transform ? ' selected="selected"' : '') . ' value="' . $transform . '">' . JText::_($transform_title) . '</option>';
                   }
                   ?>
                </select>

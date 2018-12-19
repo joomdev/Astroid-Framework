@@ -57,7 +57,7 @@ class AstroidFrameworkTemplate {
       $params = new JRegistry();
       $params->loadString($item->params);
 
-      $enabled = $params->get('astroid_opengraph', 0);
+      $enabled = $params->get('astroid_opengraph_menuitem', 0);
       if (empty($enabled)) {
          return;
       }
@@ -67,23 +67,22 @@ class AstroidFrameworkTemplate {
 
       $config = JFactory::getConfig();
       $og_title = $item->title;
-      if (!empty($params->get('astroid_og_title', ''))) {
-         $og_title = $params->get('astroid_og_title', '');
+      if (!empty($params->get('astroid_og_title_menuitem', ''))) {
+         $og_title = $params->get('astroid_og_title_menuitem', '');
       }
       $og_description = '';
-      if (!empty($params->get('astroid_og_desc', ''))) {
-         $og_description = $params->get('astroid_og_desc', '');
+      if (!empty($params->get('astroid_og_desc_menuitem', ''))) {
+         $og_description = $params->get('astroid_og_desc_menuitem', '');
       }
       $og_image = '';
-      if (!empty($params->get('astroid_og_image', ''))) {
-         $og_image = JURI::base() . $params->get('astroid_og_image', '');
+      if (!empty($params->get('astroid_og_image_menuitem', ''))) {
+         $og_image = JURI::base() . $params->get('astroid_og_image_menuitem', '');
       }
 
       $og_sitename = $config->get('sitename');
       $og_siteurl = JURI::getInstance();
 
       $meta = [];
-      $meta[] = '<meta property="og:type" content="article">';
       $meta[] = '<meta name="twitter:card" content="summary" />';
       if (!empty($og_title)) {
          $meta[] = '<meta property="og:title" content="' . $og_title . '">';
@@ -102,6 +101,9 @@ class AstroidFrameworkTemplate {
       }
       if (!empty($tw_id)) {
          $meta[] = '<meta name="twitter:creator" content="@' . $tw_id . '" />';
+      }
+      if (!empty($og_image)) {
+         $meta[] = '<meta name="og:image" content="' . $og_image . '" />';
       }
       $meta = implode('', $meta);
       if (!empty($meta)) {

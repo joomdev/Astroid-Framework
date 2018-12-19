@@ -7,23 +7,23 @@
             <option value="0">JNO</option>
          </field>
          <field
-            showon="astroid_opengraph:1"
+            showon="astroid_opengraph_menuitem:1"
             type="text"
-            name="astroid_og_title"
+            name="astroid_og_title_menuitem"
             label="JGLOBAL_TITLE"
             default=""
          />
          <field
-            showon="astroid_opengraph:1"
+            showon="astroid_opengraph_menuitem:1"
             type="textarea"
-            name="astroid_og_desc"
+            name="astroid_og_desc_menuitem"
             label="ASTROID_OPENGRAPH_DESCRIPTION"
             default=""
          />
          <field
-            showon="astroid_opengraph:1"
+            showon="astroid_opengraph_menuitem:1"
             type="media"
-            name="astroid_og_image"
+            name="astroid_og_image_menuitem"
             label="ASTROID_IMAGE"
             default=""
          />

@@ -56,7 +56,8 @@ class AstroidFrameworkArticle {
          $params = new JRegistry();
          $params->loadString($item->params);
 
-         $enabled = $params->get('astroid_opengraph', 0);
+         $enabled = $params->get('astroid_opengraph_menuitem', 0);
+         $enabled = (int) $enabled;
          if (!empty($enabled)) {
             return;
          }
@@ -74,6 +75,7 @@ class AstroidFrameworkArticle {
          return;
       }
       $config = JFactory::getConfig();
+      
       $og_title = $this->article->title;
       if (!empty($this->article->params->get('astroid_og_title', ''))) {
          $og_title = $this->article->params->get('astroid_og_title', '');

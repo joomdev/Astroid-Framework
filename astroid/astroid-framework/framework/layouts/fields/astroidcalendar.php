@@ -97,29 +97,7 @@ JHtml::_('script', $helperPath, false, true, false, false, true);
 JHtml::_('script', 'system/fields/calendar.min.js', false, true, false, false, true);
 JHtml::_('stylesheet', 'system/fields/calendar' . $cssFileExt, array(), true);
 ?>
+
 <div class="field-calendar input-group">
-<?php if (!$readonly && !$disabled) : ?>
-      <div class="input-group-append">
-<?php endif; ?>
-      <input data-provide="datepicker" class="astroid-calendar-input form-control" type="text" id="<?php echo $id; ?>" name="<?php echo $name; ?>" value="<?php echo htmlspecialchars(($value !== '0000-00-00 00:00:00') ? $value : '', ENT_COMPAT, 'UTF-8'); ?>" <?php echo $attributes; ?>
-   <?php echo!empty($hint) ? 'placeholder="' . htmlspecialchars($hint, ENT_COMPAT, 'UTF-8') . '"' : ''; ?> data-alt-value="<?php echo htmlspecialchars($value, ENT_COMPAT, 'UTF-8'); ?>" autocomplete="off"/>
-      <button type="button" class="astroid-calendar-btn <?php echo ($readonly || $disabled) ? 'hidden ' : ''; ?>btn btn-outline-primary"
-              id="<?php echo $id; ?>_btn"
-              data-inputfield="<?php echo $id; ?>"
-              data-dayformat="<?php echo $format; ?>"
-              data-button="<?php echo $id; ?>_btn"
-              data-firstday="<?php echo JFactory::getLanguage()->getFirstDay(); ?>"
-              data-weekend="<?php echo JFactory::getLanguage()->getWeekEnd(); ?>"
-              data-today-btn="<?php echo $todaybutton; ?>"
-              data-week-numbers="<?php echo $weeknumbers; ?>"
-              data-show-time="<?php echo $showtime; ?>"
-              data-show-others="<?php echo $filltable; ?>"
-              data-time-24="<?php echo $timeformat; ?>"
-              data-only-months-nav="<?php echo $singleheader; ?>"
-<?php echo!empty($minYear) ? 'data-min-year="' . $minYear . '"' : ''; ?>
-<?php echo!empty($maxYear) ? 'data-max-year="' . $maxYear . '"' : ''; ?>
-              ><span class="fa fa-calendar-alt"></span></button>
-<?php if (!$readonly && !$disabled) : ?>
-      </div>
-<?php endif; ?>
+   <input astroid-datetimepicker class="astroid-calendar-input form-control" type="text" id="<?php echo $id; ?>" name="<?php echo $name; ?>" value="<?php echo htmlspecialchars(($value !== '') ? $value : '', ENT_COMPAT, 'UTF-8'); ?>" <?php echo $attributes; ?> <?php echo!empty($hint) ? 'placeholder="' . htmlspecialchars($hint, ENT_COMPAT, 'UTF-8') . '"' : ''; ?> autocomplete="off"/>
 </div>

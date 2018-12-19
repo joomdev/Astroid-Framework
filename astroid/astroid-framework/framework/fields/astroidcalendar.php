@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @package   Astroid Framework
  * @author    JoomDev https://www.joomdev.com
@@ -183,54 +184,46 @@ class JFormFieldAstroidCalendar extends JFormField {
       $config = JFactory::getConfig();
       $user = JFactory::getUser();
 
-      // Translate the format if requested
-      $translateFormat = (string) $this->element['translateformat'];
+      //$this->format = "L, F dS, H:i:s a";
 
-      if ($translateFormat && $translateFormat != 'false') {
-         $showTime = (string) $this->element['showtime'];
+      //$this->value = date('Y-m-d H:i:s', strtotime($this->value));
+      /*
+        // If a known filter is given use it.
+        switch (strtoupper($this->filter)) {
+        case 'SERVER_UTC':
+        // Convert a date to UTC based on the server timezone.
+        if ($this->value && $this->value != JFactory::getDbo()->getNullDate()) {
+        // Get a date object based on the correct timezone.
+        $date = JFactory::getDate($this->value, 'UTC');
+        $date->setTimezone(new DateTimeZone($config->get('offset')));
 
-         if ($showTime && $showTime != 'false') {
-            $this->format = JText::_('DATE_FORMAT_CALENDAR_DATETIME');
-         } else {
-            $this->format = JText::_('DATE_FORMAT_CALENDAR_DATE');
-         }
-      }
+        // Transform the date string.
+        $this->value = $date->format('Y-m-d H:i:s', true, false);
+        }
+        break;
+        case 'USER_UTC':
+        // Convert a date to UTC based on the user timezone.
+        if ($this->value && $this->value != JFactory::getDbo()->getNullDate()) {
+        // Get a date object based on the correct timezone.
+        $date = JFactory::getDate($this->value, 'UTC');
+        $date->setTimezone($user->getTimezone());
 
-      // If a known filter is given use it.
-      switch (strtoupper($this->filter)) {
-         case 'SERVER_UTC':
-            // Convert a date to UTC based on the server timezone.
-            if ($this->value && $this->value != JFactory::getDbo()->getNullDate()) {
-               // Get a date object based on the correct timezone.
-               $date = JFactory::getDate($this->value, 'UTC');
-               $date->setTimezone(new DateTimeZone($config->get('offset')));
+        // Transform the date string.
+        $this->value = $date->format('Y-m-d H:i:s', true, false);
+        }
+        break;
+        }
 
-               // Transform the date string.
-               $this->value = $date->format('Y-m-d H:i:s', true, false);
-            }
-            break;
-         case 'USER_UTC':
-            // Convert a date to UTC based on the user timezone.
-            if ($this->value && $this->value != JFactory::getDbo()->getNullDate()) {
-               // Get a date object based on the correct timezone.
-               $date = JFactory::getDate($this->value, 'UTC');
-               $date->setTimezone($user->getTimezone());
-
-               // Transform the date string.
-               $this->value = $date->format('Y-m-d H:i:s', true, false);
-            }
-            break;
-      }
-
-      // Format value when not nulldate ('0000-00-00 00:00:00'), otherwise blank it as it would result in 1970-01-01.
-      if ($this->value && $this->value != JFactory::getDbo()->getNullDate() && strtotime($this->value) !== false) {
-         $tz = date_default_timezone_get();
-         date_default_timezone_set('UTC');
-         $this->value = strftime($this->format, strtotime($this->value));
-         date_default_timezone_set($tz);
-      } else {
-         $this->value = '';
-      }
+        // Format value when not nulldate ('0000-00-00 00:00:00'), otherwise blank it as it would result in 1970-01-01.
+        if ($this->value && $this->value != JFactory::getDbo()->getNullDate() && strtotime($this->value) !== false) {
+        $tz = date_default_timezone_get();
+        date_default_timezone_set('UTC');
+        $this->value = strftime($this->format, strtotime($this->value));
+        date_default_timezone_set($tz);
+        } else {
+        $this->value = '';
+        }
+       */
 
       $renderer = new JLayoutFile($this->layout, JPATH_LIBRARIES . '/astroid/framework/layouts');
 

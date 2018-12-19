@@ -493,6 +493,32 @@ astroidFramework.directive('draggable', function () {
    };
 });
 
+astroidFramework.directive('astroidDatetimepicker', function () {
+   return {
+      restrict: 'A',
+      link: function (scope, element, attrs) {
+         if (typeof $ == 'undefined') {
+            var $ = jQuery;
+         }
+         $(element).datetimepicker({
+            icons: {
+               time: "far fa-clock",
+               date: "far fa-calendar-alt",
+               up: "fa fa-angle-up",
+               down: "fa fa-angle-down",
+               next: "fa fa-angle-right",
+               previous: "fa fa-angle-left",
+               today: "fa fa-bullseye",
+               clear: 'far fa-trash-alt',
+               close: 'fa fa-times'
+            },
+            format: 'MMMM Do YYYY, h:mm a',
+            timeZone: TIMEZONE
+         });
+      }
+   };
+});
+
 astroidFramework.directive('droppable', function () {
    return {
       restrict: 'A',

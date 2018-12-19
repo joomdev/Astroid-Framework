@@ -32,7 +32,9 @@ if ($cs_logo = $template->params->get('coming_soon_logo')) {
    $comingsoon_logo = JURI::root() . 'images/' . $cs_logo;
    $hascs_logo = 1;
 }
-$comingsoon_date = $template->params->get("coming_soon_countdown_date", '2019-01-01');
+$comingsoon_date = $template->params->get("coming_soon_countdown_date", 'January 1st 2022, 00:00 am');
+$date = new DateTime($comingsoon_date, new DateTimeZone(JFactory::getConfig()->get('offset')));
+$comingsoon_date = $date->format('Y/m/d H:i:s');
 ?>
 
 <div class="comingsoon-wrap" style="<?php echo implode(';', $styles); ?>">	
@@ -84,7 +86,7 @@ $comingsoon_date = $template->params->get("coming_soon_countdown_date", '2019-01
    <script>
       (function ($) {
          $(function () {
-            $('#astroid-countdown').countdown('<?php echo date('Y/m/d', strtotime($comingsoon_date)); ?>').on('update.countdown', function (event) {
+            $('#astroid-countdown').countdown('<?php echo $comingsoon_date; ?>').on('update.countdown', function (event) {
                $(this).children('.days').children('.count').html(event.strftime('%D'));
                $(this).children('.hours').children('.count').html(event.strftime('%H'));
                $(this).children('.minutes').children('.count').html(event.strftime('%M'));

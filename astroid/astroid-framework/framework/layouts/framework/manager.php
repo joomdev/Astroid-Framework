@@ -403,7 +403,10 @@ $astroid_manager_loader = $plugin_params->get('astroid_manager_loader', 1);
       $scripts[] = $assets . 'vendor' . '/' . 'spectrum' . '/' . 'spectrum.js?v=' . $document->getMediaVersion();
       $scripts[] = 'https://cdnjs.cloudflare.com/ajax/libs/ace/1.3.3/ace.js?v=' . $document->getMediaVersion();
       $scripts[] = $assets . 'vendor' . '/' . 'dropzone' . '/' . 'dropzone.min.js?v=' . $document->getMediaVersion();
-      $scripts[] = $assets . 'js' . '/' . 'bootstrap-datepicker.min.js?v=' . $document->getMediaVersion();
+      $scripts[] = $assets . 'vendor' . '/' . 'moment.min.js?v=' . $document->getMediaVersion();
+      $scripts[] = $assets . 'vendor' . '/' . 'moment-timezone.min.js?v=' . $document->getMediaVersion();
+      $scripts[] = $assets . 'vendor' . '/' . 'moment-timezone-with-data-2012-2022.min.js?v=' . $document->getMediaVersion();
+      $scripts[] = $assets . 'vendor' . '/' . 'bootstrap-datetimepicker.min.js?v=' . $document->getMediaVersion();
       $scripts[] = $assets . 'vendor' . '/' . 'bootstrap-slider' . '/' . 'js' . '/' . 'bootstrap-slider.min.js?v=' . $document->getMediaVersion();
       $scripts[] = $assets . 'vendor' . '/' . 'angular' . '/' . 'angular.min.js?v=' . $document->getMediaVersion();
       $scripts[] = $assets . 'vendor' . '/' . 'angular' . '/' . 'angular-animate.js?v=' . $document->getMediaVersion();
@@ -413,6 +416,10 @@ $astroid_manager_loader = $plugin_params->get('astroid_manager_loader', 1);
          echo "<script src='" . $script . "'></script>";
       }
       ?>
+      <script>
+         var TIMEZONE = '<?php echo $config = JFactory::getConfig()->get('offset'); ?>';
+         moment.tz.setDefault('<?php echo $config = JFactory::getConfig()->get('offset'); ?>');
+      </script>
       <script src="<?php echo $assets . 'js' . '/' . 'parsley.min.js?v=' . $document->getMediaVersion(); ?>"></script>
       <script src="<?php echo $assets . 'js' . '/' . 'notify.min.js?v=' . $document->getMediaVersion(); ?>"></script>
       <script src="<?php echo $assets . 'js' . '/' . 'jquery.hotkeys.js?v=' . $document->getMediaVersion(); ?>"></script>

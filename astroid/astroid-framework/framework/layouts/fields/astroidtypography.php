@@ -91,7 +91,7 @@ foreach ($fonts as $font) {
                <label class="astroid-label d-inline-block"><?php echo JText::_('TPL_ASTROID_FONT_SIZE_LABEL'); ?></label>
                <div class="mb-4 position-relative">
                   <span class="range-slider-value d-none"></span>
-                  <div class="d-inline-block margin-left-50px">
+                  <div class="d-inline-block margin-left-75px">
                   <ul class="list-inline unit-picker mb-0">
                   <?php foreach($unit_options as $unit_option){ ?>
                      <li class="list-inline-item"><label><input <?php echo $unit_option == $font_size_unit ? 'checked' : ''; ?> value="<?php echo $unit_option; ?>" type="radio" name="<?php echo $name; ?>[font_size_unit]" data-sid="<?php echo $id; ?>_font_size" /><span><?php echo $unit_option; ?></span></label></li>
@@ -107,7 +107,7 @@ foreach ($fonts as $font) {
             <?php if ($letterspacingpicker) { ?>
                <label class="astroid-label d-inline-block"><?php echo JText::_('TPL_ASTROID_LETTER_SPACING_LABEL'); ?></label>
                <div class="mb-4 position-relative">
-                  <div class="d-inline-block margin-left-50px">
+                  <div class="d-inline-block margin-left-75px">
                      <ul class="list-inline unit-picker mb-0">
                            <?php foreach ($unit_options as $unit_option) { ?>
                               <li class="list-inline-item"><label><input <?php echo $unit_option == $letter_spacing_unit ? 'checked' : ''; ?> data-sid="<?php echo $id; ?>_letter_spacing" value="<?php echo $unit_option; ?>" type="radio" name="<?php echo $name; ?>[letter_spacing_unit]" /><span><?php echo $unit_option; ?></span></label></li>
@@ -122,7 +122,7 @@ foreach ($fonts as $font) {
             <?php if ($lineheightpicker) { ?>
                <label class="astroid-label"><?php echo JText::_('TPL_ASTROID_LINE_HEIGHT_LABEL'); ?></label>
                <div class="mb-4 position-relative">
-                  <div class="d-inline-block margin-left-50px">
+                  <div class="d-inline-block margin-left-75px">
                      <ul class="list-inline unit-picker mb-0">
                            <?php foreach ($unit_options as $unit_option) { ?>
                               <li class="list-inline-item"><label><input <?php echo $unit_option == $line_height_unit ? 'checked' : ''; ?> value="<?php echo $unit_option; ?>" type="radio" name="<?php echo $name; ?>[line_height_unit]" data-sid="<?php echo $id; ?>_line_height" /><span><?php echo $unit_option; ?></span></label></li>

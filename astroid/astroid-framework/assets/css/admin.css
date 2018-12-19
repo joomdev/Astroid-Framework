@@ -186,6 +186,9 @@
 .margin-left-50px{
    margin-left: 55px;
 }
+.margin-left-75px{
+   margin-left: 75px;
+}
 
 /* For Firefox */
 input[type='number'] {

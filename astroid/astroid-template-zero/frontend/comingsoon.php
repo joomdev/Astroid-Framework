@@ -11,6 +11,9 @@ extract($displayData);
 
 $doc = JFactory::getDocument();
 $doc->addScript(JURI::root() . 'templates/' . $template->template . '/js/vendor/jquery.countdown.min.js');
+$doc->addScript(JURI::root() . 'media' . '/' . 'astroid' . '/' . 'assets' . '/' . 'vendor' . '/' . 'moment.min.js');
+$doc->addScript(JURI::root() . 'media' . '/' . 'astroid' . '/' . 'assets' . '/' . 'vendor' . '/' . 'moment-timezone.min.js');
+$doc->addScript(JURI::root() . 'media' . '/' . 'astroid' . '/' . 'assets' . '/' . 'vendor' . '/' . 'moment-timezone-with-data-2012-2022.min.js');
 $app = JFactory::getApplication();
 // Background Image
 $background_image = $template->params->get('coming_soon_background_image');
@@ -82,11 +85,16 @@ $comingsoon_date = $date->format('Y/m/d H:i:s');
       </div>
    </div>
 </div>
+
 <?php if (!empty($comingsoon_date)) { ?>
    <script>
       (function ($) {
          $(function () {
-            $('#astroid-countdown').countdown('<?php echo $comingsoon_date; ?>').on('update.countdown', function (event) {
+            moment.tz.setDefault("<?php echo JFactory::getConfig()->get('offset'); ?>");
+            var _timer = moment('<?php echo $comingsoon_date; ?>', 'YYYY/MM/DD HH:mm:ss').tz('<?php echo JFactory::getConfig()->get('offset'); ?>');
+            var _timezone = moment.tz.guess();
+            var _countdown = _timer.clone().tz(_timezone).format('YYYY/MM/DD HH:mm:ss');
+            $('#astroid-countdown').countdown(_countdown).on('update.countdown', function (event) {
                $(this).children('.days').children('.count').html(event.strftime('%D'));
                $(this).children('.hours').children('.count').html(event.strftime('%H'));
                $(this).children('.minutes').children('.count').html(event.strftime('%M'));

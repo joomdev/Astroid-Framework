@@ -140,7 +140,7 @@ class plgSystemAstroid extends JPlugin {
                      $uploadedFonts = AstroidFrameworkHelper::getUploadedFonts($template);
 
                      if (!empty($uploadedFonts)) {
-                        $return .= '<div class="ui horizontal divider">Library Fonts</div>';
+                        $return .= '<div class="ui horizontal divider">Custom Fonts</div>';
                         foreach ($uploadedFonts as $uploaded_font) {
                            $return .= '<div class="item" data-value="' . $uploaded_font['id'] . '">' . $uploaded_font['name'] . '</div>';
                         }
@@ -188,6 +188,7 @@ class plgSystemAstroid extends JPlugin {
                   }
                   $lang->load('tpl_' . ASTROID_TEMPLATE_NAME, JPATH_SITE);
                   $lang->load(ASTROID_TEMPLATE_NAME, JPATH_SITE);
+                  $lang->load('mod_menu', JPATH_SITE);
 
                   // render manager
                   $layout = new JLayoutFile('framework.manager', JPATH_LIBRARIES . '/astroid/framework/layouts');

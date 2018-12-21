@@ -103,7 +103,7 @@ foreach ($attributes as $key => $attribute) {
       <?php } ?>
       <?php if (!$is_mobile_menu && $item->level == 1 && ($item->parent || $options->megamenu)) { ?>
          <i class="fa fa-chevron-down nav-item-caret"></i>
-      <?php } elseif (!$is_mobile_menu && $item->parent) { ?>
+      <?php } elseif (!$is_mobile_menu && $item->parent && $item->deeper == 1) { ?>
          <i class="fa fa-chevron-right nav-item-caret"></i>
       <?php } ?>
    </span>

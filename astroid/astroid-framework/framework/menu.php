@@ -22,16 +22,16 @@ class AstroidMenu {
 
       $template = new AstroidFrameworkTemplate(JFactory::getApplication()->getTemplate(true));
 
-      $test_params = '{"menutype":"' . $menutype . '","base":"","startLevel":"' . $template->params->get('header_startLevel', 1) . '","endLevel":"' . $template->params->get('header_endLevel', 0) . '","showAllChildren":"1","tag_id":"","class_sfx":"","window_open":"","layout":"_:default","moduleclass_sfx":"","cache":"1","cache_time":"900","cachemode":"itemid","module_tag":"div","bootstrap_size":"0","header_tag":"h3","header_class":"","style":"0"}';
+      $header_menu_params = '{"menutype":"' . $menutype . '","base":"","startLevel":"1","endLevel":"' . $template->params->get('header_endLevel', 0) . '","showAllChildren":"1","tag_id":"","class_sfx":"","window_open":"","layout":"_:default","moduleclass_sfx":"","cache":"1","cache_time":"900","cachemode":"itemid","module_tag":"div","bootstrap_size":"0","header_tag":"h3","header_class":"","style":"0"}';
 
       $menu_params = new JRegistry();
-      $menu_params->loadString($test_params);
+      $menu_params->loadString($header_menu_params);
 
-      $list = self::getList($menutype);
       $list = ModMenuHelper::getList($menu_params);
       $base = ModMenuHelper::getBase($menu_params);
       $active = ModMenuHelper::getActive($menu_params);
       $default = ModMenuHelper::getDefault();
+      
       $active_id = $active->id;
       $default_id = $default->id;
       $path = $base->tree;
@@ -489,10 +489,18 @@ class AstroidMenu {
          return '';
       }
 
-      $list = self::getList($menutype);
-      $base = self::getBase();
-      $active = self::getActive();
-      $default = self::getDefault();
+      $template = new AstroidFrameworkTemplate(JFactory::getApplication()->getTemplate(true));
+
+      $header_menu_params = '{"menutype":"' . $menutype . '","base":"","startLevel":"1","endLevel":"' . $template->params->get('header_mobile_endLevel', 0) . '","showAllChildren":"1","tag_id":"","class_sfx":"","window_open":"","layout":"_:default","moduleclass_sfx":"","cache":"1","cache_time":"900","cachemode":"itemid","module_tag":"div","bootstrap_size":"0","header_tag":"h3","header_class":"","style":"0"}';
+
+      $menu_params = new JRegistry();
+      $menu_params->loadString($header_menu_params);
+      
+      $list = ModMenuHelper::getList($menu_params);
+      $base = ModMenuHelper::getBase($menu_params);
+      $active = ModMenuHelper::getActive($menu_params);
+      $default = ModMenuHelper::getDefault();
+      
       $active_id = $active->id;
       $default_id = $default->id;
       $path = $base->tree;

@@ -55,28 +55,6 @@
          <field ngShow="header==true" astroidgroup="header_element" name="header_menu" type="sql" query="SELECT * FROM #__menu_types" default="mainmenu" class="form-control astroid-select-ui" key_field="menutype" value_field="title" label="TPL_ASTROID_HEADER_MENU_LABEL" description="TPL_ASTROID_HEADER_MENU_DESC"></field>
          
          <field
-            name="header_startLevel"
-            type="astroidlist"
-            label="MOD_MENU_FIELD_STARTLEVEL_LABEL"
-            description="MOD_MENU_FIELD_STARTLEVEL_DESC"
-            default="1"
-            filter="integer"
-            ngShow="header==true"
-            astroidgroup="header_element"
-         >
-            <option value="1">J1</option>
-            <option value="2">J2</option>
-            <option value="3">J3</option>
-            <option value="4">J4</option>
-            <option value="5">J5</option>
-            <option value="6">J6</option>
-            <option value="7">J7</option>
-            <option value="8">J8</option>
-            <option value="9">J9</option>
-            <option value="10">J10</option>
-         </field>
-
-         <field
             name="header_endLevel"
             type="astroidlist"
             label="MOD_MENU_FIELD_ENDLEVEL_LABEL"
@@ -103,6 +81,28 @@
             <option value="">JNONE</option>
          </field>
          
+         <field
+            name="header_mobile_endLevel"
+            type="astroidlist"
+            label="MOD_MENU_FIELD_ENDLEVEL_LABEL"
+            description="MOD_MENU_FIELD_ENDLEVEL_DESC"
+            default="0"
+            filter="integer"
+            ngShow="header==true"
+            astroidgroup="header_element"
+         >
+            <option value="0">JALL</option>
+            <option value="1">J1</option>
+            <option value="2">J2</option>
+            <option value="3">J3</option>
+            <option value="4">J4</option>
+            <option value="5">J5</option>
+            <option value="6">J6</option>
+            <option value="7">J7</option>
+            <option value="8">J8</option>
+            <option value="9">J9</option>
+            <option value="10">J10</option>
+         </field>
          
          <!--         <field ngShow="header==true" astroidgroup="header_element" description="" name="menudropeffect" ngModel="menudropeffect" type="astroidradio" default="hover" label="TPL_ASTROID_MENU_OPTIONS_SELECT_ACTION">
             <option value="hover">JGLOBAL_HOVER</option>

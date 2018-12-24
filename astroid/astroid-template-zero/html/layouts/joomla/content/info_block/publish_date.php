@@ -9,7 +9,7 @@
 defined('JPATH_BASE') or die;
 ?>
 	<dd class="published">
-		<i class="far fa-clock"></i>
+		<i class="far fa-calendar-alt"></i>
 		<time datetime="<?php echo JHtml::_('date', $displayData['item']->publish_up, 'c'); ?>" itemprop="datePublished">
 			<?php echo JHtml::_('date', $displayData['item']->publish_up, JText::_('DATE_FORMAT_LC3')); ?>
 		</time>

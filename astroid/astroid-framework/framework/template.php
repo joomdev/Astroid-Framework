@@ -84,6 +84,10 @@ class AstroidFrameworkTemplate {
 
       $meta = [];
       $meta[] = '<meta name="twitter:card" content="summary" />';
+
+      if ($item->type == 'component' && isset($item->query) && $item->query['option'] == 'com_content' && $item->query['view'] == 'article') {
+         $meta[] = '<meta property="og:type" content="article">';
+      }
       if (!empty($og_title)) {
          $meta[] = '<meta property="og:title" content="' . $og_title . '">';
       }
@@ -250,33 +254,33 @@ class AstroidFrameworkTemplate {
                   $prevColIndex = $colIndex;
                }
             }
-
-            if ($bufferSize) {
-               if ($hasComponent) {
-                  $row['cols'][$componentIndex]['size'] = $row['cols'][$componentIndex]['size'] + $bufferSize;
-               } else {
-                  if ($prevColIndex !== null) {
-                     $row['cols'][$prevColIndex]['size'] = $row['cols'][$prevColIndex]['size'] + $bufferSize;
-                  }
-               }
-            }
-
-            foreach ($row['cols'] as $col) {
-               $renderedHTML = '';
-               foreach ($col['elements'] as $element) {
-                  $el = new AstroidElement($element['type'], $element, $this);
-                  $this->setLog("Rending Element : " . $el->getValue('title'));
-                  if (@$_GET['wf'] == 1) {
-                     $renderedHTML .= $el->renderWireframe();
+            if (!empty($row['cols'])) {
+               if ($bufferSize) {
+                  if ($hasComponent) {
+                     $row['cols'][$componentIndex]['size'] = $row['cols'][$componentIndex]['size'] + $bufferSize;
                   } else {
-                     $renderedHTML .= $el->render();
+                     if ($prevColIndex !== null) {
+                        $row['cols'][$prevColIndex]['size'] = $row['cols'][$prevColIndex]['size'] + $bufferSize;
+                     }
                   }
                }
-               if (!empty($renderedHTML)) {
-                  $columnObject = new AstroidElement("column", $col, $this);
-                  $columnHTML .= '<div id="' . $columnObject->getID() . '" class="' . $columnObject->getClass() . '" style="' . $columnObject->getStyles() . '" data-animation="' . $columnObject->getAnimation() . '" data-animation-delay="' . $columnObject->getAnimationDelay() . '" ' . $columnObject->getAttributes() . '>';
-                  $columnHTML .= $renderedHTML;
-                  $columnHTML .= '</div>';
+               foreach ($row['cols'] as $col) {
+                  $renderedHTML = '';
+                  foreach ($col['elements'] as $element) {
+                     $el = new AstroidElement($element['type'], $element, $this);
+                     $this->setLog("Rending Element : " . $el->getValue('title'));
+                     if (@$_GET['wf'] == 1) {
+                        $renderedHTML .= $el->renderWireframe();
+                     } else {
+                        $renderedHTML .= $el->render();
+                     }
+                  }
+                  if (!empty($renderedHTML)) {
+                     $columnObject = new AstroidElement("column", $col, $this);
+                     $columnHTML .= '<div id="' . $columnObject->getID() . '" class="' . $columnObject->getClass() . '" style="' . $columnObject->getStyles() . '" data-animation="' . $columnObject->getAnimation() . '" data-animation-delay="' . $columnObject->getAnimationDelay() . '" ' . $columnObject->getAttributes() . '>';
+                     $columnHTML .= $renderedHTML;
+                     $columnHTML .= '</div>';
+                  }
                }
             }
             if (!empty($columnHTML)) {

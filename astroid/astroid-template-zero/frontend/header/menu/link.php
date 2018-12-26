@@ -57,7 +57,7 @@ if ($item->browserNav == 1) {
    $attributes['onclick'] = "window.open(this.href, 'targetWindow', '" . $iframe_options . "'); return false;";
 }
 $attributes['data-drop-action'] = 'hover';
-if (($options->megamenu || $item->parent) && !$is_mobile_menu) {
+if (($options->megamenu || ($item->parent && $item->deeper == 1)) && !$is_mobile_menu) {
    $attributes['data-jddrop'] = "";
    $attributes['data-jddrop-align'] = ($item->level != 1 ? 'right' : $options->alignment);
    $attributes['data-jddrop-speed'] = $template->params->get('dropdown_animation_speed', 300);
@@ -101,7 +101,7 @@ foreach ($attributes as $key => $attribute) {
             <?php echo $item->title; ?>
          <?php } ?>
       <?php } ?>
-      <?php if (!$is_mobile_menu && $item->level == 1 && ($item->parent || $options->megamenu)) { ?>
+      <?php if (!$is_mobile_menu && $item->level == 1 && (($item->parent && $item->deeper == 1) || $options->megamenu)) { ?>
          <i class="fa fa-chevron-down nav-item-caret"></i>
       <?php } elseif (!$is_mobile_menu && $item->parent && $item->deeper == 1) { ?>
          <i class="fa fa-chevron-right nav-item-caret"></i>

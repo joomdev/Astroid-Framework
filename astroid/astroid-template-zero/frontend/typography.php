@@ -123,11 +123,11 @@ $submenuType = $template->params->get('submenus_typography');
 if (trim($submenuType) == 'custom') {
    $submenu_font = $template->params->get('submenu_typography_options');
    $submenu_fontface = str_replace('+', ' ', explode(":", $submenu_font->font_face));
-   $submenu_style = '.nav-submenu-container .nav-submenu > li {';
+   $submenu_style = '.nav-submenu-container .nav-submenu > li, .megamenu-container .megamenu-module {';
    if (isset($submenu_fontface[0]) && !empty($submenu_fontface[0])) {
       if (isset($libraryFonts[$submenu_fontface[0]])) {
-         $style .= 'font-family: ' . $libraryFonts[$submenu_fontface[0]]['name'] . ',' . $submenu_font->alt_font_face . ';';
-         AstroidFrameworkHelper::loadLibraryFont($submenu_fontface[$fontface[0]], $template);
+         $submenu_style .= 'font-family: ' . $libraryFonts[$submenu_fontface[0]]['name'] . ',' . $submenu_font->alt_font_face . ';';
+         AstroidFrameworkHelper::loadLibraryFont($libraryFonts[$submenu_fontface[0]], $template);
       } else {
          $submenu_style .= 'font-family: ' . $submenu_fontface[0] . ', ' . $submenu_font->alt_font_face . ';';
          if (!AstroidFrameworkHelper::isSystemFont($submenu_fontface[0])) {

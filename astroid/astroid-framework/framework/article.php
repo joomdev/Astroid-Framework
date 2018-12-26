@@ -113,7 +113,7 @@ class AstroidFrameworkArticle {
          $meta[] = '<meta property="og:description" content="' . substr($og_description, 0, 200) . '">';
       }
       if (!empty($og_image)) {
-         $meta[] = '<meta property="og:type" content="article"><meta property="og:image" content="' . $og_image . '">';
+         $meta[] = '<meta property="og:image" content="' . $og_image . '">';
       }
       if (!empty($fb_id)) {
          $meta[] = '<meta property="fb:app_id" content="' . $fb_id . '" />';

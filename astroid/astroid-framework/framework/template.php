@@ -45,6 +45,13 @@ class AstroidFrameworkTemplate {
    }
 
    public function addMeta() {
+
+
+      $enabled = $this->params->get('article_opengraph', 0);
+      if (empty($enabled)) {
+         return;
+      }
+
       $app = JFactory::getApplication();
       $itemid = $app->input->get('Itemid', '', 'INT');
 

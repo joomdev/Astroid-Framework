@@ -2,7 +2,6 @@
 /**
  * @package     Joomla.Site
  * @subpackage  mod_menu
- *
  * @copyright   Copyright (C) 2005 - 2018 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
@@ -18,7 +17,7 @@ if ($tagId = $params->get('tag_id', ''))
 
 // The menu class is deprecated. Use nav instead
 ?>
-<ul class="nav menu list-inline<?php echo $class_sfx; ?>"<?php echo $id; ?>>
+<ul class="nav menu list-inline d-block<?php echo $class_sfx; ?>"<?php echo $id; ?>>
 <?php foreach ($list as $i => &$item)
 {
 	$class = 'item-' . $item->id;

@@ -123,25 +123,25 @@ if (!empty($dropdown_main_active_background_color)) {
 ?>
 
 <?php
-// Mobile Menu Coloring
+// Off-Canvas Coloring
 $mobilemenu_styles = [];
 if (!empty($mobile_background_color)) {
-   $mobilemenu_styles[] = '.astroid-mobilemenu-container .astroid-mobilemenu-inner .menu-item a,.astroid-mobilemenu-container .astroid-mobilemenu-inner .menu-item .menu-indicator,.astroid-mobilemenu-container .astroid-mobilemenu-inner .menu-indicator-back{ background-color: ' . $mobile_background_color . ' !important;}';
+   $mobilemenu_styles[] = '.astroid-offcanvas, .astroid-mobilemenu, .astroid-mobilemenu-container .astroid-mobilemenu-inner .dropdown-menus{ background-color: ' . $mobile_background_color . ' !important;}';
 }
 if (!empty($mobile_menu_text_color)) {
-   $mobilemenu_styles[] = '.astroid-mobilemenu-container .astroid-mobilemenu-inner *{ color: ' . $mobile_menu_text_color . ' !important;}';
+   $mobilemenu_styles[] = '.astroid-offcanvas *, .astroid-mobilemenu-container .astroid-mobilemenu-inner *{ color: ' . $mobile_menu_text_color . ' !important;}';
 }
 if (!empty($mobile_link_color)) {
-   $mobilemenu_styles[] = '.astroid-mobilemenu-container .astroid-mobilemenu-inner .menu-item a, .astroid-mobilemenu-container .astroid-mobilemenu-inner .menu-item .menu-indicator,.astroid-mobilemenu-container .astroid-mobilemenu-inner .menu-indicator-back{ color: ' . $mobile_link_color . ' !important;}';
+   $mobilemenu_styles[] = '.astroid-mobilemenu-container .astroid-mobilemenu-inner .menu-item a, .astroid-mobilemenu-container .astroid-mobilemenu-inner .menu-item .menu-indicator, .astroid-mobilemenu-container .astroid-mobilemenu-inner .menu-indicator-back, .astroid-mobilemenu-container .astroid-mobilemenu-inner .menu-item .menu-indicator .fas{ color: ' . $mobile_link_color . ' !important;}';
 }
 if (!empty($mobile_hover_background_color)) {
    $mobilemenu_styles[] = '.astroid-mobilemenu-container .astroid-mobilemenu-inner .menu-item a:hover{ background-color: ' . $mobile_hover_background_color . ' !important;}';
 }
 if (!empty($mobile_active_link_color)) {
-   $mobilemenu_styles[] = '.astroid-mobilemenu-container .astroid-mobilemenu-inner .menu-item.active a{ color: ' . $mobile_active_link_color . ' !important;}';
+   $mobilemenu_styles[] = '.astroid-mobilemenu-container .astroid-mobilemenu-inner .menu-item.active > a{ color: ' . $mobile_active_link_color . ' !important;}';
 }
 if (!empty($mobile_active_background_color)) {
-   $mobilemenu_styles[] = '.astroid-mobilemenu-container .astroid-mobilemenu-inner .menu-item a.active{ background-color: ' . $mobile_active_background_color . ' !important;}';
+   $mobilemenu_styles[] = '.astroid-mobilemenu-container .astroid-mobilemenu-inner .nav-item-active, .astroid-mobilemenu-container .astroid-mobilemenu-inner .menu-item.active { background-color: ' . $mobile_active_background_color . ' !important;}';
 }
 ?>
 

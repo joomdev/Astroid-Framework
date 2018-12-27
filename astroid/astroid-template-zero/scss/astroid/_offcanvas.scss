@@ -175,20 +175,11 @@ $burger-layer-spacing: 7px !default;
    -webkit-transition: all 0.5s;
    transition: all 0.5s;
    max-width: 100vw !important;
-   &:after {
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 100%;
+   .astroid-offcanvas-inner {
+      overflow: auto;
+      position: relative;
+      display: block;
       height: 100%;
-      background: rgba(173, 181, 189,0.6);
-      content: '';
-      opacity: 1;
-      -webkit-transition: opacity 0.5s;
-      transition: opacity 0.5s;
-      display: inline;
-      content: "";
-      clear: both;
    }
    .close-offcanvas, .close-offcanvas:hover {
       color: $black;

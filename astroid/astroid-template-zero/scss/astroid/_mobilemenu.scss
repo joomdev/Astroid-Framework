@@ -34,10 +34,10 @@
    .astroid-mobilemenu-inner {
       ul{
          padding: 0;
-         overflow: scroll;
+         overflow: auto;
          height: 100%;
          display: block;
-         position: absolute;
+         position: relative;
          width: 100%;
       }
       .menu-item {

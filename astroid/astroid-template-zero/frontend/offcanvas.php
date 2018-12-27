@@ -29,7 +29,9 @@ $openfrom = $params->get('offcanvas_openfrom', 'left');
          </span>
       </button>
    </div>
-<?php echo $template->renderModulePosition($module_position, 'astroidxhtml'); ?>
+   <div class="astroid-offcanvas-inner">
+      <?php echo $template->renderModulePosition($module_position, 'astroidxhtml'); ?>
+   </div>
 </div>
 
 <?php

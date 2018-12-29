@@ -13,7 +13,7 @@ defined('JPATH_BASE') or die;
 	<?php $author = '<span itemprop="name">' . $author . '</span>'; ?>
 	<?php if (!empty($displayData['item']->contact_link ) && $displayData['params']->get('link_author') == true) : ?>
 		<i class="far fa-user"></i>
-		<?php JHtml::_('link', $displayData['item']->contact_link, $author, array('itemprop' => 'url')); ?>
+		<?php echo JHtml::_('link', $displayData['item']->contact_link, $author, array('itemprop' => 'url')); ?>
 	<?php else : ?>
 	<i class="far fa-user"></i>	
 		<?php echo $author; ?>

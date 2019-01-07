@@ -473,7 +473,6 @@ class AstroidFrameworkTemplate {
          $cssname = 'custom-' . md5($name);
          if (!file_exists($template_directory . 'css/' . $cssname . '.css')) {
             //ini_set('xdebug.max_nesting_level', 3000);
-            AstroidFrameworkHelper::clearCache($this->template);
             AstroidFrameworkHelper::compileSass($template_directory . 'scss/custom', $template_directory . 'css', 'custom.scss', $cssname . '.css');
          }
          return $cssname . '.css';

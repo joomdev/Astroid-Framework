@@ -65,7 +65,7 @@ switch ($preloader_animation) {
       break;
    case 'bouncing-loader':
       $preloaderHTML = '<div class="bouncing-loader"><div></div><div></div><div></div></div>';
-      $preloaderStyles = '.bouncing-loader{display:flex;justify-content:center;}.bouncing-loader>div{width:' . $preloader_size . ';height:' . $preloader_size . ';margin:3rem 0.2rem;background:' . $preloader_color . ';border-radius:50%;animation:bouncing-loader 0.6s infinite alternate;}.bouncing-loader>div:nth-child(2){animation-delay:0.2s;}.bouncing-loader>div:nth-child(3){animation-delay:0.4s;}@keyframes bouncing-loader{to{opacity:0.1;transform:translate3d(0, -1rem, 0);}}';
+      $preloaderStyles = '.bouncing-loader{display:flex;justify-content:center;margin: 0 auto;}.bouncing-loader>div{width:' . $preloader_size . 'px;height:' . $preloader_size . 'px;margin:1rem 0.2rem 0;background:' . $preloader_color . ';border-radius:50%;animation:bouncing-loader 0.6s infinite alternate;}.bouncing-loader>div:nth-child(2){animation-delay:0.2s;}.bouncing-loader>div:nth-child(3){animation-delay:0.4s;}@keyframes bouncing-loader{to{opacity:0.1;transform:translate3d(0, -1rem, 0);}}';
       break;
    default:
       $preloaderHTML = '';

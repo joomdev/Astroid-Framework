@@ -8711,6 +8711,43 @@ See http://bgrins.github.io/spectrum/themes/ for instructions.
   90%, 100% {
     transform: perspective(140px) rotateY(180deg);
     opacity: 0; } }
+
+/*
+ *  Usage:
+ *
+      <div class="bouncing-loader">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+ *
+ */
+
+ @keyframes bouncing-loader {
+  to {
+    opacity: 0.1;
+    transform: translate3d(0, -1rem, 0);
+  }
+}
+.bouncing-loader {
+  display: flex;
+  justify-content: center;
+}
+.bouncing-loader > div {
+  width: 1rem;
+  height: 1rem;
+  margin: 3rem 0.2rem;
+  background: #8385aa;
+  border-radius: 50%;
+  animation: bouncing-loader 0.6s infinite alternate;
+}
+.bouncing-loader > div:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.bouncing-loader > div:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
 /* modify default admin element */
 [ng\:loak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
   display: none !important; }

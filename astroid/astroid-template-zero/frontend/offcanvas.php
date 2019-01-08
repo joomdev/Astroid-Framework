@@ -35,7 +35,7 @@ $openfrom = $params->get('offcanvas_openfrom', 'left');
 </div>
 
 <?php
-$style = '.astroid-offcanvas {width: ' . $panelwidth . ';} .astroid-offcanvas-inner .astroid-mobilemenu-container .astroid-mobilemenu-inner .dropdown-menus {width: ' . $panelwidth . ';}';
+$style = '.astroid-offcanvas {width: ' . $panelwidth . ';}';
 
 // Effects Styles
 switch ($effect) {

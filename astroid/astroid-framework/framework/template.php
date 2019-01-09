@@ -120,7 +120,7 @@ class AstroidFrameworkTemplate {
    protected function getTemplateParams($id = null) {
       if (empty($id)) {
          $template = JFactory::getApplication()->getTemplate(true);
-         if ($template->id === 0) {
+         if (isset($template->id) && $template->id === 0) {
             $template->id = $template->params->get('astroid', 0);
          }
          if (isset($template->id)) {

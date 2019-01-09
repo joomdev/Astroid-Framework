@@ -376,11 +376,6 @@ $astroid_manager_loader = $plugin_params->get('astroid_manager_loader', 1);
                      <li class="list-inline-item"><a onclick="Admin.setPreviewViewport('mobile portrait', this)" href="javascript:void(0);"><i class="fa fa-mobile-alt"></i></a></li>
                   </ul>
                </div>
-               <div class="d-flex justify-content-center" style="height: calc(100% - (56px + 1rem));">
-                  <div id="live-preview-viewport" class="desktop">
-                     <iframe id="live-preview" src="<?php echo JURI::root(); ?>"></iframe>
-                  </div>
-               </div>
             </div>
          </div>
       </div>

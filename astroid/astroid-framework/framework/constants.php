@@ -259,6 +259,10 @@ class AstroidFrameworkConstants {
         'name' => 'bouncing-loader',
         'code' => '<div class="bouncing-loader"><div></div><div></div><div></div></div>',
        ],
+       'donut' => [
+        'name' => 'donut',
+        'code' => '<div class="donut"></div>',
+       ],
    ];
    public static $layout_grids = [
        [12],

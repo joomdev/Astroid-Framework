@@ -8738,7 +8738,7 @@ See http://bgrins.github.io/spectrum/themes/ for instructions.
   width: 30px;
   height: 30px;
   margin: 1rem 0.2rem 0;
-  background: #8385aa;
+  background: #210048;
   border-radius: 50%;
   animation: bouncing-loader 0.6s infinite alternate;
 }
@@ -8747,6 +8747,31 @@ See http://bgrins.github.io/spectrum/themes/ for instructions.
 }
 .bouncing-loader > div:nth-child(3) {
   animation-delay: 0.4s;
+}
+
+/*
+ *  Usage:
+ *
+  <div class="donut"></div>
+ *
+ */
+
+ @keyframes donut-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.donut {
+  display: inline-block;
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-left-color: #210048;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  animation: donut-spin 1.2s linear infinite;
 }
 
 /* modify default admin element */

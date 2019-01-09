@@ -67,6 +67,10 @@ switch ($preloader_animation) {
       $preloaderHTML = '<div class="bouncing-loader"><div></div><div></div><div></div></div>';
       $preloaderStyles = '.bouncing-loader{display:flex;justify-content:center;margin: 0 auto;}.bouncing-loader>div{width:' . $preloader_size . 'px;height:' . $preloader_size . 'px;margin:1rem 0.2rem 0;background:' . $preloader_color . ';border-radius:50%;animation:bouncing-loader 0.6s infinite alternate;}.bouncing-loader>div:nth-child(2){animation-delay:0.2s;}.bouncing-loader>div:nth-child(3){animation-delay:0.4s;}@keyframes bouncing-loader{to{opacity:0.1;transform:translate3d(0, -1rem, 0);}}';
       break;
+   case 'donut':
+      $preloaderHTML = '<div class="donut"></div>';
+      $preloaderStyles = '@keyframes donut-spin{ 0% { transform:rotate(0deg); } 100% { transform:rotate(360deg); } } .donut {display:inline-block;border:4px solid rgba(0, 0, 0, 0.1);border-left-color:' . $preloader_color . ';border-radius:50%;margin:0 auto;width: ' . $preloader_size . 'px;height: ' . $preloader_size . 'px;animation:donut-spin 1.2s linear infinite;}';
+      break;
    default:
       $preloaderHTML = '';
       $preloaderStyles = '';

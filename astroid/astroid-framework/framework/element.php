@@ -142,12 +142,18 @@ class AstroidElement {
           'ng-show="' => 'ng-show="elementParams.',
           'ng-hide="' => 'ng-hide="elementParams.',
           'ng-model="' => 'ng-model="elementParams.',
-          'ng-value="' => 'ng-value="elementParams.'
+          'ng-value="' => 'ng-value="elementParams.',
+          'ng-radio-init="' => 'ng-init="elementParams.'
       ];
 
       foreach ($replacer as $find => $replace) {
          $form = str_replace($find, $replace, $form);
       }
+
+      $form = preg_replace_callback('/(\s*ng-class="{)([^"]*)(}"[^>]*>)(.*)/siU', function($matches) {
+         $replaced = str_replace(':', ':elementParams.', $matches[2]);
+         return str_replace($matches[2], $replaced, $matches[0]);
+      }, $form);
 
       return $form;
    }

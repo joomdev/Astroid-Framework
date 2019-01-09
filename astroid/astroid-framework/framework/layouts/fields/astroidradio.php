@@ -59,7 +59,7 @@ $alt = preg_replace('/[^a-zA-Z0-9_\-]/', '_', $name);
 <div id="<?php echo $id; ?>" class="<?php echo $imageRadio ? '' : 'btn-group astroid-radio-btn'; ?> btn-group-toggle"
      <?php echo $disabled ? 'disabled' : ''; ?>
      <?php echo $required ? 'required aria-required="true"' : ''; ?>
-     <?php echo $autofocus ? 'autofocus' : ''; ?>>
+     <?php echo $autofocus ? 'autofocus' : ''; ?> ng-radio-init="<?php echo $fieldname; ?>='<?php echo $value; ?>'">
 
    <?php if (!empty($options)) : ?>
       <?php foreach ($options as $i => $option) : ?>

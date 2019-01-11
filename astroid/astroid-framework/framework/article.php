@@ -396,8 +396,7 @@ class AstroidFrameworkArticle {
    public static function getVideoId($url, $type) {
       $parts = parse_url($url);
       if ($type == "youtube") {
-         parse_str($parts['query'], $query);
-         return (isset($query['v']) ? $query['v'] : '');
+         return (isset($parts['path']) ? $parts['path'] : '');
       } else {
          return (isset($parts['path']) ? str_replace('/', '', $parts['path']) : '');
       }

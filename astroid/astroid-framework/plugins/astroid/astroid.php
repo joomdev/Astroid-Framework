@@ -274,6 +274,9 @@ class plgSystemAstroid extends JPlugin {
       if ($form->getName() == 'com_menus.item' && (isset($data->request['option']) && $data->request['option'] == 'com_content') && (isset($data->request['view']) && $data->request['view'] == 'category')) {
          $form->loadFile('menu_blog', false);
       }
+      if ($form->getName() == 'com_menus.item' && (isset($data->request['option']) && $data->request['option'] == 'com_content') && (isset($data->request['view']) && $data->request['view'] == 'featured')) {
+         $form->loadFile('menu_blog', false);
+      }
 
       if ($form->getName() == 'com_users.user' || $form->getName() == 'com_admin.profile') {
          $form->loadFile('author', false);

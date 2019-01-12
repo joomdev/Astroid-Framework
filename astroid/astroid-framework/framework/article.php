@@ -1,10 +1,9 @@
 <?php
-
 /**
  * @package   Astroid Framework
  * @author    JoomDev https://www.joomdev.com
- * @copyright Copyright (C) 2009 - 2018 JoomDev.
- * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
+ * @copyright Copyright (C) 2009 - 2019 JoomDev.
+ * @license https://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
  */
 defined('_JEXEC') or die;
 jimport('astroid.framework.helper');
@@ -92,8 +91,6 @@ class AstroidFrameworkArticle {
          $og_image = JURI::base() . $this->article->params->get('astroid_og_image', '');
       }
 
-
-
       $og_sitename = $config->get('sitename');
       $og_siteurl = JURI::base() . ContentHelperRoute::getArticleRoute($this->article->slug, $this->article->catid, $this->article->language);
 
@@ -135,7 +132,7 @@ class AstroidFrameworkArticle {
       $this->template->loadLayout('blog.' . $this->type, true, ['article' => $this->article]);
    }
 
-   // Read time
+   // Read Time
    public function renderReadTime() {
       if ($this->showReadTime()) {
          $this->article->readtime = $this->calculateReadTime($this->article->text);
@@ -155,7 +152,6 @@ class AstroidFrameworkArticle {
    }
 
    // Social Share
-
    public function renderSocialShare() {
       if ($this->showSocialShare()) {
          $this->template->loadLayout('blog.modules.social', true, ['article' => $this->article]);
@@ -232,7 +228,6 @@ class AstroidFrameworkArticle {
    }
 
    // Post Type Icon
-
    public function renderPostTypeIcon() {
       if ($this->showPostTypeIcon()) {
          $this->template->loadLayout('blog.modules.posttype', true, ['article' => $this->article]);
@@ -267,7 +262,7 @@ class AstroidFrameworkArticle {
       return $this->template->params->get('article_rating', 1);
    }
 
-   // Utility functions
+   // Utility Functions
    public function checkPriority($firstPriority, $secondPriority, $thirdPriority) {
       $firstPriority = $firstPriority == '' ? -1 : (int) $firstPriority;
       $secondPriority = $secondPriority == '' ? -1 : (int) $secondPriority;
@@ -388,7 +383,7 @@ class AstroidFrameworkArticle {
    }
 
    public static function getVimeoThumbnailByID($vid) {
-      $hash = unserialize(file_get_contents("http://vimeo.com/api/v2/video/" . $vid . ".php"));
+      $hash = unserialize(file_get_contents("https://vimeo.com/api/v2/video/" . $vid . ".php"));
       $thumbnail = $hash[0]['thumbnail_large'];
       return $thumbnail;
    }

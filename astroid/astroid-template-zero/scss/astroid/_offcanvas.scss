@@ -1,5 +1,5 @@
-$burger-layer-width: 40px !default;
-$burger-layer-height: 1px !default;
+$burger-layer-width: 30px !default;
+$burger-layer-height: 3px !default;
 $burger-layer-spacing: 7px !default;
 
 .header-offcanvas-trigger {
@@ -17,7 +17,6 @@ $burger-layer-spacing: 7px !default;
 .burger-menu-button {
    .button {
       padding: 5px 0;
-      display: inline-block;
       cursor: pointer;
       transition-property: opacity, filter;
       transition-duration: 0.15s;
@@ -40,7 +39,7 @@ $burger-layer-spacing: 7px !default;
    }
    .box {
       width: $burger-layer-width;
-      height: $burger-layer-height * 3 + $burger-layer-spacing * 2;
+      height: $burger-layer-width;
       display: inline-block;
       position: relative;
    }
@@ -182,12 +181,10 @@ $burger-layer-spacing: 7px !default;
       height: 100%;
    }
    .close-offcanvas, .close-offcanvas:hover {
-      color: $black;
-      background: $white;
-      display: block;
+      display: inline-block;
       margin-top: 0;
-      position: absolute;
-      right: -40px;
+      position: relative;
+      right: 0;
       z-index: 999999;
    }
    .burger-menu-button .inner,

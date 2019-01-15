@@ -1,10 +1,9 @@
 <?php
-
 /**
  * @package   Astroid Framework
  * @author    JoomDev https://www.joomdev.com
- * @copyright Copyright (C) 2009 - 2018 JoomDev.
- * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
+ * @copyright Copyright (C) 2009 - 2019 JoomDev.
+ * @license https://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
  */
 defined('_JEXEC') or die;
 jimport('astroid.framework.helper');
@@ -268,7 +267,7 @@ class AstroidElement {
       $header_module_position = $this->template->params->get('header_module_position', '');
       $footer_module_position = $this->template->params->get('footer_module_position', '');
 
-      // check section has component
+      // Check Section has component
       foreach ($data['rows'] as $row) {
          foreach ($row['cols'] as $colIndex => $col) {
             foreach ($col['elements'] as $element) {
@@ -280,7 +279,7 @@ class AstroidElement {
          }
       }
 
-      // check section has header
+      // Check Section has header
       if (!empty($header_module_position)) {
          foreach ($data['rows'] as $row) {
             foreach ($row['cols'] as $colIndex => $col) {
@@ -298,7 +297,7 @@ class AstroidElement {
          }
       }
 
-      // check section has footer
+      // Check Section has footer
       if (!empty($header_module_position)) {
          foreach ($data['rows'] as $row) {
             foreach ($row['cols'] as $colIndex => $col) {

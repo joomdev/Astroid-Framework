@@ -2,7 +2,7 @@
 /**
  * @package   Astroid Framework
  * @author    JoomDev https://www.joomdev.com
- * @copyright Copyright (C) 2009 - 2018 JoomDev.
+ * @copyright Copyright (C) 2009 - 2019 JoomDev.
  * @license   GNU/GPLv2 and later
  */
 // no direct access

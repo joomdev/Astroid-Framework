@@ -3,8 +3,8 @@
 /**
  * @package		Astroid Framework
  * @author		JoomDev https://www.joomdev.com
- * @copyright	Copyright (C) 2009 - 2018 JoomDev.
- * @license		http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
+ * @copyright	Copyright (C) 2009 - 2019 JoomDev.
+ * @license		https://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
  */
 defined('_JEXEC') or die;
 jimport('astroid.framework.constants');
@@ -16,7 +16,7 @@ class AstroidFrameworkConstants {
    public static $animatecss_version = '3.7.0';
    public static $forum_link = 'https://www.joomdev.com/forum/astroid-framework';
    public static $documentation_link = 'https://www.joomdev.com/documentation/astroid-framework';
-   public static $github_link = 'http://github.com/joomdev/astroid-framework';
+   public static $github_link = 'https://github.com/joomdev/astroid-framework';
    public static $download_link = 'https://github.com/joomdev/Astroid-Framework/releases/latest';
    public static $releases_link = 'https://github.com/joomdev/Astroid-Framework/releases';
    public static $joomdev_link = 'https://www.joomdev.com';
@@ -277,5 +277,4 @@ class AstroidFrameworkConstants {
        [3, 3, 3, 3],
        [2, 2, 2, 2, 2, 2]
    ];
-
 }

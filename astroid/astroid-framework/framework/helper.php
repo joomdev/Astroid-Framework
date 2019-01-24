@@ -44,6 +44,13 @@ class AstroidFrameworkHelper {
       return $return;
    }
 
+   public static function getJoomlaVersion() {
+      $version = new \JVersion;
+      $version = $version->getShortVersion();
+      $version = substr($version, 0, 1);
+      return $version;
+   }
+
    public static function getAllAstroidElements() {
 
       // Template Directories
@@ -182,6 +189,20 @@ class AstroidFrameworkHelper {
    }
 
    public static function getMediaLibrary() {
+      $input = JFactory::getApplication()->input;
+      $user = JFactory::getUser();
+      $asset = $input->get('asset');
+      $author = $input->get('author');
+
+      if (!$user->authorise('core.manage', 'com_media') && (!$asset || (!$user->authorise('core.edit', $asset) && !$user->authorise('core.create', $asset) && count($user->getAuthorisedCategories($asset, 'core.create')) == 0) && !($user->id == $author && $user->authorise('core.edit.own', $asset)))) {
+         throw new JAccessExceptionNotallowed(JText::_('JERROR_ALERTNOAUTHOR'), 403);
+      }
+
+      $folder = $input->get('folder', '', 'RAW');
+      return self::getMediaList($folder);
+   }
+
+   public static function getMediaLibraryOld() {
       $input = JFactory::getApplication()->input;
       $user = JFactory::getUser();
       $asset = $input->get('asset');
@@ -548,6 +569,164 @@ class AstroidFrameworkHelper {
 }';
       }
       $template->addStyleDeclaration($style);
+   }
+
+   public static function getMediaList($folder) {
+      $params = JComponentHelper::getParams('com_media');
+
+      define('COM_MEDIA_BASE', JPATH_ROOT . '/' . $params->get('file_path', 'images'));
+      define('COM_MEDIA_BASEURL', JUri::root() . $params->get('file_path', 'images'));
+
+      $current = $folder;
+      $basePath = COM_MEDIA_BASE . ((strlen($current) > 0) ? '/' . $current : '');
+      $mediaBase = str_replace(DIRECTORY_SEPARATOR, '/', COM_MEDIA_BASE . '/');
+
+      $images = array();
+      $folders = array();
+      $docs = array();
+      $videos = array();
+
+      $fileList = false;
+      $folderList = false;
+
+      if (file_exists($basePath)) {
+         // Get the list of files and folders from the given folder
+         $fileList = JFolder::files($basePath);
+         $folderList = JFolder::folders($basePath);
+      }
+
+      // Iterate over the files if they exist
+      if ($fileList !== false) {
+         $tmpBaseObject = new JObject;
+
+         foreach ($fileList as $file) {
+            if (is_file($basePath . '/' . $file) && substr($file, 0, 1) != '.' && strtolower($file) !== 'index.html') {
+               $tmp = clone $tmpBaseObject;
+               $tmp->name = $file;
+               $tmp->title = $file;
+               $tmp->path = str_replace(DIRECTORY_SEPARATOR, '/', JPath::clean($basePath . '/' . $file));
+               $tmp->path_relative = str_replace($mediaBase, '', $tmp->path);
+               $tmp->size = filesize($tmp->path);
+
+               $ext = strtolower(JFile::getExt($file));
+
+               switch ($ext) {
+                  // Image
+                  case 'jpg':
+                  case 'png':
+                  case 'gif':
+                  case 'xcf':
+                  case 'odg':
+                  case 'bmp':
+                  case 'jpeg':
+                  case 'ico':
+                     $info = @getimagesize($tmp->path);
+                     $tmp->width = @$info[0];
+                     $tmp->height = @$info[1];
+                     $tmp->type = @$info[2];
+                     $tmp->mime = @$info['mime'];
+
+                     if (($info[0] > 60) || ($info[1] > 60)) {
+                        $dimensions = self::imageResize($info[0], $info[1], 60);
+                        $tmp->width_60 = $dimensions[0];
+                        $tmp->height_60 = $dimensions[1];
+                     } else {
+                        $tmp->width_60 = $tmp->width;
+                        $tmp->height_60 = $tmp->height;
+                     }
+
+                     if (($info[0] > 16) || ($info[1] > 16)) {
+                        $dimensions = self::imageResize($info[0], $info[1], 16);
+                        $tmp->width_16 = $dimensions[0];
+                        $tmp->height_16 = $dimensions[1];
+                     } else {
+                        $tmp->width_16 = $tmp->width;
+                        $tmp->height_16 = $tmp->height;
+                     }
+
+                     $images[] = $tmp;
+                     break;
+
+                  // Video
+                  case 'mp4':
+                     $tmp->icon_32 = 'media/mime-icon-32/' . $ext . '.png';
+                     $tmp->icon_16 = 'media/mime-icon-16/' . $ext . '.png';
+                     $videos[] = $tmp;
+                     break;
+
+                  // Non-image document
+                  default:
+                     $tmp->icon_32 = 'media/mime-icon-32/' . $ext . '.png';
+                     $tmp->icon_16 = 'media/mime-icon-16/' . $ext . '.png';
+                     $docs[] = $tmp;
+                     break;
+               }
+            }
+         }
+      }
+
+      // Iterate over the folders if they exist
+      if ($folderList !== false) {
+         $tmpBaseObject = new JObject;
+
+         foreach ($folderList as $folder) {
+            $tmp = clone $tmpBaseObject;
+            $tmp->name = basename($folder);
+            $tmp->path = str_replace(DIRECTORY_SEPARATOR, '/', JPath::clean($basePath . '/' . $folder));
+            $tmp->path_relative = str_replace($mediaBase, '', $tmp->path);
+            $count = self::countFiles($tmp->path);
+            $tmp->files = $count[0];
+            $tmp->folders = $count[1];
+
+            $folders[] = $tmp;
+         }
+      }
+
+      $list = array('folders' => $folders, 'docs' => $docs, 'images' => $images, 'videos' => $videos);
+
+      return $list;
+   }
+
+   public static function imageResize($width, $height, $target) {
+      /*
+       * Takes the larger size of the width and height and applies the
+       * formula accordingly. This is so this script will work
+       * dynamically with any size image
+       */
+      if ($width > $height) {
+         $percentage = ($target / $width);
+      } else {
+         $percentage = ($target / $height);
+      }
+
+      // Gets the new value and applies the percentage, then rounds the value
+      $width = round($width * $percentage);
+      $height = round($height * $percentage);
+
+      return array($width, $height);
+   }
+
+   public static function countFiles($dir) {
+      $total_file = 0;
+      $total_dir = 0;
+
+      if (is_dir($dir)) {
+         $d = dir($dir);
+
+         while (($entry = $d->read()) !== false) {
+            if ($entry[0] !== '.' && strpos($entry, '.html') === false && strpos($entry, '.php') === false && is_file($dir . DIRECTORY_SEPARATOR . $entry)) {
+               $total_file++;
+            }
+
+            if ($entry[0] !== '.' && is_dir($dir . DIRECTORY_SEPARATOR . $entry)) {
+               $total_dir++;
+            }
+         }
+
+         $d->close();
+      }
+
+      return array($total_file, $total_dir);
    }
 
 }

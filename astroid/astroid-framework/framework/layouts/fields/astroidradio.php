@@ -37,9 +37,6 @@ extract($displayData);
  * @var   string   $value           Value attribute of the field.
  * @var   array    $options         Options available for this field.
  */
-// Including fallback code for HTML5 non supported browsers.
-JHtml::_('jquery.framework');
-JHtml::_('script', 'system/html5fallback.js', array('version' => 'auto', 'relative' => true, 'conditional' => 'lt IE 9'));
 
 $imageRadio = false;
 if (isset($images) && $images == 'true') {

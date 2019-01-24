@@ -11,7 +11,16 @@ jimport('astroid.framework.constants');
 jimport('joomla.application.module.helper');
 jimport('astroid.framework.template');
 
-JLoader::register('ModMenuHelper', JPATH_SITE . '/modules/mod_menu/helper.php');
+$version = new \JVersion;
+$version = $version->getShortVersion();
+$version = substr($version, 0, 1);
+define('ASTROID_JOOMLA_VERSION', $version);
+
+use Joomla\Module\Menu\Site\Helper\MenuHelper;
+
+if (ASTROID_JOOMLA_VERSION == 3) {
+   JLoader::register('ModMenuHelper', JPATH_SITE . '/modules/mod_menu/helper.php');
+}
 
 class AstroidMenu {
 
@@ -27,18 +36,25 @@ class AstroidMenu {
       $menu_params = new JRegistry();
       $menu_params->loadString($header_menu_params);
 
-      $list = ModMenuHelper::getList($menu_params);
-      $base = ModMenuHelper::getBase($menu_params);
-      $active = ModMenuHelper::getActive($menu_params);
-      $default = ModMenuHelper::getDefault();
-      
+      if (ASTROID_JOOMLA_VERSION == 3) {
+         $list = ModMenuHelper::getList($menu_params);
+         $base = ModMenuHelper::getBase($menu_params);
+         $active = ModMenuHelper::getActive($menu_params);
+         $default = ModMenuHelper::getDefault();
+      } else {
+         $list = MenuHelper::getList($menu_params);
+         $base = MenuHelper::getBase($menu_params);
+         $active = MenuHelper::getActive($menu_params);
+         $default = MenuHelper::getDefault();
+      }
+
       $active_id = $active->id;
       $default_id = $default->id;
       $path = $base->tree;
       $showAll = 1;
 
       $return = [];
-      // Menu Wrapper
+// Menu Wrapper
       echo '<div class="' . (!empty($nav_wrapper_class) ? ' ' . implode(' ', $nav_wrapper_class) : '') . '">'
       . '<ul class="' . implode(' ', $nav_class) . '">';
 
@@ -65,7 +81,7 @@ class AstroidMenu {
          $class = self::getLiClass($item, $options, $default_id, $active_id, $path);
 
          if ($item->level == 1) {
-            // Code for adding Centered Logo
+// Code for adding Centered Logo
             if (($logo_position_count == $logo_position) && $logo !== null) {
                $app = JFactory::getApplication();
                $template = $app->getTemplate(true);
@@ -88,19 +104,19 @@ class AstroidMenu {
             echo '<li class="' . \implode(' ', $class) . '">';
             echo $template->loadLayout('header.menu.link', false, ['item' => $item, 'options' => $options, 'mobilemenu' => false, 'active' => in_array('nav-item-active', $class), 'header' => $headerType]);
 
-            // The next item is deeper.
+// The next item is deeper.
             if ($item->deeper) {
                echo '<div' . ($item->level == 1 ? ' data-width="' . $options->width . '"' : '') . ' class="jddrop-content nav-submenu-container nav-item-level-' . $item->level . '">'
                . '<ul class="nav-submenu">';
             }
-            // The next item is shallower.
+// The next item is shallower.
             elseif ($item->shallower) {
                echo '</li>';
                echo str_repeat('</ul>'
                        . '</div>'
                        . '</li>', $item->level_diff);
             }
-            // The next item is on the same level.
+// The next item is on the same level.
             else {
                echo '</li>';
             }
@@ -110,7 +126,7 @@ class AstroidMenu {
       . '</div>';
    }
 
-   // Joomla Functions
+// Joomla Functions
 
    public static function getMegaMenu($item, $options, $items) {
       $template = new AstroidFrameworkTemplate(JFactory::getApplication()->getTemplate(true));
@@ -215,7 +231,7 @@ class AstroidMenu {
       $app = JFactory::getApplication();
       $menu = $app->getMenu();
 
-      // Get active menu item
+// Get active menu item
       $base = self::getBase();
       $user = JFactory::getUser();
       $levels = $user->getAuthorisedViewLevels();
@@ -242,7 +258,7 @@ class AstroidMenu {
                continue;
             }
 
-            // Exclude item with menu item option set to exclude from menu modules
+// Exclude item with menu item option set to exclude from menu modules
             if (($item->params->get('menu_show', 1) == 0) || in_array($item->parent_id, $hidden_parents)) {
                $hidden_parents[] = $item->id;
                unset($items[$i]);
@@ -263,18 +279,18 @@ class AstroidMenu {
             $item->active = false;
             $item->flink = $item->link;
 
-            // Reverted back for CMS version 2.5.6
+// Reverted back for CMS version 2.5.6
             switch ($item->type) {
                case 'separator':
                   break;
 
                case 'heading':
-                  // No further action needed.
+// No further action needed.
                   break;
 
                case 'url':
                   if ((strpos($item->link, 'index.php?') === 0) && (strpos($item->link, 'Itemid=') === false)) {
-                     // If this is an internal Joomla link, ensure the Itemid is set.
+// If this is an internal Joomla link, ensure the Itemid is set.
                      $item->flink = $item->link . '&Itemid=' . $item->id;
                   }
                   break;
@@ -294,8 +310,8 @@ class AstroidMenu {
                $item->flink = JRoute::_($item->flink);
             }
 
-            // We prevent the double encoding because for some reason the $item is shared for menu modules and we get double encoding
-            // when the cause of that is found the argument should be removed
+// We prevent the double encoding because for some reason the $item is shared for menu modules and we get double encoding
+// when the cause of that is found the argument should be removed
             $item->title = htmlspecialchars($item->title, ENT_COMPAT, 'UTF-8', false);
             $item->anchor_css = htmlspecialchars($item->params->get('menu-anchor_css', ''), ENT_COMPAT, 'UTF-8', false);
             $item->anchor_title = htmlspecialchars($item->params->get('menu-anchor_title', ''), ENT_COMPAT, 'UTF-8', false);
@@ -336,7 +352,7 @@ class AstroidMenu {
       $menu = JFactory::getApplication()->getMenu();
       $lang = JFactory::getLanguage();
 
-      // Look for the home menu
+// Look for the home menu
       if (JLanguageMultilang::isEnabled()) {
          return $menu->getDefault($lang->getTag());
       } else {
@@ -347,7 +363,7 @@ class AstroidMenu {
    public static function getAstroidMenuOptions($item, $list) {
       $astroid_menu_options = $item->params->get('astroid_menu_options', []);
       $astroid_menu_options = (array) $astroid_menu_options;
-      // set defaults
+// set defaults
       $data = new \stdClass();
       $data->megamenu = 0;
       $data->icononly = 0;
@@ -495,12 +511,18 @@ class AstroidMenu {
 
       $menu_params = new JRegistry();
       $menu_params->loadString($header_menu_params);
-      
-      $list = ModMenuHelper::getList($menu_params);
-      $base = ModMenuHelper::getBase($menu_params);
-      $active = ModMenuHelper::getActive($menu_params);
-      $default = ModMenuHelper::getDefault();
-      
+
+      if (ASTROID_JOOMLA_VERSION == 3) {
+         $list = ModMenuHelper::getList($menu_params);
+         $base = ModMenuHelper::getBase($menu_params);
+         $active = ModMenuHelper::getActive($menu_params);
+         $default = ModMenuHelper::getDefault();
+      } else {
+         $list = MenuHelper::getList($menu_params);
+         $base = MenuHelper::getBase($menu_params);
+         $active = MenuHelper::getActive($menu_params);
+         $default = MenuHelper::getDefault();
+      }
       $active_id = $active->id;
       $default_id = $default->id;
       $path = $base->tree;

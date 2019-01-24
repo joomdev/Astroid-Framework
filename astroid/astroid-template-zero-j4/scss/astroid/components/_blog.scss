@@ -1,0 +1,134 @@
+.items-more {
+   > a {
+      display: block;
+   }
+}
+
+.article-info-term {
+   display: none;
+}
+
+.article-info {
+   margin: 0;
+   > dd {
+      display: inline-block;
+      padding-right: 5px;
+   }
+}
+
+$article-posttype-icon-width: 40px;
+.article-icon{
+   position: absolute;
+   margin-bottom: 80px;
+   &:before, &:after {
+      content: "";
+      position: absolute;
+   }
+   display: block;
+   width: $article-posttype-icon-width;
+   height: $article-posttype-icon-width;
+   top: -6px;
+   right: 20px;
+   line-height: $article-posttype-icon-width;
+   text-align: center;
+   font-size: 24px;
+   &:before {
+      right: -6px;
+   }
+   &:after {
+      bottom: -20px;
+      left: 0;
+   }
+   &.article-icon-quote{
+      background: $post-type-quote-bg;
+      color: $post-type-quote-color;
+      &:before {
+         @include triangle(6px, darken($post-type-quote-bg, 15%), down-left);
+      }
+      &:after {
+         @include triangle($article-posttype-icon-width $article-posttype-icon-width/2, transparent $post-type-quote-bg, up);
+      }
+   }
+   &.article-icon-gallery{
+      background: $post-type-gallery-bg;
+      color: $post-type-gallery-color;
+      &:before {
+         @include triangle(6px, darken($post-type-gallery-bg, 15%), down-left);
+      }
+      &:after {
+         @include triangle($article-posttype-icon-width $article-posttype-icon-width/2, transparent $post-type-gallery-bg, up);
+      }
+   }
+   &.article-icon-review{
+      background: $post-type-review-bg;
+      color: $post-type-review-color;
+      &:before {
+         @include triangle(6px, darken($post-type-review-bg, 15%), down-left);
+      }
+      &:after {
+         @include triangle($article-posttype-icon-width $article-posttype-icon-width/2, transparent $post-type-review-bg, up);
+      }
+   }
+   &.article-icon-youtube{
+      background: $post-type-youtube-bg;
+      color: $post-type-youtube-color;
+      &:before {
+         @include triangle(6px, darken($post-type-youtube-bg, 15%), down-left);
+      }
+      &:after {
+         @include triangle($article-posttype-icon-width $article-posttype-icon-width/2, transparent $post-type-youtube-bg, up);
+      }
+   }
+   &.article-icon-vimeo{
+      background: $post-type-vimeo-bg;
+      color: $post-type-vimeo-color;
+      &:before {
+         @include triangle(6px, darken($post-type-vimeo-bg, 15%), down-left);
+      }
+      &:after {
+         @include triangle($article-posttype-icon-width $article-posttype-icon-width/2, transparent $post-type-vimeo-bg, up);
+      }
+   }
+   &.article-icon-soundcloud{
+      background: $post-type-soundcloud-bg;
+      color: $post-type-soundcloud-color;
+      &:before {
+         @include triangle(6px, darken($post-type-soundcloud-bg, 15%), down-left);
+      }
+      &:after {
+         @include triangle($article-posttype-icon-width $article-posttype-icon-width/2, transparent $post-type-soundcloud-bg, up);
+      }
+   }
+   &.article-icon-spotify{
+      background: $post-type-spotify-bg;
+      color: $post-type-spotify-color;
+      &:before {
+         @include triangle(6px, darken($post-type-spotify-bg, 15%), down-left);
+        
+      }
+      &:after {
+         @include triangle($article-posttype-icon-width $article-posttype-icon-width/2, transparent $post-type-spotify-bg, up);
+      }
+   }
+}
+
+.img_caption {
+   position: relative;
+   .img_caption {
+      text-align: center;
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      background: rgba(0,0,0,0.5);
+      color: #fff;
+      margin: 0;
+      padding: 5px;
+   }
+}
+
+// Author Info
+.author-wrap {
+   .author-thumb {
+      min-width: 80px;
+   }
+}

@@ -1,0 +1,23 @@
+<?php
+/**
+ * @package   Astroid Framework
+ * @author    JoomDev
+ * @copyright Copyright (C) 2009 - 2018 JoomDev.
+ * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
+ */
+
+defined('_JEXEC') or die;
+
+use Joomla\CMS\Router\Route;
+
+?>
+<div class="items-more">
+    <h3><?php echo JText::_('COM_CONTENT_MORE_ARTICLES'); ?></h3>
+    <ul class="list-group">
+        <?php foreach ($this->link_items as &$item) : ?>
+        <li class="list-group-item">
+            <a href="<?php echo Route::_(ContentHelperRoute::getArticleRoute($item->slug, $item->catid, $item->language)); ?>"><?php echo $item->title; ?></a>
+        </li>
+        <?php endforeach; ?>
+    </ul>
+</div>

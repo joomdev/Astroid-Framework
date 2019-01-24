@@ -24,6 +24,7 @@ class pkg_astroidInstallerScript {
     * @return void
     */
    public function install($parent) {
+      $this->getJoomlaVersion();
       $this->displayAstroidWelcome();
    }
 
@@ -53,6 +54,13 @@ class pkg_astroidInstallerScript {
       
    }
 
+   public function getJoomlaVersion() {
+      $version = new \JVersion;
+      $version = $version->getShortVersion();
+      $version = substr($version, 0, 1);
+      define('ASTROID_JOOMLA_VERSION', $version);
+   }
+
    /**
     * 
     * Function to display welcome page after installing
@@ -65,9 +73,13 @@ class pkg_astroidInstallerScript {
             padding: 40px 0;
             text-align: center;
             border-radius: 0px;
+            <?php if (ASTROID_JOOMLA_VERSION == 4) { ?>
+               margin-left: -15px;
+               margin-right: -15px;
+            <?php } ?>
             position: relative;
             border: 1px solid #f8f8f8;
-            background:url(<?php echo JURI::root(); ?>media/astroid/assets/images/moon-surface.png); 
+            background:#fff url(<?php echo JURI::root(); ?>media/astroid/assets/images/moon-surface.png); 
             background-repeat: no-repeat; 
             background-position: bottom;
          }

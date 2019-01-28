@@ -204,3 +204,49 @@ input[type=number]::-webkit-outer-spin-button {
 .astroid-typography-preview-container .astroid-typography-preview{
    overflow: scroll;
 }
+
+.gradient-toolbar .sp-replacer{ width: 30px; height: 30px; }
+.gradient-preview-container{
+   width: 200px;
+   height: 200px;
+   background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAIAAADZF8uwAAAAGUlEQVQYV2M4gwH+YwCGIasIUwhT25BVBADtzYNYrHvv4gAAAABJRU5ErkJggg==);
+   border: 1px solid #dededf;
+   border-radius: 5px;
+   margin-bottom: 10px;
+   overflow: hidden;
+}
+.gradient-preview{
+   width: 200px;
+   height: 200px;
+}
+.gradient-toolbar{
+   width: 200px;
+}
+.gradient-type{
+   display: inline-block;
+}
+.gradient-type input[type=radio]{
+   display: none;
+}
+.gradient-type img{
+   width: 30px;
+   opacity: 0.5;
+}
+.gradient-type label{
+   width: 30px;
+   height: 30px;
+   display: inline-block;
+   cursor: pointer;
+   border-radius: 3px;
+   overflow: hidden;
+}
+.gradient-type input[type=radio]:checked ~ img{
+   opacity: 1;
+}
+.gradient-colors > div{
+   display: inline-block;
+}
+.gradient-colors{
+   display: inline-block;
+   float: right;
+}

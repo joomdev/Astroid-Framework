@@ -6,7 +6,7 @@
          <field type="astroidgroup" name="preloader_options" title="TPL_ASTROID_PRELOADER_MAIN_TITLE_LABEL"/>
          <field type="astroidgroup" name="enable_back_to_top" title="TPL_ASTROID_ENABLE_TO_TOP_MAIN_TITLE_LABEL"/>
          <field type="astroidgroup" name="layout_setting" title="TPL_ASTROID_LAYOUT_SETTING_MAIN_TITLE_LABEL"/>
-
+         
          <field astroidgroup="preloader_options" description="TPL_ASTROID_BASIC_ENABLE_PRELOADER_DESC" name="preloader" type="astroidtext" astroid-switch="true" default="1" label="TPL_ASTROID_BASIC_ENABLE_PRELOADER_LABEL"></field>
 
          <field astroidgroup="preloader_options" description="TPL_ASTROID_BASIC_PRELOADER_ANIMATION_DESC" name="preloader_animation" type="astroidpreloaders" class="form-control" default="circle" label="TPL_ASTROID_BASIC_PRELOADER_ANIMATION_LABEL" ngShow="preloader=='1'" astroid-variable="preloder_animations" />

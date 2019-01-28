@@ -27,6 +27,9 @@
                <option value="image">Image</option>
                <option value="gradient">Gradient</option>
             </field>
+            
+            <field ngShow="background_setting =='gradient'" description="ASTROID_SELECT_BACKGROUND_COLOR_DESC" name="background_gradient" type="astroidgradient" label="TPL_ASTROID_BACKGROUND_COLOR_LABEL"></field>
+            
             <field ngShow="background_setting =='color'" description="ASTROID_SELECT_BACKGROUND_COLOR_DESC" name="background_color" type="astroidcolor" label="TPL_ASTROID_BACKGROUND_COLOR_LABEL" />
 
             <field ngShow="background_setting =='image'"  name="background_color" type="astroidcolor" label="TPL_ASTROID_BACKGROUND_IMAGE_LABEL"/>
@@ -62,17 +65,6 @@
                <option value="center bottom">ASTROID_BACKGROUND_POSITION_CENTER_BOTTOM</option>
             </field>
             <field ngShow="background_setting =='image'" name="background_video" type="astroidmedia" media="videos" label="TPL_ASTROID_BACKGROUND_VIDEO_LABEL" description="TPL_ASTROID_BACKGROUND_VIDEO_DESC"/>
-            
-             <field ngShow="background_setting =='gradient'" description="Gradient" name="background_gradient" type="astroidradio" default="linear" label="Gradient">
-               <option value="linear">Linear</option>
-               <option value="radial">Radial</option>
-            </field>
-
-            <field ngShow="background_setting =='gradient' AND background_gradient=='linear'" name="background_lS" type="astroidcolor" label="Linear Start" />
-            <field ngShow="background_setting =='gradient' AND background_gradient=='linear'" name="background_lE" type="astroidcolor" label="Linear End" />
-
-            <field ngShow="background_setting =='gradient' AND background_gradient=='radial'" name="background_RE" type="astroidcolor" label="Radial Start" />
-            <field ngShow="background_setting =='gradient' AND background_gradient=='radial'" name="background_RS" type="astroidcolor" label="Radial End" />
 
             <field name="colors_settings" type="astroidheading" title="ASTROID_ELEMENT_HEAD_COLOR_OPTIONS_LABEL" />
             

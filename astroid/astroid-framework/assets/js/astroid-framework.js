@@ -384,7 +384,7 @@ astroidFramework.directive('selectUi', function () {
             var _placeholder = $(element).data('placeholder');
             _placeholder = typeof _placeholder == 'undefined' ? false : _placeholder;
             $(element).addClass('astroid-select-ui search selection').dropdown({placeholder: _placeholder, fullTextSearch: true});
-            $(element).val(_value).trigger('change');
+            //$(element).val(_value).trigger('change');
          }, 200);
       },
    };

@@ -472,6 +472,7 @@ astroidFramework.controller('layoutController', function ($scope, $compile) {
       Admin.ringLoading($('#element-settings').children('.ezlb-pop-body'), true);
       var _template = $('#element-form-template-' + _element.type).html();
       $scope.elementParams = {};
+      var _temp = {};
       angular.element(document.getElementById('element-settings-form')).html($compile(_template)($scope, function () {
          $('#element-settings').addClass('open');
          var _params = {};
@@ -481,8 +482,25 @@ astroidFramework.controller('layoutController', function ($scope, $compile) {
                _params[_p.name] = _p.value;
             });
          }
+         _temp = angular.copy(_params);
          $scope.elementParams = _params;
          setTimeout(function () {
+            var _change = false;
+            $.each(_temp, function (_key, _value) {
+               var _f = $('#element-settings-form').find('[name="' + _key + '"]');
+               if (_f.length) {
+                  if (_f.attr('type') == 'radio') {
+                     //console.log(_value);
+                     $scope.elementParams[_key] = _value;
+                     _change = true;
+                  }
+               }
+            });
+            if (_change) {
+               $scope.$apply();
+            }
+
+
             Admin.ringLoading($('#element-settings').children('.ezlb-pop-body'), false);
             if (typeof _focus != 'undefined') {
                $('#element-settings').find('#' + _focus).focus();

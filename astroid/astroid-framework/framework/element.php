@@ -142,17 +142,18 @@ class AstroidElement {
           'ng-hide="' => 'ng-hide="elementParams.',
           'ng-model="' => 'ng-model="elementParams.',
           'ng-value="' => 'ng-value="elementParams.',
-          'ng-radio-init="' => 'ng-init="elementParams.'
+          'ng-radio-init="' => 'ng-init="elementParams.',
+          'ng-media-class' => 'ng-class',
       ];
-
-      foreach ($replacer as $find => $replace) {
-         $form = str_replace($find, $replace, $form);
-      }
 
       $form = preg_replace_callback('/(\s*ng-class="{)([^"]*)(}"[^>]*>)(.*)/siU', function($matches) {
          $replaced = str_replace(':', ':elementParams.', $matches[2]);
          return str_replace($matches[2], $replaced, $matches[0]);
       }, $form);
+
+      foreach ($replacer as $find => $replace) {
+         $form = str_replace($find, $replace, $form);
+      }
 
       return $form;
    }
@@ -367,7 +368,7 @@ class AstroidElement {
       $styles = [];
       $background = $params->get('background', 0);
       $custom_colors = $params->get('custom_colors', 0);
-      if ($background) {
+      if ($background && $this->type!='section') {
          $background_color = $params->get('background_color', '');
          if (!empty($background_color)) {
             $styles[] = 'background-color:' . $background_color;
@@ -392,6 +393,47 @@ class AstroidElement {
             $styles[] = 'background-position:' . $background_position;
          }
       }
+
+      if($this->type=='section'){
+          $background_setting =  $params->get('background_setting', 0);
+         if($background_setting){
+            $background_color = $params->get('background_color', '');
+            if (!empty($background_color)) {
+               $styles[] = 'background-color:' . $background_color;
+            }
+            $background_image = $params->get('background_image', '');
+            if (!empty($background_image)) {
+               $styles[] = 'background-image: url(' . JURI::root() . 'images/' . $background_image . ')';
+               $background_repeat = $params->get('background_repeat', '');
+               $background_repeat = empty($background_repeat) ? 'inherit' : $background_repeat;
+               $styles[] = 'background-repeat:' . $background_repeat;
+   
+               $background_size = $params->get('background_size', '');
+               $background_size = empty($background_size) ? 'inherit' : $background_size;
+               $styles[] = 'background-size:' . $background_size;
+   
+               $background_attchment = $params->get('background_attchment', '');
+               $background_attchment = empty($background_attchment) ? 'inherit' : $background_attchment;
+               $styles[] = 'background-attachment:' . $background_attchment;
+   
+               $background_position = $params->get('background_position', '');
+               $background_position = empty($background_position) ? 'inherit' : $background_position;
+               $styles[] = 'background-position:' . $background_position;
+            }
+
+            $background_video = $params->get('background_video', '');
+            if (!empty($background_video)) {
+               $styles[] = 'background: url(' . JURI::root() . 'images/' . $background_video . ')';
+            }
+
+            $background_gradient = $params->get('background_gradient', '');
+            $background_gradient = json_decode($background_gradient);
+            if (!empty($background_gradient)) {
+               $styles[] = 'background-image: '.$background_gradient->type.'-gradient('. $background_gradient->start.','.$background_gradient->stop.')';
+            }
+         }
+      }
+
       if ($custom_colors) {
          $text_color = $params->get('text_color', '');
          $link_color = $params->get('link_color', '');

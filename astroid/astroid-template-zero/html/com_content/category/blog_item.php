@@ -17,7 +17,7 @@ $tpl_params = JFactory::getApplication()->getTemplate(true)->params;
 JHtml::addIncludePath(JPATH_COMPONENT . '/helpers/html');
 $canEdit = $this->item->params->get('access-edit');
 $info = $params->get('info_block_position', 0);
-$useDefList = ($params->get('show_modify_date') || $params->get('show_publish_date') || $params->get('show_create_date') || $params->get('show_hits') || $params->get('show_category') || $params->get('show_parent_category') || $params->get('show_author') );
+$useDefList = ($params->get('show_modify_date') || $params->get('show_publish_date') || $params->get('show_create_date') || $params->get('show_hits') || $params->get('show_category') || $params->get('show_parent_category') || $params->get('show_author') ||  $template->params->get('astroid_readtime', 1));
 $document = JFactory::getDocument();
 // Post Format
 $post_attribs = new JRegistry(json_decode($this->item->attribs));

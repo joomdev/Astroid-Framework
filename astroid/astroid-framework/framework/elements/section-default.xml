@@ -22,7 +22,7 @@
 
             <field name="background_settings" type="astroidheading" title="ASTROID_ELEMENT_HEAD_BACKGROUND_OPTIONS_LABEL" />
             
-            <field description="TPL_ASTROID_ADVANCED_LAYOUT_SELECT_DESC" name="background_setting" type="astroidradio" default="image" label="TPL_ASTROID_ADVANCED_LAYOUT_SELECT">
+            <field description="TPL_ASTROID_ADVANCED_LAYOUT_SELECT_DESC" name="background_setting" type="astroidradio" default="0" label="TPL_ASTROID_ADVANCED_LAYOUT_SELECT">
                <option value="0">None</option>
                <option value="color">Color</option>
                <option value="image">Image</option>

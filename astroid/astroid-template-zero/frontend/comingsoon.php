@@ -29,7 +29,6 @@ $video = [];
       }
       if($background_setting =="image"){
          $background_image = $template->params->get('background_image', '');
-         $background_image ="sampledata/fruitshop/bananas_2.jpg";
          if (!empty($background_image)) {
             $styles[] = 'background-image: url(' . JURI::root() . 'images/' . $background_image . ')';
             $background_repeat = $template->params->get('background_repeat', '');
@@ -50,7 +49,6 @@ $video = [];
          }
       }
 
-
          // if($background_setting =="gradient"){
          //    $background_gradient = $template->params->get('background_gradient', '');
          //    $background_gradient = json_decode($background_gradient);
@@ -62,7 +60,6 @@ $video = [];
          if($background_setting =="video"){
             $attributes = [];
             $background_video = $template->params->get('background_video', '');
-            $background_video= "Street---19627.mp4";
             if (!empty($background_video)) {
                $attributes['data-jd-video-bg'] = JURI::root() . 'images/' . $background_video;
             }

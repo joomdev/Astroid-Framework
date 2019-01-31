@@ -86,7 +86,7 @@ if (trim($menuType) == 'custom') {
 
       if (isset($libraryFonts[$menu_fontface[0]])) {
          $style .= 'font-family: ' . $libraryFonts[$menu_fontface[0]]['name'] . ';';
-         AstroidFrameworkHelper::loadLibraryFont($menu_fontface[$fontface[0]], $template);
+         AstroidFrameworkHelper::loadLibraryFont($libraryFonts[$menu_fontface[0]], $template);
       } else {
          $menu_style .= 'font-family: ' . $menu_fontface[0] . ';';
          if (!AstroidFrameworkHelper::isSystemFont($menu_fontface[0])) {

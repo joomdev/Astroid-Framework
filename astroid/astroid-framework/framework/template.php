@@ -273,7 +273,8 @@ class AstroidFrameworkTemplate {
                   foreach ($col['elements'] as $element) {
                      $el = new AstroidElement($element['type'], $element, $this);
                      $this->setLog("Rending Element : " . $el->getValue('title'));
-                     if (@$_GET['wf'] == 1) {
+                     $template_positions_display = JComponentHelper::getParams( 'com_templates' )->get('template_positions_display');
+                     if (@$_GET['wf'] == 1 &&  $template_positions_display) {
                         $renderedHTML .= $el->renderWireframe();
                      } else {
                         $renderedHTML .= $el->render();

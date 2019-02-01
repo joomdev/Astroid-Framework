@@ -85,7 +85,7 @@ if (trim($menuType) == 'custom') {
    if (isset($menu_fontface[0]) && !empty($menu_fontface[0])) {
 
       if (isset($libraryFonts[$menu_fontface[0]])) {
-         $style .= 'font-family: ' . $libraryFonts[$menu_fontface[0]]['name'] . ';';
+         $menu_style .= 'font-family: ' . $libraryFonts[$menu_fontface[0]]['name'] . ';';
          AstroidFrameworkHelper::loadLibraryFont($libraryFonts[$menu_fontface[0]], $template);
       } else {
          $menu_style .= 'font-family: ' . $menu_fontface[0] . ';';
@@ -123,7 +123,7 @@ $submenuType = $template->params->get('submenus_typography');
 if (trim($submenuType) == 'custom') {
    $submenu_font = $template->params->get('submenu_typography_options');
    $submenu_fontface = str_replace('+', ' ', explode(":", $submenu_font->font_face));
-   $submenu_style = '.nav-submenu-container .nav-submenu > li, .jddrop-content .megamenu-item .megamenu-menu li, {';
+   $submenu_style = '.nav-submenu-container .nav-submenu > li, .jddrop-content .megamenu-item .megamenu-menu li, .nav-submenu {';
    if (isset($submenu_fontface[0]) && !empty($submenu_fontface[0])) {
       if (isset($libraryFonts[$submenu_fontface[0]])) {
          $submenu_style .= 'font-family: ' . $libraryFonts[$submenu_fontface[0]]['name'] . ',' . $submenu_font->alt_font_face . ';';

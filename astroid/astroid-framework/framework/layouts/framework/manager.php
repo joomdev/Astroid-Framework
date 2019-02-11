@@ -211,12 +211,12 @@ $astroid_manager_loader = $plugin_params->get('astroid_manager_loader', 1);
                   <?php } ?>
                   <li class="nav-item row">
                      <a id="export-options" class="nav-link col-12" href="javascript:void(0);">
-                        <i class="fa fa-download"></i>&nbsp;<?php echo JText::_('Export'); ?>
+                        <i class="fa fa-download"></i>&nbsp;<?php echo JText::_('TPL_ASTROID_EXPORT'); ?>
                      </a>
                   </li>
                   <li class="nav-item row">
                      <a id="import-options" class="nav-link col-12" href="javascript:void(0);">
-                        <i class="fa fa-upload"></i>&nbsp;<?php echo JText::_('Import'); ?>
+                        <i class="fa fa-upload"></i>&nbsp;<?php echo JText::_('TPL_ASTROID_IMPORT'); ?>
                      </a>
                   </li>
                   <li class="nav-item row showin-live-preview">

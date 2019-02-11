@@ -49,7 +49,7 @@ if (!$template->params->get('article_rating', 1)) {
    ?>
    <div class="article-rating">
       <div class="ui star rating" id="<?php echo 'content_vote_' . (int) $row->id; ?>"></div>
-      <div data-votes="<?php echo $rating_count; ?>" class="vote-count article-rating-votecount-<?php echo $row->id; ?>">(<?php echo $rating_count; ?> vote<?php echo $rating_count == 1 ? '' : 's'; ?>)</div>
+      <div data-votes="<?php echo $rating_count; ?>" class="vote-count article-rating-votecount-<?php echo $row->id; ?>">(<?php echo $rating_count; ?> <?php echo JText::_('TPL_ASTROID_VOTE'); ?><?php echo $rating_count == 1 ? '' : 's'; ?>)</div>
       <div class="loading article-rating-loading-<?php echo $row->id; ?> d-none"></div>
       <div class="message d-none article-rating-message-<?php echo $row->id; ?>"></div>
    </div>

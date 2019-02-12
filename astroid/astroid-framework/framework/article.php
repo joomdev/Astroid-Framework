@@ -135,7 +135,7 @@ class AstroidFrameworkArticle {
    // Read Time
    public function renderReadTime() {
       if ($this->showReadTime()) {
-         $this->article->readtime = $this->calculateReadTime($this->article->text);
+         $this->article->readtime = $this->calculateReadTime($this->article->fulltext);
          $this->template->loadLayout('blog.modules.readtime', true, ['article' => $this->article]);
       }
    }

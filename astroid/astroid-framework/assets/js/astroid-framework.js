@@ -704,7 +704,7 @@ astroidFramework.directive('astroidgradient', ['$http', function ($http) {
                if (_type == 'radial') {
                   var _gradiant = 'radial-gradient(' + _start + ', ' + _stop + ')';
                } else {
-                  var _gradiant = 'linear-gradient(0deg, ' + _start + ' 0%, ' + _stop + ' 100%)';
+                  var _gradiant = 'linear-gradient(to bottom, ' + _start + ' 0%, ' + _stop + ' 100%)';
                }
                _preview.css('background-image', _gradiant);
 

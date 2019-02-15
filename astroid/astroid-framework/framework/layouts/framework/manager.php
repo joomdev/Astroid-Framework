@@ -310,7 +310,7 @@ $astroid_manager_loader = $plugin_params->get('astroid_manager_loader', 1);
                                                          <?php } ?>
                                                       </div>
                                                       <div class="col-sm-7" data-fieldset="astroid-tab-<?php echo $fieldset->name; ?>">
-                                                         <?php echo $field->input; ?>
+                                                         <?php echo str_replace('ng-media-class', 'ng-class', $field->input); ?>
                                                       </div>
                                                    <?php } else { ?>
                                                       <div class="col-sm-12" data-fieldset="astroid-tab-<?php echo $fieldset->name; ?>">

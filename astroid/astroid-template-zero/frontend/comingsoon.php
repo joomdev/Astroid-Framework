@@ -52,13 +52,12 @@ $video = [];
          }
       }
 
-         // if($background_setting =="gradient"){
-         //    $background_gradient = $template->params->get('background_gradient', '');
-         //    $background_gradient = json_decode($background_gradient);
-         //    if (!empty($background_gradient)) {
-         //       $styles[] = 'background-image: '.$background_gradient->type.'-gradient('. $background_gradient->start.','.$background_gradient->stop.')';
-         //    }
-         // }
+         if($background_setting =="gradient"){
+            $background_gradient = $template->params->get('background_gradient', '');
+            if (!empty($background_gradient)) {
+               $styles[] = 'background-image: '.$background_gradient->gradient_type.'-gradient('. $background_gradient->start_color.','.$background_gradient->stop_color.')';
+            }
+         }
 
          if($background_setting =="video"){
             $attributes = [];

@@ -98,7 +98,7 @@
             </field>
             <field astroidgroup="coming_soon" ngShow="background_setting =='video' AND developemnt_mode=='1'" name="background_video" type="astroidmedia" media="videos" label="TPL_ASTROID_BACKGROUND_VIDEO_LABEL" description="TPL_ASTROID_BACKGROUND_VIDEO_DESC"/>
 
-            <!-- <field  astroidgroup="coming_soon" ngShow="background_setting =='gradient'" description="ASTROID_SELECT_BACKGROUND_COLOR_DESC" name="background_gradient" type="astroidgradient" label="TPL_ASTROID_BACKGROUND_COLOR_LABEL"></field> -->
+             <field  astroidgroup="coming_soon" ngShow="background_setting =='gradient'" description="ASTROID_SELECT_BACKGROUND_COLOR_DESC" name="background_gradient" type="astroidgradient" label="TPL_ASTROID_BACKGROUND_COLOR_LABEL"></field> 
 
          <field astroidgroup="error_404" name="error_404_content" code="html" class="form-control" type="astroidtextarea" label="TPL_ASTROID_MISCELL_ERROR_404_CONTENT_LABEL" description="TPL_ASTROID_MISCELL_ERROR_404_CONTENT_DESC">
          </field>

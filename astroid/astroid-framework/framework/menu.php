@@ -130,66 +130,66 @@ class AstroidMenu {
 
    public static function getMegaMenu($item, $options, $items) {
       $template = new AstroidFrameworkTemplate(JFactory::getApplication()->getTemplate(true));
-      echo '<div data-width="' . $options->width . '" class="jddrop-content megamenu-container">';
       if (!empty($options->rows)) {
-         foreach ($options->rows as $row) {
-            echo '<div class="row m-0">';
-            foreach ($row['cols'] as $col) {
-               echo '<div class="col col-md-' . $col['size'] . '">';
-               try {
-                  foreach ($col['elements'] as $element) {
-                     if ($element['type'] == "module") {
-                        $modules = JModuleHelper::getModuleList();
-                        foreach ($modules as $module) {
-                           if ($module->id == $element['id']) {
-                              $params = \json_decode($module->params, true);
-                              $style = $params['style'];
-                              if (empty($style)) {
-                                 $style = "html5";
+         echo '<div data-width="' . $options->width . '" class="jddrop-content megamenu-container">';
+            foreach ($options->rows as $row) {
+               echo '<div class="row m-0">';
+               foreach ($row['cols'] as $col) {
+                  echo '<div class="col col-md-' . $col['size'] . '">';
+                  try {
+                     foreach ($col['elements'] as $element) {
+                        if ($element['type'] == "module") {
+                           $modules = JModuleHelper::getModuleList();
+                           foreach ($modules as $module) {
+                              if ($module->id == $element['id']) {
+                                 $params = \json_decode($module->params, true);
+                                 $style = $params['style'];
+                                 if (empty($style)) {
+                                    $style = "html5";
+                                 }
+                                 echo '<div class="megamenu-item megamenu-module">';
+                                 echo JModuleHelper::renderModule($module, ['style' => $style]);
+                                 echo "</div>";
                               }
-                              echo '<div class="megamenu-item megamenu-module">';
-                              echo JModuleHelper::renderModule($module, ['style' => $style]);
-                              echo "</div>";
                            }
+                        } else if ($item->parent) {
+                           $base = self::getBase();
+                           $active = self::getActive();
+                           $default = self::getDefault();
+                           $active_id = $active->id;
+                           $default_id = $default->id;
+                           $path = $base->tree;
+                           echo '<div class="megamenu-item megamenu-menu-container">';
+                           echo '<ul class="megamenu-menu">';
+                           foreach ($items as $i => $subitem) {
+                              if ($subitem->id != $element['id']) {
+                                 continue;
+                              }
+                              $subitem->anchor_css = empty($subitem->anchor_css) ? 'megamenu-title' : ' ' . $subitem->anchor_css;
+                              $options = self::getAstroidMenuOptions($subitem, $items);
+                              $class = self::getLiClass($subitem, $options, $default_id, $active_id, $path);
+                              echo '<li class="megamenu-menu-item">';
+                              echo $template->loadLayout('header.menu.link', false, ['item' => $subitem, 'options' => $options, 'mobilemenu' => true, 'active' => in_array('nav-item-active', $class)]);
+                              if ($subitem->parent) {
+                                 echo '<div class="megamenu-submenu-container">';
+                                 self::getMegaMenuSubItems($subitem, $items);
+                                 echo '</div>';
+                              }
+                              echo '</li>';
+                           }
+                           echo '</ul>';
+                           echo "</div>";
                         }
-                     } else if ($item->parent) {
-                        $base = self::getBase();
-                        $active = self::getActive();
-                        $default = self::getDefault();
-                        $active_id = $active->id;
-                        $default_id = $default->id;
-                        $path = $base->tree;
-                        echo '<div class="megamenu-item megamenu-menu-container">';
-                        echo '<ul class="megamenu-menu">';
-                        foreach ($items as $i => $subitem) {
-                           if ($subitem->id != $element['id']) {
-                              continue;
-                           }
-                           $subitem->anchor_css = empty($subitem->anchor_css) ? 'megamenu-title' : ' ' . $subitem->anchor_css;
-                           $options = self::getAstroidMenuOptions($subitem, $items);
-                           $class = self::getLiClass($subitem, $options, $default_id, $active_id, $path);
-                           echo '<li class="megamenu-menu-item">';
-                           echo $template->loadLayout('header.menu.link', false, ['item' => $subitem, 'options' => $options, 'mobilemenu' => true, 'active' => in_array('nav-item-active', $class)]);
-                           if ($subitem->parent) {
-                              echo '<div class="megamenu-submenu-container">';
-                              self::getMegaMenuSubItems($subitem, $items);
-                              echo '</div>';
-                           }
-                           echo '</li>';
-                        }
-                        echo '</ul>';
-                        echo "</div>";
                      }
+                  } catch (\Exception $e) {
+                     
                   }
-               } catch (\Exception $e) {
-                  
+                  echo '</div>';
                }
                echo '</div>';
             }
-            echo '</div>';
-         }
+         echo '</div>';
       }
-      echo '</div>';
    }
 
    public static function getMegaMenuSubItems($parent, $listAll) {

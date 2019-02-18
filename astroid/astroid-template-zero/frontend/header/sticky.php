@@ -31,6 +31,10 @@ $class[] = 'header-' . $stickyheadertablet . '-tablet';
 $navClass = ['nav', 'astroid-nav', 'd-none', 'd-lg-flex'];
 $navWrapperClass = ['astroid-nav-wraper', 'align-self-center', 'px-2', 'd-none', 'd-lg-block'];
 $mode = $params->get('header_horizontal_menu_mode', 'left');
+$stickey_mode = $params->get('stickey_horizontal_menu_mode', 'left');
+$block_1_type = $params->get('stickey_block_1_type', 'left');
+$block_1_position = $params->get('stickey_block_1_position', '');
+$block_1_custom = $params->get('stickey_block_1_custom', '');
 switch ($mode) {
    case 'left':
       $navWrapperClass[] = 'mr-auto';
@@ -53,23 +57,59 @@ switch ($mode) {
             </div>
          </div>
       <?php } ?>
-      <div class="header-left-section d-flex justify-content-start flex-grow-1">
+      <div class="header-left-section d-flex justify-content-between">
+         <?php $template->loadLayout('logo'); ?>
          <?php
-         $template->loadLayout('logo');
-         // header nav starts
-         AstroidMenu::getMenu($header_menu, $navClass, null, 'left', 'sticky', $navWrapperClass);
-         // header nav ends
+            if ($stickey_mode == 'left') {
+               // header nav starts
+               AstroidMenu::getMenu($header_menu, $navClass, null, 'left', 'stickey', $navWrapperClass);
+               // header nav ends
+            }
          ?>
       </div>
-      <?php if ($enable_offcanvas): ?>
+      <?php
+      if ($stickey_mode == 'center') {
+         echo '<div class="header-center-section d-flex justify-content-center">';
+         // header nav starts
+         AstroidMenu::getMenu($header_menu, $navClass, null, 'center', 'stickey', $navWrapperClass);
+         // header nav ends
+         echo '</div>';
+      }
+      ?>
+      <?php if ($block_1_type != 'blank' || $stickey_mode == 'right' || $enable_offcanvas): ?>
          <div class="header-right-section d-flex justify-content-end">
-            <div class="header-offcanvas-trigger burger-menu-button align-self-center <?php echo $offcanvas_togglevisibility; ?>" data-offcanvas="#astroid-offcanvas" data-effect="<?php echo $offcanvas_animation; ?>">
-               <button type="button" class="button">
-                  <span class="box">
-                     <span class="inner"></span>
-                  </span>
-               </button>
-            </div>
+            <?php
+            if ($stickey_mode == 'right') {
+               // header nav starts
+               AstroidMenu::getMenu($header_menu, $navClass, null, 'right', 'stickey', $navWrapperClass);
+               // header nav ends
+            }
+            ?>
+            <?php if ($enable_offcanvas) { ?>
+               <div class="header-offcanvas-trigger burger-menu-button align-self-center <?php echo $offcanvas_togglevisibility; ?>" data-offcanvas="#astroid-offcanvas" data-effect="<?php echo $offcanvas_animation; ?>">
+                  <button type="button" class="button">
+                     <span class="box">
+                        <span class="inner"></span>
+                     </span>
+                  </button>
+               </div>
+            <?php } ?>
+            <?php if ($block_1_type != 'blank'): ?>
+               <div class="header-right-block d-none d-lg-block align-self-center px-2">
+                  <?php
+                  if ($block_1_type == 'position') {
+                     echo '<div class="header-block-item">';
+                     echo $template->renderModulePosition($block_1_position, 'xhtml');
+                     echo '</div>';
+                  }
+                  if ($block_1_type == 'custom') {
+                     echo '<div class="header-block-item">';
+                     echo $block_1_custom;
+                     echo '</div>';
+                  }
+                  ?>
+               </div>
+            <?php endif; ?>
          </div>
       <?php endif; ?>
    </div>

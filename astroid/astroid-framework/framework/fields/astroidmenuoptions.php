@@ -30,8 +30,8 @@ class JFormFieldAstroidMenuOptions extends JFormField {
              'showtitle' => FALSE,
              'icon' => '',
              'customclass' => '',
-             'width' => '280px',
-             'megamenu_width' => '1200px',
+             'width' => '250px',
+             'megamenu_width' => '980px',
              'alignment' => 'right',
              'megamenu_direction' => 'right',
              'subtitle' => ''

@@ -187,7 +187,6 @@
       initHeader();
       initTooltip();
       deviceBreakpoint(false);
-      $('[data-jddrop]').JDDrop();
    };
 
    var winLoad = function () {

@@ -51,9 +51,9 @@ $template->loadTemplateCSS('custom.css');
 // Adding basic Scripts, jQuery & Bootstrap JS
 
    if (isset($doc->_scripts[JURI::root(true) . '/media/jui/js/jquery.min.js'])) {
-      $template->loadTemplateJS('vendor/jquery.easing.min.js,vendor/bootstrap/popper.min.js,vendor/bootstrap/bootstrap.min.js,vendor/jquery.astroidmobilemenu.js,vendor/jquery.jdvideobg.js,vendor/jquery.jddrop.js,vendor/jquery.offcanvas.js,script.js,custom.js');
+      $template->loadTemplateJS('vendor/jquery.easing.min.js,vendor/bootstrap/popper.min.js,vendor/bootstrap/bootstrap.min.js,vendor/jquery.astroidmobilemenu.js,vendor/jquery.jdvideobg.js,vendor/jquery.jdmegamenu.js,vendor/jquery.offcanvas.js,script.js,custom.js');
    } else {
-      $template->loadTemplateJS('vendor/bootstrap/jquery.min.js,vendor/jquery.easing.min.js,vendor/bootstrap/popper.min.js,vendor/bootstrap/bootstrap.min.js,vendor/jquery.astroidmobilemenu.js,vendor/jquery.jdvideobg.js,vendor/jquery.jddrop.js,vendor/jquery.offcanvas.js,script.js,custom.js');
+      $template->loadTemplateJS('vendor/bootstrap/jquery.min.js,vendor/jquery.easing.min.js,vendor/bootstrap/popper.min.js,vendor/bootstrap/bootstrap.min.js,vendor/jquery.astroidmobilemenu.js,vendor/jquery.jdvideobg.js,vendor/jquery.jdmegamenu.js,vendor/jquery.offcanvas.js,script.js,custom.js');
    }
 
    /*

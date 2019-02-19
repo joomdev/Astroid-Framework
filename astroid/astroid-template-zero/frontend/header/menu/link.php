@@ -58,24 +58,24 @@ if ($item->browserNav == 1) {
 }
 $attributes['data-drop-action'] = 'hover';
 if (($options->megamenu || ($item->parent && $item->deeper == 1)) && !$is_mobile_menu) {
-   $attributes['data-jddrop'] = "";
-   $attributes['data-jddrop-align'] = ($item->level != 1 ? 'right' : $options->alignment);
-   $attributes['data-jddrop-speed'] = $template->params->get('dropdown_animation_speed', 300);
-   $attributes['data-jddrop-effect'] = $template->params->get('dropdown_animation_type', 'slide');
-   $attributes['data-jddrop-ease'] = $template->params->get('dropdown_animation_ease', 'linear');
-   $attributes['data-jddrop-position'] = ($item->level != 1 ? 'right' : 'bottom');
+   $attributes['class'] .= " megamenu-item-link";
+   //$attributes['data-jddrop-align'] = ($item->level != 1 ? 'right' : $options->alignment);
+   //$attributes['data-jddrop-speed'] = $template->params->get('dropdown_animation_speed', 300);
+   //$attributes['data-jddrop-effect'] = $template->params->get('dropdown_animation_type', 'slide');
+   //$attributes['data-jddrop-ease'] = $template->params->get('dropdown_animation_ease', 'linear');
+   //$attributes['data-jddrop-position'] = ($item->level != 1 ? 'right' : 'bottom');
    if ($item->level == 1) {
       if ($header == 'sticky') {
-         $attributes['data-jddrop-offset'] = '12px';
+         //$attributes['data-jddrop-offset'] = '12px';
       } else {
-         $attributes['data-jddrop-offset'] = '17px';
+         //$attributes['data-jddrop-offset'] = '17px';
       }
-      $attributes['data-drop-action'] = $template->params->get('menudropeffect', 'hover');
+      //$attributes['data-drop-action'] = $template->params->get('menudropeffect', 'hover');
    }
 }
 
 if ($attributes['data-drop-action'] == 'click') {
-   $item->flink = 'javascript:void(0);';
+   //$item->flink = 'javascript:void(0);';
 }
 
 $attr = [];
@@ -103,7 +103,7 @@ foreach ($attributes as $key => $attribute) {
       <?php } ?>
       <?php if (!$is_mobile_menu && $item->level == 1 && (($item->parent && $item->deeper == 1) || $options->megamenu)) { ?>
          <i class="fa fa-chevron-down nav-item-caret"></i>
-      <?php } elseif (!$is_mobile_menu && $item->parent && $item->deeper == 1) { ?>
+      <?php } elseif (!$is_mobile_menu && $item->parent) { ?>
          <i class="fa fa-chevron-right nav-item-caret"></i>
       <?php } ?>
    </span>

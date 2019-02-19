@@ -104,11 +104,13 @@
             <option value="10">J10</option>
          </field>
          
-         <!--         <field ngShow="header==true" astroidgroup="header_element" description="" name="menudropeffect" ngModel="menudropeffect" type="astroidradio" default="hover" label="TPL_ASTROID_MENU_OPTIONS_SELECT_ACTION">
+
+         <field ngShow="header==true" astroidgroup="header_element" name="dropdown_trigger" type="astroidradio" default="hover" label="TPL_ASTROID_MENU_OPTIONS_SELECT_ACTION">
             <option value="hover">JGLOBAL_HOVER</option>
             <option value="click">JGLOBAL_CLICK</option>
-         </field>-->
-         
+         </field>
+     
+         <field ngShow="header==true" astroidgroup="header_element" name="dropdown_arrow" type="astroidtext" astroid-switch="true" default="0" label="TPL_ASTROID_MENU_OPTIONS_SELECT_ARROW"></field>
 
          <field ngShow="header==true" astroidgroup="header_element" description="TPL_ASTROID_HEADER_LOGO_OPTION_DESC" title="TPL_ASTROID_HEADER_LOGO_OPTION" type="astroidheading" />
 
@@ -193,7 +195,7 @@
          
          <field ngShow="header==true" astroidgroup="header_element" description="TPL_ASTROID_HEADER_MENU_ANIMATION_DESC" title="TPL_ASTROID_HEADER_MENU_ANIMATION" type="astroidheading" />
 
-         <field ngShow="header==true" astroidgroup="header_element" name="dropdown_animation_type" type="astroidradio" default="slide" label="TPL_ASTROID_HEADER_MENU_ANIMATION">
+         <field ngShow="header==true" astroidgroup="header_element" name="dropdown_animation_type" type="astroidradio" default="fade" label="TPL_ASTROID_HEADER_MENU_ANIMATION">
             <option class="btn-danger" value="none">JNONE</option>
             <option value="fade">TPL_ASTROID_HEADER_MENU_ANIMATION_OPTION_FADE</option>
             <option value="slide">TPL_ASTROID_HEADER_MENU_ANIMATION_OPTION_SILDE</option>
@@ -203,7 +205,7 @@
          
          <field ngShow="header==true AND dropdown_animation_type!='none'" astroidgroup="header_element" name="dropdown_animation_ease" type="astroidlist" class="form-control" label="TPL_ASTROID_HEADER_ANIMATION_EASE_LABEL" default="linear">
             <option value="linear">linear</option>
-            <option value="jswing">swing</option>
+            <option value="swing">swing</option>
             <option value="easeInQuad">easeInQuad</option>
             <option value="easeOutQuad">easeOutQuad</option>
             <option value="easeInOutQuad">easeInOutQuad</option>

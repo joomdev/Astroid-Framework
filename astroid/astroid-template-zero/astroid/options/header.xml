@@ -139,7 +139,7 @@
             <option label="JGLOBAL_RIGHT" value="right">media/astroid/assets/images/header/horizontal-right.svg</option>
          </field>
 
-         <field ngShow="header==true AND enable_sticky_menu==true'" astroidgroup="header_element" name="stickey_block_1_type" type="astroidlist" default="blank" class="form-control" label="TPL_ASTROID_STICKY_BLOCK_1_TYPE_LABEL" description="TPL_ASTROID_STICKY_BLOCK_1_TYPE_DESC">
+         <field ngShow="header==true AND enable_sticky_menu==true" astroidgroup="header_element" name="stickey_block_1_type" type="astroidlist" default="blank" class="form-control" label="TPL_ASTROID_STICKY_BLOCK_1_TYPE_LABEL" description="TPL_ASTROID_STICKY_BLOCK_1_TYPE_DESC">
             <option value="blank">TPL_ASTROID_BLANK_OPTIONS</option>
             <option value="position">TPL_ASTROID_MODULE_POSITION_LABEL</option>
             <option value="custom">TPL_ASTROID_CUSTOM_HTML_OPTIONS</option>

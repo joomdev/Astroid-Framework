@@ -32,7 +32,7 @@ $navClassLeft = ['nav', 'astroid-nav', 'justify-content-left', 'd-flex', 'align-
 $navClassDivided = ['nav', 'astroid-nav'];
 $navWrapperClass = ['astroid-nav-wraper', 'align-self-center', 'px-2', 'd-none', 'd-lg-block', 'w-100'];
 ?>
-<header id="astroid-header" class="<?php echo implode(' ', $class); ?>">
+<header data-megamenu data-megamenu-class=".has-megamenu" data-megamenu-content-class=".megamenu-container" data-dropdown-arrow="<?php echo $template->params->get('dropdown_arrow', 0) ? 'true' : 'false'; ?>" data-header-offset="true" data-transition-speed="<?php echo $template->params->get('dropdown_animation_speed', 300); ?>" data-animation="<?php echo $template->params->get('dropdown_animation_type', 'fade'); ?>" data-easing="<?php echo $template->params->get('dropdown_animation_ease', 'linear'); ?>" data-trigger="<?php echo $template->params->get('dropdown_trigger', 'hover'); ?>" data-megamenu-submenu-class=".nav-submenu" id="astroid-header" class="<?php echo implode(' ', $class); ?>">
    <div class="d-flex">
       <div class="header-stacked-section d-flex justify-content-between flex-column w-100">
          <?php

@@ -85,7 +85,7 @@ class AstroidFrameworkArticle {
       }
       $images = json_decode($this->article->images);
       if (isset($images->image_intro) && !empty($images->image_intro)) {
-         $og_image = htmlspecialchars($images->image_intro, ENT_COMPAT, 'UTF-8');
+         $og_image = JURI::base() . htmlspecialchars($images->image_intro, ENT_COMPAT, 'UTF-8');
       }
       if (!empty($this->article->params->get('astroid_og_image', ''))) {
          $og_image = JURI::base() . $this->article->params->get('astroid_og_image', '');

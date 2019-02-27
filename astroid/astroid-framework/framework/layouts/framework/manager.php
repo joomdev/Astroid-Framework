@@ -221,7 +221,7 @@ $astroid_manager_loader = $plugin_params->get('astroid_manager_loader', 1);
                   </li>
                   <li class="nav-item row showin-live-preview">
                      <a class="nav-link col-12" href="javascript:void(0);" onclick="Admin.closeLivePreview()">
-                        <i class="fa fa-eye"></i>&nbsp;<?php echo JText::_('Close Live Preview'); ?>
+                        <i class="fa fa-eye"></i>&nbsp;<?php echo JText::_('TPL_ASTROID_CLOSE_LIVEPREVIEW'); ?>
                      </a>
                   </li>
                   <li class="nav-item row showin-live-preview">
@@ -238,7 +238,7 @@ $astroid_manager_loader = $plugin_params->get('astroid_manager_loader', 1);
                   </div>
                   <p class="hidein-live-preview navbar-brand m-0"><?php echo $template->title; ?></p>
                   <div class="form-inline">
-                     <a href="javascript:void(0);" onclick="Admin.livePreview()" class="btn-live-preview btn btn-white my-2 mr-2 my-sm-0 btn-round hidein-live-preview d-none"><i class="fas fa-eye"></i>&nbsp;<?php echo JText::_('Live Preview'); ?></a>
+                     <a href="javascript:void(0);" onclick="Admin.livePreview()" class="btn-live-preview btn btn-white my-2 mr-2 my-sm-0 btn-round hidein-live-preview d-none"><i class="fas fa-eye"></i>&nbsp;<?php echo JText::_('TPL_ASTROID_LIVEPREVIEW'); ?></a>
                   </div>
                </nav>-->
                <div class="container-fluid">

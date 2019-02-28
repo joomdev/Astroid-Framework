@@ -270,19 +270,19 @@ class AstroidFrameworkHelper {
       if ($fileError > 0) {
          switch ($fileError) {
             case 1:
-               throw new \Exception(JText::_('FILE TO LARGE THAN PHP INI ALLOWS'));
+               throw new \Exception(JText::_('ASTROID_ERROR_LARGE_FILE'));
                return;
 
             case 2:
-               throw new \Exception(JText::_('FILE TO LARGE THAN HTML FORM ALLOWS'));
+               throw new \Exception(JText::_('ASTROID_ERROR_FILE_HTML_ALLOW'));
                return;
 
             case 3:
-               throw new \Exception(JText::_('ERROR PARTIAL UPLOAD'));
+               throw new \Exception(JText::_('ASTROID_ERROR_FILE_PARTIAL_ALLOW'));
                return;
 
             case 4:
-               throw new \Exception(JText::_('ERROR NO FILE'));
+               throw new \Exception(JText::_('ASTROID_ERROR_NO_FILE'));
                return;
          }
       }

@@ -15,13 +15,13 @@ JLoader::import('joomla.filesystem.file');
 JHtml::_('behavior.framework', true);
 $lib = JPATH_SITE . '/libraries/astroid/framework/template.php';
 if (file_exists($lib)) {
+   jimport('astroid.framework.astroid');
    jimport('astroid.framework.template');
    jimport('astroid.framework.constants');
 } else {
    die('Please install and activate <a href="https://www.astroidframework.com/" target="_blank">Astroid Framework</a> in order to use this template.');
 }
-$template = new AstroidFrameworkTemplate($this);
-$template->cleanAstroidCSS();
+$template = AstroidFramework::getTemplate();
 // Output as HTML5
 $this->setHtml5(true);
 

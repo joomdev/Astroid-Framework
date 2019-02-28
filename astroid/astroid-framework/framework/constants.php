@@ -7,7 +7,6 @@
  * @license		https://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
  */
 defined('_JEXEC') or die;
-jimport('astroid.framework.constants');
 
 class AstroidFrameworkConstants {
 

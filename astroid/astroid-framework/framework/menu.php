@@ -9,7 +9,7 @@
 defined('_JEXEC') or die;
 jimport('astroid.framework.constants');
 jimport('joomla.application.module.helper');
-jimport('astroid.framework.template');
+jimport('astroid.framework.astroid');
 
 $version = new \JVersion;
 $version = $version->getShortVersion();
@@ -29,7 +29,7 @@ class AstroidMenu {
          return '';
       }
 
-      $template = new AstroidFrameworkTemplate(JFactory::getApplication()->getTemplate(true));
+      $template = AstroidFramework::getTemplate();
 
       $header_menu_params = '{"menutype":"' . $menutype . '","base":"","startLevel":"1","endLevel":"' . $template->params->get('header_endLevel', 0) . '","showAllChildren":"1","tag_id":"","class_sfx":"","window_open":"","layout":"_:default","moduleclass_sfx":"","cache":"1","cache_time":"900","cachemode":"itemid","module_tag":"div","bootstrap_size":"0","header_tag":"h3","header_class":"","style":"0"}';
 
@@ -83,9 +83,7 @@ class AstroidMenu {
          if ($item->level == 1) {
 // Code for adding Centered Logo
             if (($logo_position_count == $logo_position) && $logo !== null) {
-               $app = JFactory::getApplication();
-               $template = $app->getTemplate(true);
-               $template = new AstroidFrameworkTemplate($template);
+               $template = AstroidFramework::getTemplate();
                echo '<li class="nav-item nav-stacked-logo flex-grow-1 text-center">';
                $template->loadLayout('logo');
                echo '</li>';
@@ -132,7 +130,7 @@ class AstroidMenu {
 // Joomla Functions
 
    public static function getMegaMenu($item, $options, $items) {
-      $template = new AstroidFrameworkTemplate(JFactory::getApplication()->getTemplate(true));
+      $template = AstroidFramework::getTemplate();
       if (!empty($options->rows)) {
          echo '<div style="width:' . $options->width . '" class="megamenu-container">';
          foreach ($options->rows as $row) {
@@ -198,7 +196,7 @@ class AstroidMenu {
       $active_id = $active->id;
       $default_id = $default->id;
       $path = $base->tree;
-      $template = new AstroidFrameworkTemplate(JFactory::getApplication()->getTemplate(true));
+      $template = AstroidFramework::getTemplate();
 
       $return = [];
 
@@ -505,7 +503,7 @@ class AstroidMenu {
          return '';
       }
 
-      $template = new AstroidFrameworkTemplate(JFactory::getApplication()->getTemplate(true));
+      $template = AstroidFramework::getTemplate();
 
       $header_menu_params = '{"menutype":"' . $menutype . '","base":"","startLevel":"1","endLevel":"' . $template->params->get('header_mobile_endLevel', 0) . '","showAllChildren":"1","tag_id":"","class_sfx":"","window_open":"","layout":"_:default","moduleclass_sfx":"","cache":"1","cache_time":"900","cachemode":"itemid","module_tag":"div","bootstrap_size":"0","header_tag":"h3","header_class":"","style":"0"}';
 
@@ -527,7 +525,7 @@ class AstroidMenu {
       $default_id = $default->id;
       $path = $base->tree;
       $showAll = 1;
-      $template = new AstroidFrameworkTemplate(JFactory::getApplication()->getTemplate(true));
+      $template = AstroidFramework::getTemplate();
 
       echo '<ul class="astroid-mobile-menu d-none">';
       $megamenu = false;

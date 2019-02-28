@@ -8,7 +8,7 @@
 defined('_JEXEC') or die;
 jimport('astroid.framework.helper');
 jimport('astroid.framework.constants');
-jimport('astroid.framework.template');
+jimport('astroid.framework.astroid');
 
 class AstroidFrameworkArticle {
 
@@ -26,8 +26,7 @@ class AstroidFrameworkArticle {
       }
 
       $this->type = $this->article->params->get('astroid_article_type', 'regular');
-      $template = JFactory::getApplication()->getTemplate(true);
-      $this->template = new AstroidFrameworkTemplate($template);
+      $this->template = AstroidFramework::getTemplate();
 
       $mainframe = JFactory::getApplication();
       $this->params = new JRegistry();

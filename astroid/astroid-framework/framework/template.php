@@ -20,6 +20,7 @@ class AstroidFrameworkTemplate {
    protected $logs;
    protected $debug = false;
    public $cssFile = true;
+   public $_styles = [];
 
    public function __construct($template) {
       if (!defined('ASTROID_TEMPLATE_NAME')) {
@@ -273,8 +274,8 @@ class AstroidFrameworkTemplate {
                   foreach ($col['elements'] as $element) {
                      $el = new AstroidElement($element['type'], $element, $this);
                      $this->setLog("Rending Element : " . $el->getValue('title'));
-                     $template_positions_display = JComponentHelper::getParams( 'com_templates' )->get('template_positions_display');
-                     if (@$_GET['wf'] == 1 &&  $template_positions_display) {
+                     $template_positions_display = JComponentHelper::getParams('com_templates')->get('template_positions_display');
+                     if (@$_GET['wf'] == 1 && $template_positions_display) {
                         $renderedHTML .= $el->renderWireframe();
                      } else {
                         $renderedHTML .= $el->render();
@@ -652,36 +653,34 @@ class AstroidFrameworkTemplate {
 
    public function addStyledeclaration($styles) {
       if ($this->cssFile) {
-         $template_dir = JPATH_SITE . '/templates/' . $this->template . '/css';
-         $document = JFactory::getDocument();
-         $mediaVersion = $document->getMediaVersion();
-         file_put_contents($template_dir . '/astroid-' . $mediaVersion . '.css', $styles . PHP_EOL, FILE_APPEND | LOCK_EX);
+         $this->_styles[] = $styles;
       } else {
          $document = JFactory::getDocument();
          $document->addStyledeclaration($styles);
       }
    }
 
-   public function cleanAstroidCSS() {
+   public function buildAstroidCSS($version, $css = '') {
       if ($this->cssFile) {
          $template_dir = JPATH_SITE . '/templates/' . $this->template . '/css';
-         $document = JFactory::getDocument();
-         $mediaVersion = $document->getMediaVersion();
-         if (!file_exists($template_dir . '/astroid-' . $mediaVersion . '.css')) {
+         if (!file_exists($template_dir . '/astroid-' . $version . '.css')) {
             $styles = preg_grep('~^astroid-.*\.(css)$~', scandir($template_dir));
             foreach ($styles as $style) {
                unlink($template_dir . '/' . $style);
             }
-            file_put_contents($template_dir . '/astroid-' . $mediaVersion . '.css', '');
+            file_put_contents($template_dir . '/astroid-' . $version . '.css', $css);
          }
       }
    }
 
    public function loadCSSFile() {
       if ($this->cssFile) {
+         $styles = implode('', $this->_styles);
          $document = JFactory::getDocument();
          $mediaVersion = $document->getMediaVersion();
-         $document->addStyleSheet(JURI::root() . 'templates/' . $this->template . '/css/astroid-' . $mediaVersion . '.css');
+         $version = md5($styles . $mediaVersion);
+         $this->buildAstroidCSS($version, $styles);
+         $document->addStyleSheet(JURI::root() . 'templates/' . $this->template . '/css/astroid-' . $version . '.css');
       }
    }
 

@@ -28,82 +28,105 @@
          var _megamenu = _navbar.find(settings.megamenuClass);
          var _submenus = _megamenu.find(settings.submenuClass);
 
-
-
-         _submenus.children('li').each(function () {
-            if ($(this).children(settings.submenuClass).length) {
-               $(this).hover(function () {
-                  var _submenu = $(this).children(settings.submenuClass);
-                  _submenu.stop(true, true).slideDown();
-                  if (_submenu.offset().left + _submenu.outerWidth() > $(window).innerWidth()) {
-                     _submenu.addClass('right');
-                  } else {
-                     _submenu.removeClass('right');
-                  }
-               }, function () {
-                  var _submenu = $(this).children(settings.submenuClass);
-                  _submenu.stop(true, true).slideUp();
-               });
+         var init = function () {
+            if(!_navbar.is(':visible')){
+               return false;
             }
-         });
+            var _megamenu = _navbar.find(settings.megamenuClass);
+            var _submenus = _megamenu.find(settings.submenuClass);
+            _submenus.children('li').each(function () {
+               if ($(this).children(settings.submenuClass).length) {
+                  $(this).hover(function () {
+                     var _submenu = $(this).children(settings.submenuClass);
+                     _submenu.stop(true, true).slideDown();
+                     if (_submenu.offset().left + _submenu.outerWidth() > $(window).innerWidth()) {
+                        _submenu.addClass('right');
+                     } else {
+                        _submenu.removeClass('right');
+                     }
+                  }, function () {
+                     var _submenu = $(this).children(settings.submenuClass);
+                     _submenu.stop(true, true).slideUp();
+                  });
+               }
+            });
 
-         if (settings.dropdownArrows) {
-            _megamenu.append('<span class="arrow" />');
+            if (settings.dropdownArrows) {
+               _megamenu.append('<span class="arrow" />');
+            }
+
+            _megamenu.each(function () {
+               var _content = $(this).find(settings.contentClass);
+               if ($(this).data('position') == 'edge') {
+                  var _leftoverflow = 0;
+                  var _rightoverflow = $(window).innerWidth();
+                  _content.css('max-width', '100vw');
+               } else {
+                  var _leftoverflow = _navbar.offset().left;
+                  var _rightoverflow = _navbar.offset().left + _navbar.outerWidth();
+                  _content.css('max-width', _navbar.outerWidth());
+               }
+               var _top = _navbar.outerHeight() - $(this).outerHeight();
+               var _arrow = $(this).children('.arrow');
+
+
+               if (settings.headerOffset) {
+                  _arrow.css('margin-bottom', -(_top / 2));
+                  var _top = _navbar.outerHeight() - $(this).outerHeight();
+                  _content.css('top', (_top / 2) + $(this).outerHeight());
+               } else {
+                  _content.css('top', '100%');
+               }
+
+               switch ($(this).data('position')) {
+                  case 'left':
+                     var offsetleft = $(this).offset().left;
+                     break;
+                  case 'right':
+                     var offsetleft = $(this).offset().left - (_content.outerWidth() - $(this).outerWidth());
+                     break;
+                  case 'center':
+                  case 'edge':
+                  case 'full':
+                     var offsetleft = $(this).offset().left - (_content.outerWidth() / 2 - $(this).outerWidth() / 2);
+                     break;
+               }
+
+               if ((offsetleft + _content.outerWidth()) > _rightoverflow) {
+                  var _left = _content.outerWidth() - (_rightoverflow - offsetleft);
+                  if ($(this).data('position') == 'center' || $(this).data('position') == 'edge' || $(this).data('position') == 'full') {
+                     _left = _left + ((_content.outerWidth() / 2) - ($(this).outerWidth() / 2));
+                  }
+                  _content.css('left', -(_left));
+                  _content.css('right', 'inherit');
+               } else if (offsetleft < _leftoverflow) {
+                  var _right = (offsetleft - _leftoverflow);
+                  if ($(this).data('position') == 'center' || $(this).data('position') == 'edge' || $(this).data('position') == 'full') {
+                     _right = _right - ((_content.outerWidth() / 2) - ($(this).outerWidth() / 2));
+                  }
+                  _content.css('right', _right);
+                  _content.css('left', 'inherit');
+               }
+
+            });
+         };
+
+         init();
+
+
+         var observering = function (_this) {
+            var callback = function (mutationsList, observer) {
+               for (var mutation of mutationsList) {
+                  if (mutation.type == 'attributes' && mutation.attributeName == 'class') {
+                     init();
+                  }
+               }
+            };
+            var observer = new MutationObserver(callback);
+            observer.observe(_this, {attributes: true});
          }
 
-         _megamenu.each(function () {
-            var _content = $(this).find(settings.contentClass);
-            if ($(this).data('position') == 'edge') {
-               var _leftoverflow = 0;
-               var _rightoverflow = $(window).innerWidth();
-               _content.css('max-width', '100vw');
-            } else {
-               var _leftoverflow = _navbar.offset().left;
-               var _rightoverflow = _navbar.offset().left + _navbar.outerWidth();
-               _content.css('max-width', _navbar.outerWidth());
-            }
-            var _top = _navbar.outerHeight() - $(this).outerHeight();
-            var _arrow = $(this).children('.arrow');
-
-
-            if (settings.headerOffset) {
-               _arrow.css('margin-bottom', -(_top / 2));
-               var _top = _navbar.outerHeight() - $(this).outerHeight();
-               _content.css('top', (_top / 2) + $(this).outerHeight());
-            } else {
-               _content.css('top', '100%');
-            }
-
-            switch ($(this).data('position')) {
-               case 'left':
-                  var offsetleft = $(this).offset().left;
-                  break;
-               case 'right':
-                  var offsetleft = $(this).offset().left - (_content.outerWidth() - $(this).outerWidth());
-                  break;
-               case 'center':
-               case 'edge':
-               case 'full':
-                  var offsetleft = $(this).offset().left - (_content.outerWidth() / 2 - $(this).outerWidth() / 2);
-                  break;
-            }
-
-            if ((offsetleft + _content.outerWidth()) > _rightoverflow) {
-               var _left = _content.outerWidth() - (_rightoverflow - offsetleft);
-               if ($(this).data('position') == 'center' || $(this).data('position') == 'edge' || $(this).data('position') == 'full') {
-                  _left = _left + ((_content.outerWidth() / 2) - ($(this).outerWidth() / 2));
-               }
-               _content.css('left', -(_left));
-            } else if (offsetleft < _leftoverflow) {
-               var _right = (offsetleft - _leftoverflow);
-               if ($(this).data('position') == 'center' || $(this).data('position') == 'edge' || $(this).data('position') == 'full') {
-                  _right = _right - ((_content.outerWidth() / 2) - ($(this).outerWidth() / 2));
-               }
-               _content.css('right', _right);
-            }
-
-         });
-
+         observering($(this)[0]);
 
          var openMe = function (_this) {
             _this.addClass('open');
@@ -204,7 +227,6 @@
                   closeMe($trigger);
                }
             });
-
          }
       });
    };

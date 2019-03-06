@@ -38,7 +38,8 @@ class JFormFieldAstroidMenuOptions extends JFormField {
              'badge' => FALSE,
              'badge_text' => '',
              'badge_color' => '#FFF',
-             'badge_bgcolor' => '#000'
+             'badge_bgcolor' => '#000',
+             'badge_alignment' => 'left'
          ];
       } else {
          $value = (array) $this->value;

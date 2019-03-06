@@ -374,6 +374,7 @@ class AstroidMenu {
       $data->badge_text = '';
       $data->badge_color = '#FFF';
       $data->badge_bgcolor = '#000';
+      $data->badge_alignment = '';
 
 
       if (isset($astroid_menu_options['megamenu']) && $astroid_menu_options['megamenu']) {
@@ -434,6 +435,9 @@ class AstroidMenu {
       }
       if (isset($astroid_menu_options['badge_bgcolor']) && $astroid_menu_options['badge_bgcolor']) {
          $data->badge_bgcolor = $astroid_menu_options['badge_bgcolor'];
+      }
+      if (isset($astroid_menu_options['badge_alignment']) && $astroid_menu_options['badge_alignment']) {
+         $data->badge_alignment = $astroid_menu_options['badge_alignment'];
       }
 
       return $data;

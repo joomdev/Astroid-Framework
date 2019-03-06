@@ -87,14 +87,17 @@ foreach ($attributes as $key => $attribute) {
 <a href="<?php echo $item->flink; ?>" <?php echo implode(' ', $attr); ?>>
    <span class="nav-title">
       <?php if($options->badge) { ?>
-         <?php if ($item->level == 1){ ?>
-            <span class="menu-item-badge" style="background: <?php echo $options->badge_bgcolor ?> !important; color: <?php echo $options->badge_color ?>;">
-               <?php echo $options->badge_text; ?>
-            </span>
-            <?php }  else { ?>
-            <span class="menu-item-badge" style="background: <?php echo $options->badge_bgcolor ?>; color: <?php echo $options->badge_color ?> !important;">
-               <?php echo $options->badge_text; ?>
-            </span>
+         <?php  if($options->badge_alignment=="left") { ?>
+            <?php if ($item->level == 1){ ?>
+               <span class="menu-item-badge" style="background: <?php echo $options->badge_bgcolor ?> !important; color: <?php echo $options->badge_color ?>;">
+                  <?php echo $options->badge_text; ?>
+               
+               </span>
+               <?php }  else { ?>
+               <span class="menu-item-badge" style="background: <?php echo $options->badge_bgcolor ?>; color: <?php echo $options->badge_color ?> !important;">
+                  <?php echo $options->badge_text; ?>
+               </span>
+            <?php } ?>
          <?php } ?>
       <?php } ?>
 
@@ -111,6 +114,19 @@ foreach ($attributes as $key => $attribute) {
 
          <?php } else { ?>
             <?php echo $item->title; ?>
+         <?php } ?>
+      <?php } ?>
+      <?php if($options->badge) { ?>
+         <?php  if($options->badge_alignment=="right") { ?>
+            <?php if ($item->level == 1){ ?>
+               <span class="menu-item-badge" style="background: <?php echo $options->badge_bgcolor ?> !important; color: <?php echo $options->badge_color ?>;">
+                  <?php echo $options->badge_text; ?>
+               </span>
+               <?php }  else { ?>
+               <span class="menu-item-badge" style="background: <?php echo $options->badge_bgcolor ?>; color: <?php echo $options->badge_color ?> !important;">
+                  <?php echo $options->badge_text; ?>
+               </span>
+            <?php } ?>
          <?php } ?>
       <?php } ?>
       <?php if (!$is_mobile_menu && $item->level == 1 && (($item->parent && $item->deeper == 1) || $options->megamenu)) { ?>

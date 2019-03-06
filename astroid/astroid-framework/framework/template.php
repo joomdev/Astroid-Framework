@@ -21,6 +21,7 @@ class AstroidFrameworkTemplate {
    protected $debug = false;
    public $cssFile = true;
    public $_styles = [];
+   public $_js = [];
 
    public function __construct($template) {
       if (!defined('ASTROID_TEMPLATE_NAME')) {
@@ -660,6 +661,17 @@ class AstroidFrameworkTemplate {
       }
    }
 
+
+   public function addScript($js) {
+      $template_directory = JPATH_THEMES . "/" . $this->template . "/js/";
+      if (file_exists($template_directory . $js)) {
+         $this->_js[$js] = JURI::root() . 'templates/' . $this->template . "/js/" . $js;
+
+      }else{
+         $this->_js[$js] = $js;
+      }     
+   }
+
    public function buildAstroidCSS($version, $css = '') {
       if ($this->cssFile) {
          $template_dir = JPATH_SITE . '/templates/' . $this->template . '/css';
@@ -681,6 +693,19 @@ class AstroidFrameworkTemplate {
          $version = md5($styles . $mediaVersion);
          $this->buildAstroidCSS($version, $styles);
          $document->addStyleSheet(JURI::root() . 'templates/' . $this->template . '/css/astroid-' . $version . '.css');
+      }
+   }
+
+   public function loadJS(){
+      $document = JFactory::getDocument();
+      foreach($this->_js as $key => $js){
+         if($key=='custom.js'){
+            $template_directory = JPATH_THEMES . "/" . $this->template . "/js/";
+            if (!file_exists($template_directory . $key)) {
+               continue;
+            }
+         }
+         $document->addScript($js);
       }
    }
 

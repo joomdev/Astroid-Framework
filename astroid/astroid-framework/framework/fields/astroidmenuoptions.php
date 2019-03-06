@@ -34,7 +34,11 @@ class JFormFieldAstroidMenuOptions extends JFormField {
              'megamenu_width' => '980px',
              'alignment' => 'right',
              'megamenu_direction' => 'right',
-             'subtitle' => ''
+             'subtitle' => '',
+             'badge' => FALSE,
+             'badge_text' => '',
+             'badge_color' => '#FFF',
+             'badge_bgcolor' => '#000'
          ];
       } else {
          $value = (array) $this->value;

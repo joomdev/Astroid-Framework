@@ -370,6 +370,10 @@ class AstroidMenu {
       $data->width = '';
       $data->alignment = '';
       $data->rows = [];
+      $data->badge = 0;
+      $data->badge_text = '';
+      $data->badge_color = '#FFF';
+      $data->badge_bgcolor = '#000';
 
 
       if (isset($astroid_menu_options['megamenu']) && $astroid_menu_options['megamenu']) {
@@ -418,6 +422,18 @@ class AstroidMenu {
 
       if ($item->level > 1) {
          $data->megamenu = self::isParentMegamenu($item->parent_id, $list);
+      }
+      if (isset($astroid_menu_options['badge']) && $astroid_menu_options['badge']) {
+         $data->badge = 1;
+      }
+      if (isset($astroid_menu_options['badge_text']) && $astroid_menu_options['badge_text']) {
+         $data->badge_text = $astroid_menu_options['badge_text'];
+      }
+      if (isset($astroid_menu_options['badge_color']) && $astroid_menu_options['badge_color']) {
+         $data->badge_color = $astroid_menu_options['badge_color'];
+      }
+      if (isset($astroid_menu_options['badge_bgcolor']) && $astroid_menu_options['badge_bgcolor']) {
+         $data->badge_bgcolor = $astroid_menu_options['badge_bgcolor'];
       }
 
       return $data;

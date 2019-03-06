@@ -86,6 +86,18 @@ foreach ($attributes as $key => $attribute) {
 <!--menu link starts-->
 <a href="<?php echo $item->flink; ?>" <?php echo implode(' ', $attr); ?>>
    <span class="nav-title">
+      <?php if($options->badge) { ?>
+         <?php if ($item->level == 1){ ?>
+            <span class="menu-item-badge" style="background: <?php echo $options->badge_bgcolor ?> !important; color: <?php echo $options->badge_color ?>;">
+               <?php echo $options->badge_text; ?>
+            </span>
+            <?php }  else { ?>
+            <span class="menu-item-badge" style="background: <?php echo $options->badge_bgcolor ?>; color: <?php echo $options->badge_color ?> !important;">
+               <?php echo $options->badge_text; ?>
+            </span>
+         <?php } ?>
+      <?php } ?>
+
       <?php if (!empty($options->icon)) { ?>
          <i class="<?php echo $options->icon; ?>"></i>
       <?php } ?>

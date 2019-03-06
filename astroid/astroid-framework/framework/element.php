@@ -515,6 +515,11 @@ class AstroidElement {
             $background_video = $params->get('background_video', '');
             if (!empty($background_video)) {
                $attributes['data-jd-video-bg'] = JURI::root() . 'images/' . $background_video;
+               $template = AstroidFramework::getTemplate();
+               $videobgjs = 'vendor/jquery.jdvideobg.js';
+               if(!isset($template->_js[$videobgjs])){
+                  $template->addScript($videobgjs);
+               }
             }
          }
       }
@@ -524,6 +529,11 @@ class AstroidElement {
             $background_video = $params->get('background_video', '');
             if (!empty($background_video)) {
                $attributes['data-jd-video-bg'] = JURI::root() . 'images/' . $background_video;
+               $template = AstroidFramework::getTemplate();
+               $videobgjs = 'vendor/jquery.jdvideobg.js';
+               if(!isset($template->_js[$videobgjs])){
+                  $template->addScript($videobgjs);
+               }
             }
          }
       }
@@ -533,6 +543,11 @@ class AstroidElement {
             $background_video = $params->get('background_video', '');
             if (!empty($background_video)) {
                $attributes['data-jd-video-bg'] = JURI::root() . 'images/' . $background_video;
+               $template = AstroidFramework::getTemplate();
+               $videobgjs = 'vendor/jquery.jdvideobg.js';
+               if(!isset($template->_js[$videobgjs])){
+                  $template->addScript($videobgjs);
+               }
             }
          }
       }

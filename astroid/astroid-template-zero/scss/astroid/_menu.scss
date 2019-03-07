@@ -1,7 +1,24 @@
 .jddrop-content{
    display: none;
-   z-index: 1;
    z-index: 99;
+}
+
+
+// Menu Badge
+
+.menu-item-badge{
+   padding: 2px 7px;
+	font-weight: normal;
+	text-transform: none;
+	line-height: 20px;
+	font-size: 14px;
+   border-radius: 2px;
+   &.menu-item-badge-right {
+      margin-left: 5px;
+   }
+   &.menu-item-badge-left {
+      margin-right: 5px;
+   }
 }
 
 // megamenu dropdown

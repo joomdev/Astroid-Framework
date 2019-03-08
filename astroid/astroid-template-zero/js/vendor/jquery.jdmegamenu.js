@@ -25,19 +25,24 @@
 
       return this.each(function () {
          var _navbar = $(this);
+         var _container = _navbar;
+         if (_navbar.children('.container').length) {
+            _container = _navbar.children('.container');
+         }
          var _megamenu = _navbar.find(settings.megamenuClass);
          var _submenus = _megamenu.find(settings.submenuClass);
 
          var init = function () {
-            if(!_navbar.is(':visible')){
+            if (!_navbar.is(':visible')) {
                return false;
             }
             var _megamenu = _navbar.find(settings.megamenuClass);
             var _submenus = _megamenu.find(settings.submenuClass);
             _submenus.children('li').each(function () {
                if ($(this).children(settings.submenuClass).length) {
-                  $(this).hover(function () {
+                  $(this).unbind('mouseenter mouseleave').hover(function () {
                      var _submenu = $(this).children(settings.submenuClass);
+                     _submenu.removeClass('right');
                      _submenu.stop(true, true).slideDown();
                      if (_submenu.offset().left + _submenu.outerWidth() > $(window).innerWidth()) {
                         _submenu.addClass('right');
@@ -62,17 +67,17 @@
                   var _rightoverflow = $(window).innerWidth();
                   _content.css('max-width', '100vw');
                } else {
-                  var _leftoverflow = _navbar.offset().left;
-                  var _rightoverflow = _navbar.offset().left + _navbar.outerWidth();
-                  _content.css('max-width', _navbar.outerWidth());
+                  var _leftoverflow = _container.offset().left;
+                  var _rightoverflow = _container.offset().left + _container.outerWidth();
+                  _content.css('max-width', _container.outerWidth());
                }
-               var _top = _navbar.outerHeight() - $(this).outerHeight();
+               var _top = _container.outerHeight() - $(this).outerHeight();
                var _arrow = $(this).children('.arrow');
 
 
                if (settings.headerOffset) {
                   _arrow.css('margin-bottom', -(_top / 2));
-                  var _top = _navbar.outerHeight() - $(this).outerHeight();
+                  var _top = _container.outerHeight() - $(this).outerHeight();
                   _content.css('top', (_top / 2) + $(this).outerHeight());
                } else {
                   _content.css('top', '100%');
@@ -202,13 +207,13 @@
          };
 
          if (settings.trigger == 'hover') {
-            _megamenu.hover(function () {
+            _megamenu.unbind('mouseenter mouseleave').hover(function () {
                openMe($(this));
             }, function () {
                closeMe($(this));
             });
          } else {
-            _megamenu.find('.megamenu-item-link').click(function (e) {
+            _megamenu.find('.megamenu-item-link').unbind('click').click(function (e) {
                e.preventDefault();
                e.stopPropagation();
                if ($(this).parent(settings.megamenuClass).hasClass('open')) {

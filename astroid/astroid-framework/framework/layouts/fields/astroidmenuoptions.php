@@ -150,7 +150,8 @@ foreach ($items as $i => $item) {
                   </div>
                   <div class="col-<?php echo $menu_item_level != 1 ? '7' : '6'; ?>">
                      <label class="astroid-label" id="<?php echo $id; ?>_icon-lbl" for="<?php echo $id; ?>_icon"><?php echo JText::_('TPL_ASTROID_ICON'); ?></label>
-                     <div>
+                     <div style="position: relative">
+                        <span ng-show="!<?php echo $id; ?>_showtitle" style="position: absolute;top: 0; left: 0; z-index: 99; background: rgba(255,255,255,0.5);display: block;width: 100%; height: 100%;"></span>
                         <div class="ui fluid search selection dropdown astroid-icon-selector">
                            <input type="hidden" value="<?php echo $icon; ?>" name="<?php echo $name; ?>[icon]">
                            <i class="dropdown icon"></i>

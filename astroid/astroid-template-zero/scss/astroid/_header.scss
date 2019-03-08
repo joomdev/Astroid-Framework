@@ -40,7 +40,10 @@
       z-index: $sticky-header-zindex;
       -webkit-animation-duration: $sticky-header-animation-duration;
       animation-duration: $sticky-header-animation-duration;
-      padding: $sticky-header-padding-y $sticky-header-padding-x;
+      > div{
+         padding-top: $sticky-header-padding-y;
+         padding-bottom: $sticky-header-padding-y;
+      }
 
       &.d-flex {
          -webkit-animation-name: slideInDown;

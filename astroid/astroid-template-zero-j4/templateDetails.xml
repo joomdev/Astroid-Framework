@@ -2,7 +2,7 @@
 <!DOCTYPE install PUBLIC "-//Joomla! 2.5//DTD template 1.0//EN" "https://www.joomla.org/xml/dtd/1.6/template-install.dtd">
 <extension version="3.1" type="template" client="site" method="upgrade">
    <name>astroid_template_zero</name>
-   <creationDate>Nov 2018</creationDate>
+   <creationDate>March 2019</creationDate>
    <author>JoomDev</author>
    <authorEmail>info@joomdev.com</authorEmail>
    <authorUrl>https://www.joomdev.com</authorUrl>

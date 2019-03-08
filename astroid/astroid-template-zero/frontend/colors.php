@@ -118,10 +118,10 @@ if (!empty($dropdown_main_hover_background_color)) {
    $dropdown_styles[] = '.nav-submenu > li > a:hover, .megamenu-submenu-container .megamenu-submenu > li > a:hover{ background-color: ' . $dropdown_main_hover_background_color . ' !important;}';
 }
 if (!empty($dropdown_main_active_link_color)) {
-   $dropdown_styles[] = '.nav-submenu > li.nav-item-active > a:hover, .megamenu-submenu-container .megamenu-submenu > li.nav-item-active > a{ color: ' . $dropdown_main_active_link_color . ' !important;}';
+   $dropdown_styles[] = '.nav-submenu > li.nav-item-active > a{ color: ' . $dropdown_main_active_link_color . ' !important;}';
 }
 if (!empty($dropdown_main_active_background_color)) {
-   $dropdown_styles[] = '.nav-submenu > li.nav-item-active > a:hover, .megamenu-submenu-container .megamenu-submenu > li.nav-item-active > a{ background-color: ' . $dropdown_main_active_background_color . ' !important;}';
+   $dropdown_styles[] = '.nav-submenu > li.nav-item-active > a{ background-color: ' . $dropdown_main_active_background_color . ' !important;}';
 }
 ?>
 

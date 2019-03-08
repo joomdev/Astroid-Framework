@@ -635,12 +635,19 @@ var Admin = new AstroidAdmin();
       initAstroidUploader();
       $('.astroid-code-editor-exit-fs').click(function () {
          $(this).parent('.head').parent('.astroid-code-editor').removeClass('full-screen');
+         setTimeout(function () {
+            var resizeEvent = window.document.createEvent('UIEvents');
+            resizeEvent.initUIEvent('resize', true, false, window, 0);
+            window.dispatchEvent(resizeEvent);
+         }, 10);
       });
       $('.astroid-code-editor-fs').click(function () {
          $(this).parent('.astroid-code-editor').addClass('full-screen');
          setTimeout(function () {
-            $(window).resize();
-         }, 100);
+            var resizeEvent = window.document.createEvent('UIEvents');
+            resizeEvent.initUIEvent('resize', true, false, window, 0);
+            window.dispatchEvent(resizeEvent);
+         }, 10);
       });
       $('.astroid-preloader-field-select').click(function () {
          $(this).parent('.astroid-preloader-field').children('.astroid-preloaders-selector').addClass('open');
@@ -809,7 +816,6 @@ var Admin = new AstroidAdmin();
 
       if (_isLibraryFont) {
          if (_preview !== null) {
-            console
             _preview.css('font-family', _font);
             _preview.parent('.astroid-typography-preview-container').siblings('.library-font-warning').removeClass('d-none');
          }

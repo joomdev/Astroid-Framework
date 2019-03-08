@@ -47,8 +47,6 @@ $badge = empty($badge) ? 0 : 1;
 $badge_text = (string) @$value['badge_text'];
 $badge_color = (string) @$value['badge_color'];
 $badge_bgcolor = (string) @$value['badge_bgcolor'];
-$badge_alignment = (string) @$value['badge_alignment'];
-$badge_alignment = !empty($badge_alignment) ? $badge_alignment : 'left';
 $app = JFactory::getApplication('site');
 $menu = $app->getMenu('site');
 $items = $menu->getItems('menutype', $menu_type);
@@ -275,33 +273,21 @@ foreach ($items as $i => $item) {
          <div class="row">
             <div class="col-12">
                <div class="row">
-                  <div class="col-2">
+                  <div class="col-3">
                      <label class="astroid-label" id="<?php echo $id; ?>_badge-lbl" for="<?php echo $id; ?>_badge"><?php echo JText::_('TPL_ASTROID_MENU_BADGE'); ?></label>
                      <input value="<?php echo $badge; ?>" type="hidden" ng-model="<?php echo $id; ?>_badge" astroid-switch name="<?php echo $name; ?>[badge]" id="<?php echo $id; ?>_badge" />
                   </div>
-                  <div class="col-2" ng-show="<?php echo $id; ?>_badge">
+                  <div class="col-3" ng-show="<?php echo $id; ?>_badge">
                      <label class="astroid-label" id="<?php echo $id; ?>_badge_text-lbl" for="<?php echo $id; ?>_badge-text"><?php echo JText::_('TPL_ASTROID_MENU_BADGE_TEXT'); ?></label>
                      <input type="text" name="<?php echo $name; ?>[badge_text]" id="<?php echo $id; ?>_badge_text" class="form-control" value="<?php echo $badge_text; ?>" />
                   </div>
-                  <div class="col-2" ng-show="<?php echo $id; ?>_badge">
+                  <div class="col-3" ng-show="<?php echo $id; ?>_badge">
                      <label class="astroid-label" id="<?php echo $id; ?>_badge_color-lbl" for="<?php echo $id; ?>_badge-color"><?php echo JText::_('TPL_ASTROID_MENU_BADGE_COLOR'); ?></label>
                      <input type="text" name="<?php echo $name; ?>[badge_color]" id="<?php echo $id; ?>_badge_color" class="form-control" value="<?php echo $badge_color; ?>" />
                   </div>
-                  <div class="col-2" ng-show="<?php echo $id; ?>_badge">
+                  <div class="col-3" ng-show="<?php echo $id; ?>_badge">
                      <label class="astroid-label" id="<?php echo $id; ?>_badge_bgcolor-lbl" for="<?php echo $id; ?>_badge-bgcolor"><?php echo JText::_('TPL_ASTROID_MENU_BADGE_BGCOLOR'); ?></label>
                      <input type="text" name="<?php echo $name; ?>[badge_bgcolor]" id="<?php echo $id; ?>_badge_bgcolor" class="form-control" value="<?php echo $badge_bgcolor; ?>" />
-                  </div>
-                  <div ng-show="<?php echo $id; ?>_badge" class="col-2">
-                     <label class="astroid-label" id="<?php echo $id; ?>_badge_alignment-lbl" for="<?php echo $id; ?>_badge_alignment"><?php echo JText::_('TPL_ASTROID_MENU_BADGE_ALIGNMENT'); ?></label>
-                     <div class="ui fluid search selection dropdown astroid-select-ui" select-ui-div>
-                        <input type="hidden" value="<?php echo $badge_alignment; ?>" name="<?php echo $name; ?>[badge_alignment]" id="<?php echo $id; ?>_badge_alignment">
-                        <i class="dropdown icon"></i>
-                        <div class="default text"><?php echo JText::_('TPL_ASTROID_MENU_OPTIONS_SELECT_ALIGNMENT'); ?></div>
-                        <div class="menu">
-                           <div class="item" data-value="left"><i class="fas fa-align-left"></i> <?php echo JText::_('JGLOBAL_LEFT'); ?></div>
-                           <div class="item" data-value="right"><i class="fas fa-align-right"></i> <?php echo JText::_('JGLOBAL_RIGHT'); ?></div>
-                        </div>
-                     </div>
                   </div>
                </div>
             </div>

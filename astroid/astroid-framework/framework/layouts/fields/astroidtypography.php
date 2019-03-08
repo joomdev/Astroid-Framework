@@ -152,8 +152,8 @@ foreach ($fonts as $font) {
             <?php } ?>
             <?php if ($transformpicker) { ?>
                <label class="astroid-label"><?php echo JText::_('TPL_ASTROID_TEXT_TRANSFORM_LABEL'); ?></label>
-               <select data-typography-field="<?php echo $id; ?>" data-typography-property="text-transform" ng-model="<?php echo $id; ?>_text_transform" name="<?php echo $name; ?>[text_transform]" class="form-control" select-ui>
-                  <option <?php echo ($text_transform == '' ? ' selected="selected"' : ''); ?> value=""><?php echo JText::_('JNONE'); ?></option>
+               <select data-typography-field="<?php echo $id; ?>" data-typography-property="text-transform" name="<?php echo $name; ?>[text_transform]" class="form-control" select-ui-div>
+                  <option <?php echo ($text_transform == '' ? ' selected="selected"' : ''); ?> value="none"><?php echo JText::_('JNONE'); ?></option>
                   <?php
                   foreach (array('uppercase' => 'JGLOBAL_UPPERCASE', 'lowercase' => 'JGLOBAL_LOWERCASE', 'capitalize' => 'JGLOBAL_CAPITALIZE') as $transform => $transform_title) {
                      echo '<option ' . ($text_transform == $transform ? ' selected="selected"' : '') . ' value="' . $transform . '">' . JText::_($transform_title) . '</option>';

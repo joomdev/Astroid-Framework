@@ -105,12 +105,12 @@
          </field>
          
 
-         <field ngShow="header==true" astroidgroup="header_element" name="dropdown_trigger" type="astroidradio" default="hover" label="TPL_ASTROID_MENU_OPTIONS_SELECT_ACTION">
+         <field ngShow="header==true" astroidgroup="header_element" name="dropdown_trigger" type="astroidradio" default="hover" label="TPL_ASTROID_MENU_OPTIONS_SELECT_ACTION_LABEL" description="TPL_ASTROID_MENU_OPTIONS_SELECT_ACTION_DESC">
             <option value="hover">JGLOBAL_HOVER</option>
             <option value="click">JGLOBAL_CLICK</option>
          </field>
      
-         <field ngShow="header==true" astroidgroup="header_element" name="dropdown_arrow" type="astroidtext" astroid-switch="true" default="0" label="TPL_ASTROID_MENU_OPTIONS_SELECT_ARROW"></field>
+         <field ngShow="header==true" astroidgroup="header_element" name="dropdown_arrow" type="astroidtext" astroid-switch="true" default="0" label="TPL_ASTROID_MENU_OPTIONS_SELECT_ARROW_LABEL" description="TPL_ASTROID_MENU_OPTIONS_SELECT_ARROW_DESC"></field>
 
          <field ngShow="header==true" astroidgroup="header_element" description="TPL_ASTROID_HEADER_LOGO_OPTION_DESC" title="TPL_ASTROID_HEADER_LOGO_OPTION" type="astroidheading" />
 

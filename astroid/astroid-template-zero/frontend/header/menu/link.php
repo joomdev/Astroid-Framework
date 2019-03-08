@@ -110,7 +110,7 @@ foreach ($attributes as $key => $attribute) {
             </sup>
             <?php } else { ?>
             <span class="menu-item-badge" style="background: <?php echo $options->badge_bgcolor ?> !important; color: <?php echo $options->badge_color ?>;">
-               <sup><?php echo $options->badge_text; ?><sup>
+               <?php echo $options->badge_text; ?>
             </span>
          <?php } ?>
       <?php } ?>

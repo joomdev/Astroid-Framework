@@ -43,6 +43,16 @@ $burger-layer-width: 30px !default;
          color: $black;
          padding: 15px 15px;
       }
+      .menu-item span.separator,.menu-item span.nav-header {
+         cursor: pointer;
+         outline: 0;
+         width: 80%;
+         text-decoration: none;
+         vertical-align: middle;
+         display: table-cell;
+         color: $black;
+         padding: 15px 15px;
+      }
       .menu-item .menu-indicator {
          width: 20%;
          text-align: center;
@@ -54,7 +64,7 @@ $burger-layer-width: 30px !default;
       .dropdown-menus {
          position: fixed;
          left: -100%;
-         top: 60px;
+         top: 30px;
          width: 100%;
          height: 100vh;
          transition: all 0.5s;

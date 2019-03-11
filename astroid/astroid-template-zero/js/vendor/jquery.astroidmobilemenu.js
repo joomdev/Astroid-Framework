@@ -24,7 +24,11 @@
                _indicatorBackItem.append(_indicatorBack);
 
                // Add Button For Toggle Sub Menu
-               $(this).children('a').after(_indicator);
+               if ($(this).children('a').length) {
+                  $(this).children('a').after(_indicator);
+               }else{
+                  $(this).children('span').after(_indicator);
+               }
                // For Sub menu Open
                _indicator.bind('click', function () {
                   $(this).next('.dropdown-menus').toggleClass('menu_open');

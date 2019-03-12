@@ -17,13 +17,16 @@
 
 // megamenu dropdown
 .megamenu-container{
-   border: 1px solid #eee;
    padding: 15px 10px;
    display: none;
    position: absolute;
    z-index: 999;
+   box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.1);
    &.nav-submenu-container{
       padding: 0;
+   }
+   .nav-submenu {
+      box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.1);
    }
 }
 
@@ -34,7 +37,6 @@
    list-style-type: none;
    display: flex;
    flex-direction: column;
-   border: 1px solid #eee;
    z-index: 9;
    &.megamenu-submenu-level-1{
       border: 0;   

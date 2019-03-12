@@ -169,11 +169,11 @@ foreach ($items as $i => $item) {
                <div class="row">
                   <div ng-hide="<?php echo $id; ?>_megamenu" class="col-4">
                      <label class="astroid-label" id="<?php echo $id; ?>_width-lbl" for="<?php echo $id; ?>_width"><?php echo JText::_('TPL_ASTROID_MENU_OPTIONS_WIDTH'); ?></label>
-                     <input type="text" autocomplete="off" name="<?php echo $name; ?>[width]" value="<?php echo $width; ?>" id="<?php echo $id; ?>_width" class="form-control" />
+                     <input type="text" autocomplete="off" name="<?php echo $name; ?>[width]" placeholder="280px" value="<?php echo $width; ?>" id="<?php echo $id; ?>_width" class="form-control" />
                   </div>
                   <div ng-show="<?php echo $id; ?>_megamenu" class="col-4">
                      <label class="astroid-label" id="<?php echo $id; ?>_width-lbl" for="<?php echo $id; ?>_width"><?php echo JText::_('TPL_ASTROID_MENU_OPTIONS_MEGAMENU_WIDTH'); ?></label>
-                     <input type="text" autocomplete="off" name="<?php echo $name; ?>[megamenu_width]" value="<?php echo $megamenu_width; ?>" id="<?php echo $id; ?>_width" class="form-control" />
+                     <input type="text" autocomplete="off" name="<?php echo $name; ?>[megamenu_width]" placeholder="980px" value="<?php echo $megamenu_width; ?>" id="<?php echo $id; ?>_width" class="form-control" />
                   </div>
                   <div ng-hide="<?php echo $id; ?>_megamenu" class="col-8">
                      <label class="astroid-label" id="<?php echo $id; ?>_alignment-lbl" for="<?php echo $id; ?>_alignment"><?php echo JText::_('TPL_ASTROID_MENU_OPTIONS_DROPDOWN_ALIGNMENT'); ?></label>

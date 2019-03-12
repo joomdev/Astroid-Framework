@@ -39,7 +39,7 @@
    flex-direction: column;
    z-index: 9;
    &.megamenu-submenu-level-1{
-      border: 0;   
+      box-shadow: none;   
    }
    > li{
       padding: 0;

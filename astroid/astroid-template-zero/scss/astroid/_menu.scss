@@ -8,10 +8,10 @@
 
 .menu-item-badge{
    padding: 2px 7px;
-	font-weight: normal;
-	text-transform: none;
-	line-height: 20px;
-	font-size: 14px;
+   font-weight: normal;
+   text-transform: none;
+   line-height: 20px;
+   font-size: 14px;
    border-radius: 2px;
 }
 
@@ -35,6 +35,48 @@
    display: flex;
    flex-direction: column;
    border: 1px solid #eee;
+   z-index: 9;
+   &.megamenu-submenu-level-1{
+      border: 0;   
+   }
+   > li{
+      padding: 0;
+      position: relative;
+      > a{
+         text-decoration: none;
+         display: block;
+         padding: 10px 15px;
+         &.item-link-heading,item-link-separator{
+            &.item-level-2{
+               text-transform: uppercase;
+               border-bottom: 1px solid;
+               &:hover{
+                  color: inherit !important;
+                  background: inherit !important;
+               }
+            }
+         }
+      }
+      > .nav-submenu{
+         position: absolute;
+         top: 0;
+         left: 100%;
+         width: 100%;
+         max-width: 300px;
+         display: none;
+         &.right{
+            left: -100%;
+         }
+      }
+   }
+}
+
+.nav-submenu-static{
+   margin: 0;
+   padding: 0;
+   list-style-type: none;
+   display: flex;
+   flex-direction: column;
    z-index: 9;
    > li{
       padding: 0;

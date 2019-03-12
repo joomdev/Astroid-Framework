@@ -23,6 +23,9 @@ $item = $params['item'];
 $active = $params['active'];
 $header = @$params['header'];
 $is_mobile_menu = $params['mobilemenu'];
+if ($item->type == "heading") {
+   $item->flink = 'javascript:void(0);';
+}
 
 $attributes = [];
 if ($item->anchor_title) {
@@ -78,6 +81,9 @@ if ($attributes['data-drop-action'] == 'click') {
    //$item->flink = 'javascript:void(0);';
 }
 
+$attributes['class'] .= " item-link-" . $item->type;
+$attributes['class'] .= " item-level-" . $item->level;
+
 $attr = [];
 foreach ($attributes as $key => $attribute) {
    $attr[] = $key . '="' . $attribute . '"';
@@ -101,14 +107,14 @@ foreach ($attributes as $key => $attribute) {
             <?php echo $item->title; ?>
          <?php } ?>
       <?php } ?>
-      <?php if($options->badge) { ?>
-         <?php if ($item->level == 1){ ?>
+      <?php if ($options->badge) { ?>
+         <?php if ($item->level == 1) { ?>
             <sup>
                <span class="menu-item-badge" style="background: <?php echo $options->badge_bgcolor ?>; color: <?php echo $options->badge_color ?> !important;">
                   <?php echo $options->badge_text; ?>
                </span>
             </sup>
-            <?php } else { ?>
+         <?php } else { ?>
             <span class="menu-item-badge" style="background: <?php echo $options->badge_bgcolor ?> !important; color: <?php echo $options->badge_color ?>;">
                <?php echo $options->badge_text; ?>
             </span>
@@ -116,7 +122,7 @@ foreach ($attributes as $key => $attribute) {
       <?php } ?>
       <?php if (!$is_mobile_menu && $item->level == 1 && (($item->parent && $item->deeper == 1) || $options->megamenu)) { ?>
          <i class="fa fa-chevron-down nav-item-caret"></i>
-      <?php } elseif (!$is_mobile_menu && $item->parent) { ?>
+      <?php } elseif (!$is_mobile_menu && $item->parent && !($item->type == "heading" || $item->type == "separator")) { ?>
          <i class="fa fa-chevron-right nav-item-caret"></i>
       <?php } ?>
    </span>

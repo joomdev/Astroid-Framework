@@ -40,19 +40,22 @@
             var _submenus = _megamenu.find(settings.submenuClass);
             _submenus.children('li').each(function () {
                if ($(this).children(settings.submenuClass).length) {
-                  $(this).unbind('mouseenter mouseleave').hover(function () {
-                     var _submenu = $(this).children(settings.submenuClass);
-                     _submenu.removeClass('right');
-                     _submenu.stop(true, true).slideDown();
-                     if (_submenu.offset().left + _submenu.outerWidth() > $(window).innerWidth()) {
-                        _submenu.addClass('right');
-                     } else {
+                  if (!$(this).children(settings.submenuClass).hasClass('d-block')) {
+
+                     $(this).unbind('mouseenter mouseleave').hover(function () {
+                        var _submenu = $(this).children(settings.submenuClass);
                         _submenu.removeClass('right');
-                     }
-                  }, function () {
-                     var _submenu = $(this).children(settings.submenuClass);
-                     _submenu.stop(true, true).slideUp();
-                  });
+                        _submenu.stop(true, true).slideDown();
+                        if (_submenu.offset().left + _submenu.outerWidth() > $(window).innerWidth()) {
+                           _submenu.addClass('right');
+                        } else {
+                           _submenu.removeClass('right');
+                        }
+                     }, function () {
+                        var _submenu = $(this).children(settings.submenuClass);
+                        _submenu.stop(true, true).slideUp();
+                     });
+                  }
                }
             });
 

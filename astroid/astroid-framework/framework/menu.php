@@ -160,7 +160,7 @@ class AstroidMenu {
                         $active_id = $active->id;
                         $default_id = $default->id;
                         $path = $base->tree;
-                        echo '<ul class="nav-submenu">';
+                        echo '<ul class="nav-submenu megamenu-submenu-level-1">';
                         foreach ($items as $i => $subitem) {
                            if ($subitem->id != $element['id']) {
                               continue;
@@ -208,8 +208,11 @@ class AstroidMenu {
          }
          $list[] = $item;
       }
-
-      echo '<ul class="nav-submenu">';
+      if ($parent->level == 2 && ($parent->type == "heading" || $parent->type == "separator")) {
+         echo '<ul class="nav-submenu-static d-block">';
+      } else {
+         echo '<ul class="nav-submenu">';
+      }
       foreach ($list as $i => &$item) {
          $options = self::getAstroidMenuOptions($item, $list);
          $class = self::getLiClass($item, $options, $default_id, $active_id, $path);

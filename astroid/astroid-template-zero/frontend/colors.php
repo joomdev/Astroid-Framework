@@ -109,19 +109,19 @@ if (!empty($dropdown_main_background_color)) {
    $dropdown_styles[] = '.nav-submenu, .megamenu-container{ background: ' . $dropdown_main_background_color . ' !important;}';
 }
 if (!empty($dropdown_main_link_color)) {
-   $dropdown_styles[] = '.nav-submenu > li > a, .astroid-nav .megamenu-title, .megamenu-submenu-container .megamenu-submenu > li > a{ color: ' . $dropdown_main_link_color . ' !important;}';
-}
-if (!empty($dropdown_main_hover_link_color)) {
-   $dropdown_styles[] = '.nav-submenu > li > a:hover, .astroid-nav .megamenu-submenu-container .megamenu-submenu > li > a:hover{ color: ' . $dropdown_main_hover_link_color . ' !important;}';
-}
-if (!empty($dropdown_main_hover_background_color)) {
-   $dropdown_styles[] = '.nav-submenu > li > a:hover, .megamenu-submenu-container .megamenu-submenu > li > a:hover{ background-color: ' . $dropdown_main_hover_background_color . ' !important;}';
+   $dropdown_styles[] = '.astroid-nav .megamenu-container .megamenu-title, .astroid-nav .megamenu-container li.nav-item-submenu > a{ color: ' . $dropdown_main_link_color . ' !important;}';
 }
 if (!empty($dropdown_main_active_link_color)) {
-   $dropdown_styles[] = '.nav-submenu > li.nav-item-active > a{ color: ' . $dropdown_main_active_link_color . ' !important;}';
+   $dropdown_styles[] = '.astroid-nav .megamenu-container li.nav-item-active > a{ color: ' . $dropdown_main_active_link_color . ' !important;}';
 }
 if (!empty($dropdown_main_active_background_color)) {
-   $dropdown_styles[] = '.nav-submenu > li.nav-item-active > a{ background-color: ' . $dropdown_main_active_background_color . ' !important;}';
+   $dropdown_styles[] = '.astroid-nav .megamenu-container li.nav-item-active > a{ background-color: ' . $dropdown_main_active_background_color . ' !important;}';
+}
+if (!empty($dropdown_main_hover_link_color)) {
+   $dropdown_styles[] = '.astroid-nav .megamenu-container li > a:hover, .astroid-nav .megamenu-submenu-container .megamenu-submenu li > a:hover{ color: ' . $dropdown_main_hover_link_color . ' !important;}';
+}
+if (!empty($dropdown_main_hover_background_color)) {
+   $dropdown_styles[] = '.astroid-nav .megamenu-container li > a:hover, .astroid-nav .megamenu-submenu-container .megamenu-submenu li > a:hover{ background-color: ' . $dropdown_main_hover_background_color . ' !important;}';
 }
 ?>
 

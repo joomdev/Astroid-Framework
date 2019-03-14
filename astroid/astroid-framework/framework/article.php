@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @package   Astroid Framework
  * @author    JoomDev https://www.joomdev.com
@@ -73,7 +74,7 @@ class AstroidFrameworkArticle {
          return;
       }
       $config = JFactory::getConfig();
-      
+
       $og_title = $this->article->title;
       if (!empty($this->article->params->get('astroid_og_title', ''))) {
          $og_title = $this->article->params->get('astroid_og_title', '');

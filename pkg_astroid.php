@@ -73,10 +73,6 @@ class pkg_astroidInstallerScript {
             padding: 40px 0;
             text-align: center;
             border-radius: 0px;
-            <?php if (ASTROID_JOOMLA_VERSION == 4) { ?>
-               margin-left: -15px;
-               margin-right: -15px;
-            <?php } ?>
             position: relative;
             border: 1px solid #f8f8f8;
             background:#fff url(<?php echo JURI::root(); ?>media/astroid/assets/images/moon-surface.png); 

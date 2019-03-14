@@ -342,6 +342,22 @@ astroidFramework.directive('colorPicker', function ($parse) {
    };
 });
 
+astroidFramework.directive('colorSelector', function ($parse) {
+   return {
+      restrict: 'A',
+      link: function (scope, element, attrs, ngModel) {
+         if (typeof $ == 'undefined') {
+            var $ = jQuery;
+         }
+         $(element).spectrum(spectrumConfig);
+
+         $(element).on('move.spectrum', function (e, tinycolor) {
+            $(element).spectrum("set", tinycolor.toRgbString()).trigger('change');
+         });
+      },
+   };
+});
+
 astroidFramework.directive('animationSelector', function () {
    return {
       restrict: 'A',
@@ -363,10 +379,12 @@ astroidFramework.directive('selectUi', function () {
          if (typeof $ == 'undefined') {
             var $ = jQuery;
          }
+         var _value = $(element).val();
          setTimeout(function () {
             var _placeholder = $(element).data('placeholder');
             _placeholder = typeof _placeholder == 'undefined' ? false : _placeholder;
             $(element).addClass('astroid-select-ui search selection').dropdown({placeholder: _placeholder, fullTextSearch: true});
+            //$(element).val(_value).trigger('change');
          }, 200);
       },
    };
@@ -489,6 +507,32 @@ astroidFramework.directive('draggable', function () {
             var $ = jQuery;
          }
          $(element).draggable({revert: "invalid", helper: "clone", cursor: "move"});
+      }
+   };
+});
+
+astroidFramework.directive('astroidDatetimepicker', function () {
+   return {
+      restrict: 'A',
+      link: function (scope, element, attrs) {
+         if (typeof $ == 'undefined') {
+            var $ = jQuery;
+         }
+         $(element).datetimepicker({
+            icons: {
+               time: "far fa-clock",
+               date: "far fa-calendar-alt",
+               up: "fa fa-angle-up",
+               down: "fa fa-angle-down",
+               next: "fa fa-angle-right",
+               previous: "fa fa-angle-left",
+               today: "fa fa-bullseye",
+               clear: 'far fa-trash-alt',
+               close: 'fa fa-times'
+            },
+            format: 'MMMM Do YYYY, h:mm a',
+            timeZone: TIMEZONE
+         });
       }
    };
 });
@@ -625,6 +669,79 @@ astroidFramework.directive('astroidresponsive', ['$http', function ($http) {
                   }, 50);
                }
             };
+            setTimeout(function () {
+               setValue()
+            }, 100);
+         }
+      };
+   }]);
+
+
+astroidFramework.directive('astroidgradient', ['$http', function ($http) {
+      return {
+         restrict: 'A',
+         scope: true,
+         require: 'ngModel',
+         link: function ($scope, $element, $attrs, ngModel) {
+            if (typeof $ == 'undefined') {
+               var $ = jQuery;
+            }
+
+            var _gradeintPicker = $($element).parent('.astroid-gradient');
+            var _typeInput = $(_gradeintPicker).find('.gradient-type');
+            var _startInput = $(_gradeintPicker).find('.start-color');
+            var _stopInput = $(_gradeintPicker).find('.stop-color');
+            var _preview = $(_gradeintPicker).find('.gradient-preview');
+            var updatePreview = function () {
+               var _start = _startInput.val();
+               var _stop = _stopInput.val();
+               var _type = 'linear';
+               _typeInput.each(function () {
+                  if ($(this).is(':checked')) {
+                     _type = $(this).val();
+                  }
+               });
+               if (_type == 'radial') {
+                  var _gradiant = 'radial-gradient(' + _start + ', ' + _stop + ')';
+               } else {
+                  var _gradiant = 'linear-gradient(to bottom, ' + _start + ' 0%, ' + _stop + ' 100%)';
+               }
+               _preview.css('background-image', _gradiant);
+
+               var _params = {type: 'linear', start: 'transparent', stop: 'transparent'};
+               _params.type = _type;
+               _params.start = _start;
+               _params.stop = _stop;
+
+               _params = JSON.stringify(_params);
+               ngModel.$setViewValue(_params);
+               $($element).val(_params);
+               $scope.$apply();
+            }
+            _typeInput.bind('change', updatePreview);
+            _startInput.bind('change', updatePreview);
+            _stopInput.bind('change', updatePreview);
+
+            var _initValue = false;
+            var setValue = function () {
+               if (!_initValue) {
+                  _initValue = true;
+                  if (typeof ngModel.$modelValue != 'undefined') {
+                     try {
+                        var _params = JSON.parse(ngModel.$modelValue);
+                     } catch (e) {
+                        var _params = {type: 'linear', start: 'transparent', stop: 'transparent'};
+                     }
+                  } else {
+                     var _params = {type: 'linear', start: 'transparent', stop: 'transparent'};
+                  }
+                  $(_gradeintPicker).find('.gradient-type[value=' + _params.type + ']').prop('checked', true);
+                  _startInput.spectrum("set", _params.start);
+                  _stopInput.spectrum("set", _params.stop);
+                  updatePreview();
+               }
+            };
+
             setTimeout(function () {
                setValue()
             }, 100);

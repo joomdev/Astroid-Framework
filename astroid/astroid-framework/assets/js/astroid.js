@@ -635,12 +635,19 @@ var Admin = new AstroidAdmin();
       initAstroidUploader();
       $('.astroid-code-editor-exit-fs').click(function () {
          $(this).parent('.head').parent('.astroid-code-editor').removeClass('full-screen');
+         setTimeout(function () {
+            var resizeEvent = window.document.createEvent('UIEvents');
+            resizeEvent.initUIEvent('resize', true, false, window, 0);
+            window.dispatchEvent(resizeEvent);
+         }, 10);
       });
       $('.astroid-code-editor-fs').click(function () {
          $(this).parent('.astroid-code-editor').addClass('full-screen');
          setTimeout(function () {
-            $(window).resize();
-         }, 100);
+            var resizeEvent = window.document.createEvent('UIEvents');
+            resizeEvent.initUIEvent('resize', true, false, window, 0);
+            window.dispatchEvent(resizeEvent);
+         }, 10);
       });
       $('.astroid-preloader-field-select').click(function () {
          $(this).parent('.astroid-preloader-field').children('.astroid-preloaders-selector').addClass('open');
@@ -787,6 +794,10 @@ var Admin = new AstroidAdmin();
    };
 
    var loadGoogleFont = function loadGoogleFont(_font, _dropdown, _preview) {
+      if (_preview !== null) {
+         _preview.parent('.astroid-typography-preview-container').siblings('.library-font-warning').addClass('d-none');
+      }
+
       var _isSystemFont = false;
       SYSTEM_FONTS.forEach(function (_sfont) {
          if (_font == _sfont) {
@@ -794,6 +805,22 @@ var Admin = new AstroidAdmin();
             return false;
          }
       });
+
+      var _isLibraryFont = false;
+      LIBRARY_FONTS.forEach(function (_ufont) {
+         if (_font == _ufont) {
+            _isLibraryFont = true;
+            return false;
+         }
+      });
+
+      if (_isLibraryFont) {
+         if (_preview !== null) {
+            _preview.css('font-family', _font);
+            _preview.parent('.astroid-typography-preview-container').siblings('.library-font-warning').removeClass('d-none');
+         }
+         return false;
+      }
 
       if (_isSystemFont) {
          if (_preview !== null) {
@@ -837,7 +864,7 @@ var Admin = new AstroidAdmin();
    var getGoogleFonts = function getGoogleFonts() {
       $.ajax({
          method: "GET",
-         url: BASE_URL + 'index.php?option=com_ajax&astroid=google-fonts',
+         url: BASE_URL + 'index.php?option=com_ajax&astroid=google-fonts&template=' + TEMPLATE_NAME,
          success: function success(response) {
             $('.astroid-font-selector').find('.menu').html(response);
             setTimeout(function () {

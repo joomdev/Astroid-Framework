@@ -108,8 +108,7 @@
             var _delay = $(this).data('animation-delay');
             if (_animation != '' && elementInViewport($(this)) && !$(this).hasClass('animation-done')) {
                if (_delay != '' && _delay != 0 && _delay != '0') {
-                  _delay = parseFloat(_delay);
-                  _delay = _delay * 1000;
+                  _delay = parseInt(_delay);
                } else {
                   _delay = 0;
                }
@@ -187,7 +186,6 @@
       initHeader();
       initTooltip();
       deviceBreakpoint(false);
-      $('[data-jddrop]').JDDrop();
    };
 
    var winLoad = function () {

@@ -4,7 +4,7 @@
  * @package   Astroid Framework
  * @author    JoomDev https://www.joomdev.com
  * @copyright Copyright (C) 2009 - 2019 JoomDev.
- * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
+ * @license https://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
  */
 defined('_JEXEC') or die;
 jimport('astroid.framework.helper');
@@ -20,6 +20,8 @@ class AstroidFrameworkTemplate {
    protected $logs;
    protected $debug = false;
    public $cssFile = true;
+   public $_styles = [];
+   public $_js = [];
 
    public function __construct($template) {
       if (!defined('ASTROID_TEMPLATE_NAME')) {
@@ -45,6 +47,7 @@ class AstroidFrameworkTemplate {
    }
 
    public function addMeta() {
+
       $app = JFactory::getApplication();
       $itemid = $app->input->get('Itemid', '', 'INT');
 
@@ -57,7 +60,7 @@ class AstroidFrameworkTemplate {
       $params = new JRegistry();
       $params->loadString($item->params);
 
-      $enabled = $params->get('astroid_opengraph', 0);
+      $enabled = $params->get('astroid_opengraph_menuitem', 0);
       if (empty($enabled)) {
          return;
       }
@@ -67,24 +70,27 @@ class AstroidFrameworkTemplate {
 
       $config = JFactory::getConfig();
       $og_title = $item->title;
-      if (!empty($params->get('astroid_og_title', ''))) {
-         $og_title = $params->get('astroid_og_title', '');
+      if (!empty($params->get('astroid_og_title_menuitem', ''))) {
+         $og_title = $params->get('astroid_og_title_menuitem', '');
       }
       $og_description = '';
-      if (!empty($params->get('astroid_og_desc', ''))) {
-         $og_description = $params->get('astroid_og_desc', '');
+      if (!empty($params->get('astroid_og_desc_menuitem', ''))) {
+         $og_description = $params->get('astroid_og_desc_menuitem', '');
       }
       $og_image = '';
-      if (!empty($params->get('astroid_og_image', ''))) {
-         $og_image = JURI::base() . $params->get('astroid_og_image', '');
+      if (!empty($params->get('astroid_og_image_menuitem', ''))) {
+         $og_image = JURI::base() . $params->get('astroid_og_image_menuitem', '');
       }
 
       $og_sitename = $config->get('sitename');
       $og_siteurl = JURI::getInstance();
 
       $meta = [];
-      $meta[] = '<meta property="og:type" content="article">';
       $meta[] = '<meta name="twitter:card" content="summary" />';
+
+      if ($item->type == 'component' && isset($item->query) && $item->query['option'] == 'com_content' && $item->query['view'] == 'article') {
+         $meta[] = '<meta property="og:type" content="article">';
+      }
       if (!empty($og_title)) {
          $meta[] = '<meta property="og:title" content="' . $og_title . '">';
       }
@@ -103,6 +109,9 @@ class AstroidFrameworkTemplate {
       if (!empty($tw_id)) {
          $meta[] = '<meta name="twitter:creator" content="@' . $tw_id . '" />';
       }
+      if (!empty($og_image)) {
+         $meta[] = '<meta name="og:image" content="' . $og_image . '" />';
+      }
       $meta = implode('', $meta);
       if (!empty($meta)) {
          $document = JFactory::getDocument();
@@ -113,11 +122,18 @@ class AstroidFrameworkTemplate {
    protected function getTemplateParams($id = null) {
       if (empty($id)) {
          $template = JFactory::getApplication()->getTemplate(true);
+         if (isset($template->id) && $template->id === 0) {
+            $template->id = $template->params->get('astroid', 0);
+         }
          if (isset($template->id)) {
             $id = $template->id;
          } else {
-            $params = new JRegistry();
-            return $params;
+            $astroid_id = $template->params->get('astroid', 0);
+            if (empty($astroid_id)) {
+               $params = new JRegistry();
+               return $params;
+            }
+            $id = $astroid_id;
          }
       }
 
@@ -244,33 +260,34 @@ class AstroidFrameworkTemplate {
                   $prevColIndex = $colIndex;
                }
             }
-
-            if ($bufferSize) {
-               if ($hasComponent) {
-                  $row['cols'][$componentIndex]['size'] = $row['cols'][$componentIndex]['size'] + $bufferSize;
-               } else {
-                  if ($prevColIndex !== null) {
-                     $row['cols'][$prevColIndex]['size'] = $row['cols'][$prevColIndex]['size'] + $bufferSize;
-                  }
-               }
-            }
-
-            foreach ($row['cols'] as $col) {
-               $renderedHTML = '';
-               foreach ($col['elements'] as $element) {
-                  $el = new AstroidElement($element['type'], $element, $this);
-                  $this->setLog("Rending Element : " . $el->getValue('title'));
-                  if (@$_GET['wf'] == 1) {
-                     $renderedHTML .= $el->renderWireframe();
+            if (!empty($row['cols'])) {
+               if ($bufferSize) {
+                  if ($hasComponent) {
+                     $row['cols'][$componentIndex]['size'] = $row['cols'][$componentIndex]['size'] + $bufferSize;
                   } else {
-                     $renderedHTML .= $el->render();
+                     if ($prevColIndex !== null) {
+                        $row['cols'][$prevColIndex]['size'] = $row['cols'][$prevColIndex]['size'] + $bufferSize;
+                     }
                   }
                }
-               if (!empty($renderedHTML)) {
-                  $columnObject = new AstroidElement("column", $col, $this);
-                  $columnHTML .= '<div id="' . $columnObject->getID() . '" class="' . $columnObject->getClass() . '" style="' . $columnObject->getStyles() . '" data-animation="' . $columnObject->getAnimation() . '" data-animation-delay="' . $columnObject->getAnimationDelay() . '" ' . $columnObject->getAttributes() . '>';
-                  $columnHTML .= $renderedHTML;
-                  $columnHTML .= '</div>';
+               foreach ($row['cols'] as $col) {
+                  $renderedHTML = '';
+                  foreach ($col['elements'] as $element) {
+                     $el = new AstroidElement($element['type'], $element, $this);
+                     $this->setLog("Rending Element : " . $el->getValue('title'));
+                     $template_positions_display = JComponentHelper::getParams('com_templates')->get('template_positions_display');
+                     if (@$_GET['wf'] == 1 && $template_positions_display) {
+                        $renderedHTML .= $el->renderWireframe();
+                     } else {
+                        $renderedHTML .= $el->render();
+                     }
+                  }
+                  if (!empty($renderedHTML)) {
+                     $columnObject = new AstroidElement("column", $col, $this);
+                     $columnHTML .= '<div id="' . $columnObject->getID() . '" class="' . $columnObject->getClass() . '" style="' . $columnObject->getStyles() . '" data-animation="' . $columnObject->getAnimation() . '" data-animation-delay="' . $columnObject->getAnimationDelay() . '" ' . $columnObject->getAttributes() . '>';
+                     $columnHTML .= $renderedHTML;
+                     $columnHTML .= '</div>';
+                  }
                }
             }
             if (!empty($columnHTML)) {
@@ -462,7 +479,6 @@ class AstroidFrameworkTemplate {
          $cssname = 'custom-' . md5($name);
          if (!file_exists($template_directory . 'css/' . $cssname . '.css')) {
             //ini_set('xdebug.max_nesting_level', 3000);
-            AstroidFrameworkHelper::clearCache($this->template);
             AstroidFrameworkHelper::compileSass($template_directory . 'scss/custom', $template_directory . 'css', 'custom.scss', $cssname . '.css');
          }
          return $cssname . '.css';
@@ -638,36 +654,58 @@ class AstroidFrameworkTemplate {
 
    public function addStyledeclaration($styles) {
       if ($this->cssFile) {
-         $template_dir = JPATH_SITE . '/templates/' . $this->template . '/css';
-         $document = JFactory::getDocument();
-         $mediaVersion = $document->getMediaVersion();
-         file_put_contents($template_dir . '/astroid-' . $mediaVersion . '.css', $styles . PHP_EOL, FILE_APPEND | LOCK_EX);
+         $this->_styles[] = $styles;
       } else {
          $document = JFactory::getDocument();
          $document->addStyledeclaration($styles);
       }
    }
 
-   public function cleanAstroidCSS() {
+
+   public function addScript($js) {
+      $template_directory = JPATH_THEMES . "/" . $this->template . "/js/";
+      if (file_exists($template_directory . $js)) {
+         $this->_js[$js] = JURI::root() . 'templates/' . $this->template . "/js/" . $js;
+
+      }else{
+         $this->_js[$js] = $js;
+      }     
+   }
+
+   public function buildAstroidCSS($version, $css = '') {
       if ($this->cssFile) {
          $template_dir = JPATH_SITE . '/templates/' . $this->template . '/css';
-         $document = JFactory::getDocument();
-         $mediaVersion = $document->getMediaVersion();
-         if (!file_exists($template_dir . '/astroid-' . $mediaVersion . '.css')) {
+         if (!file_exists($template_dir . '/astroid-' . $version . '.css')) {
             $styles = preg_grep('~^astroid-.*\.(css)$~', scandir($template_dir));
             foreach ($styles as $style) {
                unlink($template_dir . '/' . $style);
             }
-            file_put_contents($template_dir . '/astroid-' . $mediaVersion . '.css', '');
+            file_put_contents($template_dir . '/astroid-' . $version . '.css', $css);
          }
       }
    }
 
    public function loadCSSFile() {
       if ($this->cssFile) {
+         $styles = implode('', $this->_styles);
          $document = JFactory::getDocument();
          $mediaVersion = $document->getMediaVersion();
-         $document->addStyleSheet(JURI::root() . 'templates/' . $this->template . '/css/astroid-' . $mediaVersion . '.css');
+         $version = md5($styles . $mediaVersion);
+         $this->buildAstroidCSS($version, $styles);
+         $document->addStyleSheet(JURI::root() . 'templates/' . $this->template . '/css/astroid-' . $version . '.css');
+      }
+   }
+
+   public function loadJS(){
+      $document = JFactory::getDocument();
+      foreach($this->_js as $key => $js){
+         if($key=='custom.js'){
+            $template_directory = JPATH_THEMES . "/" . $this->template . "/js/";
+            if (!file_exists($template_directory . $key)) {
+               continue;
+            }
+         }
+         $document->addScript($js);
       }
    }
 

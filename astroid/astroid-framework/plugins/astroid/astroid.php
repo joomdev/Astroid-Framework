@@ -4,7 +4,7 @@
  * @package   Astroid Framework
  * @author    JoomDev https://www.joomdev.com
  * @copyright Copyright (C) 2009 - 2019 JoomDev.
- * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
+ * @license https://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
  */
 defined('_JEXEC') or die;
 define('COMPILE_SASS', 0);
@@ -135,6 +135,17 @@ class plgSystemAstroid extends JPlugin {
                         $return .= '<div class="item" data-value="' . $name . '">' . $system_font . '</div>';
                      }
 
+                     $template = $this->app->input->get('template', '', 'RAW');
+
+                     $uploadedFonts = AstroidFrameworkHelper::getUploadedFonts($template);
+
+                     if (!empty($uploadedFonts)) {
+                        $return .= '<div class="ui horizontal divider">Custom Fonts</div>';
+                        foreach ($uploadedFonts as $uploaded_font) {
+                           $return .= '<div class="item" data-value="' . $uploaded_font['id'] . '">' . $uploaded_font['name'] . '</div>';
+                        }
+                     }
+
                      $return .= '<div class="ui horizontal divider">Google Fonts</div>';
                      foreach ($options as $group => $fonts) {
                         foreach ($fonts as $fontValue => $font) {
@@ -177,6 +188,7 @@ class plgSystemAstroid extends JPlugin {
                   }
                   $lang->load('tpl_' . ASTROID_TEMPLATE_NAME, JPATH_SITE);
                   $lang->load(ASTROID_TEMPLATE_NAME, JPATH_SITE);
+                  $lang->load('mod_menu', JPATH_SITE);
 
                   // render manager
                   $layout = new JLayoutFile('framework.manager', JPATH_LIBRARIES . '/astroid/framework/layouts');
@@ -260,6 +272,9 @@ class plgSystemAstroid extends JPlugin {
       }
 
       if ($form->getName() == 'com_menus.item' && (isset($data->request['option']) && $data->request['option'] == 'com_content') && (isset($data->request['view']) && $data->request['view'] == 'category')) {
+         $form->loadFile('menu_blog', false);
+      }
+      if ($form->getName() == 'com_menus.item' && (isset($data->request['option']) && $data->request['option'] == 'com_content') && (isset($data->request['view']) && $data->request['view'] == 'featured')) {
          $form->loadFile('menu_blog', false);
       }
 

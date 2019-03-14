@@ -3,7 +3,7 @@
  * @package   Astroid Framework
  * @author    JoomDev https://www.joomdev.com
  * @copyright Copyright (C) 2009 - 2019 JoomDev.
- * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
+ * @license https://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
  */
 defined('JPATH_PLATFORM') or die;
 
@@ -11,7 +11,7 @@ defined('JPATH_PLATFORM') or die;
  * Color Form Field class for the Joomla Platform.
  * This implementation is designed to be compatible with HTML5's `<input type="color">`
  *
- * @link   http://www.w3.org/TR/html-markup/input.color.html
+ * @link   https://www.w3.org/TR/html-markup/input.color.html
  * @since  11.3
  */
 class JFormFieldAstroidColor extends JFormField {

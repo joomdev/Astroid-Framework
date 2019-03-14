@@ -3,7 +3,10 @@
  * @package   Astroid Framework
  * @author    JoomDev https://www.joomdev.com
  * @copyright Copyright (C) 2009 - 2019 JoomDev.
- * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
+ * @license https://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
+ * 	DO NOT MODIFY THIS FILE DIRECTLY AS IT WILL BE OVERWRITTEN IN THE NEXT UPDATE
+ *  You can easily override all files under /frontend/ folder.
+ * 	Just copy the file to ROOT/templates/YOURTEMPLATE/html/frontend/header/ folder to create and override
  */
 // No direct access.
 defined('_JEXEC') or die;
@@ -62,9 +65,13 @@ $navWrapperClass = ['astroid-nav-wraper', 'align-self-center', 'px-2', 'd-none',
             }
             echo '</div>';
             // header nav starts -->
-            echo '<div class="w-100 d-none d-lg-flex justify-content-center py-3">';
-            AstroidMenu::getMenu($header_menu, array_merge($navClass), null, 'left', 'stacked', $navWrapperClass);
-            echo '</div>';
+            ?>
+            <div data-megamenu data-megamenu-class=".has-megamenu" data-megamenu-content-class=".megamenu-container" data-dropdown-arrow="<?php echo $template->params->get('dropdown_arrow', 0) ? 'true' : 'false'; ?>" data-header-offset="true" data-transition-speed="<?php echo $template->params->get('dropdown_animation_speed', 300); ?>" data-animation="<?php echo $template->params->get('dropdown_animation_type', 'fade'); ?>" data-easing="<?php echo $template->params->get('dropdown_animation_ease', 'linear'); ?>" data-trigger="<?php echo $template->params->get('dropdown_trigger', 'hover'); ?>" data-megamenu-submenu-class=".nav-submenu" class="w-100 d-none d-lg-flex justify-content-center py-3">
+               <?php
+               AstroidMenu::getMenu($header_menu, array_merge($navClass), null, 'left', 'stacked', $navWrapperClass);
+               ?>
+            </div>
+            <?php
             // header nav ends
             // header block starts
             if ($block_1_type == 'position') {
@@ -93,36 +100,38 @@ $navWrapperClass = ['astroid-nav-wraper', 'align-self-center', 'px-2', 'd-none',
                echo '</div>';
             }
             // header nav starts   
-            echo '<div class="header-stacked-inner w-100 d-flex justify-content-center">';
             ?>
-            <?php if (!empty($header_mobile_menu)) { ?>
-               <div class="d-flex d-lg-none justify-content-start">
-                  <div class="header-mobilemenu-trigger d-lg-none burger-menu-button align-self-center" data-offcanvas="#astroid-mobilemenu" data-effect="mobilemenu-slide">
-                     <button class="button" type="button"><span class="box"><span class="inner"></span></span></button>
+            <div data-megamenu data-megamenu-class=".has-megamenu" data-megamenu-content-class=".megamenu-container" data-dropdown-arrow="<?php echo $template->params->get('dropdown_arrow', 0) ? 'true' : 'false'; ?>" data-header-offset="true" data-transition-speed="<?php echo $template->params->get('dropdown_animation_speed', 300); ?>" data-animation="<?php echo $template->params->get('dropdown_animation_type', 'fade'); ?>" data-easing="<?php echo $template->params->get('dropdown_animation_ease', 'linear'); ?>" data-trigger="<?php echo $template->params->get('dropdown_trigger', 'hover'); ?>" data-megamenu-submenu-class=".nav-submenu" class="header-stacked-inner w-100 d-flex justify-content-center">
+               <?php if (!empty($header_mobile_menu)) { ?>
+                  <div class="d-flex d-lg-none justify-content-start">
+                     <div class="header-mobilemenu-trigger d-lg-none burger-menu-button align-self-center" data-offcanvas="#astroid-mobilemenu" data-effect="mobilemenu-slide">
+                        <button class="button" type="button"><span class="box"><span class="inner"></span></span></button>
+                     </div>
                   </div>
-               </div>
-               <?php
-            }
-            echo '<div class="d-flex w-100 justify-content-center">';
-            echo '<div class="d-lg-none">';
-            $template->loadLayout('logo');
-            echo '</div>';
-            AstroidMenu::getMenu($header_menu, $navClass, true, $odd_menu_items, 'stacked', $navWrapperClass);
-            echo '</div>';
-            if ($enable_offcanvas) {
+                  <?php
+               }
+               echo '<div class="d-flex w-100 justify-content-center">';
+               echo '<div class="d-lg-none">';
+               $template->loadLayout('logo');
+               echo '</div>';
+               AstroidMenu::getMenu($header_menu, $navClass, true, $odd_menu_items, 'stacked', $navWrapperClass);
+               echo '</div>';
+               if ($enable_offcanvas) {
+                  ?>
+                  <div class="d-flex justify-content-end">
+                     <div class="header-offcanvas-trigger burger-menu-button align-self-center <?php echo $offcanvas_togglevisibility; ?>" data-offcanvas="#astroid-offcanvas" data-effect="<?php echo $offcanvas_animation; ?>">
+                        <button type="button" class="button">
+                           <span class="box">
+                              <span class="inner"></span>
+                           </span>
+                        </button>
+                     </div>
+                  </div>
+                  <?php
+               }
                ?>
-               <div class="d-flex justify-content-end">
-                  <div class="header-offcanvas-trigger burger-menu-button align-self-center <?php echo $offcanvas_togglevisibility; ?>" data-offcanvas="#astroid-offcanvas" data-effect="<?php echo $offcanvas_animation; ?>">
-                     <button type="button" class="button">
-                        <span class="box">
-                           <span class="inner"></span>
-                        </span>
-                     </button>
-                  </div>
-               </div>
-               <?php
-            }
-            echo '</div>';
+            </div>
+            <?php
             // header nav ends
             // header block starts
             if ($block_2_type == 'position') {
@@ -185,9 +194,13 @@ $navWrapperClass = ['astroid-nav-wraper', 'align-self-center', 'px-2', 'd-none',
             echo '</div>';
             // header nav starts -->
             echo '<div class="w-100 d-none d-lg-flex">';
-            echo '<div class="d-flex justify-content-start py-3 flex-grow-1">';
-            AstroidMenu::getMenu($header_menu, $navClassLeft, null, 'left', 'stacked', $navWrapperClass);
-            echo '</div>';
+            ?>
+            <div data-megamenu data-megamenu-class=".has-megamenu" data-megamenu-content-class=".megamenu-container" data-dropdown-arrow="<?php echo $template->params->get('dropdown_arrow', 0) ? 'true' : 'false'; ?>" data-header-offset="true" data-transition-speed="<?php echo $template->params->get('dropdown_animation_speed', 300); ?>" data-animation="<?php echo $template->params->get('dropdown_animation_type', 'fade'); ?>" data-easing="<?php echo $template->params->get('dropdown_animation_ease', 'linear'); ?>" data-trigger="<?php echo $template->params->get('dropdown_trigger', 'hover'); ?>" data-megamenu-submenu-class=".nav-submenu" class="d-flex justify-content-start py-3 flex-grow-1">
+               <?php
+               AstroidMenu::getMenu($header_menu, $navClassLeft, null, 'left', 'stacked', $navWrapperClass);
+               ?>
+            </div>
+            <?php
             // header nav ends
             // header block starts
             if ($block_2_type == 'position') {

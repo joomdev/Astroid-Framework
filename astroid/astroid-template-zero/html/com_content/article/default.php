@@ -3,7 +3,7 @@
  * @package   Astroid Framework
  * @author    JoomDev https://www.joomdev.com
  * @copyright Copyright (C) 2009 - 2019 JoomDev.
- * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
+ * @license https://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
  */
 defined('_JEXEC') or die;
 
@@ -18,6 +18,7 @@ if (version_compare(JVERSION, '3.99999.99999', 'le')) {
 
 // Astroid Article/Blog
 $astroidArticle = new AstroidFrameworkArticle($this->item);
+$template = new AstroidFrameworkTemplate(JFactory::getApplication()->getTemplate(true));
 // Create shortcuts to some parameters.
 $params = $this->item->params;
 $images = json_decode($this->item->images);
@@ -48,7 +49,7 @@ $assocParam = (JLanguageAssociations::isEnabled() && $params->get('show_associat
    ?>
 
    <?php // Todo Not that elegant would be nice to group the params ?>
-   <?php $useDefList = ($params->get('show_modify_date') || $params->get('show_publish_date') || $params->get('show_create_date') || $params->get('show_hits') || $params->get('show_category') || $params->get('show_parent_category') || $params->get('show_author') || $assocParam);
+   <?php $useDefList = ($params->get('show_modify_date') || $params->get('show_publish_date') || $params->get('show_create_date') || $params->get('show_hits') || $params->get('show_category') || $params->get('show_parent_category') || $params->get('show_author') || $assocParam || $template->params->get('astroid_readtime', 1));
    ?>
 
    <?php if (!$useDefList && $this->print) : ?>

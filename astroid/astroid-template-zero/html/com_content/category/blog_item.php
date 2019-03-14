@@ -3,7 +3,7 @@
  * @package   Astroid Framework
  * @author    JoomDev https://www.joomdev.com
  * @copyright Copyright (C) 2009 - 2019 JoomDev.
- * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
+ * @license https://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
  */
 defined('_JEXEC') or die;
 jimport('astroid.framework.article');
@@ -17,7 +17,7 @@ $tpl_params = JFactory::getApplication()->getTemplate(true)->params;
 JHtml::addIncludePath(JPATH_COMPONENT . '/helpers/html');
 $canEdit = $this->item->params->get('access-edit');
 $info = $params->get('info_block_position', 0);
-$useDefList = ($params->get('show_modify_date') || $params->get('show_publish_date') || $params->get('show_create_date') || $params->get('show_hits') || $params->get('show_category') || $params->get('show_parent_category') || $params->get('show_author') );
+$useDefList = ($params->get('show_modify_date') || $params->get('show_publish_date') || $params->get('show_create_date') || $params->get('show_hits') || $params->get('show_category') || $params->get('show_parent_category') || $params->get('show_author') ||  $template->params->get('astroid_readtime', 1));
 $document = JFactory::getDocument();
 // Post Format
 $post_attribs = new JRegistry(json_decode($this->item->attribs));
@@ -59,14 +59,14 @@ $post_format = $post_attribs->get('post_format', 'standard');
             <?php } ?>
          <?php } ?>
       <?php } ?>
-      <div class="item-title">
+      <div class="article-title item-title">
          <?php echo JLayoutHelper::render('joomla.content.blog_style_default_item_title', $this->item); ?>
       </div>
       <?php echo JLayoutHelper::render('joomla.content.post_formats.icons', $post_format); ?>
       <?php if ($useDefList && ($info == 0 || $info == 2)) : ?>
          <?php echo JLayoutHelper::render('joomla.content.info_block.block', array('item' => $this->item, 'params' => $params, 'astroidArticle' => $astroidArticle, 'position' => 'above')); ?>
       <?php endif; ?>
-      <?php echo $this->item->introtext; ?>
+      <div class="article-intro-text"><?php echo $this->item->introtext; ?></div>
       <?php if ($info == 1 || $info == 2) : ?>
          <?php if ($useDefList) : ?>
             <?php // Todo: for Joomla4 joomla.content.info_block.block can be changed to joomla.content.info_block ?>

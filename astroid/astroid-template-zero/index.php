@@ -3,7 +3,7 @@
  * @package   Astroid Framework
  * @author    JoomDev https://www.joomdev.com
  * @copyright Copyright (C) 2009 - 2019 JoomDev.
- * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
+ * @license https://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
  */
 // No direct access.
 defined('_JEXEC') or die;
@@ -15,13 +15,13 @@ JLoader::import('joomla.filesystem.file');
 JHtml::_('behavior.framework', true);
 $lib = JPATH_SITE . '/libraries/astroid/framework/template.php';
 if (file_exists($lib)) {
+   jimport('astroid.framework.astroid');
    jimport('astroid.framework.template');
    jimport('astroid.framework.constants');
 } else {
-   die('Please install and activate <a href="http://www.astroidframework.com/" target="_blank">Astroid Framework</a> in order to use this template.');
+   die('Please install and activate <a href="https://www.astroidframework.com/" target="_blank">Astroid Framework</a> in order to use this template.');
 }
-$template = new AstroidFrameworkTemplate($this);
-$template->cleanAstroidCSS();
+$template = AstroidFramework::getTemplate();
 // Output as HTML5
 $this->setHtml5(true);
 
@@ -51,9 +51,9 @@ $template->loadTemplateCSS('custom.css');
 // Adding basic Scripts, jQuery & Bootstrap JS
 
    if (isset($doc->_scripts[JURI::root(true) . '/media/jui/js/jquery.min.js'])) {
-      $template->loadTemplateJS('vendor/jquery.easing.min.js,vendor/bootstrap/popper.min.js,vendor/bootstrap/bootstrap.min.js,vendor/jquery.astroidmobilemenu.js,vendor/jquery.jdvideobg.js,vendor/jquery.jddrop.js,vendor/jquery.offcanvas.js,script.js,custom.js');
+      $template->loadTemplateJS('vendor/jquery.easing.min.js,vendor/bootstrap/popper.min.js,vendor/bootstrap/bootstrap.min.js,vendor/jquery.astroidmobilemenu.js,vendor/jquery.jdmegamenu.js,vendor/jquery.offcanvas.js');
    } else {
-      $template->loadTemplateJS('vendor/bootstrap/jquery.min.js,vendor/jquery.easing.min.js,vendor/bootstrap/popper.min.js,vendor/bootstrap/bootstrap.min.js,vendor/jquery.astroidmobilemenu.js,vendor/jquery.jdvideobg.js,vendor/jquery.jddrop.js,vendor/jquery.offcanvas.js,script.js,custom.js');
+      $template->loadTemplateJS('vendor/bootstrap/jquery.min.js,vendor/jquery.easing.min.js,vendor/bootstrap/popper.min.js,vendor/bootstrap/bootstrap.min.js,vendor/jquery.astroidmobilemenu.js,vendor/jquery.jdmegamenu.js,vendor/jquery.offcanvas.js');
    }
 
    /*
@@ -99,6 +99,9 @@ $template->loadTemplateCSS('custom.css');
 <jdoc:include type="modules" name="debug" />
 <?php
 $template->body();
+$template->addScript('script.js');
+$template->addScript('custom.js');
+$template->loadJS();
 $template->loadCSSFile();
 ?>
 </body>

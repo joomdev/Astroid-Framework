@@ -49,7 +49,7 @@ if (!$template->params->get('article_rating', 1)) {
    ?>
    <div class="article-rating">
       <div class="ui star rating" id="<?php echo 'content_vote_' . (int) $row->id; ?>"></div>
-      <div data-votes="<?php echo $rating_count; ?>" class="vote-count article-rating-votecount-<?php echo $row->id; ?>">(<?php echo $rating_count; ?> vote<?php echo $rating_count == 1 ? '' : 's'; ?>)</div>
+      <div data-votes="<?php echo $rating_count; ?>" class="vote-count article-rating-votecount-<?php echo $row->id; ?>">(<?php echo $rating_count; ?> <?php echo JText::_('TPL_ASTROID_VOTE'); ?><?php echo $rating_count == 1 ? '' : JText::_('TPL_ASTROID_VOTES'); ?>)</div>
       <div class="loading article-rating-loading-<?php echo $row->id; ?> d-none"></div>
       <div class="message d-none article-rating-message-<?php echo $row->id; ?>"></div>
    </div>
@@ -103,7 +103,7 @@ if (!$template->params->get('article_rating', 1)) {
                         if (response.status == 'success') {
                            var _votes = $('.vote-count').data('votes');
                            _votes = parseInt(_votes) + 1;
-                           _text = 'vote' + (_votes == 1 ? '' : 's');
+                           _text = '<?php echo JText::_('TPL_ASTROID_VOTE'); ?>' + (_votes == 1 ? '' : '<?php echo JText::_('TPL_ASTROID_VOTES'); ?>');
                            $('.vote-count').text('(' + _votes + ' ' + _text + ')').addClass('change');
                            lastrate = response.rating;
                            setTimeout(function () {

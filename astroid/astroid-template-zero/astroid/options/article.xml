@@ -16,7 +16,7 @@
                            
          <field astroidgroup="article_single_options" name="article_relatedposts" type="astroidtext" astroid-switch="true" default="1" label="ASTROID_ARTICLE_RELATED_LBL" description="ASTROID_ARTICLE_RELATED_DESC"></field>
 
-         <field ngShow="article_relatedposts" astroidgroup="article_single_options" class="form-control" name="article_relatedposts_count" type="astroidtext" default="4" label="ASTROID_ARTICLE_COUNT_LBL" description="ASTROID_ARTICLE_COUNT_DESC"></field>
+         <field ngShow="article_relatedposts" astroidgroup="article_single_options" class="form-control" name="article_relatedposts_count" type="number" default="4" label="ASTROID_ARTICLE_COUNT_LBL"  min="1"  description="ASTROID_ARTICLE_COUNT_DESC"></field>
          
          <field astroidgroup="article_single_options" name="article_socialshare_type" type="astroidradio" default="none" label="ASTROID_ARTICLE_OPTIONS_SOCIALBTNS_LBL" description="ASTROID_ARTICLE_OPTIONS_SOCIALBTNS_DESC">
             <option class="btn-danger" value="none">JNONE</option>

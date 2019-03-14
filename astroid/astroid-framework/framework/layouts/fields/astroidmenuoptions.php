@@ -3,7 +3,7 @@
  * @package   Astroid Framework
  * @author    JoomDev https://www.joomdev.com
  * @copyright Copyright (C) 2009 - 2019 JoomDev.
- * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
+ * @license https://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
  */
 defined('JPATH_BASE') or die;
 jimport('astroid.framework.constants');
@@ -40,15 +40,19 @@ $alignment = (string) @$value['alignment'];
 $alignment = !empty($alignment) ? $alignment : 'left';
 $megamenu_direction = (string) @$value['megamenu_direction'];
 $megamenu_direction = !empty($megamenu_direction) ? $megamenu_direction : 'left';
-$dropeffect = (string) @$value['dropeffect'];
-$dropeffect = !empty($dropeffect) ? $dropeffect : 'hover';
 $rows = !empty($rows) ? json_decode($rows) : [];
-
+// For badge
+$badge = (bool) @$value['badge'];
+$badge = empty($badge) ? 0 : 1;
+$badge_text = (string) @$value['badge_text'];
+$badge_color = (string) @$value['badge_color'];
+$badge_bgcolor = (string) @$value['badge_bgcolor'];
 $app = JFactory::getApplication('site');
 $menu = $app->getMenu('site');
 $items = $menu->getItems('menutype', $menu_type);
 
 $children = [];
+
 
 foreach ($items as $i => $item) {
    if ($item->parent_id != $menu_item_id) {
@@ -121,36 +125,24 @@ foreach ($items as $i => $item) {
             </div>
          </div>
       </div>
-      <h3><?php echo JText::_('TPL_ASTROID_MENU_OPTIONS'); ?></h3>
+      <h2><?php echo JText::_('TPL_ASTROID_MENU_OPTIONS'); ?></h2>
       <p><?php echo JText::_('TPL_ASTROID_MENU_TEXT'); ?></p>
       <div class="astroid-form-fieldset-section">
          <div class="row">
-            <div class="col-<?php echo $menu_item_level != 1 ? 'auto' : '4'; ?>">
+            <div class="col-<?php echo $menu_item_level != 1 ? 'auto' : '3'; ?>">
                <div class="row">
-                  <div class="col-3" style="<?php echo $menu_item_level != 1 ? 'display:none' : ''; ?>">
+                  <div class="col-6" style="<?php echo $menu_item_level != 1 ? 'display:none' : ''; ?>">
                      <label class="astroid-label" id="<?php echo $id; ?>_megamenu-lbl" for="<?php echo $id; ?>_megamenu"><?php echo JText::_('TPL_ASTROID_MEGA_MENU'); ?></label>
                      <input value="<?php echo $megamenu; ?>" type="hidden" ng-model="<?php echo $id; ?>_megamenu" astroid-switch name="<?php echo $name; ?>[megamenu]" id="<?php echo $id; ?>_megamenu" />
                   </div>
-                  <div class="col-5" style="<?php echo $menu_item_level != 1 ? 'display:none' : ''; ?>">
-                     <label class="astroid-label" id="<?php echo $id; ?>_dropeffect-lbl" for="<?php echo $id; ?>_dropeffect"><?php echo JText::_('TPL_ASTROID_DROPDOWN_ACTION'); ?></label>
-                     <div class="ui fluid search selection dropdown astroid-select-ui" select-ui-div>
-                        <input type="hidden" value="<?php echo $dropeffect; ?>" name="<?php echo $name; ?>[dropeffect]" id="<?php echo $id; ?>_dropeffect">
-                        <i class="dropdown icon"></i>
-                        <div class="default text"><?php echo JText::_('TPL_ASTROID_MENU_OPTIONS_SELECT_ACTION'); ?></div>
-                        <div class="menu">
-                           <div class="item" data-value="hover"><?php echo JText::_('JGLOBAL_HOVER'); ?></div>
-                           <div class="item" data-value="click"><?php echo JText::_('JGLOBAL_CLICK'); ?></div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="col-<?php echo $menu_item_level != 1 ? '12' : '4'; ?>">
+                  <div class="col-<?php echo $menu_item_level != 1 ? '12' : '6'; ?>">
                      <label class="astroid-label" id="<?php echo $id; ?>_showtitle-lbl" for="<?php echo $id; ?>_showtitle">
                         <?php echo JText::_('TPL_ASTROID_SHOW_TITLE'); ?></label>
                      <input value="<?php echo $showtitle; ?>" type="hidden" ng-model="<?php echo $id; ?>_showtitle" astroid-switch name="<?php echo $name; ?>[showtitle]" id="<?php echo $id; ?>_showtitle" />
                   </div>
                </div>
             </div>
-            <div class="col-<?php echo $menu_item_level != 1 ? '4' : '5'; ?>">
+            <div class="col-<?php echo $menu_item_level != 1 ? '5' : '6'; ?>">
                <div class="row">
                   <div style="<?php echo $menu_item_level != 1 ? 'display:none' : ''; ?>" class="col-3">
                      <label class="astroid-label" id="<?php echo $id; ?>_subtitle-lbl" for="<?php echo $id; ?>_subtitle"><?php echo JText::_('TPL_ASTROID_SUBTITLE'); ?></label>
@@ -177,11 +169,11 @@ foreach ($items as $i => $item) {
                <div class="row">
                   <div ng-hide="<?php echo $id; ?>_megamenu" class="col-4">
                      <label class="astroid-label" id="<?php echo $id; ?>_width-lbl" for="<?php echo $id; ?>_width"><?php echo JText::_('TPL_ASTROID_MENU_OPTIONS_WIDTH'); ?></label>
-                     <input type="text" autocomplete="off" name="<?php echo $name; ?>[width]" value="<?php echo $width; ?>" id="<?php echo $id; ?>_width" class="form-control" />
+                     <input type="text" autocomplete="off" name="<?php echo $name; ?>[width]" placeholder="280px" value="<?php echo $width; ?>" id="<?php echo $id; ?>_width" class="form-control" />
                   </div>
                   <div ng-show="<?php echo $id; ?>_megamenu" class="col-4">
                      <label class="astroid-label" id="<?php echo $id; ?>_width-lbl" for="<?php echo $id; ?>_width"><?php echo JText::_('TPL_ASTROID_MENU_OPTIONS_MEGAMENU_WIDTH'); ?></label>
-                     <input type="text" autocomplete="off" name="<?php echo $name; ?>[megamenu_width]" value="<?php echo $megamenu_width; ?>" id="<?php echo $id; ?>_width" class="form-control" />
+                     <input type="text" autocomplete="off" name="<?php echo $name; ?>[megamenu_width]" placeholder="980px" value="<?php echo $megamenu_width; ?>" id="<?php echo $id; ?>_width" class="form-control" />
                   </div>
                   <div ng-hide="<?php echo $id; ?>_megamenu" class="col-8">
                      <label class="astroid-label" id="<?php echo $id; ?>_alignment-lbl" for="<?php echo $id; ?>_alignment"><?php echo JText::_('TPL_ASTROID_MENU_OPTIONS_DROPDOWN_ALIGNMENT'); ?></label>
@@ -274,6 +266,33 @@ foreach ($items as $i => $item) {
             </div>
          </div>
       </div>
+      <hr>
+      <div class="astroid-badge" id="astroid-badge">
+         <h2><?php echo JTEXT::_('TPL_ASTROID_MEGA_BADGE_OPTIONS'); ?></h2>
+         <p><?php echo JTEXT::_('TPL_ASTROID_MEGA_BADGE_OPTIONS_TEXT'); ?></p>
+         <div class="row">
+            <div class="col-12">
+               <div class="row">
+                  <div class="col-3">
+                     <label class="astroid-label" id="<?php echo $id; ?>_badge-lbl" for="<?php echo $id; ?>_badge"><?php echo JText::_('TPL_ASTROID_MENU_BADGE'); ?></label>
+                     <input value="<?php echo $badge; ?>" type="hidden" ng-model="<?php echo $id; ?>_badge" astroid-switch name="<?php echo $name; ?>[badge]" id="<?php echo $id; ?>_badge" />
+                  </div>
+                  <div class="col-3" ng-show="<?php echo $id; ?>_badge">
+                     <label class="astroid-label" id="<?php echo $id; ?>_badge_text-lbl" for="<?php echo $id; ?>_badge-text"><?php echo JText::_('TPL_ASTROID_MENU_BADGE_TEXT'); ?></label>
+                     <input type="text" name="<?php echo $name; ?>[badge_text]" id="<?php echo $id; ?>_badge_text" class="form-control" value="<?php echo $badge_text; ?>" />
+                  </div>
+                  <div class="col-3" ng-show="<?php echo $id; ?>_badge">
+                     <label class="astroid-label" id="<?php echo $id; ?>_badge_color-lbl" for="<?php echo $id; ?>_badge-color"><?php echo JText::_('TPL_ASTROID_MENU_BADGE_COLOR'); ?></label>
+                     <input type="text" name="<?php echo $name; ?>[badge_color]" id="<?php echo $id; ?>_badge_color" class="form-control" value="<?php echo $badge_color; ?>" />
+                  </div>
+                  <div class="col-3" ng-show="<?php echo $id; ?>_badge">
+                     <label class="astroid-label" id="<?php echo $id; ?>_badge_bgcolor-lbl" for="<?php echo $id; ?>_badge-bgcolor"><?php echo JText::_('TPL_ASTROID_MENU_BADGE_BGCOLOR'); ?></label>
+                     <input type="text" name="<?php echo $name; ?>[badge_bgcolor]" id="<?php echo $id; ?>_badge_bgcolor" class="form-control" value="<?php echo $badge_bgcolor; ?>" />
+                  </div>
+               </div>
+            </div>
+         </div>   
+      </div>
    </div>
 </div>
 <script>
@@ -333,6 +352,7 @@ foreach ($scripts as $script) {
             saveRemoteData: false
          });
       });
+      $("#<?php echo $id; ?>_badge_color,#<?php echo $id; ?>_badge_bgcolor").spectrum(spectrumConfig);
    })(jQuery);
 </script>
 <script>
@@ -357,6 +377,7 @@ foreach ($scripts as $script) {
       $scope.grids = <?php echo \json_encode(AstroidFrameworkConstants::$layout_grids); ?>;
 
       $scope.<?php echo $id; ?>_megamenu = <?php echo $megamenu; ?>;
+      $scope.<?php echo $id; ?>_badge = <?php echo $badge; ?>;
       $scope.<?php echo $id; ?>_showtitle = <?php echo $showtitle; ?>;
       $scope.joomla_modules = <?php echo \json_encode(AstroidFrameworkHelper::getModules()); ?>;
       $scope.rows = <?php echo json_encode($rows); ?>;

@@ -50,47 +50,52 @@
          <field astroidgroup="coming_soon" name="coming_soon_content" code="html" class="form-control" type="astroidtextarea" label="TPL_ASTROID_MISCELL_COMING_CONTENT_LABEL" description="TPL_ASTROID_MISCELL_COMING_CONTENT_DESC" ngShow="developemnt_mode=='1'" ngRequired="developemnt_mode=='1'">
          </field>
 			
-         <field astroidgroup="coming_soon" name="coming_soon_countdown_date" type="astroidcalendar" label="TPL_ASTROID_MISCELL_COMING_COUNTDOWN_DATE_LABEL" description="TPL_ASTROID_MISCELL_COMING_COUNTDOWN_DATE_DESC" default="2019-01-01" ngShow="developemnt_mode=='1'" ngRequired="developemnt_mode=='1'">
+         <field astroidgroup="coming_soon" name="coming_soon_countdown_date" type="astroidcalendar" label="TPL_ASTROID_MISCELL_COMING_COUNTDOWN_DATE_LABEL" description="TPL_ASTROID_MISCELL_COMING_COUNTDOWN_DATE_DESC" default="01/01/2020 00:00 AM" ngShow="developemnt_mode=='1'" ngRequired="developemnt_mode=='1'">
          </field>
          
          <field astroidgroup="coming_soon" name="coming_soon_social" type="astroidtext" astroid-switch="true" default="1" label="TPL_ASTROID_MISCELL_ENABLE_SOCIAL_LABEL" ngShow="developemnt_mode=='1'" description="TPL_ASTROID_MISCELL_ENABLE_SOCIAL_DESC">
          </field>
-			
-         <field astroidgroup="coming_soon" name="coming_soon_background_image" type="astroidmedia" label="TPL_ASTROID_BACKGROUND_IMAGE_LABEL" description="TPL_ASTROID_MISCELL_COMING_SOON_BACKGROUND_IMAGE_DESC" ngShow="developemnt_mode=='1'" ngRequired="developemnt_mode=='1'" class="form-control">
-         </field>
+		
+            <field astroidgroup="coming_soon" ngShow="developemnt_mode=='1'" description="TPL_ASTROID_ADVANCED_LAYOUT_SELECT_DESC" name="background_setting" type="astroidradio" default="0" label="TPL_ASTROID_ADVANCED_LAYOUT_SELECT">
+               <option value="0">JNONE</option>
+               <option value="color">TPL_ASTROID_COLOR</option>
+               <option value="image">TPL_ASTROID_IMAGE</option>
+               <option value="video">TPL_ASTROID_VIDEO</option>
+            </field>
+            
+            <field  astroidgroup="coming_soon" ngShow="background_setting =='color' AND developemnt_mode=='1'" description="ASTROID_SELECT_BACKGROUND_COLOR_DESC" name="background_color" type="astroidcolor" label="TPL_ASTROID_BACKGROUND_COLOR_LABEL" />
 
-         <field astroidgroup="coming_soon" ngShow="developemnt_mode=='1'" name="coming_soon_background_repeat" type="astroidlist" default="inherit" class="form-control" label="TPL_ASTROID_BACKGROUND_REPEAT_LABEL">
-            <option value="inherit">JGLOBAL_INHERIT</option>
-            <option value="no-repeat">TPL_ASTROID_BACKGROUND_NO_REPEAT_LABEL</option>
-            <option value="repeat">ASTROID_BACKGROUND_REPEAT_ALL</option>
-            <option value="repeat-x">TPL_ASTROID_BACKGROUND_REPEAT_HORIZONTALLY_LABEL</option>
-            <option value="repeat-y">TPL_ASTROID_BACKGROUND_REPEAT_VERTICAL_LABEL</option>
-         </field>
-
-         <field astroidgroup="coming_soon" ngShow="developemnt_mode=='1'" name="coming_soon_background_attachment" type="astroidlist" class="form-control" label="TPL_ASTROID_BACKGROUND_ATTCHMENT_LABEL">
-            <option value="">JGLOBAL_INHERIT</option>
-            <option value="scroll">ASTROID_BACKGROUND_ATTCHMENT_SCROLL</option>
-            <option value="fixed">ASTROID_BACKGROUND_ATTCHMENT_FIXED</option>
-         </field>
-
-         <field astroidgroup="coming_soon" ngShow="developemnt_mode=='1'" name="coming_soon_background_size" type="astroidlist" default="inherit" class="form-control" label="TPL_ASTROID_BACKGROUND_SIZE_LABEL">
-            <option value="inherit">JGLOBAL_INHERIT</option>
-            <option value="cover">ASTROID_BACKGROUND_SIZE_COVER</option>
-            <option value="contain">ASTROID_BACKGROUND_SIZE_CONTAIN</option>
-         </field>
-
-         <field astroidgroup="coming_soon" ngShow="developemnt_mode=='1'" name="coming_soon_background_position" type="astroidlist" class="form-control" default="inherit" label="TPL_ASTROID_BACKGROUND_POSITION_LABEL">
-            <option value="inherit">JGLOBAL_INHERIT</option>
-            <option value="left top">ASTROID_BACKGROUND_POSITION_LEFT_TOP</option>
-            <option value="left center">ASTROID_BACKGROUND_POSITION_LEFT_CENTER</option>
-            <option value="left bottom">ASTROID_BACKGROUND_POSITION_LEFT_BOTTOM</option>
-            <option value="right top">ASTROID_BACKGROUND_POSITION_RIGHT_TOP</option>
-            <option value="right center">ASTROID_BACKGROUND_POSITION_RIGHT_CENTER</option>
-            <option value="right bottom">ASTROID_BACKGROUND_POSITION_RIGHT_BOTTOM</option>
-            <option value="center top">ASTROID_BACKGROUND_POSITION_CENTER_TOP</option>
-            <option value="center center">ASTROID_BACKGROUND_POSITION_CENTER_CENTER</option>
-            <option value="center bottom">ASTROID_BACKGROUND_POSITION_CENTER_BOTTOM</option>
-         </field>
+            <field  astroidgroup="coming_soon" ngShow="background_setting =='image' AND developemnt_mode=='1'"  name="background_image" type="astroidmedia" label="TPL_ASTROID_BACKGROUND_IMAGE_LABEL"/>
+             
+            <field astroidgroup="coming_soon" ngShow="background_setting =='image' AND developemnt_mode=='1'" name="background_repeat" type="astroidlist" label="TPL_ASTROID_BACKGROUND_REPEAT_LABEL" hint="Background Repeat">
+               <option value="">JGLOBAL_INHERIT</option>
+               <option value="no-repeat">TPL_ASTROID_BACKGROUND_NO_REPEAT_LABEL</option>
+               <option value="repeat-x">TPL_ASTROID_BACKGROUND_REPEAT_HORIZONTALLY_LABEL</option>
+               <option value="repeat-y">TPL_ASTROID_BACKGROUND_REPEAT_VERTICAL_LABEL</option>
+            </field>
+            <field astroidgroup="coming_soon" ngShow="background_setting =='image' AND developemnt_mode=='1'" name="background_size" type="astroidlist" label="ASTROID_BACKGROUND_SIZE">
+               <option value="">JGLOBAL_INHERIT</option>
+               <option value="cover">ASTROID_BACKGROUND_SIZE_COVER</option>
+               <option value="contain">ASTROID_BACKGROUND_SIZE_CONTAIN</option>
+            </field>
+            <field astroidgroup="coming_soon" ngShow="background_setting =='image' AND developemnt_mode=='1'" name="background_attchment" type="astroidlist" label="ASTROID_BACKGROUND_ATTCHMENT">
+               <option value="">JGLOBAL_INHERIT</option>
+               <option value="scroll">ASTROID_BACKGROUND_ATTCHMENT_SCROLL</option>
+               <option value="fixed">ASTROID_BACKGROUND_ATTCHMENT_FIXED</option>
+            </field>	  
+            <field astroidgroup="coming_soon" ngShow="background_setting =='image' AND developemnt_mode=='1'" name="background_position" type="astroidlist" label="ASTROID_BACKGROUND_POSITION_LABEL">
+               <option value="">JGLOBAL_INHERIT</option>
+               <option value="left top">ASTROID_BACKGROUND_POSITION_LEFT_TOP</option>
+               <option value="left center">ASTROID_BACKGROUND_POSITION_LEFT_CENTER</option>
+               <option value="left bottom">ASTROID_BACKGROUND_POSITION_LEFT_BOTTOM</option>
+               <option value="right top">ASTROID_BACKGROUND_POSITION_RIGHT_TOP</option>
+               <option value="right center">ASTROID_BACKGROUND_POSITION_RIGHT_CENTER</option>
+               <option value="right bottom">ASTROID_BACKGROUND_POSITION_RIGHT_BOTTOM</option>
+               <option value="center top">ASTROID_BACKGROUND_POSITION_CENTER_TOP</option>
+               <option value="center center">ASTROID_BACKGROUND_POSITION_CENTER_CENTER</option>
+               <option value="center bottom">ASTROID_BACKGROUND_POSITION_CENTER_BOTTOM</option>
+            </field>
+            <field astroidgroup="coming_soon" ngShow="background_setting =='video' AND developemnt_mode=='1'" name="background_video" type="astroidmedia" media="videos" label="TPL_ASTROID_BACKGROUND_VIDEO_LABEL" description="TPL_ASTROID_BACKGROUND_VIDEO_DESC"/>
 
          <field astroidgroup="error_404" name="error_404_content" code="html" class="form-control" type="astroidtextarea" label="TPL_ASTROID_MISCELL_ERROR_404_CONTENT_LABEL" description="TPL_ASTROID_MISCELL_ERROR_404_CONTENT_DESC">
          </field>

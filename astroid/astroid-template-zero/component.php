@@ -21,7 +21,7 @@ JHtml::_('bootstrap.framework');
 // Add filter polyfill for IE8
 JHtml::_('behavior.polyfill', array('filter'), 'lte IE 9');
 
-// Add template js
+// Add template js	
 JHtml::_('script', 'isis.js', array('version' => 'auto', 'relative' => true));
 
 // Add html5 shiv

@@ -2,10 +2,10 @@
 <extension version="3.1" type="plugin" method="upgrade" group="system">
    <name>Astroid Plugin</name>
    <author>JoomDev</author>
-   <creationDate>Nov 2018</creationDate>
-   <version>2.0.2</version>
+   <creationDate>March 2019</creationDate>
+   <version>2.1.0</version>
    <url>https://www.astroidframework.com</url>
-   <copyright>Copyright (C) 2018 Joomdev, Inc. All rights reserved.</copyright>
+   <copyright>Copyright (C) 2019 Joomdev, Inc. All rights reserved.</copyright>
    <license>GNU General Public License version 2 or later; see LICENSE.txt</license>
    <authorEmail>info@joomdev.com</authorEmail>
    <authorUrl>https://www.joomdev.com</authorUrl>
@@ -15,6 +15,12 @@
    </files>
    <config>
       <fields name="params">
+         <fieldset name="basic">
+            <field name="astroid_manager_loader" type="radio" default="1" label="ASTROID_MANAGER_LOADER" description="" class="btn-group btn-group-yesno">
+               <option value="1">JYES</option>
+               <option value="0">JNO</option>
+            </field>
+         </fieldset>
       </fields>
    </config>
    <updateservers>

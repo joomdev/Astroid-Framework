@@ -3,15 +3,13 @@
  * @package   Astroid Framework
  * @author    JoomDev https://www.joomdev.com
  * @copyright Copyright (C) 2009 - 2019 JoomDev.
- * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
+ * @license https://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
  */
 defined('JPATH_BASE') or die;
 jimport('astroid.framework.constants');
 
 extract($displayData);
-
 $value = array_merge($defaults, $value);
-
 $fonts = AstroidFrameworkHelper::getGoogleFonts();
 
 $font_face = (string) $value['font_face'];
@@ -27,7 +25,6 @@ $line_height_unit = (string) $value['line_height_unit'];
 $font_style = (array) $value['font_style'];
 $font_weight = (string) $value['font_weight'];
 $text_transform = (string) $value['text_transform'];
-
 $options = [];
 $unit_options = ['px', 'em', 'rem', 'pt'];
 foreach ($fonts as $font) {
@@ -94,7 +91,7 @@ foreach ($fonts as $font) {
                <label class="astroid-label d-inline-block"><?php echo JText::_('TPL_ASTROID_FONT_SIZE_LABEL'); ?></label>
                <div class="mb-4 position-relative">
                   <span class="range-slider-value d-none"></span>
-                  <div class="d-inline-block margin-left-50px">
+                  <div class="d-inline-block margin-left-75px">
                   <ul class="list-inline unit-picker mb-0">
                   <?php foreach($unit_options as $unit_option){ ?>
                      <li class="list-inline-item"><label><input <?php echo $unit_option == $font_size_unit ? 'checked' : ''; ?> value="<?php echo $unit_option; ?>" type="radio" name="<?php echo $name; ?>[font_size_unit]" data-sid="<?php echo $id; ?>_font_size" /><span><?php echo $unit_option; ?></span></label></li>
@@ -110,7 +107,7 @@ foreach ($fonts as $font) {
             <?php if ($letterspacingpicker) { ?>
                <label class="astroid-label d-inline-block"><?php echo JText::_('TPL_ASTROID_LETTER_SPACING_LABEL'); ?></label>
                <div class="mb-4 position-relative">
-                  <div class="d-inline-block margin-left-50px">
+                  <div class="d-inline-block margin-left-75px">
                      <ul class="list-inline unit-picker mb-0">
                            <?php foreach ($unit_options as $unit_option) { ?>
                               <li class="list-inline-item"><label><input <?php echo $unit_option == $letter_spacing_unit ? 'checked' : ''; ?> data-sid="<?php echo $id; ?>_letter_spacing" value="<?php echo $unit_option; ?>" type="radio" name="<?php echo $name; ?>[letter_spacing_unit]" /><span><?php echo $unit_option; ?></span></label></li>
@@ -125,7 +122,7 @@ foreach ($fonts as $font) {
             <?php if ($lineheightpicker) { ?>
                <label class="astroid-label"><?php echo JText::_('TPL_ASTROID_LINE_HEIGHT_LABEL'); ?></label>
                <div class="mb-4 position-relative">
-                  <div class="d-inline-block margin-left-50px">
+                  <div class="d-inline-block margin-left-75px">
                      <ul class="list-inline unit-picker mb-0">
                            <?php foreach ($unit_options as $unit_option) { ?>
                               <li class="list-inline-item"><label><input <?php echo $unit_option == $line_height_unit ? 'checked' : ''; ?> value="<?php echo $unit_option; ?>" type="radio" name="<?php echo $name; ?>[line_height_unit]" data-sid="<?php echo $id; ?>_line_height" /><span><?php echo $unit_option; ?></span></label></li>
@@ -155,11 +152,11 @@ foreach ($fonts as $font) {
             <?php } ?>
             <?php if ($transformpicker) { ?>
                <label class="astroid-label"><?php echo JText::_('TPL_ASTROID_TEXT_TRANSFORM_LABEL'); ?></label>
-               <select data-typography-field="<?php echo $id; ?>" data-typography-property="text-transform" ng-model="<?php echo $id; ?>_text_transform" name="<?php echo $name; ?>[text_transform]" class="form-control" select-ui>
-                  <option <?php echo ($text_transform == '' ? ' selected' : ''); ?> value=""><?php echo JText::_('JNONE'); ?></option>
+               <select data-typography-field="<?php echo $id; ?>" data-typography-property="text-transform" name="<?php echo $name; ?>[text_transform]" class="form-control" select-ui-div>
+                  <option <?php echo ($text_transform == '' ? ' selected="selected"' : ''); ?> value="none"><?php echo JText::_('JNONE'); ?></option>
                   <?php
                   foreach (array('uppercase' => 'JGLOBAL_UPPERCASE', 'lowercase' => 'JGLOBAL_LOWERCASE', 'capitalize' => 'JGLOBAL_CAPITALIZE') as $transform => $transform_title) {
-                     echo '<option ' . ($text_transform == $transform ? ' selected' : '') . ' value="' . $transform . '">' . JText::_($transform_title) . '</option>';
+                     echo '<option ' . ($text_transform == $transform ? ' selected="selected"' : '') . ' value="' . $transform . '">' . JText::_($transform_title) . '</option>';
                   }
                   ?>
                </select>
@@ -172,6 +169,7 @@ foreach ($fonts as $font) {
 <div class="row">
    <div class="col-12">
       <label class="astroid-label"><?php echo JText::_('TPL_ASTROID_OPTIONS_PREVIEW_LABEL'); ?></label>
+      <small class="library-font-warning text-danger d-none">* <?php echo JText::_('TPL_ASTROID_OPTIONS_LIBRARY_FONT_WARNING'); ?></small>
       <?php
       $alphas = range('A', 'Z');
 

@@ -3,7 +3,7 @@
  * @package   Astroid Framework
  * @author    JoomDev https://www.joomdev.com
  * @copyright Copyright (C) 2009 - 2019 JoomDev.
- * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
+ * @license https://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
  */
 defined('JPATH_PLATFORM') or die;
 jimport('astroid.framework.constants');
@@ -33,7 +33,7 @@ class JFormFieldAstroidicon extends JFormField {
     * @since   3.7.0
     */
    protected function getInput() {
-      $html = '<div class="ui fluid search selection dropdown" select-ui-div><input type="hidden" value="' . $this->value . '" name="' . $this->name . '"><i class="dropdown icon"></i><div class="default text">Select Icon</div><div class="menu">';
+      $html = '<div class="form-control ui fluid search selection dropdown" select-ui-div><input type="hidden" value="' . $this->value . '" name="' . $this->name . '"><i class="dropdown icon"></i><div class="default text">Select Icon</div><div class="menu">';
       $groups = AstroidFrameworkConstants::$icons;
       $options = array();
       foreach ($groups as $group => $icons) {

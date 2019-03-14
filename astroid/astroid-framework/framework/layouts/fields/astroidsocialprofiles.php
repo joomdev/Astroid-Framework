@@ -3,7 +3,7 @@
  * @package   Astroid Framework
  * @author    JoomDev https://www.joomdev.com
  * @copyright Copyright (C) 2009 - 2019 JoomDev.
- * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
+ * @license https://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
  */
 defined('JPATH_BASE') or die;
 jimport('astroid.framework.constants');
@@ -41,7 +41,7 @@ if (empty($value)) {
                         <input type="text" ng-model="profile.link" class="form-control" autocomplete="off">
                      </div>
                   </div>
-                  <div ng-if="profile.id=='custom'" class="row mt-2">
+                  <div ng-if="profile.id == 'custom'" class="row mt-2">
                      <div class="col-sm-4">
                         <label class="astroid-label"><?php echo JText::_('TPL_ASTROID_ICON_CLASS'); ?></label>
                      </div>
@@ -49,7 +49,7 @@ if (empty($value)) {
                         <input type="text" ng-model="profile.icon" class="form-control" autocomplete="off">
                      </div>
                   </div>
-                  <div ng-if="profile.id!='custom'" class="row mt-2" ng-show="profile.icons.length > 1">
+                  <div ng-if="profile.id != 'custom'" class="row mt-2" ng-show="profile.icons.length > 1">
                      <div class="col-sm-4">
                         <label class="astroid-label"><?php echo JText::_('TPL_ASTROID_ICON'); ?></label>
                      </div>
@@ -59,7 +59,7 @@ if (empty($value)) {
                         </ul>
                      </div>
                   </div>
-                  <div ng-if="profile.id=='custom'" class="mt-2 row">
+                  <div ng-if="profile.id == 'custom'" class="mt-2 row">
                      <div class="col-sm-4">
                         <label class="astroid-label"><?php echo JText::_('TPL_ASTROID_COLOR'); ?></label>
                      </div>

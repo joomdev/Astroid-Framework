@@ -1,72 +1,103 @@
 .jddrop-content{
    display: none;
-   z-index: 1;
    z-index: 99;
+}
+
+
+// Menu Badge
+
+.menu-item-badge{
+   padding: 2px 7px;
+   font-weight: normal;
+   text-transform: none;
+   line-height: 20px;
+   font-size: 14px;
+   border-radius: 2px;
 }
 
 // megamenu dropdown
 .megamenu-container{
-   border: 1px solid #eee;
    padding: 15px 10px;
-   max-height: 85vh;
-   overflow-y: auto;
-   .megamenu-menu-container{
-      .megamenu-menu{
-         margin: 0;
-         padding: 0;
-         list-style-type: none;
-      }
-      .megamenu-menu-item{
-         display: block;
-         > a{
-            display: block;
-            text-decoration: none;
-            padding: 5px 15px;
-            &.megamenu-title{
-               border-bottom: 1px solid #eee;
-               margin-bottom: 10px;
-               padding-bottom: 15px;
-               display: block;
-            }
-         }
-      }
+   display: none;
+   position: absolute;
+   z-index: 999;
+   box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.1);
+   &.nav-submenu-container{
+      padding: 0;
    }
-   .megamenu-submenu-container{
-      &:not(.nav-item-level-1){
-         margin-top: -1px;
+   .nav-submenu {
+      box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.1);
+   }
+}
+
+// Submenu dropdowns
+.nav-submenu{
+   margin: 0;
+   padding: 0;
+   list-style-type: none;
+   display: flex;
+   flex-direction: column;
+   z-index: 9;
+   &.megamenu-submenu-level-1{
+      box-shadow: none;   
+   }
+   > li{
+      padding: 0;
+      position: relative;
+      > a{
+         text-decoration: none;
+         display: block;
+         padding: 5px 15px;
       }
-      .nav-submenu{
-         margin: 0;
-         padding: 0;
-         list-style-type: none;
-         > li{
-            display: block;
-            > a{
-               text-decoration: none;
-               padding: 5px 15px;
-            }
+      > .nav-submenu{
+         position: absolute;
+         top: 0;
+         left: 100%;
+         width: 100%;
+         max-width: 300px;
+         display: none;
+         &.right{
+            left: -100%;
          }
       }
    }
 }
 
-// Submenu dropdowns
-.nav-submenu-container{
-   border: 1px solid #eee;
-   max-height: 75vh;
-   &:not(.nav-item-level-1){
-      margin-top: -1px;
+.nav-item-megamenu .nav-submenu{
+   .item-link-heading.item-level-2,
+   .item-link-separator.item-level-2{
+      border-bottom: 1px solid;
+      &:hover{
+         color: inherit !important;
+         background: inherit !important;
+      }
    }
-   .nav-submenu{
-      margin: 0;
+}
+
+.nav-submenu-static{
+   margin: 0;
+   padding: 0;
+   list-style-type: none;
+   display: flex;
+   flex-direction: column;
+   z-index: 9;
+   > li{
       padding: 0;
-      list-style-type: none;
-      > li{
+      position: relative;
+      > a{
+         text-decoration: none;
          display: block;
-         > a{
-            text-decoration: none;
-            display: block;
-            padding: 5px 15px;
+         padding: 10px 15px;
+      }
+      > .nav-submenu{
+         position: absolute;
+         top: 0;
+         left: 100%;
+         width: 100%;
+         max-width: 300px;
+         display: none;
+         &.right{
+            left: -100%;
          }
       }
    }
@@ -109,6 +140,49 @@ ul{
          > .megamenu-submenu{
             padding-left: 15px;
          }
+      }
+   }
+}
+
+.has-megamenu {
+   position: relative;
+   display: flex;
+   &[data-position=left] {
+      justify-content: flex-start;
+   }
+   &[data-position=right] {
+      justify-content: flex-end;
+   }
+   &[data-position=center], &[data-position=full], &[data-position=edge] {
+      justify-content: center;
+   }
+   &:before {
+      content: '';
+      display: block;
+      width: 100%;
+      height: 250%;
+      max-height: 100px;
+      position: absolute;
+      top: 100%;
+      display: none;
+      cursor: pointer;
+   }
+   &.open {
+      &:before {
+         display: block;
+      }
+      .arrow {
+         position: absolute;
+         width: 0;
+         height: 0;
+         border-left: 8px solid transparent;
+         border-right: 8px solid transparent;
+         border-bottom: 8px solid #eee;
+         z-index: 0;
+         left: 50%;
+         margin-left: -8px;
+         bottom: 0px;
+         display: none;
       }
    }
 }

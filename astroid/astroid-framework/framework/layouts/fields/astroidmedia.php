@@ -3,7 +3,7 @@
  * @package   Astroid Framework
  * @author    JoomDev https://www.joomdev.com
  * @copyright Copyright (C) 2009 - 2019 JoomDev.
- * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
+ * @license https://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
  */
 defined('JPATH_BASE') or die;
 
@@ -80,7 +80,7 @@ if($media=='videos'){
    </ul>
    
    <!-- media pop up -->
-   <div class="ezlb-pop" ng-class="{'open':selectMedia}">
+   <div class="ezlb-pop" ng-media-class="{'open':selectMedia}">
       <div class="ezlb-pop-overlay"></div>
       <div class="ezlb-pop-body">
          <div class="astroid-pop-loading astroid-fade-animation" ng-init="loading = false" ng-show='loading'><span><span class="fa fa-circle-notch fa-spin"></span></span></div>
@@ -116,7 +116,7 @@ if($media=='videos'){
                            <div class="col">
                               <nav aria-label="breadcrumb" ng-if="bradcrumb.length >= 2 && folder != ''">
                                  <ol class="breadcrumb">
-                                    <li ng-repeat="item in bradcrumb" class="breadcrumb-item" ng-class="{'active':$last}"><a ng-if="!$last" ng-click="getLibrary(item.url,'astroid-media-tab-library-<?php echo $id; ?>')" href="javascript:void(0);">{{ item.name}}</a><span ng-if="$last">{{ item.name}}</span></li>
+                                    <li ng-repeat="item in bradcrumb" class="breadcrumb-item" ng-media-class="{'active':$last}"><a ng-if="!$last" ng-click="getLibrary(item.url,'astroid-media-tab-library-<?php echo $id; ?>')" href="javascript:void(0);">{{ item.name}}</a><span ng-if="$last">{{ item.name}}</span></li>
                                  </ol>
                               </nav>
                               <nav aria-label="breadcrumb" ng-if="folder == ''">

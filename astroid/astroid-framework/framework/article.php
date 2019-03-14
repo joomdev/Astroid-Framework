@@ -4,12 +4,12 @@
  * @package   Astroid Framework
  * @author    JoomDev https://www.joomdev.com
  * @copyright Copyright (C) 2009 - 2019 JoomDev.
- * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
+ * @license https://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
  */
 defined('_JEXEC') or die;
 jimport('astroid.framework.helper');
 jimport('astroid.framework.constants');
-jimport('astroid.framework.template');
+jimport('astroid.framework.astroid');
 
 class AstroidFrameworkArticle {
 
@@ -27,8 +27,7 @@ class AstroidFrameworkArticle {
       }
 
       $this->type = $this->article->params->get('astroid_article_type', 'regular');
-      $template = JFactory::getApplication()->getTemplate(true);
-      $this->template = new AstroidFrameworkTemplate($template);
+      $this->template = AstroidFramework::getTemplate();
 
       $mainframe = JFactory::getApplication();
       $this->params = new JRegistry();
@@ -46,6 +45,27 @@ class AstroidFrameworkArticle {
 
    public function addMeta() {
 
+      $app = JFactory::getApplication();
+      $itemid = $app->input->get('Itemid', '', 'INT');
+
+      $menu = $app->getMenu();
+      $item = $menu->getItem($itemid);
+
+      if (!empty($item)) {
+         $params = new JRegistry();
+         $params->loadString($item->params);
+
+         $enabled = $params->get('astroid_opengraph_menuitem', 0);
+         $enabled = (int) $enabled;
+         if (!empty($enabled)) {
+            return;
+         }
+      }
+
+      if (!(JFactory::getApplication()->input->get('option', '') == 'com_content' && JFactory::getApplication()->input->get('view', '') == 'article')) {
+         return;
+      }
+
       $enabled = $this->template->params->get('article_opengraph', 0);
       $fb_id = $this->template->params->get('article_opengraph_facebook', '');
       $tw_id = $this->template->params->get('article_opengraph_twitter', '');
@@ -54,6 +74,7 @@ class AstroidFrameworkArticle {
          return;
       }
       $config = JFactory::getConfig();
+
       $og_title = $this->article->title;
       if (!empty($this->article->params->get('astroid_og_title', ''))) {
          $og_title = $this->article->params->get('astroid_og_title', '');
@@ -64,13 +85,11 @@ class AstroidFrameworkArticle {
       }
       $images = json_decode($this->article->images);
       if (isset($images->image_intro) && !empty($images->image_intro)) {
-         $og_image = htmlspecialchars($images->image_intro, ENT_COMPAT, 'UTF-8');
+         $og_image = JURI::base() . htmlspecialchars($images->image_intro, ENT_COMPAT, 'UTF-8');
       }
       if (!empty($this->article->params->get('astroid_og_image', ''))) {
          $og_image = JURI::base() . $this->article->params->get('astroid_og_image', '');
       }
-
-
 
       $og_sitename = $config->get('sitename');
       $og_siteurl = JURI::base() . ContentHelperRoute::getArticleRoute($this->article->slug, $this->article->catid, $this->article->language);
@@ -91,7 +110,7 @@ class AstroidFrameworkArticle {
          $meta[] = '<meta property="og:description" content="' . substr($og_description, 0, 200) . '">';
       }
       if (!empty($og_image)) {
-         $meta[] = '<meta property="og:type" content="article"><meta property="og:image" content="' . $og_image . '">';
+         $meta[] = '<meta property="og:image" content="' . $og_image . '">';
       }
       if (!empty($fb_id)) {
          $meta[] = '<meta property="fb:app_id" content="' . $fb_id . '" />';
@@ -113,10 +132,10 @@ class AstroidFrameworkArticle {
       $this->template->loadLayout('blog.' . $this->type, true, ['article' => $this->article]);
    }
 
-   // Read time
+   // Read Time
    public function renderReadTime() {
       if ($this->showReadTime()) {
-         $this->article->readtime = $this->calculateReadTime($this->article->text);
+         $this->article->readtime = $this->calculateReadTime($this->article->fulltext);
          $this->template->loadLayout('blog.modules.readtime', true, ['article' => $this->article]);
       }
    }
@@ -133,7 +152,6 @@ class AstroidFrameworkArticle {
    }
 
    // Social Share
-
    public function renderSocialShare() {
       if ($this->showSocialShare()) {
          $this->template->loadLayout('blog.modules.social', true, ['article' => $this->article]);
@@ -210,7 +228,6 @@ class AstroidFrameworkArticle {
    }
 
    // Post Type Icon
-
    public function renderPostTypeIcon() {
       if ($this->showPostTypeIcon()) {
          $this->template->loadLayout('blog.modules.posttype', true, ['article' => $this->article]);
@@ -245,7 +262,7 @@ class AstroidFrameworkArticle {
       return $this->template->params->get('article_rating', 1);
    }
 
-   // Utility functions
+   // Utility Functions
    public function checkPriority($firstPriority, $secondPriority, $thirdPriority) {
       $firstPriority = $firstPriority == '' ? -1 : (int) $firstPriority;
       $secondPriority = $secondPriority == '' ? -1 : (int) $secondPriority;
@@ -366,7 +383,7 @@ class AstroidFrameworkArticle {
    }
 
    public static function getVimeoThumbnailByID($vid) {
-      $hash = unserialize(file_get_contents("http://vimeo.com/api/v2/video/" . $vid . ".php"));
+      $hash = unserialize(file_get_contents("https://vimeo.com/api/v2/video/" . $vid . ".php"));
       $thumbnail = $hash[0]['thumbnail_large'];
       return $thumbnail;
    }
@@ -374,8 +391,7 @@ class AstroidFrameworkArticle {
    public static function getVideoId($url, $type) {
       $parts = parse_url($url);
       if ($type == "youtube") {
-         parse_str($parts['query'], $query);
-         return (isset($query['v']) ? $query['v'] : '');
+         return (isset($parts['path']) ? $parts['path'] : '');
       } else {
          return (isset($parts['path']) ? str_replace('/', '', $parts['path']) : '');
       }

@@ -3,7 +3,7 @@
  * @package   Astroid Framework
  * @author    JoomDev https://www.joomdev.com
  * @copyright Copyright (C) 2009 - 2019 JoomDev.
- * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
+ * @license https://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
  */
 defined('JPATH_BASE') or die;
 
@@ -13,7 +13,7 @@ defined('JPATH_BASE') or die;
 	<?php $author = '<span itemprop="name">' . $author . '</span>'; ?>
 	<?php if (!empty($displayData['item']->contact_link ) && $displayData['params']->get('link_author') == true) : ?>
 		<i class="far fa-user"></i>
-		<?php JHtml::_('link', $displayData['item']->contact_link, $author, array('itemprop' => 'url')); ?>
+		<?php echo JHtml::_('link', $displayData['item']->contact_link, $author, array('itemprop' => 'url')); ?>
 	<?php else : ?>
 	<i class="far fa-user"></i>	
 		<?php echo $author; ?>

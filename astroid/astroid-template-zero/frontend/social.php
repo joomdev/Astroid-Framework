@@ -3,7 +3,10 @@
  * @package   Astroid Framework
  * @author    JoomDev https://www.joomdev.com
  * @copyright Copyright (C) 2009 - 2019 JoomDev.
- * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
+ * @license https://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
+ * 	DO NOT MODIFY THIS FILE DIRECTLY AS IT WILL BE OVERWRITTEN IN THE NEXT UPDATE
+ *  You can easily override all files under /frontend/ folder.
+ *	Just copy the file to ROOT/templates/YOURTEMPLATE/html/frontend/ folder to create and override
  */
 // No direct access.
 defined('_JEXEC') or die;
@@ -24,7 +27,7 @@ if (!empty($social_profiles)) {
             $social_profile_link = 'https://api.whatsapp.com/send?phone=' . $social_profile->link;
             break;
          case 'telegram':
-            $social_profile_link = 'http://t.me/' . $social_profile->link;
+            $social_profile_link = 'https://t.me/' . $social_profile->link;
             break;
          case 'skype':
             $social_profile_link = 'skype:' . $social_profile->link . '?chat';
@@ -33,7 +36,7 @@ if (!empty($social_profiles)) {
             $social_profile_link = $social_profile->link;
             break;
       }
-      echo '<li><a style="color:' . ($style == 1 ? 'inherit' : $social_profile->color) . '" href="' . $social_profile_link . '" target="_blank" rel="noopener"><i class="' . $social_profile->icon . '"></i></a></li>';
+      echo '<li><a style="color:' . ($style == 1 ? 'inherit;' : $social_profile->color .' !important;') . '" href="' . $social_profile_link . '" target="_blank" rel="noopener"><i class="' . $social_profile->icon . '"></i></a></li>';
    }
    ?>
 </ul>

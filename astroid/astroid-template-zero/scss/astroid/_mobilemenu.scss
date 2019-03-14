@@ -1,28 +1,17 @@
+$burger-layer-width: 30px !default;
+
 .astroid-mobilemenu{
    position: fixed;
    top: 0;
    left: 0;
-   bottom: 0;
    z-index: $zindex-popover;
    visibility: hidden;
    height: 100%;
-   width: 280px;
+   width: 250px;
    background: $white;
    -webkit-transition: all 0.5s;
    transition: all 0.5s;
    max-width: 100vw !important;
-   &:after {
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(173, 181, 189,0.6);
-      content: '';
-      opacity: 1;
-      -webkit-transition: opacity 0.5s;
-      transition: opacity 0.5s;
-   }
    a {
       small {
          display: block !important;
@@ -34,39 +23,48 @@
    .astroid-mobilemenu-inner {
       ul{
          padding: 0;
-         overflow: scroll;
+         overflow: auto;
          height: 100%;
          display: block;
-         position: absolute;
+         position: relative;
          width: 100%;
       }
       .menu-item {
          border-bottom: 1px solid #ddd;
-         font-size: 16px;
          display: table;
          width: 100%;
-         a {
-            outline: 0;
-            width: 80%;
-            text-decoration: none;
-            vertical-align: middle;
-            display: table-cell;
-            color: $black;
-            padding: 15px 15px;
-         }
-         .menu-indicator {
-            width: 20%;
-            text-align: center;
-            display: table-cell;
-            vertical-align: middle;
-            border-left: 1px solid #ddd;
-            cursor: pointer;
-         }
+      }
+      .menu-item a {
+         outline: 0;
+         width: 80%;
+         text-decoration: none;
+         vertical-align: middle;
+         display: table-cell;
+         color: $black;
+         padding: 15px 15px;
+      }
+      .menu-item span.separator,.menu-item span.nav-header {
+         cursor: pointer;
+         outline: 0;
+         width: 80%;
+         text-decoration: none;
+         vertical-align: middle;
+         display: table-cell;
+         color: $black;
+         padding: 15px 15px;
+      }
+      .menu-item .menu-indicator {
+         width: 20%;
+         text-align: center;
+         display: table-cell;
+         vertical-align: middle;
+         border-left: 1px solid #ddd;
+         cursor: pointer;
       }
       .dropdown-menus {
          position: fixed;
          left: -100%;
-         top: 0;
+         top: 30px;
          width: 100%;
          height: 100vh;
          transition: all 0.5s;
@@ -78,9 +76,9 @@
             display: block;
             padding: 15px;
             box-sizing: border-box;
-            i {
-               margin-right: 10px;
-            }
+         }
+         .menu-indicator-back i {
+            margin-right: 10px;
          }
          .dropdown-menus-item {
             width: 100%;
@@ -93,19 +91,21 @@
    }
 }
 
+.burger-menu-button {
+   text-align: right;
+   line-height: 0;
+   margin: 0 15px;
+}
+
 .astroid-mobilemenu-open{
-   &:after {
-      display: inline;
-      content: "";
-      clear: both;
-   }
-   .close-offcanvas, .close-offcanvas:hover {
+   .close-offcanvas,
+   .close-offcanvas:hover {
       color: $black;
-      background: $white;
-      display: block;
-      margin-top: 0;
-      position: absolute;
-      right: -35px;
+      display: inline-block;
+      margin: 0;
+      position: relative;
+      right: 5px;
+      box-sizing: content-box;
       z-index: 999999;
    }
    .burger-menu-button .inner,
@@ -116,31 +116,29 @@
    }
 }
 
-body{
-   &.astroid-mobilemenu-opened{
-      background: rgb(173, 181, 189);
-      max-height: 100vh;
-      overflow: hidden;
-      .astroid-mobilemenu-open{
-         overflow-x: hidden;
+body.astroid-mobilemenu-opened{
+   background: rgb(173, 181, 189);
+   max-height: 100vh;
+   overflow: hidden;
+   .astroid-mobilemenu-open{
+      overflow-x: hidden;
+   }
+   .astroid-content{
+      &:after{
+         width: 100%;
+         height: 100%;
+         opacity: 1;
+         -webkit-transition: opacity 0.5s;
+         transition: opacity 0.5s;
       }
-      .astroid-content{
-         &:after{
-            width: 100%;
-            height: 100%;
-            opacity: 1;
-            -webkit-transition: opacity 0.5s;
-            transition: opacity 0.5s;
-         }
-      }
-      .astroid-mobilemenu{
-         &:after{
-            width: 0;
-            height: 0;
-            opacity: 0;
-            -webkit-transition: opacity 0.5s, width 0.1s 0.5s, height 0.1s 0.5s;
-            transition: opacity 0.5s, width 0.1s 0.5s, height 0.1s 0.5s;
-         }
+   }
+   .astroid-mobilemenu{
+      &:after{
+         width: 0;
+         height: 0;
+         opacity: 0;
+         -webkit-transition: opacity 0.5s, width 0.1s 0.5s, height 0.1s 0.5s;
+         transition: opacity 0.5s, width 0.1s 0.5s, height 0.1s 0.5s;
       }
    }
 }

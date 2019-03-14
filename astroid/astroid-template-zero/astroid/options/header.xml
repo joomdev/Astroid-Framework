@@ -53,10 +53,64 @@
          <field ngShow="header==true AND header_mode=='stacked' AND header_block_2_type=='custom' AND header_stacked_menu_mode!='center'" astroidgroup="header_element" name="header_block_2_custom" type="astroidtextarea" filter="raw" class="form-control" label="TPL_ASTROID_HEADER_BLOCK_2_CUSTOM_LABEL" description="TPL_ASTROID_HEADER_BLOCK_2_CUSTOM_DESC" />
 
          <field ngShow="header==true" astroidgroup="header_element" name="header_menu" type="sql" query="SELECT * FROM #__menu_types" default="mainmenu" class="form-control astroid-select-ui" key_field="menutype" value_field="title" label="TPL_ASTROID_HEADER_MENU_LABEL" description="TPL_ASTROID_HEADER_MENU_DESC"></field>
+         
+         <field
+            name="header_endLevel"
+            type="astroidlist"
+            label="MOD_MENU_FIELD_ENDLEVEL_LABEL"
+            description="MOD_MENU_FIELD_ENDLEVEL_DESC"
+            default="0"
+            filter="integer"
+            ngShow="header==true"
+            astroidgroup="header_element"
+         >
+            <option value="0">JALL</option>
+            <option value="1">J1</option>
+            <option value="2">J2</option>
+            <option value="3">J3</option>
+            <option value="4">J4</option>
+            <option value="5">J5</option>
+            <option value="6">J6</option>
+            <option value="7">J7</option>
+            <option value="8">J8</option>
+            <option value="9">J9</option>
+            <option value="10">J10</option>
+         </field>
 
-         <field ngShow="header==true" astroidgroup="header_element" name="header_mobile_menu" type="sql" query="SELECT * FROM #__menu_types" default="mainmenu" class="form-control astroid-select-ui" key_field="menutype" value_field="title" label="TPL_ASTROID_HEADER_MOBILE_MENU_LABEL">
+         <field ngShow="header==true" astroidgroup="header_element" name="header_mobile_menu" type="sql" query="SELECT * FROM #__menu_types" default="" class="form-control astroid-select-ui" key_field="menutype" value_field="title" label="TPL_ASTROID_HEADER_MOBILE_MENU_LABEL">
             <option value="">JNONE</option>
          </field>
+         
+         <field
+            name="header_mobile_endLevel"
+            type="astroidlist"
+            label="MOD_MENU_FIELD_ENDLEVEL_LABEL"
+            description="MOD_MENU_FIELD_ENDLEVEL_DESC"
+            default="0"
+            filter="integer"
+            ngShow="header==true"
+            astroidgroup="header_element"
+         >
+            <option value="0">JALL</option>
+            <option value="1">J1</option>
+            <option value="2">J2</option>
+            <option value="3">J3</option>
+            <option value="4">J4</option>
+            <option value="5">J5</option>
+            <option value="6">J6</option>
+            <option value="7">J7</option>
+            <option value="8">J8</option>
+            <option value="9">J9</option>
+            <option value="10">J10</option>
+         </field>
+         
+
+         <field ngShow="header==true" astroidgroup="header_element" name="dropdown_trigger" type="astroidradio" default="hover" label="TPL_ASTROID_MENU_OPTIONS_SELECT_ACTION_LABEL" description="TPL_ASTROID_MENU_OPTIONS_SELECT_ACTION_DESC">
+            <option value="hover">JGLOBAL_HOVER</option>
+            <option value="click">JGLOBAL_CLICK</option>
+         </field>
+     
+         <field ngShow="header==true" astroidgroup="header_element" name="dropdown_arrow" type="astroidtext" astroid-switch="true" default="0" label="TPL_ASTROID_MENU_OPTIONS_SELECT_ARROW_LABEL" description="TPL_ASTROID_MENU_OPTIONS_SELECT_ARROW_DESC"></field>
 
          <field ngShow="header==true" astroidgroup="header_element" description="TPL_ASTROID_HEADER_LOGO_OPTION_DESC" title="TPL_ASTROID_HEADER_LOGO_OPTION" type="astroidheading" />
 
@@ -80,6 +134,22 @@
          <field ngShow="header==true" astroidgroup="header_element" description="TPL_ASTROID_HEADER_STICKY_HEADER_DESC" title="TPL_ASTROID_HEADER_STICKY_HEADER_LABEL" type="astroidheading" />
 
          <field ngShow="header==true" astroidgroup="header_element" class="sticky-header-switch" name="enable_sticky_menu" type="astroidtext" astroid-switch="true" default="0" label="TPL_ASTROID_HEADER_STICKY_HEADER_ENABLE_LABEL" description="TPL_ASTROID_HEADER_STICKY_HEADER_ENABLE_DESC"></field>
+
+         <field ngShow="header==true AND enable_sticky_menu==true" astroidgroup="header_element" name="stickey_horizontal_menu_mode" type="astroidradio" image-width="150" radio-image="true" default="left" label="TPL_ASTROID_STICKY_HORIZONTAL_HEADER_MODE_LABEL" description="TPL_ASTROID_STICKY_HORIZONTAL_HEADER_MODE_DESC">
+            <option label="JGLOBAL_LEFT" value="left">media/astroid/assets/images/header/horizontal-left.svg</option>
+            <option label="JGLOBAL_CENTER" value="center">media/astroid/assets/images/header/horizontal-center.svg</option>
+            <option label="JGLOBAL_RIGHT" value="right">media/astroid/assets/images/header/horizontal-right.svg</option>
+         </field>
+
+         <field ngShow="header==true AND enable_sticky_menu==true" astroidgroup="header_element" name="stickey_block_1_type" type="astroidlist" default="blank" class="form-control" label="TPL_ASTROID_STICKY_BLOCK_1_TYPE_LABEL" description="TPL_ASTROID_STICKY_BLOCK_1_TYPE_DESC">
+            <option value="blank">TPL_ASTROID_BLANK_OPTIONS</option>
+            <option value="position">TPL_ASTROID_MODULE_POSITION_LABEL</option>
+            <option value="custom">TPL_ASTROID_CUSTOM_HTML_OPTIONS</option>
+         </field>
+
+         <field ngShow="header==true AND enable_sticky_menu==true AND stickey_block_1_type == 'position'" astroidgroup="header_element" name="stickey_block_1_position" type="astroidmodulesposition" class="form-control" label="TPL_ASTROID_HEADER_BLOCK_1_POSITION_LABEL" description="TPL_ASTROID_HEADER_BLOCK_1_POSITION_DESC" />
+
+         <field ngShow="header==true AND enable_sticky_menu==true AND  stickey_block_1_type == 'custom'" astroidgroup="header_element" name="stickey_block_1_custom" type="astroidtextarea" filter="raw" class="form-control" label="TPL_ASTROID_HEADER_BLOCK_1_CUSTOM_LABEL" description="TPL_ASTROID_HEADER_BLOCK_1_CUSTOM_DESC" />
 
          <field ngShow="header==true AND enable_sticky_menu==true AND logo_type=='image'" astroidgroup="header_element" description="TPL_ASTROID_BASIC_STICKY_HEADER_LOGO_DESC" name="stickey_header_logo" type="astroidmedia" label="TPL_ASTROID_BASIC_STICKY_HEADER_LOGO_LABEL">
          </field>
@@ -125,7 +195,7 @@
          
          <field ngShow="header==true" astroidgroup="header_element" description="TPL_ASTROID_HEADER_MENU_ANIMATION_DESC" title="TPL_ASTROID_HEADER_MENU_ANIMATION" type="astroidheading" />
 
-         <field ngShow="header==true" astroidgroup="header_element" name="dropdown_animation_type" type="astroidradio" default="slide" label="TPL_ASTROID_HEADER_MENU_ANIMATION">
+         <field ngShow="header==true" astroidgroup="header_element" name="dropdown_animation_type" type="astroidradio" default="fade" label="TPL_ASTROID_HEADER_MENU_ANIMATION">
             <option class="btn-danger" value="none">JNONE</option>
             <option value="fade">TPL_ASTROID_HEADER_MENU_ANIMATION_OPTION_FADE</option>
             <option value="slide">TPL_ASTROID_HEADER_MENU_ANIMATION_OPTION_SILDE</option>
@@ -135,7 +205,7 @@
          
          <field ngShow="header==true AND dropdown_animation_type!='none'" astroidgroup="header_element" name="dropdown_animation_ease" type="astroidlist" class="form-control" label="TPL_ASTROID_HEADER_ANIMATION_EASE_LABEL" default="linear">
             <option value="linear">linear</option>
-            <option value="jswing">swing</option>
+            <option value="swing">swing</option>
             <option value="easeInQuad">easeInQuad</option>
             <option value="easeOutQuad">easeOutQuad</option>
             <option value="easeInOutQuad">easeInOutQuad</option>

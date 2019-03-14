@@ -4,19 +4,18 @@
  * @package		Astroid Framework
  * @author		JoomDev https://www.joomdev.com
  * @copyright	Copyright (C) 2009 - 2019 JoomDev.
- * @license		http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
+ * @license		https://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
  */
 defined('_JEXEC') or die;
-jimport('astroid.framework.constants');
 
 class AstroidFrameworkConstants {
 
-   public static $astroid_version = '2.0.2';
-   public static $fontawesome_version = '5.4.2';
+   public static $astroid_version = '2.1.0';
+   public static $fontawesome_version = '5.6.3';
    public static $animatecss_version = '3.7.0';
    public static $forum_link = 'https://www.joomdev.com/forum/astroid-framework';
    public static $documentation_link = 'https://www.joomdev.com/documentation/astroid-framework';
-   public static $github_link = 'http://github.com/joomdev/astroid-framework';
+   public static $github_link = 'https://github.com/joomdev/astroid-framework';
    public static $download_link = 'https://github.com/joomdev/Astroid-Framework/releases/latest';
    public static $releases_link = 'https://github.com/joomdev/Astroid-Framework/releases';
    public static $joomdev_link = 'https://www.joomdev.com';
@@ -174,7 +173,6 @@ class AstroidFrameworkConstants {
        ['title' => 'Facebook', 'link' => '', 'icons' => ['fab fa-facebook-f', 'fab fa-facebook', 'fab fa-facebook-square'], 'color' => '#39539E', 'enabled' => false, 'icon' => 'fab fa-facebook-f'],
        ['title' => 'Flickr', 'link' => '', 'icons' => ['fab fa-flickr'], 'color' => '#0054E3', 'enabled' => false, 'icon' => 'fab fa-flickr'],
        ['title' => 'GitHub', 'link' => '', 'icons' => ['fab fa-github', 'fab fa-github-square', 'fab fa-github-alt'], 'color' => '#171515', 'enabled' => false, 'icon' => 'fab fa-github'],
-       ['title' => 'Google +', 'link' => '', 'icons' => ['fab fa-google-plus-g', 'fab fa-google-plus-square', 'fab fa-google-plus'], 'color' => '#EE381C', 'enabled' => false, 'icon' => 'fab fa-google-plus-g'],
        ['title' => 'Instagram', 'link' => '', 'icons' => ['fab fa-instagram'], 'color' => '#467FAA', 'enabled' => false, 'icon' => 'fab fa-instagram'],
        ['title' => 'LinkedIn', 'link' => '', 'icons' => ['fab fa-linkedin-in', 'fab fa-linkedin'], 'color' => '#006FB8', 'enabled' => false, 'icon' => 'fab fa-linkedin-in'],
        ['title' => 'Messenger', 'link' => '', 'icons' => ['fab fa-facebook-messenger'], 'color' => '#3876C4', 'enabled' => false, 'icon' => 'fab fa-facebook-messenger'],
@@ -255,6 +253,14 @@ class AstroidFrameworkConstants {
            'name' => 'cube-grid',
            'code' => '<div class="sk-cube-grid"><div class="sk-cube sk-cube1"></div><div class="sk-cube sk-cube2"></div><div class="sk-cube sk-cube3"></div><div class="sk-cube sk-cube4"></div><div class="sk-cube sk-cube5"></div><div class="sk-cube sk-cube6"></div><div class="sk-cube sk-cube7"></div><div class="sk-cube sk-cube8"></div><div class="sk-cube sk-cube9"></div></div>',
        ],
+       'bouncing-loader' => [
+        'name' => 'bouncing-loader',
+        'code' => '<div class="bouncing-loader"><div></div><div></div><div></div></div>',
+       ],
+       'donut' => [
+        'name' => 'donut',
+        'code' => '<div class="donut"></div>',
+       ],
    ];
    public static $layout_grids = [
        [12],
@@ -269,5 +275,4 @@ class AstroidFrameworkConstants {
        [3, 3, 3, 3],
        [2, 2, 2, 2, 2, 2]
    ];
-
 }

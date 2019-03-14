@@ -3,7 +3,7 @@
  * @package   Astroid Framework
  * @author    JoomDev https://www.joomdev.com
  * @copyright Copyright (C) 2009 - 2019 JoomDev.
- * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
+ * @license https://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
  */
 defined('JPATH_BASE') or die;
 jimport('astroid.framework.helper');
@@ -82,6 +82,11 @@ $fieldsets = AstroidFrameworkHelper::getAstroidFieldsets($form);
 foreach ($params as $key => $value) {
    $form->setValue($key, 'params', $value);
 }
+
+
+$plugin = JPluginHelper::getPlugin('system', 'astroid');
+$plugin_params = new JRegistry($plugin->params);
+$astroid_manager_loader = $plugin_params->get('astroid_manager_loader', 1);
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo strtolower($lang->getTag()); ?>" dir="<?php echo $langdir; ?>">
@@ -106,6 +111,7 @@ foreach ($params as $key => $value) {
          var BASE_URL = '<?php echo JURI::root(); ?>administrator/';
          var TEMPLATE_NAME = '<?php echo $template->template; ?>';
          var SYSTEM_FONTS = <?php echo json_encode(array_keys(AstroidFrameworkConstants::$system_fonts)); ?>;
+         var LIBRARY_FONTS = <?php echo json_encode(array_keys(AstroidFrameworkHelper::getUploadedFonts($template->template))); ?>;
       </script>
       <style>
         .falling-astroid-container{position:fixed;width:100%;height:100%;top:0;left:0;background:rgba(0,0,0,.7)!important;z-index:9999999;transition:.2s linear}.falling-astroid{position:absolute;width:100%;height:100%;top:0;left:0;transform:rotate(-45deg)}.falling-astroid span{position:absolute;height:20%;width:2px;background:#999}.falling-astroid span:nth-child(1){left:20%;animation:lf .6s linear infinite;animation-delay:-5s}.falling-astroid span:nth-child(2){left:40%;animation:lf2 .8s linear infinite;animation-delay:-1s}.falling-astroid span:nth-child(3){left:60%;animation:lf3 .6s linear infinite}.falling-astroid span:nth-child(4){left:80%;animation:lf4 .5s linear infinite;animation-delay:-3s}@keyframes lf{0%{top:200%}to{top:-200%;opacity:0}}@keyframes lf2{0%{top:200%}to{top:-200%;opacity:0}}@keyframes lf3{0%{top:200%}to{top:-100%;opacity:0}}@keyframes lf4{0%{top:200%}to{top:-100%;opacity:0}}@keyframes fazer1{0%{top:0}to{top:-120px;opacity:0;transform:scale(.5)}}@keyframes fazer2{0%{top:0}to{top:-150px;opacity:0;transform:scale(.4)}}@keyframes fazer3{0%{top:0}to{top:-100px;opacity:0;transform:scale(.3)}}@keyframes fazer4{0%{top:0}to{top:-200px;opacity:0;transform:scale(.2)}}@keyframes speeder{0%,90%{transform:translate(2px,1px) rotate(0)}10%{transform:translate(-1px,-3px) rotate(-1deg)}20%{transform:translate(-2px) rotate(1deg)}30%{transform:translate(1px,2px) rotate(0)}40%{transform:translate(1px,-1px) rotate(1deg)}50%{transform:translate(-1px,3px) rotate(-1deg)}60%{transform:translate(-1px,1px) rotate(0)}70%{transform:translate(3px,1px) rotate(-1deg)}80%{transform:translate(-2px,-1px) rotate(1deg)}to{transform:translate(1px,-2px) rotate(-1deg)}}.falling-astroid-imgs{transform:rotate(-45deg);position:absolute;z-index:1;top:30px;left:10px}.falling-astroid-img{background:url(<?php echo JURI::root(); ?>media/astroid/assets/images/astroid/1.png) center no-repeat;background-size:contain!important;width:90px;height:90px}.falling-astroid-logo{animation:speeder .4s linear infinite;width:100px;height:100px;position:absolute;top:50%;left:50%;margin-left:-75px;margin-top:-75px}.falling-astroid-imgs span{position:absolute;background-size:contain!important}.falling-astroid-imgs span:nth-child(1){background:url(<?php echo JURI::root(); ?>media/astroid/assets/images/astroid/2.png) center no-repeat;width:40px;height:40px;left:-50px;animation:fazer1 .6s linear infinite}.falling-astroid-imgs span:nth-child(2){background:url(<?php echo JURI::root(); ?>media/astroid/assets/images/astroid/3.png) center no-repeat;width:35px;height:35px;left:40px;top:-40px;animation:fazer2 .4s linear infinite}.falling-astroid-imgs span:nth-child(3){background:url(<?php echo JURI::root(); ?>media/astroid/assets/images/astroid/4.png) center no-repeat;width:30px;height:30px;left:-10px;top:-40px;animation:fazer3 .4s linear infinite;animation-delay:-1s}.falling-astroid-imgs span:nth-child(4){background:url(<?php echo JURI::root(); ?>media/astroid/assets/images/astroid/3.png) center no-repeat;width:20px;height:20px;left:0;top:-80px;animation:fazer4 1s linear infinite;animation-delay:-1s}.falling-astroid-imgs span:nth-child(5){background:url(<?php echo JURI::root(); ?>media/astroid/assets/images/astroid/4.png) center no-repeat;width:20px;height:20px;left:-30px;top:-25px;animation:fazer1 .2s linear infinite}.falling-astroid-imgs span:nth-child(6){background:url(<?php echo JURI::root(); ?>media/astroid/assets/images/astroid/3.png) center no-repeat;width:10px;height:10px;left:-50px;top:-90px;animation:fazer4 1s linear infinite;animation-delay:-1s}.falling-astroid-imgs span:nth-child(7){background:url(<?php echo JURI::root(); ?>media/astroid/assets/images/astroid/4.png) center no-repeat;width:15px;height:15px;left:25px;top:-25px;transform:rotate(-45deg);animation:fazer2 .4s linear infinite}.falling-astroid-imgs span:nth-child(8){background:url(<?php echo JURI::root(); ?>media/astroid/assets/images/astroid/9.png) center no-repeat;width:10px;height:15px;left:-50px;top:-60px;animation:fazer3 .4s linear infinite;animation-delay:-1s}
@@ -122,27 +128,29 @@ foreach ($params as $key => $value) {
    </head>
    <body ng-app="astroid-framework" id="astroid-framework" ng-controller="astroidController">
       <input type="hidden" id="astroid-admin-token" value="<?php echo JSession::getFormToken(); ?>" />
-      <div class="astroid-loading falling-astroid-container">
-         <div class="falling-astroid-logo">
-            <div class="falling-astroid-imgs">
-               <span></span>
-               <span></span>
-               <span></span>
-               <span></span>
+      <?php if ($astroid_manager_loader) { ?>
+         <div class="astroid-loading falling-astroid-container">
+            <div class="falling-astroid-logo">
+               <div class="falling-astroid-imgs">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+               </div>
+               <div class="falling-astroid-img"></div>
+            </div>
+            <div class="falling-astroid">
                <span></span>
                <span></span>
                <span></span>
                <span></span>
             </div>
-            <div class="falling-astroid-img"></div>
          </div>
-      <div class="falling-astroid">
-         <span></span>
-         <span></span>
-         <span></span>
-         <span></span>
-      </div>
-      </div>
+      <?php } ?>
       <!--<nav class="astroid-manager-navbar navbar fixed-top navbar-expand-lg navbar-light bg-white justify-content-between">
          <a class="navbar-brand" href="#"><img src="<?php echo JURI::root() . 'media' . '/' . 'astroid' . '/' . 'assets' . '/' . 'images' . '/' . 'favicon.png'; ?>" width="28" height="28" class="d-inline-block align-top" alt=""> Astroid Framework</a>
          <div class="form-inline">
@@ -203,17 +211,17 @@ foreach ($params as $key => $value) {
                   <?php } ?>
                   <li class="nav-item row">
                      <a id="export-options" class="nav-link col-12" href="javascript:void(0);">
-                        <i class="fa fa-download"></i>&nbsp;<?php echo JText::_('Export'); ?>
+                        <i class="fa fa-download"></i>&nbsp;<?php echo JText::_('TPL_ASTROID_EXPORT'); ?>
                      </a>
                   </li>
                   <li class="nav-item row">
                      <a id="import-options" class="nav-link col-12" href="javascript:void(0);">
-                        <i class="fa fa-upload"></i>&nbsp;<?php echo JText::_('Import'); ?>
+                        <i class="fa fa-upload"></i>&nbsp;<?php echo JText::_('TPL_ASTROID_IMPORT'); ?>
                      </a>
                   </li>
                   <li class="nav-item row showin-live-preview">
                      <a class="nav-link col-12" href="javascript:void(0);" onclick="Admin.closeLivePreview()">
-                        <i class="fa fa-eye"></i>&nbsp;<?php echo JText::_('Close Live Preview'); ?>
+                        <i class="fa fa-eye"></i>&nbsp;<?php echo JText::_('TPL_ASTROID_CLOSE_LIVEPREVIEW'); ?>
                      </a>
                   </li>
                   <li class="nav-item row showin-live-preview">
@@ -230,7 +238,7 @@ foreach ($params as $key => $value) {
                   </div>
                   <p class="hidein-live-preview navbar-brand m-0"><?php echo $template->title; ?></p>
                   <div class="form-inline">
-                     <a href="javascript:void(0);" onclick="Admin.livePreview()" class="btn-live-preview btn btn-white my-2 mr-2 my-sm-0 btn-round hidein-live-preview d-none"><i class="fas fa-eye"></i>&nbsp;<?php echo JText::_('Live Preview'); ?></a>
+                     <a href="javascript:void(0);" onclick="Admin.livePreview()" class="btn-live-preview btn btn-white my-2 mr-2 my-sm-0 btn-round hidein-live-preview d-none"><i class="fas fa-eye"></i>&nbsp;<?php echo JText::_('TPL_ASTROID_LIVEPREVIEW'); ?></a>
                   </div>
                </nav>-->
                <div class="container-fluid">
@@ -302,7 +310,7 @@ foreach ($params as $key => $value) {
                                                          <?php } ?>
                                                       </div>
                                                       <div class="col-sm-7" data-fieldset="astroid-tab-<?php echo $fieldset->name; ?>">
-                                                         <?php echo $field->input; ?>
+                                                         <?php echo str_replace('ng-media-class', 'ng-class', $field->input); ?>
                                                       </div>
                                                    <?php } else { ?>
                                                       <div class="col-sm-12" data-fieldset="astroid-tab-<?php echo $fieldset->name; ?>">
@@ -368,11 +376,6 @@ foreach ($params as $key => $value) {
                      <li class="list-inline-item"><a onclick="Admin.setPreviewViewport('mobile portrait', this)" href="javascript:void(0);"><i class="fa fa-mobile-alt"></i></a></li>
                   </ul>
                </div>
-               <div class="d-flex justify-content-center" style="height: calc(100% - (56px + 1rem));">
-                  <div id="live-preview-viewport" class="desktop">
-                     <iframe id="live-preview" src="<?php echo JURI::root(); ?>"></iframe>
-                  </div>
-               </div>
             </div>
          </div>
       </div>
@@ -395,7 +398,10 @@ foreach ($params as $key => $value) {
       $scripts[] = $assets . 'vendor' . '/' . 'spectrum' . '/' . 'spectrum.js?v=' . $document->getMediaVersion();
       $scripts[] = 'https://cdnjs.cloudflare.com/ajax/libs/ace/1.3.3/ace.js?v=' . $document->getMediaVersion();
       $scripts[] = $assets . 'vendor' . '/' . 'dropzone' . '/' . 'dropzone.min.js?v=' . $document->getMediaVersion();
-      $scripts[] = $assets . 'js' . '/' . 'bootstrap-datepicker.min.js?v=' . $document->getMediaVersion();
+      $scripts[] = $assets . 'vendor' . '/' . 'moment.min.js?v=' . $document->getMediaVersion();
+      $scripts[] = $assets . 'vendor' . '/' . 'moment-timezone.min.js?v=' . $document->getMediaVersion();
+      $scripts[] = $assets . 'vendor' . '/' . 'moment-timezone-with-data-2012-2022.min.js?v=' . $document->getMediaVersion();
+      $scripts[] = $assets . 'vendor' . '/' . 'bootstrap-datetimepicker.min.js?v=' . $document->getMediaVersion();
       $scripts[] = $assets . 'vendor' . '/' . 'bootstrap-slider' . '/' . 'js' . '/' . 'bootstrap-slider.min.js?v=' . $document->getMediaVersion();
       $scripts[] = $assets . 'vendor' . '/' . 'angular' . '/' . 'angular.min.js?v=' . $document->getMediaVersion();
       $scripts[] = $assets . 'vendor' . '/' . 'angular' . '/' . 'angular-animate.js?v=' . $document->getMediaVersion();
@@ -405,6 +411,10 @@ foreach ($params as $key => $value) {
          echo "<script src='" . $script . "'></script>";
       }
       ?>
+      <script>
+         var TIMEZONE = '<?php echo $config = JFactory::getConfig()->get('offset'); ?>';
+         moment.tz.setDefault('<?php echo $config = JFactory::getConfig()->get('offset'); ?>');
+      </script>
       <script src="<?php echo $assets . 'js' . '/' . 'parsley.min.js?v=' . $document->getMediaVersion(); ?>"></script>
       <script src="<?php echo $assets . 'js' . '/' . 'notify.min.js?v=' . $document->getMediaVersion(); ?>"></script>
       <script src="<?php echo $assets . 'js' . '/' . 'jquery.hotkeys.js?v=' . $document->getMediaVersion(); ?>"></script>

@@ -9,31 +9,36 @@
          </fieldset>
          <fieldset name="design-settings" label="ASTROID_ELEMENT_HEAD_DESIGN_SEETINGS_LABEL" addfieldpath="/libraries/astroid/framework/fields">
             <field name="animation" type="astroidanimations" label="ASTROID_ANIMATION"></field>
-            <field ngShow="animation AND animation!=''" name="animation_delay" class="form-control" type="astroidtext" label="ASTROID_ANIMATION_DELAY" description="ASTROID_ANIMATION_DELAY_DESC"></field>
-            <field name="background_settings" type="astroidheading" title="ASTROID_ELEMENT_HEAD_BACKGROUND_OPTIONS_LABEL" />
-            <field name="background" type="astroidtext" astroid-switch="true" default="0" label="ASTROID_ELEMENT_CUSTOM_BACKGROUND_LABEL" />
+            <field ngShow="animation AND animation!=''" name="animation_delay" class="form-control" type="astroidtext" hint="500" default="500" label="ASTROID_ANIMATION_DELAY" description="ASTROID_ANIMATION_DELAY_DESC"></field>
+            <field description="TPL_ASTROID_ADVANCED_LAYOUT_SELECT_DESC" name="background_setting" type="astroidradio" default="0" label="TPL_ASTROID_ADVANCED_LAYOUT_SELECT">
+               <option value="0">JNONE</option>
+               <option value="color">TPL_ASTROID_COLOR</option>
+               <option value="image">TPL_ASTROID_IMAGE</option>
+               <option value="video">TPL_ASTROID_VIDEO</option>
+               <option value="gradient">TPL_ASTROID_GRADIENT</option>
+            </field>
+            
+            <field ngShow="background_setting =='color'" description="ASTROID_SELECT_BACKGROUND_COLOR_DESC" name="background_color" type="astroidcolor" label="TPL_ASTROID_BACKGROUND_COLOR_LABEL" />
 
-            <field ngShow="background" description="ASTROID_SELECT_BACKGROUND_COLOR_DESC" name="background_color" type="astroidcolor" label="TPL_ASTROID_BACKGROUND_COLOR_LABEL" />
-
-            <field ngShow="background" name="background_image" type="astroidmedia" label="TPL_ASTROID_BACKGROUND_IMAGE_LABEL"/>
-
-            <field ngShow="background" name="background_repeat" type="astroidlist" label="TPL_ASTROID_BACKGROUND_REPEAT_LABEL" hint="Background Repeat">
+            <field ngShow="background_setting =='image'"  name="background_image" type="astroidmedia" label="TPL_ASTROID_BACKGROUND_IMAGE_LABEL"/>
+            
+            <field ngShow="background_setting =='image'" name="background_repeat" type="astroidlist" label="TPL_ASTROID_BACKGROUND_REPEAT_LABEL" hint="Background Repeat">
                <option value="">JGLOBAL_INHERIT</option>
                <option value="no-repeat">TPL_ASTROID_BACKGROUND_NO_REPEAT_LABEL</option>
                <option value="repeat-x">TPL_ASTROID_BACKGROUND_REPEAT_HORIZONTALLY_LABEL</option>
                <option value="repeat-y">TPL_ASTROID_BACKGROUND_REPEAT_VERTICAL_LABEL</option>
             </field>
-            <field ngShow="background" name="background_size" type="astroidlist" label="ASTROID_BACKGROUND_SIZE">
+            <field ngShow="background_setting =='image'" name="background_size" type="astroidlist" label="ASTROID_BACKGROUND_SIZE">
                <option value="">JGLOBAL_INHERIT</option>
                <option value="cover">ASTROID_BACKGROUND_SIZE_COVER</option>
                <option value="contain">ASTROID_BACKGROUND_SIZE_CONTAIN</option>
             </field>
-            <field ngShow="background" name="background_attchment" type="astroidlist" label="ASTROID_BACKGROUND_ATTCHMENT">
+            <field ngShow="background_setting =='image'" name="background_attchment" type="astroidlist" label="ASTROID_BACKGROUND_ATTCHMENT">
                <option value="">JGLOBAL_INHERIT</option>
                <option value="scroll">ASTROID_BACKGROUND_ATTCHMENT_SCROLL</option>
                <option value="fixed">ASTROID_BACKGROUND_ATTCHMENT_FIXED</option>
-            </field>
-            <field ngShow="background" name="background_position" type="astroidlist" label="ASTROID_BACKGROUND_POSITION_LABEL">
+            </field>	  
+            <field ngShow="background_setting =='image'" name="background_position" type="astroidlist" label="ASTROID_BACKGROUND_POSITION_LABEL">
                <option value="">JGLOBAL_INHERIT</option>
                <option value="left top">ASTROID_BACKGROUND_POSITION_LEFT_TOP</option>
                <option value="left center">ASTROID_BACKGROUND_POSITION_LEFT_CENTER</option>
@@ -45,7 +50,9 @@
                <option value="center center">ASTROID_BACKGROUND_POSITION_CENTER_CENTER</option>
                <option value="center bottom">ASTROID_BACKGROUND_POSITION_CENTER_BOTTOM</option>
             </field>
-            <field ngShow="background" name="background_video" type="astroidmedia" media="videos" label="TPL_ASTROID_BACKGROUND_VIDEO_LABEL" description="TPL_ASTROID_BACKGROUND_VIDEO_DESC"/>
+            <field ngShow="background_setting =='video'" name="background_video" type="astroidmedia" media="videos" label="TPL_ASTROID_BACKGROUND_VIDEO_LABEL" description="TPL_ASTROID_BACKGROUND_VIDEO_DESC"/>
+
+            <field ngShow="background_setting =='gradient'" description="ASTROID_SELECT_BACKGROUND_COLOR_DESC" name="background_gradient" type="astroidgradient" label="TPL_ASTROID_BACKGROUND_COLOR_LABEL"></field>
             <field name="colors_settings" type="astroidheading" title="ASTROID_ELEMENT_HEAD_COLOR_OPTIONS_LABEL" />
             
             <field name="custom_colors" type="astroidtext" astroid-switch="true" default="0" label="ASTROID_ELEMENT_CUSTOM_COLORS_LABEL"  />

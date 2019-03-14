@@ -4,11 +4,11 @@
  * @package   Astroid Framework
  * @author    JoomDev https://www.joomdev.com
  * @copyright Copyright (C) 2009 - 2019 JoomDev.
- * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
+ * @license https://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
  */
 defined('_JEXEC') or die;
 jimport('astroid.framework.helper');
-jimport('astroid.framework.template');
+jimport('astroid.framework.astroid');
 
 class AstroidElement {
 
@@ -39,8 +39,7 @@ class AstroidElement {
       $this->app = JFactory::getApplication();
 
       if ($template === null) {
-         $template = $this->app->getTemplate(true);
-         $this->template = new AstroidFrameworkTemplate($template);
+         $this->template = AstroidFramework::getTemplate();
       } else {
          $this->template = $template;
       }
@@ -142,8 +141,15 @@ class AstroidElement {
           'ng-show="' => 'ng-show="elementParams.',
           'ng-hide="' => 'ng-hide="elementParams.',
           'ng-model="' => 'ng-model="elementParams.',
-          'ng-value="' => 'ng-value="elementParams.'
+          'ng-value="' => 'ng-value="elementParams.',
+          'ng-radio-init="' => 'ng-init="elementParams.',
+          'ng-media-class' => 'ng-class',
       ];
+
+      $form = preg_replace_callback('/(\s*ng-class="{)([^"]*)(}"[^>]*>)(.*)/siU', function($matches) {
+         $replaced = str_replace(':', ':elementParams.', $matches[2]);
+         return str_replace($matches[2], $replaced, $matches[0]);
+      }, $form);
 
       foreach ($replacer as $find => $replace) {
          $form = str_replace($find, $replace, $form);
@@ -262,7 +268,7 @@ class AstroidElement {
       $header_module_position = $this->template->params->get('header_module_position', '');
       $footer_module_position = $this->template->params->get('footer_module_position', '');
 
-      // check section has component
+      // Check Section has component
       foreach ($data['rows'] as $row) {
          foreach ($row['cols'] as $colIndex => $col) {
             foreach ($col['elements'] as $element) {
@@ -274,7 +280,7 @@ class AstroidElement {
          }
       }
 
-      // check section has header
+      // Check Section has header
       if (!empty($header_module_position)) {
          foreach ($data['rows'] as $row) {
             foreach ($row['cols'] as $colIndex => $col) {
@@ -292,7 +298,7 @@ class AstroidElement {
          }
       }
 
-      // check section has footer
+      // Check Section has footer
       if (!empty($header_module_position)) {
          foreach ($data['rows'] as $row) {
             foreach ($row['cols'] as $colIndex => $col) {
@@ -362,7 +368,7 @@ class AstroidElement {
       $styles = [];
       $background = $params->get('background', 0);
       $custom_colors = $params->get('custom_colors', 0);
-      if ($background) {
+      if ($background && $this->type != 'section') {
          $background_color = $params->get('background_color', '');
          if (!empty($background_color)) {
             $styles[] = 'background-color:' . $background_color;
@@ -387,6 +393,17 @@ class AstroidElement {
             $styles[] = 'background-position:' . $background_position;
          }
       }
+
+      if ($this->type == 'section') {
+         $styles = $this->Style();
+      }
+      if ($this->type == 'column') {
+         $styles = $this->Style();
+      }
+      if ($this->type != 'column' && $this->type != 'section') {
+         $styles = $this->Style();
+      }
+
       if ($custom_colors) {
          $text_color = $params->get('text_color', '');
          $link_color = $params->get('link_color', '');
@@ -410,6 +427,50 @@ class AstroidElement {
          $styles[] = 'visibility: hidden';
       }
       return implode(';', $styles);
+   }
+
+   public function Style() {
+      $params = $this->getParams();
+      $background_setting = $params->get('background_setting', 0);
+      $Style = [];
+      if ($background_setting) {
+         if ($background_setting == "color") {
+            $background_color = $params->get('background_color', '');
+            if (!empty($background_color)) {
+               $Style[] = 'background-color:' . $background_color;
+            }
+         }
+         if ($background_setting == "image") {
+            $background_image = $params->get('background_image', '');
+            if (!empty($background_image)) {
+               $Style[] = 'background-image: url(' . JURI::root() . 'images/' . $background_image . ')';
+               $background_repeat = $params->get('background_repeat', '');
+               $background_repeat = empty($background_repeat) ? 'inherit' : $background_repeat;
+               $Style[] = 'background-repeat:' . $background_repeat;
+
+               $background_size = $params->get('background_size', '');
+               $background_size = empty($background_size) ? 'inherit' : $background_size;
+               $Style[] = 'background-size:' . $background_size;
+
+               $background_attchment = $params->get('background_attchment', '');
+               $background_attchment = empty($background_attchment) ? 'inherit' : $background_attchment;
+               $Style[] = 'background-attachment:' . $background_attchment;
+
+               $background_position = $params->get('background_position', '');
+               $background_position = empty($background_position) ? 'inherit' : $background_position;
+               $Style[] = 'background-position:' . $background_position;
+            }
+         }
+
+         if ($background_setting == "gradient") {
+            $background_gradient = $params->get('background_gradient', '');
+            $background_gradient = json_decode($background_gradient);
+            if (!empty($background_gradient)) {
+               $Style[] = 'background-image: ' . $background_gradient->type . '-gradient(' . $background_gradient->start . ',' . $background_gradient->stop . ')';
+            }
+         }
+      }
+      return $Style;
    }
 
    public function getSectionLayoutType() {
@@ -441,10 +502,53 @@ class AstroidElement {
       $attributes = [];
 
       $background = $params->get('background', 0);
-      if ($background) {
+      if ($background && $this->type != 'section') {
          $background_video = $params->get('background_video', '');
          if (!empty($background_video)) {
             $attributes['data-jd-video-bg'] = JURI::root() . 'images/' . $background_video;
+         }
+      }
+
+      if ($this->type == 'section') {
+         $background_setting = $params->get('background_setting', 0);
+         if ($background_setting && $background_setting == "video") {
+            $background_video = $params->get('background_video', '');
+            if (!empty($background_video)) {
+               $attributes['data-jd-video-bg'] = JURI::root() . 'images/' . $background_video;
+               $template = AstroidFramework::getTemplate();
+               $videobgjs = 'vendor/jquery.jdvideobg.js';
+               if(!isset($template->_js[$videobgjs])){
+                  $template->addScript($videobgjs);
+               }
+            }
+         }
+      }
+      if ($this->type == 'column') {
+         $background_setting = $params->get('background_setting', 0);
+         if ($background_setting && $background_setting == "video") {
+            $background_video = $params->get('background_video', '');
+            if (!empty($background_video)) {
+               $attributes['data-jd-video-bg'] = JURI::root() . 'images/' . $background_video;
+               $template = AstroidFramework::getTemplate();
+               $videobgjs = 'vendor/jquery.jdvideobg.js';
+               if(!isset($template->_js[$videobgjs])){
+                  $template->addScript($videobgjs);
+               }
+            }
+         }
+      }
+      if ($this->type != 'column' && $this->type != 'section') {
+         $background_setting = $params->get('background_setting', 0);
+         if ($background_setting && $background_setting == "video") {
+            $background_video = $params->get('background_video', '');
+            if (!empty($background_video)) {
+               $attributes['data-jd-video-bg'] = JURI::root() . 'images/' . $background_video;
+               $template = AstroidFramework::getTemplate();
+               $videobgjs = 'vendor/jquery.jdvideobg.js';
+               if(!isset($template->_js[$videobgjs])){
+                  $template->addScript($videobgjs);
+               }
+            }
          }
       }
 

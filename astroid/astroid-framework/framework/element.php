@@ -442,6 +442,11 @@ class AstroidElement {
          }
          if ($background_setting == "image") {
             $background_image = $params->get('background_image', '');
+           
+            $img_background_color = $params->get('img_background_color', '');
+            $img_background_color = empty($img_background_color) ? 'inherit' : $img_background_color;
+            $Style[] = 'background-color:' . $img_background_color;
+           
             if (!empty($background_image)) {
                $Style[] = 'background-image: url(' . JURI::root() . 'images/' . $background_image . ')';
                $background_repeat = $params->get('background_repeat', '');

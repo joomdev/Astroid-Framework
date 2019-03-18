@@ -8,6 +8,8 @@ $burger-layer-width: 30px !default;
    visibility: hidden;
    height: 100%;
    width: 250px;
+   overflow: auto;
+   -webkit-overflow-scrolling: touch;
    background: $white;
    -webkit-transition: all 0.5s;
    transition: all 0.5s;
@@ -17,13 +19,15 @@ $burger-layer-width: 30px !default;
          display: block !important;
       }
    }
+   .burger-menu-button {
+      padding: 10px;
+   }
 }
 
 .astroid-mobilemenu-container{
    .astroid-mobilemenu-inner {
       ul{
          padding: 0;
-         overflow: auto;
          height: 100%;
          display: block;
          position: relative;
@@ -94,7 +98,7 @@ $burger-layer-width: 30px !default;
 .burger-menu-button {
    text-align: right;
    line-height: 0;
-   margin: 0 15px;
+   margin: 0;
 }
 
 .astroid-mobilemenu-open{
@@ -117,7 +121,6 @@ $burger-layer-width: 30px !default;
 }
 
 body.astroid-mobilemenu-opened{
-   background: rgb(173, 181, 189);
    max-height: 100vh;
    overflow: hidden;
    .astroid-mobilemenu-open{

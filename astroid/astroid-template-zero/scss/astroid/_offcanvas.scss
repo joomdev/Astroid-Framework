@@ -16,7 +16,7 @@ $burger-layer-spacing: 7px !default;
 
 .burger-menu-button {
 	.button {
-		padding: 5px 0;
+		padding: 0;
 		cursor: pointer;
 		transition-property: opacity, filter;
 		transition-duration: 0.15s;
@@ -193,10 +193,16 @@ $burger-layer-spacing: 7px !default;
 	z-index: $zindex-popover;
 	visibility: hidden;
 	height: 100%;
+	overflow: auto;
+	-webkit-overflow-scrolling: touch;
 	background: $white;
 	-webkit-transition: all 0.5s;
 	transition: all 0.5s;
 	max-width: 100vw !important;
+
+	.burger-menu-button{
+		padding: 10px;
+	}
 
 	.astroid-offcanvas-inner {
 		overflow: auto;
@@ -208,7 +214,8 @@ $burger-layer-spacing: 7px !default;
 			margin: 0 -15px;
 		}
 		.moduletable .module-title {
-			padding: 0 15px;
+			padding: 10px 15px;
+			margin: 0;
 		}
 	}
 
@@ -231,6 +238,8 @@ $burger-layer-spacing: 7px !default;
 
 body {
 	&.astroid-offcanvas-opened {
+		max-height: 100vh;
+		overflow: hidden;
 		.astroid-content {
 			&:after {
 				width: 100%;

@@ -33,7 +33,7 @@ if ($logo_type == 'text') {
    $mobile_logo = $params->get('mobile_logo', false);
    $stickey_header_logo = $params->get('stickey_header_logo', false);
 }
-$class = ['astroid-logo', 'astroid-logo-' . $logo_type, 'd-flex align-items-center align-items-md-start'];
+$class = ['astroid-logo', 'astroid-logo-' . $logo_type, 'd-flex align-items-center'];
 ?>
 <!-- logo starts -->
 <!-- <div class="<?php /* echo implode(' ', $class); */ ?>"> -->

@@ -14,7 +14,11 @@
 
          _this.find('li').each(function () {
             // Get Text For Sub Menu Back Button
-            var sub_menu_lable = $(this).children('a').html();
+			if ($(this).children('a').length) {
+				var sub_menu_lable = $(this).children('a').html();
+			}else{
+				var sub_menu_lable = $(this).children('span').html();
+			}
             if ($(this).hasClass('subMenu-wrapper')) {
 
                var _indicator = $('<span class="menu-indicator"><i class="fas fa-angle-right"></i></span>');

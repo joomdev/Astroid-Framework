@@ -30,9 +30,10 @@ JHtml::_('stylesheet', 'templates/system/css/system.css', array('version' => 'au
 
 // Astroid Assets
 $template->loadTemplateCSS('custom.css');
+
 ?>
 <!DOCTYPE html>
-<html lang="<?php echo $template->language; ?>" dir="<?php echo $template->direction; ?>">
+<html lang="<?php echo $this->language; ?>" dir="<?php echo $this->direction; ?>">
    <head>
       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />

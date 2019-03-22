@@ -50,7 +50,7 @@ $errorButton = $template->params->get('error_call_to_action', '');
 				 <?php
 			  }
 			  ?>
-			  <a class="btn btn-primary" href="<?php echo JURI::root(); ?>" role="button"><?php echo $errorButton; ?></a>
+			  <a class="btn btn-backtohome" href="<?php echo JURI::root(); ?>" role="button"><?php echo $errorButton; ?></a>
 
 			  <?php if ($this->debug) : ?>
 				 <hr>

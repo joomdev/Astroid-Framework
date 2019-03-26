@@ -478,7 +478,7 @@ class AstroidFrameworkTemplate {
          }
          $cssname = 'custom-' . md5($name);
          if (!file_exists($template_directory . 'css/' . $cssname . '.css')) {
-            //ini_set('xdebug.max_nesting_level', 3000);
+            AstroidFrameworkHelper::clearCache($this->template, 'custom');
             AstroidFrameworkHelper::compileSass($template_directory . 'scss/custom', $template_directory . 'css', 'custom.scss', $cssname . '.css');
          }
          return $cssname . '.css';
@@ -661,21 +661,20 @@ class AstroidFrameworkTemplate {
       }
    }
 
-
    public function addScript($js) {
       $template_directory = JPATH_THEMES . "/" . $this->template . "/js/";
       if (file_exists($template_directory . $js)) {
          $this->_js[$js] = JURI::root() . 'templates/' . $this->template . "/js/" . $js;
-
-      }else{
+      } else {
          $this->_js[$js] = $js;
-      }     
+      }
    }
 
    public function buildAstroidCSS($version, $css = '') {
       if ($this->cssFile) {
          $template_dir = JPATH_SITE . '/templates/' . $this->template . '/css';
          if (!file_exists($template_dir . '/astroid-' . $version . '.css')) {
+            AstroidFrameworkHelper::clearCache($this->template, 'astroid');
             $styles = preg_grep('~^astroid-.*\.(css)$~', scandir($template_dir));
             foreach ($styles as $style) {
                unlink($template_dir . '/' . $style);
@@ -690,16 +689,16 @@ class AstroidFrameworkTemplate {
          $styles = implode('', $this->_styles);
          $document = JFactory::getDocument();
          $mediaVersion = $document->getMediaVersion();
-         $version = md5($styles . $mediaVersion);
+         $version = md5($styles);
          $this->buildAstroidCSS($version, $styles);
          $document->addStyleSheet(JURI::root() . 'templates/' . $this->template . '/css/astroid-' . $version . '.css');
       }
    }
 
-   public function loadJS(){
+   public function loadJS() {
       $document = JFactory::getDocument();
-      foreach($this->_js as $key => $js){
-         if($key=='custom.js'){
+      foreach ($this->_js as $key => $js) {
+         if ($key == 'custom.js') {
             $template_directory = JPATH_THEMES . "/" . $this->template . "/js/";
             if (!file_exists($template_directory . $key)) {
                continue;

@@ -374,26 +374,28 @@ class AstroidFrameworkHelper {
       return $icons;
    }
 
-   public static function clearCache($template = '') {
+   public static function clearCache($template = '', $prefix = 'style') {
       $template_dir = JPATH_SITE . '/' . 'templates' . '/' . $template . '/' . 'css';
       $version = new \JVersion;
       $version->refreshMediaVersion();
       if (!file_exists($template_dir)) {
          throw new \Exception("Template not found.", 404);
       }
-      $styles = preg_grep('~^style-.*\.(css)$~', scandir($template_dir));
-      foreach ($styles as $style) {
-         unlink($template_dir . '/' . $style);
+
+      if (is_array($prefix)) {
+         foreach ($prefix as $pre) {
+            $styles = preg_grep('~^' . $pre . '-.*\.(css)$~', scandir($template_dir));
+            foreach ($styles as $style) {
+               unlink($template_dir . '/' . $style);
+            }
+         }
+      } else {
+         $styles = preg_grep('~^' . $prefix . '-.*\.(css)$~', scandir($template_dir));
+         foreach ($styles as $style) {
+            unlink($template_dir . '/' . $style);
+         }
       }
-      $custom_styles = preg_grep('~^custom-.*\.(css)$~', scandir($template_dir));
-      foreach ($custom_styles as $style) {
-         unlink($template_dir . '/' . $style);
-      }
-      $astroid_styles = preg_grep('~^astroid-.*\.(css)$~', scandir($template_dir));
-      foreach ($astroid_styles as $style) {
-         unlink($template_dir . '/' . $style);
-      }
-      return $styles;
+      return true;
    }
 
    public static function getAstroidFieldsets($form) {

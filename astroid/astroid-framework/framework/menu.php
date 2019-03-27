@@ -24,6 +24,8 @@ if (ASTROID_JOOMLA_VERSION == 3) {
 
 class AstroidMenu {
 
+   public static $parentlist = [];
+
    public static function getMenu($menutype = '', $nav_class = [], $logo = null, $logoOdd = 'left', $headerType = 'horizontal', $nav_wrapper_class = []) {
       if (empty($menutype)) {
          return '';
@@ -65,6 +67,9 @@ class AstroidMenu {
          if ($item->level == 1) {
             $count_menu++;
          }
+         if ($item->parent == 1) {
+            self::$parentlist[] = $item->id;
+         }
       }
       $logo_position = $count_menu / 2;
       $logo_position = (int) $logo_position;
@@ -77,14 +82,17 @@ class AstroidMenu {
       $li_content = [];
 
       foreach ($list as $i => &$item) {
+         if (in_array($item->id, self::$parentlist)) {
+            $item->parent = 1;
+         }
          $options = self::getAstroidMenuOptions($item, $list);
          $class = self::getLiClass($item, $options, $default_id, $active_id, $path);
 
          if ($item->level == 1) {
-         // Code for adding Centered Logo
+// Code for adding Centered Logo
             if (($logo_position_count == $logo_position) && $logo !== null) {
                $template = AstroidFramework::getTemplate();
-               echo '<li class="nav-item nav-stacked-logo text-center">';
+               echo '<li class="nav-item nav-stacked-logo flex-grow-1 text-center">';
                $template->loadLayout('logo');
                echo '</li>';
             }
@@ -105,16 +113,16 @@ class AstroidMenu {
             if ($item->level == 1 && $item->parent) {
                echo '<div style="width:' . $options->width . '" class="megamenu-container nav-submenu-container nav-item-level-' . $item->level . '">';
             }
-               // The next item is deeper.
+// The next item is deeper.
             if ($item->deeper) {
                echo '<ul class="nav-submenu">';
             }
-               // The next item is shallower.
+// The next item is shallower.
             elseif ($item->shallower) {
                echo '</li>';
                echo str_repeat('</ul>' . '</li>', $item->level_diff);
             }
-               // The next item is on the same level.
+// The next item is on the same level.
             else {
                if ($item->level == 1 && $item->parent) {
                   echo '</div>';

@@ -9,6 +9,7 @@
 defined('_JEXEC') or die;
 jimport('astroid.framework.helper');
 jimport('astroid.framework.astroid');
+jimport('astroid.framework.cache');
 
 class AstroidElement {
 
@@ -68,6 +69,7 @@ class AstroidElement {
          $this->xml_file = $library_elements_directory . $this->type . '/' . $this->type . '.xml';
          $this->layout = $library_elements_directory . $this->type . '/' . $this->type . '.php';
       }
+
       if ($this->xml_file !== null) {
          $this->loadXML();
       }
@@ -100,24 +102,36 @@ class AstroidElement {
    }
 
    public function loadForm() {
-      $this->form = new JForm($this->type);
+      $fields = [];
       if (!empty($this->xml_file)) {
-         $xml = $this->xml->form;
-         $this->form->load($xml, false);
-      }
-      $defaultXml = simplexml_load_file($this->default_xml_file);
-      $this->form->load($defaultXml->form, false);
-
-      $formData = [];
-
-      $fieldsets = $this->form->getFieldsets();
-      foreach ($fieldsets as $key => $fieldset) {
-         $fields = $this->form->getFieldset($key);
-         foreach ($fields as $field) {
-            $formData[] = ['name' => $field->name, 'value' => $field->value];
+         $object = \json_decode(\json_encode($this->xml->form), false);
+         if (isset($object->fields->fieldset->field)) {
+            if (is_array($object->fields->fieldset->field)) {
+               foreach ($object->fields->fieldset->field as $f) {
+                  $value = isset($f->{'@attributes'}->default) ? $f->{'@attributes'}->default : '';
+                  $fields[] = ['name' => $f->{'@attributes'}->name, 'value' => $value];
+               }
+            } else {
+               $field = $object->fields->fieldset->field;
+               $value = isset($field->{'@attributes'}->default) ? $field->{'@attributes'}->default : '';
+               $fields[] = ['name' => $field->{'@attributes'}->name, 'value' => $value];
+            }
          }
       }
 
+      $defaultXml = simplexml_load_file($this->default_xml_file);
+      $object = \json_decode(\json_encode($defaultXml->form), false);
+      if (isset($object->fields->fieldset->field)) {
+         if (is_array($object->fields->fieldset->field)) {
+            
+         } else {
+            $field = $object->fields->fieldset->field;
+            $value = isset($field->{'@attributes'}->default) ? $field->{'@attributes'}->default : '';
+            $fields[] = ['name' => $field->{'@attributes'}->name, 'value' => $value];
+         }
+      }
+
+      $formData = $fields;
       $this->params = $formData;
    }
 
@@ -159,6 +173,10 @@ class AstroidElement {
    }
 
    public function getForm() {
+      $this->form = new JForm($this->type);
+      $this->form->load($this->xml->form, false);
+      $defaultXml = simplexml_load_file($this->default_xml_file);
+      $this->form->load($defaultXml->form, false);
       return $this->form;
    }
 
@@ -183,18 +201,32 @@ class AstroidElement {
    }
 
    public function render() {
-      if ($this->layout === null || !file_exists($this->layout)) {
-         $this->template->setLog('Layout Not Found - Element : ' . $this->type);
+      return AstroidCache::elementCache($this->layout, $this->getParams(), $this->getRenderData());
+   }
+
+   public function getRenderData() {
+      return [
+          'class' => $this->getClass(),
+          'id' => $this->getID(),
+          'styles' => $this->getStyles(),
+          'animation' => $this->getAnimation(),
+          'animation-delay' => $this->getAnimationDelay(),
+          'attributes' => $this->getAttributes(),
+      ];
+   }
+
+   public function renderElement($layout, $params, $element) {
+      if ($layout === null || !file_exists($layout)) {
          return '';
       }
-      $pathinfo = pathinfo($this->layout);
+      $pathinfo = pathinfo($layout);
       $layout = new JLayoutFile($pathinfo['filename'], $pathinfo['dirname']);
 
-      $html = $layout->render(['params' => $this->getParams(), 'template' => $this->template, 'element' => $this]);
+      $html = $layout->render(['params' => $params]);
 
       $return = '';
       if (!empty($html)) {
-         $return .= '<div class="' . $this->getClass() . '" id="' . $this->getID() . '" style="' . $this->getStyles() . '" data-animation="' . $this->getAnimation() . '" data-animation-delay="' . $this->getAnimationDelay() . '" ' . $this->getAttributes() . '>' . $html . '</div>';
+         $return .= '<div class="' . $element['class'] . '" id="' . $element['id'] . '" style="' . $element['style'] . '" data-animation="' . $element['animation'] . '" data-animation-delay="' . $element['animation-delay'] . '" ' . $element['attributes'] . '>' . $html . '</div>';
       }
       return $return;
    }
@@ -442,11 +474,11 @@ class AstroidElement {
          }
          if ($background_setting == "image") {
             $background_image = $params->get('background_image', '');
-           
+
             $img_background_color = $params->get('img_background_color', '');
             $img_background_color = empty($img_background_color) ? 'inherit' : $img_background_color;
             $Style[] = 'background-color:' . $img_background_color;
-           
+
             if (!empty($background_image)) {
                $Style[] = 'background-image: url(' . JURI::root() . 'images/' . $background_image . ')';
                $background_repeat = $params->get('background_repeat', '');
@@ -522,7 +554,7 @@ class AstroidElement {
                $attributes['data-jd-video-bg'] = JURI::root() . 'images/' . $background_video;
                $template = AstroidFramework::getTemplate();
                $videobgjs = 'vendor/jquery.jdvideobg.js';
-               if(!isset($template->_js[$videobgjs])){
+               if (!isset($template->_js[$videobgjs])) {
                   $template->addScript($videobgjs);
                }
             }
@@ -536,7 +568,7 @@ class AstroidElement {
                $attributes['data-jd-video-bg'] = JURI::root() . 'images/' . $background_video;
                $template = AstroidFramework::getTemplate();
                $videobgjs = 'vendor/jquery.jdvideobg.js';
-               if(!isset($template->_js[$videobgjs])){
+               if (!isset($template->_js[$videobgjs])) {
                   $template->addScript($videobgjs);
                }
             }
@@ -550,7 +582,7 @@ class AstroidElement {
                $attributes['data-jd-video-bg'] = JURI::root() . 'images/' . $background_video;
                $template = AstroidFramework::getTemplate();
                $videobgjs = 'vendor/jquery.jdvideobg.js';
-               if(!isset($template->_js[$videobgjs])){
+               if (!isset($template->_js[$videobgjs])) {
                   $template->addScript($videobgjs);
                }
             }

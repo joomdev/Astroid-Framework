@@ -611,22 +611,27 @@ class AstroidFrameworkTemplate {
 
    public function loadLayout($partial = '', $display = true, $params = null) {
       $this->setLog("Rending template partial : " . $partial);
-      if (file_exists(JPATH_SITE . '/templates/' . $this->template . '/html/frontend/' . str_replace('.', '/', $partial) . '.php')) {
-         $layout = new JLayoutFile($partial, JPATH_SITE . '/templates/' . $this->template . '/html/frontend');
+      $return = AstroidCache::layoutCache($partial, $params, $this->template);
+      if ($display) {
+         echo $return;
       } else {
-         $layout = new JLayoutFile($partial, JPATH_SITE . '/templates/' . $this->template . '/frontend');
+         return $return;
+      }
+      $this->setLog("Template partial rendered!: " . $partial, 'success');
+   }
+
+   public function renderLoadLayout($partial = '', $params = null, $template) {
+      if (file_exists(JPATH_SITE . '/templates/' . $template . '/html/frontend/' . str_replace('.', '/', $partial) . '.php')) {
+         $layout = new JLayoutFile($partial, JPATH_SITE . '/templates/' . $template . '/html/frontend');
+      } else {
+         $layout = new JLayoutFile($partial, JPATH_SITE . '/templates/' . $template . '/frontend');
       }
       $data = [];
-      $data['template'] = $this;
+      $data['template'] = AstroidFramework::getTemplate();
       if (!empty($params)) {
          $data['params'] = $params;
       }
-      if ($display) {
-         echo $layout->render($data);
-      } else {
-         return $layout->render($data);
-      }
-      $this->setLog("Template partial rendered!: " . $partial, 'success');
+      return $layout->render($data);
    }
 
    public function setLog($message, $type = 'info', $data = []) {
@@ -671,27 +676,25 @@ class AstroidFrameworkTemplate {
    }
 
    public function buildAstroidCSS($version, $css = '') {
-      if ($this->cssFile) {
-         $template_dir = JPATH_SITE . '/templates/' . $this->template . '/css';
-         if (!file_exists($template_dir . '/astroid-' . $version . '.css')) {
-            AstroidFrameworkHelper::clearCache($this->template, 'astroid');
-            $styles = preg_grep('~^astroid-.*\.(css)$~', scandir($template_dir));
-            foreach ($styles as $style) {
-               unlink($template_dir . '/' . $style);
-            }
-            file_put_contents($template_dir . '/astroid-' . $version . '.css', $css);
-         }
+      if (!file_exists($template_dir . '/astroid-' . $version . '.css')) {
+         AstroidFrameworkHelper::clearCache($this->template, 'astroid');
+         $template_dir = JPATH_SITE . '/' . 'templates' . '/' . $this->template . '/' . 'css';
+         file_put_contents($template_dir . '/astroid-' . $version . '.css', $css);
       }
    }
 
    public function loadCSSFile() {
-      if ($this->cssFile) {
-         $styles = implode('', $this->_styles);
-         $document = JFactory::getDocument();
-         $mediaVersion = $document->getMediaVersion();
+      $styles = implode('', $this->_styles);
+      if (!empty($styles)) {
          $version = md5($styles);
          $this->buildAstroidCSS($version, $styles);
-         $document->addStyleSheet(JURI::root() . 'templates/' . $this->template . '/css/astroid-' . $version . '.css');
+      }
+      $template_dir = JPATH_SITE . '/' . 'templates' . '/' . $this->template . '/' . 'css';
+      $styles = preg_grep('~^astroid-.*\.(css)$~', scandir($template_dir));
+      if (count($styles) == 1) {
+         $style = reset($styles);
+         $document = JFactory::getDocument();
+         $document->addStyleSheet(JURI::root() . 'templates/' . $this->template . '/css/' . $style);
       }
    }
 

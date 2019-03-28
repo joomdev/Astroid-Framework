@@ -92,7 +92,7 @@ class AstroidMenu {
 // Code for adding Centered Logo
             if (($logo_position_count == $logo_position) && $logo !== null) {
                $template = AstroidFramework::getTemplate();
-               echo '<li class="nav-item nav-stacked-logo flex-grow-1 text-center">';
+               echo '<li class="nav-item nav-stacked-logo text-center">';
                $template->loadLayout('logo');
                echo '</li>';
             }

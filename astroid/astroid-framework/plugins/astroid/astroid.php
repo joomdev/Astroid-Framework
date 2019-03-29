@@ -76,9 +76,6 @@ class plgSystemAstroid extends JPlugin {
                         $return["code"] = 200;
                         $version = new \JVersion;
                         $version->refreshMediaVersion();
-                        $cache = \JFactory::getCache();
-                        $cache->clean('astroid_layouts');
-                        $cache->clean('astroid_elements');
                      }
                   } catch (\Exception $e) {
                      $return["status"] = "error";
@@ -205,9 +202,6 @@ class plgSystemAstroid extends JPlugin {
                      $template = $this->app->input->get->get('template', '', 'RAW');
                      AstroidFrameworkHelper::clearCache($template, ['style', 'custom', 'astroid']);
                      echo \json_encode(['status' => 'success', 'code' => 200, 'message' => 'Cache successfully cleared.']);
-                     $cache = \JFactory::getCache();
-                     $cache->clean('astroid_layouts');
-                     $cache->clean('astroid_elements');
                   } catch (\Exception $e) {
                      echo \json_encode(['status' => 'error', 'code' => $e->getCode(), 'message' => $e->getMessage()]);
                   }

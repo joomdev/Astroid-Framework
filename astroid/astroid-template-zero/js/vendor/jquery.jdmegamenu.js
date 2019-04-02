@@ -216,7 +216,7 @@
                closeMe($(this));
             });
          } else {
-            _megamenu.find('.megamenu-item-link').unbind('click').click(function (e) {
+            _megamenu.find('.megamenu-item-link.item-level-1').unbind('click').click(function (e) {
                e.preventDefault();
                e.stopPropagation();
                if ($(this).parent(settings.megamenuClass).hasClass('open')) {

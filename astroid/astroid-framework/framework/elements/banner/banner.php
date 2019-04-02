@@ -5,12 +5,16 @@ $app = JFactory::getApplication();
 $jinput = $app->input;
 $menuId = $jinput->get('Itemid', 0, 'INT');
 
-
 $menu = $app->getMenu();
 $item = $menu->getItem($menuId);
 if (empty($item)) {
    return;
 }
+
+if ($item->query['option'] != $jinput->get('option', '') || $item->query['view'] != $jinput->get('view', '') || $item->query['layout'] != $jinput->get('layout', '')) {
+   return;
+}
+
 $params = new JRegistry();
 $params->loadString($item->params);
 $astroid_banner_enabled = $params->get('astroid_banner_enabled');
@@ -26,10 +30,10 @@ if ($astroid_banner_enabled) {
    $astroid_banner_bgimage = $params->get('astroid_banner_bgimage', '');
    $astroid_banner_class = $params->get('astroid_banner_class', '');
    $astroid_banner_wrapper = $params->get('astroid_banner_wrapper', '');
-   $astroid_banner_textcolor = $params->get('astroid_banner_textcolor', '');     
-   
+   $astroid_banner_textcolor = $params->get('astroid_banner_textcolor', '');
 
- 
+
+
 
    $style = [];
    if (!empty($astroid_banner_bgcolor)) {
@@ -49,9 +53,9 @@ if ($astroid_banner_enabled) {
          echo '<div class="' . $astroid_banner_wrapper . '">';
       }
       if ($astroid_banner_title_enabled) {
-         echo '<' . $astroid_banner_title_tag . ' class="astroid-banner-title"'.$styletext . '>' . $astroid_banner_title . '</' . $astroid_banner_title_tag . '>';
+         echo '<' . $astroid_banner_title_tag . ' class="astroid-banner-title"' . $styletext . '>' . $astroid_banner_title . '</' . $astroid_banner_title_tag . '>';
          if (!empty($astroid_banner_subtitle)) {
-            echo '<span class="astroid-banner-subtitle"'. $styletext .'>' . $astroid_banner_subtitle . '</span>';
+            echo '<span class="astroid-banner-subtitle"' . $styletext . '>' . $astroid_banner_subtitle . '</span>';
          }
       }
       if (!empty($astroid_banner_wrapper)) {

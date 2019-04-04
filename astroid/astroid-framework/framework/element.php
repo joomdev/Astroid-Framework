@@ -56,6 +56,9 @@ class AstroidElement {
          case 'column':
             $this->default_xml_file = $library_elements_directory . 'column-default.xml';
             break;
+         case 'row':
+            $this->default_xml_file = $library_elements_directory . 'row-default.xml';
+            break;
          default:
             $this->default_xml_file = $library_elements_directory . 'default.xml';
             break;

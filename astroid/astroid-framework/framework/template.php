@@ -302,7 +302,9 @@ class AstroidFrameworkTemplate {
                      break;
                }
 
-               $rowHTML .= '<div class="row' . ($no_gutter ? ' no-gutters' : '') . '">';
+               $rowObject = new AstroidElement("row", $row, $this);
+
+               $rowHTML .= '<div id="' . $rowObject->getID() . '" class="row' . ($no_gutter ? ' no-gutters' : '') . (!empty($rowObject->getClass()) ? ' ' . $rowObject->getClass() : '') . '">';
                $rowHTML .= $columnHTML;
                $rowHTML .= '</div>';
             }

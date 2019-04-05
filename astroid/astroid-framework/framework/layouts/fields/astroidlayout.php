@@ -112,7 +112,7 @@
                   <span data-astroid-tooltip="<?php echo JText::_('TPL_ASTROID_EDIT_GRID_ROW'); ?>" class="ezlb-action" ng-click="editRow(rowIndex, sectionIndex)"><i class="fa fa-columns"></i></span>
                   <span data-astroid-tooltip="<?php echo JText::_('TPL_ASTROID_DUPLICATE_ROW'); ?>" ng-click="duplicateRow(rowIndex, sectionIndex)" class="ezlb-action"><i class="fa fa-copy"></i></span>
                   <span data-astroid-tooltip="<?php echo JText::_('TPL_ASTROID_EDIT_ROW'); ?>" ng-click="editElement(row)" class="ezlb-action"><i class="fa fa-pencil-alt"></i></span>
-                  <span data-astroid-tooltip="<?php echo JText::_('TPL_ASTROID_DUPLICATE_ROW'); ?>" ng-click="duplicateRow(rowIndex, sectionIndex)" class="ezlb-action"><i class="fa fa-copy"></i></span>
+                  <span data-astroid-tooltip="<?php echo JText::_('TPL_ASTROID_REMOVE_ROW'); ?>" ng-show="section.rows.length > 1" ng-click="removeRow(rowIndex, sectionIndex)" class="ezlb-action text-danger"><i class="fa fa-trash"></i></span>
                </span>
                <span class="ezlb-toolbar toolbar-left">
                   <span class="ezlb-action ezlb-row-handle" ng-show="section.rows.length > 1"><i class="fa fa-arrows-alt"></i></span>

@@ -12,7 +12,7 @@ defined('_JEXEC') or die;
 	<ul class="menu list-inline">
 		<?php foreach ($list as $item) : $image = json_decode($item->images); ?>
 		<li itemscope itemtype="https://schema.org/Article">
-			<a class="article-title" href="<?php echo $item->link; ?>" itemprop="url" class="">
+			<a class="article-title" href="<?php echo $item->link; ?>" itemprop="url">
 				<span itemprop="name">
 					<?php echo $item->title; ?>
 				</span>

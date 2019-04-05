@@ -31,6 +31,11 @@ $video = [];
          }
       }
       if($background_setting =="image"){
+
+         $img_background_color = $template->params->get('img_background_color', '');
+         $img_background_color = empty($img_background_color) ? 'inherit' : $img_background_color;
+         $styles[] = 'background-color:' . $img_background_color;
+
          $background_image = $template->params->get('background_image', '');
          if (!empty($background_image)) {
             $styles[] = 'background-image: url(' . JURI::root() . 'images/' . $background_image . ')';

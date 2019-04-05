@@ -24,6 +24,8 @@ if (ASTROID_JOOMLA_VERSION == 3) {
 
 class AstroidMenu {
 
+   public static $parentlist = [];
+
    public static function getMenu($menutype = '', $nav_class = [], $logo = null, $logoOdd = 'left', $headerType = 'horizontal', $nav_wrapper_class = []) {
       if (empty($menutype)) {
          return '';
@@ -65,6 +67,9 @@ class AstroidMenu {
          if ($item->level == 1) {
             $count_menu++;
          }
+         if ($item->parent == 1) {
+            self::$parentlist[] = $item->id;
+         }
       }
       $logo_position = $count_menu / 2;
       $logo_position = (int) $logo_position;
@@ -77,6 +82,9 @@ class AstroidMenu {
       $li_content = [];
 
       foreach ($list as $i => &$item) {
+         if (in_array($item->id, self::$parentlist)) {
+            $item->parent = 1;
+         }
          $options = self::getAstroidMenuOptions($item, $list);
          $class = self::getLiClass($item, $options, $default_id, $active_id, $path);
 
@@ -84,7 +92,7 @@ class AstroidMenu {
 // Code for adding Centered Logo
             if (($logo_position_count == $logo_position) && $logo !== null) {
                $template = AstroidFramework::getTemplate();
-               echo '<li class="nav-item nav-stacked-logo flex-grow-1 text-center">';
+               echo '<li class="nav-item nav-stacked-logo text-center">';
                $template->loadLayout('logo');
                echo '</li>';
             }

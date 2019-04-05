@@ -55,7 +55,7 @@
             <field ngShow="background_setting =='video'" name="background_video" type="astroidmedia" media="videos" label="TPL_ASTROID_BACKGROUND_VIDEO_LABEL" description="TPL_ASTROID_BACKGROUND_VIDEO_DESC"/>
 
             <field ngShow="background_setting =='gradient'" description="ASTROID_SELECT_BACKGROUND_COLOR_DESC" name="background_gradient" type="astroidgradient" label="TPL_ASTROID_BACKGROUND_COLOR_LABEL"></field>
-            <field name="colors_settings" type="astroidheading" title="ASTROID_ELEMENT_HEAD_COLOR_OPTIONS_LABEL" />
+             
             
             <field name="custom_colors" type="astroidtext" astroid-switch="true" default="0" label="ASTROID_ELEMENT_CUSTOM_COLORS_LABEL"  />
             

@@ -10,8 +10,6 @@
          <fieldset name="design-settings" label="ASTROID_ELEMENT_HEAD_DESIGN_SEETINGS_LABEL" addfieldpath="/libraries/astroid/framework/fields">
             <field name="animation" type="astroidanimations" label="ASTROID_ANIMATION" ></field>
             <field ngShow="animation AND animation!=''" name="animation_delay" class="form-control" type="astroidtext" hint="500" default="500" label="ASTROID_ANIMATION_DELAY" description="ASTROID_ANIMATION_DELAY_DESC"></field>
-            <field name="background_settings" type="astroidheading" title="ASTROID_ELEMENT_HEAD_BACKGROUND_OPTIONS_LABEL" />
-              <field name="background_settings" type="astroidheading" title="ASTROID_ELEMENT_HEAD_BACKGROUND_OPTIONS_LABEL" />
             
             <field description="TPL_ASTROID_ADVANCED_POPUUP_LAYOUT_SELECT_DESC" name="background_setting" type="astroidradio" default="0" label="TPL_ASTROID_ADVANCED_POPUUP_LAYOUT_SELECT_LABEL">
                <option value="0">JNONE</option>

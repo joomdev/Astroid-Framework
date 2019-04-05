@@ -20,7 +20,7 @@
             <field name="animation" type="astroidanimations" label="ASTROID_ANIMATION" ></field>
             <field ngShow="animation AND animation!=''" name="animation_delay" class="form-control" type="astroidtext" hint="500" default="500" label="ASTROID_ANIMATION_DELAY" description="ASTROID_ANIMATION_DELAY_DESC"></field>
 
-            <field name="background_settings" type="astroidheading" title="ASTROID_ELEMENT_HEAD_BACKGROUND_OPTIONS_LABEL" />
+             
             
             <field description="TPL_ASTROID_ADVANCED_POPUUP_LAYOUT_SELECT_DESC" name="background_setting" type="astroidradio" default="0" label="TPL_ASTROID_ADVANCED_POPUUP_LAYOUT_SELECT_LABEL">
                <option value="0">JNONE</option>
@@ -67,7 +67,7 @@
             <field ngShow="background_setting =='video'" name="background_video" type="astroidmedia" media="videos" label="TPL_ASTROID_BACKGROUND_VIDEO_LABEL" description="TPL_ASTROID_BACKGROUND_VIDEO_DESC"/>
 
             <field ngShow="background_setting =='gradient'" description="ASTROID_SELECT_BACKGROUND_COLOR_DESC" name="background_gradient" type="astroidgradient" label="TPL_ASTROID_BACKGROUND_COLOR_LABEL"></field>
-            <field name="colors_settings" type="astroidheading" title="ASTROID_ELEMENT_HEAD_COLOR_OPTIONS_LABEL" />
+     
             
             <field name="custom_colors" type="astroidtext" astroid-switch="true" default="0" label="ASTROID_ELEMENT_CUSTOM_COLORS_LABEL"  />
             

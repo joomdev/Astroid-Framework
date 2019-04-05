@@ -56,7 +56,7 @@
          <field astroidgroup="coming_soon" name="coming_soon_social" type="astroidtext" astroid-switch="true" default="1" label="TPL_ASTROID_MISCELL_ENABLE_SOCIAL_LABEL" ngShow="developemnt_mode=='1'" description="TPL_ASTROID_MISCELL_ENABLE_SOCIAL_DESC">
          </field>
 		
-            <field astroidgroup="coming_soon" ngShow="developemnt_mode=='1'" description="TPL_ASTROID_ADVANCED_LAYOUT_SELECT_DESC" name="background_setting" type="astroidradio" default="0" label="TPL_ASTROID_ADVANCED_LAYOUT_SELECT">
+            <field astroidgroup="coming_soon" ngShow="developemnt_mode=='1'" description="TPL_ASTROID_MISCELL_COMING_BG_TYPE_DESC" name="background_setting" type="astroidradio" default="0" label="TPL_ASTROID_MISCELL_COMING_BG_TYPE_LABEL">
                <option value="0">JNONE</option>
                <option value="color">TPL_ASTROID_COLOR</option>
                <option value="image">TPL_ASTROID_IMAGE</option>

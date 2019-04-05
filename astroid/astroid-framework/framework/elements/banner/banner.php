@@ -11,7 +11,7 @@ if (empty($item)) {
    return;
 }
 
-if ($item->query['option'] != $jinput->get('option', '') || $item->query['view'] != $jinput->get('view', '') || $item->query['layout'] != $jinput->get('layout', '')) {
+if ((isset($item->query['option']) && $item->query['option'] != $jinput->get('option', '')) || (isset($item->query['view']) && $item->query['view'] != $jinput->get('view', '')) || (isset($item->query['layout']) && $item->query['layout'] != $jinput->get('layout', ''))) {
    return;
 }
 

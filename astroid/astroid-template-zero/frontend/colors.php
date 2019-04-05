@@ -132,7 +132,7 @@ if (!empty($mobile_background_color)) {
    $mobilemenu_styles[] = '.astroid-offcanvas, .astroid-mobilemenu, .astroid-mobilemenu-container .astroid-mobilemenu-inner .dropdown-menus{ background-color: ' . $mobile_background_color . ' !important;}';
 }
 if (!empty($mobile_menu_text_color)) {
-   $mobilemenu_styles[] = '.astroid-offcanvas, .astroid-mobilemenu, .menu_open .menu-indicator-back .fas { color: ' . $mobile_menu_text_color . ' !important;}';
+   $mobilemenu_styles[] = '.astroid-offcanvas, .astroid-mobilemenu { color: ' . $mobile_menu_text_color . ' !important;}';
 }
 if (!empty($mobile_link_color)) {
    $mobilemenu_styles[] = '.astroid-mobilemenu-container .astroid-mobilemenu-inner .menu-item a, .astroid-mobilemenu-container .astroid-mobilemenu-inner .menu-indicator .menu-item .fas{ color: ' . $mobile_link_color . ' !important;}';
@@ -141,7 +141,7 @@ if (!empty($mobile_hover_background_color)) {
    $mobilemenu_styles[] = '.fgfdfd{ background-color: ' . $mobile_hover_background_color . ' !important;}';
 }
 if (!empty($mobile_active_link_color)) {
-   $mobilemenu_styles[] = '.astroid-mobilemenu-container .astroid-mobilemenu-inner .menu-item.active > a, .astroid-mobilemenu-container .astroid-mobilemenu-inner .menu-item.active > .nav-header, .astroid-mobilemenu-container .astroid-mobilemenu-inner .menu-item.nav-item-active > a, .astroid-mobilemenu-container .astroid-mobilemenu-inner .menu-item.active > .menu-indicator .fas, .astroid-mobilemenu-container .astroid-mobilemenu-inner .menu-item.nav-item-active .fas{ color: ' . $mobile_active_link_color . ' !important;}';
+   $mobilemenu_styles[] = '.astroid-mobilemenu-container .astroid-mobilemenu-inner .menu-item.active > a, .astroid-mobilemenu-container .astroid-mobilemenu-inner .menu-item.nav-item-active > a,.astroid-mobilemenu-container .menu-indicator-back, .astroid-mobilemenu-container .astroid-mobilemenu-inner .menu-item.active .fas, .astroid-mobilemenu-container .astroid-mobilemenu-inner .menu-item.nav-item-active .fas{ color: ' . $mobile_active_link_color . ' !important;}';
 }
 if (!empty($mobile_active_background_color)) {
    $mobilemenu_styles[] = '.astroid-mobilemenu-container .astroid-mobilemenu-inner .menu-item.active, .astroid-mobilemenu-container .astroid-mobilemenu-inner .menu-item.nav-item-active, .menu-go-back { background-color: ' . $mobile_active_background_color . ' !important;}';

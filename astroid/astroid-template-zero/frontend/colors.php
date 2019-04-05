@@ -129,7 +129,7 @@ if (!empty($dropdown_main_hover_background_color)) {
 // Off-Canvas Coloring
 $mobilemenu_styles = [];
 if (!empty($mobile_background_color)) {
-   $mobilemenu_styles[] = '.astroid-offcanvas, .astroid-mobilemenu, .astroid-mobilemenu-container .astroid-mobilemenu-inner .dropdown-menus{ background-color: ' . $mobile_background_color . ' !important;}';
+   $mobilemenu_styles[] = '.astroid-offcanvas, .astroid-mobilemenu, .astroid-mobilemenu-container .astroid-mobilemenu-inner .dropdown-menus,.astroid-offcanvas .burger-menu-button{ background-color: ' . $mobile_background_color . ' !important;}';
 }
 if (!empty($mobile_menu_text_color)) {
    $mobilemenu_styles[] = '.astroid-offcanvas, .astroid-mobilemenu, .menu_open .menu-indicator-back .fas { color: ' . $mobile_menu_text_color . ' !important;}';

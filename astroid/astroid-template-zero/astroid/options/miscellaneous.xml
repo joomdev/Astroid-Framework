@@ -65,6 +65,8 @@
             
             <field  astroidgroup="coming_soon" ngShow="background_setting =='color' AND developemnt_mode=='1'" description="ASTROID_SELECT_BACKGROUND_COLOR_DESC" name="background_color" type="astroidcolor" label="TPL_ASTROID_BACKGROUND_COLOR_LABEL" />
 
+            <field  astroidgroup="coming_soon" ngShow="background_setting =='image' AND developemnt_mode=='1'" description="ASTROID_SELECT_BACKGROUND_COLOR_DESC" name="img_background_color" type="astroidcolor" label="TPL_ASTROID_BACKGROUND_COLOR_LABEL" />
+
             <field  astroidgroup="coming_soon" ngShow="background_setting =='image' AND developemnt_mode=='1'"  name="background_image" type="astroidmedia" label="TPL_ASTROID_BACKGROUND_IMAGE_LABEL"/>
              
             <field astroidgroup="coming_soon" ngShow="background_setting =='image' AND developemnt_mode=='1'" name="background_repeat" type="astroidlist" label="TPL_ASTROID_BACKGROUND_REPEAT_LABEL" hint="Background Repeat">

@@ -205,9 +205,25 @@ class AstroidFrameworkTemplate {
       $template_layout = $this->params->get('template_layout', 'wide');
       $sppb = $this->isSPPageBuilder();
       echo '<div class="astroid-container">';
-      $this->loadLayout('offcanvas');
+      $header_mode = $this->params->get('header_mode', 'horizontal');
+      if ($header_mode == 'sidebar') {
+         $this->loadLayout('header.sidebar');
+      } else {
+         $this->loadLayout('offcanvas');
+      }
       $this->loadLayout('mobilemenu');
-      echo '<div class="astroid-content">';
+
+      $content_classes = [];
+
+
+      $mode = $this->params->get('header_mode', 'horizontal');
+      if ($mode == 'sidebar') {
+         $sidebar_dir = $this->params->get('header_sidebar_menu_mode', 'left');
+         $content_classes[] = 'has-sidebar';
+         $content_classes[] = 'sidebar-dir-' . $sidebar_dir;
+      }
+
+      echo '<div class="astroid-content' . (!empty($content_classes) ? ' ' . implode(' ', $content_classes) : '') . '">';
       echo '<div style="' . $this->getLayoutStyles() . '" class="astroid-layout astroid-layout-' . $template_layout . '">';
       echo '<div class="astroid-wrapper">';
       foreach ($layout['sections'] as $section) {

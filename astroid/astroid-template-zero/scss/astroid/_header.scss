@@ -111,3 +111,46 @@
       }
    }
 }
+
+#astroid-header{
+   &.has-sidebar{
+      position: fixed;
+      width: $header-sidebar-width;
+      top: 0;
+      height: 100%;
+      &.sidebar-dir-left{
+         left: 0 !important;
+         right: auto !important;
+      }
+      &.sidebar-dir-right{
+         right: 0 !important;
+         left: auto !important;
+      }
+      > .container{
+         height: 100%;
+         > .row{
+            height: 100%;
+            .astroid-column{
+               > div{
+                  height: 100%;
+               }
+            }
+         }
+      }
+      .astroid-logo{
+         width: 100%;
+         margin: 0 !important;
+         justify-content: center;
+      }
+   }
+   .dropdown-menus{
+      max-width: $header-sidebar-width;
+   }
+   .astroid-sidebar-content{
+      overflow-y: auto;
+      .astroid-sidebar-logo{
+         height: 150px;
+         display: flex;
+      }
+   }
+}

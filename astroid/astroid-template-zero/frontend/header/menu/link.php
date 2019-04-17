@@ -23,6 +23,9 @@ $item = $params['item'];
 $active = $params['active'];
 $header = @$params['header'];
 $is_mobile_menu = $params['mobilemenu'];
+$slidemenu = @$params['slidemenu'];
+$slidemenu = ($slidemenu == 1 ? true : false);
+
 if ($item->type == "heading") {
    $item->flink = 'javascript:void(0);';
 }
@@ -130,4 +133,7 @@ foreach ($attributes as $key => $attribute) {
       <small class="nav-subtitle"><?php echo $options->subtitle ?></small>
    <?php } ?>
 </a>
+<?php if ($slidemenu && ($item->parent && $item->deeper == 1)) { ?>
+   <i class="fa fa-plus nav-item-caret"></i>
+<?php } ?>
 <!--menu link ends-->

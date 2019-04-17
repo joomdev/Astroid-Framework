@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @package   Astroid Framework
  * @author    JoomDev https://www.joomdev.com
@@ -6,7 +7,7 @@
  * @license https://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
  * 	DO NOT MODIFY THIS FILE DIRECTLY AS IT WILL BE OVERWRITTEN IN THE NEXT UPDATE
  *  You can easily override all files under /frontend/ folder.
- *	Just copy the file to ROOT/templates/YOURTEMPLATE/html/frontend/ folder to create and override
+ * 	Just copy the file to ROOT/templates/YOURTEMPLATE/html/frontend/ folder to create and override
  */
 defined('_JEXEC') or die;
 extract($displayData);
@@ -14,7 +15,7 @@ jimport('astroid.framework.menu');
 $header = $template->params->get('header', TRUE);
 $mode = $template->params->get('header_mode', 'horizontal');
 
-if (!$header) {
+if (!$header || $mode == 'sidebar') {
    return;
 }
 $template->loadLayout('header.' . $mode, true);

@@ -72,7 +72,7 @@ if (!empty($body_link_hover_color)) {
 // Header Coloring
 $header_styles = [];
 if (!empty($header_background_color)) {
-   $header_styles[] = '.astroid-header-section{ background-color: ' . $header_background_color . ' !important;}';
+   $header_styles[] = '.astroid-header-section,.astroid-sidebar-header{ background-color: ' . $header_background_color . ' !important;}';
 }
 if (!empty($header_text_color)) {
    $header_styles[] = 'header{ color: ' . $header_text_color . ' !important;}';

@@ -63,8 +63,8 @@
          <field
             name="header_endLevel"
             type="astroidlist"
-            label="MOD_MENU_FIELD_ENDLEVEL_LABEL"
-            description="MOD_MENU_FIELD_ENDLEVEL_DESC"
+            label="TPL_ASTROID_HEADER_MENU_ENDLEVEL_LABEL"
+            description="TPL_ASTROID_HEADER_MENU_ENDLEVEL_DESC"
             default="0"
             filter="integer"
             ngShow="header==true"
@@ -90,8 +90,8 @@
          <field
             name="header_mobile_endLevel"
             type="astroidlist"
-            label="MOD_MENU_FIELD_ENDLEVEL_LABEL"
-            description="MOD_MENU_FIELD_ENDLEVEL_DESC"
+            label="TPL_ASTROID_HEADER_MENU_ENDLEVEL_LABEL"
+            description="TPL_ASTROID_HEADER_MENU_ENDLEVEL_DESC"
             default="0"
             filter="integer"
             ngShow="header==true"

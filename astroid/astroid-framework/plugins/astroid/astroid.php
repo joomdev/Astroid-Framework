@@ -26,7 +26,7 @@ class plgSystemAstroid extends JPlugin {
    public function onBeforeRender() {
       if ($this->app->isAdmin()) {
          if (JFactory::getUser()->id) {
-            $astroid_redirect = $this->app->input->get->get('ast', '');
+            $astroid_redirect = $this->app->input->get->get('ast', '', 'RAW');
             if (!empty($astroid_redirect)) {
                $this->app->redirect(base64_decode(urldecode($astroid_redirect)));
             }

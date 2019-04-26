@@ -722,7 +722,7 @@ class AstroidFrameworkTemplate {
                continue;
             }
          }
-         $document->addScript($js);
+         $document->addScript($js, ['version' => $document->getMediaVersion()]);
       }
    }
 

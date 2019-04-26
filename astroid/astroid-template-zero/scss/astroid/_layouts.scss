@@ -105,9 +105,15 @@ img {
       overflow-y: auto;
       &.sidebar-dir-left{
          padding-left: $header-sidebar-width;   
+         @media(max-width: 1600px){
+            padding-left: $header-sidebar-mini-width;
+         }
       }
       &.sidebar-dir-right{
          padding-right: $header-sidebar-width;
+         @media(max-width: 1600px){
+            padding-right: $header-sidebar-mini-width;
+         }
       }
    }
 }

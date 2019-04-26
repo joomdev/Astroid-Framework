@@ -118,6 +118,15 @@
       width: $header-sidebar-width;
       top: 0;
       height: 100%;
+      z-index: 1;
+      -webkit-transition: .1s linear all;
+      -moz-transition: .1s linear all;
+      -ms-transition: .1s linear all;
+      -o-transition: .1s linear all;
+      transition: .1s linear all;
+      @media(max-width: 1600px){
+         width: $header-sidebar-mini-width;
+      }
       &.sidebar-dir-left{
          left: 0 !important;
          right: auto !important;
@@ -151,6 +160,55 @@
       .astroid-sidebar-logo{
          height: 150px;
          display: flex;
+      }
+   }
+   .astroid-sidebar-collapsable{
+      padding: 1rem;
+      font-size: 24px;
+      justify-content: flex-end;
+      cursor: pointer;
+      display: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      > i{
+         width: 22px;
+         text-align: center;
+         display: block;
+         &:before{
+            content: "\f0c9";
+         }
+      }
+   }
+   @media(max-width: 1600px){
+      .astroid-sidebar-collapsable{
+         display: flex !important;
+      }
+      .astroid-sidebar-content{
+         > div:not(.astroid-sidebar-collapsable){
+            visibility: hidden;
+         }
+      }
+      &.expanded{
+         width: $header-sidebar-width !important;
+         -webkit-transition: .1s linear all;
+         -moz-transition: .1s linear all;
+         -ms-transition: .1s linear all;
+         -o-transition: .1s linear all;
+         transition: .1s linear all;
+         .astroid-sidebar-content{
+            > div:not(.astroid-sidebar-collapsable){
+               visibility: visible;
+            }
+         }
+         .astroid-sidebar-collapsable{
+            > i{
+               &:before{
+                  content: "\f00d";
+               }
+            }
+         }
       }
    }
 }

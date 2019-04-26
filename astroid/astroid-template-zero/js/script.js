@@ -16,9 +16,12 @@
       $('.astroid-mobile-menu').removeClass('d-none');
       $('.astroid-sidebar-menu .nav-item-caret').click(function () {
          $(this).parent('li').siblings('li').children('ul').slideUp();
-         $(this).parent('li').siblings('li').children('.nav-item-caret').removeClass('open');   
+         $(this).parent('li').siblings('li').children('.nav-item-caret').removeClass('open');
          $(this).toggleClass('open');
          $(this).siblings('ul').slideToggle();
+      });
+      $('.astroid-sidebar-collapsable').click(function () {
+         $('#astroid-header').toggleClass('expanded');
       });
    };
    var initDisplay = function () {

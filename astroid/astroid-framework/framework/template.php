@@ -478,11 +478,13 @@ class AstroidFrameworkTemplate {
          foreach ($scss_files as $scss) {
             $name .= md5_file($scss['basepath']);
          }
-         $cssname = 'style-' . md5($name);
+         
 
          $variables = $this->getThemeVariables();
          $name .= serialize($variables);
-
+         
+         $cssname = 'style-' . md5($name);
+         
          if (!file_exists($template_directory . 'css/' . $cssname . '.css')) {
             //ini_set('xdebug.max_nesting_level', 3000);
             AstroidFrameworkHelper::clearCache($this->template);

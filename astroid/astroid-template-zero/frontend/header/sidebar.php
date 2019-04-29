@@ -36,13 +36,20 @@ $navWrapperClass = ['align-self-center', 'px-2', 'd-none', 'd-lg-block'];
          <i class="fa"></i>
       </div>
       <div class="astroid-sidebar-logo">
+         <?php if (!empty($header_mobile_menu)) { ?>
+            <div class="justify-content-start astroid-sidebar-mobile-menu">
+               <div class="header-mobilemenu-trigger burger-menu-button align-self-center" data-offcanvas="#astroid-mobilemenu" data-effect="mobilemenu-slide">
+                  <button class="button" type="button"><span class="box"><span class="inner"></span></span></button>
+               </div>
+            </div>
+         <?php } ?>
          <?php $template->loadLayout('logo'); ?>
       </div>
       <div class="astroid-sidebar-menu py-3">
          <?php AstroidMenu::getSidebarMenu($header_menu); ?>
       </div>
       <?php if ($block_1_type != 'blank'): ?>
-         <div class="px-2">
+         <div class="astroid-sidebar-block">
             <?php
             if ($block_1_type == 'position') {
                echo '<div class="header-block-item">';

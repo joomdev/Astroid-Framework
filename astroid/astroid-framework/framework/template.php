@@ -22,7 +22,8 @@ class AstroidFrameworkTemplate {
    public $cssFile = true;
    public $_styles = [];
    public $_js = [];
-
+   public $mods = array();
+   public $modules = array();
    public function __construct($template) {
       if (!defined('ASTROID_TEMPLATE_NAME')) {
          define('ASTROID_TEMPLATE_NAME', $template->template);
@@ -725,6 +726,80 @@ class AstroidFrameworkTemplate {
          $document->addScript($js, ['version' => $document->getMediaVersion()]);
       }
    }
+   public function _loadModule($errorContent){
+
+      // Expression to search for(module Position)
+      $regex = '/{loadposition\s(.*?)}/i';
+
+      preg_match_all($regex, $errorContent, $matches, PREG_SET_ORDER);
+
+      if($matches){
+         foreach ($matches as $match)
+         {
+            $matcheslist = explode(',', $match[1]);
+            $position = trim($matcheslist[0]);
+            $output = $this->_load($position);
+            // We should replace only first occurrence in order to allow positions with the same name to regenerate their content:
+            $errorContent = preg_replace("|$match[0]|", $output, $errorContent, 1);
+         }
+      }
+
+      // Expression to search for(id)
+      $regexmodid = '/{loadmoduleid\s([1-9][0-9]*)}/i';
+
+		preg_match_all($regexmodid, $errorContent, $matchesmodid, PREG_SET_ORDER);
+
+		// If no matches, skip this
+		if ($matchesmodid)
+		{
+			foreach ($matchesmodid as $match)
+			{
+				$id     = trim($match[1]);
+				$output = $this->_loadid($id);
+
+				// We should replace only first occurrence in order to allow positions with the same name to regenerate their content:
+				$errorContent = preg_replace("|$match[0]|", $output, $errorContent, 1);
+
+			}
+		}
+
+      return $errorContent;
+   }
+   public function _load($position)
+	{
+		$this->modules[$position] = '';
+		$document = JFactory::getDocument();
+		$renderer = $document->loadRenderer('module');
+		$modules  = JModuleHelper::getModules($position);
+		ob_start();
+
+		foreach ($modules as $module)
+		{
+			echo $renderer->render($module);
+		}
+
+		$this->modules[$position] = ob_get_clean();
+
+		return $this->modules[$position];
+   }
+   
+   public function _loadid($id)
+	{
+		$this->modules[$id] = '';
+		$document = JFactory::getDocument();
+		$renderer = $document->loadRenderer('module');
+		$modules  = JModuleHelper::getModuleById($id);
+		ob_start();
+
+		if ($modules->id > 0)
+		{
+			echo $renderer->render($modules);
+		}
+
+		$this->modules[$id] = ob_get_clean();
+
+		return $this->modules[$id];
+	}
 
 }
 

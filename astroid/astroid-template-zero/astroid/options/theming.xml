@@ -3,6 +3,7 @@
    <fields name="params">
       <fieldset icon="fa fa-paint-brush" label="AF_THEMING" name="astroid_theming" addfieldpath="/libraries/astroid/framework/fields" order="11">
          <field type="astroidgroup" name="colors" title="ASTROID_OPTIONS_COLOURS" /> 
+         <field type="astroidgroup" name="sassoverrides" title="ASTROID_OPTIONS_OVERRIDES" /> 
          <field astroidgroup="colors" name="theme_colors_heading" type="astroidheading" title="AF_THEMING_ALL_COLORS" description="AF_THEMING_ALL_COLORS_DESC"></field>
          <field astroidgroup="colors" name="theme_blue" type="astroidcolor" large="true" label="Blue" default="#007bff" description=""></field>
          <field astroidgroup="colors" name="theme_indigo" type="astroidcolor" large="true" label="Indigo" default="#6610f2" description=""></field>
@@ -31,7 +32,8 @@
          
          <field astroidgroup="colors" description="" name="theme_light" type="astroidlist" class="form-control" default="gray100" label="Light" bootstrap-color="true" />
          <field astroidgroup="colors" description="" name="theme_dark" type="astroidlist" class="form-control" default="gray800" label="Dark" bootstrap-color="true" />
-                  
+         
+         <field astroidgroup="sassoverrides" name="sass_overrides" type="astroidsassoverrides"></field>  
       </fieldset>
    </fields>
 </form>

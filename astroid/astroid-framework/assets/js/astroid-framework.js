@@ -230,6 +230,30 @@ astroidFramework.directive('astroidsocialprofiles', ['$http', function ($http) {
    }
 ]);
 
+astroidFramework.directive('astroidsassoverrides', ['$http', function () {
+      return {
+         restrict: 'A',
+         scope: true,
+         link: function ($scope, $element, $attrs) {
+            $scope.overrides = AstroidSassOverrideVariables;
+            $scope.addOverride = function () {
+               var _overrides = $scope.overrides;
+               _overrides.push({'variable': '', 'value': ''});
+               $scope.overrides = _overrides;
+            };
+            $scope.removeOverride = function (_index) {
+               var _c = confirm("Are you sure?");
+               if (_c) {
+                  var _overrides = $scope.overrides;
+                  _overrides.splice(_index, 1);
+                  $scope.overrides = _overrides;
+               }
+            };
+         }
+      };
+   }
+]);
+
 astroidFramework.directive('dropzone', function () {
    return {
       restrict: 'A',

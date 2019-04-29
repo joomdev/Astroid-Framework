@@ -478,13 +478,13 @@ class AstroidFrameworkTemplate {
          foreach ($scss_files as $scss) {
             $name .= md5_file($scss['basepath']);
          }
-         
+
 
          $variables = $this->getThemeVariables();
          $name .= serialize($variables);
-         
+
          $cssname = 'style-' . md5($name);
-         
+
          if (!file_exists($template_directory . 'css/' . $cssname . '.css')) {
             //ini_set('xdebug.max_nesting_level', 3000);
             AstroidFrameworkHelper::clearCache($this->template);
@@ -549,6 +549,28 @@ class AstroidFrameworkTemplate {
         $link_hover_color = $this->params->get('theme_link_hover_color', '#0056b3');
         $variables['link-hover-color'] = $link_hover_color;
        */
+
+      $variables = $this->getVariableOverrides($variables);
+
+      return $variables;
+   }
+
+   public function getVariableOverrides($variables) {
+      $sass_overrides = $this->params->get('sass_overrides');
+      $sass_overrides = \json_decode($sass_overrides, true);
+      if (empty($sass_overrides)) {
+         return [];
+      }
+
+      foreach ($sass_overrides as $sass_override) {
+         $variable = $sass_override['variable'];
+         if (!empty($variable) && !empty($sass_override['value'])) {
+            if (substr($variable, 0, 1) === "$") {
+               $variable = ltrim($variable, '$');
+            }
+            $variables[$variable] = $sass_override['value'];
+         }
+      }
       return $variables;
    }
 
@@ -656,7 +678,7 @@ class AstroidFrameworkTemplate {
       if (!empty($itemid)) {
          $class[] = 'itemid-' . $itemid;
       }
-      
+
       if ($header && !empty($headerMode) && $headerMode == 'sidebar') {
          $sidebarDirection = $this->params->get('header_sidebar_menu_mode', 'left');
          $class[] = "header-sidebar-" . $sidebarDirection;

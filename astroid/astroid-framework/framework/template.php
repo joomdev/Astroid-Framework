@@ -24,6 +24,7 @@ class AstroidFrameworkTemplate {
    public $_js = [];
    public $mods = array();
    public $modules = array();
+
    public function __construct($template) {
       if (!defined('ASTROID_TEMPLATE_NAME')) {
          define('ASTROID_TEMPLATE_NAME', $template->template);
@@ -478,10 +479,14 @@ class AstroidFrameworkTemplate {
             $name .= md5_file($scss['basepath']);
          }
          $cssname = 'style-' . md5($name);
+
+         $variables = $this->getThemeVariables();
+         $name .= serialize($variables);
+
          if (!file_exists($template_directory . 'css/' . $cssname . '.css')) {
             //ini_set('xdebug.max_nesting_level', 3000);
             AstroidFrameworkHelper::clearCache($this->template);
-            AstroidFrameworkHelper::compileSass($template_directory . 'scss', $template_directory . 'css', 'style.scss', $cssname . '.css');
+            AstroidFrameworkHelper::compileSass($template_directory . 'scss', $template_directory . 'css', 'style.scss', $cssname . '.css', $variables);
          }
          return $cssname . '.css';
       } else {
@@ -502,6 +507,47 @@ class AstroidFrameworkTemplate {
          }
          return $cssname . '.css';
       }
+   }
+
+   public function getThemeVariables() {
+      $variables = [];
+      $variables['blue'] = $this->params->get('theme_blue', '#007bff');
+      $variables['indigo'] = $this->params->get('theme_indigo', '#6610f2');
+      $variables['purple'] = $this->params->get('theme_purple', '#6f42c1');
+      $variables['pink'] = $this->params->get('theme_pink', '#e83e8c');
+      $variables['red'] = $this->params->get('theme_red', '#dc3545');
+      $variables['orange'] = $this->params->get('theme_orange', '#fd7e14');
+      $variables['yellow'] = $this->params->get('theme_yellow', '#ffc107');
+      $variables['green'] = $this->params->get('theme_green', '#28a745');
+      $variables['teal'] = $this->params->get('theme_teal', '#20c997');
+      $variables['cyan'] = $this->params->get('theme_cyan', '#17a2b8');
+      $variables['white'] = $this->params->get('theme_white', '#fff');
+      $variables['gray100'] = $this->params->get('theme_gray100', '#f8f9fa');
+      $variables['gray600'] = $this->params->get('theme_gray600', '#6c757d');
+      $variables['gray800'] = $this->params->get('theme_gray800', '#343a40');
+      $primary = $this->params->get('theme_primary', 'blue');
+      $variables['primary'] = $variables[$primary];
+      $secondary = $this->params->get('theme_secondary', 'gray600');
+      $variables['secondary'] = $variables[$secondary];
+      $success = $this->params->get('theme_success', 'green');
+      $variables['success'] = $variables[$success];
+      $info = $this->params->get('theme_info', 'cyan');
+      $variables['info'] = $variables[$info];
+      $warning = $this->params->get('theme_warning', 'yellow');
+      $variables['warning'] = $variables[$warning];
+      $danger = $this->params->get('theme_danger', 'red');
+      $variables['danger'] = $variables[$danger];
+      $light = $this->params->get('theme_light', 'gray100');
+      $variables['light'] = $variables[$light];
+      $dark = $this->params->get('theme_dark', 'gray800');
+      $variables['dark'] = $variables[$dark];
+      /*
+        $link_color = $this->params->get('theme_link_color', '#007bff');
+        $variables['link-color'] = $link_color;
+        $link_hover_color = $this->params->get('theme_link_hover_color', '#0056b3');
+        $variables['link-hover-color'] = $link_hover_color;
+       */
+      return $variables;
    }
 
    public function getColors() {
@@ -726,16 +772,16 @@ class AstroidFrameworkTemplate {
          $document->addScript($js, ['version' => $document->getMediaVersion()]);
       }
    }
-   public function _loadModule($errorContent){
+
+   public function _loadModule($errorContent) {
 
       // Expression to search for(module Position)
       $regex = '/{loadposition\s(.*?)}/i';
 
       preg_match_all($regex, $errorContent, $matches, PREG_SET_ORDER);
 
-      if($matches){
-         foreach ($matches as $match)
-         {
+      if ($matches) {
+         foreach ($matches as $match) {
             $matcheslist = explode(',', $match[1]);
             $position = trim($matcheslist[0]);
             $output = $this->_load($position);
@@ -747,59 +793,53 @@ class AstroidFrameworkTemplate {
       // Expression to search for(id)
       $regexmodid = '/{loadmoduleid\s([1-9][0-9]*)}/i';
 
-		preg_match_all($regexmodid, $errorContent, $matchesmodid, PREG_SET_ORDER);
+      preg_match_all($regexmodid, $errorContent, $matchesmodid, PREG_SET_ORDER);
 
-		// If no matches, skip this
-		if ($matchesmodid)
-		{
-			foreach ($matchesmodid as $match)
-			{
-				$id     = trim($match[1]);
-				$output = $this->_loadid($id);
+      // If no matches, skip this
+      if ($matchesmodid) {
+         foreach ($matchesmodid as $match) {
+            $id = trim($match[1]);
+            $output = $this->_loadid($id);
 
-				// We should replace only first occurrence in order to allow positions with the same name to regenerate their content:
-				$errorContent = preg_replace("|$match[0]|", $output, $errorContent, 1);
-
-			}
-		}
+            // We should replace only first occurrence in order to allow positions with the same name to regenerate their content:
+            $errorContent = preg_replace("|$match[0]|", $output, $errorContent, 1);
+         }
+      }
 
       return $errorContent;
    }
-   public function _load($position)
-	{
-		$this->modules[$position] = '';
-		$document = JFactory::getDocument();
-		$renderer = $document->loadRenderer('module');
-		$modules  = JModuleHelper::getModules($position);
-		ob_start();
 
-		foreach ($modules as $module)
-		{
-			echo $renderer->render($module);
-		}
+   public function _load($position) {
+      $this->modules[$position] = '';
+      $document = JFactory::getDocument();
+      $renderer = $document->loadRenderer('module');
+      $modules = JModuleHelper::getModules($position);
+      ob_start();
 
-		$this->modules[$position] = ob_get_clean();
+      foreach ($modules as $module) {
+         echo $renderer->render($module);
+      }
 
-		return $this->modules[$position];
+      $this->modules[$position] = ob_get_clean();
+
+      return $this->modules[$position];
    }
-   
-   public function _loadid($id)
-	{
-		$this->modules[$id] = '';
-		$document = JFactory::getDocument();
-		$renderer = $document->loadRenderer('module');
-		$modules  = JModuleHelper::getModuleById($id);
-		ob_start();
 
-		if ($modules->id > 0)
-		{
-			echo $renderer->render($modules);
-		}
+   public function _loadid($id) {
+      $this->modules[$id] = '';
+      $document = JFactory::getDocument();
+      $renderer = $document->loadRenderer('module');
+      $modules = JModuleHelper::getModuleById($id);
+      ob_start();
 
-		$this->modules[$id] = ob_get_clean();
+      if ($modules->id > 0) {
+         echo $renderer->render($modules);
+      }
 
-		return $this->modules[$id];
-	}
+      $this->modules[$id] = ob_get_clean();
+
+      return $this->modules[$id];
+   }
 
 }
 

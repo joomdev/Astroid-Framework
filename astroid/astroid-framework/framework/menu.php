@@ -176,7 +176,9 @@ class AstroidMenu {
                            $subitem->anchor_css = empty($subitem->anchor_css) ? 'megamenu-title' : ' ' . $subitem->anchor_css;
                            $options = self::getAstroidMenuOptions($subitem, $items);
                            $class = self::getLiClass($subitem, $options, $default_id, $active_id, $path);
-                           echo '<li class="megamenu-menu-item">';
+
+                           // nav-item-active
+                           echo '<li class="megamenu-menu-item' . (empty($class) ? '' : ' ' . implode(' ', $class)) . '">';
                            echo $template->loadLayout('header.menu.link', false, ['item' => $subitem, 'options' => $options, 'mobilemenu' => false, 'active' => in_array('nav-item-active', $class)]);
                            if ($subitem->parent) {
                               self::getMegaMenuSubItems($subitem, $items);

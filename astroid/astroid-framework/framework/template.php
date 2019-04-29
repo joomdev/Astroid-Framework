@@ -635,8 +635,8 @@ class AstroidFrameworkTemplate {
       $view = $app->input->get('view', '', 'STRING');
       $layout = $app->input->get('layout', 'default', 'STRING');
       $task = $app->input->get('task', '', 'STRING');
-      $header = $template->params->get('header', TRUE);
-      $headerMode = $template->params->get('header_mode', 'horizontal', 'STRING');
+      $header = $this->params->get('header', TRUE);
+      $headerMode = $this->params->get('header_mode', 'horizontal', 'STRING');
       $itemid = $app->input->get('itemid', '', 'INT');
 
       if (!empty($option)) {
@@ -654,8 +654,9 @@ class AstroidFrameworkTemplate {
       if (!empty($itemid)) {
          $class[] = 'itemid-' . $itemid;
       }
+      
       if ($header && !empty($headerMode) && $headerMode == 'sidebar') {
-         $sidebarDirection = $params->get('header_sidebar_menu_mode', 'left');
+         $sidebarDirection = $this->params->get('header_sidebar_menu_mode', 'left');
          $class[] = "header-sidebar-" . $sidebarDirection;
       }
 

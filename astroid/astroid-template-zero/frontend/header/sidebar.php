@@ -45,7 +45,7 @@ $navWrapperClass = ['align-self-center', 'px-2', 'd-none', 'd-lg-block'];
          <?php } ?>
          <?php $template->loadLayout('logo'); ?>
       </div>
-      <div class="astroid-sidebar-menu py-3">
+      <div class="astroid-sidebar-menu">
          <?php AstroidMenu::getSidebarMenu($header_menu); ?>
       </div>
       <?php if ($block_1_type != 'blank'): ?>

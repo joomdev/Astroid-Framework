@@ -11,7 +11,7 @@ defined('_JEXEC') or die;
 class AstroidFrameworkConstants {
 
    public static $astroid_version = '2.1.1-dev';
-   public static $fontawesome_version = '5.7.2';
+   public static $fontawesome_version = '5.8.1';
    public static $animatecss_version = '3.7.0';
    public static $forum_link = 'https://www.joomdev.com/forum/astroid-framework';
    public static $documentation_link = 'https://www.joomdev.com/documentation/astroid-framework';

@@ -92,7 +92,6 @@
 
 .fixed-header {
    .astroid-logo {
-
       .astroid-logo-default,
       .astroid-logo-mobile {
          display: none;
@@ -111,9 +110,9 @@
       }
    }
 }
-
-#astroid-header{
-   &.has-sidebar{
+/* Sidebar Header */
+#astroid-header {
+   &.has-sidebar {
       position: fixed;
       width: $header-sidebar-width;
       top: 0;
@@ -124,45 +123,81 @@
       -ms-transition: .1s linear all;
       -o-transition: .1s linear all;
       transition: .1s linear all;
-      @media(max-width: 1600px){
+      @media(max-width: 1600px) {
          width: $header-sidebar-mini-width;
       }
-      &.sidebar-dir-left{
+      &.sidebar-dir-left {
          left: 0 !important;
          right: auto !important;
       }
-      &.sidebar-dir-right{
+      &.sidebar-dir-right {
          right: 0 !important;
          left: auto !important;
       }
-      > .container{
+      > .container {
          height: 100%;
-         > .row{
+         > .row {
             height: 100%;
-            .astroid-column{
-               > div{
+            .astroid-column {
+               > div {
                   height: 100%;
                }
             }
          }
       }
-      .astroid-logo{
-         width: 100%;
-         margin: 0 !important;
+      .astroid-sidebar-logo {
+         margin: 15px 0;
+      }
+      .astroid-logo {
+         margin: 0 auto !important;
          justify-content: center;
       }
-   }
-   .dropdown-menus{
-      max-width: $header-sidebar-width;
-   }
-   .astroid-sidebar-content{
-      overflow-y: auto;
-      .astroid-sidebar-logo{
-         height: 150px;
-         display: flex;
+      .astroid-sidebar-mobile-menu {
+         display: none;
+      }
+      .astroid-sidebar-block {
+         padding: 10px 15px;
       }
    }
-   .astroid-sidebar-collapsable{
+   @media (min-width: 1200px) {
+      .astroid-sidebar-content {
+         display: flex;
+         flex-direction: column;
+      }
+      .astroid-sidebar-block {
+         margin-top: auto;
+      }
+   }
+   @media (max-width: 1200px) {
+      &.has-sidebar {
+         .astroid-sidebar-mobile-menu {
+            display: block;
+         }
+      }
+   }
+   @media (max-width: 1600px) {
+      &.has-sidebar {
+         display: block;
+         width: 100%;
+         position: relative;
+         padding: 15px 0;
+         .astroid-sidebar-logo {
+            display: flex;
+            padding: 0 15px;
+            align-items: center;
+         }
+      }
+   }
+   .dropdown-menus {
+      max-width: $header-sidebar-width;
+   }
+   .astroid-sidebar-content {
+      overflow-y: auto;
+      .astroid-sidebar-logo {
+         // height: 150px;
+      }
+   }
+   .astroid-sidebar-collapsable {
       padding: 1rem;
       font-size: 24px;
       justify-content: flex-end;
@@ -172,43 +207,60 @@
       -moz-user-select: none;
       -ms-user-select: none;
       user-select: none;
-      > i{
+      > i {
          width: 22px;
          text-align: center;
          display: block;
-         &:before{
+         &:before {
             content: "\f0c9";
          }
       }
    }
-   @media(max-width: 1600px){
-      .astroid-sidebar-collapsable{
-         display: flex !important;
-      }
-      .astroid-sidebar-content{
-         > div:not(.astroid-sidebar-collapsable){
-            visibility: hidden;
+   @media(max-width: 1600px) {
+      .astroid-sidebar-content {
+         > div.astroid-sidebar-menu {
+            display: none; 
+         }
+         > div.astroid-sidebar-block {
+           display: none;
          }
       }
-      &.expanded{
+      &.expanded {
          width: $header-sidebar-width !important;
          -webkit-transition: .1s linear all;
          -moz-transition: .1s linear all;
          -ms-transition: .1s linear all;
          -o-transition: .1s linear all;
          transition: .1s linear all;
-         .astroid-sidebar-content{
-            > div:not(.astroid-sidebar-collapsable){
-               visibility: visible;
-            }
-         }
-         .astroid-sidebar-collapsable{
-            > i{
-               &:before{
+         .astroid-sidebar-collapsable {
+            > i {
+               &:before {
                   content: "\f00d";
                }
             }
          }
+         .astroid-sidebar-logo {
+            display: block;
+         }
+         .astroid-sidebar-content > div.astroid-sidebar-menu {
+            display: block;
+         }
+         .astroid-sidebar-content > div.astroid-sidebar-block {
+            display: block;
+         }
       }
+   }
+   @media(min-width: 1200px) and (max-width: 1600px) {
+      &.has-sidebar {
+         padding: 0;
+         position: fixed;
+         width: $header-sidebar-mini-width;
+         .astroid-sidebar-collapsable{
+            display: block;
+         }
+      }
+      &.has-sidebar:not(.expanded) .astroid-sidebar-logo {
+         display: none;
+       }
    }
 }

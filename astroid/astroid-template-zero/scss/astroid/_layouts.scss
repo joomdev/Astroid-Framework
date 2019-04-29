@@ -100,20 +100,29 @@ img {
       transition: opacity 0.5s, width 0.1s 0.5s, height 0.1s 0.5s;
       z-index: $zindex-modal-backdrop;
    }
-   &.has-sidebar{
+   &.has-sidebar {
       height: 100vh;
       overflow-y: auto;
-      &.sidebar-dir-left{
-         padding-left: $header-sidebar-width;   
-         @media(max-width: 1600px){
+      &.sidebar-dir-left {
+         padding-left: $header-sidebar-width;
+         @media(max-width: 1600px) {
             padding-left: $header-sidebar-mini-width;
          }
+         @media(max-width: 1599px) {
+            padding-left: 0;
+         }
       }
-      &.sidebar-dir-right{
+      &.sidebar-dir-right {
          padding-right: $header-sidebar-width;
-         @media(max-width: 1600px){
+         @media(max-width: 1600px) {
             padding-right: $header-sidebar-mini-width;
          }
+         @media(max-width: 1599px) {
+            padding-right: 0;
+         }
+      }
+      @include media-breakpoint-down(xl) {
+         height: auto;
       }
    }
 }

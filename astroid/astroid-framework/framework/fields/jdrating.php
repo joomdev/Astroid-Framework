@@ -63,7 +63,7 @@ class JFormFieldJDRating extends JFormField {
       }
 
 
-      return '<div id="' . $this->id . '" style="line-height: 30px;"><div class="' . implode(' ', $classes) . '" data-rating="' . $this->value . '" data-max-rating="' . $max . '"></div><input name="' . $this->name . '" type="hidden" value="' . $this->value . '" />' . ($clear ? '&nbsp;&nbsp;&nbsp;&nbsp; <a style="margin-top: -8px;" class="btn btn-default btn-rating-clear" href="javascript:void(0);">clear</a>' : '') . '</div>';
+      return '<div id="' . $this->id . '" style="line-height: 30px;"><div class="' . implode(' ', $classes) . '" data-rating="' . $this->value . '" data-max-rating="' . $max . '"></div><input name="' . $this->name . '" type="hidden" value="' . $this->value . '" />' . ($clear ? '&nbsp;&nbsp;&nbsp;&nbsp; <a style="margin-top: -8px;" class="btn btn-default btn-rating-clear" href="javascript:void(0);">'.JText::_( 'JCLEAR' ).'</a>' : '') . '</div>';
    }
 
 }

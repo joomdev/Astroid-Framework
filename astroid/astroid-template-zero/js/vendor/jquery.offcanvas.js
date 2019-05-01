@@ -12,6 +12,7 @@
 
          var _trigger = $(this);
          var _effect = _trigger.data('effect');
+         var _dir = _trigger.data('direction');
          var _content = $(_trigger.data('offcanvas'));
          var _close = $(_content).find('.offcanvas-close-btn');
          var _eventtype = _mobileCheck() ? 'touchstart' : 'click';
@@ -25,6 +26,8 @@
             _trigger.removeClass('active');
             setTimeout(function () {
                $('body').removeClass(_class + '-opened');
+               $('body').removeClass(_dir);
+               
             }, 500);
          };
 
@@ -60,6 +63,7 @@
                _container.addClass(_class + '-open');
             }, 25);
             $('body').addClass(_class + '-opened');
+            $('body').addClass(_dir);
             $(document).bind(_eventtype, _bodyClick);
             $(_close).bind(_eventtype, _bodyClick);
          });

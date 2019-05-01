@@ -19,6 +19,7 @@ $params = $template->params;
 $header_menu = $params->get('header_menu', 'mainmenu');
 $enable_offcanvas = $params->get('enable_offcanvas', FALSE);
 $offcanvas_animation = $params->get('offcanvas_animation', 'st-effect-1');
+$offcanvas_direction = $params->get('offcanvas_direction', 'offcanvas-left');
 $offcanvas_togglevisibility = $params->get('offcanvas_togglevisibility', 'd-block');
 $class = ['astroid-header', 'astroid-header-sticky'];
 $stickyheader = $params->get('stickyheader', 'static');
@@ -86,7 +87,7 @@ switch ($mode) {
             }
             ?>
             <?php if ($enable_offcanvas) { ?>
-               <div class="header-offcanvas-trigger burger-menu-button align-self-center <?php echo $offcanvas_togglevisibility; ?>" data-offcanvas="#astroid-offcanvas" data-effect="<?php echo $offcanvas_animation; ?>">
+               <div class="header-offcanvas-trigger burger-menu-button align-self-center <?php echo $offcanvas_togglevisibility; ?>" data-offcanvas="#astroid-offcanvas" data-effect="<?php echo $offcanvas_animation; ?>" data-direction="<?php echo $offcanvas_direction; ?>">
                   <button type="button" class="button">
                      <span class="box">
                         <span class="inner"></span>

@@ -93,12 +93,15 @@ if (!empty($sticky_header_background_color)) {
 $main_menu_styles = [];
 if (!empty($main_link_color)) {
    $main_menu_styles[] = '.astroid-nav .nav-link{ color: ' . $main_link_color . ' !important;}';
+   $main_menu_styles[] = '.astroid-sidebar-menu .nav-link{ color: ' . $main_link_color . ' !important;}';
 }
 if (!empty($main_link_hover_color)) {
    $main_menu_styles[] = '.astroid-nav .nav-link:hover, .astroid-nav .nav-link:focus{ color: ' . $main_link_hover_color . ' !important;}';
+   $main_menu_styles[] = '.astroid-sidebar-menu .nav-link:hover, .astroid-sidebar-menu .nav-link:focus{ color: ' . $main_link_hover_color . ' !important;}';
 }
 if (!empty($main_link_active_color)) {
    $main_menu_styles[] = '.astroid-nav .nav-link.active{ color: ' . $main_link_active_color . ' !important;}';
+   $main_menu_styles[] = '.astroid-sidebar-menu .nav-link.active{ color: ' . $main_link_active_color . ' !important;}';
 }
 ?>
 

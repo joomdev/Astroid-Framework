@@ -134,6 +134,6 @@ foreach ($attributes as $key => $attribute) {
    <?php } ?>
 </a>
 <?php if ($slidemenu && ($item->parent && $item->deeper == 1)) { ?>
-   <i class="fa fa-plus nav-item-caret"></i>
+   <i class="fa fa-plus nav-item-caret<?php echo $active ? ' open' : ''; ?>"></i>
 <?php } ?>
 <!--menu link ends-->

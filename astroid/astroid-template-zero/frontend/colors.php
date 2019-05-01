@@ -111,6 +111,9 @@ $dropdown_styles = [];
 if (!empty($dropdown_main_background_color)) {
    $dropdown_styles[] = '.nav-submenu, .megamenu-container{ background: ' . $dropdown_main_background_color . ' !important;}';
 }
+if (!empty($dropdown_main_background_color)) {
+   $dropdown_styles[] = '.has-megamenu.open .arrow{ border-bottom-color: ' . $dropdown_main_background_color . ' !important;}';
+}
 if (!empty($dropdown_main_link_color)) {
    $dropdown_styles[] = '.astroid-nav .megamenu-container .megamenu-title, .astroid-nav .megamenu-container li.nav-item-submenu > a{ color: ' . $dropdown_main_link_color . ' !important;}';
 }

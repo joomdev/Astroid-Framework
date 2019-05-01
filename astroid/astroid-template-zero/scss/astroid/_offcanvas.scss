@@ -238,3 +238,8 @@ body.astroid-offcanvas-opened {
 		overflow-x: hidden;
 	}
 }
+
+.offcanvas-right .astroid-offcanvas {
+	left: auto;
+	right: 0;
+}

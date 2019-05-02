@@ -190,7 +190,7 @@
             <option value="d-none d-xl-block">TPL_ASTROID_TOGGLE_VISIBILITY_OPTIONS_UPTO_ONLY_X_LARGE_DEVICES</option>
          </field>
 
-         <field ngShow="header==true AND enable_offcanvas==true AND header_mode!='sidebar'" astroidgroup="header_element" name="offcanvas_panelwidth" class="form-control" type="astroidtext" label="TPL_ASTROID_PANEL_WIDTH_LABEL" default="320px" description="TPL_ASTROID_PANEL_WIDTH_DESC">
+         <field ngShow="header==true AND enable_offcanvas==true AND header_mode!='sidebar'" astroidgroup="header_element" name="offcanvas_panelwidth" class="form-control" type="astroidtext" label="TPL_ASTROID_PANEL_WIDTH_LABEL" hint="320px" default="320px" description="TPL_ASTROID_PANEL_WIDTH_DESC">
          </field>
 
          <field ngShow="header==true AND enable_offcanvas==true AND header_mode!='sidebar'" astroidgroup="header_element" description="TPL_ASTROID_OFF_CANVAS_ANIMATION_DESC" name="offcanvas_animation" type="astroidlist" class="form-control" default="st-effect-1" label="TPL_ASTROID_OFF_CANVAS_ANIMATION_LABEL">

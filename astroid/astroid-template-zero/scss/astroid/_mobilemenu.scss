@@ -1,5 +1,6 @@
 $burger-layer-width: 30px !default;
 $close-btn-height: 50px !default;
+$menu-indicator-width: 50px !default;
 
 
 .astroid-mobilemenu{
@@ -29,6 +30,17 @@ $close-btn-height: 50px !default;
 	}
 }
 
+.offcanvas-right {
+   .astroid-mobilemenu-container .astroid-mobilemenu-inner .dropdown-menus {
+      left: auto;
+      right: -100%;
+      &.menu_open {
+         left: auto;
+         right: 0;
+      }
+   }
+}
+
 .astroid-mobilemenu-container .astroid-mobilemenu-inner {
    ul{
       padding: 0;
@@ -51,7 +63,7 @@ $close-btn-height: 50px !default;
    }
    .menu-item a {
       outline: 0;
-      width: 80%;
+      width: calc(100% - #{$menu-indicator-width});
       text-decoration: none;
       vertical-align: middle;
       display: table-cell;
@@ -70,7 +82,7 @@ $close-btn-height: 50px !default;
       padding: 15px;
    }
    .menu-item .menu-indicator {
-      width: 20%;
+      width: $menu-indicator-width;
       text-align: center;
       display: table-cell;
       vertical-align: middle;

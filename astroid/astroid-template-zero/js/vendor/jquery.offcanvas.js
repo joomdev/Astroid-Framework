@@ -21,13 +21,13 @@
          if (_class == '' || typeof _class == 'undefined' || _class == 'undefined' || _class == null) {
             _class = 'astroid-offcanvas';
          }
+         $('body').addClass(_dir);
          var _reset = function () {
             _container.removeClass(_class + '-open');
             _trigger.removeClass('active');
             setTimeout(function () {
                $('body').removeClass(_class + '-opened');
-               $('body').removeClass(_dir);
-               
+      
             }, 500);
          };
 
@@ -63,7 +63,6 @@
                _container.addClass(_class + '-open');
             }, 25);
             $('body').addClass(_class + '-opened');
-            $('body').addClass(_dir);
             $(document).bind(_eventtype, _bodyClick);
             $(_close).bind(_eventtype, _bodyClick);
          });

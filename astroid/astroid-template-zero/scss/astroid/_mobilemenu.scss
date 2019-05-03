@@ -61,20 +61,12 @@ $menu-indicator-width: 60px !default;
       display: table;
       width: 100%;
    }
-   .menu-item a {
-      outline: 0;
-      width: calc(100% - #{$menu-indicator-width});
-      text-decoration: none;
-      vertical-align: middle;
-      display: table-cell;
-      color: $black;
-      padding: 15px;
-   }
+   .menu-item a,
    .menu-item span.separator,
    .menu-item span.nav-header {
       cursor: pointer;
       outline: 0;
-      width: 80%;
+      width: calc(100% - #{$menu-indicator-width});
       text-decoration: none;
       vertical-align: middle;
       display: table-cell;

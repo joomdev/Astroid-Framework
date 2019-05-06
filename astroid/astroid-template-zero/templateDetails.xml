@@ -10,7 +10,6 @@
    <license>GNU General Public License version 2 or later; see LICENSE.txt</license>
    <version>2.2.0</version>
    <description>TPL_ASTROID_XML_DESCRIPTION</description>
-
    <updateservers>
       <server type="extension" name="astroid_framework" priority="1">https://cdn.joomdev.com/updates/astroid_template_zero.xml</server>
    </updateservers>

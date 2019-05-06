@@ -12,5 +12,5 @@
 | &nbsp;&nbsp;Chrome 64+&nbsp;&nbsp; | &nbsp;&nbsp;Firefox 58+&nbsp;&nbsp; | &nbsp;&nbsp;Edge 14+&nbsp;&nbsp; | &nbsp;&nbsp;Safari 10+ &nbsp;&nbsp; |
 
 # Links
-## [Documentation](https://github.com/joomdev/Astroid-Framework/wiki/Documentation)
+## [Documentation](https://docs.joomdev.com)
 ## [Translations](https://github.com/joomdev/Astroid-Framework/wiki/Translations)

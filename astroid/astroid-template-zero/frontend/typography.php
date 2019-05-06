@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @package   Astroid Framework
  * @author    JoomDev https://www.joomdev.com
@@ -6,7 +7,7 @@
  * @license https://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
  * 	DO NOT MODIFY THIS FILE DIRECTLY AS IT WILL BE OVERWRITTEN IN THE NEXT UPDATE
  *  You can easily override all files under /frontend/ folder.
- *	Just copy the file to ROOT/templates/YOURTEMPLATE/html/frontend/ folder to create and override
+ * 	Just copy the file to ROOT/templates/YOURTEMPLATE/html/frontend/ folder to create and override
  */
 // No direct access.
 defined('_JEXEC') or die;
@@ -83,7 +84,7 @@ $menuType = $template->params->get('menus_typography');
 if (trim($menuType) == 'custom') {
    $menu_font = $template->params->get('menu_typography_options');
    $menu_fontface = str_replace('+', ' ', explode(":", $menu_font->font_face));
-   $menu_style = '.astroid-nav>li>a {';
+   $menu_style = '.astroid-nav>li>a,.astroid-sidebar-menu>li>a {';
    if (isset($menu_fontface[0]) && !empty($menu_fontface[0])) {
 
       if (isset($libraryFonts[$menu_fontface[0]])) {
@@ -118,6 +119,11 @@ if (trim($menuType) == 'custom') {
       $menu_style .= 'text-transform: ' . $menu_font->text_transform . ';';
    }
    $menu_style .= '}';
+   if (isset($menu_font->line_height) && !empty($menu_font->line_height)) {
+      $line_height_unit = isset($menu_font->line_height_unit) ? $menu_font->line_height_unit : 'em';
+      $menu_style .= 'line-height: ' . $menu_font->line_height . $line_height_unit . ';';
+      $menu_style .= '.astroid-sidebar-menu li > .nav-item-caret{line-height: ' . $menu_font->line_height . $line_height_unit . ' !important;}';
+   }
 }
 
 // SubMenu Font Styles

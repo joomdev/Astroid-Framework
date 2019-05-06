@@ -24,6 +24,7 @@ $header_menu = $params->get('header_menu', 'mainmenu');
 $enable_offcanvas = $params->get('enable_offcanvas', FALSE);
 $header_mobile_menu = $params->get('header_mobile_menu', '');
 $offcanvas_animation = $params->get('offcanvas_animation', 'st-effect-1');
+$offcanvas_direction = $params->get('offcanvas_direction', 'offcanvasDirLeft');
 $offcanvas_togglevisibility = $params->get('offcanvas_togglevisibility', 'd-block');
 $class = ['astroid-header', 'astroid-horizontal-header', 'astroid-horizontal-' . $mode . '-header'];
 $navClass = ['nav', 'astroid-nav', 'd-none', 'd-lg-flex'];
@@ -68,7 +69,7 @@ $navWrapperClass = ['align-self-center', 'px-2', 'd-none', 'd-lg-block'];
             }
             ?>
             <?php if ($enable_offcanvas) { ?>
-               <div class="header-offcanvas-trigger burger-menu-button align-self-center <?php echo $offcanvas_togglevisibility; ?>" data-offcanvas="#astroid-offcanvas" data-effect="<?php echo $offcanvas_animation; ?>">
+               <div class="header-offcanvas-trigger burger-menu-button align-self-center <?php echo $offcanvas_togglevisibility; ?>" data-offcanvas="#astroid-offcanvas" data-effect="<?php echo $offcanvas_animation; ?>" data-direction="<?php echo $offcanvas_direction; ?>" >
                   <button type="button" class="button">
                      <span class="box">
                         <span class="inner"></span>

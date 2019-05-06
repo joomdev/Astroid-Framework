@@ -10,8 +10,8 @@ defined('_JEXEC') or die;
 
 class AstroidFrameworkConstants {
 
-   public static $astroid_version = '2.1.1';
-   public static $fontawesome_version = '5.7.2';
+   public static $astroid_version = '2.2.0';
+   public static $fontawesome_version = '5.8.1';
    public static $animatecss_version = '3.7.0';
    public static $forum_link = 'https://www.joomdev.com/forum/astroid-framework';
    public static $documentation_link = 'https://www.joomdev.com/documentation/astroid-framework';
@@ -21,6 +21,25 @@ class AstroidFrameworkConstants {
    public static $joomdev_link = 'https://www.joomdev.com';
    public static $joomdev_products_link = 'https://www.joomdev.com/products';
    public static $joomdev_templates_link = 'https://www.joomdev.com/products/templates';
+   public static $bootstrap_colors = [
+       'white' => 'White',
+       'black' => 'Black',
+       'blue' => 'Blue',
+       'indigo' => 'Indigo',
+       'purple' => 'Purple',
+       'pink' => 'Pink',
+       'red' => 'Red',
+       'orange' => 'Orange',
+       'yellow' => 'Yellow',
+       'green' => 'Green',
+       'teal' => 'Teal',
+       'cyan' => 'Cyan',
+       'white' => 'White',
+       'gray100' => 'Light Gray',
+       'gray600' => 'Gray',
+       'gray800' => 'Gray Dark'
+   ];
+   
    public static $animations = [
        '' => ['' => 'None'],
        'Attention Seekers' => [
@@ -254,12 +273,12 @@ class AstroidFrameworkConstants {
            'code' => '<div class="sk-cube-grid"><div class="sk-cube sk-cube1"></div><div class="sk-cube sk-cube2"></div><div class="sk-cube sk-cube3"></div><div class="sk-cube sk-cube4"></div><div class="sk-cube sk-cube5"></div><div class="sk-cube sk-cube6"></div><div class="sk-cube sk-cube7"></div><div class="sk-cube sk-cube8"></div><div class="sk-cube sk-cube9"></div></div>',
        ],
        'bouncing-loader' => [
-        'name' => 'bouncing-loader',
-        'code' => '<div class="bouncing-loader"><div></div><div></div><div></div></div>',
+           'name' => 'bouncing-loader',
+           'code' => '<div class="bouncing-loader"><div></div><div></div><div></div></div>',
        ],
        'donut' => [
-        'name' => 'donut',
-        'code' => '<div class="donut"></div>',
+           'name' => 'donut',
+           'code' => '<div class="donut"></div>',
        ],
    ];
    public static $layout_grids = [
@@ -275,4 +294,13 @@ class AstroidFrameworkConstants {
        [3, 3, 3, 3],
        [2, 2, 2, 2, 2, 2]
    ];
+
+   public function getConstant($variable) {
+      if (isset($this->{"$" . $variable})) {
+         return $this->{"$" . $variable};
+      } else {
+         return null;
+      }
+   }
+
 }

@@ -12,6 +12,7 @@
 
          var _trigger = $(this);
          var _effect = _trigger.data('effect');
+         var _dir = _trigger.data('direction');
          var _content = $(_trigger.data('offcanvas'));
          var _close = $(_content).find('.offcanvas-close-btn');
          var _eventtype = _mobileCheck() ? 'touchstart' : 'click';
@@ -20,11 +21,13 @@
          if (_class == '' || typeof _class == 'undefined' || _class == 'undefined' || _class == null) {
             _class = 'astroid-offcanvas';
          }
+         $('body').addClass(_dir);
          var _reset = function () {
             _container.removeClass(_class + '-open');
             _trigger.removeClass('active');
             setTimeout(function () {
                $('body').removeClass(_class + '-opened');
+      
             }, 500);
          };
 

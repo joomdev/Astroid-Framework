@@ -72,7 +72,7 @@ if (!empty($body_link_hover_color)) {
 // Header Coloring
 $header_styles = [];
 if (!empty($header_background_color)) {
-   $header_styles[] = '.astroid-header-section{ background-color: ' . $header_background_color . ' !important;}';
+   $header_styles[] = '.astroid-header-section,.astroid-sidebar-header{ background-color: ' . $header_background_color . ' !important;}';
 }
 if (!empty($header_text_color)) {
    $header_styles[] = 'header{ color: ' . $header_text_color . ' !important;}';
@@ -93,12 +93,15 @@ if (!empty($sticky_header_background_color)) {
 $main_menu_styles = [];
 if (!empty($main_link_color)) {
    $main_menu_styles[] = '.astroid-nav .nav-link{ color: ' . $main_link_color . ' !important;}';
+   $main_menu_styles[] = '.astroid-sidebar-menu .nav-link{ color: ' . $main_link_color . ' !important;}';
 }
 if (!empty($main_link_hover_color)) {
    $main_menu_styles[] = '.astroid-nav .nav-link:hover, .astroid-nav .nav-link:focus{ color: ' . $main_link_hover_color . ' !important;}';
+   $main_menu_styles[] = '.astroid-sidebar-menu .nav-link:hover, .astroid-sidebar-menu .nav-link:focus{ color: ' . $main_link_hover_color . ' !important;}';
 }
 if (!empty($main_link_active_color)) {
    $main_menu_styles[] = '.astroid-nav .nav-link.active{ color: ' . $main_link_active_color . ' !important;}';
+   $main_menu_styles[] = '.astroid-sidebar-menu .nav-link.active{ color: ' . $main_link_active_color . ' !important;}';
 }
 ?>
 
@@ -107,6 +110,9 @@ if (!empty($main_link_active_color)) {
 $dropdown_styles = [];
 if (!empty($dropdown_main_background_color)) {
    $dropdown_styles[] = '.nav-submenu, .megamenu-container{ background: ' . $dropdown_main_background_color . ' !important;}';
+}
+if (!empty($dropdown_main_background_color)) {
+   $dropdown_styles[] = '.has-megamenu.open .arrow{ border-bottom-color: ' . $dropdown_main_background_color . ' !important;}';
 }
 if (!empty($dropdown_main_link_color)) {
    $dropdown_styles[] = '.astroid-nav .megamenu-container .megamenu-title, .astroid-nav .megamenu-container li.nav-item-submenu > a{ color: ' . $dropdown_main_link_color . ' !important;}';

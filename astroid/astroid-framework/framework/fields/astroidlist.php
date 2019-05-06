@@ -1,6 +1,7 @@
 <?php
 
 jimport('astroid.framework.helper');
+jimport('astroid.framework.constants');
 
 /**
  * @package   Astroid Framework
@@ -53,7 +54,7 @@ class JFormFieldAstroidList extends JFormField {
       if (isset($this->element['astroid-content-layout']) && !empty($this->element['astroid-content-layout'])) {
          $attr .= ' data-astroid-content-layout="' . $this->element['astroid-content-layout'] . '"';
       }
-      
+
       if (isset($this->element['astroid-content-layout-load']) && !empty($this->element['astroid-content-layout-load'])) {
          $attr .= ' data-astroid-content-layout-load="' . $this->element['astroid-content-layout-load'] . '"';
       }
@@ -107,6 +108,19 @@ class JFormFieldAstroidList extends JFormField {
     * @since   3.7.0
     */
    protected function getOptions() {
+
+      if (!empty($this->element['bootstrap-color'])) {
+         $options = array();
+         $variables = AstroidFrameworkConstants::$bootstrap_colors;
+         foreach ($variables as $value => $label) {
+            $object = new stdClass();
+            $object->value = $value;
+            $object->text = \JText::_($label);
+            $options[] = $object;
+         }
+         return $options;
+      }
+
       $fieldname = preg_replace('/[^a-zA-Z0-9_\-]/', '_', $this->fieldname);
       $options = array();
 

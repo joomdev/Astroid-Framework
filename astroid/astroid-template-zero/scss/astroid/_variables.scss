@@ -2,12 +2,16 @@
 $header-padding-y: 15px !default;
 $header-padding-x: 0 !default;
 $header-section-zindex: $zindex-dropdown !default;
+$header-sidebar-width: 320px !default;
+$header-sidebar-mini-width: 54px !default;
 
 // Sticky Header
 $sticky-header-zindex: $zindex-sticky !default;
 $sticky-header-animation-duration: 0.7s !default;
 $sticky-header-padding-x: 0 !default;
 $sticky-header-padding-y: 10px !default;
+$sticky-header-border-bottom: 1px solid #dee2e6 !default;
+$sticky-header-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, .075) !default;
 
 // Stacked Header
 $stacked-header-bg: #fff !default;

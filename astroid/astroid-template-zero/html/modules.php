@@ -111,7 +111,7 @@ function modChrome_split_title($module, &$params, &$attribs) {
       if ($module->showtitle) {
          $title = explode('|', $module->title);
          $html = '';
-         $html .= '<' . $headerTag . ' class="split-title ' . $headerClass . '">';
+         $html .= '<' . $headerTag . ' class="module-title split-title ' . $headerClass . '">';
          $index = 1;
          foreach ($title as $title_text) {
             $html .= '<span class="split-' . $index . '">' . $title_text . '</span>';

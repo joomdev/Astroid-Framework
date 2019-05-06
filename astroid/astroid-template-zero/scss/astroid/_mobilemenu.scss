@@ -1,5 +1,6 @@
 $burger-layer-width: 30px !default;
 $close-btn-height: 50px !default;
+$menu-indicator-width: 60px !default;
 
 
 .astroid-mobilemenu{
@@ -29,6 +30,17 @@ $close-btn-height: 50px !default;
 	}
 }
 
+.offcanvas-right {
+   .astroid-mobilemenu-container .astroid-mobilemenu-inner .dropdown-menus {
+      left: auto;
+      right: -100%;
+      &.menu_open {
+         left: auto;
+         right: 0;
+      }
+   }
+}
+
 .astroid-mobilemenu-container .astroid-mobilemenu-inner {
    ul{
       padding: 0;
@@ -49,20 +61,12 @@ $close-btn-height: 50px !default;
       display: table;
       width: 100%;
    }
-   .menu-item a {
-      outline: 0;
-      width: 80%;
-      text-decoration: none;
-      vertical-align: middle;
-      display: table-cell;
-      color: $black;
-      padding: 15px;
-   }
+   .menu-item a,
    .menu-item span.separator,
    .menu-item span.nav-header {
       cursor: pointer;
       outline: 0;
-      width: 80%;
+      width: calc(100% - #{$menu-indicator-width});
       text-decoration: none;
       vertical-align: middle;
       display: table-cell;
@@ -70,7 +74,7 @@ $close-btn-height: 50px !default;
       padding: 15px;
    }
    .menu-item .menu-indicator {
-      width: 20%;
+      width: $menu-indicator-width;
       text-align: center;
       display: table-cell;
       vertical-align: middle;
@@ -79,7 +83,7 @@ $close-btn-height: 50px !default;
    }
    .dropdown-menus {
       position: fixed;
-      left: -120%;
+      left: -150%;
       top: 0;
       height: 100vh;
       width: 100% !important;

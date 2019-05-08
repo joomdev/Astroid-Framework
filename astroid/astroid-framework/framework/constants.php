@@ -22,22 +22,20 @@ class AstroidFrameworkConstants {
    public static $joomdev_products_link = 'https://www.joomdev.com/products';
    public static $joomdev_templates_link = 'https://www.joomdev.com/products/templates';
    public static $bootstrap_colors = [
-       'white' => 'White',
-       'black' => 'Black',
-       'blue' => 'Blue',
-       'indigo' => 'Indigo',
-       'purple' => 'Purple',
-       'pink' => 'Pink',
-       'red' => 'Red',
-       'orange' => 'Orange',
-       'yellow' => 'Yellow',
-       'green' => 'Green',
-       'teal' => 'Teal',
-       'cyan' => 'Cyan',
-       'white' => 'White',
-       'gray100' => 'Light Gray',
-       'gray600' => 'Gray',
-       'gray800' => 'Gray Dark'
+       'blue' => 'TPL_COLOR_BLUE',
+       'indigo' => 'TPL_COLOR_INDIGO',
+       'purple' => 'TPL_COLOR_PURPLE',
+       'pink' => 'TPL_COLOR_PINK',
+       'red' => 'TPL_COLOR_RED',
+       'orange' => 'TPL_COLOR_ORANGE',
+       'yellow' => 'TPL_COLOR_YELLOW',
+       'green' => 'TPL_COLOR_GREEN',
+       'teal' => 'TPL_COLOR_TEAL',
+       'cyan' => 'TPL_COLOR_CYAN',
+       'white' => 'TPL_COLOR_WHITE',
+       'gray100' => 'TPL_COLOR_LIGHT_GRAY',
+       'gray600' => 'TPL_COLOR_GRAY',
+       'gray800' => 'TPL_COLOR_GRAY_DARK'
    ];
    
    public static $animations = [

@@ -5,20 +5,20 @@
          <field type="astroidgroup" name="colors" title="ASTROID_OPTIONS_COLOURS" /> 
          <field type="astroidgroup" name="sassoverrides" title="ASTROID_OPTIONS_OVERRIDES" /> 
          <field astroidgroup="colors" name="theme_colors_heading" type="astroidheading" title="AF_THEMING_ALL_COLORS" description="AF_THEMING_ALL_COLORS_DESC"></field>
-         <field astroidgroup="colors" name="theme_blue" type="astroidcolor" large="true" label="Blue" default="#007bff"></field>
-         <field astroidgroup="colors" name="theme_indigo" type="astroidcolor" large="true" label="Indigo" default="#6610f2"></field>
-         <field astroidgroup="colors" name="theme_purple" type="astroidcolor" large="true" label="Purple" default="#6f42c1"></field>
-         <field astroidgroup="colors" name="theme_pink" type="astroidcolor" large="true" label="Pink" default="#f36"></field>
-         <field astroidgroup="colors" name="theme_red" type="astroidcolor" large="true" label="Red" default="#dc3545"></field>
-         <field astroidgroup="colors" name="theme_orange" type="astroidcolor" large="true" label="Orange" default="#fd7e14"></field>
-         <field astroidgroup="colors" name="theme_yellow" type="astroidcolor" large="true" label="Yellow" default="#ffc107"></field>
-         <field astroidgroup="colors" name="theme_green" type="astroidcolor" large="true" label="Green" default="#28a745"></field>
-         <field astroidgroup="colors" name="theme_teal" type="astroidcolor" large="true" label="Teal" default="#20c997"></field>
-         <field astroidgroup="colors" name="theme_cyan" type="astroidcolor" large="true" label="Cyan" default="#17a2b8"></field>
-         <field astroidgroup="colors" name="theme_white" type="astroidcolor" large="true" label="White" default="#fff"></field>
-         <field astroidgroup="colors" name="theme_gray100" type="astroidcolor" large="true" label="Light Gray" default="#f8f9fa"></field>
-         <field astroidgroup="colors" name="theme_gray600" type="astroidcolor" large="true" label="Gray" default="#6c757d"></field>
-         <field astroidgroup="colors" name="theme_gray800" type="astroidcolor" large="true" label="Dark Gray" default="#2c2e36"></field>
+         <field astroidgroup="colors" name="theme_blue" type="astroidcolor" large="true" label="TPL_COLOR_BLUE" default="#007bff"></field>
+         <field astroidgroup="colors" name="theme_indigo" type="astroidcolor" large="true" label="TPL_COLOR_INDIGO" default="#6610f2"></field>
+         <field astroidgroup="colors" name="theme_purple" type="astroidcolor" large="true" label="TPL_COLOR_PURPLE" default="#6f42c1"></field>
+         <field astroidgroup="colors" name="theme_pink" type="astroidcolor" large="true" label="TPL_COLOR_PINK" default="#f36"></field>
+         <field astroidgroup="colors" name="theme_red" type="astroidcolor" large="true" label="TPL_COLOR_RED" default="#dc3545"></field>
+         <field astroidgroup="colors" name="theme_orange" type="astroidcolor" large="true" label="TPL_COLOR_ORANGE" default="#fd7e14"></field>
+         <field astroidgroup="colors" name="theme_yellow" type="astroidcolor" large="true" label="TPL_COLOR_YELLOW" default="#ffc107"></field>
+         <field astroidgroup="colors" name="theme_green" type="astroidcolor" large="true" label="TPL_COLOR_GREEN" default="#28a745"></field>
+         <field astroidgroup="colors" name="theme_teal" type="astroidcolor" large="true" label="TPL_COLOR_TEAL" default="#20c997"></field>
+         <field astroidgroup="colors" name="theme_cyan" type="astroidcolor" large="true" label="TPL_COLOR_CYAN" default="#17a2b8"></field>
+         <field astroidgroup="colors" name="theme_white" type="astroidcolor" large="true" label="TPL_COLOR_WHITE" default="#fff"></field>
+         <field astroidgroup="colors" name="theme_gray100" type="astroidcolor" large="true" label="TPL_COLOR_LIGHT_GRAY" default="#f8f9fa"></field>
+         <field astroidgroup="colors" name="theme_gray600" type="astroidcolor" large="true" label="TPL_COLOR_GRAY" default="#6c757d"></field>
+         <field astroidgroup="colors" name="theme_gray800" type="astroidcolor" large="true" label="TPL_COLOR_GRAY_DARK" default="#2c2e36"></field>
          
          <field astroidgroup="colors" name="theme_scheme_heading" type="astroidheading" title="AF_THEMING_ALL_THEME_COLORS" description="AF_THEMING_ALL_THEME_COLORS_DESC"></field>
          

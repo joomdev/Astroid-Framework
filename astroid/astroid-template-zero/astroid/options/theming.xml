@@ -33,7 +33,7 @@
          <field astroidgroup="colors" name="theme_light" type="astroidlist" class="form-control" default="gray100" label="Light" bootstrap-color="true" />
          <field astroidgroup="colors" name="theme_dark" type="astroidlist" class="form-control" default="gray800" label="Dark" bootstrap-color="true" />
          
-         <field astroidgroup="sassoverrides" name="sass_overrides" type="astroidsassoverrides" default='[{"variable":"btn-border-radius-lg","value":"0.2rem"},{"variable":"btn-padding-y-lg","value":"0.6rem"},{"variable":"btn-padding-x-lg","value":"2.5rem"}]'></field>  
+         <field astroidgroup="sassoverrides" name="sass_overrides" type="astroidsassoverrides" default='[{"variable":"btn-border-radius-lg","value":"0.2rem","color":false},{"variable":"btn-padding-y-lg","value":"0.6rem","color":false},{"variable":"btn-padding-x-lg","value":"2.5rem","color":false}]'></field>  
       </fieldset>
    </fields>
 </form>

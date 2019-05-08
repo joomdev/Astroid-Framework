@@ -238,8 +238,11 @@ astroidFramework.directive('astroidsassoverrides', ['$http', function () {
             $scope.overrides = AstroidSassOverrideVariables;
             $scope.addOverride = function () {
                var _overrides = $scope.overrides;
-               _overrides.push({'variable': '', 'value': ''});
+               _overrides.push({'variable': '', 'value': '', 'color': true});
                $scope.overrides = _overrides;
+               setTimeout(function () {
+                  $('.sass-variable-' + (_overrides.length - 1) + '-value').spectrum(spectrumConfig);
+               }, 50);
             };
             $scope.removeOverride = function (_index) {
                var _c = confirm("Are you sure?");
@@ -249,6 +252,22 @@ astroidFramework.directive('astroidsassoverrides', ['$http', function () {
                   $scope.overrides = _overrides;
                }
             };
+            $scope.initSassColorPicker = function (_index, _status) {
+               if (_status) {
+                  $('.sass-variable-' + _index + '-value').spectrum(spectrumConfig);
+               } else {
+                  $('.sass-variable-' + _index + '-value').spectrum("destroy");
+               }
+            }
+            setTimeout(function () {
+               $scope.overrides.forEach(function (_variable, _index) {
+                  if (typeof _variable.color != 'undefined' && _variable.color == true) {
+                     $('.sass-variable-' + _index + '-value').spectrum(spectrumConfig);
+                  } else {
+                     _variable.color = false;
+                  }
+               });
+            }, 500);
          }
       };
    }

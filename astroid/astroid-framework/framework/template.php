@@ -205,7 +205,7 @@ class AstroidFrameworkTemplate {
       }
       $this->setLog("Rending Layout");
       $template_layout = $this->params->get('template_layout', 'wide');
-      $sppb = $this->isSPPageBuilder();
+      $sppb = $this->isPageBuilder();
       echo '<div class="astroid-container">';
       $header_mode = $this->params->get('header_mode', 'horizontal');
       if ($header_mode == 'sidebar') {
@@ -736,12 +736,16 @@ class AstroidFrameworkTemplate {
       }
       echo '</div>';
    }
-
-   public function isSPPageBuilder() {
+	/*
+	*	Checks to see if the Page Builder is used.
+	*	If true, then removing the container so page builder can have full control
+	*	Current supported page builders Quix, JD Builder, Sp Page Builder
+	*/
+   public function isPageBuilder() {
       $jinput = JFactory::getApplication()->input;
       $option = $jinput->get('option', '');
       $view = $jinput->get('view', '');
-      if ($option == "com_sppagebuilder" && $view == "page") {
+      if (($option == "com_sppagebuilder" && $view == "page") || ($option == "com_quix" && $view == "page") || ($option == "com_jdbuilder" && $view == "page")) {
          return TRUE;
       } else {
          return FALSE;

@@ -621,7 +621,10 @@ class AstroidFrameworkHelper {
                   case 'odg':
                   case 'bmp':
                   case 'jpeg':
+                  case 'svg':
+                  case 'webp':
                   case 'ico':
+                  case 'tiff':
                      $info = @getimagesize($tmp->path);
                      $tmp->width = @$info[0];
                      $tmp->height = @$info[1];
@@ -651,6 +654,8 @@ class AstroidFrameworkHelper {
 
                   // Video
                   case 'mp4':
+				  case 'webm':
+                  case 'ogg':
                      $tmp->icon_32 = 'media/mime-icon-32/' . $ext . '.png';
                      $tmp->icon_16 = 'media/mime-icon-16/' . $ext . '.png';
                      $videos[] = $tmp;

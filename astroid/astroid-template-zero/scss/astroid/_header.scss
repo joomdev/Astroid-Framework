@@ -66,6 +66,10 @@
    }
 }
 
+.nav-stacked-logo {
+   flex: 0 $logo-max-height;
+}
+
 .astroid-logo {
    @include media-breakpoint-down(md) {
       .astroid-logo-default {
@@ -74,8 +78,8 @@
    }
 
    img {
-      max-width: 250px;
-      max-height: 65px;
+      max-width: $logo-max-width;
+      max-height: $logo-max-height;
    }
 
    .astroid-logo-mobile {

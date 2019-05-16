@@ -30,6 +30,10 @@
 				<option value="container">ASTROID_CONTAINER</option>
 				<option value="container-fluid">ASTROID_CONTAINER_FLUID</option>
 			</field>
+			<field showon="astroid_banner_enabled:1" name="astroid_banner_visibility" type="list" label="ASTROID_BANNER_VISIBILITY_LABEL">
+				<option value="currentPage">ASTROID_BANNER_VISIBILITY_OPTIONS_CURRENT_PAGE</option>
+				<option value="allPage">ASTROID_BANNER_VISIBILITY_OPTIONS_ALL</option>
+			</field>
 		</fieldset>
 	</fields>
 </form>

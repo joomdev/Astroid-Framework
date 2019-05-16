@@ -11,12 +11,16 @@ if (empty($item)) {
    return;
 }
 
-if ((isset($item->query['option']) && $item->query['option'] != $jinput->get('option', '')) || (isset($item->query['view']) && $item->query['view'] != $jinput->get('view', '')) || (isset($item->query['layout']) && $item->query['layout'] != $jinput->get('layout', ''))) {
-   return;
-}
-
 $params = new JRegistry();
 $params->loadString($item->params);
+
+$astroid_banner_visibility = $params->get('astroid_banner_visibility',"currentPage");
+if($astroid_banner_visibility =="currentPage"){
+   if ((isset($item->query['option']) && $item->query['option'] != $jinput->get('option', '')) || (isset($item->query['view']) && $item->query['view'] != $jinput->get('view', '')) || (isset($item->query['layout']) && $item->query['layout'] != $jinput->get('layout', ''))) {
+      return;
+   }
+}
+
 $astroid_banner_enabled = $params->get('astroid_banner_enabled');
 if ($astroid_banner_enabled) {
    $astroid_banner_title_enabled = $params->get('astroid_banner_title_enabled', 1);

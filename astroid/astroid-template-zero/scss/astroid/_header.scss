@@ -53,14 +53,13 @@
       }
 
       .astroid-logo {
-         .astroid-logo-default {
+         .astroid-logo-default,
+         .astroid-logo-mobile {
             display: none !important;
          }
 
          .astroid-logo-sticky {
-            @include media-breakpoint-between(lg, xl) {
-               display: block !important;
-            }
+            display: block !important;
          }
       }
    }

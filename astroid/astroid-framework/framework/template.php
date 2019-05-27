@@ -356,7 +356,7 @@ class AstroidFrameworkTemplate {
       }
       $layout_background_image = $this->params->get('layout_background_image', '');
       if (!empty($layout_background_image)) {
-         $styles[] = 'background-image:url(' . JURI::root() . 'images/' . $layout_background_image . ')';
+         $styles[] = 'background-image:url(' . JURI::root() . $this->SeletedMedia(). '/' . $layout_background_image . ')';
          $styles[] = 'background-repeat:' . $this->params->get('layout_background_repeat', 'inherit');
          $styles[] = 'background-size:' . $this->params->get('layout_background_size', 'inherit');
          $styles[] = 'background-position:' . $this->params->get('layout_background_position', 'inherit');
@@ -874,6 +874,11 @@ class AstroidFrameworkTemplate {
       $this->modules[$id] = ob_get_clean();
 
       return $this->modules[$id];
+   }
+
+   public function SeletedMedia() {
+      $params = JComponentHelper::getParams('com_media');
+      return $params->get('image_path', 'images');
    }
 
 }

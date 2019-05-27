@@ -170,10 +170,11 @@ class AstroidFrameworkHelper {
       $data = null;
       switch ($action) {
          case "library":
+            $params = JComponentHelper::getParams('com_media');
             $input = JFactory::getApplication()->input;
             $folder = $input->get('folder', '', 'RAW');
             $data = self::getMediaLibrary();
-            $data['current_folder'] = 'images' . (empty($folder) ? '' : '/' . $folder);
+            $data['current_folder'] = $params->get('image_path', 'images') . (empty($folder) ? '' : '/' . $folder);
             break;
          case "upload":
             $data = self::uploadMedia();
@@ -576,8 +577,8 @@ class AstroidFrameworkHelper {
    public static function getMediaList($folder) {
       $params = JComponentHelper::getParams('com_media');
 
-      define('COM_MEDIA_BASE', JPATH_ROOT . '/' . $params->get('file_path', 'images'));
-      define('COM_MEDIA_BASEURL', JUri::root() . $params->get('file_path', 'images'));
+      define('COM_MEDIA_BASE', JPATH_ROOT . '/' . $params->get('image_path', 'images'));
+      define('COM_MEDIA_BASEURL', JUri::root() . $params->get('image_path', 'images'));
 
       $current = $folder;
       $basePath = COM_MEDIA_BASE . ((strlen($current) > 0) ? '/' . $current : '');

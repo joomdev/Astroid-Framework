@@ -9,9 +9,9 @@
          
          <field astroidgroup="preloader_options" description="TPL_ASTROID_BASIC_ENABLE_PRELOADER_DESC" name="preloader" type="astroidtext" astroid-switch="true" default="1" label="TPL_ASTROID_BASIC_ENABLE_PRELOADER_LABEL"></field>
 
-         <field astroidgroup="preloader_options" description="Select a preloader type." name="preloder_setting" type="astroidradio" default="animations" label="Media">
+         <field astroidgroup="preloader_options" description="Select a preloader type." name="preloder_setting" type="astroidradio" default="animations" label="Type">
                <option value="image">TPL_ASTROID_IMAGE</option>
-               <option value="animations">Animations</option>
+               <option value="animations">Animation</option>
             </field>
 
          <field astroidgroup="preloader_options" description="" name="preloader_image" type="astroidmedia" class="form-control" label="Select Media" ngShow="preloader=='1' AND preloder_setting =='image'"/> 

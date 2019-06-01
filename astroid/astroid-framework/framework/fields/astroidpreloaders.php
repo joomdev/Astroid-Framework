@@ -48,9 +48,9 @@ class JFormFieldAstroidpreloaders extends JFormField {
       $html .= '<div class="">';
 
       foreach (AstroidFrameworkConstants::$preloaders as $preloader) {
-         $html .= '<div class="astroid-preloader-select" data-value="' . $preloader['name'] . '">';
+         $html .= '<div class="astroid-preloader-select" data-value="' . $preloader['name'] . '"><div class="astroid-preloader-select-inner">';
          $html .= $preloader['code'];
-         $html .= '</div>';
+         $html .= '</div></div>';
          if ($this->value == $preloader['name']) {
             $selected = $preloader;
          }

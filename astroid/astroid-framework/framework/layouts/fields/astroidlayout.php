@@ -147,7 +147,6 @@
             </div>
          </div>
          <div class="clearfix"></div>
-         <hr class="w-100"/>
       </div>
    </div>
    <br/>

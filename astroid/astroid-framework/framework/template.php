@@ -38,12 +38,9 @@ class AstroidFrameworkTemplate {
       } else {
          $this->params = $this->getTemplateParams();
       }
-      if (isset($template->language)) {
-         $this->language = $template->language;
-      }
-      if (isset($template->direction)) {
-         $this->direction = $template->direction;
-      }
+      $language = JFactory::getApplication()->getLanguage();
+      $this->language = $language->getTag();
+      $this->direction = $language->isRtl() ? 'rtl' : 'ltr';
       $this->initAgent();
       $this->addMeta();
    }

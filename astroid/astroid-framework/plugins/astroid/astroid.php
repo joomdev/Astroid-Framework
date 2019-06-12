@@ -192,7 +192,11 @@ class plgSystemAstroid extends JPlugin {
 
                   // render manager
                   $layout = new JLayoutFile('framework.manager', JPATH_LIBRARIES . '/astroid/framework/layouts');
-                  echo $layout->render();
+                  JPluginHelper::importPlugin('astroid');
+                  $dispatcher = JDispatcher::getInstance();
+                  $dispatcher->trigger('onBeforeAstroidAdminRender', [&$template]);
+
+                  echo $layout->render(['template' => $template, 'id' => $id]);
 
                   // stop application
                   die();

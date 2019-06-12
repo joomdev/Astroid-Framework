@@ -21,14 +21,19 @@ JHtml::_('bootstrap.framework');
 // Add filter polyfill for IE8
 JHtml::_('behavior.polyfill', array('filter'), 'lte IE 9');
 
-// Add template js	
-JHtml::_('script', 'isis.js', array('version' => 'auto', 'relative' => true));
-
+// The Below CSS & JS is only required for Front end editor editor-xtd popups. 
+// This is is because the popups reply on older version of Bootstrap (which doesn't exist in Astroid).
+$jinput = $app->input;
+$option = $jinput->get('option', '', 'STR');
+$function = $jinput->get('function', '', 'STR');
+$layout = $jinput->get('layout', '', 'STR');
+if($option == 'com_media' || $function == 'jSelectArticle' || $layout == 'modal' || $layout == 'pagebreak') {
+	// Add template js	
+	JHtml::_('script', 'isis.js', array('version' => 'auto', 'relative' => true));
+	JHtml::_('stylesheet', 'isis/isis.css', array('version' => 'auto', 'relative' => true));
+}
 // Add html5 shiv
 JHtml::_('script', 'jui/html5.js', array('version' => 'auto', 'relative' => true, 'conditional' => 'lt IE 9'));
-
-// Add Stylesheets
-JHtml::_('stylesheet', 'isis/isis.css', array('version' => 'auto', 'relative' => true));
 
 // Load optional RTL Bootstrap CSS
 JHtml::_('bootstrap.loadCss', false, $this->direction);

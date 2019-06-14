@@ -6,6 +6,7 @@
  * @license https://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
  */
 defined('JPATH_BASE') or die;
+extract($displayData);
 jimport('astroid.framework.helper');
 jimport('astroid.framework.template');
 jimport('astroid.framework.element');
@@ -15,10 +16,8 @@ $application = JFactory::getApplication();
 $document = JFactory::getDocument();
 $config = JFactory::getConfig();
 
-$id = $application->input->get('id', NULL, 'INT');
 $atm = $application->input->get('atm', 0, 'INT');
 
-$template = AstroidFrameworkHelper::getTemplateById($id);
 if($atm){
    $joomla_url = JRoute::_('index.php?option=com_advancedtemplates&view=style&layout=edit&id=' . $id);
 }else{
@@ -115,15 +114,35 @@ $astroid_manager_loader = $plugin_params->get('astroid_manager_loader', 1);
       </script>
       <style>
         .falling-astroid-container{position:fixed;width:100%;height:100%;top:0;left:0;background:rgba(0,0,0,.7)!important;z-index:9999999;transition:.2s linear}.falling-astroid{position:absolute;width:100%;height:100%;top:0;left:0;transform:rotate(-45deg)}.falling-astroid span{position:absolute;height:20%;width:2px;background:#999}.falling-astroid span:nth-child(1){left:20%;animation:lf .6s linear infinite;animation-delay:-5s}.falling-astroid span:nth-child(2){left:40%;animation:lf2 .8s linear infinite;animation-delay:-1s}.falling-astroid span:nth-child(3){left:60%;animation:lf3 .6s linear infinite}.falling-astroid span:nth-child(4){left:80%;animation:lf4 .5s linear infinite;animation-delay:-3s}@keyframes lf{0%{top:200%}to{top:-200%;opacity:0}}@keyframes lf2{0%{top:200%}to{top:-200%;opacity:0}}@keyframes lf3{0%{top:200%}to{top:-100%;opacity:0}}@keyframes lf4{0%{top:200%}to{top:-100%;opacity:0}}@keyframes fazer1{0%{top:0}to{top:-120px;opacity:0;transform:scale(.5)}}@keyframes fazer2{0%{top:0}to{top:-150px;opacity:0;transform:scale(.4)}}@keyframes fazer3{0%{top:0}to{top:-100px;opacity:0;transform:scale(.3)}}@keyframes fazer4{0%{top:0}to{top:-200px;opacity:0;transform:scale(.2)}}@keyframes speeder{0%,90%{transform:translate(2px,1px) rotate(0)}10%{transform:translate(-1px,-3px) rotate(-1deg)}20%{transform:translate(-2px) rotate(1deg)}30%{transform:translate(1px,2px) rotate(0)}40%{transform:translate(1px,-1px) rotate(1deg)}50%{transform:translate(-1px,3px) rotate(-1deg)}60%{transform:translate(-1px,1px) rotate(0)}70%{transform:translate(3px,1px) rotate(-1deg)}80%{transform:translate(-2px,-1px) rotate(1deg)}to{transform:translate(1px,-2px) rotate(-1deg)}}.falling-astroid-imgs{transform:rotate(-45deg);position:absolute;z-index:1;top:30px;left:10px}.falling-astroid-img{background:url(<?php echo JURI::root(); ?>media/astroid/assets/images/astroid/1.png) center no-repeat;background-size:contain!important;width:90px;height:90px}.falling-astroid-logo{animation:speeder .4s linear infinite;width:100px;height:100px;position:absolute;top:50%;left:50%;margin-left:-75px;margin-top:-75px}.falling-astroid-imgs span{position:absolute;background-size:contain!important}.falling-astroid-imgs span:nth-child(1){background:url(<?php echo JURI::root(); ?>media/astroid/assets/images/astroid/2.png) center no-repeat;width:40px;height:40px;left:-50px;animation:fazer1 .6s linear infinite}.falling-astroid-imgs span:nth-child(2){background:url(<?php echo JURI::root(); ?>media/astroid/assets/images/astroid/3.png) center no-repeat;width:35px;height:35px;left:40px;top:-40px;animation:fazer2 .4s linear infinite}.falling-astroid-imgs span:nth-child(3){background:url(<?php echo JURI::root(); ?>media/astroid/assets/images/astroid/4.png) center no-repeat;width:30px;height:30px;left:-10px;top:-40px;animation:fazer3 .4s linear infinite;animation-delay:-1s}.falling-astroid-imgs span:nth-child(4){background:url(<?php echo JURI::root(); ?>media/astroid/assets/images/astroid/3.png) center no-repeat;width:20px;height:20px;left:0;top:-80px;animation:fazer4 1s linear infinite;animation-delay:-1s}.falling-astroid-imgs span:nth-child(5){background:url(<?php echo JURI::root(); ?>media/astroid/assets/images/astroid/4.png) center no-repeat;width:20px;height:20px;left:-30px;top:-25px;animation:fazer1 .2s linear infinite}.falling-astroid-imgs span:nth-child(6){background:url(<?php echo JURI::root(); ?>media/astroid/assets/images/astroid/3.png) center no-repeat;width:10px;height:10px;left:-50px;top:-90px;animation:fazer4 1s linear infinite;animation-delay:-1s}.falling-astroid-imgs span:nth-child(7){background:url(<?php echo JURI::root(); ?>media/astroid/assets/images/astroid/4.png) center no-repeat;width:15px;height:15px;left:25px;top:-25px;transform:rotate(-45deg);animation:fazer2 .4s linear infinite}.falling-astroid-imgs span:nth-child(8){background:url(<?php echo JURI::root(); ?>media/astroid/assets/images/astroid/9.png) center no-repeat;width:10px;height:15px;left:-50px;top:-60px;animation:fazer3 .4s linear infinite;animation-delay:-1s}
+      <?php
+      foreach (AstroidFramework::$styles as $style) {
+         echo $style;
+      }
+      ?>
       </style>
       <?php
       foreach ($stylesheets as $stylesheet) {
-         echo '<link href="' . $stylesheet . '" type="text/css" rel="stylesheet" />';
+         echo '<link href="' . $stylesheet . '?' . $document->getMediaVersion() . '" type="text/css" rel="stylesheet" />';
+      }
+      foreach (AstroidFramework::$stylesheets as $stylesheet) {
+         echo '<link href="' . $stylesheet . '?' . $document->getMediaVersion() . '" type="text/css" rel="stylesheet" />';
       }
       ?>
       <script>
          var TPL_ASTROID_NEW_FOLDER_NAME_LBL = "<?php echo JText::_('TPL_ASTROID_NEW_FOLDER_NAME_LBL'); ?>";
          var TPL_ASTROID_NEW_FOLDER_NAME_INVALID = "<?php echo JText::_('TPL_ASTROID_NEW_FOLDER_NAME_INVALID'); ?>";
+      </script>
+      <?php
+      foreach (AstroidFramework::$javascripts['head'] as $script) {
+         echo '<script src="' . $script . '?' . $document->getMediaVersion() . '"></script>';
+      }
+      ?>
+      <script>
+      <?php
+         foreach (AstroidFramework::$scripts['head'] as $js) {
+            echo $js;
+         }
+         ?>
       </script>
    </head>
    <body ng-app="astroid-framework" id="astroid-framework" ng-controller="astroidController">
@@ -484,6 +503,18 @@ $column_sizes = ['inherit', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '
    ?>
 <?php } ?>
       });
+      </script>
+      <?php
+      foreach (AstroidFramework::$javascripts['body'] as $script) {
+         echo '<script src="' . $script . '?' . $document->getMediaVersion() . '"></script>';
+      }
+      ?>
+      <script>
+         <?php
+         foreach (AstroidFramework::$scripts['body'] as $js) {
+            echo $js;
+         }
+         ?>
       </script>
       <a href="#" class="d-none" data-template-name="<?php echo JFilterOutput::stringURLSafe($template->title); ?>" id="export-link">Export Settings</a>
    </body>

@@ -17,5 +17,5 @@ $params = $article->params;
 ?>
 <dd class="readtime">
    <i class="far fa-clock"></i>
-   <?php echo JText::sprintf('ASTROID_ARTICLE_BLOG_READTIME', $article->readtime); ?>
+   <span><?php echo JText::sprintf('ASTROID_ARTICLE_BLOG_READTIME', $article->readtime); ?></span>
 </dd>

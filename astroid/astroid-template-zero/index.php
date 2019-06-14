@@ -71,7 +71,7 @@ $template->loadTemplateCSS('custom.css');
       // Let's add the image styles only if an image is selected.
       if ($template->params->get('basic_background_image')) {
          $styles .= '
-				background-image: url("' . JURI::root() . 'images/' . $template->params->get('basic_background_image') . '");
+				background-image: url("' . JURI::root() .$template->SeletedMedia(). '/' . $template->params->get('basic_background_image') . '");
 				background-repeat: ' . $template->params->get('basic_background_repeat') . ';
 				background-size: ' . $template->params->get('basic_background_size') . ';
 				background-position: ' . str_replace('_', ' ', $template->params->get('basic_background_position')) . ';

@@ -14,7 +14,6 @@ if (version_compare(JVERSION, '3.99999.99999', 'le'))
 } else {
 	// No alternate for caption.js yet in Joomla 4.
 }
-
 // If the page class is defined, add to class as suffix.
 // It will be a separate class if the user starts it with a space
 ?>
@@ -32,7 +31,7 @@ if (version_compare(JVERSION, '3.99999.99999', 'le'))
       <div class="items-leading clearfix">
          <?php foreach ($this->lead_items as &$item) : ?>
             <div class="card-deck mt-0 mb-4">
-               <div class="card h-100">
+                <div class="card h-100">
                   <article class="item leading-<?php echo $leadingcount; ?><?php echo $item->state == 0 ? ' system-unpublished' : null; ?><?php echo $item->featured ? ' item-featured' : ''; ?>"
                            itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
                               <?php
@@ -40,41 +39,45 @@ if (version_compare(JVERSION, '3.99999.99999', 'le'))
                               echo $this->loadTemplate('item');
                               ?>
                   </article>
-               </div></div>
+                 </div>
+			   </div>
             <?php $leadingcount++; ?>
          <?php endforeach; ?>
       </div><!-- end items-leading -->
    <?php endif; ?>
 
+
    <?php
+ 
    $introcount = (count($this->intro_items));
    $counter = 0;
+    
    ?>
 
-   <?php if (!empty($this->intro_items)) : ?>
-      <?php foreach ($this->intro_items as $key => &$item) : ?>
-         <?php $rowcount = ((int) $key % (int) $this->columns) + 1; ?>
-         <?php if ($rowcount == 1) : ?>
+     <?php if (!empty($this->intro_items)) : ?>
             <?php $row = $counter / $this->columns; ?>
             <div class="items-row <?php echo 'row-' . $row; ?> row clearfix">
-            <?php endif; ?>
-            <div class="col-lg-<?php echo round((12 / $this->columns)); ?> p-3">
-               <div class="card h-100">
-                  <article class="item column-<?php echo $rowcount; ?><?php echo $item->state == 0 ? ' system-unpublished' : null; ?><?php echo $item->featured ? ' item-featured' : ''; ?>"
-                           itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-                              <?php
-                              $this->item = & $item;
-                              echo $this->loadTemplate('item');
-                              ?>
-                  </article></div>
-               <?php $counter++; ?>
-            </div>
-            <?php if (($rowcount == $this->columns) or ( $counter == $introcount)) : ?>
-            </div>
+				 <?php foreach ($this->intro_items as $key => &$item) : ?>
+				  <?php $rowcount = ((int) $key % (int) $this->columns) + 1; ?>
+							<div class="col-lg-<?php echo round((12 / $this->columns)); ?> p-3">
+							   <div class="card h-100">
+									  <article class="item column-<?php echo $rowcount; ?><?php echo $item->state == 0 ? ' system-unpublished' : null; ?><?php echo $item->featured ? ' item-featured' : ''; ?>"
+											   itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+												  <?php
+												  $this->item = & $item;
+												  echo $this->loadTemplate('item');
+												  ?>
+									  </article>
+							   <?php $counter++; ?>
+								  </div>
+							</div>
+				  <?php endforeach; ?>
+	        </div>
          <?php endif; ?>
-      <?php endforeach; ?>
-   <?php endif; ?>
-
+		 
+	 
+		 
+ 
    <?php if (!empty($this->link_items)) : ?>
       <?php echo $this->loadTemplate('links'); ?>
    <?php endif; ?>

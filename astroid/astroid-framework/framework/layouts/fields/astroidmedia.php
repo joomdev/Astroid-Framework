@@ -51,9 +51,9 @@ $mediaType = 'IMAGE';
 if($media=='videos'){
    $mediaType = 'VIDEO';
 }
-
+$params = JComponentHelper::getParams('com_media');
 ?>
-<div astroidmediagallery ng-model="<?php echo $fieldname; ?>" ng-init="selectMedia = false">
+<div astroidmediagallery  ng-model="<?php echo $fieldname; ?>" ng-init="selectMedia = false;Imgpath='<?php echo $params->get('image_path', 'images'); ?>'" >
    <input type="hidden" class="image-value" name="<?php echo $name; ?>" ng-value="<?php echo $fieldname; ?>" />
    <input type="hidden" id="dropzone_folder_<?php echo $id; ?>" ng-value='gallery.current_folder' />
    

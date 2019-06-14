@@ -39,7 +39,7 @@ $video = [];
 
          $background_image_404 = $template->params->get('background_image_404', '');
          if (!empty($background_image_404)) {
-            $styles[] = 'background-image: url(' . JURI::root() . 'images/' . $background_image_404 . ')';
+            $styles[] = 'background-image: url(' . JURI::root() .$template->SeletedMedia().'/' . $background_image_404 . ')';
             $background_repeat_404 = $template->params->get('background_repeat_404', '');
             $background_repeat_404 = empty($background_repeat_404) ? 'inherit' : $background_repeat_404;
             $styles[] = 'background-repeat:' . $background_repeat_404;
@@ -62,7 +62,7 @@ $video = [];
             $attributes = [];
             $background_video_404 = $template->params->get('background_video_404', '');
             if (!empty($background_video_404)) {
-               $attributes['data-jd-video-bg'] = JURI::root() . 'images/' . $background_video_404;
+               $attributes['data-jd-video-bg'] = JURI::root() .$template->SeletedMedia(). '/' . $background_video_404;
 					$videobgjs = 'vendor/jquery.jdvideobg.js';
                if(!isset($template->_js[$videobgjs])){
                 	$template->addScript($videobgjs);
@@ -89,7 +89,7 @@ $video = [];
       $template->loadLayout('typography', true, ['in_head' => false]);
       $favicon = $template->params->get('favicon', '');
       if (!empty($favicon = $template->params->get('favicon', ''))) {
-         echo '<link href="' . JURI::root() . 'images/' . $favicon . '" rel="shortcut icon" type="image/x-icon" />';
+         echo '<link href="' . JURI::root() .$template->SeletedMedia(). '/' . $favicon . '" rel="shortcut icon" type="image/x-icon" />';
       }
       ?>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

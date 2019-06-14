@@ -26,6 +26,13 @@ $header_logo_text_color = $template->params->get('header_logo_text_color', '');
 $header_logo_text_tagline_color = $template->params->get('header_logo_text_tagline_color', '');
 $sticky_header_background_color = $template->params->get('sticky_header_background_color', '');
 
+
+// Sticky Header
+$stick_header_bg_color                 = $template->params->get('stick_header_bg_color', '');
+$stick_header_link_color               = $template->params->get('stick_header_menu_link_color', '');
+$stick_header_link_hover_color         = $template->params->get('stick_header_menu_link_hover_color', '');
+$stick_header_link_active_color        = $template->params->get('stick_header_menu_link_active_color', '');
+
 // Main Menu
 $main_link_color = $template->params->get('main_menu_link_color', '');
 $main_link_hover_color = $template->params->get('main_menu_link_hover_color', '');
@@ -83,8 +90,22 @@ if (!empty($header_logo_text_color)) {
 if (!empty($header_logo_text_tagline_color)) {
    $header_styles[] = '.astroid-logo-text .site-tagline{ color: ' . $header_logo_text_tagline_color . ' !important;}';
 }
-if (!empty($sticky_header_background_color)) {
-   $header_styles[] = '#astroid-sticky-header{ background-color: ' . $sticky_header_background_color . ' !important;}';
+?>
+
+<?php
+// Sticky Header Coloring
+$sticky_header_styles = [];
+if (!empty($stick_header_bg_color)) {
+   $sticky_header_styles[] = '#astroid-sticky-header{ background-color: ' . $stick_header_bg_color . ' !important;}';
+}
+if (!empty($stick_header_link_color)) {
+   $sticky_header_styles[] = '#astroid-sticky-header .astroid-nav .nav-link{ color: ' . $stick_header_link_color . ' !important;}';
+}
+if (!empty($stick_header_link_hover_color)) {
+   $sticky_header_styles[] = '#astroid-sticky-header .nav-link:hover, .astroid-nav .nav-link:focus{ color: ' . $stick_header_link_hover_color . ' !important;}';
+}
+if (!empty($stick_header_link_active_color)) {
+   $sticky_header_styles[] = '#astroid-sticky-header .nav-link.active{ color: ' . $stick_header_link_active_color . ' !important;}';
 }
 ?>
 
@@ -165,6 +186,7 @@ if (!empty($icon_color)) {
 <?php
    $template->addStyledeclaration(implode('', $body_styles));
    $template->addStyledeclaration(implode('', $header_styles));
+   $template->addStyledeclaration(implode('', $sticky_header_styles));
    $template->addStyledeclaration(implode('', $main_menu_styles));
    $template->addStyledeclaration(implode('', $dropdown_styles));
    $template->addStyledeclaration(implode('', $mobilemenu_styles));

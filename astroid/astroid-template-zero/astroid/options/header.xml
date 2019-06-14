@@ -147,6 +147,9 @@
             <option label="JGLOBAL_RIGHT" value="right">media/astroid/assets/images/header/horizontal-right.svg</option>
          </field>
 
+         <field ngShow="header==true AND enable_sticky_menu==true AND logo_type=='image' AND header_mode!='sidebar'" astroidgroup="header_element" description="TPL_ASTROID_BASIC_STICKY_HEADER_LOGO_DESC" name="stickey_header_logo" type="astroidmedia" label="TPL_ASTROID_BASIC_STICKY_HEADER_LOGO_LABEL">
+         </field>
+
          <field ngShow="header==true AND enable_sticky_menu==true AND header_mode!='sidebar'" astroidgroup="header_element" name="stickey_block_1_type" type="astroidlist" default="blank" class="form-control" label="TPL_ASTROID_STICKY_BLOCK_1_TYPE_LABEL" description="TPL_ASTROID_STICKY_BLOCK_1_TYPE_DESC">
             <option value="blank">TPL_ASTROID_BLANK_OPTIONS</option>
             <option value="position">TPL_ASTROID_MODULE_POSITION_LABEL</option>
@@ -156,9 +159,6 @@
          <field ngShow="header==true AND enable_sticky_menu==true AND stickey_block_1_type == 'position' AND header_mode!='sidebar'" astroidgroup="header_element" name="stickey_block_1_position" type="astroidmodulesposition" class="form-control" label="TPL_ASTROID_HEADER_BLOCK_1_POSITION_LABEL" description="TPL_ASTROID_HEADER_BLOCK_1_POSITION_DESC" />
 
          <field ngShow="header==true AND enable_sticky_menu==true AND  stickey_block_1_type == 'custom' AND header_mode!='sidebar'" astroidgroup="header_element" name="stickey_block_1_custom" type="astroidtextarea" filter="raw" class="form-control" label="TPL_ASTROID_HEADER_BLOCK_1_CUSTOM_LABEL" description="TPL_ASTROID_HEADER_BLOCK_1_CUSTOM_DESC" />
-
-         <field ngShow="header==true AND enable_sticky_menu==true AND logo_type=='image' AND header_mode!='sidebar'" astroidgroup="header_element" description="TPL_ASTROID_BASIC_STICKY_HEADER_LOGO_DESC" name="stickey_header_logo" type="astroidmedia" label="TPL_ASTROID_BASIC_STICKY_HEADER_LOGO_LABEL">
-         </field>
 
          <field ngShow="header==true AND enable_sticky_menu==true AND header_mode!='sidebar'" name="stickyheader" type="astroidlist" astroidgroup="header_element" class="form-control" default="sticky" label="TPL_ASTROID_STICKY_HEADER_ON_DESKTOP_LABEL" description="TPL_ASTROID_STICKY_HEADER_ON_DESKTOP_DESC">
             <option value="sticky">TPL_ASTROID_STICKY_OPTIONS</option>

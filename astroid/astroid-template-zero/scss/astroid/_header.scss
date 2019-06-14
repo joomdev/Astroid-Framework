@@ -53,17 +53,20 @@
       }
 
       .astroid-logo {
-         .astroid-logo-default {
+         .astroid-logo-default,
+         .astroid-logo-mobile {
             display: none !important;
          }
 
          .astroid-logo-sticky {
-            @include media-breakpoint-between(lg, xl) {
-               display: block !important;
-            }
+            display: block !important;
          }
       }
    }
+}
+
+.nav-stacked-logo {
+   flex: 0 $logo-max-height;
 }
 
 .astroid-logo {
@@ -74,8 +77,8 @@
    }
 
    img {
-      max-width: 250px;
-      max-height: 65px;
+      max-width: $logo-max-width;
+      max-height: $logo-max-height;
    }
 
    .astroid-logo-mobile {

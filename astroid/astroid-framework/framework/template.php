@@ -38,12 +38,9 @@ class AstroidFrameworkTemplate {
       } else {
          $this->params = $this->getTemplateParams();
       }
-      if (isset($template->language)) {
-         $this->language = $template->language;
-      }
-      if (isset($template->direction)) {
-         $this->direction = $template->direction;
-      }
+      $language = JFactory::getApplication()->getLanguage();
+      $this->language = $language->getTag();
+      $this->direction = $language->isRtl() ? 'rtl' : 'ltr';
       $this->initAgent();
       $this->addMeta();
    }
@@ -205,7 +202,7 @@ class AstroidFrameworkTemplate {
       }
       $this->setLog("Rending Layout");
       $template_layout = $this->params->get('template_layout', 'wide');
-      $sppb = $this->isSPPageBuilder();
+      $sppb = $this->isPageBuilder();
       echo '<div class="astroid-container">';
       $header_mode = $this->params->get('header_mode', 'horizontal');
       if ($header_mode == 'sidebar') {
@@ -356,7 +353,7 @@ class AstroidFrameworkTemplate {
       }
       $layout_background_image = $this->params->get('layout_background_image', '');
       if (!empty($layout_background_image)) {
-         $styles[] = 'background-image:url(' . JURI::root() . 'images/' . $layout_background_image . ')';
+         $styles[] = 'background-image:url(' . JURI::root() . $this->SeletedMedia(). '/' . $layout_background_image . ')';
          $styles[] = 'background-repeat:' . $this->params->get('layout_background_repeat', 'inherit');
          $styles[] = 'background-size:' . $this->params->get('layout_background_size', 'inherit');
          $styles[] = 'background-position:' . $this->params->get('layout_background_position', 'inherit');
@@ -736,12 +733,16 @@ class AstroidFrameworkTemplate {
       }
       echo '</div>';
    }
-
-   public function isSPPageBuilder() {
+	/*
+	*	Checks to see if the Page Builder is used.
+	*	If true, then removing the container so page builder can have full control
+	*	Current supported page builders Quix, JD Builder, Sp Page Builder
+	*/
+   public function isPageBuilder() {
       $jinput = JFactory::getApplication()->input;
       $option = $jinput->get('option', '');
       $view = $jinput->get('view', '');
-      if ($option == "com_sppagebuilder" && $view == "page") {
+      if (($option == "com_sppagebuilder" && $view == "page") || ($option == "com_quix" && $view == "page") || ($option == "com_jdbuilder" && $view == "page")) {
          return TRUE;
       } else {
          return FALSE;
@@ -870,6 +871,11 @@ class AstroidFrameworkTemplate {
       $this->modules[$id] = ob_get_clean();
 
       return $this->modules[$id];
+   }
+
+   public function SeletedMedia() {
+      $params = JComponentHelper::getParams('com_media');
+      return $params->get('image_path', 'images');
    }
 
 }

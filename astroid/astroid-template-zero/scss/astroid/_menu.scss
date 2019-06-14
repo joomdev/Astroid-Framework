@@ -21,12 +21,12 @@
    display: none;
    position: absolute;
    z-index: 999;
-   box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.1);
+   box-shadow: 0 1px 5px 0 rgba(0, 0, 0, .1);
    &.nav-submenu-container{
       padding: 0;
    }
    .nav-submenu {
-      box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.1);
+      box-shadow: 0 1px 5px 0 rgba(0, 0, 0, .1);
    }
 }
 
@@ -111,7 +111,7 @@
    .nav-subtitle{
       display: block;
       padding: 5px 0;
-      opacity: 0.6;
+      opacity: .6;
       font-size: 70%;
    }
    .nav-item-parent{
@@ -181,7 +181,7 @@ ul{
          z-index: 0;
          left: 50%;
          margin-left: -8px;
-         bottom: 0px;
+         bottom: 0;
          display: none;
       }
    }

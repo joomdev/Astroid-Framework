@@ -21,8 +21,9 @@ if (empty($value)) {
       <div ng-if="overrides.length" class="col-12">
          <table class="table table-bordered table-striped">
             <tr>
-               <th>Variable</th>
+               <th width="40%">Variable</th>
                <th>Value</th>
+               <th width="20">Color</th>
                <th width="20"></th>
             </tr>
             <tr ng-repeat="override in overrides track by $index" ng-init="overrideIndex = $index">
@@ -30,7 +31,15 @@ if (empty($value)) {
                   <input ng-model="override.variable" type="text" class="form-control mw-100" />
                </td>
                <td>
-                  <input ng-model="override.value" type="text" class="form-control mw-100" />
+                  <input ng-model="override.value" type="text" class="form-control mw-100 sass-variable-{{ $index }}-value" />
+               </td>
+               <td>
+                  <div class="jd-ui">
+                     <div class="d-inline-block">
+                        <input ng-change="initSassColorPicker($index, override.color)" ng-model="override.color" checked type="checkbox" id="sassvariable-<?php echo $name; ?>-{{ $index }}" class="responsive-field jd-switch" />
+                        <label class="jd-switch-btn m-0" for="sassvariable-<?php echo $name; ?>-{{ $index }}"></label>
+                     </div>
+                  </div>
                </td>
                <td>
                   <button ng-click="removeOverride(overrideIndex)" type="button" class="btn btn-danger"><i class="fa fa-trash"></i></button>

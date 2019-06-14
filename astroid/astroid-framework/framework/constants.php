@@ -10,11 +10,11 @@ defined('_JEXEC') or die;
 
 class AstroidFrameworkConstants {
 
-   public static $astroid_version = '2.2.0';
+   public static $astroid_version = '2.2.1';
    public static $fontawesome_version = '5.8.1';
    public static $animatecss_version = '3.7.0';
    public static $forum_link = 'https://www.joomdev.com/forum/astroid-framework';
-   public static $documentation_link = 'https://www.joomdev.com/documentation/astroid-framework';
+   public static $documentation_link = 'https://docs.joomdev.com/category/astroid-user-manual/';
    public static $github_link = 'https://github.com/joomdev/astroid-framework';
    public static $download_link = 'https://github.com/joomdev/Astroid-Framework/releases/latest';
    public static $releases_link = 'https://github.com/joomdev/Astroid-Framework/releases';
@@ -22,22 +22,20 @@ class AstroidFrameworkConstants {
    public static $joomdev_products_link = 'https://www.joomdev.com/products';
    public static $joomdev_templates_link = 'https://www.joomdev.com/products/templates';
    public static $bootstrap_colors = [
-       'white' => 'White',
-       'black' => 'Black',
-       'blue' => 'Blue',
-       'indigo' => 'Indigo',
-       'purple' => 'Purple',
-       'pink' => 'Pink',
-       'red' => 'Red',
-       'orange' => 'Orange',
-       'yellow' => 'Yellow',
-       'green' => 'Green',
-       'teal' => 'Teal',
-       'cyan' => 'Cyan',
-       'white' => 'White',
-       'gray100' => 'Light Gray',
-       'gray600' => 'Gray',
-       'gray800' => 'Gray Dark'
+       'blue' => 'TPL_COLOR_BLUE',
+       'indigo' => 'TPL_COLOR_INDIGO',
+       'purple' => 'TPL_COLOR_PURPLE',
+       'pink' => 'TPL_COLOR_PINK',
+       'red' => 'TPL_COLOR_RED',
+       'orange' => 'TPL_COLOR_ORANGE',
+       'yellow' => 'TPL_COLOR_YELLOW',
+       'green' => 'TPL_COLOR_GREEN',
+       'teal' => 'TPL_COLOR_TEAL',
+       'cyan' => 'TPL_COLOR_CYAN',
+       'white' => 'TPL_COLOR_WHITE',
+       'gray100' => 'TPL_COLOR_LIGHT_GRAY',
+       'gray600' => 'TPL_COLOR_GRAY',
+       'gray800' => 'TPL_COLOR_GRAY_DARK'
    ];
    
    public static $animations = [

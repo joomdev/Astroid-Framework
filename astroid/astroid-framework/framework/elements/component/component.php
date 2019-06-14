@@ -10,6 +10,6 @@ if (empty($ndata)) {
    return;
 }
 ?>
-<div class="astroid-compoenent-area">
+<div class="astroid-component-area">
    <jdoc:include type="component" />
 </div>

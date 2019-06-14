@@ -14,7 +14,7 @@ class AstroidFrameworkConstants {
    public static $fontawesome_version = '5.8.1';
    public static $animatecss_version = '3.7.0';
    public static $forum_link = 'https://www.joomdev.com/forum/astroid-framework';
-   public static $documentation_link = 'https://www.joomdev.com/documentation/astroid-framework';
+   public static $documentation_link = 'https://docs.joomdev.com/category/astroid-user-manual/';
    public static $github_link = 'https://github.com/joomdev/astroid-framework';
    public static $download_link = 'https://github.com/joomdev/Astroid-Framework/releases/latest';
    public static $releases_link = 'https://github.com/joomdev/Astroid-Framework/releases';

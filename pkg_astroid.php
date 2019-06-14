@@ -72,7 +72,7 @@ class pkg_astroidInstallerScript {
             margin: 20px 0;
             padding: 40px 0;
             text-align: center;
-            border-radius: 0px;
+            border-radius: 0;
             position: relative;
             border: 1px solid #f8f8f8;
             background:#fff url(<?php echo JURI::root(); ?>media/astroid/assets/images/moon-surface.png); 
@@ -115,8 +115,8 @@ class pkg_astroidInstallerScript {
             border: none;
             font-weight: bold;
             position: relative;
-            box-shadow:0px 0px 30px #b0b7e2;
-            transition: linear 0.1s;
+            box-shadow:0 0 30px #b0b7e2;
+            transition: linear .1s;
          }
          .astroid-install-actions .btn:after{
             top: 50%;
@@ -131,13 +131,13 @@ class pkg_astroidInstallerScript {
             -moz-transform: translateY(-50%);
             -webkit-transform: translateY(-50%);
             background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAARCAYAAADdRIy+AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OERDRjlBMjY0OTIzMTFFODkyQTI4MzYzN0ZGQ0Y1NTMiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OERDRjlBMjc0OTIzMTFFODkyQTI4MzYzN0ZGQ0Y1NTMiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4RENGOUEyNDQ5MjMxMUU4OTJBMjgzNjM3RkZDRjU1MyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4RENGOUEyNTQ5MjMxMUU4OTJBMjgzNjM3RkZDRjU1MyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PvXGU3IAAADpSURBVHjarNShCsJAHMfxO1iyyEw+gsFoEIMKA5uoxSfwKQSjYWASq4JVEKPggwgmi2ASFcMUdefvj3/QsMEdd3/4lO32Zey2SaWU0JwsLOEGndRVFNTkw0N9Z562ziRIAog4OnMRJDV4c3TsIki6EHM0dBEkbfWbgYsgqcKRo3065mGjm1CHM0ihP084wA7yMIRIokonPOFoKNjjO4zptTS4ltZuoQUVPhbaPsMC7PkZjmw3pQx3jk1sdzn4i01t38MiXDi2sP1SSnDl2Mr2W87BiWNryCStkwb/Qx82/D9swCtp0UeAAQDi4gvA12LkbAAAAABJRU5ErkJggg==') no-repeat;
-            -webkit-transition: all 0.4s;
-            -moz-transition: all 0.4s;
-            transition: all 0.4s;
+            -webkit-transition: all .4s;
+            -moz-transition: all .4s;
+            transition: all .4s;
          }
          .astroid-install-actions .btn:hover{
-            transition: linear 0.1s;
-            box-shadow:0px 0px 30px #4b57d9;
+            transition: linear .1s;
+            box-shadow:0 0 30px #4b57d9;
          }
          .astroid-install-actions .btn:hover:after{
             opacity: 1;
@@ -189,7 +189,7 @@ class pkg_astroidInstallerScript {
             <a href="index.php?option=com_templates" class="btn btn-default">Get started</a>
          </div>
          <div class="astroid-support-link">
-            <a href="https://www.joomdev.com/documentation/astroid-framework" target="_blank">Documentation</a> <span>|</span> <a href="https://github.com/joomdev/Astroid-Framework/releases" target="_blank">Changelog</a> <span>|</span> <a href="https://www.joomdev.com/forum/astroid-framework" target="_blank">Forum</a> <span>|</span> <a href="https://www.youtube.com/playlist?list=PLv9TlpLcSZTBBVpJqe3SdJ34A6VvicXqM" target="_blank">Tutorials</a> <span>|</span> <a href="https://www.joomdev.com/about-us" target="_blank">Credits</a>
+            <a href="https://docs.joomdev.com/category/astroid-user-manual/" target="_blank">Documentation</a> <span>|</span> <a href="https://github.com/joomdev/Astroid-Framework/releases" target="_blank">Changelog</a> <span>|</span> <a href="https://www.joomdev.com/forum/astroid-framework" target="_blank">Forum</a> <span>|</span> <a href="https://www.youtube.com/playlist?list=PLv9TlpLcSZTBBVpJqe3SdJ34A6VvicXqM" target="_blank">Tutorials</a> <span>|</span> <a href="https://www.joomdev.com/about-us" target="_blank">Credits</a>
          </div>
          <div class="astroid-poweredby">
             <a href="https://www.joomdev.com" target="_blank">

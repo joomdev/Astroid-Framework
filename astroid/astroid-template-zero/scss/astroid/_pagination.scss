@@ -1,5 +1,9 @@
 .pagination{
 	justify-content: center;
+	.page-item:first-child .page-link,
+	.page-item:last-child .page-link	{
+		border-radius: 0;
+	}
 }
 
 ul.pagenav {

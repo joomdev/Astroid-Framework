@@ -82,9 +82,7 @@
    }
 
    .astroid-logo-mobile {
-      max-width: 100%;
       display: none;
-
       @include media-breakpoint-down(md) {
          display: block;
       }

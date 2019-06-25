@@ -471,7 +471,19 @@ var AstroidAdmin = function AstroidAdmin() {
       var hours = date.getHours();
       var minutes = date.getMinutes();
       var seconds = date.getSeconds();
-      var exportFileDefaultName = $('#export-link').data('template-name') + ' ' + (year + "-" + month + "-" + day + " " + hours + ":" + minutes + ":" + seconds) + '.json';
+      var exportName = prompt("Please enter your desired name", "astroid-zero-template");
+      if (exportName === "") {
+           Admin.notify("Can't be empty", "error");
+            return false
+      } else if (exportName) {
+            var re = /^[0-9a-zA-Z].*/;
+            if (!re.test(exportName) || /\s/.test(exportName)) {
+               Admin.notify("Invalid", "error");
+               return false
+         }else{
+             var exportFileDefaultName = exportName + ' ' + (year + "-" + month + "-" + day + " " + hours + ":" + minutes + ":" + seconds) + '.json';
+         }
+      }
       $('#export-link').attr('href', dataUri);
       $('#export-link').attr('download', exportFileDefaultName);
       $('#export-link')[0].click();
@@ -631,6 +643,13 @@ var Admin = new AstroidAdmin();
 (function ($) {
    var docReady = function docReady() {
       Admin.init();
+      $(document).on('keydown', function ( e ) {
+         // You may replace `s` with whatever key you want
+         if ((e.metaKey || e.ctrlKey) && ( String.fromCharCode(e.which).toLowerCase() === 's') ) {
+             $("#astroid-form").submit();
+               return false
+         }
+     });
       getGoogleFonts();
       initAstroidUploader();
       $('.astroid-code-editor-exit-fs').click(function () {

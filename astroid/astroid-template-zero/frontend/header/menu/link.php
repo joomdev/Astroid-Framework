@@ -124,7 +124,9 @@ foreach ($attributes as $key => $attribute) {
          <?php } ?>
       <?php } ?>
       <?php if (!$is_mobile_menu && $item->level == 1 && (($item->parent && $item->deeper == 1) || $options->megamenu)) { ?>
-         <i class="fa fa-chevron-down nav-item-caret"></i>
+         <?php if($template->params->get('dropdown_arrow', 0)) {  ?>  
+            <i class="fa fa-chevron-down nav-item-caret"></i>
+          <?php } ?>
       <?php } elseif (!$is_mobile_menu && $item->parent && !($item->type == "heading" || $item->type == "separator")) { ?>
          <i class="fa fa-chevron-right nav-item-caret"></i>
       <?php } ?>

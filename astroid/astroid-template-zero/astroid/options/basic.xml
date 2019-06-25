@@ -6,9 +6,12 @@
          <field type="astroidgroup" name="preloader_options" title="TPL_ASTROID_PRELOADER_MAIN_TITLE_LABEL"/>
          <field type="astroidgroup" name="enable_back_to_top" title="TPL_ASTROID_ENABLE_TO_TOP_MAIN_TITLE_LABEL"/>
          <field type="astroidgroup" name="layout_setting" title="TPL_ASTROID_LAYOUT_SETTING_MAIN_TITLE_LABEL"/>
+         <field type="astroidgroup" name="smooth_scroll" title="TPL_SMOOTH_SCROLL_TITLE"/>
          
+         <field astroidgroup="smooth_scroll" description="TPL_SMOOTH_SCROLL_ENABLE_DESC" name="enable_smooth_scroll" type="astroidtext" astroid-switch="true" default="0" label="TPL_SMOOTH_SCROLL_ENABLE_LBL"></field>
+		<field ngShow="enable_smooth_scroll=='1'" astroidgroup="smooth_scroll" name="smooth_scroll_speed" type="astroidrange" astroid-scss-variable="spinkit-size" min="1" max="10000" step="1" default="300" label="TPL_SMOOTH_SCROLL_SPEED_LBL" description="TPL_SMOOTH_SCROLL_SPEED_DESC" postfix="ms" />
+		
          <field astroidgroup="preloader_options" description="TPL_ASTROID_BASIC_ENABLE_PRELOADER_DESC" name="preloader" type="astroidtext" astroid-switch="true" default="1" label="TPL_ASTROID_BASIC_ENABLE_PRELOADER_LABEL"></field>
-
          <field astroidgroup="preloader_options" ngShow="preloader=='1'" description="TPL_ASTROID_PRELOADER_TYPE_DESC" name="preloder_setting" type="astroidradio" default="animations" label="TPL_ASTROID_PRELOADER_TYPE">
             <option value="animations">ASTROID_ANIMATION</option>
             <option value="image">TPL_ASTROID_IMAGE</option>

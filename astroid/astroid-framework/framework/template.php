@@ -765,6 +765,12 @@ class AstroidFrameworkTemplate {
          $document->addStyledeclaration($styles);
       }
    }
+   
+   
+   public function addScriptDeclaration($script) {
+	 $document = JFactory::getDocument();
+	 $document->addScriptDeclaration($script);
+   }
 
    public function addScript($js) {
       $template_directory = JPATH_THEMES . "/" . $this->template . "/js/";

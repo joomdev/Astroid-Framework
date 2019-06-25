@@ -93,6 +93,20 @@ foreach ($attributes as $key => $attribute) {
 }
 ?>
 <!--menu link starts-->
+<?php
+// One Page Coding Starts
+// Valid conditions
+// Must start with #
+// Length must be more than 1
+if($item->type == 'url'){
+   // Let's search for #
+   $validonepagelink = strpos($item->link,"#");
+   if($validonepagelink == '0' && (strlen($item->link) > 1)){
+      // Default we assume that you only want the one page for the homepage. If you want one page to work on other pages, please go ahead and hard code the full page URL i.e. https://yoursite.com/pageurl#onepageblockid
+      $item->link = JURI::root().$item->link;
+   }
+}
+?>
 <a href="<?php echo $item->flink; ?>" <?php echo implode(' ', $attr); ?>>
    <span class="nav-title">
       <?php if (!empty($options->icon)) { ?>

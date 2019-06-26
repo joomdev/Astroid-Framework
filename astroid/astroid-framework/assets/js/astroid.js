@@ -633,7 +633,7 @@ var AstroidAdmin = function AstroidAdmin() {
          $('.astroid-loading').fadeIn(500);
       } else {
          $('.astroid-loading').fadeOut(500);
-      }
+      }  
    };
 };
 
@@ -649,6 +649,10 @@ var Admin = new AstroidAdmin();
              $("#astroid-form").submit();
                return false
          }
+         if ((e.metaKey || e.ctrlKey) && ( String.fromCharCode(e.which).toLowerCase() === 'p') ) {
+            $("#clear-cache").click();
+              return false
+        }
      });
       getGoogleFonts();
       initAstroidUploader();

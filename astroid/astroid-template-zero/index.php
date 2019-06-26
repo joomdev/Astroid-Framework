@@ -56,7 +56,8 @@ $template->loadTemplateCSS('custom.css');
 		$template->loadTemplateJS('vendor/smooth-scroll.polyfills.min.js');
 		$smoothashell = '
 			var scroll = new SmoothScroll(\'a[href*="#"]\', {
-				speed: '.$smooth_scroll_speed.'
+            speed: '.$smooth_scroll_speed.',
+            header: ".astroid-header"
 			});
 		';
 		$template->addScriptDeclaration($smoothashell);

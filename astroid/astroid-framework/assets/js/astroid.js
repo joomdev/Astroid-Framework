@@ -649,10 +649,10 @@ var Admin = new AstroidAdmin();
              $("#astroid-form").submit();
                return false
          }
-         if ((e.metaKey || e.ctrlKey) && ( String.fromCharCode(e.which).toLowerCase() === 'p') ) {
+        if(e.keyCode == 46) {
             $("#clear-cache").click();
-              return false
-        }
+            return false
+         }
      });
       getGoogleFonts();
       initAstroidUploader();
@@ -693,6 +693,36 @@ var Admin = new AstroidAdmin();
          var _id = _field.data('typography-field');
          var _preview = $('.astroid-typography-preview.' + _id + '-astroid-typography-preview');
          var _property = _field.data('typography-property');
+         $("#"+_id+"IsMobile").click(function(e){
+            e.preventDefault();
+            $(".Mobile").css("display","block");
+            $(".Laptop").css("display","none");
+            $(".Desktop").css("display","none");
+            $("#"+_id+"IsMobile").addClass("res-active");
+            $("#"+_id+"IsLaptop").removeClass("res-active");
+            $("#"+_id+"IsDesktop").removeClass("res-active");
+         }); 
+
+         $("#"+_id+"IsLaptop").click(function(e){
+            e.preventDefault();
+            $(".Mobile").css("display","none");
+            $(".Laptop").css("display","block");
+            $(".Desktop").css("display","none");
+            $("#"+_id+"IsMobile").removeClass("res-active");
+            $("#"+_id+"IsLaptop").addClass("res-active");
+            $("#"+_id+"IsDesktop").removeClass("res-active");
+         });
+
+         $("#"+_id+"IsDesktop").click(function(e){
+            e.preventDefault();
+            $(".Mobile").css("display","none");
+            $(".Laptop").css("display","none");
+            $(".Desktop").css("display","block");
+            $("#"+_id+"IsMobile").removeClass("res-active");
+            $("#"+_id+"IsLaptop").removeClass("res-active");
+            $("#"+_id+"IsDesktop").addClass("res-active");
+         }); 
+         
          var _unit = _field.data('unit');
 
          if (_property == 'font-style') {

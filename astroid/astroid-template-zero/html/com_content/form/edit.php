@@ -29,11 +29,11 @@ $this->form->setValue('astroid_article_video_url', 'attribs' , (isset($attribs->
 
 $this->form->setValue('astroid_article_gallery_width', 'attribs' , (isset($attribs->astroid_article_gallery_width) && $attribs->astroid_article_gallery_width) ? $attribs->astroid_article_gallery_width : '');
 
-$this->form->setValue('astroid_article_gallery_bullets', 'attribs' , (isset($attribs->astroid_article_gallery_bullets) && $attribs->astroid_article_gallery_bullets) ? $attribs->astroid_article_gallery_bullets : '');
+$this->form->setValue('astroid_article_gallery_bullets', 'attribs' , (isset($attribs->astroid_article_gallery_bullets) && $attribs->astroid_article_gallery_bullets) ? $attribs->astroid_article_gallery_bullets : $attribs->astroid_article_gallery_bullets);
 
-$this->form->setValue('astroid_article_gallery_navigation', 'attribs' , (isset($attribs->astroid_article_gallery_navigation) && $attribs->astroid_article_gallery_navigation) ? $attribs->astroid_article_gallery_navigation : '');
+$this->form->setValue('astroid_article_gallery_navigation', 'attribs' , (isset($attribs->astroid_article_gallery_navigation) && $attribs->astroid_article_gallery_navigation) ? $attribs->astroid_article_gallery_navigation : $attribs->astroid_article_gallery_navigation);
 
-$this->form->setValue('astroid_article_thumbnail', 'attribs' , (isset($attribs->astroid_article_thumbnail) && $attribs->astroid_article_thumbnail) ? $attribs->astroid_article_thumbnail : '');
+$this->form->setValue('astroid_article_thumbnail', 'attribs' , (isset($attribs->astroid_article_thumbnail) && $attribs->astroid_article_thumbnail) ? $attribs->astroid_article_thumbnail : $attribs->astroid_article_thumbnail);
 
 $this->form->setValue('astroid_article_gallery_items', 'attribs' , (isset($attribs->astroid_article_gallery_items) && $attribs->astroid_article_gallery_items) ? $attribs->astroid_article_gallery_items : '');
 

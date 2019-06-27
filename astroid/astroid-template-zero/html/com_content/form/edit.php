@@ -72,8 +72,8 @@ $this->form->setValue('astroid_article_badge_text', 'attribs' , (isset($attribs-
 
 $this->form->setValue('astroid_article_badge_color', 'attribs' , (isset($attribs->astroid_article_badge_color) && $attribs->astroid_article_badge_color) ? $attribs->astroid_article_badge_color : '');
 
-$this->form->setValue('astroid_readtime', 'attribs' , (isset($attribs->astroid_readtime) && $attribs->astroid_readtime) ? $attribs->astroid_readtime : '');
-$this->form->setValue('astroid_posttype', 'attribs' , (isset($attribs->astroid_posttype) && $attribs->astroid_posttype) ? $attribs->astroid_posttype : '');
+$this->form->setValue('astroid_readtime', 'attribs' , (isset($attribs->astroid_readtime) && $attribs->astroid_readtime) ? $attribs->astroid_readtime : $attribs->astroid_readtime);
+$this->form->setValue('astroid_posttype', 'attribs' , (isset($attribs->astroid_posttype) && $attribs->astroid_posttype) ? $attribs->astroid_posttype : $attribs->astroid_posttype);
 
 $this->form->setValue('astroid_relatedposts', 'attribs' , (isset($attribs->astroid_relatedposts) && $attribs->astroid_relatedposts) ? $attribs->astroid_relatedposts : '');
 $this->form->setValue('astroid_socialshare', 'attribs' , (isset($attribs->astroid_socialshare) && $attribs->astroid_socialshare) ? $attribs->astroid_socialshare : '');
@@ -82,7 +82,7 @@ $this->form->setValue('astroid_comments', 'attribs' , (isset($attribs->astroid_c
 $this->form->setValue('astroid_og_title', 'attribs' , (isset($attribs->astroid_og_title) && $attribs->astroid_og_title) ? $attribs->astroid_og_title : '');
 $this->form->setValue('astroid_og_desc', 'attribs' , (isset($attribs->astroid_og_desc) && $attribs->astroid_og_desc) ? $attribs->astroid_og_desc : '');
 $this->form->setValue('astroid_og_image', 'attribs' , (isset($attribs->astroid_og_image) && $attribs->astroid_og_image) ? $attribs->astroid_og_image : '');
-$this->form->setValue('astroid_authorinfo', 'attribs' , (isset($attribs->astroid_authorinfo) && $attribs->astroid_authorinfo) ? $attribs->astroid_authorinfo : '');
+$this->form->setValue('astroid_authorinfo', 'attribs' , (isset($attribs->astroid_authorinfo) && $attribs->astroid_authorinfo) ? $attribs->astroid_authorinfo : $attribs->astroid_authorinfo);
 // End Articles Type
 
 // This checks if the editor config options have ever been saved. If they haven't they will fall back to the original settings.

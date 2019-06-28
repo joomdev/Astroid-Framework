@@ -685,7 +685,7 @@ class AstroidFrameworkTemplate {
       }
 
       if (isset($menu) && $menu) {
-         if ($menu->get('pageclass_sfx')) {
+         if ($menu->params->get('pageclass_sfx')) {
             $class[] = $menu->params->get('pageclass_sfx');
          }
 		 if ($menu->get('alias')) {

@@ -21,6 +21,15 @@
          if (_class == '' || typeof _class == 'undefined' || _class == 'undefined' || _class == null) {
             _class = 'astroid-offcanvas';
          }
+
+         // Added for click then close the Offcanvas the Menu  
+            var _li  = $(_content).find('li');
+            var _li_a  = _li.find("a");
+            _li_a.click(function(){
+               _reset();
+            });
+      
+            
          $('body').addClass(_dir);
          var _reset = function () {
             _container.removeClass(_class + '-open');

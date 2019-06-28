@@ -556,7 +556,7 @@ class AstroidFrameworkTemplate {
       $sass_overrides = $this->params->get('sass_overrides');
       $sass_overrides = \json_decode($sass_overrides, true);
       if (empty($sass_overrides)) {
-         return [];
+         return $variables;
       }
 
       foreach ($sass_overrides as $sass_override) {
@@ -644,11 +644,14 @@ class AstroidFrameworkTemplate {
       $this->setLog("Javascripts Loaded!", "success");
    }
 
+	/*
+	*	Function to return classes imploded in the body tag on the website.
+	*/
    public function bodyClass($body_class, $language = '', $direction = '') {
+	  $template = JFactory::getApplication()->getTemplate(true);
       $class = [];
       $app = JFactory::getApplication();
       $menu = $app->getMenu()->getActive();
-
       $class[] = "site";
       $class[] = "astroid-framework";
 
@@ -658,7 +661,7 @@ class AstroidFrameworkTemplate {
       $task = $app->input->get('task', '', 'STRING');
       $header = $this->params->get('header', TRUE);
       $headerMode = $this->params->get('header_mode', 'horizontal', 'STRING');
-      $itemid = $app->input->get('itemid', '', 'INT');
+      $Itemid = $app->input->get('Itemid', '', 'INT');
 
       if (!empty($option)) {
          $class[] = htmlspecialchars(str_replace('_', '-', $option));
@@ -672,8 +675,8 @@ class AstroidFrameworkTemplate {
       if (!empty($task)) {
          $class[] = 'task-' . $task;
       }
-      if (!empty($itemid)) {
-         $class[] = 'itemid-' . $itemid;
+      if (!empty($Itemid)) {
+         $class[] = 'itemid-' . $Itemid;
       }
 
       if ($header && !empty($headerMode) && $headerMode == 'sidebar') {
@@ -682,11 +685,16 @@ class AstroidFrameworkTemplate {
       }
 
       if (isset($menu) && $menu) {
-         if ($menu->params->get('pageclass_sfx')) {
+         if ($menu->get('pageclass_sfx')) {
             $class[] = $menu->params->get('pageclass_sfx');
          }
+		 if ($menu->get('alias')) {
+            $class[] = $menu->get('alias');
+         }
       }
-
+	  if (!empty($template->id)) {
+         $class[] = 'tp-style-' . $template->id;
+      }
       if (!empty($language)) {
          $class[] = $language;
       }
@@ -756,6 +764,12 @@ class AstroidFrameworkTemplate {
          $document = JFactory::getDocument();
          $document->addStyledeclaration($styles);
       }
+   }
+   
+   
+   public function addScriptDeclaration($script) {
+	 $document = JFactory::getDocument();
+	 $document->addScriptDeclaration($script);
    }
 
    public function addScript($js) {

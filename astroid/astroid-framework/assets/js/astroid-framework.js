@@ -99,7 +99,7 @@ astroidFramework.directive("astroidmediagallery", ["$http", function ($http) {
             if (name === "") {
                return false
             } else if (name) {
-               var re = /^[a-zA-Z].*/;
+               var re = /^[0-9a-zA-Z].*/;
                if (!re.test(name) || /\s/.test(name)) {
                   Admin.notify(TPL_ASTROID_NEW_FOLDER_NAME_INVALID, "error");
                   return false

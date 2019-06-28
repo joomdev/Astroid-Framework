@@ -168,7 +168,7 @@ if (trim($submenuType) == 'custom') {
 }
 
 // Let's add combined style sheet here
-$ast_fontfamily_list = implode("|", str_replace(" ", "+", $ast_fontfamily));
+$ast_fontfamily_list = implode("|", str_replace(" ", "+", array_unique($ast_fontfamily)));
 if ($in_head) {
    $document = JFactory::getDocument();
    if (!empty($ast_fontfamily_list)) {

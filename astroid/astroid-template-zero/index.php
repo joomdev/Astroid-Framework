@@ -49,7 +49,20 @@ $template->loadTemplateCSS('custom.css');
    if (!empty($favicon = $template->params->get('favicon', ''))) {
       $doc->addFavicon(JURI::root() . 'images/' . $favicon, '');
    }
-// Adding basic Scripts, jQuery & Bootstrap JS
+   // Let's add the Smooth Scroll JD is enabled.
+    $enable_smooth_scroll = $template->params->get('enable_smooth_scroll', '');
+	if($enable_smooth_scroll == '1') {
+		$smooth_scroll_speed = $template->params->get('smooth_scroll_speed', '');
+		$template->loadTemplateJS('vendor/smooth-scroll.polyfills.min.js');
+		$smoothashell = '
+			var scroll = new SmoothScroll(\'a[href*="#"]\', {
+            speed: '.$smooth_scroll_speed.',
+            header: ".astroid-header"
+			});
+		';
+		$template->addScriptDeclaration($smoothashell);
+	}
+	// Adding basic Scripts, jQuery & Bootstrap JS
 
    if (isset($doc->_scripts[JURI::root(true) . '/media/jui/js/jquery.min.js'])) {
       $template->loadTemplateJS('vendor/jquery.easing.min.js,vendor/bootstrap/popper.min.js,vendor/bootstrap/bootstrap.min.js,vendor/jquery.astroidmobilemenu.js,vendor/jquery.jdmegamenu.js,vendor/jquery.offcanvas.js');

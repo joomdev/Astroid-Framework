@@ -59,9 +59,9 @@
                }
             });
 
-            if (settings.dropdownArrows) {
-               _megamenu.append('<span class="arrow" />');
-            }
+            // if (settings.dropdownArrows) {
+            //    _megamenu.append('<span class="arrow" />');
+            // }
 
             _megamenu.each(function () {
                var _content = $(this).find(settings.contentClass);

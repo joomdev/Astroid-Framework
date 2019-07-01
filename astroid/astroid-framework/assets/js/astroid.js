@@ -649,11 +649,12 @@ var Admin = new AstroidAdmin();
              $("#astroid-form").submit();
                return false
          }
-        if(e.keyCode == 46) {
+         var hasFocus = $("input,textarea").is(":focus");
+         if(hasFocus == false && e.keyCode == 46) {
             $("#clear-cache").click();
             return false
          }
-     });
+       });
       getGoogleFonts();
       initAstroidUploader();
       $('.astroid-code-editor-exit-fs').click(function () {

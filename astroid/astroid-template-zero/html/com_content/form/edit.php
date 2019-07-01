@@ -1,9 +1,9 @@
 <?php
 /**
- * @package Helix Ultimate Framework
- * @author JoomShaper https://www.joomshaper.com
- * @copyright Copyright (c) 2010 - 2018 JoomShaper
- * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
+ * @package Astroid Framework
+ * @author  JoomDev https://www.joomdev.com
+ * @copyright Copyright (C) 2019 Joomdev, Inc. All rights reserved.
+ * @license GNU General Public License version 2 or later;
 */
 
 defined ('_JEXEC') or die();

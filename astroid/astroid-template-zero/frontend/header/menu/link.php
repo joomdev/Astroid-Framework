@@ -101,7 +101,7 @@ foreach ($attributes as $key => $attribute) {
 if($item->type == 'url'){
    // Let's search for #
    $validonepagelink = strpos($item->link,"#");
-   if($validonepagelink == '0' && (strlen($item->link) > 1)){
+   if($validonepagelink === 0 && (strlen($item->link) > 1)){
       // Default we assume that you only want the one page for the homepage. If you want one page to work on other pages, please go ahead and hard code the full page URL i.e. https://yoursite.com/pageurl#onepageblockid
       // $item->link = JURI::root().$item->link;
       $item->link = JUri::getInstance().$item->link;

@@ -21,6 +21,7 @@ class AstroidFrameworkConstants {
    public static $joomdev_link = 'https://www.joomdev.com';
    public static $joomdev_products_link = 'https://www.joomdev.com/products';
    public static $joomdev_templates_link = 'https://www.joomdev.com/products/templates';
+   public static $jd_builder_link = 'https://www.joomdev.com/jd-builder';
    public static $bootstrap_colors = [
        'blue' => 'TPL_COLOR_BLUE',
        'indigo' => 'TPL_COLOR_INDIGO',

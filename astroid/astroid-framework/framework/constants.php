@@ -33,9 +33,9 @@ class AstroidFrameworkConstants {
        'teal' => 'TPL_COLOR_TEAL',
        'cyan' => 'TPL_COLOR_CYAN',
        'white' => 'TPL_COLOR_WHITE',
-       'gray100' => 'TPL_COLOR_LIGHT_GRAY',
-       'gray600' => 'TPL_COLOR_GRAY',
-       'gray800' => 'TPL_COLOR_GRAY_DARK'
+       'gray100' => 'TPL_COLOR_LIGHT_GREY',
+       'gray600' => 'TPL_COLOR_GREY',
+       'gray800' => 'TPL_COLOR_GREY_DARK'
    ];
    
    public static $animations = [

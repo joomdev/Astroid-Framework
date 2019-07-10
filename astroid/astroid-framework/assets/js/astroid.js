@@ -643,18 +643,28 @@ var Admin = new AstroidAdmin();
 (function ($) {
    var docReady = function docReady() {
       Admin.init();
-      $(document).on('keydown', function ( e ) {
-         // You may replace `s` with whatever key you want
-         if ((e.metaKey || e.ctrlKey) && ( String.fromCharCode(e.which).toLowerCase() === 's') ) {
-             $("#astroid-form").submit();
+      var astroid_shortcut_enable = $("#astroid_shortcut_enable").val();
+      var OnSave = function(enable){
+         $(document).on('keydown', function ( e ) {
+            // You may replace `s` with whatever key you want
+            if (enable && (e.metaKey || e.ctrlKey) && ( String.fromCharCode(e.which).toLowerCase() === 's') ) {
+               $("#astroid-form").submit();
                return false
-         }
-         var hasFocus = $("input,textarea").is(":focus");
-         if(hasFocus == false && e.keyCode == 46) {
-            $("#clear-cache").click();
-            return false
-         }
-       });
+            }
+         });
+      }
+      var OnClear = function(enable){
+         $(document).on('keydown', function ( e ) {
+            var hasFocus = $("input,textarea").is(":focus");
+            if(enable && hasFocus == false && e.keyCode == 46) {
+               $("#clear-cache").click();
+               return false
+            }
+         });
+      }
+      OnSave(astroid_shortcut_enable);
+      OnClear(astroid_shortcut_enable);
+
       getGoogleFonts();
       initAstroidUploader();
       $('.astroid-code-editor-exit-fs').click(function () {

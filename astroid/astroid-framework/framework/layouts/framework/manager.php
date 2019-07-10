@@ -86,6 +86,7 @@ foreach ($params as $key => $value) {
 $plugin = JPluginHelper::getPlugin('system', 'astroid');
 $plugin_params = new JRegistry($plugin->params);
 $astroid_manager_loader = $plugin_params->get('astroid_manager_loader', 1);
+$astroid_shortcut_enable = $plugin_params->get('astroid_shortcut_enable', 1);
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo strtolower($lang->getTag()); ?>" dir="<?php echo $langdir; ?>">
@@ -408,6 +409,9 @@ $astroid_manager_loader = $plugin_params->get('astroid_manager_loader', 1);
             </div>
          </div>
       </div>
+      <!-- Getting value from astroid plugin then JS is using to enable and disable Keyboard shortcut  -->
+         <input type="hidden" id="astroid_shortcut_enable" value="<?php echo $astroid_shortcut_enable == '1'? 'true': 'false'; ?>">
+       <!-- End  -->
       <?php
       $scripts = [];
       $scripts[] = $assets . 'vendor' . '/' . 'jquery' . '/' . 'jquery-3.2.1.min.js?v=' . $document->getMediaVersion();

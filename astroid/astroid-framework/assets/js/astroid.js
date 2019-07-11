@@ -647,7 +647,7 @@ var Admin = new AstroidAdmin();
       var OnSave = function(enable){
          $(document).on('keydown', function ( e ) {
             // You may replace `s` with whatever key you want
-            if (enable && (e.metaKey || e.ctrlKey) && ( String.fromCharCode(e.which).toLowerCase() === 's') ) {
+            if (enable =="true" && (e.metaKey || e.ctrlKey) && ( String.fromCharCode(e.which).toLowerCase() === 's') ) {
                $("#astroid-form").submit();
                return false
             }
@@ -656,7 +656,7 @@ var Admin = new AstroidAdmin();
       var OnClear = function(enable){
          $(document).on('keydown', function ( e ) {
             var hasFocus = $("input,textarea").is(":focus");
-            if(enable && hasFocus == false && e.keyCode == 46) {
+            if(enable =="true" && hasFocus == false && e.keyCode == 46) {
                $("#clear-cache").click();
                return false
             }

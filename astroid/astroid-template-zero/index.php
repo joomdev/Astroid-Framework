@@ -30,7 +30,7 @@ JHtml::_('stylesheet', 'templates/system/css/system.css', array('version' => 'au
 
 // Astroid Assets
 $template->loadTemplateCSS('custom.css');
-
+$template->_loadFontAwesome();
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo $this->language; ?>" dir="<?php echo $this->direction; ?>">
@@ -39,7 +39,6 @@ $template->loadTemplateCSS('custom.css');
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <meta name="HandheldFriendly" content="true" />
       <meta name="apple-mobile-web-app-capable" content="YES" />
-      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v<?php echo AstroidFrameworkConstants::$fontawesome_version; ?>/css/all.css" >
    <jdoc:include type="head" />
    <?php
    /*

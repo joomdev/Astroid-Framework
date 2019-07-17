@@ -181,4 +181,13 @@ div.search{
 	input.button{
 		object-fit: none;
 	}
+	.radio {
+		margin-right: 8px;
+		input {
+			margin-right: 3px;
+		}
+	}
+	.checkbox {
+		margin-right: 8px;
+	}
 }

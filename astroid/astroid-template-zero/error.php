@@ -48,9 +48,9 @@ $video = [];
             $background_size_404 = empty($background_size_404) ? 'inherit' : $background_size_404;
             $styles[] = 'background-size:' . $background_size_404;
 
-            $background_attachment_404 = $template->params->get('background_attachment_404', '');
-            $background_attachment_404 = empty($background_attachment_404) ? 'inherit' : $background_attachment_404;
-            $styles[] = 'background-attachment:' . $background_attachment_404;
+            $background_attchment_404 = $template->params->get('background_attchment_404', '');
+            $background_attchment_404 = empty($background_attchment_404) ? 'inherit' : $background_attchment_404;
+            $styles[] = 'background-attachment:' . $background_attchment_404;
 
             $background_position_404 = $template->params->get('background_position_404', '');
             $background_position_404 = empty($background_position_404) ? 'inherit' : $background_position_404;

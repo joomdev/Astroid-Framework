@@ -35,10 +35,10 @@
                <option value="cover">ASTROID_BACKGROUND_SIZE_COVER</option>
                <option value="contain">ASTROID_BACKGROUND_SIZE_CONTAIN</option>
             </field>
-            <field ngShow="background_setting =='image'" name="background_attachment" type="astroidlist" label="ASTROID_BACKGROUND_ATTACHMENT">
+            <field ngShow="background_setting =='image'" name="background_attchment" type="astroidlist" label="ASTROID_BACKGROUND_ATTCHMENT">
                <option value="">JGLOBAL_INHERIT</option>
-               <option value="scroll">ASTROID_BACKGROUND_ATTACHMENT_SCROLL</option>
-               <option value="fixed">ASTROID_BACKGROUND_ATTACHMENT_FIXED</option>
+               <option value="scroll">ASTROID_BACKGROUND_ATTCHMENT_SCROLL</option>
+               <option value="fixed">ASTROID_BACKGROUND_ATTCHMENT_FIXED</option>
             </field>	  
             <field ngShow="background_setting =='image'" name="background_position" type="astroidlist" label="ASTROID_BACKGROUND_POSITION_LABEL">
                <option value="">JGLOBAL_INHERIT</option>

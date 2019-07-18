@@ -387,9 +387,9 @@ class AstroidElement {
             $background_size = empty($background_size) ? 'inherit' : $background_size;
             $styles[] = 'background-size:' . $background_size;
 
-            $background_attachment = $params->get('background_attachment', '');
-            $background_attachment = empty($background_attachment) ? 'inherit' : $background_attachment;
-            $styles[] = 'background-attachment:' . $background_attachment;
+            $background_attchment = $params->get('background_attchment', '');
+            $background_attchment = empty($background_attchment) ? 'inherit' : $background_attchment;
+            $styles[] = 'background-attachment:' . $background_attchment;
 
             $background_position = $params->get('background_position', '');
             $background_position = empty($background_position) ? 'inherit' : $background_position;
@@ -460,9 +460,9 @@ class AstroidElement {
                $background_size = empty($background_size) ? 'inherit' : $background_size;
                $Style[] = 'background-size:' . $background_size;
 
-               $background_attachment = $params->get('background_attachment', '');
-               $background_attachment = empty($background_attachment) ? 'inherit' : $background_attachment;
-               $Style[] = 'background-attachment:' . $background_attachment;
+               $background_attchment = $params->get('background_attchment', '');
+               $background_attchment = empty($background_attchment) ? 'inherit' : $background_attchment;
+               $Style[] = 'background-attachment:' . $background_attchment;
 
                $background_position = $params->get('background_position', '');
                $background_position = empty($background_position) ? 'inherit' : $background_position;

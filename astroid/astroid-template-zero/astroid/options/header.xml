@@ -131,7 +131,7 @@
          <field astroidgroup="header_element" description="TPL_ASTROID_BASIC_TAG_LINE_DESC" ngShow="header==true AND logo_type=='text'" name="tag_line" type="astroidtext" class="form-control" label="TPL_ASTROID_BASIC_TAG_LINE_LABEL">
          </field>
 
-         <field astroidgroup="header_element" description="TPL_ASTROID_BASIC_DEFAULT_LOGO_DESC" ngShow="header==true AND logo_type=='image'" ngRequired="logo_type=='image'" name="default_logo" type="astroidmedia" label="TPL_ASTROID_BASIC_DEFAULT_LOGO_LABEL">
+         <field astroidgroup="header_element" description="TPL_ASTROID_BASIC_DEFULT_LOGO_DESC" ngShow="header==true AND logo_type=='image'" ngRequired="logo_type=='image'" name="defult_logo" type="astroidmedia" label="TPL_ASTROID_BASIC_DEFULT_LOGO_LABEL">
          </field>
 
          <field astroidgroup="header_element" description="TPL_ASTROID_BASIC_MOBILE_LOGO_DESC" ngShow="header==true AND logo_type=='image'" ngRequired="logo_type=='image'" name="mobile_logo" type="astroidmedia" label="TPL_ASTROID_BASIC_MOBILE_LOGO_LABEL">
@@ -141,24 +141,24 @@
 
          <field ngShow="header==true AND header_mode!='sidebar'" astroidgroup="header_element" class="sticky-header-switch" name="enable_sticky_menu" type="astroidtext" astroid-switch="true" default="0" label="TPL_ASTROID_HEADER_STICKY_HEADER_ENABLE_LABEL" description="TPL_ASTROID_HEADER_STICKY_HEADER_ENABLE_DESC"></field>
 
-         <field ngShow="header==true AND enable_sticky_menu==true AND header_mode!='sidebar'" astroidgroup="header_element" name="sticky_horizontal_menu_mode" type="astroidradio" image-width="150" radio-image="true" default="left" label="TPL_ASTROID_STICKY_HORIZONTAL_HEADER_MODE_LABEL" description="TPL_ASTROID_STICKY_HORIZONTAL_HEADER_MODE_DESC">
+         <field ngShow="header==true AND enable_sticky_menu==true AND header_mode!='sidebar'" astroidgroup="header_element" name="stickey_horizontal_menu_mode" type="astroidradio" image-width="150" radio-image="true" default="left" label="TPL_ASTROID_STICKY_HORIZONTAL_HEADER_MODE_LABEL" description="TPL_ASTROID_STICKY_HORIZONTAL_HEADER_MODE_DESC">
             <option label="JGLOBAL_LEFT" value="left">media/astroid/assets/images/header/horizontal-left.svg</option>
             <option label="JGLOBAL_CENTER" value="center">media/astroid/assets/images/header/horizontal-center.svg</option>
             <option label="JGLOBAL_RIGHT" value="right">media/astroid/assets/images/header/horizontal-right.svg</option>
          </field>
 
-         <field ngShow="header==true AND enable_sticky_menu==true AND logo_type=='image' AND header_mode!='sidebar'" astroidgroup="header_element" description="TPL_ASTROID_BASIC_STICKY_HEADER_LOGO_DESC" name="sticky_header_logo" type="astroidmedia" label="TPL_ASTROID_BASIC_STICKY_HEADER_LOGO_LABEL">
+         <field ngShow="header==true AND enable_sticky_menu==true AND logo_type=='image' AND header_mode!='sidebar'" astroidgroup="header_element" description="TPL_ASTROID_BASIC_STICKY_HEADER_LOGO_DESC" name="stickey_header_logo" type="astroidmedia" label="TPL_ASTROID_BASIC_STICKY_HEADER_LOGO_LABEL">
          </field>
 
-         <field ngShow="header==true AND enable_sticky_menu==true AND header_mode!='sidebar'" astroidgroup="header_element" name="sticky_block_1_type" type="astroidlist" default="blank" class="form-control" label="TPL_ASTROID_STICKY_BLOCK_1_TYPE_LABEL" description="TPL_ASTROID_STICKY_BLOCK_1_TYPE_DESC">
+         <field ngShow="header==true AND enable_sticky_menu==true AND header_mode!='sidebar'" astroidgroup="header_element" name="stickey_block_1_type" type="astroidlist" default="blank" class="form-control" label="TPL_ASTROID_STICKY_BLOCK_1_TYPE_LABEL" description="TPL_ASTROID_STICKY_BLOCK_1_TYPE_DESC">
             <option value="blank">TPL_ASTROID_BLANK_OPTIONS</option>
             <option value="position">TPL_ASTROID_MODULE_POSITION_LABEL</option>
             <option value="custom">TPL_ASTROID_CUSTOM_HTML_OPTIONS</option>
          </field>
 
-         <field ngShow="header==true AND enable_sticky_menu==true AND sticky_block_1_type == 'position' AND header_mode!='sidebar'" astroidgroup="header_element" name="sticky_block_1_position" type="astroidmodulesposition" class="form-control" label="TPL_ASTROID_HEADER_BLOCK_1_POSITION_LABEL" description="TPL_ASTROID_HEADER_BLOCK_1_POSITION_DESC" />
+         <field ngShow="header==true AND enable_sticky_menu==true AND stickey_block_1_type == 'position' AND header_mode!='sidebar'" astroidgroup="header_element" name="stickey_block_1_position" type="astroidmodulesposition" class="form-control" label="TPL_ASTROID_HEADER_BLOCK_1_POSITION_LABEL" description="TPL_ASTROID_HEADER_BLOCK_1_POSITION_DESC" />
 
-         <field ngShow="header==true AND enable_sticky_menu==true AND  sticky_block_1_type == 'custom' AND header_mode!='sidebar'" astroidgroup="header_element" name="sticky_block_1_custom" type="astroidtextarea" filter="raw" class="form-control" label="TPL_ASTROID_HEADER_BLOCK_1_CUSTOM_LABEL" description="TPL_ASTROID_HEADER_BLOCK_1_CUSTOM_DESC" />
+         <field ngShow="header==true AND enable_sticky_menu==true AND  stickey_block_1_type == 'custom' AND header_mode!='sidebar'" astroidgroup="header_element" name="stickey_block_1_custom" type="astroidtextarea" filter="raw" class="form-control" label="TPL_ASTROID_HEADER_BLOCK_1_CUSTOM_LABEL" description="TPL_ASTROID_HEADER_BLOCK_1_CUSTOM_DESC" />
 
          <field ngShow="header==true AND enable_sticky_menu==true AND header_mode!='sidebar'" name="stickyheader" type="astroidlist" astroidgroup="header_element" class="form-control" default="sticky" label="TPL_ASTROID_STICKY_HEADER_ON_DESKTOP_LABEL" description="TPL_ASTROID_STICKY_HEADER_ON_DESKTOP_DESC">
             <option value="sticky">TPL_ASTROID_STICKY_OPTIONS</option>

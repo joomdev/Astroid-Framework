@@ -29,9 +29,9 @@ if ($logo_type == 'text') {
    $tag_line = $params->get('tag_line', ''); // Logo Tagline
 } else {
 // Logo file
-   $default_logo = $params->get('default_logo', false);
+   $default_logo = $params->get('defult_logo', false);
    $mobile_logo = $params->get('mobile_logo', false);
-   $sticky_header_logo = $params->get('sticky_header_logo', false);
+   $stickey_header_logo = $params->get('stickey_header_logo', false);
 }
 $class = ['astroid-logo', 'astroid-logo-' . $logo_type, 'd-flex align-items-center'];
 ?>
@@ -60,8 +60,8 @@ $class = ['astroid-logo', 'astroid-logo-' . $logo_type, 'd-flex align-items-cent
       <?php if (!empty($mobile_logo)) { ?>
          <img src="<?php echo JURI::root() .$template->SeletedMedia(). '/' . $mobile_logo; ?>" alt="<?php echo $sitename; ?>" class="astroid-logo-mobile" />
       <?php } ?>
-      <?php if (!empty($sticky_header_logo)) { ?>
-         <img src="<?php echo JURI::root() .$template->SeletedMedia(). '/' . $sticky_header_logo; ?>" alt="<?php echo $sitename; ?>" class="astroid-logo-sticky" />
+      <?php if (!empty($stickey_header_logo)) { ?>
+         <img src="<?php echo JURI::root() .$template->SeletedMedia(). '/' . $stickey_header_logo; ?>" alt="<?php echo $sitename; ?>" class="astroid-logo-sticky" />
       <?php } ?>
    </a>
    <!-- image logo ends -->

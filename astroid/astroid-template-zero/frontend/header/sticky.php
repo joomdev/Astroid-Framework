@@ -32,10 +32,10 @@ $class[] = 'header-' . $stickyheadertablet . '-tablet';
 $navClass = ['nav', 'astroid-nav', 'd-none', 'd-lg-flex'];
 $navWrapperClass = ['astroid-nav-wraper', 'align-self-center', 'px-2', 'd-none', 'd-lg-block'];
 $mode = $params->get('header_horizontal_menu_mode', 'left');
-$stickey_mode = $params->get('stickey_horizontal_menu_mode', 'left');
-$block_1_type = $params->get('stickey_block_1_type', 'left');
-$block_1_position = $params->get('stickey_block_1_position', '');
-$block_1_custom = $params->get('stickey_block_1_custom', '');
+$sticky_mode = $params->get('sticky_horizontal_menu_mode', 'left');
+$block_1_type = $params->get('sticky_block_1_type', 'left');
+$block_1_position = $params->get('sticky_block_1_position', '');
+$block_1_custom = $params->get('sticky_block_1_custom', '');
 switch ($mode) {
    case 'left':
       $navWrapperClass[] = 'mr-auto';
@@ -61,28 +61,28 @@ switch ($mode) {
       <div class="header-left-section d-flex justify-content-between">
          <?php $template->loadLayout('logo'); ?>
          <?php
-            if ($stickey_mode == 'left') {
+            if ($sticky_mode == 'left') {
                // header nav starts
-               AstroidMenu::getMenu($header_menu, $navClass, null, 'left', 'stickey', $navWrapperClass);
+               AstroidMenu::getMenu($header_menu, $navClass, null, 'left', 'sticky', $navWrapperClass);
                // header nav ends
             }
          ?>
       </div>
       <?php
-      if ($stickey_mode == 'center') {
+      if ($sticky_mode == 'center') {
          echo '<div class="header-center-section d-flex justify-content-center">';
          // header nav starts
-         AstroidMenu::getMenu($header_menu, $navClass, null, 'center', 'stickey', $navWrapperClass);
+         AstroidMenu::getMenu($header_menu, $navClass, null, 'center', 'sticky', $navWrapperClass);
          // header nav ends
          echo '</div>';
       }
       ?>
-      <?php if ($block_1_type != 'blank' || $stickey_mode == 'right' || $enable_offcanvas): ?>
+      <?php if ($block_1_type != 'blank' || $sticky_mode == 'right' || $enable_offcanvas): ?>
          <div class="header-right-section d-flex justify-content-end">
             <?php
-            if ($stickey_mode == 'right') {
+            if ($sticky_mode == 'right') {
                // header nav starts
-               AstroidMenu::getMenu($header_menu, $navClass, null, 'right', 'stickey', $navWrapperClass);
+               AstroidMenu::getMenu($header_menu, $navClass, null, 'right', 'sticky', $navWrapperClass);
                // header nav ends
             }
             ?>

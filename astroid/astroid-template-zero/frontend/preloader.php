@@ -17,14 +17,14 @@ if (!$enable_preloader) {
    return;
 }
 
-$preloder_setting = $template->params->get('preloder_setting', 'animations');
+$preloader_setting = $template->params->get('preloader_setting', 'animations');
 $preloader_animation = $template->params->get('preloader_animation', 'circle');
 $preloader_image = $template->params->get('preloader_image', '');
 $preloader_size = $template->params->get('preloader_size', 40);
 $preloader_color = $template->params->get('preloader_color', '');
 $preloader_bgcolor = $template->params->get('preloader_bgcolor', '');
 
-if($preloder_setting == "animations"){
+if($preloader_setting == "animations"){
    switch ($preloader_animation) {
       case 'rotating-plane':
          $preloaderHTML = '<div class="sk-rotating-plane"></div>';
@@ -83,7 +83,7 @@ if($preloder_setting == "animations"){
          $preloaderStyles = '';
          break;
    }
-}elseif($preloder_setting == "image"){
+}elseif($preloader_setting == "image"){
 
    $preloader_image = $template->params->get('preloader_image', '');
    if (!empty($preloader_image)) {

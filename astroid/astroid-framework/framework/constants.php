@@ -358,18 +358,6 @@ class AstroidFrameworkConstants {
             'name' => 'fas fa-life-ring fa-spin',
             'code' => '<div class="icon-center fas fa-life-ring fa-spin" style="font-size: 40px;margin: 0 auto;"></div>'
         ],
-        'palette' =>[
-            'name' => 'fas fa-palette fa-spin',
-            'code' => '<div class="icon-center fas fa-palette fa-spin" style="font-size: 40px;margin: 0 auto;"></div>'
-        ],
-        'ring' =>[
-            'name' => 'fas fa-ring fa-spin',
-            'code' => '<div class="icon-center fas fa-ring fa-spin" style="font-size: 40px;margin: 0 auto;"></div>'
-        ],
-        'slash' =>[
-            'name' => 'fas fa-slash fa-spin',
-            'code' => '<div class="icon-center fas fa-slash fa-spin" style="font-size: 40px;margin: 0 auto;"></div>'
-        ],
         'yin-yang' =>[
             'name' => 'fas fa-yin-yang fa-spin',
             'code' => '<div class="icon-center fas fa-yin-yang fa-spin" style="font-size: 40px;margin: 0 auto;"></div>'

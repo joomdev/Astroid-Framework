@@ -1,9 +1,9 @@
 <?php
 /**
  * @package Astroid Framework
- * @author JoomDev https://www.joomdev.com
+ * @author  JoomDev https://www.joomdev.com
  * @copyright Copyright (C) 2019 Joomdev, Inc. All rights reserved.
- * @license GNU General Public License version 2 or later; see LICENSE.txt
+ * @license GNU General Public License version 2 or later;
 */
 
 defined ('_JEXEC') or die();

@@ -53,20 +53,17 @@
       }
 
       .astroid-logo {
-         .astroid-logo-default,
-         .astroid-logo-mobile {
+         .astroid-logo-default {
             display: none !important;
          }
 
          .astroid-logo-sticky {
-            display: block !important;
+            @include media-breakpoint-between(lg, xl) {
+               display: block !important;
+            }
          }
       }
    }
-}
-
-.nav-stacked-logo {
-   flex: 0 $logo-max-height;
 }
 
 .astroid-logo {
@@ -77,12 +74,14 @@
    }
 
    img {
-      max-width: $logo-max-width;
-      max-height: $logo-max-height;
+      max-width: 250px;
+      max-height: 65px;
    }
 
    .astroid-logo-mobile {
+      max-width: 100%;
       display: none;
+
       @include media-breakpoint-down(md) {
          display: block;
       }
@@ -127,7 +126,7 @@
       -o-transition: .1s linear all;
       transition: .1s linear all;
       box-shadow: 0 0 2px 0 rgba(56,69,84,.2);
-      @media(max-width: 1600px) {
+      @media(max-width: 1200px) {
          width: $header-sidebar-mini-width;
       }
       &.sidebar-dir-left {
@@ -179,7 +178,7 @@
          }
       }
    }
-   @media (max-width: 1600px) {
+   @media (max-width: 1200px) {
       &.has-sidebar {
          display: block;
          width: 100%;
@@ -220,7 +219,7 @@
          }
       }
    }
-   @media(max-width: 1600px) {
+   @media(max-width: 1200px) {
       .astroid-sidebar-content {
          > div.astroid-sidebar-menu {
             display: none; 
@@ -254,17 +253,12 @@
          }
       }
    }
-   @media(min-width: 1200px) and (max-width: 1600px) {
-      &.has-sidebar {
-         padding: 0;
-         position: fixed;
-         width: $header-sidebar-mini-width;
-         .astroid-sidebar-collapsable{
-            display: block;
-         }
+}
+
+@media(min-width: 1200px) and (max-width: 1600px) {
+   body{
+      &.header-sidebar-left{
+         margin-left: 320px;
       }
-      &.has-sidebar:not(.expanded) .astroid-sidebar-logo {
-         display: none;
-       }
-   }
+   }      
 }

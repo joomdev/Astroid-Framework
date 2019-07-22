@@ -74,6 +74,7 @@
             </field>
             <field type="text" name="astroid_article_badge_text" label="ASTROID_BADGE_LABEL" description="ASTROID_BADGE_LABEL_DESC" showon="astroid_article_badge:1[AND]astroid_article_badge_type:1" />
             <field type="color" name="astroid_article_badge_color" label="ASTROID_BADGE_COLOR" description="ASTROID_BADGE_COLOR_DESC" showon="astroid_article_badge:1[AND]astroid_article_badge_type:1" />
+            <field type="color" name="astroid_article_badge_text_color" label="ASTROID_BADGE_TEXT_COLOR" description="ASTROID_BADGE_TEXT_COLOR_DESC" showon="astroid_article_badge:1[AND]astroid_article_badge_type:1" />
         </fieldset>
     </fields>
 </form>

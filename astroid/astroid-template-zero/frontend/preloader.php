@@ -86,8 +86,8 @@ if($preloder_setting == "animations"){
 }elseif($preloder_setting == "image"){
 
    $preloader_image = $template->params->get('preloader_image', '');
+   $styles = [];
    if (!empty($preloader_image)) {
-      $styles = [];
       $styles[] = 'background-image:url(' . JURI::root() . $template->SeletedMedia(). '/' . $preloader_image . ')';
       $styles[] = 'background-repeat:' . $template->params->get('preloader_image_repeat', 'inherit');
       $styles[] = 'background-size:' . $template->params->get('preloader_image_size', 'inherit');
@@ -98,6 +98,10 @@ if($preloder_setting == "animations"){
    $preloaderHTML = '<div class="preloader-image"></div>';
    $preloaderStyles = '.preloader-image{ '.implode(';', $styles).' }';
 
+}elseif($preloder_setting == "fontawesome"){
+   $preloader_fontawesome = $template->params->get('preloader_fontawesome', '');
+   $preloaderHTML = '<div class="'.$preloader_fontawesome.'" style="font-size:'.$preloader_size.'px; color: '.$preloader_color.'; display: flex;justify-content: center;margin: 0 auto;"></div>';
+   $preloaderStyles = '';
 }
 $template->addStyledeclaration('#astroid-preloader{background:' . $preloader_bgcolor . ';height:100%;left:0;position:fixed;top:0;width:100%;z-index:99999}');
 $template->addStyledeclaration($preloaderStyles);

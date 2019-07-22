@@ -522,6 +522,10 @@ class AstroidMenu {
       if (!empty($options->customclass)) {
          $class[] = $options->customclass;
       }
+      $template = AstroidFramework::getTemplate();
+      if(!$template->params->get('dropdown_arrow', 0)) { 
+         $class[] = 'no-dropdown-icon';
+      }
       return $class;
    }
 

@@ -63,6 +63,14 @@ img {
 	position: relative;
 }
 
+.astroid-component-section {
+	padding: 50px 0;
+}
+
+.com-jdbuilder .astroid-component-section {
+	padding: 0;
+}
+
 .astroid-layout {
 	position: relative;
 
@@ -190,4 +198,8 @@ div.search{
 	.checkbox {
 		margin-right: 8px;
 	}
+}
+
+ul.fa-ul {
+	margin-left: 25px;
 }

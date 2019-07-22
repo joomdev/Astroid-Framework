@@ -47,7 +47,7 @@ $post_format = $post_attribs->get('post_format', 'standard');
                $style = '.article-badge.article-badge-custom.article-id-'.$this->item->id.':after{ border-left-color: ' . $astroidArticle->article->params->get('astroid_article_badge_color', '#000'). '} .article-badge.article-badge-custom.article-id-'.$this->item->id.':before{ border-bottom-color: ' . $astroidArticle->article->params->get('astroid_article_badge_color', '#000'). '; }';
                $document->addStyleDeclaration($style);
                ?>
-               <div style="background: <?php echo $astroidArticle->article->params->get('astroid_article_badge_color', '#000'); ?>" class="article-badge article-badge-<?php 
+               <div style="background: <?php echo $astroidArticle->article->params->get('astroid_article_badge_color', '#000'); ?>; color: <?php echo $astroidArticle->article->params->get('astroid_article_badge_text_color', '#000'); ?>" class="article-badge article-badge-<?php 
 			   if($astroidArticle->article->params->get('astroid_article_badge_type', 2) == 1){
 						echo 'custom article-id-'.$this->item->id;
 				   } else {

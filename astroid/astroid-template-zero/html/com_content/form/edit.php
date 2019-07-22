@@ -72,6 +72,8 @@ $this->form->setValue('astroid_article_badge_text', 'attribs' , (isset($attribs-
 
 $this->form->setValue('astroid_article_badge_color', 'attribs' , (isset($attribs->astroid_article_badge_color) && $attribs->astroid_article_badge_color) ? $attribs->astroid_article_badge_color : '');
 
+$this->form->setValue('astroid_article_badge_text_color', 'attribs' , (isset($attribs->astroid_article_badge_text_color) && $attribs->astroid_article_badge_text_color) ? $attribs->astroid_article_badge_text_color : '');
+
 $this->form->setValue('astroid_readtime', 'attribs' , (isset($attribs->astroid_readtime) && $attribs->astroid_readtime) ? $attribs->astroid_readtime : $attribs->astroid_readtime);
 $this->form->setValue('astroid_posttype', 'attribs' , (isset($attribs->astroid_posttype) && $attribs->astroid_posttype) ? $attribs->astroid_posttype : $attribs->astroid_posttype);
 

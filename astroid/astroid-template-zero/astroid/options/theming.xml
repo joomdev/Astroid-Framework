@@ -16,9 +16,9 @@
          <field astroidgroup="colors" name="theme_teal" type="astroidcolor" large="true" label="TPL_COLOR_TEAL" default="#20c997"></field>
          <field astroidgroup="colors" name="theme_cyan" type="astroidcolor" large="true" label="TPL_COLOR_CYAN" default="#17a2b8"></field>
          <field astroidgroup="colors" name="theme_white" type="astroidcolor" large="true" label="TPL_COLOR_WHITE" default="#fff"></field>
-         <field astroidgroup="colors" name="theme_gray100" type="astroidcolor" large="true" label="TPL_COLOR_LIGHT_GRAY" default="#f8f9fa"></field>
-         <field astroidgroup="colors" name="theme_gray600" type="astroidcolor" large="true" label="TPL_COLOR_GRAY" default="#6c757d"></field>
-         <field astroidgroup="colors" name="theme_gray800" type="astroidcolor" large="true" label="TPL_COLOR_GRAY_DARK" default="#2c2e36"></field>
+         <field astroidgroup="colors" name="theme_gray100" type="astroidcolor" large="true" label="TPL_COLOR_LIGHT_GREY" default="#f8f9fa"></field>
+         <field astroidgroup="colors" name="theme_gray600" type="astroidcolor" large="true" label="TPL_COLOR_GREY" default="#6c757d"></field>
+         <field astroidgroup="colors" name="theme_gray800" type="astroidcolor" large="true" label="TPL_COLOR_GREY_DARK" default="#2c2e36"></field>
          
          <field astroidgroup="colors" name="theme_scheme_heading" type="astroidheading" title="AF_THEMING_ALL_THEME_COLORS" description="AF_THEMING_ALL_THEME_COLORS_DESC"></field>
          

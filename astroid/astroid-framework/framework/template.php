@@ -891,7 +891,20 @@ class AstroidFrameworkTemplate {
       $params = JComponentHelper::getParams('com_media');
       return $params->get('image_path', 'images');
    }
-
+   
+   public function _loadFontAwesome() {
+      $plugin = JPluginHelper::getPlugin('system', 'astroid');
+      $assets = JURI::root() . 'media' . '/' . 'astroid' . '/' . 'assets' . '/'. 'fontawesome';
+      $plugin_params = new JRegistry($plugin->params);
+      $astroid_load_fontawesome = $plugin_params->get('astroid_load_fontawesome', "cdn");
+      $document = JFactory::getDocument();
+      if($astroid_load_fontawesome  == "local"){
+         $document->addStyleSheet($assets.'/css/font-awesome.css');
+         $document->addStyleSheet($assets.'/webfonts');
+      }elseif($astroid_load_fontawesome  == "cdn"){
+         $document->addStyleSheet("https://use.fontawesome.com/releases/v".AstroidFrameworkConstants::$fontawesome_version."/css/all.css");
+      }
+   }
 }
 
 class AstroidLog {

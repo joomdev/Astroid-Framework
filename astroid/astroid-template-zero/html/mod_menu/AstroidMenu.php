@@ -17,7 +17,7 @@ if ($tagId = $params->get('tag_id', ''))
 
 // The menu class is deprecated. Use nav instead
 ?>
-<ul class="nav menu menu-module list-inline d-block<?php echo $class_sfx; ?>"<?php echo $id; ?>>
+<ul class="nav astroidmenu menu menu-module list-inline d-block<?php echo $class_sfx; ?>"<?php echo $id; ?>>
 <?php foreach ($list as $i => &$item)
 {
 	$astroid_menu_options = $item->params->get('astroid_menu_options', []);
@@ -68,11 +68,11 @@ if ($tagId = $params->get('tag_id', ''))
 		$class .= ' parent';
 	}
 	if($astroid_menu_options['badge']){
-		$badgeHtml = '<span style="background:'.$astroid_menu_options['badge_bgcolor'].';color:'.$astroid_menu_options['badge_color'].'">'.$astroid_menu_options['badge_text'].'</span>';
+		$badgeHtml = '<span class="menu-item-badge" style="background:'.$astroid_menu_options['badge_bgcolor'].';color:'.$astroid_menu_options['badge_color'].'">'.$astroid_menu_options['badge_text'].'</span>';
 	}else{
 		$badgeHtml="";
 	}
-	$astroid_menu_options['showtitle']; 
+	$astroid_menu_options['showtitle'];
 	if(!$astroid_menu_options['showtitle']){
 		$title = $astroid_menu_options['subtitle'];
 	}else{
@@ -92,7 +92,7 @@ if ($tagId = $params->get('tag_id', ''))
 			}
 			echo $badgeHtml;
 			break;
-		
+
 		default:
 			if(!($astroid_menu_options['showtitle']) && !$astroid_menu_options['showtitle']) {
 				require JModuleHelper::getLayoutPath('mod_menu', 'default_url');
@@ -100,7 +100,7 @@ if ($tagId = $params->get('tag_id', ''))
 			echo $badgeHtml;
 			break;
 	endswitch;
-	
+
 	// The next item is deeper.
 	if ($item->deeper)
 	{

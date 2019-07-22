@@ -110,7 +110,7 @@
    }
    .nav-subtitle{
       display: block;
-      padding: 5px 0;
+      padding: 0;
       opacity: .6;
       font-size: 70%;
    }
@@ -128,6 +128,9 @@
             text-align: center;
             margin-top: -10px;
          }
+      }
+      &.no-dropdown-icon .nav-title{
+         padding-right: 0;
       }
    }
 }

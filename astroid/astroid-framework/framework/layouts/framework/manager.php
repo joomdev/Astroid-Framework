@@ -16,6 +16,9 @@ $application = JFactory::getApplication();
 $document = JFactory::getDocument();
 $config = JFactory::getConfig();
 
+$plugin = JPluginHelper::getPlugin('system', 'astroid');
+$plugin_params = new JRegistry($plugin->params);
+
 $atm = $application->input->get('atm', 0, 'INT');
 
 if($atm){
@@ -75,6 +78,15 @@ foreach ($template_forms as $fname) {
    $form->loadFile($fname, false);
 }
 
+$astroid_options_path = $plugin_params->get('astroid_options_path', '');
+if (!empty($astroid_options_path)) {
+   $more_options_forms = array_filter(glob($astroid_options_path . '/' . '*.xml'), 'is_file');
+   JForm::addFormPath($astroid_options_path);
+   foreach ($more_options_forms as $fname) {
+      $fname = pathinfo($fname)['filename'];
+      $form->loadFile($fname, false);
+   }
+}
 
 $fieldsets = AstroidFrameworkHelper::getAstroidFieldsets($form);
 
@@ -82,9 +94,6 @@ foreach ($params as $key => $value) {
    $form->setValue($key, 'params', $value);
 }
 
-
-$plugin = JPluginHelper::getPlugin('system', 'astroid');
-$plugin_params = new JRegistry($plugin->params);
 $astroid_manager_loader = $plugin_params->get('astroid_manager_loader', 1);
 $astroid_shortcut_enable = $plugin_params->get('astroid_shortcut_enable', 1);
 ?>

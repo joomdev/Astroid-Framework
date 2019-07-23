@@ -28,8 +28,6 @@
                <option value="1">JYES</option>
                <option value="0">JNO</option>
             </field>
-            <field name="astroid_options_path" type="text" default="" label="ASTROID_OPTIONS_PATH_LABEL" description="ASTROID_OPTIONS_PATH_DESC">
-            </field>
          </fieldset>
       </fields>
    </config>

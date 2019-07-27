@@ -40,7 +40,7 @@ img {
 }
 
 ::selection {
-	background: $selection-bg;
+	background-color: $selection-bg;
 	color: $selection-text-color;
 }
 
@@ -106,7 +106,7 @@ img {
 		right: 0;
 		width: 0;
 		height: 0;
-		background: rgba(0, 0, 0, .8);
+		background-color: rgba(0, 0, 0, .8);
 		content: '';
 		opacity: 0;
 		-webkit-transition: opacity .5s, width .1s .5s, height .1s .5s;

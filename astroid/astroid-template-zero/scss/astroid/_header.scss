@@ -1,5 +1,5 @@
 .astroid-nav .megamenu-container a.nav-link.megamenu-title:hover {
-   background: inherit !important;
+   background-color: inherit !important;
    color: currentColor !important;
 }
 
@@ -24,7 +24,7 @@
          height: 100%;
          width: 100%;
          display: none;
-         background: $stacked-header-bg;
+         background-color: $stacked-header-bg;
          z-index: $stacked-header-zindex;
       }
    }

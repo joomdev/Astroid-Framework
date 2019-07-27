@@ -127,7 +127,7 @@ $offcanvas-btn: 50px !default;
 	.off-page-inner {
 		position: relative;
 		z-index: 2;
-		background: $white;
+		background-color: $white;
 		height: 100%;
 		overflow-y: auto;
 	}
@@ -140,7 +140,7 @@ $offcanvas-btn: 50px !default;
 		z-index: 3;
 		text-align: center;
 		line-height: 40px;
-		background: $white;
+		background-color: $white;
 		color: $black;
 		font-size: 16px;
 		cursor: pointer;
@@ -158,7 +158,7 @@ $offcanvas-btn: 50px !default;
 		height: 100%;
 		left: 0;
 		top: 0;
-		background: rgba(0, 0, 0, .6);
+		background-color: rgba(0, 0, 0, .6);
 	}
 }
 
@@ -172,7 +172,7 @@ $offcanvas-btn: 50px !default;
 	overflow-x: hidden;
 	overflow-y: auto;
 	-webkit-overflow-scrolling: touch;
-	background: $white;
+	background-color: $white;
 	-webkit-transition: all .5s;
 	transition: all .5s;
 	max-width: 100vw !important;

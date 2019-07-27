@@ -8,7 +8,7 @@
 
 defined('_JEXEC') or die;
 ?>
-<div class="latestnews">
+<div class="latestnews view-media">
    <ul class="list-group list-group-flush">
       <?php foreach ($list as $item) : $image = json_decode($item->images); ?>
       <li itemscope itemtype="https://schema.org/Article" class="list-group-item px-0">

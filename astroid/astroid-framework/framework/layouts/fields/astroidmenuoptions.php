@@ -222,8 +222,8 @@ foreach ($items as $i => $item) {
                      <div class="col-12 ezlb-content" ng-sortable="{draggable:'.ezlb-row', animation: 100, handle: '.ezlb-row-handle'}">
                         <div ng-repeat="row in rows track by $index" class="ezlb-row row ezlb-row-{{ rowIndex}}" ng-init="rowIndex = $index">
                            <span class="ezlb-toolbar">
-                              <span class="ezlb-action" ng-click="chooseRowColumns.open = 1; chooseRowColumns.row = rowIndex;"><i class="fa fa-columns"></i></span>
-                              <span ng-click="removeRow(rowIndex)" class="ezlb-action text-danger"><i class="fa fa-trash"></i></span>
+                              <span data-astroid-tooltip="<?php echo JText::_('TPL_ASTROID_EDIT_GRID_ROW'); ?>" class="ezlb-action" ng-click="chooseRowColumns.open = 1; chooseRowColumns.row = rowIndex;"><i class="fa fa-columns"></i></span>
+                              <span  data-astroid-tooltip="<?php echo JText::_('TPL_ASTROID_REMOVE_ELEMENT'); ?>" ng-click="removeRow(rowIndex)" class="ezlb-action text-danger"><i class="fa fa-trash"></i></span>
                            </span>
                            <span class="ezlb-toolbar toolbar-left">
                               <span class="ezlb-action ezlb-row-handle" ng-show="rows.length > 1"><i class="fa fa-arrows-alt"></i></span>
@@ -240,11 +240,11 @@ foreach ($items as $i => $item) {
 
                                           <span class="ezlb-toolbar">
                                              <span ng-show="column.elements.length > 1" class="ezlb-action ezlb-element-handle"><i class="fa fa-arrows-alt"></i></span>
-                                             <span class="ezlb-action text-danger" ng-click="removeElement(elementIndex, columnIndex, rowIndex);"><i class="fa fa-trash"></i></span>
+                                             <span  data-astroid-tooltip="<?php echo JText::_('TPL_ASTROID_REMOVE_ELEMENT'); ?>" class="ezlb-action text-danger" ng-click="removeElement(elementIndex, columnIndex, rowIndex);"><i class="fa fa-trash"></i></span>
                                           </span>
 
                                           <span class="element-title">{{ element.title}}</span>
-                                          <span ng-show="elementIndex == column.elements.length - 1" ng-click="chooseModule.open = 1;chooseModule.row = rowIndex; chooseModule.column = columnIndex;" class="ezlb-add-element"><i class="fa fa-plus"></i></span>
+                                          <span data-astroid-tooltip="<?php echo JText::_('TPL_ASTROID_ADD_ELEMENT_COLUMN'); ?>"  ng-show="elementIndex == column.elements.length - 1" ng-click="chooseModule.open = 1;chooseModule.row = rowIndex; chooseModule.column = columnIndex;" class="ezlb-add-element"><i class="fa fa-plus"></i></span>
                                        </div>
                                     </div>
                                  </div> 
@@ -259,7 +259,7 @@ foreach ($items as $i => $item) {
                <br/>
                <br/>
                <div class="text-center">
-                  <span ng-click="addRow()" class="d-inline ezlb-btn"><i class="fa fa-plus"></i> <?php echo JText::_('TPL_ASTROID_MENU_OPTIONS_ADD_ROW'); ?></span>
+                  <span  ng-click="addRow()" class="d-inline ezlb-btn"><i class="fa fa-plus"></i> <?php echo JText::_('TPL_ASTROID_MENU_OPTIONS_ADD_ROW'); ?></span>
                </div>
                <br/>
                <br/>

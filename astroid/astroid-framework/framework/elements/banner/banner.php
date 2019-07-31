@@ -47,8 +47,10 @@ if ($astroid_banner_enabled) {
       $style[] = 'background-image:url(' . $astroid_banner_bgimage . ')';
    }
    $style = !empty($style) ? 'style="' . implode(';', $style) . '"' : '';
-
-   $styletext[] = 'color:' . $astroid_banner_textcolor;
+   $styletext= [];
+   if(!empty($astroid_banner_textcolor)){
+      $styletext[] = 'color:' . $astroid_banner_textcolor;
+   }
    $styletext = !empty($styletext) ? 'style="' . implode(';', $styletext) . '"' : '';
    ?>
    <div <?php echo $style; ?> class="astroid-banner-inner <?php echo!empty($astroid_banner_class) ? ' ' . $astroid_banner_class : ''; ?>">

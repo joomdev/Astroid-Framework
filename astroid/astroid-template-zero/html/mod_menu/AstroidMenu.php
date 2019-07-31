@@ -20,9 +20,6 @@ if ($tagId = $params->get('tag_id', ''))
 <ul class="nav astroidmenu menu menu-module list-inline d-block<?php echo $class_sfx; ?>"<?php echo $id; ?>>
 <?php foreach ($list as $i => &$item)
 {
-	$astroid_menu_options = $item->params->get('astroid_menu_options', []);
-	$astroid_menu_options = (array) $astroid_menu_options;
-
 	$class = 'item-' . $item->id;
 
 	if ($item->id == $default_id)
@@ -67,37 +64,19 @@ if ($tagId = $params->get('tag_id', ''))
 	{
 		$class .= ' parent';
 	}
-	if($astroid_menu_options['badge']){
-		$badgeHtml = '<span class="menu-item-badge" style="background:'.$astroid_menu_options['badge_bgcolor'].';color:'.$astroid_menu_options['badge_color'].'">'.$astroid_menu_options['badge_text'].'</span>';
-	}else{
-		$badgeHtml="";
-	}
-	$astroid_menu_options['showtitle'];
-	if(!$astroid_menu_options['showtitle']){
-		$title = $astroid_menu_options['subtitle'];
-	}else{
-		$title="";
-	}
 
-	if(!empty($astroid_menu_options['icon'])){}
-	echo '<li class="' . $class . '">'.'<span class="'.$astroid_menu_options['icon'].'">'.$title.'</span>';
+	echo '<li class="' . $class . '">';
 
 	switch ($item->type) :
 		case 'separator':
 		case 'component':
 		case 'heading':
 		case 'url':
-			if(!($astroid_menu_options['showtitle']) && !$astroid_menu_options['showtitle']) {
-				require JModuleHelper::getLayoutPath('mod_menu', 'default_' . $item->type);
-			}
-			echo $badgeHtml;
+			require JModuleHelper::getLayoutPath('mod_menu', 'default_' . $item->type);
 			break;
 
 		default:
-			if(!($astroid_menu_options['showtitle']) && !$astroid_menu_options['showtitle']) {
-				require JModuleHelper::getLayoutPath('mod_menu', 'default_url');
-			}
-			echo $badgeHtml;
+			require JModuleHelper::getLayoutPath('mod_menu', 'default_url');
 			break;
 	endswitch;
 

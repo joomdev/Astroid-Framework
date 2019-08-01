@@ -1,4 +1,14 @@
 <?php
+/**
+ * @package   Astroid Framework
+ * @author    JoomDev https://www.joomdev.com
+ * @copyright Copyright (C) 2009 - 2019 JoomDev.
+ * @license https://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
+ * DO NOT MODIFY THIS FILE DIRECTLY AS IT WILL BE OVERWRITTEN IN THE NEXT UPDATE
+ * You can easily override all files under /frontend/ folder.
+ *	Just copy the file to ROOT/templates/YOURTEMPLATE/html/frontend/ folder to create and override
+ */
+// No direct access.
 defined('_JEXEC') or die;
 
 $app = JFactory::getApplication();
@@ -35,9 +45,6 @@ if ($astroid_banner_enabled) {
    $astroid_banner_class = $params->get('astroid_banner_class', '');
    $astroid_banner_wrapper = $params->get('astroid_banner_wrapper', '');
    $astroid_banner_textcolor = $params->get('astroid_banner_textcolor', '');
-
-
-
 
    $style = [];
    if (!empty($astroid_banner_bgcolor)) {

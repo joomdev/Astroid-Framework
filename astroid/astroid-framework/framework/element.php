@@ -517,48 +517,18 @@ class AstroidElement {
          }
       }
 
-      if ($this->type == 'section') {
-         $background_setting = $params->get('background_setting', 0);
-         if ($background_setting && $background_setting == "video") {
-            $background_video = $params->get('background_video', '');
-            if (!empty($background_video)) {
-               $attributes['data-jd-video-bg'] = JURI::root()  .$this->SeletedMedia(). '/' . $background_video;
-               $template = AstroidFramework::getTemplate();
-               $videobgjs = 'vendor/jquery.jdvideobg.js';
-               if(!isset($template->_js[$videobgjs])){
-                  $template->addScript($videobgjs);
-               }
-            }
-         }
-      }
-      if ($this->type == 'column') {
-         $background_setting = $params->get('background_setting', 0);
-         if ($background_setting && $background_setting == "video") {
-            $background_video = $params->get('background_video', '');
-            if (!empty($background_video)) {
-               $attributes['data-jd-video-bg'] = JURI::root()  .$this->SeletedMedia(). '/' . $background_video;
-               $template = AstroidFramework::getTemplate();
-               $videobgjs = 'vendor/jquery.jdvideobg.js';
-               if(!isset($template->_js[$videobgjs])){
-                  $template->addScript($videobgjs);
-               }
-            }
-         }
-      }
-      if ($this->type != 'column' && $this->type != 'section') {
-         $background_setting = $params->get('background_setting', 0);
-         if ($background_setting && $background_setting == "video") {
-            $background_video = $params->get('background_video', '');
-            if (!empty($background_video)) {
-               $attributes['data-jd-video-bg'] = JURI::root() .$this->SeletedMedia(). '/' . $background_video;
-               $template = AstroidFramework::getTemplate();
-               $videobgjs = 'vendor/jquery.jdvideobg.js';
-               if(!isset($template->_js[$videobgjs])){
-                  $template->addScript($videobgjs);
-               }
-            }
-         }
-      }
+	 $background_setting = $params->get('background_setting', 0);
+	 if ($background_setting && $background_setting == "video") {
+		$background_video = $params->get('background_video', '');
+		if (!empty($background_video)) {
+		   $attributes['data-jd-video-bg'] = JURI::root() .$this->SeletedMedia(). '/' . $background_video;
+		   $template = AstroidFramework::getTemplate();
+		   $videobgjs = 'vendor/jquery.jdvideobg.js';
+		   if(!isset($template->_js[$videobgjs])){
+			  $template->addScript($videobgjs);
+		   }
+		}
+	 }
 
       $return = [];
       foreach ($attributes as $key => $value) {

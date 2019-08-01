@@ -689,7 +689,9 @@ class AstroidFrameworkTemplate {
             $class[] = $menu->params->get('pageclass_sfx');
          }
 		 if ($menu->get('alias')) {
+			 // menu alias without -alias appended will be removed in the next version.
             $class[] = $menu->get('alias');
+            $class[] = $menu->get('alias').'-alias';
          }
       }
 	  if (!empty($template->id)) {

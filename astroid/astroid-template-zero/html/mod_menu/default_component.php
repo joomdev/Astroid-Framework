@@ -70,7 +70,7 @@ elseif ($item->browserNav == 2)
 
 
 // Show icon badge here
-	if($astroid_menu_options['badge']){
+	if(isset($astroid_menu_options['badge']) && !empty($astroid_menu_options['badge'])){
 		$badgeHtml = '<sup><span class="menu-item-badge" style="background:'.$astroid_menu_options['badge_bgcolor'].';color:'.$astroid_menu_options['badge_color'].'">'.$astroid_menu_options['badge_text'].'</span></sup>';
 	}else{
 		$badgeHtml="";
@@ -78,8 +78,7 @@ elseif ($item->browserNav == 2)
 // Show icon badge End here
 
 // Show icon showtitle here
-	$astroid_menu_options['showtitle'];
-	if(!$astroid_menu_options['showtitle'] && !empty($astroid_menu_options['showtitle']) ){
+	if(isset($astroid_menu_options['showtitle']) && !empty($astroid_menu_options['showtitle'])){
 		$subtitle = '<small class="nav-subtitle">'.$astroid_menu_options['subtitle'].'</small>';
 	}else{
 		$subtitle="";
@@ -87,23 +86,3 @@ elseif ($item->browserNav == 2)
 // Show icon showtitle End here
 	
 echo '<a href=" '.$item->link.' " title="'.$item->title.'"> <span class="nav-title">'.$iconHtml.$item->title.$badgeHtml.'</span>'.$subtitle.'</a>';
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
-

@@ -205,7 +205,8 @@ class AstroidFrameworkTemplate {
       $sppb = $this->isPageBuilder();
       echo '<div class="astroid-container">';
       $header_mode = $this->params->get('header_mode', 'horizontal');
-      if ($header_mode == 'sidebar') {
+	  $header = $this->params->get('header', TRUE);
+      if ($header && !empty($header_mode) && $header_mode == 'sidebar') {
          $this->loadLayout('header.sidebar');
       } else {
          $this->loadLayout('offcanvas');
@@ -213,10 +214,8 @@ class AstroidFrameworkTemplate {
       $this->loadLayout('mobilemenu');
 
       $content_classes = [];
-
-
-      $mode = $this->params->get('header_mode', 'horizontal');
-      if ($mode == 'sidebar') {
+	
+      if ($header && !empty($header_mode) && $header_mode == 'sidebar') {
          $sidebar_dir = $this->params->get('header_sidebar_menu_mode', 'left');
          $content_classes[] = 'has-sidebar';
          $content_classes[] = 'sidebar-dir-' . $sidebar_dir;

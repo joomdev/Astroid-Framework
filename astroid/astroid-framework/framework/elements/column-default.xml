@@ -4,8 +4,8 @@
       <fields>
          <fieldset name="general-settings" label="TPL_ASTROID_GENERAL_SETTINGS_LABEL" addfieldpath="/libraries/astroid/framework/fields">
             <field type="astroidtext" class="form-control" label="ASTROID_COLUMN_TITLE_LABEL" name="title"></field>
-            <field type="astroidtext" class="form-control" label="ASTROID_CUSTOM_CLASS" name="customclass"></field>
-            <field type="astroidtext" class="form-control" label="ASTROID_CUSTOM_ID" name="customid"></field>
+            <field type="astroidtext" class="form-control" label="ASTROID_CUSTOM_CLASS" description="ASTROID_CUSTOM_CLASS_DESC" name="customclass"></field>
+            <field type="astroidtext" class="form-control" label="ASTROID_CUSTOM_ID" description="ASTROID_CUSTOM_ID_DESC" name="customid"></field>
          </fieldset>
          <fieldset name="design-settings" label="ASTROID_ELEMENT_HEAD_DESIGN_SEETINGS_LABEL" addfieldpath="/libraries/astroid/framework/fields">
             <field name="animation" type="astroidanimations" label="ASTROID_ANIMATION"></field>
@@ -24,7 +24,7 @@
 
             <field ngShow="background_setting =='image'"  name="background_image" type="astroidmedia" label="TPL_ASTROID_BACKGROUND_IMAGE_LABEL"/>
             
-            <field ngShow="background_setting =='image'" name="background_repeat" type="astroidlist" label="TPL_ASTROID_BACKGROUND_REPEAT_LABEL" hint="Background Repeat">
+            <field ngShow="background_setting =='image'" name="background_repeat" type="astroidlist" label="TPL_ASTROID_BACKGROUND_REPEAT_LABEL" hint="TPL_ASTROID_BACKGROUND_REPEAT_LABEL">
                <option value="">JGLOBAL_INHERIT</option>
                <option value="no-repeat">TPL_ASTROID_BACKGROUND_NO_REPEAT_LABEL</option>
                <option value="repeat-x">TPL_ASTROID_BACKGROUND_REPEAT_HORIZONTALLY_LABEL</option>

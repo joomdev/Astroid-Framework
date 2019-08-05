@@ -130,7 +130,7 @@ class plgSystemAstroid extends JPlugin {
                         $options[$font['category']][$value] = $font['family'];
                      }
                      // $return .= '<div class="item" data-value="">Inherit</div>';
-                     $return .= '<div class="ui horizontal divider">System Fonts</div>';
+                     $return .= '<div class="ui horizontal divider">' . JText::_('TPL_ASTROID_TYPOGRAPHY_SYSTEM') . '</div>';
                      foreach (AstroidFrameworkConstants::$system_fonts as $name => $system_font) {
                         $return .= '<div class="item" data-value="' . $name . '">' . $system_font . '</div>';
                      }
@@ -140,13 +140,13 @@ class plgSystemAstroid extends JPlugin {
                      $uploadedFonts = AstroidFrameworkHelper::getUploadedFonts($template);
 
                      if (!empty($uploadedFonts)) {
-                        $return .= '<div class="ui horizontal divider">Custom Fonts</div>';
+                        $return .= '<div class="ui horizontal divider">' . JText::_('TPL_ASTROID_TYPOGRAPHY_CUSTOM') . '</div>';
                         foreach ($uploadedFonts as $uploaded_font) {
                            $return .= '<div class="item" data-value="' . $uploaded_font['id'] . '">' . $uploaded_font['name'] . '</div>';
                         }
                      }
 
-                     $return .= '<div class="ui horizontal divider">Google Fonts</div>';
+                     $return .= '<div class="ui horizontal divider">' . JText::_('TPL_ASTROID_TYPOGRAPHY_GOOGLE') . '</div>';
                      foreach ($options as $group => $fonts) {
                         foreach ($fonts as $fontValue => $font) {
                            $return .= '<div class="item" data-value="' . $fontValue . '">' . $font . '</div>';
@@ -205,7 +205,7 @@ class plgSystemAstroid extends JPlugin {
                   try {
                      $template = $this->app->input->get->get('template', '', 'RAW');
                      AstroidFrameworkHelper::clearCache($template, ['style', 'custom', 'astroid']);
-                     echo \json_encode(['status' => 'success', 'code' => 200, 'message' => 'Cache successfully cleared.']);
+                     echo \json_encode(['status' => 'success', 'code' => 200, 'message' => JText::_('TPL_ASTROID_SYSTEM_MESSAGES_CACHE')]);
                   } catch (\Exception $e) {
                      echo \json_encode(['status' => 'error', 'code' => $e->getCode(), 'message' => $e->getMessage()]);
                   }

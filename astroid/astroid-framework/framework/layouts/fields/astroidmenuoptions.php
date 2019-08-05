@@ -90,7 +90,7 @@ foreach ($items as $i => $item) {
             <div class="ezlb-pop-header">
                <span class="title"><?php echo JText::_('TPL_ASTROID_MENU_SELECT_AN_ITEM'); ?></span>
                <span class="dismiss" ng-click="chooseModule.open = 0; chooseModule.row = null; chooseModule.column = null;"><i class="fa fa-times"></i></span>
-               <input style="float: right;line-height: 60px;" type="text" class="form-control astroid-module-search" ng-model="searchModule" placeholder="Search Module" />
+               <input style="float: right;line-height: 60px;" type="text" class="form-control astroid-module-search" ng-model="searchModule" placeholder="<?php echo JText::_('TPL_ASTROID_MENU_SEARCH_MODULE'); ?>" />
             </div>
             <div class="ezlb-grid-items">
                <div class="row m-0">

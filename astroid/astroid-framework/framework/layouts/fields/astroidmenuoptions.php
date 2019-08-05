@@ -226,7 +226,7 @@ foreach ($items as $i => $item) {
                               <span  data-astroid-tooltip="<?php echo JText::_('TPL_ASTROID_REMOVE_ELEMENT'); ?>" ng-click="removeRow(rowIndex)" class="ezlb-action text-danger"><i class="fa fa-trash"></i></span>
                            </span>
                            <span class="ezlb-toolbar toolbar-left">
-                              <span class="ezlb-action ezlb-row-handle" ng-show="rows.length > 1"><i class="fa fa-arrows-alt"></i></span>
+                              <span class="ezlb-action ezlb-row-handle"  data-astroid-tooltip="<?php echo JText::_('TPL_ASTROID_MOVE_ROW'); ?>" ng-show="rows.length > 1"><i class="fa fa-arrows-alt"></i></span>
                            </span>
                            <div class="col-12">
                               <div class="row" ng-sortable="{draggable: '.ezlb-col',animation: 100}">
@@ -239,7 +239,7 @@ foreach ($items as $i => $item) {
                                        <div ng-repeat="element in column.elements track by $index" ng-init="elementIndex = $index" class="ezlb-element">
 
                                           <span class="ezlb-toolbar">
-                                             <span ng-show="column.elements.length > 1" class="ezlb-action ezlb-element-handle"><i class="fa fa-arrows-alt"></i></span>
+                                             <span ng-show="column.elements.length > 1" class="ezlb-action ezlb-element-handle" data-astroid-tooltip="<?php echo JText::_('TPL_ASTROID_MOVE_ELEMENT'); ?>"><i class="fa fa-arrows-alt"></i></span>
                                              <span  data-astroid-tooltip="<?php echo JText::_('TPL_ASTROID_REMOVE_ELEMENT'); ?>" class="ezlb-action text-danger" ng-click="removeElement(elementIndex, columnIndex, rowIndex);"><i class="fa fa-trash"></i></span>
                                           </span>
 

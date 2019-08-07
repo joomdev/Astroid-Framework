@@ -51,7 +51,7 @@ function modChrome_border_layout($module, &$params, &$attribs) {
 
    // Temporarily store header class in variable
    $headerClass = $params->get('header_class');
-   $headerClass = $headerClass ? ' class="module-title' . htmlspecialchars($headerClass, ENT_COMPAT, 'UTF-8') . '"' : ' class="module-title"';
+   $headerClass = $headerClass ? ' class="module-title ' . htmlspecialchars($headerClass, ENT_COMPAT, 'UTF-8') . '"' : ' class="module-title"';
 
    $content = trim($module->content);
 
@@ -82,7 +82,7 @@ function modChrome_astroidxhtml($module, &$params, &$attribs) {
 
    // Temporarily store header class in variable
    $headerClass = $params->get('header_class');
-   $headerClass = $headerClass ? ' class="module-title' . htmlspecialchars($headerClass, ENT_COMPAT, 'UTF-8') . '"' : ' class="module-title"';
+   $headerClass = $headerClass ? ' class="module-title ' . htmlspecialchars($headerClass, ENT_COMPAT, 'UTF-8') . '"' : ' class="module-title"';
 
    $content = trim($module->content);
 

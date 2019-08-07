@@ -100,6 +100,8 @@ $astroid_shortcut_enable = $plugin_params->get('astroid_shortcut_enable', 1);
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
       <![endif]-->
+      <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/mousetrap/1.4.6/mousetrap.min.js"></script>
       <!--[if IE]><script src="<?php echo JURI::root(); ?>media/system/js/html5fallback.js?<?php echo $document->getMediaVersion(); ?>"></script><![endif]-->
       <!--[if IE]><script src="<?php echo JURI::root(); ?>media/system/js/polyfill.filter.js?<?php echo $document->getMediaVersion(); ?>"></script><![endif]-->
       <!--[if IE]><script src="<?php echo JURI::root(); ?>media/jui/js/html5.js?<?php echo $document->getMediaVersion(); ?>"></script><![endif]-->
@@ -144,6 +146,9 @@ $astroid_shortcut_enable = $plugin_params->get('astroid_shortcut_enable', 1);
             echo $js;
          }
          ?>
+      </script>
+      <script>
+         var astroid_shortcut_enable = <?php echo $astroid_shortcut_enable ? 'true' : 'false'; ?>;
       </script>
    </head>
    <body ng-app="astroid-framework" id="astroid-framework" ng-controller="astroidController">
@@ -263,7 +268,7 @@ $astroid_shortcut_enable = $plugin_params->get('astroid_shortcut_enable', 1);
                </nav>-->
                <div class="container-fluid">
                   <input type="file" accept=".json" id="astroid-settings-import" class="d-none" />
-                  <form id="astroid-form" action="<?php echo $save_url; ?>" method="POST">
+                  <form id="astroid-form" action="<?php echo $save_url; ?>" method="POST"> 
                      <?php echo JHtml::_('form.token'); ?>
                      <input type="hidden" id="export-form" name="export_settings" value="0" />
                      <div class="tab-content">
@@ -379,12 +384,12 @@ $astroid_shortcut_enable = $plugin_params->get('astroid_shortcut_enable', 1);
                      </a>
                   </li>
                   <li class="float-left">
-                     <a href="<?php echo JURI::root(); ?>" target="_blank" class="astroid-sidebar-btn d-flex align-items-center bg-light text-dark"><div><i class="fa fa-external-link-alt"></i><span><?php echo JText::_('ASTROID_TEMPLATE_PREVIEW'); ?></span></div></a>
+                     <a id="show-previews" href="<?php echo JURI::root(); ?>" target="_blank" class="astroid-sidebar-btn d-flex align-items-center bg-light  text-dark"><div><i class="fa fa-external-link-alt"></i><span><?php echo JText::_('ASTROID_TEMPLATE_PREVIEW'); ?></span></div></a>
                   </li>
                </ul>
                <div class="col p-0 template-title"><?php echo $template->title; ?></div>
                <ul class="list-inline m-0 col-auto p-0">
-                  <li class="float-left"><a title="<?php echo JText::_('TPL_ASTROID_BACK_TO_JOOMLA'); ?>" href="<?php echo $joomla_url; ?>" class="astroid-sidebar-btn astroid-back-btn d-flex align-items-center"><div><i class="fa fa-times"></i><span><?php echo JText::_('ASTROID_TEMPLATE_CLOSE'); ?></span></div></a></li>
+                  <li class="float-left"><a id="close-editor" title="<?php echo JText::_('TPL_ASTROID_BACK_TO_JOOMLA'); ?>" href="<?php echo $joomla_url; ?>" class="astroid-sidebar-btn astroid-back-btn d-flex align-items-center"><div><i class="fa fa-times"></i><span><?php echo JText::_('ASTROID_TEMPLATE_CLOSE'); ?></span></div></a></li>
                </ul>
                
             </div>
@@ -409,9 +414,6 @@ $astroid_shortcut_enable = $plugin_params->get('astroid_shortcut_enable', 1);
             </div>
          </div>
       </div>
-      <!-- Getting value from astroid plugin then JS is using to enable and disable Keyboard shortcut  -->
-         <input type="hidden" id="astroid_shortcut_enable" value="<?php echo $astroid_shortcut_enable == '1'? 'true': 'false'; ?>">
-       <!-- End  -->
       <?php
       $scripts = [];
       $scripts[] = $assets . 'vendor' . '/' . 'jquery' . '/' . 'jquery-3.2.1.min.js?v=' . $document->getMediaVersion();
@@ -521,5 +523,7 @@ $column_sizes = ['inherit', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '
          ?>
       </script>
       <a href="#" class="d-none" data-template-name="<?php echo JFilterOutput::stringURLSafe($template->title); ?>" id="export-link">Export Settings</a>
+   
+    
    </body>
 </html>

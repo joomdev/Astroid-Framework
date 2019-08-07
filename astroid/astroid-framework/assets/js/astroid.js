@@ -20,11 +20,17 @@ var spectrumConfig = {
    showButtons: false,
    preferredFormat: "rgb",
    localStorageKey: "astroid.colors",
-   palette: [["#fff", "#f8f9fa", "#dee2e6", "#adb5bd", "#495057", "#343a40", "#212529", "#000"], ["#007bff", "#8445f7", "#ff4169", "#c4183c", "#fb7906", "#ffb400", "#17c671", "#00b8d8"]],
+   palette: [
+      ["#fff", "#f8f9fa", "#dee2e6", "#adb5bd", "#495057", "#343a40", "#212529", "#000"],
+      ["#007bff", "#8445f7", "#ff4169", "#c4183c", "#fb7906", "#ffb400", "#17c671", "#00b8d8"]
+   ],
    change: function change(color) {}
 };
 
-var dropdownConfig = {placeholder: false, fullTextSearch: true};
+var dropdownConfig = {
+   placeholder: false,
+   fullTextSearch: true
+};
 
 var rangeConfig = {};
 
@@ -251,8 +257,24 @@ var AstroidAdmin = function AstroidAdmin() {
 
    // Scrollbar functions
    this.initScroll = function () {
-      $('#astroid-sidebar-wrapper').niceScroll({autohidemode: 'leave', cursoropacitymin: 0.4, background: 'rgba(255,255,255,0.5)', cursorcolor: '#4A5768', cursorwidth: '7px', cursorborderradius: 0, cursorborder: 'none'});
-      $('body').niceScroll({autohidemode: 'leave', cursoropacitymin: 0.4, background: 'rgba(255,255,255,0.5)', cursorcolor: '#4A5768', cursorwidth: '7px', cursorborderradius: 0, cursorborder: 'none'});
+      $('#astroid-sidebar-wrapper').niceScroll({
+         autohidemode: 'leave',
+         cursoropacitymin: 0.4,
+         background: 'rgba(255,255,255,0.5)',
+         cursorcolor: '#4A5768',
+         cursorwidth: '7px',
+         cursorborderradius: 0,
+         cursorborder: 'none'
+      });
+      $('body').niceScroll({
+         autohidemode: 'leave',
+         cursoropacitymin: 0.4,
+         background: 'rgba(255,255,255,0.5)',
+         cursorcolor: '#4A5768',
+         cursorwidth: '7px',
+         cursorborderradius: 0,
+         cursorborder: 'none'
+      });
    };
 
    this.initScrollSpy = function () {
@@ -302,7 +324,15 @@ var AstroidAdmin = function AstroidAdmin() {
    };
 
    this.livePreviewScrolls = function () {
-      $('#astroid-content-wrapper').niceScroll({autohidemode: 'leave', cursoropacitymin: 0.4, background: 'rgba(243,243,243,1)', cursorcolor: '#4A5768', cursorwidth: '7px', cursorborderradius: 0, cursorborder: 'none'});
+      $('#astroid-content-wrapper').niceScroll({
+         autohidemode: 'leave',
+         cursoropacitymin: 0.4,
+         background: 'rgba(243,243,243,1)',
+         cursorcolor: '#4A5768',
+         cursorwidth: '7px',
+         cursorborderradius: 0,
+         cursorborder: 'none'
+      });
       Admin.refreshPreviewScrolls();
    };
 
@@ -397,10 +427,7 @@ var AstroidAdmin = function AstroidAdmin() {
       });
       $('#astroid-settings-import').on('change', function () {
          var input = document.getElementById('astroid-settings-import');
-         if (!input) {
-         } else if (!input.files) {
-         } else if (!input.files[0]) {
-         } else {
+         if (!input) {} else if (!input.files) {} else if (!input.files[0]) {} else {
             var file = input.files[0];
             var reader = new FileReader();
             reader.addEventListener("load", function () {
@@ -429,7 +456,9 @@ var AstroidAdmin = function AstroidAdmin() {
       $('#export-options').addClass('disabled');
       $('#import-options').addClass('disabled');
       var _token = $('#astroid-admin-token').val();
-      var _data = {params: _params};
+      var _data = {
+         params: _params
+      };
       _data[_token] = 1;
       $.ajax({
          method: "POST",
@@ -473,15 +502,15 @@ var AstroidAdmin = function AstroidAdmin() {
       var seconds = date.getSeconds();
       var exportName = prompt("Please enter your desired name", "astroid-zero-template");
       if (exportName === "") {
-           Admin.notify("Can't be empty", "error");
-            return false
+         Admin.notify("Can't be empty", "error");
+         return false
       } else if (exportName) {
-            var re = /^[0-9a-zA-Z].*/;
-            if (!re.test(exportName) || /\s/.test(exportName)) {
-               Admin.notify("Invalid", "error");
-               return false
-         }else{
-             var exportFileDefaultName = exportName + ' ' + (year + "-" + month + "-" + day + " " + hours + ":" + minutes + ":" + seconds) + '.json';
+         var re = /^[0-9a-zA-Z].*/;
+         if (!re.test(exportName) || /\s/.test(exportName)) {
+            Admin.notify("Invalid", "error");
+            return false
+         } else {
+            var exportFileDefaultName = exportName + ' ' + (year + "-" + month + "-" + day + " " + hours + ":" + minutes + ":" + seconds) + '.json';
          }
       }
       $('#export-link').attr('href', dataUri);
@@ -495,9 +524,7 @@ var AstroidAdmin = function AstroidAdmin() {
          _this.saved = false;
          try {
             Admin.refreshScroll();
-         } catch (e) {
-         }
-         ;
+         } catch (e) {};
       });
    };
 
@@ -523,7 +550,10 @@ var AstroidAdmin = function AstroidAdmin() {
    // Fields functions
    // fields
    this.initSelect = function () {
-      $('.astroid-select-ui').addClass('search selection').dropdown({placeholder: false, fullTextSearch: true});
+      $('.astroid-select-ui').addClass('search selection').dropdown({
+         placeholder: false,
+         fullTextSearch: true
+      });
    };
 
    this.initSelectGrouping = function () {
@@ -633,7 +663,7 @@ var AstroidAdmin = function AstroidAdmin() {
          $('.astroid-loading').fadeIn(500);
       } else {
          $('.astroid-loading').fadeOut(500);
-      }  
+      }
    };
 };
 
@@ -643,27 +673,60 @@ var Admin = new AstroidAdmin();
 (function ($) {
    var docReady = function docReady() {
       Admin.init();
-      var astroid_shortcut_enable = $("#astroid_shortcut_enable").val();
-      var OnSave = function(enable){
-         $(document).on('keydown', function ( e ) {
+      var OnSave = function () {
+         $(document).on('keydown', function (e) {
+            const _popsave = $('#element-settings-save');
+
+
+
             // You may replace `s` with whatever key you want
-            if (enable =="true" && (e.metaKey || e.ctrlKey) && ( String.fromCharCode(e.which).toLowerCase() === 's') ) {
-               $("#astroid-form").submit();
+            if ((e.metaKey || e.ctrlKey) && (String.fromCharCode(e.which).toLowerCase() === 's')) {
+               if (_popsave.length) {
+                  _popsave.click();
+                  setTimeout(function(){
+                     $("#astroid-form").submit();
+                  },100);
+               } else {
+                  $("#astroid-form").submit();
+               }
                return false
             }
          });
       }
-      var OnClear = function(enable){
-         $(document).on('keydown', function ( e ) {
+      var OnClear = function () {
+         $(document).on('keydown', function (e) {
             var hasFocus = $("input,textarea").is(":focus");
-            if(enable =="true" && hasFocus == false && e.keyCode == 46) {
+            if (hasFocus == false && e.keyCode == 46) {
                $("#clear-cache").click();
                return false
             }
          });
       }
-      OnSave(astroid_shortcut_enable);
-      OnClear(astroid_shortcut_enable);
+
+      var OnPreview = function () {
+         $(document).on('keydown', function (e) {
+            if ((e.metaKey || e.ctrlKey) && (String.fromCharCode(e.which).toLowerCase() === 'p')) {
+               var _href = $("#show-previews").attr('href');
+               window.open(_href);
+            }
+         });
+      }
+      var OnClose = function () {
+         $(document).on('keydown', function (e) {
+            var _close = $('#element-settings-close');
+
+            if (_close.length && e.keyCode == 27) {
+               _close.click();
+            }
+         });
+      }
+
+      if (astroid_shortcut_enable) {
+         OnSave();
+         OnClear();
+         OnClose();
+         OnPreview();
+      }
 
       getGoogleFonts();
       initAstroidUploader();
@@ -792,8 +855,7 @@ var Admin = new AstroidAdmin();
          $(_range).siblings('.astroid-range-value').css('margin-left', _left + 'px');
          $(_range).siblings('.astroid-range-value').text(_pre + _value + _post);
          $(_range).siblings('.astroid-range-min-value').text(_pre + _value + _post);
-      } catch (e) {
-      }
+      } catch (e) {}
    };
 
    var initAstroidFontSelector = function initAstroidFontSelector() {

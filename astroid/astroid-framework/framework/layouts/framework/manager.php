@@ -44,7 +44,7 @@ $semanticComponents = ['icon', 'transition', 'api', 'dropdown'];
 // adding styles
 $stylesheets = [];
 $stylesheets[] = 'https://fonts.googleapis.com/css?family=Nunito:300,400,600';
-$stylesheets[] = 'https://use.fontawesome.com/releases/v' . AstroidFrameworkConstants::$fontawesome_version . '/css/all.css';
+$stylesheets[] = $assets.'fontawesome/css/font-awesome.css';
 
 foreach ($semanticComponents as $semanticComponent) {
    $semanticComponentPath = 'vendor' . '/' . 'semantic-ui' . '/' . 'components' . '/' . $semanticComponent . '.min.css';
@@ -100,8 +100,8 @@ $astroid_shortcut_enable = $plugin_params->get('astroid_shortcut_enable', 1);
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
       <![endif]-->
-      <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-      <script src="//cdnjs.cloudflare.com/ajax/libs/mousetrap/1.4.6/mousetrap.min.js"></script>
+      <script src="<?php echo $assets;?>js/jquery.min.js"></script>
+      <script src="<?php echo $assets;?>js/mousetrap.min.js"></script>
       <!--[if IE]><script src="<?php echo JURI::root(); ?>media/system/js/html5fallback.js?<?php echo $document->getMediaVersion(); ?>"></script><![endif]-->
       <!--[if IE]><script src="<?php echo JURI::root(); ?>media/system/js/polyfill.filter.js?<?php echo $document->getMediaVersion(); ?>"></script><![endif]-->
       <!--[if IE]><script src="<?php echo JURI::root(); ?>media/jui/js/html5.js?<?php echo $document->getMediaVersion(); ?>"></script><![endif]-->

@@ -41,6 +41,7 @@ class AstroidFrameworkTemplate {
       $language = JFactory::getApplication()->getLanguage();
       $this->language = $language->getTag();
       $this->direction = $language->isRtl() ? 'rtl' : 'ltr';
+      $this->presets = $this->getPresets();
       $this->initAgent();
       $this->addMeta();
    }
@@ -906,6 +907,50 @@ class AstroidFrameworkTemplate {
          $document->addStyleSheet("https://use.fontawesome.com/releases/v".AstroidFrameworkConstants::$fontawesome_version."/css/all.css");
       }
    }
+   
+   public function getPresets() {
+      $presets_path = JPATH_SITE . "/templates/{$this->template}/astroid/presets/";
+      if (!file_exists($presets_path)) {
+         return [];
+      }
+      $files = array_filter(glob($presets_path . '/' . '*.json'), 'is_file');
+      $presets = [];
+      foreach ($files as $file) {
+         $json = file_get_contents($file);
+         $data = \json_decode($json, true);
+         $preset = ['title' => pathinfo($file)['filename'], 'colors' => [], 'preset' => [], 'thumbnail' => '', 'name' => pathinfo($file)['filename']];
+         if (isset($data['title']) && !empty($data['title'])) {
+            $preset['title'] = \JText::_($data['title']);
+         }
+         if (isset($data['thumbnail']) && !empty($data['thumbnail'])) {
+            $preset['thumbnail'] = \JURI::root() . $data['thumbnail'];
+         }
+         if (isset($data['colors'])) {
+            $colors = [];
+            $properties = [];
+            foreach ($data['colors'] as $prop => $color) {
+               if (is_array($color)) {
+                  foreach ($color as $subprop => $color2) {
+                     if (!empty($color2)) {
+                        $properties[$prop][$subprop] = $color2;
+                        $colors[] = $color;
+                     }
+                  }
+               } else {
+                  if (!empty($color)) {
+                     $properties[$prop] = $color;
+                     $colors[] = $color;
+                  }
+               }
+            }
+            $preset['colors'] = array_unique($colors);
+            $preset['preset'] = $properties;
+         }
+         $presets[] = $preset;
+      }
+      return $presets;
+   }
+
 }
 
 class AstroidLog {

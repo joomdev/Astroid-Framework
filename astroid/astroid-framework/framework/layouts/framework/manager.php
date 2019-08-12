@@ -121,6 +121,7 @@ $astroid_shortcut_enable = $plugin_params->get('astroid_shortcut_enable', 1);
          var TEMPLATE_NAME = '<?php echo $template->template; ?>';
          var SYSTEM_FONTS = <?php echo json_encode(array_keys(AstroidFrameworkConstants::$system_fonts)); ?>;
          var LIBRARY_FONTS = <?php echo json_encode(array_keys(AstroidFrameworkHelper::getUploadedFonts($template->template))); ?>;
+         var TEMPLATE_PRESETS = <?php echo \json_encode($template->presets); ?>;
       </script>
       <style>
         .falling-astroid-container{position:fixed;width:100%;height:100%;top:0;left:0;background:rgba(0,0,0,.7)!important;z-index:9999999;transition:.2s linear}.falling-astroid{position:absolute;width:100%;height:100%;top:0;left:0;transform:rotate(-45deg)}.falling-astroid span{position:absolute;height:20%;width:2px;background:#999}.falling-astroid span:nth-child(1){left:20%;animation:lf .6s linear infinite;animation-delay:-5s}.falling-astroid span:nth-child(2){left:40%;animation:lf2 .8s linear infinite;animation-delay:-1s}.falling-astroid span:nth-child(3){left:60%;animation:lf3 .6s linear infinite}.falling-astroid span:nth-child(4){left:80%;animation:lf4 .5s linear infinite;animation-delay:-3s}@keyframes lf{0%{top:200%}to{top:-200%;opacity:0}}@keyframes lf2{0%{top:200%}to{top:-200%;opacity:0}}@keyframes lf3{0%{top:200%}to{top:-100%;opacity:0}}@keyframes lf4{0%{top:200%}to{top:-100%;opacity:0}}@keyframes fazer1{0%{top:0}to{top:-120px;opacity:0;transform:scale(.5)}}@keyframes fazer2{0%{top:0}to{top:-150px;opacity:0;transform:scale(.4)}}@keyframes fazer3{0%{top:0}to{top:-100px;opacity:0;transform:scale(.3)}}@keyframes fazer4{0%{top:0}to{top:-200px;opacity:0;transform:scale(.2)}}@keyframes speeder{0%,90%{transform:translate(2px,1px) rotate(0)}10%{transform:translate(-1px,-3px) rotate(-1deg)}20%{transform:translate(-2px) rotate(1deg)}30%{transform:translate(1px,2px) rotate(0)}40%{transform:translate(1px,-1px) rotate(1deg)}50%{transform:translate(-1px,3px) rotate(-1deg)}60%{transform:translate(-1px,1px) rotate(0)}70%{transform:translate(3px,1px) rotate(-1deg)}80%{transform:translate(-2px,-1px) rotate(1deg)}to{transform:translate(1px,-2px) rotate(-1deg)}}.falling-astroid-imgs{transform:rotate(-45deg);position:absolute;z-index:1;top:30px;left:10px}.falling-astroid-img{background:url(<?php echo JURI::root(); ?>media/astroid/assets/images/astroid/1.png) center no-repeat;background-size:contain!important;width:90px;height:90px}.falling-astroid-logo{animation:speeder .4s linear infinite;width:100px;height:100px;position:absolute;top:50%;left:50%;margin-left:-75px;margin-top:-75px}.falling-astroid-imgs span{position:absolute;background-size:contain!important}.falling-astroid-imgs span:nth-child(1){background:url(<?php echo JURI::root(); ?>media/astroid/assets/images/astroid/2.png) center no-repeat;width:40px;height:40px;left:-50px;animation:fazer1 .6s linear infinite}.falling-astroid-imgs span:nth-child(2){background:url(<?php echo JURI::root(); ?>media/astroid/assets/images/astroid/3.png) center no-repeat;width:35px;height:35px;left:40px;top:-40px;animation:fazer2 .4s linear infinite}.falling-astroid-imgs span:nth-child(3){background:url(<?php echo JURI::root(); ?>media/astroid/assets/images/astroid/4.png) center no-repeat;width:30px;height:30px;left:-10px;top:-40px;animation:fazer3 .4s linear infinite;animation-delay:-1s}.falling-astroid-imgs span:nth-child(4){background:url(<?php echo JURI::root(); ?>media/astroid/assets/images/astroid/3.png) center no-repeat;width:20px;height:20px;left:0;top:-80px;animation:fazer4 1s linear infinite;animation-delay:-1s}.falling-astroid-imgs span:nth-child(5){background:url(<?php echo JURI::root(); ?>media/astroid/assets/images/astroid/4.png) center no-repeat;width:20px;height:20px;left:-30px;top:-25px;animation:fazer1 .2s linear infinite}.falling-astroid-imgs span:nth-child(6){background:url(<?php echo JURI::root(); ?>media/astroid/assets/images/astroid/3.png) center no-repeat;width:10px;height:10px;left:-50px;top:-90px;animation:fazer4 1s linear infinite;animation-delay:-1s}.falling-astroid-imgs span:nth-child(7){background:url(<?php echo JURI::root(); ?>media/astroid/assets/images/astroid/4.png) center no-repeat;width:15px;height:15px;left:25px;top:-25px;transform:rotate(-45deg);animation:fazer2 .4s linear infinite}.falling-astroid-imgs span:nth-child(8){background:url(<?php echo JURI::root(); ?>media/astroid/assets/images/astroid/9.png) center no-repeat;width:10px;height:15px;left:-50px;top:-60px;animation:fazer3 .4s linear infinite;animation-delay:-1s}
@@ -241,6 +242,11 @@ $astroid_shortcut_enable = $plugin_params->get('astroid_shortcut_enable', 1);
                      </li>
                      <?php $active = false; ?>
                   <?php } ?>
+                  <li class="nav-item row">
+                     <a id="export-preset" ng-click="exportPreset()" class="nav-link col-12" href="javascript:void(0);">
+                        <i class="fa fa-palette"></i>&nbsp;<?php echo JText::_('TPL_ASTROID_EXPORT_PRESET'); ?>
+                     </a>
+                  </li>
                   <li class="nav-item row">
                      <a id="export-options" class="nav-link col-12" href="javascript:void(0);">
                         <i class="fa fa-download"></i>&nbsp;<?php echo JText::_('TPL_ASTROID_EXPORT'); ?>
@@ -515,6 +521,61 @@ $column_sizes = ['inherit', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '
    }
    ?>
 <?php } ?>
+   
+      $scope.chosePreset = function (_name) {
+         var _preset = null;
+         TEMPLATE_PRESETS.forEach(function(preset){
+            if(preset.name==_name){
+               _preset = Object.assign({}, preset);
+               return false;
+            }
+         });
+         if(_preset != null){
+            for (var key in _preset.preset) {
+               if (_preset.preset.hasOwnProperty(key)) {
+                   if(typeof _preset.preset[key] == 'object'){
+                      for (var subkey in _preset.preset[key]) {
+                        if (_preset.preset[key].hasOwnProperty(subkey)) {
+                           $scope['params_' + key + '_' + subkey] = _preset.preset[key][subkey];
+                        }
+                      }
+                   }else{
+                     $scope[key] = _preset.preset[key];
+                   }
+               }
+            }
+         }
+      }
+      
+      $scope.exportPreset = function(){
+         
+         var title = prompt("Please enter your desired name", "My Preset");
+         
+         if(title==""){
+            return false;
+         }
+         
+         var _colors = {};
+         presetProps.forEach(function(prop){
+            if(prop.split('.').length > 1){
+               var param = prop.split('.');
+               _colors[param[0]] = {};
+               _colors[param[0]][param[1]] = $scope['params_' + param[0] + '_' + param[1]];
+            }else{
+               _colors[prop] = $scope[prop];
+            }
+         });
+         
+         
+         var _preset = {'title': title, 'thumbnail': '', colors: _colors};
+         
+         var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(_preset));
+         var dlAnchorElem = document.getElementById('downloadAnchorElem');
+         dlAnchorElem.setAttribute("href", dataStr);
+         dlAnchorElem.setAttribute("download", Admin.slugify(title) + ".json");
+         dlAnchorElem.click();
+      }
+   
       });
       </script>
       <?php
@@ -530,6 +591,7 @@ $column_sizes = ['inherit', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '
          ?>
       </script>
       <a href="#" class="d-none" data-template-name="<?php echo JFilterOutput::stringURLSafe($template->title); ?>" id="export-link">Export Settings</a>
+      <a href="#" class="d-none" id="downloadAnchorElem">Export Preset</a>
    
     
    </body>

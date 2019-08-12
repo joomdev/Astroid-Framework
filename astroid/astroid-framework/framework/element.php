@@ -354,7 +354,9 @@ class AstroidElement {
       }
       $responsive_utilities = [];
       foreach ($responsive as $responsive_utility) {
-         $responsive_utilities[$responsive_utility['name']] = $responsive_utility['value'];
+         if (isset($responsive_utility['name'])) {
+            $responsive_utilities[$responsive_utility['name']] = $responsive_utility['value'];
+         }
       }
       $sizes = ['xs', 'sm', 'md', 'lg', 'xl'];
       foreach ($sizes as $size) {

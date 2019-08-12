@@ -183,6 +183,7 @@ class plgSystemAstroid extends JPlugin {
                   }
                   $id = $this->app->input->get('id', NULL, 'INT');
                   $template = AstroidFrameworkHelper::getTemplateById($id);
+                  AstroidFramework::setTemplate($template);
                   if (!defined('ASTROID_TEMPLATE_NAME')) {
                      define('ASTROID_TEMPLATE_NAME', $template->template);
                   }

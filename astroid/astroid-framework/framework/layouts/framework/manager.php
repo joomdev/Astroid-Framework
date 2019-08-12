@@ -75,6 +75,10 @@ foreach ($template_forms as $fname) {
    $form->loadFile($fname, false);
 }
 
+JPluginHelper::importPlugin('astroid');
+$dispatcher = JDispatcher::getInstance();
+$dispatcher->trigger('onAfterAstroidFormLoad', [&$form]);
+
 
 $fieldsets = AstroidFrameworkHelper::getAstroidFieldsets($form);
 

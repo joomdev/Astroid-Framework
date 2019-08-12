@@ -675,7 +675,7 @@ var Admin = new AstroidAdmin();
       Admin.init();
       var OnSave = function () {
          $(document).on('keydown', function (e) {
-            const _popsave = $('#element-settings-save');
+            var _popsave = $('#element-settings-save');
 
 
 

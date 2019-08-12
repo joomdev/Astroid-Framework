@@ -58,7 +58,13 @@ $stylesheets[] = $assets . 'css' . '/' . 'admin.css?v=' . $document->getMediaVer
 $stylesheets[] = $assets . 'css' . '/' . 'animate.min.css?v=' . $document->getMediaVersion();
 // getting form
 
+JPluginHelper::importPlugin('astroid');
+$dispatcher = JDispatcher::getInstance();
+
 $form = new JForm('template');
+
+$dispatcher->trigger('onBeforeAstroidFormLoad', [&$template, &$form]);
+
 $form_dir = JPATH_LIBRARIES . '/' . 'astroid' . '/' . 'framework' . '/' . 'options';
 $forms = array_filter(glob($form_dir . '/' . '*.xml'), 'is_file');
 JForm::addFormPath($form_dir);
@@ -75,9 +81,8 @@ foreach ($template_forms as $fname) {
    $form->loadFile($fname, false);
 }
 
-JPluginHelper::importPlugin('astroid');
-$dispatcher = JDispatcher::getInstance();
-$dispatcher->trigger('onAfterAstroidFormLoad', [&$form]);
+
+$dispatcher->trigger('onAfterAstroidFormLoad', [&$template, &$form]);
 
 
 $fieldsets = AstroidFrameworkHelper::getAstroidFieldsets($form);

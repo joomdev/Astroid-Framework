@@ -943,6 +943,7 @@ class AstroidFrameworkTemplate {
                   }
                }
             }
+            $colors = array_keys(array_count_values($colors));
             $preset['colors'] = array_unique($colors);
             $preset['preset'] = $properties;
          }

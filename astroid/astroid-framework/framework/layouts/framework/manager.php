@@ -242,11 +242,13 @@ $astroid_shortcut_enable = $plugin_params->get('astroid_shortcut_enable', 1);
                      </li>
                      <?php $active = false; ?>
                   <?php } ?>
-                  <li class="nav-item row">
-                     <a id="export-preset" ng-click="exportPreset()" class="nav-link col-12" href="javascript:void(0);">
-                        <i class="fa fa-palette"></i>&nbsp;<?php echo JText::_('TPL_ASTROID_EXPORT_PRESET'); ?>
-                     </a>
-                  </li>
+                  <?php if ($application->input->get('export-preset', 0, 'INT')) { ?>
+                     <li class="nav-item row">
+                        <a id="export-preset" ng-click="exportPreset()" class="nav-link col-12" href="javascript:void(0);">
+                           <i class="fa fa-palette"></i>&nbsp;<?php echo JText::_('TPL_ASTROID_EXPORT_PRESET'); ?>
+                        </a>
+                     </li>
+                  <?php } ?>
                   <li class="nav-item row">
                      <a id="export-options" class="nav-link col-12" href="javascript:void(0);">
                         <i class="fa fa-download"></i>&nbsp;<?php echo JText::_('TPL_ASTROID_EXPORT'); ?>
@@ -296,7 +298,7 @@ $astroid_shortcut_enable = $plugin_params->get('astroid_shortcut_enable', 1);
                               $groups = [];
                               foreach ($fields as $key => $field) {
                                  if ($field->type == 'astroidgroup') {
-                                    $groups[$field->fieldname] = ['title' => $field->getAttribute('title', ''), 'icon' => $field->getAttribute('icon', ''), 'description' => $field->getAttribute('description', ''), 'fields' => []];
+                                    $groups[$field->fieldname] = ['title' => $field->getAttribute('title', ''), 'icon' => $field->getAttribute('icon', ''), 'description' => $field->getAttribute('description', ''), 'fields' => [], 'help' => $field->getAttribute('help', '')];
                                  }
                               }
                               $groups['none'] = ['fields' => []];
@@ -318,8 +320,8 @@ $astroid_shortcut_enable = $plugin_params->get('astroid_shortcut_enable', 1);
                                  <div style="padding-top:20px" id="astroid-form-fieldset-section-<?php echo $groupname; ?>">
                                     <?php
                                     if (!empty($group['title']) && !empty($group['fields'])) {
-                                       echo '<h3 class="'.(!empty($group['description']) ? 'mb-0' : '').'">' . (!empty($group['icon']) ? '<i class="' . $group['icon'] . '"></i>&nbsp;' : '') . JText::_($group['title']) . '</h3>';
-                                       if (!empty($group['description'])) {
+                                       echo '<h3 class="astroid-group-title ' . (!empty($group['description']) ? 'mb-0' : '') . '">' . (!empty($group['icon']) ? '<i class="' . $group['icon'] . '"></i>&nbsp;' : '') . JText::_($group['title']) . '' . (!empty($group['help']) ? ' <a target="_blank" href="' . $group['help'] . '"><span class="fa fa-question-circle"></span></a>' : '') . '</h3>';
+               if (!empty($group['description'])) {
                                           echo '<p><small>' . JText::_($group['description']) . '</small></p>';
                                        }
                                     }
@@ -338,7 +340,7 @@ $astroid_shortcut_enable = $plugin_params->get('astroid_shortcut_enable', 1);
                                              ?>
                                              <div<?php echo!empty($ngHide) ? ' ng-hide="' . $ngHide . '"' : ''; ?><?php echo!empty($ngShow) ? ' ng-show="' . $ngShow . '"' : ''; ?> class="form-group">
                                                 <div class="row">
-                                                   <?php if ($field->label !== false) { ?>
+                                                   <?php if (trim(strip_tags($field->label)) !== false && trim(strip_tags($field->label)) !== 'false') { ?>
                                                       <div class="col-sm-5">
                                                          <label for="<?php echo $field->id; ?>" class="astroid-label"><?php echo strip_tags($field->label); ?></label>
                                                          <?php if (!empty($field->getAttribute('description'))) { ?>
@@ -545,6 +547,9 @@ $column_sizes = ['inherit', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '
                }
             }
          }
+         $('.astroid-presets-option').removeClass('active');
+         $('.astroid-presets-option-' + _name).addClass('active');
+         Admin.notify('<?php echo \JText::_('TPL_ASTROID_SYSTEM_MESSAGES_PRESET'); ?>', 'success');
       }
       
       $scope.exportPreset = function(){

@@ -923,7 +923,7 @@ class AstroidFrameworkTemplate {
             $preset['title'] = \JText::_($data['title']);
          }
          if (isset($data['thumbnail']) && !empty($data['thumbnail'])) {
-            $preset['thumbnail'] = \JURI::root() . $data['thumbnail'];
+            $preset['thumbnail'] = \JURI::root() . 'templates/' . $this->template . '/' . $data['thumbnail'];
          }
          if (isset($data['colors'])) {
             $colors = [];

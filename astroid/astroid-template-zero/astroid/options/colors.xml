@@ -11,7 +11,7 @@
 			
 			<field type="astroidgroup" name="off_canvas" title="TPL_ASTROID_COLOURS_OFF_CANVAS_TITLE_LABEL" description="TPL_ASTROID_COLOURS_OFF_CANVAS_TITLE_DESC" />
 
-			<field astroidgroup="presets" name="template_preset" type="astroidpresets" label="Preset" description="">
+			<field astroidgroup="presets" name="template_preset" type="astroidpresets" label="false" description="">
 			</field>
 			<field astroidgroup="body" name="body_background_color" type="astroidcolor" large="true" label="TPL_ASTROID_BACKGROUND_COLOR_LABEL" description="TPL_ASTROID_BODY_COLOR_BOX_LAYPUT_BACKGROUND_DESC">
 			</field>

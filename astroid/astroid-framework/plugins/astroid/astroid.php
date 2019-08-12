@@ -351,4 +351,11 @@ class plgSystemAstroid extends JPlugin {
 //      return $list;
    }
 
+   public function onAfterAstroidFormLoad($template, $form) {
+      if (!count($template->presets)) {
+         $form->removeField('template_preset', 'params');
+         $form->removeField('presets', 'params');
+      }
+   }
+
 }

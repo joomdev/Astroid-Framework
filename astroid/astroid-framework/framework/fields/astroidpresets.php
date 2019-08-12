@@ -44,10 +44,13 @@ class JFormFieldAstroidpresets extends JFormField {
    protected function getInput() {
       $temp = AstroidFramework::getTemplate();
       $presets = $temp->presets;
+      if (!count($presets)) {
+         return false;
+      }
       $html = [];
       $html[] = '<div astroidpresets class="astroid-presets">';
       foreach ($presets as $preset) {
-         $html[] = '<div class="astroid-presets-option" ng-click="chosePreset(\'' . $preset['name'] . '\')">';
+         $html[] = '<div class="astroid-presets-option astroid-presets-option-' . $preset['name'] . '" ng-click="chosePreset(\'' . $preset['name'] . '\')">';
          if (empty($preset['thumbnail'])) {
             $html[] = '<div>';
             foreach ($preset['colors'] as $color) {

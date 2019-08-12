@@ -37,3 +37,11 @@
    border: 1px solid #000;
    margin: 2px;
 }
+
+.astroid-group-title > a{
+   display: none;
+}
+
+.astroid-group-title:hover > a{
+   display: inline-block;
+}

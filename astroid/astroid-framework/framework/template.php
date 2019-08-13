@@ -33,6 +33,7 @@ class AstroidFrameworkTemplate {
       if (isset($template->title)) {
          $this->title = $template->title;
       }
+      $this->presets = $this->getPresets();
       if (isset($template->id)) {
          $this->params = $this->getTemplateParams($template->id);
       } else {
@@ -41,7 +42,6 @@ class AstroidFrameworkTemplate {
       $language = JFactory::getApplication()->getLanguage();
       $this->language = $language->getTag();
       $this->direction = $language->isRtl() ? 'rtl' : 'ltr';
-      $this->presets = $this->getPresets();
       $this->initAgent();
       $this->addMeta();
    }
@@ -141,6 +141,31 @@ class AstroidFrameworkTemplate {
       $json = file_get_contents($params_path);
       $params = new JRegistry();
       $params->loadString($json, 'JSON');
+
+      $issetPreset = JFactory::getApplication()->input->get('preset', '');
+      if (!empty($issetPreset)) {
+         $preset = null;
+         foreach ($this->presets as $set) {
+            if ($set['name'] === $issetPreset) {
+               $preset = $set;
+               break;
+            }
+         }
+         if ($preset !== null) {
+            foreach ($preset['preset'] as $attr => $val) {
+               if (is_array($val)) {
+                  $obj = $params->get($attr);
+                  foreach ($val as $subattr => $subval) {
+                     $obj->{$subattr} = $subval;
+                  }
+                  $params->set($attr, $obj);
+               } else {
+                  $params->set($attr, $val);
+               }
+            }
+         }
+      }
+
       return $params;
    }
 
@@ -206,7 +231,7 @@ class AstroidFrameworkTemplate {
       $sppb = $this->isPageBuilder();
       echo '<div class="astroid-container">';
       $header_mode = $this->params->get('header_mode', 'horizontal');
-	  $header = $this->params->get('header', TRUE);
+      $header = $this->params->get('header', TRUE);
       if ($header && !empty($header_mode) && $header_mode == 'sidebar') {
          $this->loadLayout('header.sidebar');
       } else {
@@ -215,7 +240,7 @@ class AstroidFrameworkTemplate {
       $this->loadLayout('mobilemenu');
 
       $content_classes = [];
-	
+
       if ($header && !empty($header_mode) && $header_mode == 'sidebar') {
          $sidebar_dir = $this->params->get('header_sidebar_menu_mode', 'left');
          $content_classes[] = 'has-sidebar';
@@ -319,7 +344,7 @@ class AstroidFrameworkTemplate {
 
                $rowObject = new AstroidElement("row", $row, $this);
 
-               $rowHTML .= '<div  id="' . $rowObject->getID() . '" class="row' . ($no_gutter ? ' no-gutters' : '') . (!empty($rowObject->getClass()) ? ' ' . $rowObject->getClass() : '') . '" style="'. $rowObject->getStyles() .'"  data-animation= "'.$rowObject->getAnimation().'"  data-animation-delay ="'.$rowObject->getAnimationDelay() .'" ' . $rowObject->getAttributes() . '>';
+               $rowHTML .= '<div  id="' . $rowObject->getID() . '" class="row' . ($no_gutter ? ' no-gutters' : '') . (!empty($rowObject->getClass()) ? ' ' . $rowObject->getClass() : '') . '" style="' . $rowObject->getStyles() . '"  data-animation= "' . $rowObject->getAnimation() . '"  data-animation-delay ="' . $rowObject->getAnimationDelay() . '" ' . $rowObject->getAttributes() . '>';
                $rowHTML .= $columnHTML;
                $rowHTML .= '</div>';
             }
@@ -353,7 +378,7 @@ class AstroidFrameworkTemplate {
       }
       $layout_background_image = $this->params->get('layout_background_image', '');
       if (!empty($layout_background_image)) {
-         $styles[] = 'background-image:url(' . JURI::root() . $this->SeletedMedia(). '/' . $layout_background_image . ')';
+         $styles[] = 'background-image:url(' . JURI::root() . $this->SeletedMedia() . '/' . $layout_background_image . ')';
          $styles[] = 'background-repeat:' . $this->params->get('layout_background_repeat', 'inherit');
          $styles[] = 'background-size:' . $this->params->get('layout_background_size', 'inherit');
          $styles[] = 'background-position:' . $this->params->get('layout_background_position', 'inherit');
@@ -644,11 +669,12 @@ class AstroidFrameworkTemplate {
       $this->setLog("Javascripts Loaded!", "success");
    }
 
-	/*
-	*	Function to return classes imploded in the body tag on the website.
-	*/
+   /*
+    * 	Function to return classes imploded in the body tag on the website.
+    */
+
    public function bodyClass($body_class, $language = '', $direction = '') {
-	  $template = JFactory::getApplication()->getTemplate(true);
+      $template = JFactory::getApplication()->getTemplate(true);
       $class = [];
       $app = JFactory::getApplication();
       $menu = $app->getMenu()->getActive();
@@ -688,13 +714,13 @@ class AstroidFrameworkTemplate {
          if ($menu->params->get('pageclass_sfx')) {
             $class[] = $menu->params->get('pageclass_sfx');
          }
-		 if ($menu->get('alias')) {
-			 // menu alias without -alias appended will be removed in the next version.
+         if ($menu->get('alias')) {
+            // menu alias without -alias appended will be removed in the next version.
             $class[] = $menu->get('alias');
-            $class[] = $menu->get('alias').'-alias';
+            $class[] = $menu->get('alias') . '-alias';
          }
       }
-	  if (!empty($template->id)) {
+      if (!empty($template->id)) {
          $class[] = 'tp-style-' . $template->id;
       }
       if (!empty($language)) {
@@ -743,11 +769,13 @@ class AstroidFrameworkTemplate {
       }
       echo '</div>';
    }
-	/*
-	*	Checks to see if the Page Builder is used.
-	*	If true, then removing the container so page builder can have full control
-	*	Current supported page builders Quix, JD Builder, Sp Page Builder
-	*/
+
+   /*
+    * 	Checks to see if the Page Builder is used.
+    * 	If true, then removing the container so page builder can have full control
+    * 	Current supported page builders Quix, JD Builder, Sp Page Builder
+    */
+
    public function isPageBuilder() {
       $jinput = JFactory::getApplication()->input;
       $option = $jinput->get('option', '');
@@ -767,11 +795,10 @@ class AstroidFrameworkTemplate {
          $document->addStyledeclaration($styles);
       }
    }
-   
-   
+
    public function addScriptDeclaration($script) {
-	 $document = JFactory::getDocument();
-	 $document->addScriptDeclaration($script);
+      $document = JFactory::getDocument();
+      $document->addScriptDeclaration($script);
    }
 
    public function addScript($js) {
@@ -893,21 +920,21 @@ class AstroidFrameworkTemplate {
       $params = JComponentHelper::getParams('com_media');
       return $params->get('image_path', 'images');
    }
-   
+
    public function _loadFontAwesome() {
       $plugin = JPluginHelper::getPlugin('system', 'astroid');
-      $assets = JURI::root() . 'media' . '/' . 'astroid' . '/' . 'assets' . '/'. 'fontawesome';
+      $assets = JURI::root() . 'media' . '/' . 'astroid' . '/' . 'assets' . '/' . 'fontawesome';
       $plugin_params = new JRegistry($plugin->params);
       $astroid_load_fontawesome = $plugin_params->get('astroid_load_fontawesome', "cdn");
       $document = JFactory::getDocument();
-      if($astroid_load_fontawesome  == "local"){
-         $document->addStyleSheet($assets.'/css/font-awesome.css');
-         $document->addStyleSheet($assets.'/webfonts');
-      }elseif($astroid_load_fontawesome  == "cdn"){
-         $document->addStyleSheet("https://use.fontawesome.com/releases/v".AstroidFrameworkConstants::$fontawesome_version."/css/all.css");
+      if ($astroid_load_fontawesome == "local") {
+         $document->addStyleSheet($assets . '/css/font-awesome.css');
+         $document->addStyleSheet($assets . '/webfonts');
+      } elseif ($astroid_load_fontawesome == "cdn") {
+         $document->addStyleSheet("https://use.fontawesome.com/releases/v" . AstroidFrameworkConstants::$fontawesome_version . "/css/all.css");
       }
    }
-   
+
    public function getPresets() {
       $presets_path = JPATH_SITE . "/templates/{$this->template}/astroid/presets/";
       if (!file_exists($presets_path)) {

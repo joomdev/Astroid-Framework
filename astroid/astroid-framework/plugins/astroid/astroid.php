@@ -205,7 +205,7 @@ class plgSystemAstroid extends JPlugin {
                case 'clear-cache':
                   try {
                      $template = $this->app->input->get->get('template', '', 'RAW');
-                     AstroidFrameworkHelper::clearCache($template, ['style', 'custom', 'astroid']);
+                     AstroidFrameworkHelper::clearCache($template, ['style', 'custom', 'astroid', 'preset']);
                      echo \json_encode(['status' => 'success', 'code' => 200, 'message' => JText::_('TPL_ASTROID_SYSTEM_MESSAGES_CACHE')]);
                   } catch (\Exception $e) {
                      echo \json_encode(['status' => 'error', 'code' => $e->getCode(), 'message' => $e->getMessage()]);

@@ -811,17 +811,27 @@ class AstroidFrameworkTemplate {
    }
 
    public function buildAstroidCSS($version, $css = '') {
+      $prefix = 'astroid-';
       if ($this->cssFile) {
+         $issetPreset = JFactory::getApplication()->input->get('preset', '');
+         if (!empty($issetPreset)) {
+            $prefix = 'preset-';
+         }
+
          $template_dir = JPATH_SITE . '/templates/' . $this->template . '/css';
-         if (!file_exists($template_dir . '/astroid-' . $version . '.css')) {
-            AstroidFrameworkHelper::clearCache($this->template, 'astroid');
-            $styles = preg_grep('~^astroid-.*\.(css)$~', scandir($template_dir));
+         if (!file_exists($template_dir . '/' . $prefix . $version . '.css')) {
+            if (empty($issetPreset)) {
+               AstroidFrameworkHelper::clearCache($this->template, 'astroid');
+            }
+            $styles = preg_grep('~^' . $prefix . '.*\.(css)$~', scandir($template_dir));
             foreach ($styles as $style) {
                unlink($template_dir . '/' . $style);
             }
-            file_put_contents($template_dir . '/astroid-' . $version . '.css', $css);
+            file_put_contents($template_dir . '/' . $prefix . $version . '.css', $css);
          }
       }
+      $document = JFactory::getDocument();
+      $document->addStyleSheet(JURI::root() . 'templates/' . $this->template . '/css/' . $prefix . $version . '.css');
    }
 
    public function loadCSSFile() {
@@ -831,7 +841,6 @@ class AstroidFrameworkTemplate {
          $mediaVersion = $document->getMediaVersion();
          $version = md5($styles);
          $this->buildAstroidCSS($version, $styles);
-         $document->addStyleSheet(JURI::root() . 'templates/' . $this->template . '/css/astroid-' . $version . '.css');
       }
    }
 

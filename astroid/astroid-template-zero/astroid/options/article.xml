@@ -3,8 +3,8 @@
 	<fields name="params">
 		<fieldset label="ASTROID_OPTIONS_ARTICLE_BLOG" icon="far fa-newspaper" name="articles" addfieldpath="/libraries/astroid/framework/fields" order="6">
 
-			<field type="astroidgroup" name="article_basic_options" title="ASTROID_ARTICLE_OPTIONS_BASIC"/>
-			<field type="astroidgroup" name="article_single_options" title="ASTROID_ARTICLE_OPTIONS_ADVANCE"/>
+			<field type="astroidgroup" name="article_basic_options" title="ASTROID_ARTICLE_OPTIONS_BASIC" help="https://docs.joomdev.com/article/astroid-article-basic-options"/>
+			<field type="astroidgroup" name="article_single_options" title="ASTROID_ARTICLE_OPTIONS_ADVANCE" help="https://docs.joomdev.com/article/astroid-single-article-options"/>
 
 			<field astroidgroup="article_basic_options" name="article_posttype" type="astroidtext" astroid-switch="true" default="1" label="ASTROID_ARTICLE_TYPE_ICON_LBL" description="ASTROID_ARTICLE_TYPE_ICON_DESC"></field>
 			<field astroidgroup="article_basic_options" name="astroid_readtime" type="astroidtext" astroid-switch="true" default="1" label="ASTROID_ARTICLE_READTIME_LBL" description="ASTROID_ARTICLE_OPTIONS_READTIME_DESC"></field>

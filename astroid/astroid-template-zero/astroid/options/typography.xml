@@ -2,16 +2,15 @@
 <form>
    <fields name="params">
       <fieldset icon="fa fa-font" label="ASTROID_OPTIONS_TYPOGRAPHY" name="astroid_typography" addfieldpath="/libraries/astroid/framework/fields" order="5">
-         <field type="astroidgroup" name="body_typography_group" title="TPL_ASTROID_TYPOGRAPHY_BODY" description="TPL_ASTROID_TYPOGRAPHY_BODY_DESC" />
-         <field type="astroidgroup" name="menu_typography" title="TPL_ASTROID_TYPOGRAPHY_MENU" description="TPL_ASTROID_TYPOGRAPHY_MENU_DESC" />
-         <field type="astroidgroup" name="submenu_typography" title="TPL_ASTROID_TYPOGRAPHY_SUBMENU" description="TPL_ASTROID_TYPOGRAPHY_SUBMENU_DESC" />
-         <field type="astroidgroup" name="h1_header_typography" title="TPL_ASTROID_TYPOGRAPHY_H1" description="TPL_ASTROID_TYPOGRAPHY_H1_DESC" />
-         <field type="astroidgroup" name="h2_header_typography" title="TPL_ASTROID_TYPOGRAPHY_H2" description="TPL_ASTROID_TYPOGRAPHY_H2_DESC" />
-         <field type="astroidgroup" name="h3_header_typography" title="TPL_ASTROID_TYPOGRAPHY_H3" description="TPL_ASTROID_TYPOGRAPHY_H3_DESC" />
-         <field type="astroidgroup" name="h4_header_typography" title="TPL_ASTROID_TYPOGRAPHY_H4" description="TPL_ASTROID_TYPOGRAPHY_H4_DESC" />
-         <field type="astroidgroup" name="h5_header_typography" title="TPL_ASTROID_TYPOGRAPHY_H5" description="TPL_ASTROID_TYPOGRAPHY_H5_DESC" />
-         <field type="astroidgroup" name="h6_header_typography" title="TPL_ASTROID_TYPOGRAPHY_H6" description="TPL_ASTROID_TYPOGRAPHY_H6_DESC" />
-
+         <field type="astroidgroup" name="body_typography_group" title="TPL_ASTROID_TYPOGRAPHY_BODY" description="TPL_ASTROID_TYPOGRAPHY_BODY_DESC" help="https://docs.joomdev.com/article/astroid-body-typography" />
+         <field type="astroidgroup" name="menu_typography" title="TPL_ASTROID_TYPOGRAPHY_MENU" description="TPL_ASTROID_TYPOGRAPHY_MENU_DESC" help="https://docs.joomdev.com/article/astroid-menu-typography" />
+         <field type="astroidgroup" name="submenu_typography" title="TPL_ASTROID_TYPOGRAPHY_SUBMENU" description="TPL_ASTROID_TYPOGRAPHY_SUBMENU_DESC" help="https://docs.joomdev.com/article/astroid-submenu-typography" />
+         <field type="astroidgroup" name="h1_header_typography" title="TPL_ASTROID_TYPOGRAPHY_H1" description="TPL_ASTROID_TYPOGRAPHY_H1_DESC" help="https://docs.joomdev.com/article/astroid-h1-h6-typography" />
+         <field type="astroidgroup" name="h2_header_typography" title="TPL_ASTROID_TYPOGRAPHY_H2" description="TPL_ASTROID_TYPOGRAPHY_H2_DESC" help="https://docs.joomdev.com/article/astroid-h1-h6-typography" />
+         <field type="astroidgroup" name="h3_header_typography" title="TPL_ASTROID_TYPOGRAPHY_H3" description="TPL_ASTROID_TYPOGRAPHY_H3_DESC" help="https://docs.joomdev.com/article/astroid-h1-h6-typography" />
+         <field type="astroidgroup" name="h4_header_typography" title="TPL_ASTROID_TYPOGRAPHY_H4" description="TPL_ASTROID_TYPOGRAPHY_H4_DESC" help="https://docs.joomdev.com/article/astroid-h1-h6-typography" />
+         <field type="astroidgroup" name="h5_header_typography" title="TPL_ASTROID_TYPOGRAPHY_H5" description="TPL_ASTROID_TYPOGRAPHY_H5_DESC" help="https://docs.joomdev.com/article/astroid-h1-h6-typography" />
+         <field type="astroidgroup" name="h6_header_typography" title="TPL_ASTROID_TYPOGRAPHY_H6" description="TPL_ASTROID_TYPOGRAPHY_H6_DESC" help="https://docs.joomdev.com/article/astroid-h1-h6-typography" />
 
          <field astroidgroup="body_typography_group" description="TPL_ASTROID_BODY_TYPOGRAPHY_OPTION_DESC" name="body_typography" type="astroidradio" default="default" label="TPL_ASTROID_TYPOGRAPHY_OPTIONS_LABEL">
             <option value="default">TPL_ASTROID_OPTIONS_DEFAULT</option>

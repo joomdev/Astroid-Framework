@@ -3,7 +3,7 @@
    <fields name="params">
       <fieldset icon="fas fa-heading" label="ASTROID_OPTIONS_HEADER" name="astroid_header" addfieldpath="/libraries/astroid/framework/fields" order="2">
 
-         <field type="astroidgroup" name="header_element" title="TPL_ASTROID_HEADER_ELEMENT_MAIN_TITLE_LABEL" description="TPL_ASTROID_HEADER_ELEMENT_MAIN_TITLE_DESC" />
+         <field type="astroidgroup" name="header_element" title="TPL_ASTROID_HEADER_ELEMENT_MAIN_TITLE_LABEL" description="TPL_ASTROID_HEADER_ELEMENT_MAIN_TITLE_DESC" help="https://docs.joomdev.com/category/astroid-user-manual/header"/>
 
          <field astroidgroup="header_element" class="astroid-header-switch" name="header" type="astroidtext" astroid-switch="true" default="1" label="TPL_ASTROID_HEADER_ENABLE_HEADER_LABEL" description="TPL_ASTROID_HEADER_ENABLE_HEADER_DESC"></field>
 

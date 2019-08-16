@@ -2,10 +2,10 @@
 <form>
    <fields name="params">
       <fieldset icon="fas fa-cogs" label="ASTROID_OPTIONS_MISCELLANEOUS" name="astroid_mscellaneous" addfieldpath="/libraries/astroid/framework/fields" order="9">
-         <field type="astroidgroup" name="contact_info" title="TPL_ASTROID_MISCELL_MAIN_CONTACT_US_TITLE_LABEL"/>
-         <field type="astroidgroup" name="coming_soon" title="TPL_ASTROID_MISCELL_MAIN_COMMING_NOON_TITLE_LABEL" />
-         <field type="astroidgroup" name="error_404" title="TPL_ASTROID_MISCELL_MAIN_ERROE_TITLE_LABEL" />
-         <field type="astroidgroup" name="favicongroup" title="TPL_ASTROID_FAVICON_TITLE_LABEL"/>
+         <field type="astroidgroup" name="contact_info" title="TPL_ASTROID_MISCELL_MAIN_CONTACT_US_TITLE_LABEL" help="https://docs.joomdev.com/article/astroid-contact-information" />
+         <field type="astroidgroup" name="coming_soon" title="TPL_ASTROID_MISCELL_MAIN_COMMING_NOON_TITLE_LABEL" help="https://docs.joomdev.com/article/astroid-coming-soon" />
+         <field type="astroidgroup" name="error_404" title="TPL_ASTROID_MISCELL_MAIN_ERROE_TITLE_LABEL" help="https://docs.joomdev.com/article/astroid-404-error" />
+         <field type="astroidgroup" name="favicongroup" title="TPL_ASTROID_FAVICON_TITLE_LABEL" help="https://docs.joomdev.com/article/astroid-favicon" />
 
          <field astroidgroup="contact_info" name="contact_details" type="astroidtext" astroid-switch="true" default="1" label="TPL_ASTROID_CONTACT_DEATILS_LABEL" description="TPL_ASTROID_CONTACT_DEATILS_DESC">	 
          </field>

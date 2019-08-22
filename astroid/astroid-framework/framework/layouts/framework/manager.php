@@ -436,7 +436,7 @@ $astroid_shortcut_enable = $plugin_params->get('astroid_shortcut_enable', 1);
       $scripts[] = $assets . 'vendor' . '/' . 'bootstrap' . '/' . 'popper.min.js?v=' . $document->getMediaVersion();
       $scripts[] = $assets . 'vendor' . '/' . 'bootstrap' . '/' . 'bootstrap.min.js?v=' . $document->getMediaVersion();
       $scripts[] = $assets . 'vendor' . '/' . 'spectrum' . '/' . 'spectrum.js?v=' . $document->getMediaVersion();
-      $scripts[] = 'https://cdnjs.cloudflare.com/ajax/libs/ace/1.3.3/ace.js?v=' . $document->getMediaVersion();
+      $scripts[] = $assets . 'vendor' . '/' . 'ace' . '/' . 'ace-1.3.3.js?v=' . $document->getMediaVersion();
       $scripts[] = $assets . 'vendor' . '/' . 'dropzone' . '/' . 'dropzone.min.js?v=' . $document->getMediaVersion();
       $scripts[] = $assets . 'vendor' . '/' . 'moment.min.js?v=' . $document->getMediaVersion();
       $scripts[] = $assets . 'vendor' . '/' . 'moment-timezone.min.js?v=' . $document->getMediaVersion();

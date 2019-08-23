@@ -76,7 +76,7 @@
                }
                var _top = _container.outerHeight() - $(this).outerHeight();
                var _arrow = $(this).children('.arrow');
-
+				_content.css('left', '0px');
 
                if (settings.headerOffset) {
                   _arrow.css('margin-bottom', -(_top / 2));
@@ -85,7 +85,7 @@
                } else {
                   _content.css('top', '100%');
                }
-
+				
                switch ($(this).data('position')) {
                   case 'left':
                      var offsetleft = $(this).offset().left;
@@ -124,11 +124,11 @@
 
          var observering = function (_this) {
             var callback = function (mutationsList, observer) {
-               for (var mutation of mutationsList) {
-                  if (mutation.type == 'attributes' && mutation.attributeName == 'class') {
-                     init();
-                  }
-               }
+				mutationsList.forEach(function(mutation) {
+					 if (mutation.type == 'attributes' && mutation.attributeName == 'class') {
+						 init();
+					  }
+				});	               
             };
             var observer = new MutationObserver(callback);
             observer.observe(_this, {attributes: true});

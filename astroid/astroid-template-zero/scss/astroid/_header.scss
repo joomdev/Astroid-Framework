@@ -8,6 +8,8 @@
    width: 100%;
    left: 0;
    z-index: $header-section-zindex;
+   border-bottom: $header-border-bottom;
+   box-shadow: $header-shadow;
 
    /* Header Element */
    header {
@@ -125,7 +127,7 @@
       -ms-transition: .1s linear all;
       -o-transition: .1s linear all;
       transition: .1s linear all;
-      box-shadow: 0 0 2px 0 rgba(56,69,84,.2);
+      box-shadow: $sidebar-header-shadow;
       @media(max-width: 1200px) {
          width: $header-sidebar-mini-width;
       }

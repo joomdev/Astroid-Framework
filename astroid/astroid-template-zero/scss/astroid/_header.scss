@@ -74,8 +74,8 @@
    }
 
    img {
-      max-width: 250px;
-      max-height: 65px;
+      max-width: $logo-max-width;
+      max-height: $logo-max-height;
    }
 
    .astroid-logo-mobile {

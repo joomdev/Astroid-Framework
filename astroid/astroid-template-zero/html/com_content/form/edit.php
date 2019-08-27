@@ -85,6 +85,7 @@ $this->form->setValue('astroid_og_title', 'attribs' , (isset($attribs->astroid_o
 $this->form->setValue('astroid_og_desc', 'attribs' , (isset($attribs->astroid_og_desc) && $attribs->astroid_og_desc) ? $attribs->astroid_og_desc : '');
 $this->form->setValue('astroid_og_image', 'attribs' , (isset($attribs->astroid_og_image) && $attribs->astroid_og_image) ? $attribs->astroid_og_image : '');
 $this->form->setValue('astroid_authorinfo', 'attribs' , (isset($attribs->astroid_authorinfo) && $attribs->astroid_authorinfo) ? $attribs->astroid_authorinfo : $attribs->astroid_authorinfo);
+$this->form->setValue('astroid_articlebadge', 'attribs' , (isset($attribs->astroid_articlebadge) && $attribs->astroid_articlebadge) ? $attribs->astroid_articlebadge : $attribs->astroid_articlebadge);
 // End Articles Type
 
 // This checks if the editor config options have ever been saved. If they haven't they will fall back to the original settings.

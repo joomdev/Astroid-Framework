@@ -190,16 +190,25 @@ class AstroidFrameworkArticle {
    }
 
    // Related Posts
-   public function renderRelatedPosts() {
-      if ($this->showRelatedPosts()) {
+   public function renderRelatedPosts($count = null, $astroid_relatedarticle) {
+   $count = $count === null ? $this->template->params->get('article_relatedposts_count', 4) : $count;
+   if($astroid_relatedarticle==1) {
+   $menulevelshow=true;
+   }
+   elseif(empty($astroid_relatedarticle) && $this->showRelatedPosts()) {
+   $menulevelshow=true;
+   }
+   else {
+   $menulevelshow=false;
+   }
+    if($menulevelshow) {
          JLoader::register('ModRelatedItemsHelper', JPATH_ROOT . '/modules/mod_related_items/helper.php');
          $params = new JRegistry();
-         $params->loadArray(['maximum' => $this->template->params->get('article_relatedposts_count', 4)]);
+         $params->loadArray(['maximum' => $count]);
          $items = ModRelatedItemsHelper::getList($params);
          $this->template->loadLayout('blog.modules.related', true, ['items' => $items]);
-      }
+    }     
    }
-
    public function showRelatedPosts() {
       if (JFactory::getApplication()->input->get('tmpl', '') === 'component') {
          return FALSE;
@@ -220,13 +229,32 @@ class AstroidFrameworkArticle {
    public function showAuthorInfo() {
       if (JFactory::getApplication()->input->get('tmpl', '') === 'component') {
          return FALSE;
-      }
+      } 
       $menu_level = $this->params->get('astroid_authorinfo', '');
       $article_level = $this->article->params->get('astroid_authorinfo', '');
       $astroid_level = $this->template->params->get('article_authorinfo', 1);
       return $this->checkPriority($menu_level, $article_level, $astroid_level);
    }
 
+// Article blage
+public function renderArticleBadge() {
+   if ($this->showArticleBadge()) {
+      $this->template->loadLayout('blog.modules.astroid_articlebadge', true, ['article' => $this->article]);
+   }
+}
+
+public function showArticleBadge() {
+   if (JFactory::getApplication()->input->get('tmpl', '') === 'component') {
+      return FALSE;
+   }
+   if (JFactory::getApplication()->input->get('option', '') === 'com_content' && JFactory::getApplication()->input->get('view', '') === 'article') {
+      return FALSE;
+   }
+   $menu_level = $this->params->get('astroid_articlebadge', '');
+   $article_level = $this->article->params->get('astroid_articlebadge', '');
+   $astroid_level = $this->template->params->get('astroid_articlebadge', 2);
+   return $this->checkPriority($menu_level, $article_level, $astroid_level);
+}
    // Post Type Icon
    public function renderPostTypeIcon() {
       if ($this->showPostTypeIcon()) {

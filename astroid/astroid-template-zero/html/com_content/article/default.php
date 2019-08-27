@@ -182,5 +182,22 @@ $assocParam = (JLanguageAssociations::isEnabled() && $params->get('show_associat
    <?php $astroidArticle->renderSocialShare(); ?>
    <?php $astroidArticle->renderAuthorInfo(); ?>
    <?php $astroidArticle->renderComments(); ?>
-   <?php $astroidArticle->renderRelatedPosts(); ?>
+   <?php 
+   $astroid_articlecount = null; 
+   $attribs = \json_decode($this->item->attribs);
+   $astroid_relatedarticle = $attribs->astroid_relatedarticle;
+   $astroid_articlecounts = $attribs->astroid_articlecount;
+   switch($astroid_relatedarticle)
+   {
+      case "":
+            $astroidArticle->renderRelatedPosts(null, null);
+      break;
+      case 1:
+            if(isset($attribs->astroid_articlecount) && !empty($attribs->astroid_articlecount) &&is_numeric($attribs->astroid_articlecount)){
+            $astroidArticle->renderRelatedPosts($astroid_articlecounts, $astroid_relatedarticle);           
+            }
+      break;   
+ } 
+?>
+
 </div>

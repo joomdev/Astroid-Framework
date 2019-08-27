@@ -9,7 +9,7 @@
       var headerOffset = $(this).data('header-offset');
       var transitionSpeed = parseInt($(this).data('transition-speed'));
       var easing = $(this).data('easing');
-      var trigger = $(this).data('trigger');
+      var trigger = $(this).data('astroid-trigger');
 
       var settings = $.extend({
          contentClass: contentClass,

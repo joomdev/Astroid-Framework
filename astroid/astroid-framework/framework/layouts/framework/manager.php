@@ -340,7 +340,7 @@ $astroid_shortcut_enable = $plugin_params->get('astroid_shortcut_enable', 1);
                                              ?>
                                              <div<?php echo!empty($ngHide) ? ' ng-hide="' . $ngHide . '"' : ''; ?><?php echo!empty($ngShow) ? ' ng-show="' . $ngShow . '"' : ''; ?> class="form-group">
                                                 <div class="row">
-                                                   <?php if (trim(strip_tags($field->label)) !== false && trim(strip_tags($field->label)) !== 'false') { ?>
+                                                   <?php if ($field->label !== false) { ?>
                                                       <div class="col-sm-5">
                                                          <label for="<?php echo $field->id; ?>" class="astroid-label"><?php echo strip_tags($field->label); ?></label>
                                                          <?php if (!empty($field->getAttribute('description'))) { ?>

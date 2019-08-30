@@ -32,9 +32,10 @@ class AstroidMenu {
       }
 
       $template = AstroidFramework::getTemplate();
-
-      $header_menu_params = '{"menutype":"' . $menutype . '","base":"","startLevel":"1","endLevel":"' . $template->params->get('header_endLevel', 0) . '","showAllChildren":"1","tag_id":"","class_sfx":"","window_open":"","layout":"_:default","moduleclass_sfx":"","cache":"1","cache_time":"900","cachemode":"itemid","module_tag":"div","bootstrap_size":"0","header_tag":"h3","header_class":"","style":"0"}';
-
+	  $header_endLevel = $template->params->get('header_endLevel', 0);
+	  $header_startLevel = $template->params->get('header_startLevel', 1);
+      $header_menu_params = '{"menutype":"' . $menutype . '","base":"","startLevel":"' . $template->params->get('header_startLevel', 1) . '","endLevel":"' . $template->params->get('header_endLevel', 0) . '","showAllChildren":"1","tag_id":"","class_sfx":"","window_open":"","layout":"_:default","moduleclass_sfx":"","cache":"1","cache_time":"900","cachemode":"itemid","module_tag":"div","bootstrap_size":"0","header_tag":"h3","header_class":"","style":"0"}';
+			
       $menu_params = new JRegistry();
       $menu_params->loadString($header_menu_params);
 
@@ -63,7 +64,7 @@ class AstroidMenu {
 
       $megamenu = false;
       $count_menu = 0;
-      foreach ($list as $i => &$item) {
+	  foreach ($list as $i => &$item) {
          if ($item->level == 1) {
             $count_menu++;
          }
@@ -102,14 +103,18 @@ class AstroidMenu {
 
 
          if ($options->megamenu && $item->level == 1) {
-            echo '<li data-position="' . $options->alignment . '" class="' . \implode(' ', $class) . '">';
+			echo '<li data-position="' . $options->alignment . '" class="' . \implode(' ', $class) . '">';
             echo $template->loadLayout('header.menu.link', false, ['item' => $item, 'options' => $options, 'mobilemenu' => false, 'active' => in_array('nav-item-active', $class), 'header' => $headerType]);
-            echo self::getMegaMenu($item, $options, $list);
+			
+			if((!$header_endLevel && $header_endLevel == 0) || isset($header_endLevel) && $header_endLevel > 1){
+				echo self::getMegaMenu($item, $options, $list);			 
+			}
+			
             echo '</li>';
          } elseif (!$options->megamenu) {
             echo '<li data-position="' . $options->alignment . '" class="' . \implode(' ', $class) . '">';
             echo $template->loadLayout('header.menu.link', false, ['item' => $item, 'options' => $options, 'mobilemenu' => false, 'active' => in_array('nav-item-active', $class), 'header' => $headerType]);
-
+			
             if ($item->level == 1 && $item->parent) {
                echo '<div style="width:' . $options->width . '" class="megamenu-container nav-submenu-container nav-item-level-' . $item->level . '">';
             }
@@ -470,6 +475,8 @@ class AstroidMenu {
    }
 
    public static function getLiClass($item, $options, $default_id, $active_id, $path) {
+	   $template = AstroidFramework::getTemplate();
+	   $header_endLevel = $template->params->get('header_endLevel', 0);
       $class = [];
       if ($item->level != 1) {
          $class[] = 'nav-item-submenu';
@@ -506,16 +513,16 @@ class AstroidMenu {
          $class[] = 'nav-item-deeper';
       }
 
-      if ($item->parent || $options->megamenu) {
+      if (($item->parent || $options->megamenu) && ($item->level != $header_endLevel)) {
          $class[] = 'nav-item-parent';
-      }
-      if (($item->parent || $options->megamenu) && $item->level == 1) {
+      }	  
+	  if ((($item->parent || $options->megamenu) && $item->level == 1) && ($item->level != $header_endLevel)) {
          $class[] = 'has-megamenu';
       }
 
       if ($options->megamenu) {
          $class[] = 'nav-item-megamenu';
-      } else if ($item->parent) {
+      } else if (($item->parent) && ($item->level != $header_endLevel)) {
          $class[] = 'nav-item-dropdown';
       }
 
@@ -536,7 +543,7 @@ class AstroidMenu {
 
       $template = AstroidFramework::getTemplate();
 
-      $header_menu_params = '{"menutype":"' . $menutype . '","base":"","startLevel":"1","endLevel":"' . $template->params->get('header_mobile_endLevel', 0) . '","showAllChildren":"1","tag_id":"","class_sfx":"","window_open":"","layout":"_:default","moduleclass_sfx":"","cache":"1","cache_time":"900","cachemode":"itemid","module_tag":"div","bootstrap_size":"0","header_tag":"h3","header_class":"","style":"0"}';
+      $header_menu_params = '{"menutype":"' . $menutype . '","base":"","startLevel":"' . $template->params->get('header_mobile_startLevel', 1) . '","endLevel":"' . $template->params->get('header_mobile_endLevel', 0) . '","showAllChildren":"1","tag_id":"","class_sfx":"","window_open":"","layout":"_:default","moduleclass_sfx":"","cache":"1","cache_time":"900","cachemode":"itemid","module_tag":"div","bootstrap_size":"0","header_tag":"h3","header_class":"","style":"0"}';
 
       $menu_params = new JRegistry();
       $menu_params->loadString($header_menu_params);

@@ -119,10 +119,10 @@ img {
 		overflow-y: auto;
 
 		&.sidebar-dir-left {
-			padding-left: $header-sidebar-width;
+			padding-left: $sidebar-header-width;
 
 			@media(max-width: 1600px) {
-				padding-left: $header-sidebar-mini-width;
+				padding-left: $sidebar-header-mini-width;
 			}
 
 			@media(max-width: 1599px) {
@@ -131,10 +131,10 @@ img {
 		}
 
 		&.sidebar-dir-right {
-			padding-right: $header-sidebar-width;
+			padding-right: $sidebar-header-width;
 
 			@media(max-width: 1600px) {
-				padding-right: $header-sidebar-mini-width;
+				padding-right: $sidebar-header-mini-width;
 			}
 
 			@media(max-width: 1599px) {

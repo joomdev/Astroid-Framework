@@ -118,18 +118,14 @@
 #astroid-header {
    &.has-sidebar {
       position: fixed;
-      width: $header-sidebar-width;
+      width: $sidebar-header-width;
       top: 0;
       height: 100%;
       z-index: 1;
-      -webkit-transition: .1s linear all;
-      -moz-transition: .1s linear all;
-      -ms-transition: .1s linear all;
-      -o-transition: .1s linear all;
       transition: .1s linear all;
       box-shadow: $sidebar-header-shadow;
       @media(max-width: 1200px) {
-         width: $header-sidebar-mini-width;
+         width: $sidebar-header-mini-width;
       }
       &.sidebar-dir-left {
          left: 0 !important;
@@ -194,7 +190,7 @@
       }
    }
    .dropdown-menus {
-      max-width: $header-sidebar-width;
+      max-width: $sidebar-header-width;
    }
    .astroid-sidebar-content {
       overflow-y: auto;
@@ -231,7 +227,7 @@
          }
       }
       &.expanded {
-         width: $header-sidebar-width !important;
+         width: $sidebar-header-width !important;
          -webkit-transition: .1s linear all;
          -moz-transition: .1s linear all;
          -ms-transition: .1s linear all;

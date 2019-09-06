@@ -350,7 +350,10 @@ class AstroidFrameworkTemplate {
             }
          }
          if (!empty($rowHTML)) {
-            $sectionHTML .= "<section id='" . $sectionObject->getID() . "' class='" . $sectionObject->getClass() . "' style='" . $sectionObject->getStyles() . "' data-animation='" . $sectionObject->getAnimation() . "' data-animation-delay='" . $sectionObject->getAnimationDelay() . "' " . $sectionObject->getAttributes() . ">";
+            $stylesEnable = $sectionObject->getStyles() ? true : false;
+            $animationEnable = $sectionObject->getAnimation() ? true : false;
+            $sectionHTML .= '<section  id="' . $sectionObject->getID() . '" class="' . $sectionObject->getClass() . (($stylesEnable) ? '" style="' . $sectionObject->getStyles() : '') .  (($animationEnable) ? '" data-animation= "' . $sectionObject->getAnimation() : '') .(($animationEnable) ? '" data-animation-delay ="' . $sectionObject->getAnimationDelay() :'') . '" ' . $sectionObject->getAttributes() . '>';
+          
             $section_layout_type = ($sppb && $hasComponent) ? '' : $section_layout_type;
             if (!empty($section_layout_type)) {
                $sectionHTML .= "<div class='" . $section_layout_type . "'>";

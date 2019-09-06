@@ -52,7 +52,7 @@ $navWrapperClass = ['align-self-center', 'px-2', 'd-none', 'd-lg-block'];
       </div>
       <?php
       if ($mode == 'center') {
-         echo '<div class="header-center-section d-flex justify-content-center">';
+         echo '<div class="header-center-section d-none d-lg-block justify-content-center">';
          // header nav starts
          AstroidMenu::getMenu($header_menu, $navClass, null, 'left', 'horizontal', $navWrapperClass);
          // header nav ends

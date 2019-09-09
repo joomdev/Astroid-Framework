@@ -343,8 +343,10 @@ class AstroidFrameworkTemplate {
                }
 
                $rowObject = new AstroidElement("row", $row, $this);
-
-               $rowHTML .= '<div  id="' . $rowObject->getID() . '" class="row' . ($no_gutter ? ' no-gutters' : '') . (!empty($rowObject->getClass()) ? ' ' . $rowObject->getClass() : '') . '" style="' . $rowObject->getStyles() . '"  data-animation= "' . $rowObject->getAnimation() . '"  data-animation-delay ="' . $rowObject->getAnimationDelay() . '" ' . $rowObject->getAttributes() . '>';
+               $row_stylesEnable = $rowObject->getStyles() ? true : false;
+               $row_animationEnable = $rowObject->getAnimation() ? true : false;
+               $row_animationDelay = $rowObject->getAnimationDelay() ? true : false;
+               $rowHTML .= '<div  id="' . $rowObject->getID() . '" class="row' . ($no_gutter ? ' no-gutters' : '') . (!empty($rowObject->getClass()) ? ' ' . $rowObject->getClass() : '') .  (($row_stylesEnable) ? '" style="' . $rowObject->getStyles() : '') .  (($row_animationEnable) ? '" data-animation= "' . $rowObject->getAnimation() : '') .(($row_animationDelay) ? '" data-animation-delay ="' . $rowObject->getAnimationDelay() :'') . '" ' . $rowObject->getAttributes() . '>';
                $rowHTML .= $columnHTML;
                $rowHTML .= '</div>';
             }

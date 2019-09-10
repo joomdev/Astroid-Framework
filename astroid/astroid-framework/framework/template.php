@@ -324,7 +324,10 @@ class AstroidFrameworkTemplate {
                   }
                   if (!empty($renderedHTML)) {
                      $columnObject = new AstroidElement("column", $col, $this);
-                     $columnHTML .= '<div id="' . $columnObject->getID() . '" class="' . $columnObject->getClass() . '" style="' . $columnObject->getStyles() . '" data-animation="' . $columnObject->getAnimation() . '" data-animation-delay="' . $columnObject->getAnimationDelay() . '" ' . $columnObject->getAttributes() . '>';
+                     $col_stylesEnable = $columnObject->getStyles() ? true : false;
+                     $col_animationEnable = $columnObject->getAnimation() ? true : false;
+                     $col_animationDelay = $columnObject->getAnimationDelay() ? true : false;
+                     $columnHTML .= '<div id="' . $columnObject->getID() . '" class="' . $columnObject->getClass() . (($col_stylesEnable) ? '" style="' . $columnObject->getStyles() : '') . (($col_animationEnable) ? '" data-animation= "' . $columnObject->getAnimation() : '') . (($col_animationDelay) ? '" data-animation-delay ="' . $columnObject->getAnimationDelay() : '') . '" ' . $columnObject->getAttributes() . '>';
                      $columnHTML .= $renderedHTML;
                      $columnHTML .= '</div>';
                   }

@@ -748,12 +748,33 @@ var Admin = new AstroidAdmin();
             }
          });
       }
-
+	  
+		var OnHotKeysShowPopup = function () {
+			$(document).on('keypress', function(e){
+				if((e.shiftKey && e.keyCode == 63) && !$("textarea,input").is(':focus')){
+					$('#astroidUnderlay').addClass('helpshortcut-visible');
+				}
+			});
+		}
+  
+		var OnHotKeysClosePopup = function () {
+			$(document).on('click','.astroid-close', function(e){
+				$('#astroidUnderlay').removeClass('helpshortcut-visible');
+			});
+			
+			 document.onkeydown = function(e) {
+				if(e.keyCode == 27){
+					$('#astroidUnderlay').removeClass('helpshortcut-visible');
+				}
+			}		 
+		  }
       if (astroid_shortcut_enable) {
-         OnSave();
-         OnClear();
-         OnClose();
-         OnPreview();
+		OnSave();
+		OnClear();
+		OnClose();
+		OnPreview();
+		OnHotKeysShowPopup();
+		OnHotKeysClosePopup();
       }
 
       getGoogleFonts();

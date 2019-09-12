@@ -598,6 +598,24 @@ $column_sizes = ['inherit', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '
       <a href="#" class="d-none" data-template-name="<?php echo JFilterOutput::stringURLSafe($template->title); ?>" id="export-link">Export Settings</a>
       <a href="#" class="d-none" id="downloadAnchorElem">Export Preset</a>
    
-    
+        <div id="astroidUnderlay" class="astroid-underlay astroid-isVisible">
+		  <div id="helpModal" class="astroid-modal">
+		  <h1>Here is a list of the currently available hotkeys <span>?</span></h1>
+			<div id="helpClose" class="astroid-close">&times;</div>
+				<div id="helpModalContent" class="astroid-modal-content">
+				  <div id="helpListWrap" class="astroid-list-wrap"> 
+					<ul class="astroid-list">
+						<li class="astroid-hotkey-unit">
+							<span class="hotkeybtn">Ctrl</span> + <span class="hotkeybtn">S</span>
+							<span class="astroid-hotkey-def">Save</span>
+						</li>	
+					</ul> 
+						
+					</ul>
+					
+			  </div>
+			</div>
+		  </div>
+		</div>
    </body>
 </html>

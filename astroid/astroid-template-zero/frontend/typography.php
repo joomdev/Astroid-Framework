@@ -319,7 +319,7 @@ $tabletCSS .= '@media (min-width:768px){';
 $tabletCSS .= $tabletstyle;
 $tabletCSS .= $tablet_menu_style;
 $tabletCSS .= $tablet_submenu_style;
-$tabletCSS .= ' .container{max-width:540px}}';
+$tabletCSS .= '}';
 
 // styles for mobile
 $mobileCSS = '';
@@ -327,7 +327,7 @@ $mobileCSS .= '@media (min-width:576px){';
 $mobileCSS .= $mobilestyle;
 $mobileCSS .= $mobile_menu_style;
 $mobileCSS .= $mobile_submenu_style;
-$mobileCSS .= '.container{max-width:720px}}';
+$mobileCSS .= '}';
  
 
 

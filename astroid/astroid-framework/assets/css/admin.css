@@ -53,8 +53,7 @@
 }
 
 .astroid-underlay {
-  position: absolute;
-  background: #555;
+  position: fixed;
   background: rgba(0,0,0,0.5);
   visibility: hidden;
   opacity: 0;
@@ -62,7 +61,10 @@
   -moz-transition: opacity .2s linear;
   -o-transition: opacity .2s linear;
   transition: opacity .2s linear;
-  left: 0; right: 0; top: 0; bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
 }
 
 .ie8 .astroid-underlay {
@@ -72,135 +74,130 @@
 }
 
 .astroid-modal {
-  position: fixed;
-  z-index: 99999;
-  left: 0; right: 0; top: 0; bottom: 0;
-  width: 80%;
-  margin: auto;
-  background: #fff;
-  color: #676767;
-  max-height: 80%;
-  overflow: auto;
-  font-family: Arial, sans-serif;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px;
-  -webkit-box-shadow: 0 4px 12px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.5);
-  box-shadow: 0 4px 12px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.5);
-  -webkit-transition: width .2s linear;
-  -moz-transition: width .2s linear;
-  -o-transition: width .2s linear;
-  transition: width .2s linear;
+	position: fixed;
+	z-index: 99999;
+	left: 0; right: 0; top: 0; bottom: 0;
+	width: 100%;
+	height: 100%;
+	margin: auto;
+	background: #fff;
+	color: #676767;
+	max-width: 70vw;
+	max-height: 70vh;
+	overflow: auto;
+	font-size: 16px;
+	border-radius: 3px;
+	-webkit-box-shadow: 0 4px 12px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.5);
+	box-shadow: 0 4px 12px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.5);
+	-webkit-transition: width .2s linear;
+	-moz-transition: width .2s linear;
+	-o-transition: width .2s linear;
+	transition: width .2s linear;
 }
 
-  .astroid-modal-content {
-    padding: 0 20px;
-  }
-
-  .astroid-close {
-    position: absolute;
-    top: .4em;
-    right: .5em;
-    font-size: 1.8em;
-    cursor: pointer;
-    -webkit-transition: color .2s linear;
-    -moz-transition: color .2s linear;
-    -o-transition: color .2s linear;
-    transition: color .2s linear;
-  }
-
-    .astroid-close:hover {
-      color: #000;
-    }
-
-.astroid-modal h1 {
-  text-align: center;
-  margin: .5em;
-  font-size: 1.5em;
-  padding-bottom: .4em;
-  border-bottom: solid 2px #ccc;
-  font-weight: normal;
+.astroid-modal-content {
+	padding: 0 20px;
 }
 
-  .astroid-modal h1 .astroid-hotkey {
-    float: none;
-    line-height: 1.5;
-    position: relative;
-    bottom: 4px;
-  }
+.astroid-close {
+	position: absolute;
+	top: 0;
+	right: 15px;
+	font-size: 30px;
+	color: #fff;
+	cursor: pointer;
+	display: flex;
+	height: 100%;
+	align-items: center;
+	-webkit-transition: all 0.1s ease-in;
+	-moz-transition: all 0.1s ease-in;
+	-o-transition: all 0.1s ease-in;
+	transition: all 0.1s ease-in;
+}
+
+.astroid-close:hover {
+	transform: scale(1.2);
+}
 
 .helpshortcut-visible {
-  opacity: 1;
-  visibility: visible;
-  height: auto;
-  z-index: 8888;
+	opacity: 1;
+	visibility: visible;
+	height: auto;
+	z-index: 99999;
 }
 
 .ie8 .astroid-underlay.helpshortcut-visible {
-  visibility: visible;
+	visibility: visible;
 }
 
 .astroid-list-wrap {
-  overflow: hidden;
-  margin: 0 auto;
-  -webkit-transition: width .2s linear;
-  -moz-transition: width .2s linear;
-  -o-transition: width .2s linear;
-  transition: width .2s linear;
+	overflow: hidden;
+	margin: 0 auto;
+	-webkit-transition: width .2s linear;
+	-moz-transition: width .2s linear;
+	-o-transition: width .2s linear;
+	transition: width .2s linear;
 }
 
 .astroid-list {
-  list-style: none;
-  margin: 0;
-  padding: 0 0 10px 0;
-  overflow: hidden;
-  float: left;
-  width: 280px;
+	list-style: none;
+	margin: 0;
+	padding: 0 0 10px 0;
+	overflow: hidden;
+	float: left;
+	width: 280px;
 }
 
-  .astroid-list li {
-    margin-right: 40px;
-  }
+.astroid-list li {
+	margin-right: 40px;
+}
 
 .astroid-hotkey-unit {
-  line-height: 1.8;
-  margin-right: 2em;
-  padding: 5px 0;
+	line-height: 1.8;
+	margin-right: 2em;
+	padding: 5px 0;
 }
 
 .astroid-hotkey {
-  min-width: 60px;
-  float: left;
-  background-color: #FFFFFF!important;
-  clear: left;
-  position: relative;
-  bottom: 2px;
+	min-width: 60px;
+	float: left;
+	background-color: #fff;
+	clear: left;
+	position: relative;
+	bottom: 2px;
 }
 
 .astroid-hotkey span {
-  font-size: 15px;
-  color: #555;
-  display: inline-block;
-  padding: 0 8px;
-  text-align: center;
-  background-color: #eee;
-  background-repeat: repeat-x;
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#f5f5f5), to(#eee));
-  background-image: -webkit-linear-gradient(#f5f5f5 0%, #eee 100%);
-  background-image: -moz-linear-gradient(#f5f5f5 0%, #eee 100%);
-  background-image: -o-linear-gradient(#f5f5f5 0%, #eee 100%);
-  background-image: linear-gradient(#f5f5f5 0%, #eee 100%);
-  border: 1px solid #ccc;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px;
-  -webkit-box-shadow: inset 0 1px 0 #fff, 0 1px 0 #ccc;
-  box-shadow: inset 0 1px 0 #fff, 0 1px 0 #ccc;
+	font-size: 15px;
+	color: #555;
+	display: inline-block;
+	padding: 0 8px;
+	text-align: center;
+	background-color: #eee;
+	background-repeat: repeat-x;
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#f5f5f5), to(#eee));
+	background-image: -webkit-linear-gradient(#f5f5f5 0%, #eee 100%);
+	background-image: -moz-linear-gradient(#f5f5f5 0%, #eee 100%);
+	background-image: -o-linear-gradient(#f5f5f5 0%, #eee 100%);
+	background-image: linear-gradient(#f5f5f5 0%, #eee 100%);
+	border: 1px solid #ccc;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	-webkit-box-shadow: inset 0 1px 0 #fff, 0 1px 0 #ccc;
+	box-shadow: inset 0 1px 0 #fff, 0 1px 0 #ccc;
 }
 
 .astroid-hotkey-def {
-  display: inline-block;
-  margin-left: 1em;
+	display: inline-block;
+	margin-left: 1em;
 }
 
 .hotkeybtn{background: #f5f5f5;border-radius: 4px;padding: 2px 6px;font-weight: bold;border: 1px solid #ddd;}
+
+.modal-heading {
+	background-image: linear-gradient(to right, #8E2DE2, #4A00E0);
+	padding: 10px;
+	position: relative;
+	color: #fff;
+}

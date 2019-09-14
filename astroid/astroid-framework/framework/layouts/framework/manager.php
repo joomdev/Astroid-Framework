@@ -40,7 +40,6 @@ $langdir = $lang->get('rtl') ? 'rtl' : 'ltr';
 $assets = JURI::root() . 'media' . '/' . 'astroid' . '/' . 'assets' . '/';
 $semanticComponents = ['icon', 'transition', 'api', 'dropdown'];
 
-
 // adding styles
 $stylesheets = [];
 $stylesheets[] = 'https://fonts.googleapis.com/css?family=Nunito:300,400,600';
@@ -60,11 +59,8 @@ $stylesheets[] = $assets . 'css' . '/' . 'animate.min.css?v=' . $document->getMe
 
 JPluginHelper::importPlugin('astroid');
 $dispatcher = JDispatcher::getInstance();
-
 $form = new JForm('template');
-
 $dispatcher->trigger('onBeforeAstroidFormLoad', [&$template, &$form]);
-
 $form_dir = JPATH_LIBRARIES . '/' . 'astroid' . '/' . 'framework' . '/' . 'options';
 $forms = array_filter(glob($form_dir . '/' . '*.xml'), 'is_file');
 JForm::addFormPath($form_dir);
@@ -81,16 +77,11 @@ foreach ($template_forms as $fname) {
    $form->loadFile($fname, false);
 }
 
-
 $dispatcher->trigger('onAfterAstroidFormLoad', [&$template, &$form]);
-
-
 $fieldsets = AstroidFrameworkHelper::getAstroidFieldsets($form);
-
 foreach ($params as $key => $value) {
    $form->setValue($key, 'params', $value);
 }
-
 
 $plugin = JPluginHelper::getPlugin('system', 'astroid');
 $plugin_params = new JRegistry($plugin->params);
@@ -406,7 +397,6 @@ $astroid_shortcut_enable = $plugin_params->get('astroid_shortcut_enable', 1);
                <ul class="list-inline m-0 col-auto p-0">
                   <li class="float-left"><a id="close-editor" title="<?php echo JText::_('TPL_ASTROID_BACK_TO_JOOMLA'); ?>" href="<?php echo $joomla_url; ?>" class="astroid-sidebar-btn astroid-back-btn d-flex align-items-center"><div><i class="fa fa-times"></i><span><?php echo JText::_('ASTROID_TEMPLATE_CLOSE'); ?></span></div></a></li>
                </ul>
-               
             </div>
             <div id="astroid-preview-wrapper" class="col showin-live-preview">
                <div class="d-flex justify-content-center" style="margin: 10px 0px;">
@@ -469,36 +459,35 @@ $astroid_shortcut_enable = $plugin_params->get('astroid_shortcut_enable', 1);
       ?>
       <script src="<?php echo $assets . 'js' . '/' . 'astroid.min.js?v=' . $document->getMediaVersion(); ?>"></script>
       <?php
-$screen_sizes = [
-    'xs' => [
-        'label' => 'Extra small',
-        'info' => '<576px'
-    ],
-    'sm' => [
-        'label' => 'Small',
-        'info' => '&#8805;576px'
-    ],
-    'md' => [
-        'label' => 'Medium',
-        'info' => '&#8805;768px'
-    ],
-    'lg' => [
-        'label' => 'Large',
-        'info' => '&#8805;992px'
-    ],
-    'xl' => [
-        'label' => 'Extra large',
-        'info' => '&#8805;1200px'
-    ],
-];
-
-$column_sizes = ['inherit', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
-?>
+         $screen_sizes = [
+            'xs' => [
+               'label' => 'Extra small',
+               'info' => '<576px'
+            ],
+            'sm' => [
+               'label' => 'Small',
+               'info' => '&#8805;576px'
+            ],
+            'md' => [
+               'label' => 'Medium',
+               'info' => '&#8805;768px'
+            ],
+            'lg' => [
+               'label' => 'Large',
+               'info' => '&#8805;992px'
+            ],
+            'xl' => [
+               'label' => 'Extra large',
+               'info' => '&#8805;1200px'
+            ],
+         ];
+         $column_sizes = ['inherit', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
+      ?>
 <script type="text/ng-template" id="column-responsive-field-template">
    <table class="table table-bordered"><tr><th width="30%"></th><th class="" width="30%"><?php echo JText::_('ASTROID_COLUMN_SIZE_LABEL'); ?></th><th class="" width="30%"><?php echo JText::_('TPL_ASTROID_VISIBILITY_LABEL'); ?></th></tr><?php foreach ($screen_sizes as $key => $screen_size) { ?><tr><td class=""><p class="mb-0 h4 font-weight-normal"><strong><?php echo $screen_size['label']; ?></strong></p><p class="text-muted mb-0"><code><?php echo $screen_size['info']; ?></code></p></td><td class="align-middle"><select <?php echo ($key=="lg" ? 'readonly disabled' : ''); ?> data-name="size_<?php echo $key; ?>" class="responsive-field form-control"><?php foreach ($column_sizes as $column_size) { ?><option<?php echo $column_size == 'inherit' ? ' selected' : ''; ?> value="<?php echo $column_size; ?>"><?php echo (($column_size == 'inherit' || $column_size == 'col') ? '' : 'col-'.$key.'-' ) . $column_size; ?></option><?php } ?></select></td><td class="align-middle"><div class="jd-ui"><div class="d-inline-block"><input checked type="checkbox" data-name="hide_<?php echo $key; ?>" id="visible-<?php echo $key; ?>" class="responsive-field jd-switch" /><label class="jd-switch-btn m-0" for="visible-<?php echo $key; ?>"></label></div></div></td></tr><?php } ?></table>
 </script>
-   
-   <script type="text/javascript">
+
+<script type="text/javascript">
    astroidFramework.controller('astroidController', function ($scope) {
 <?php foreach ($fieldsets as $key => $fieldset) { ?>
    <?php $fields = $form->getFieldset($key); ?>
@@ -523,7 +512,6 @@ $column_sizes = ['inherit', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '
    }
    ?>
 <?php } ?>
-   
       $scope.chosePreset = function (_name) {
          var _preset = null;
          TEMPLATE_PRESETS.forEach(function(preset){
@@ -551,15 +539,13 @@ $column_sizes = ['inherit', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '
          $('.astroid-presets-option-' + _name).addClass('active');
          Admin.notify('<?php echo \JText::_('TPL_ASTROID_SYSTEM_MESSAGES_PRESET'); ?>', 'success');
       }
-      
+
       $scope.exportPreset = function(){
-         
          var title = prompt("Please enter your desired name", "My Preset");
-         
          if(title==""){
             return false;
          }
-         
+
          var _colors = {};
          presetProps.forEach(function(prop){
             if(prop.split('.').length > 1){
@@ -570,17 +556,15 @@ $column_sizes = ['inherit', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '
                _colors[prop] = $scope[prop];
             }
          });
-         
-         
+
          var _preset = {'title': title, 'thumbnail': '', colors: _colors};
-         
          var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(_preset));
          var dlAnchorElem = document.getElementById('downloadAnchorElem');
          dlAnchorElem.setAttribute("href", dataStr);
          dlAnchorElem.setAttribute("download", Admin.slugify(title) + ".json");
          dlAnchorElem.click();
       }
-   
+
       });
       </script>
       <?php
@@ -597,22 +581,58 @@ $column_sizes = ['inherit', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '
       </script>
       <a href="#" class="d-none" data-template-name="<?php echo JFilterOutput::stringURLSafe($template->title); ?>" id="export-link">Export Settings</a>
       <a href="#" class="d-none" id="downloadAnchorElem">Export Preset</a>
-   
-        <div id="astroidUnderlay" class="astroid-underlay astroid-isVisible">
+      <div id="astroidUnderlay" class="astroid-underlay astroid-isVisible">
 		  <div id="helpModal" class="astroid-modal">
-		  <h1>Here is a list of the currently available hotkeys <span>?</span></h1>
-			<div id="helpClose" class="astroid-close">&times;</div>
-				<div id="helpModalContent" class="astroid-modal-content">
+		   <div class="modal-heading">
+            <h3 class="m-0">Keyboard Shortcuts</h3>
+            <div id="helpClose" class="astroid-close">&times;</div>
+         </div>
+				<div id="helpModalContent" class="astroid-modal-content p-0">
 				  <div id="helpListWrap" class="astroid-list-wrap"> 
-					<ul class="astroid-list">
-						<li class="astroid-hotkey-unit">
-							<span class="hotkeybtn">Ctrl</span> + <span class="hotkeybtn">S</span>
-							<span class="astroid-hotkey-def">Save</span>
-						</li>	
-					</ul> 
-						
-					</ul>
-					
+               <div class="table-responsive p-3">
+                  <table class="table table-bordered">
+                     <thead>
+                        <tr>
+                           <th>Action</th>
+                           <th>Shortcut</th>
+                           <th>Description</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr>
+                           <td>Save</td>
+                           <td>
+                             <div class="pb-2"><span class="badge badge-light p-2">Ctrl</span><span class="px-1">+</span><span class="badge badge-light p-2">S</span></div>
+                             <div><span class="badge badge-light p-2">⌘</span><span class="px-1">+</span><span class="badge badge-light p-2">S</span></div>
+                           </td>
+                           <td>Save your page to the revision history</td>
+                        </tr>
+                        <tr>
+                           <td>Preview</td>
+                           <td>
+                              <div class="pb-2"><span class="badge badge-light p-2">Ctrl</span><span class="px-1">+</span><span class="badge badge-light p-2">p</span></div>
+                              <div><span class="badge badge-light p-2">⌘</span><span class="px-1">+</span><span class="badge badge-light p-2">p</span></div>
+                           </td>
+                           <td>For previewing the changes</td>
+                        </tr>
+                        <tr>
+                           <td>Cache</td>
+                           <td>
+                              <div class="pb-2"><span class="badge badge-light p-2">Delete</span></div>
+                              <div><span class="badge badge-light p-2">DEL</span></div>
+                           </td>
+                           <td>Clear the Cache</td>
+                        </tr>
+                        <tr>
+                           <td>Close Popup</td>
+                           <td>
+                              <div class="pb-2"><span class="badge badge-light p-2">ESC</span></div>
+                           </td>
+                           <td>Close the layout popup</td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
 			  </div>
 			</div>
 		  </div>

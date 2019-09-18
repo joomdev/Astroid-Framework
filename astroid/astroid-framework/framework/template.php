@@ -977,7 +977,7 @@ class AstroidFrameworkTemplate {
                   foreach ($color as $subprop => $color2) {
                      if (!empty($color2)) {
                         $properties[$prop][$subprop] = $color2;
-                        $colors[] = $color;
+                        $colors[] = $color2;
                      }
                   }
                } else {

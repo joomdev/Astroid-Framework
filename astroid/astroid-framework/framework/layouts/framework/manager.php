@@ -610,8 +610,8 @@ $astroid_shortcut_enable = $plugin_params->get('astroid_shortcut_enable', 1);
                         <tr>
                            <td>Preview</td>
                            <td>
-                              <div class="pb-2"><span class="badge badge-light p-2">Ctrl</span><span class="px-1">+</span><span class="badge badge-light p-2">p</span></div>
-                              <div><span class="badge badge-light p-2">⌘</span><span class="px-1">+</span><span class="badge badge-light p-2">p</span></div>
+                              <div class="pb-2"><span class="badge badge-light p-2">Ctrl</span><span class="px-1">+</span><span class="badge badge-light p-2">P</span></div>
+                              <div><span class="badge badge-light p-2">⌘</span><span class="px-1">+</span><span class="badge badge-light p-2">P</span></div>
                            </td>
                            <td>For previewing the changes</td>
                         </tr>

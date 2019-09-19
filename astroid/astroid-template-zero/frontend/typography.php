@@ -316,17 +316,29 @@ if (trim($submenuType) == 'custom') {
 // styles for tablet
 $tabletCSS = '';
 $tabletCSS .= '@media (min-width:768px){';
-$tabletCSS .= $tabletstyle;
-$tabletCSS .= $tablet_menu_style;
-$tabletCSS .= $tablet_submenu_style;
+if(isset($tabletstyle)) {
+	$tabletCSS .= $tabletstyle;
+}
+if(isset($tablet_menu_style)) {
+	$tabletCSS .= $tablet_menu_style;
+}
+if(isset($tablet_submenu_style)) {
+	$tabletCSS .= $tablet_submenu_style;
+}
 $tabletCSS .= '}';
 
 // styles for mobile
 $mobileCSS = '';
 $mobileCSS .= '@media (min-width:576px){';
-$mobileCSS .= $mobilestyle;
-$mobileCSS .= $mobile_menu_style;
-$mobileCSS .= $mobile_submenu_style;
+if(isset($mobilestyle)) {
+	$mobileCSS .= $mobilestyle;
+}
+if(isset($mobile_menu_style)) {
+	$mobileCSS .= $mobile_menu_style;
+}
+if(isset($mobile_submenu_style)) {
+	$mobileCSS .= $mobile_submenu_style;
+}
 $mobileCSS .= '}';
  
 

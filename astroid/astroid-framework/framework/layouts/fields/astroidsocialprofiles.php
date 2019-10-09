@@ -30,7 +30,7 @@ if (empty($value)) {
                   <div class="clearfix"></div>
                </div>
                <div class="card-body">
-                  <div class="row" ng-class="{'mb-2':profile.icons.length > 1}">
+                  <div class="row" ng-init="placeholder = '<?php echo JText::_('TPL_ASTROID_SOCIAL_LINK_PLACEHOLDER'); ?>'; profile.id == 'whatsapp' ? placeholder = '<?php echo JText::_('TPL_ASTROID_SOCIAL_WHATSAPP_PLACEHOLDER'); ?>' : placeholder; profile.id == 'telegram' ? placeholder = '<?php echo JText::_('TPL_ASTROID_SOCIAL_TELEGRAM_PLACEHOLDER'); ?>' : placeholder; profile.id == 'skype' ? placeholder = '<?php echo JText::_('TPL_ASTROID_SOCIAL_SKYPE_PLACEHOLDER'); ?>' : placeholder " ng-class="{'mb-2':profile.icons.length > 1}">
                      <div class="col-sm-4">
                         <label class="astroid-label" ng-show="profile.id != 'whatsapp' && profile.id != 'skype' && profile.id != 'telegram'"><?php echo JText::_('TPL_ASTROID_LINK'); ?></label>
                         <label class="astroid-label" ng-show="profile.id == 'whatsapp'"><?php echo JText::_('TPL_ASTROID_MOBILE_NUMBER'); ?></label>
@@ -38,7 +38,7 @@ if (empty($value)) {
                         <label class="astroid-label" ng-show="profile.id == 'skype'"><?php echo JText::_('TPL_ASTROID_SKYPE_ID'); ?></label>
                      </div>
                      <div class="col-sm-8">
-                        <input type="text" ng-model="profile.link" class="form-control" autocomplete="off">
+                        <input type="text" placeholder="{{ placeholder }}" ng-model="profile.link" class="form-control" autocomplete="off">
                      </div>
                   </div>
                   <div ng-if="profile.id == 'custom'" class="row mt-2">

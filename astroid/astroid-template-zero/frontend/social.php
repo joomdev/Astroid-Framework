@@ -24,7 +24,7 @@ if (!empty($social_profiles)) {
    foreach ($social_profiles as $social_profile) {
       switch ($social_profile->id) {
          case 'whatsapp':
-            $social_profile_link = 'https://api.whatsapp.com/send?phone=' . $social_profile->link;
+            $social_profile_link = 'https://wa.me/' . $social_profile->link;
             break;
          case 'telegram':
             $social_profile_link = 'https://t.me/' . $social_profile->link;

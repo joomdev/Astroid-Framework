@@ -328,6 +328,7 @@ class plgSystemAstroid extends JPlugin {
       foreach ($templates as $template) {
          if ($this->isAstroidTemplate($template->template)) {
             AstroidFrameworkHelper::setTemplateDefaults($template->template, $template->id);
+			AstroidFrameworkHelper::setTemplateTypography($template->template, $template->id);
             $return[] = $template->id;
          }
       }

@@ -525,6 +525,31 @@ class AstroidFrameworkHelper {
          self::uploadTemplateDefaults($template, $id);
       }
    }
+   
+   	public static function setTemplateTypography($template, $id) {
+      $params_path = JPATH_SITE . "/templates/{$template}/params/{$id}.json";
+      if (file_exists($params_path)) {
+			$params = json_decode(file_get_contents($params_path));	
+			$typographys = array('body_typography','menus_typography','submenus_typography','h1_typography','h2_typography','h3_typography','h4_typography','h5_typography','h6_typography');
+			foreach($typographys as $typography){
+				if(isset($params->$typography) && $params->$typography == 'custom'){
+					$key = $typography.'_options';
+					$units = array('font_size_unit','font_size','letter_spacing_unit','letter_spacing','line_height_unit','line_height');
+					foreach($units as $unit){
+						if(isset($params->$key->$unit) && !is_object($params->$key->$unit)){
+							$val = $params->$key->$unit;							
+							$params->$key->$unit =  new stdClass;
+							$params->$key->$unit->desktop = $val;
+							$params->$key->$unit->tablet = $val;
+							$params->$key->$unit->mobile = $val; 
+						}
+					}
+					
+				}
+			}             
+            file_put_contents(JPATH_SITE . "/templates/{$template}/params" . '/' . $id . '.json', json_encode($params)); 
+		}
+	}
 
    public static function uploadTemplateDefaults($template, $id) {
       $source = JPATH_SITE . '/templates/' . $template . '/images/default';

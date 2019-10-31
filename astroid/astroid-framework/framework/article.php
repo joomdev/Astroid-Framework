@@ -199,6 +199,7 @@ class AstroidFrameworkArticle {
          $this->template->loadLayout('blog.modules.related', true, ['items' => $items]);
       }
    }
+
    public function showRelatedPosts() {
       if (JFactory::getApplication()->input->get('tmpl', '') === 'component') {
          return FALSE;
@@ -219,12 +220,34 @@ class AstroidFrameworkArticle {
    public function showAuthorInfo() {
       if (JFactory::getApplication()->input->get('tmpl', '') === 'component') {
          return FALSE;
-      } 
+      }
       $menu_level = $this->params->get('astroid_authorinfo', '');
       $article_level = $this->article->params->get('astroid_authorinfo', '');
       $astroid_level = $this->template->params->get('article_authorinfo', 1);
       return $this->checkPriority($menu_level, $article_level, $astroid_level);
    }
+
+// menu level article badge
+ public function renderArticleBadge() {
+   if ($this->showArticleBadge()) {
+      $this->template->loadLayout('blog.modules.menuarticlebadge', true, ['article' => $this->article]);
+   }
+}
+
+public function showArticleBadge() {
+   if (JFactory::getApplication()->input->get('tmpl', '') === 'component') {
+      return FALSE;
+   }
+   if (JFactory::getApplication()->input->get('option', '') === 'com_content' && JFactory::getApplication()->input->get('view', '') === 'article') {
+      return FALSE;
+   }
+   $menu_level = $this->params->get('astroid_articlebadge', '');
+   $article_level = $this->article->params->get('astroid_articlebadge', '');
+   $astroid_level = $this->template->params->get('astroid_articlebadge', 2);
+   return $this->checkPriority($menu_level, $article_level, $astroid_level);
+}
+
+
    // Post Type Icon
    public function renderPostTypeIcon() {
       if ($this->showPostTypeIcon()) {
@@ -389,7 +412,7 @@ class AstroidFrameworkArticle {
    public static function getVideoId($url, $type) {
       $parts = parse_url($url);
       if ($type == "youtube") {
-         //return (isset($parts['path']) ? $parts['path'] : '');
+         return (isset($parts['path']) ? $parts['path'] : '');
          parse_str($parts['query'], $query);
          return (isset($query['v']) ? $query['v'] : '');
       } else {

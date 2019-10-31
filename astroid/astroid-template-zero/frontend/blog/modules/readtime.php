@@ -14,6 +14,7 @@ extract($displayData);
 
 $article = $params['article'];
 $params = $article->params;
+print_r($params);
 ?>
 <dd class="readtime">
    <i class="far fa-clock"></i>

@@ -14,8 +14,6 @@ $template = new AstroidFrameworkTemplate(JFactory::getApplication()->getTemplate
 $astroidArticle = new AstroidFrameworkArticle($this->item, true);
 // Create a shortcut for params.
 $params = $this->item->params;
-print_r($params);
-die;
 $tpl_params = JFactory::getApplication()->getTemplate(true)->params;
 JHtml::addIncludePath(JPATH_COMPONENT . '/helpers/html');
 $canEdit = $this->item->params->get('access-edit');

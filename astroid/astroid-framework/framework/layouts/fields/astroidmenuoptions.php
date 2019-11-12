@@ -226,7 +226,7 @@ foreach ($items as $i => $item) {
                               <span  data-astroid-tooltip="<?php echo JText::_('TPL_ASTROID_REMOVE_ROW'); ?>" ng-click="removeRow(rowIndex)" class="ezlb-action text-danger"><i class="fa fa-trash"></i></span>
                            </span>
                            <span class="ezlb-toolbar toolbar-left">
-                              <span class="ezlb-action ezlb-row-handle"  data-astroid-tooltip="<?php echo JText::_('TPL_ASTROID_MOVE_ROW'); ?>" ng-show="rows.length > 1"><i class="fa fa-arrows-alt"></i></span>
+                              <span class="ezlb-action ezlb-row-handle set-align"  data-astroid-tooltip="<?php echo JText::_('TPL_ASTROID_MOVE_ROW'); ?>" ng-show="rows.length > 1"><i class="fa fa-arrows-alt"></i></span>
                            </span>
                            <div class="col-12">
                               <div class="row" ng-sortable="{draggable: '.ezlb-col',animation: 100}">

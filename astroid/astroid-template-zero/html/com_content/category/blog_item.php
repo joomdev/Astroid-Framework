@@ -48,8 +48,8 @@ $post_format = $post_attribs->get('post_format', 'standard');
    <?php if($astroidArticle->article->params->get('astroid_article_badge', 1)){ ?>
    <?php switch ($menulevel_article_badge) {
             case "2":
-                  switch ($astroidlevel_article_badge) {
-                  case 1 : 
+                  if(($astroidlevel_article_badge == 3) || ($astroidlevel_article_badge==1)) {
+                  
                       if ($astroidArticle->article->params->get('astroid_article_badge', 0)) { ?>
                               <?php
                               if ($astroidArticle->article->params->get('astroid_article_badge_type', 2) == 1) {
@@ -70,8 +70,7 @@ $post_format = $post_attribs->get('post_format', 'standard');
                               <?php } ?>
                            <?php } ?>
                         <?php 
-                  break;
-               }
+                }
             break;
             case 1 : 
                

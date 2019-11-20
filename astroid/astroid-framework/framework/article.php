@@ -145,9 +145,23 @@ class AstroidFrameworkArticle {
          return FALSE;
       }
 
+      $view  = JFactory::getApplication()->input->get('view', '');
       $menu_level = $this->params->get('astroid_readtime', '');
       $article_level = $this->article->params->get('astroid_readtime', '');
       $astroid_level = $this->template->params->get('astroid_readtime', 1);
+      
+      switch($astroid_level){ 
+         case 2:
+         if($view==='article'){
+            $astroid_level = 1;
+         }
+         break;
+         case 3:
+         if($view==='category' || $view==='featured'){
+            $astroid_level = 1;
+         }
+         break;
+      }
       return $this->checkPriority($menu_level, $article_level, $astroid_level);
    }
 
@@ -244,6 +258,22 @@ public function showArticleBadge() {
    $menu_level = $this->params->get('astroid_articlebadge', '');
    $article_level = $this->article->params->get('astroid_articlebadge', '');
    $astroid_level = $this->template->params->get('astroid_articlebadge', 2);
+   $view  = JFactory::getApplication()->input->get('view', '');
+   switch($astroid_level){ 
+      case 2:
+      if($view==='article'){
+         $astroid_level = 1;
+         echo "enterd to article view only";
+      } 
+      break;
+      case 3:
+      if($view==='category' || $view==='featured'){
+         $astroid_level = 1;
+         echo "enterd to category or featured view only";
+
+      }
+      break;
+   }
    return $this->checkPriority($menu_level, $article_level, $astroid_level);
 }
 
@@ -265,6 +295,22 @@ public function showArticleBadge() {
       $menu_level = $this->params->get('astroid_posttype', '');
       $article_level = $this->article->params->get('astroid_posttype', '');
       $astroid_level = $this->template->params->get('article_posttype', 1);
+      $view  = JFactory::getApplication()->input->get('view', '');
+      switch($astroid_level){ 
+         case 2:
+         if($view==='article'){
+            $astroid_level = 1;
+            echo "enterd to article view only";
+         }
+         break;
+         case 3:
+         if($view==='category' || $view==='featured'){
+            $astroid_level = 1;
+            echo "enterd to category or featured view only";
+
+         }
+         break;
+      }
       return $this->checkPriority($menu_level, $article_level, $astroid_level);
    }
 

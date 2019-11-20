@@ -263,13 +263,11 @@ public function showArticleBadge() {
       case 2:
       if($view==='article'){
          $astroid_level = 1;
-         echo "enterd to article view only";
       } 
       break;
       case 3:
       if($view==='category' || $view==='featured'){
          $astroid_level = 1;
-         echo "enterd to category or featured view only";
 
       }
       break;
@@ -306,8 +304,6 @@ public function showArticleBadge() {
          case 3:
          if($view==='category' || $view==='featured'){
             $astroid_level = 1;
-            echo "enterd to category or featured view only";
-
          }
          break;
       }

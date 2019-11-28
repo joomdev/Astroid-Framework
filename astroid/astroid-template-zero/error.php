@@ -155,6 +155,5 @@ $video = [];
 		   <?php endif; ?>
 		</div>
 	 </div>
-   <?php echo $this->getBuffer('modules', 'debug', array('style' => 'none'));  ?>
 	</body>
 </html>

@@ -15,6 +15,8 @@ jimport('joomla.filesystem.element');
 
 use Leafo\ScssPhp\Compiler;
 
+\JModelLegacy::addIncludePath(JPATH_ADMINISTRATOR . '/components/com_cache/models', 'CacheModel');
+
 class AstroidFrameworkHelper {
 
    public static function getAstroidElements() {
@@ -396,7 +398,22 @@ class AstroidFrameworkHelper {
             unlink($template_dir . '/' . $style);
          }
       }
+      self::clearJoomlaCache();
       return true;
+   }
+
+   public static function clearJoomlaCache()
+   {
+      $app = \JFactory::getApplication();
+      $model = \JModelLegacy::getInstance('Cache', 'CacheModel', array('ignore_request' => true));
+      $clients    = array(1, 0);
+      foreach ($clients as $client) {
+         $mCache = $model->getCache($client);
+         foreach ($mCache->getAll() as $cache) {
+            $mCache->clean($cache->group);
+         }
+      }
+      $app->triggerEvent('onAfterPurge', array());
    }
 
    public static function getAstroidFieldsets($form) {

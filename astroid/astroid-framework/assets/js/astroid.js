@@ -433,10 +433,7 @@ var AstroidAdmin = function AstroidAdmin() {
       });
       $('#astroid-settings-import').on('change', function () {
          var input = document.getElementById('astroid-settings-import');
-         if (!input) {
-         } else if (!input.files) {
-         } else if (!input.files[0]) {
-         } else {
+         if (!input) {} else if (!input.files) {} else if (!input.files[0]) {} else {
             var file = input.files[0];
             var reader = new FileReader();
             reader.addEventListener("load", function () {
@@ -535,9 +532,7 @@ var AstroidAdmin = function AstroidAdmin() {
          _this.saved = false;
          try {
             Admin.refreshScroll();
-         } catch (e) {
-         }
-         ;
+         } catch (e) {};
       });
    };
 
@@ -551,9 +546,17 @@ var AstroidAdmin = function AstroidAdmin() {
             dataType: 'json',
             url: BASE_URL + 'index.php?option=com_ajax&astroid=clear-cache&template=' + TEMPLATE_NAME,
             success: function success(response) {
-               $('#clear-cache').removeClass('d-none');
-               $('#clearing-cache').addClass('d-none');
                _this.notify(response.message, response.status);
+               $.ajax({
+                  method: "GET",
+                  dataType: 'json',
+                  url: BASE_URL + 'index.php?option=com_ajax&astroid=clear-joomla-cache',
+                  success: function success(response) {
+                     $('#clear-cache').removeClass('d-none');
+                     $('#clearing-cache').addClass('d-none');
+                     _this.notify(response.message, response.status);
+                  }
+               });
             }
          });
          return false;
@@ -618,14 +621,14 @@ var AstroidAdmin = function AstroidAdmin() {
       var b = 'aaaaaaaaacccddeeeeeeegghiiiiilmnnnnooooooprrsssssttuuuuuuuuuwxyyzzz------';
       var p = new RegExp(a.split('').join('|'), 'g');
       return string.toString().toLowerCase().replace(/\s+/g, '-') // Replace spaces with -
-              .replace(p, function (c) {
-                 return b.charAt(a.indexOf(c));
-              }) // Replace special characters
-              .replace(/&/g, '-and-') // Replace & with 'and'
-              .replace(/[^\w\-]+/g, '') // Remove all non-word characters
-              .replace(/\-\-+/g, '-') // Replace multiple - with single -
-              .replace(/^-+/, '') // Trim - from start of text
-              .replace(/-+$/, ''); // Trim - from end of text
+         .replace(p, function (c) {
+            return b.charAt(a.indexOf(c));
+         }) // Replace special characters
+         .replace(/&/g, '-and-') // Replace & with 'and'
+         .replace(/[^\w\-]+/g, '') // Remove all non-word characters
+         .replace(/\-\-+/g, '-') // Replace multiple - with single -
+         .replace(/^-+/, '') // Trim - from start of text
+         .replace(/-+$/, ''); // Trim - from end of text
    }
 
    // Main
@@ -748,33 +751,33 @@ var Admin = new AstroidAdmin();
             }
          });
       }
-	  
-		var OnHotKeysShowPopup = function () {
-			$(document).on('keypress', function(e){
-				if((e.shiftKey && e.keyCode == 63) && !$("textarea,input").is(':focus')){
-					$('#astroidUnderlay').addClass('helpshortcut-visible');
-				}
-			});
-		}
-  
-		var OnHotKeysClosePopup = function () {
-			$(document).on('click','.astroid-close', function(e){
-				$('#astroidUnderlay').removeClass('helpshortcut-visible');
-			});
-			
-			 document.onkeydown = function(e) {
-				if(e.keyCode == 27){
-					$('#astroidUnderlay').removeClass('helpshortcut-visible');
-				}
-			}		 
-		  }
+
+      var OnHotKeysShowPopup = function () {
+         $(document).on('keypress', function (e) {
+            if ((e.shiftKey && e.keyCode == 63) && !$("textarea,input").is(':focus')) {
+               $('#astroidUnderlay').addClass('helpshortcut-visible');
+            }
+         });
+      }
+
+      var OnHotKeysClosePopup = function () {
+         $(document).on('click', '.astroid-close', function (e) {
+            $('#astroidUnderlay').removeClass('helpshortcut-visible');
+         });
+
+         document.onkeydown = function (e) {
+            if (e.keyCode == 27) {
+               $('#astroidUnderlay').removeClass('helpshortcut-visible');
+            }
+         }
+      }
       if (astroid_shortcut_enable) {
-		OnSave();
-		OnClear();
-		OnClose();
-		OnPreview();
-		OnHotKeysShowPopup();
-		OnHotKeysClosePopup();
+         OnSave();
+         OnClear();
+         OnClose();
+         OnPreview();
+         OnHotKeysShowPopup();
+         OnHotKeysClosePopup();
       }
 
       getGoogleFonts();
@@ -904,8 +907,7 @@ var Admin = new AstroidAdmin();
          $(_range).siblings('.astroid-range-value').css('margin-left', _left + 'px');
          $(_range).siblings('.astroid-range-value').text(_pre + _value + _post);
          $(_range).siblings('.astroid-range-min-value').text(_pre + _value + _post);
-      } catch (e) {
-      }
+      } catch (e) {}
    };
 
    var initAstroidFontSelector = function initAstroidFontSelector() {

@@ -19,11 +19,13 @@ use Leafo\ScssPhp\Compiler;
  *
  * @since  1.0
  */
-class plgSystemAstroid extends JPlugin {
+class plgSystemAstroid extends JPlugin
+{
 
    protected $app;
 
-   public function onBeforeRender() {
+   public function onBeforeRender()
+   {
       if ($this->app->isAdmin()) {
          if (JFactory::getUser()->id) {
             $astroid_redirect = $this->app->input->get->get('ast', '', 'RAW');
@@ -34,7 +36,8 @@ class plgSystemAstroid extends JPlugin {
       }
    }
 
-   public function onExtensionAfterSave($context, $table, $isNew) {
+   public function onExtensionAfterSave($context, $table, $isNew)
+   {
       if ($this->app->isAdmin() && $context == "com_templates.style" && $isNew && $this->isAstroidTemplate($table->template)) {
          $params = \json_decode($table->params, TRUE);
          $parent_id = $params['astroid'];
@@ -42,7 +45,8 @@ class plgSystemAstroid extends JPlugin {
       }
    }
 
-   public function onAfterRoute() {
+   public function onAfterRoute()
+   {
       $option = $this->app->input->get('option', '');
       $astroid = $this->app->input->get('astroid', '');
 
@@ -152,9 +156,7 @@ class plgSystemAstroid extends JPlugin {
                            $return .= '<div class="item" data-value="' . $fontValue . '">' . $font . '</div>';
                         }
                      }
-                  } catch (\Exception $e) {
-                     
-                  }
+                  } catch (\Exception $e) { }
                   echo $return;
                   die();
                   break;
@@ -212,6 +214,15 @@ class plgSystemAstroid extends JPlugin {
                   }
                   die();
                   break;
+               case 'clear-joomla-cache':
+                  try {
+                     AstroidFrameworkHelper::clearJoomlaCache();
+                     echo \json_encode(['status' => 'success', 'code' => 200, 'message' => JText::_('TPL_ASTROID_SYSTEM_MESSAGES_JCACHE')]);
+                  } catch (\Exception $e) {
+                     echo \json_encode(['status' => 'error', 'code' => $e->getCode(), 'message' => $e->getMessage()]);
+                  }
+                  die();
+                  break;
             }
          }
       }
@@ -261,7 +272,8 @@ class plgSystemAstroid extends JPlugin {
       }
    }
 
-   public function onContentPrepareForm($form, $data) {
+   public function onContentPrepareForm($form, $data)
+   {
       $astroid_dir = 'libraries' . '/' . 'astroid';
       \JForm::addFormPath(JPATH_SITE . '/' . $astroid_dir . '/framework/forms');
       if ($form->getName() == 'com_menus.item') {
@@ -288,11 +300,12 @@ class plgSystemAstroid extends JPlugin {
       }
    }
 
-   public function onAfterRender() {
+   public function onAfterRender()
+   {
       if ($this->app->isAdmin()) {
          $body = $this->app->getBody();
          $astroid_templates = $this->getAstroidTemplates();
-         $body = preg_replace_callback('/(<a\s[^>]*href=")([^"]*)("[^>]*>)(.*)(<\/a>)/siU', function($matches) use($astroid_templates) {
+         $body = preg_replace_callback('/(<a\s[^>]*href=")([^"]*)("[^>]*>)(.*)(<\/a>)/siU', function ($matches) use ($astroid_templates) {
             $html = $matches[0];
             if (strpos($matches[2], 'task=style.edit')) {
                $uri = new JUri($matches[2]);
@@ -309,18 +322,19 @@ class plgSystemAstroid extends JPlugin {
       }
    }
 
-   private function getAstroidTemplates() {
+   private function getAstroidTemplates()
+   {
       if (!file_exists(JPATH_LIBRARIES . '/astroid/framework/helper.php')) {
          return [];
       }
       $db = JFactory::getDbo();
       $query = $db
-              ->getQuery(true)
-              ->select('s.id, s.template')
-              ->from('#__template_styles as s')
-              ->where('s.client_id = 0')
-              ->where('e.enabled = 1')
-              ->leftJoin('#__extensions as e ON e.element=s.template AND e.type=' . $db->quote('template') . ' AND e.client_id=s.client_id');
+         ->getQuery(true)
+         ->select('s.id, s.template')
+         ->from('#__template_styles as s')
+         ->where('s.client_id = 0')
+         ->where('e.enabled = 1')
+         ->leftJoin('#__extensions as e ON e.element=s.template AND e.type=' . $db->quote('template') . ' AND e.client_id=s.client_id');
 
       $db->setQuery($query);
       $templates = $db->loadObjectList();
@@ -328,35 +342,37 @@ class plgSystemAstroid extends JPlugin {
       foreach ($templates as $template) {
          if ($this->isAstroidTemplate($template->template)) {
             AstroidFrameworkHelper::setTemplateDefaults($template->template, $template->id);
-			AstroidFrameworkHelper::setTemplateTypography($template->template, $template->id);
+            // AstroidFrameworkHelper::setTemplateTypography($template->template, $template->id);
             $return[] = $template->id;
          }
       }
       return $return;
    }
 
-   private function isAstroidTemplate($name) {
+   private function isAstroidTemplate($name)
+   {
       return file_exists(JPATH_SITE . "/templates/{$name}/frontend");
    }
 
-   public function onAfterGetMenuTypeOptions(&$list) {
-//      $types = [];
-//      $o = new JObject;
-//      $o->title = 'ASTROID_LINKS_ONEPAGE_TITLE';
-//      $o->type = 'astroid_onepage';
-//      $o->description = 'ASTROID_LINKS_ONEPAGE_DESC';
-//      $o->request = ['astroid_onepage' => 1];
-//      $types[] = $o;
-//
-//      $list['ASTROID_LINKS'] = $types;
-//      return $list;
+   public function onAfterGetMenuTypeOptions(&$list)
+   {
+      //      $types = [];
+      //      $o = new JObject;
+      //      $o->title = 'ASTROID_LINKS_ONEPAGE_TITLE';
+      //      $o->type = 'astroid_onepage';
+      //      $o->description = 'ASTROID_LINKS_ONEPAGE_DESC';
+      //      $o->request = ['astroid_onepage' => 1];
+      //      $types[] = $o;
+      //
+      //      $list['ASTROID_LINKS'] = $types;
+      //      return $list;
    }
 
-   public function onAfterAstroidFormLoad($template, $form) {
+   public function onAfterAstroidFormLoad($template, $form)
+   {
       if (!count($template->presets)) {
          $form->removeField('template_preset', 'params');
          $form->removeField('presets', 'params');
       }
    }
-
 }

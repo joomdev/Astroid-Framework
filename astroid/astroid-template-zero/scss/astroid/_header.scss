@@ -115,7 +115,7 @@
    }
 }
 /* Sidebar Header */
-#astroid-header {
+.astroid-header {
    &.has-sidebar {
       position: fixed;
       width: $sidebar-header-width;
@@ -171,17 +171,13 @@
    }
    @media (max-width: 1200px) {
       &.has-sidebar {
-         .astroid-sidebar-mobile-menu {
-            display: block;
-         }
-      }
-   }
-   @media (max-width: 1200px) {
-      &.has-sidebar {
          display: block;
          width: 100%;
          position: relative;
          padding: 15px 0;
+         .astroid-sidebar-mobile-menu {
+            display: block;
+         }
          .astroid-sidebar-logo {
             display: flex;
             padding: 0 15px;
@@ -194,9 +190,6 @@
    }
    .astroid-sidebar-content {
       overflow-y: auto;
-      .astroid-sidebar-logo {
-         // height: 150px;
-      }
    }
    .astroid-sidebar-collapsable {
       padding: 1rem;
@@ -253,10 +246,11 @@
    }
 }
 
-@media(min-width: 1200px) and (max-width: 1600px) {
-   body{
-      &.header-sidebar-left{
-         margin-left: 320px;
-      }
-   }      
+@media (min-width:1201px) {
+   body.header-sidebar-left{
+      margin-left: $sidebar-header-width;
+   }
+   body.header-sidebar-right{
+      margin-right: $sidebar-header-width;
+   }
 }

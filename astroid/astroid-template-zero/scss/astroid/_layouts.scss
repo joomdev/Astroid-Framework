@@ -119,26 +119,24 @@ img {
 		overflow-y: auto;
 
 		&.sidebar-dir-left {
-			padding-left: $sidebar-header-width;
 
 			@media(max-width: 1600px) {
-				padding-left: $sidebar-header-mini-width;
+				// padding-left: $sidebar-header-mini-width;
 			}
 
 			@media(max-width: 1599px) {
-				padding-left: 0;
+				// padding-left: 0;
 			}
 		}
 
 		&.sidebar-dir-right {
-			padding-right: $sidebar-header-width;
 
 			@media(max-width: 1600px) {
-				padding-right: $sidebar-header-mini-width;
+				// padding-right: $sidebar-header-mini-width;
 			}
 
 			@media(max-width: 1599px) {
-				padding-right: 0;
+				// padding-right: 0;
 			}
 		}
 

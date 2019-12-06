@@ -163,6 +163,10 @@ blockquote {
 	}
 }
 
+.custom-container {
+	@include make-container();
+}
+
 .module-title {
 	margin-bottom: 15px;
 }

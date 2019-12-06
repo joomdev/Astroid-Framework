@@ -21,6 +21,7 @@ if (file_exists($lib)) {
 } else {
    die('Please install and activate <a href="https://www.astroidframework.com/" target="_blank">Astroid Framework</a> in order to use this template.');
 }
+require_once "helper.php";
 $template = AstroidFramework::getTemplate();
 // Output as HTML5
 $this->setHtml5(true);

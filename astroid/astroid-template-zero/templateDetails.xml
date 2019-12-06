@@ -24,6 +24,7 @@
       <folder>language</folder>
       <folder>frontend</folder>
       <filename>index.php</filename>
+      <filename>helper.php</filename>
       <filename>templateDetails.xml</filename>
       <filename>template_preview.png</filename>
       <filename>template_thumbnail.png</filename>

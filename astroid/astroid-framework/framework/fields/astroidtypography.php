@@ -33,17 +33,27 @@ class JFormFieldAstroidTypography extends JFormField
          $value = (array) $this->value;
       }
 
+      foreach (['font_size', 'font_size_unit', 'letter_spacing', 'letter_spacing_unit', 'line_height', 'line_height_unit'] as $responsiveField) {
+         if (is_string($value[$responsiveField])) {
+            $object = new \stdClass();
+            $object->desktop = $value[$responsiveField];
+            $object->tablet = $value[$responsiveField];
+            $object->mobile = $value[$responsiveField];
+            $value[$responsiveField] = $object;
+         }
+      }
+
       $defaults = [
          'font_face' => '',
          'alt_font_face' => '',
-         'font_size' => '',
-         'font_size_unit' => 'em',
+         'font_size' => \json_decode('{"desktop":1,"mobile":1,"tablet":1}', false),
+         'font_size_unit' => \json_decode('{"desktop":"em","mobile":"em","tablet":"em"}', false),
          'font_unit' => '',
          'font_color' => '',
-         'letter_spacing' => '',
-         'letter_spacing_unit' => 'em',
-         'line_height' => '',
-         'line_height_unit' => 'em',
+         'letter_spacing' => \json_decode('{"desktop":1,"mobile":1,"tablet":1}', false),
+         'letter_spacing_unit' => \json_decode('{"desktop":"em","mobile":"em","tablet":"em"}', false),
+         'line_height' => \json_decode('{"desktop":1,"mobile":1,"tablet":1}', false),
+         'line_height_unit' => \json_decode('{"desktop":"em","mobile":"em","tablet":"em"}', false),
          'font_style' => [],
          'font_weight' => '',
          'text_transform' => '',
@@ -71,26 +81,20 @@ class JFormFieldAstroidTypography extends JFormField
       }
 
       if (isset($this->element['font-size'])) {
-         if (!is_object($this->element['font-size'])) {
-            $object = new \stdClass();
-            $object->desktop = $this->element['font-size'];
-            $object->tablet = $this->element['font-size'];
-            $object->mobile = $this->element['font-size'];
-            $defaults['font_size'] = $object;
-         } else {
-            $defaults['font_size'] = $this->element['font-size'];
-         }
+         $object = new \stdClass();
+         $object->desktop = (string) $this->element['font-size'];
+         $object->tablet = (string) $this->element['font-size'];
+         $object->mobile = (string) $this->element['font-size'];
+         $defaults['font_size'] = $object;
       }
 
       if (isset($this->element['font-size-unit'])) {
          if (!is_object($this->element['font-size-unit'])) {
             $object = new \stdClass();
-            $object->desktop = $this->element['font-size-unit'];
-            $object->tablet = $this->element['font-size-unit'];
-            $object->mobile = $this->element['font-size-unit'];
+            $object->desktop = (string) $this->element['font-size-unit'];
+            $object->tablet = (string) $this->element['font-size-unit'];
+            $object->mobile = (string) $this->element['font-size-unit'];
             $defaults['font_size_unit'] = $object;
-         } else {
-            $defaults['font_size_unit'] = $this->element['font-size-unit'];
          }
       }
 
@@ -101,48 +105,40 @@ class JFormFieldAstroidTypography extends JFormField
       if (isset($this->element['letter-spacing'])) {
          if (!is_object($this->element['letter-spacing'])) {
             $object = new \stdClass();
-            $object->desktop = $this->element['letter-spacing'];
-            $object->tablet = $this->element['letter-spacing'];
-            $object->mobile = $this->element['letter-spacing'];
+            $object->desktop = (string) $this->element['letter-spacing'];
+            $object->tablet = (string) $this->element['letter-spacing'];
+            $object->mobile = (string) $this->element['letter-spacing'];
             $defaults['letter_spacing'] = $object;
-         } else {
-            $defaults['letter_spacing'] = $this->element['letter-spacing'];
          }
       }
 
       if (isset($this->element['letter-spacing-unit'])) {
          if (!is_object($this->element['letter-spacing-unit'])) {
             $object = new \stdClass();
-            $object->desktop = $this->element['letter-spacing-unit'];
-            $object->tablet = $this->element['letter-spacing-unit'];
-            $object->mobile = $this->element['letter-spacing-unit'];
+            $object->desktop = (string) $this->element['letter-spacing-unit'];
+            $object->tablet = (string) $this->element['letter-spacing-unit'];
+            $object->mobile = (string) $this->element['letter-spacing-unit'];
             $defaults['letter_spacing_unit'] = $object;
-         } else {
-            $defaults['letter_spacing_unit'] = $this->element['letter-spacing-unit'];
          }
       }
 
       if (isset($this->element['line-height'])) {
          if (!is_object($this->element['line-height'])) {
             $object = new \stdClass();
-            $object->desktop = $this->element['line-height'];
-            $object->tablet = $this->element['line-height'];
-            $object->mobile = $this->element['line-height'];
+            $object->desktop = (string) $this->element['line-height'];
+            $object->tablet = (string) $this->element['line-height'];
+            $object->mobile = (string) $this->element['line-height'];
             $defaults['line_height'] = $object;
-         } else {
-            $defaults['line_height'] = $this->element['line-height'];
          }
       }
 
       if (isset($this->element['line-height-unit'])) {
          if (!is_object($this->element['line-height-unit'])) {
             $object = new \stdClass();
-            $object->desktop = $this->element['line-height-unit'];
-            $object->tablet = $this->element['line-height-unit'];
-            $object->mobile = $this->element['line-height-unit'];
+            $object->desktop = (string) $this->element['line-height-unit'];
+            $object->tablet = (string) $this->element['line-height-unit'];
+            $object->mobile = (string) $this->element['line-height-unit'];
             $defaults['line_height_unit'] = $object;
-         } else {
-            $defaults['line_height_unit'] = $this->element['line-height-unit'];
          }
       }
 

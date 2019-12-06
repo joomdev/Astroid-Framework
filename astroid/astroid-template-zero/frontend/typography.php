@@ -315,7 +315,7 @@ if (trim($submenuType) == 'custom') {
 
 // styles for tablet
 $tabletCSS = '';
-$tabletCSS .= '@media (min-width:768px){';
+$tabletCSS .= '@media (max-width: 991.98px) {';
 if (!empty($styles['tablet'])) {
    $tabletCSS .= $styles['tablet'];
 }
@@ -329,7 +329,7 @@ $tabletCSS .= '}';
 
 // styles for mobile
 $mobileCSS = '';
-$mobileCSS .= '@media (min-width:576px){';
+$mobileCSS .= '@media (max-width: 767.98px) {';
 if (!empty($styles['mobile'])) {
    $mobileCSS .= $styles['mobile'];
 }
@@ -367,7 +367,7 @@ if ($in_head) {
    echo $styles['desktop'];
    echo $menu_style['desktop'];
    echo $submenu_style['desktop'];
-   echo $mobileCSS;
    echo $tabletCSS;
+   echo $mobileCSS;
    echo "</style>";
 }

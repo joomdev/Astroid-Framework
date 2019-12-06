@@ -11,6 +11,7 @@ jimport('astroid.framework.constants');
 
 extract($displayData);
 $value = array_merge($defaults, $value);
+
 $fonts = AstroidFrameworkHelper::getGoogleFonts();
 $font_face = (string) $value['font_face'];
 $alt_font_face = (string) $value['alt_font_face'];

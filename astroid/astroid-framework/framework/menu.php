@@ -11,10 +11,12 @@ jimport('astroid.framework.constants');
 jimport('joomla.application.module.helper');
 jimport('astroid.framework.astroid');
 
-$version = new \JVersion;
-$version = $version->getShortVersion();
-$version = substr($version, 0, 1);
-define('ASTROID_JOOMLA_VERSION', $version);
+if(!defined('ASTROID_JOOMLA_VERSION')){
+   $version = new \JVersion;
+   $version = $version->getShortVersion();
+   $version = substr($version, 0, 1);
+   define('ASTROID_JOOMLA_VERSION', $version);
+}
 
 use Joomla\Module\Menu\Site\Helper\MenuHelper;
 

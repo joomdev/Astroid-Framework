@@ -10,7 +10,7 @@
             class="btn-group"
             default="0"
          >
-            <option value="0">JNONE</option>
+            <option value="0">ASTROID_NONE</option>
             <option value="gravatar">ASTROID_AUTHOR_PICTURE_GRAVATAR</option>
             <option value="upload">ASTROID_AUTHOR_PICTURE_UPLOAD</option>
          </field>

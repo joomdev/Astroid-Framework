@@ -105,7 +105,7 @@
          </field>
 
          <field ngShow="header==true" astroidgroup="header_element" name="header_mobile_menu" type="sql" query="SELECT * FROM #__menu_types" default="" class="form-control astroid-select-ui" key_field="menutype" value_field="title" label="TPL_ASTROID_HEADER_MOBILE_MENU_LABEL">
-            <option value="">JNONE</option>
+            <option value="">ASTROID_NONE</option>
          </field>
          
          <field
@@ -250,7 +250,7 @@
          <field ngShow="header==true AND header_mode!='sidebar'" astroidgroup="header_element" description="TPL_ASTROID_HEADER_MENU_ANIMATION_DESC" title="TPL_ASTROID_HEADER_MENU_ANIMATION" type="astroidheading" />
 
          <field ngShow="header==true AND header_mode!='sidebar'" astroidgroup="header_element" name="dropdown_animation_type" type="astroidradio" default="fade" label="TPL_ASTROID_HEADER_MENU_ANIMATION">
-            <option class="btn-danger" value="none">JNONE</option>
+            <option class="btn-danger" value="none">ASTROID_NONE</option>
             <option value="fade">TPL_ASTROID_HEADER_MENU_ANIMATION_OPTION_FADE</option>
             <option value="slide">TPL_ASTROID_HEADER_MENU_ANIMATION_OPTION_SILDE</option>
          </field>

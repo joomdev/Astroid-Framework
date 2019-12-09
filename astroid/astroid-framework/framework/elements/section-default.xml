@@ -23,7 +23,7 @@
              
             
             <field description="TPL_ASTROID_ADVANCED_POPUUP_LAYOUT_SELECT_DESC" name="background_setting" type="astroidradio" default="0" label="TPL_ASTROID_ADVANCED_POPUUP_LAYOUT_SELECT_LABEL">
-               <option value="0">JNONE</option>
+               <option value="0">ASTROID_NONE</option>
                <option value="color">TPL_ASTROID_COLOR</option>
                <option value="image">TPL_ASTROID_IMAGE</option>
                <option value="video">TPL_ASTROID_VIDEO</option>

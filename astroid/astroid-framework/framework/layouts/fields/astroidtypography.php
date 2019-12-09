@@ -90,16 +90,16 @@ foreach ($fonts as $font) {
          </div>
          <div class="col-4">
             <?php if ($sizepicker) { ?>
-               <ul class="nav tabmedia" role="tablist">
+               <ul class="nav tabmedia" data-typography-tab role="tablist">
                   <li> <label class="astroid-label d-inline-block"><?php echo JText::_('TPL_ASTROID_FONT_SIZE_LABEL'); ?></label> </li>
                   <li>
-                     <a class="active" href="javascript:void(0);" id="astroid-font-size-desktop-<?php echo $id; ?>" data-toggle="tab" data-target="#astroid-fontsize-desktop-<?php echo $id; ?>" role="tab" aria-controls="astroid-fontsize-desktop-<?php echo $id; ?>" aria-selected="true"><i class="fa fa-desktop"></i></a>
+                     <a class="active" href="javascript:void(0);" id="astroid-font-size-desktop-<?php echo $id; ?>" data-toggle="tab" data-target="#astroid-fontsize-desktop-<?php echo $id; ?>" role="tab" aria-controls="astroid-fontsize-desktop-<?php echo $id; ?>" aria-selected="true" data-typography-field-id="<?php echo $id; ?>" data-typography-tab-device="desktop"><i class="fa fa-desktop"></i></a>
                   </li>
                   <li>
-                     <a href="javascript:void(0);" id="astroid-font-size-tablet-<?php echo $id; ?>" data-toggle="tab" data-target="#astroid-fontsize-tablet-<?php echo $id; ?>" role="tab" aria-controls="astroid-fontsize-tablet-<?php echo $id; ?>" aria-selected="true"><i class="fa fa-tablet-alt"></i></a>
+                     <a href="javascript:void(0);" id="astroid-font-size-tablet-<?php echo $id; ?>" data-toggle="tab" data-target="#astroid-fontsize-tablet-<?php echo $id; ?>" role="tab" aria-controls="astroid-fontsize-tablet-<?php echo $id; ?>" aria-selected="true" data-typography-field-id="<?php echo $id; ?>" data-typography-tab-device="tablet"><i class="fa fa-tablet-alt"></i></a>
                   </li>
                   <li>
-                     <a href="javascript:void(0);" id="astroid-font-size-mobile-<?php echo $id; ?>" data-toggle="tab" data-target="#astroid-fontsize-mobile-<?php echo $id; ?>" role="tab" aria-controls="astroid-fontsize-mobile-<?php echo $id; ?>" aria-selected="true"><i class="fa fa-mobile-alt"></i></a>
+                     <a href="javascript:void(0);" id="astroid-font-size-mobile-<?php echo $id; ?>" data-toggle="tab" data-target="#astroid-fontsize-mobile-<?php echo $id; ?>" role="tab" aria-controls="astroid-fontsize-mobile-<?php echo $id; ?>" aria-selected="true" data-typography-field-id="<?php echo $id; ?>" data-typography-tab-device="mobile"><i class="fa fa-mobile-alt"></i></a>
                   </li>
                </ul>
                <div class="tab-content" id="astroid-font-size-tab-content">
@@ -116,7 +116,7 @@ foreach ($fonts as $font) {
                            </div>
 
                            <div class="clearfix"></div>
-                           <input data-typography-field="<?php echo $id; ?>" data-typography-property="font-size-<?php echo $mtype ?>" name="<?php echo $name; ?>[font_size][<?php echo $mtype ?>]" data-slider-min="0" data-slider-step="0.001" data-unit="<?php echo (isset($font_size_unit->$mtype)) ? $font_size_unit->$mtype : ''; ?>" data-slider-max="100" data-prefix="" data-postfix="" type="number" data-slider-value="<?php echo (isset($font_size->$mtype)) ? $font_size->$mtype : 0; ?>" id="<?php echo $id; ?>_font_size_<?php echo $mtype ?>" data-slider-id="<?php echo $id; ?>_font_size_<?php echo $mtype ?>" range-slider ng-model="<?php echo $id; ?>_font_size_<?php echo $mtype ?>">
+                           <input data-typography-field="<?php echo $id; ?>" data-typography-property="font-size" data-typography-tab-device="<?php echo $mtype ?>" name="<?php echo $name; ?>[font_size][<?php echo $mtype ?>]" data-slider-min="0" data-slider-step="0.001" data-unit="<?php echo (isset($font_size_unit->$mtype)) ? $font_size_unit->$mtype : ''; ?>" data-slider-max="100" data-prefix="" data-postfix="" type="number" data-slider-value="<?php echo (isset($font_size->$mtype)) ? $font_size->$mtype : 0; ?>" id="<?php echo $id; ?>_font_size_<?php echo $mtype ?>" data-slider-id="<?php echo $id; ?>_font_size_<?php echo $mtype ?>" range-slider ng-model="<?php echo $id; ?>_font_size_<?php echo $mtype ?>">
                         </div>
                      </div>
                   <?php } ?>
@@ -125,16 +125,16 @@ foreach ($fonts as $font) {
             <?php } ?>
 
             <?php if ($letterspacingpicker) { ?>
-               <ul class="nav tabmedia" role="tablist">
+               <ul class="nav tabmedia" data-typography-tab role="tablist">
                   <li><label class="astroid-label d-inline-block"><?php echo JText::_('TPL_ASTROID_LETTER_SPACING_LABEL'); ?></label></li>
                   <li>
-                     <a class="active" href="javascript:void(0);" id="astroid-letter-spacing-desktop-<?php echo $id; ?>" data-toggle="tab" data-target="#astroid-letterspacing-desktop-<?php echo $id; ?>" role="tab" aria-controls="astroid-letterspacing-desktop-<?php echo $id; ?>" aria-selected="true"><i class="fa fa-desktop"></i></a>
+                     <a class="active" href="javascript:void(0);" id="astroid-letter-spacing-desktop-<?php echo $id; ?>" data-toggle="tab" data-target="#astroid-letterspacing-desktop-<?php echo $id; ?>" role="tab" aria-controls="astroid-letterspacing-desktop-<?php echo $id; ?>" aria-selected="true" data-typography-field-id="<?php echo $id; ?>" data-typography-tab-device="desktop"><i class="fa fa-desktop"></i></a>
                   </li>
                   <li>
-                     <a href="javascript:void(0);" id="astroid-font-size-tablet-<?php echo $id; ?>" data-toggle="tab" data-target="#astroid-letterspacing-tablet-<?php echo $id; ?>" role="tab" aria-controls="astroid-letterspacing-tablet-<?php echo $id; ?>" aria-selected="true"><i class="fa fa-tablet-alt"></i></a>
+                     <a href="javascript:void(0);" id="astroid-font-size-tablet-<?php echo $id; ?>" data-toggle="tab" data-target="#astroid-letterspacing-tablet-<?php echo $id; ?>" role="tab" aria-controls="astroid-letterspacing-tablet-<?php echo $id; ?>" aria-selected="true" data-typography-field-id="<?php echo $id; ?>" data-typography-tab-device="tablet"><i class="fa fa-tablet-alt"></i></a>
                   </li>
                   <li>
-                     <a href="javascript:void(0);" id="astroid-font-size-mobile-<?php echo $id; ?>" data-toggle="tab" data-target="#astroid-letterspacing-mobile-<?php echo $id; ?>" role="tab" aria-controls="astroid-letterspacing-mobile-<?php echo $id; ?>" aria-selected="true"><i class="fa fa-mobile-alt"></i></a>
+                     <a href="javascript:void(0);" id="astroid-font-size-mobile-<?php echo $id; ?>" data-toggle="tab" data-target="#astroid-letterspacing-mobile-<?php echo $id; ?>" role="tab" aria-controls="astroid-letterspacing-mobile-<?php echo $id; ?>" aria-selected="true" data-typography-field-id="<?php echo $id; ?>" data-typography-tab-device="mobile"><i class="fa fa-mobile-alt"></i></a>
                   </li>
                </ul>
                <div class="tab-content" id="astroid-font-size-tab-content">
@@ -149,7 +149,7 @@ foreach ($fonts as $font) {
                               </ul>
                            </div>
                            <div class="clearfix"></div>
-                           <input data-typography-field="<?php echo $id; ?>" data-typography-property="letter-spacing-<?php echo $mtype; ?>" name="<?php echo $name; ?>[letter_spacing][<?php echo $mtype; ?>]" data-slider-min="0" data-slider-step="0.001" data-slider-max="100" data-prefix="" data-postfix="" data-unit="<?php echo (isset($letter_spacing_unit->$mtype)) ? $letter_spacing_unit->$mtype : 0; ?>" type="number" data-slider-value="<?php echo (isset($letter_spacing->$mtype)) ? $letter_spacing->$mtype : 0; ?>" id="<?php echo $id; ?>_letter_spacing_<?php echo $mtype; ?>" data-slider-id="<?php echo $id; ?>_letter_spacing_<?php echo $mtype; ?>" range-slider ng-model="<?php echo $id; ?>_letter_spacing_<?php echo $mtype; ?>">
+                           <input data-typography-field="<?php echo $id; ?>" data-typography-property="letter-spacing" data-typography-tab-device="<?php echo $mtype ?>" name="<?php echo $name; ?>[letter_spacing][<?php echo $mtype; ?>]" data-slider-min="0" data-slider-step="0.001" data-slider-max="100" data-prefix="" data-postfix="" data-unit="<?php echo (isset($letter_spacing_unit->$mtype)) ? $letter_spacing_unit->$mtype : 0; ?>" type="number" data-slider-value="<?php echo (isset($letter_spacing->$mtype)) ? $letter_spacing->$mtype : 0; ?>" id="<?php echo $id; ?>_letter_spacing_<?php echo $mtype; ?>" data-slider-id="<?php echo $id; ?>_letter_spacing_<?php echo $mtype; ?>" range-slider ng-model="<?php echo $id; ?>_letter_spacing_<?php echo $mtype; ?>">
                         </div>
                      </div>
                   <?php } ?>
@@ -157,16 +157,16 @@ foreach ($fonts as $font) {
                <div class="clearfix"></div>
             <?php } ?>
             <?php if ($lineheightpicker) { ?>
-               <ul class="nav tabmedia" role="tablist">
+               <ul class="nav tabmedia" data-typography-tab role="tablist">
                   <li><label class="astroid-label"><?php echo JText::_('TPL_ASTROID_LINE_HEIGHT_LABEL'); ?></label></li>
                   <li>
-                     <a class="active" href="javascript:void(0);" id="astroid-line-height-desktop-<?php echo $id; ?>" data-toggle="tab" data-target="#astroid-lineheight-desktop-<?php echo $id; ?>" role="tab" aria-controls="astroid-lineheight-desktop-<?php echo $id; ?>" aria-selected="true"><i class="fa fa-desktop"></i></a>
+                     <a class="active" href="javascript:void(0);" id="astroid-line-height-desktop-<?php echo $id; ?>" data-toggle="tab" data-target="#astroid-lineheight-desktop-<?php echo $id; ?>" role="tab" aria-controls="astroid-lineheight-desktop-<?php echo $id; ?>" aria-selected="true" data-typography-field-id="<?php echo $id; ?>" data-typography-tab-device="desktop"><i class="fa fa-desktop"></i></a>
                   </li>
                   <li>
-                     <a href="javascript:void(0);" id="astroid-line-height-tablet-<?php echo $id; ?>" data-toggle="tab" data-target="#astroid-lineheight-tablet-<?php echo $id; ?>" role="tab" aria-controls="astroid-lineheight-tablet-<?php echo $id; ?>" aria-selected="true"><i class="fa fa-tablet-alt"></i></a>
+                     <a href="javascript:void(0);" id="astroid-line-height-tablet-<?php echo $id; ?>" data-toggle="tab" data-target="#astroid-lineheight-tablet-<?php echo $id; ?>" role="tab" aria-controls="astroid-lineheight-tablet-<?php echo $id; ?>" aria-selected="true" data-typography-field-id="<?php echo $id; ?>" data-typography-tab-device="tablet"><i class="fa fa-tablet-alt"></i></a>
                   </li>
                   <li>
-                     <a href="javascript:void(0);" id="astroid-line-height-mobile-<?php echo $id; ?>" data-toggle="tab" data-target="#astroid-lineheight-mobile-<?php echo $id; ?>" role="tab" aria-controls="astroid-lineheight-mobile-<?php echo $id; ?>" aria-selected="true"><i class="fa fa-mobile-alt"></i></a>
+                     <a href="javascript:void(0);" id="astroid-line-height-mobile-<?php echo $id; ?>" data-toggle="tab" data-target="#astroid-lineheight-mobile-<?php echo $id; ?>" role="tab" aria-controls="astroid-lineheight-mobile-<?php echo $id; ?>" aria-selected="true" data-typography-field-id="<?php echo $id; ?>" data-typography-tab-device="mobile"><i class="fa fa-mobile-alt"></i></a>
                   </li>
                </ul>
                <div class="tab-content" id="astroid-line-height-tab-content">
@@ -181,7 +181,7 @@ foreach ($fonts as $font) {
                               </ul>
                            </div>
                            <div class="clearfix"></div>
-                           <input data-typography-field="<?php echo $id; ?>" data-typography-property="line-height-<?php echo $mtype; ?>" name="<?php echo $name; ?>[line_height][<?php echo $mtype; ?>]" data-slider-min="0" data-slider-step="0.001" data-slider-max="100" data-prefix="" data-postfix="" data-unit="<?php echo (isset($line_height_unit->$mtype)) ? $line_height_unit->$mtype : 0; ?>" type="number" data-slider-value="<?php echo (isset($line_height->$mtype)) ? $line_height->$mtype : 0; ?>" id="<?php echo $id; ?>_line_height_<?php echo $mtype; ?>" data-slider-id="<?php echo $id; ?>_line_height_<?php echo $mtype; ?>" range-slider ng-model="<?php echo $id; ?>_line_height_<?php echo $mtype; ?>">
+                           <input data-typography-field="<?php echo $id; ?>" data-typography-property="line-height" data-typography-tab-device="<?php echo $mtype ?>" name="<?php echo $name; ?>[line_height][<?php echo $mtype; ?>]" data-slider-min="0" data-slider-step="0.001" data-slider-max="100" data-prefix="" data-postfix="" data-unit="<?php echo (isset($line_height_unit->$mtype)) ? $line_height_unit->$mtype : 0; ?>" type="number" data-slider-value="<?php echo (isset($line_height->$mtype)) ? $line_height->$mtype : 0; ?>" id="<?php echo $id; ?>_line_height_<?php echo $mtype; ?>" data-slider-id="<?php echo $id; ?>_line_height_<?php echo $mtype; ?>" range-slider ng-model="<?php echo $id; ?>_line_height_<?php echo $mtype; ?>">
                         </div>
                      </div>
                   <?php } ?>

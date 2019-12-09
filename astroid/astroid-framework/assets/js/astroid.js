@@ -893,7 +893,23 @@ var Admin = new AstroidAdmin();
             });
          }
       });
+
+      $('[data-typography-tab]').find('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+         var _device = $(e.target).attr('data-typography-tab-device');
+         var _id = $(e.target).attr('data-typography-field-id');
+         activeTypographyTab(_id, _device);
+      });
+
    };
+
+   var activeTypographyTab = function (_id, _device) {
+      $('[data-typography-tab]').find('a[data-typography-field-id="' + _id + '"][data-typography-tab-device="' + _device + '"]').each(function () {
+         if (!$(this).hasClass('show')) {
+            $(this).tab('show');
+            $('[data-typography-tab-device=' + _device + '][data-typography-field=' + _id + ']').trigger('change');
+         }
+      });
+   }
 
    var setAstroidRange = function setAstroidRange(_range) {
       try {

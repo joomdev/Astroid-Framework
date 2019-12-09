@@ -11,20 +11,20 @@ jimport('astroid.framework.helper');
 jimport('astroid.framework.constants');
 jimport('astroid.framework.astroid');
 
-class AstroidFrameworkArticle {
+class AstroidFrameworkArticle
+{
 
    public $type;
    public $article;
    private $params;
    public $template;
 
-   function __construct($article, $categoryView = false) {
+   function __construct($article, $categoryView = false)
+   {
       $this->article = $article;
-      if ($categoryView) {
-         $attribs = new JRegistry();
-         $attribs->loadString($this->article->attribs, 'JSON');
-         $this->article->params->merge($attribs);
-      }
+      $attribs = new JRegistry();
+      $attribs->loadString($this->article->attribs, 'JSON');
+      $this->article->params->merge($attribs);
 
       $this->type = $this->article->params->get('astroid_article_type', 'regular');
       $this->template = AstroidFramework::getTemplate();
@@ -43,7 +43,8 @@ class AstroidFrameworkArticle {
       $this->renderRating();
    }
 
-   public function addMeta() {
+   public function addMeta()
+   {
 
       $app = JFactory::getApplication();
       $itemid = $app->input->get('Itemid', '', 'INT');
@@ -125,7 +126,8 @@ class AstroidFrameworkArticle {
       }
    }
 
-   public function render() {
+   public function render()
+   {
       if ($this->type == 'regular') {
          return false;
       }
@@ -133,46 +135,41 @@ class AstroidFrameworkArticle {
    }
 
    // Read Time
-   public function renderReadTime() {
+   public function renderReadTime()
+   {
       if ($this->showReadTime()) {
          $this->article->readtime = $this->calculateReadTime($this->article->fulltext);
          $this->template->loadLayout('blog.modules.readtime', true, ['article' => $this->article]);
       }
    }
 
-   public function showReadTime() {
+   public function showReadTime()
+   {
       if (JFactory::getApplication()->input->get('tmpl', '') === 'component') {
          return FALSE;
       }
 
       $view  = JFactory::getApplication()->input->get('view', '');
       $menu_level = $this->params->get('astroid_readtime', '');
-      $article_level = $this->article->params->get('astroid_readtime', '');
-      $astroid_level = $this->template->params->get('astroid_readtime', 1);
-      
-      switch($astroid_level){ 
-         case 2:
-         if($view==='article'){
-            $astroid_level = 1;
-         }
-         break;
-         case 3:
-         if($view==='category' || $view==='featured'){
-            $astroid_level = 1;
-         }
-         break;
+      if ($view === 'article') {
+         $article_level = $this->article->params->get('astroid_article_readtime', '');
+      } else {
+         $article_level = $this->article->params->get('astroid_readtime', '');
       }
+      $astroid_level = $this->template->params->get('astroid_readtime', 1);
       return $this->checkPriority($menu_level, $article_level, $astroid_level);
    }
 
    // Social Share
-   public function renderSocialShare() {
+   public function renderSocialShare()
+   {
       if ($this->showSocialShare()) {
          $this->template->loadLayout('blog.modules.social', true, ['article' => $this->article]);
       }
    }
 
-   public function showSocialShare() {
+   public function showSocialShare()
+   {
 
       if (JFactory::getApplication()->input->get('tmpl', '') === 'component') {
          return FALSE;
@@ -186,13 +183,15 @@ class AstroidFrameworkArticle {
    }
 
    // Comments
-   public function renderComments() {
+   public function renderComments()
+   {
       if ($this->showComments()) {
          $this->template->loadLayout('blog.modules.comments', true, ['article' => $this->article]);
       }
    }
 
-   public function showComments() {
+   public function showComments()
+   {
       if (JFactory::getApplication()->input->get('tmpl', '') === 'component') {
          return FALSE;
       }
@@ -204,34 +203,47 @@ class AstroidFrameworkArticle {
    }
 
    // Related Posts
-   public function renderRelatedPosts() {
+   public function renderRelatedPosts()
+   {
       if ($this->showRelatedPosts()) {
+
+         $article_relatedposts_count = $this->article->params->get('article_relatedposts_count', '');
+
+         if (!empty($article_relatedposts_count) && $article_relatedposts_count == 1) {
+            $count = $this->template->params->get('article_relatedposts_count_custom', 4);
+         } else {
+            $count = $this->template->params->get('article_relatedposts_count', 4);
+         }
+
          JLoader::register('ModRelatedItemsHelper', JPATH_ROOT . '/modules/mod_related_items/helper.php');
          $params = new JRegistry();
-         $params->loadArray(['maximum' => $this->template->params->get('article_relatedposts_count', 4)]);
+         $params->loadArray(['maximum' => $count]);
          $items = ModRelatedItemsHelper::getList($params);
          $this->template->loadLayout('blog.modules.related', true, ['items' => $items]);
       }
    }
 
-   public function showRelatedPosts() {
+   public function showRelatedPosts()
+   {
       if (JFactory::getApplication()->input->get('tmpl', '') === 'component') {
          return FALSE;
       }
-      $menu_level = $this->params->get('astroid_relatedposts', '');
+      // $menu_level = $this->params->get('astroid_relatedposts', '');
       $article_level = $this->article->params->get('astroid_relatedposts', '');
       $astroid_level = $this->template->params->get('article_relatedposts', 1);
-      return $this->checkPriority($menu_level, $article_level, $astroid_level);
+      return $this->checkPriority('', $article_level, $astroid_level);
    }
 
    // Author Info
-   public function renderAuthorInfo() {
+   public function renderAuthorInfo()
+   {
       if ($this->showAuthorInfo()) {
          $this->template->loadLayout('blog.modules.author_info', true, ['article' => $this->article]);
       }
    }
 
-   public function showAuthorInfo() {
+   public function showAuthorInfo()
+   {
       if (JFactory::getApplication()->input->get('tmpl', '') === 'component') {
          return FALSE;
       }
@@ -241,49 +253,39 @@ class AstroidFrameworkArticle {
       return $this->checkPriority($menu_level, $article_level, $astroid_level);
    }
 
-// menu level article badge
- public function renderArticleBadge() {
-   if ($this->showArticleBadge()) {
-      $this->template->loadLayout('blog.modules.menuarticlebadge', true, ['article' => $this->article]);
-   }
-}
-
-public function showArticleBadge() {
-   if (JFactory::getApplication()->input->get('tmpl', '') === 'component') {
-      return FALSE;
-   }
-   if (JFactory::getApplication()->input->get('option', '') === 'com_content' && JFactory::getApplication()->input->get('view', '') === 'article') {
-      return FALSE;
-   }
-   $menu_level = $this->params->get('astroid_articlebadge', '');
-   $article_level = $this->article->params->get('astroid_articlebadge', '');
-   $astroid_level = $this->template->params->get('astroid_articlebadge', 2);
-   $view  = JFactory::getApplication()->input->get('view', '');
-   switch($astroid_level){ 
-      case 2:
-      if($view==='article'){
-         $astroid_level = 1;
-      } 
-      break;
-      case 3:
-      if($view==='category' || $view==='featured'){
-         $astroid_level = 1;
-
+   // menu level article badge
+   public function renderArticleBadge()
+   {
+      if ($this->showArticleBadge()) {
+         $this->template->loadLayout('blog.modules.menuarticlebadge', true, ['article' => $this->article]);
       }
-      break;
    }
-   return $this->checkPriority($menu_level, $article_level, $astroid_level);
-}
+
+   public function showArticleBadge()
+   {
+      if (JFactory::getApplication()->input->get('tmpl', '') === 'component') {
+         return FALSE;
+      }
+      if (JFactory::getApplication()->input->get('option', '') === 'com_content' && JFactory::getApplication()->input->get('view', '') === 'article') {
+         return FALSE;
+      }
+      $menu_level = $this->params->get('astroid_badge', '');
+      $article_level = $this->article->params->get('astroid_badge', '');
+      $astroid_level = $this->template->params->get('astroid_badge', 1);
+      return $this->checkPriority($menu_level, $article_level, $astroid_level);
+   }
 
 
    // Post Type Icon
-   public function renderPostTypeIcon() {
+   public function renderPostTypeIcon()
+   {
       if ($this->showPostTypeIcon()) {
          $this->template->loadLayout('blog.modules.posttype', true, ['article' => $this->article]);
       }
    }
 
-   public function showPostTypeIcon() {
+   public function showPostTypeIcon()
+   {
       if (JFactory::getApplication()->input->get('tmpl', '') === 'component') {
          return FALSE;
       }
@@ -294,23 +296,24 @@ public function showArticleBadge() {
       $article_level = $this->article->params->get('astroid_posttype', '');
       $astroid_level = $this->template->params->get('article_posttype', 1);
       $view  = JFactory::getApplication()->input->get('view', '');
-      switch($astroid_level){ 
+      switch ($astroid_level) {
          case 2:
-         if($view==='article'){
-            $astroid_level = 1;
-            echo "enterd to article view only";
-         }
-         break;
+            if ($view === 'article') {
+               $astroid_level = 1;
+               echo "enterd to article view only";
+            }
+            break;
          case 3:
-         if($view==='category' || $view==='featured'){
-            $astroid_level = 1;
-         }
-         break;
+            if ($view === 'category' || $view === 'featured') {
+               $astroid_level = 1;
+            }
+            break;
       }
       return $this->checkPriority($menu_level, $article_level, $astroid_level);
    }
 
-   public function renderRating() {
+   public function renderRating()
+   {
       if ($this->showRating()) {
          $document = JFactory::getDocument();
          $document->addCustomTag('<script src="//cdn.jsdelivr.net/npm/semantic-ui@2.4.0/dist/components/rating.min.js"></script>');
@@ -318,15 +321,27 @@ public function showArticleBadge() {
       }
    }
 
-   public function showRating() {
+   public function showRating()
+   {
       if (JFactory::getApplication()->input->get('tmpl', '') === 'component') {
          return FALSE;
       }
-      return $this->template->params->get('article_rating', 1);
+
+      $option = JFactory::getApplication()->input->get('option', '');
+      $view = JFactory::getApplication()->input->get('view', '');
+      if ($option == 'com_content' && ($view == 'featured' || $view == 'category')) {
+         return FALSE;
+      }
+
+      $menu_level = $this->params->get('article_rating', '');
+      $article_level = $this->article->params->get('article_rating', '');
+      $astroid_level = $this->template->params->get('article_rating', 1);
+      return $this->checkPriority('', $article_level, $astroid_level);
    }
 
    // Utility Functions
-   public function checkPriority($firstPriority, $secondPriority, $thirdPriority) {
+   public function checkPriority($firstPriority, $secondPriority, $thirdPriority)
+   {
       $firstPriority = $firstPriority == '' ? -1 : (int) $firstPriority;
       $secondPriority = $secondPriority == '' ? -1 : (int) $secondPriority;
       $thirdPriority = $thirdPriority == '' ? -1 : (int) $thirdPriority;
@@ -363,7 +378,8 @@ public function showArticleBadge() {
       return $enabled;
    }
 
-   public function calculateReadTime($string) {
+   public function calculateReadTime($string)
+   {
       $speed = 170;
       $word = str_word_count(strip_tags($string));
       $m = floor($word / $speed);
@@ -383,11 +399,13 @@ public function showArticleBadge() {
       }
    }
 
-   public function getTemplateParams() {
+   public function getTemplateParams()
+   {
       return $this->template->params;
    }
 
-   public function getImage() {
+   public function getImage()
+   {
       $type = $this->article->params->get('astroid_article_type', 'regular');
       $thumbnail = '';
       switch ($type) {
@@ -405,7 +423,8 @@ public function showArticleBadge() {
       return $thumbnail;
    }
 
-   public function getGalleryThumbnail() {
+   public function getGalleryThumbnail()
+   {
       $enabled = $this->article->params->get('astroid_article_thumbnail', 1);
       if (!$enabled) {
          return FALSE;
@@ -422,7 +441,8 @@ public function showArticleBadge() {
       return JURI::root() . $first_element['image'];
    }
 
-   public function getVideoThumbnail() {
+   public function getVideoThumbnail()
+   {
       $enabled = $this->article->params->get('astroid_article_thumbnail', 1);
       if (!$enabled) {
          return FALSE;
@@ -445,13 +465,15 @@ public function showArticleBadge() {
       return $return;
    }
 
-   public static function getVimeoThumbnailByID($vid) {
+   public static function getVimeoThumbnailByID($vid)
+   {
       $hash = unserialize(file_get_contents("https://vimeo.com/api/v2/video/" . $vid . ".php"));
       $thumbnail = $hash[0]['thumbnail_large'];
       return $thumbnail;
    }
 
-   public static function getVideoId($url, $type) {
+   public static function getVideoId($url, $type)
+   {
       $parts = parse_url($url);
       if ($type == "youtube") {
          return (isset($parts['path']) ? $parts['path'] : '');
@@ -462,7 +484,8 @@ public function showArticleBadge() {
       }
    }
 
-   public static function getArticleRating($id) {
+   public static function getArticleRating($id)
+   {
       $db = JFactory::getDbo();
       $query = "SELECT * FROM `#__content_rating` WHERE `content_id`='$id'";
       $db->setQuery($query);
@@ -473,5 +496,4 @@ public function showArticleBadge() {
          return ceil($result->rating_sum / $result->rating_count);
       }
    }
-
 }

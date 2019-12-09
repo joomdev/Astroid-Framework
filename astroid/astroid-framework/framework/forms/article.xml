@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form>
-   <fields name="attribs">
+    <fields name="attribs">
         <fieldset label="ASTROID_ARTICLE_TYPE_OPTIONS_TITLE_LABEL" name="articletypeoptions" addfieldpath="/libraries/astroid/framework/fields">
             <field type="radio" name="astroid_article_type" label="ASTROID_ARTICLE_OPTIONS_TYPE" description="ASTROID_ARTICLE_OPTIONS_TYPE_DESC" class="btn-group" default="regular">
                 <option value="regular">ASTROID_ARTICLE_OPTIONS_TYPE_REGULAR</option>
@@ -35,7 +35,7 @@
             </field>
 
             <field showon="astroid_article_type:gallery" name="astroid_article_gallery_items" type="subform" formsource="libraries/astroid/framework/forms/galleryitem.xml" multiple="true" label="ASTROID_GALLERY_ITEMS" />
-            
+
             <!-- Audio Options -->
             <field type="spacer" showon="astroid_article_type:audio" name="astroidarticleaudio" label="ASTROID_ARTICLE_OPTIONS_AUDIO_LABEL" />
             <field showon="astroid_article_type:audio" name="astroid_article_audio_source" type="radio" class="btn-group" default="soundcloud" label="ASTROID_AUDIO_SOURCE" description="">

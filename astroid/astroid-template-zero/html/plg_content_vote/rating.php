@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @package     Joomla.Plugin
  * @subpackage  Content.vote
@@ -19,13 +20,14 @@ defined('_JEXEC') or die;
  */
 jimport('astroid.framework.template');
 $template = new AstroidFrameworkTemplate(JFactory::getApplication()->getTemplate(true));
+
 if (!$template->params->get('article_rating', 1)) {
-   if ($context == 'com_content.categories') {
+   if ($context == 'com_content.category' || $context == 'com_content.featured') {
       return;
    }
    $rating = (int) $row->rating;
 
-// Look for images in template if available
+   // Look for images in template if available
    $starImageOn = '<i class="fas fa-star mr-1"></i>';
    $starImageOff = '<i class="far fa-star mr-1"></i>';
 
@@ -50,11 +52,11 @@ if (!$template->params->get('article_rating', 1)) {
    </div>
 <?php } else { ?>
    <?php
-   if ($context == 'com_content.categories') {
-      return;
-   }
-   $rating = (int) $row->rating;
-   ?>
+      if ($context == 'com_content.categories') {
+         return;
+      }
+      $rating = (int) $row->rating;
+      ?>
    <div itemprop="aggregateRating" itemscope itemtype="https://schema.org/AggregateRating">
       <meta itemprop="ratingValue" content="<?php echo $rating; ?>" />
       <meta itemprop="bestRating" content="5" />

@@ -257,7 +257,7 @@ class AstroidFrameworkArticle
    public function renderArticleBadge()
    {
       if ($this->showArticleBadge()) {
-         $this->template->loadLayout('blog.modules.menuarticlebadge', true, ['article' => $this->article]);
+         $this->template->loadLayout('blog.modules.badge', true, ['article' => $this->article]);
       }
    }
 

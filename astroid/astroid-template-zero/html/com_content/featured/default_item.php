@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @package   Astroid Framework
  * @author    JoomDev https://www.joomdev.com
@@ -37,55 +38,9 @@ $post_format = $post_attribs->get('post_format', 'standard');
    if (is_string($image) && !empty($image)) {
       $astroidArticle->template->loadLayout('blog.modules.image', true, ['image' => $image, 'title' => $this->item->title]);
    }
-   $astroid_article_badge = $template->params->get('astroid_article_badge', 1) ? ($astroidArticle->article->params->get('astroid_article_badge', 0) ? 1 : 0) : 0;
-   $menulevel_article_badge = $this->params->get('astroid_articlebadge', 1);
-   $astroid_article_badge1 = $template->params->get('astroid_badge', 1);
    ?>
-   <div class="card-body<?php echo $tpl_params->get('show_post_format') ? ' has-post-format' : ''; ?><?php echo $astroid_article_badge ? ' has-badge' : ''; ?><?php echo (!empty($image) ? ' has-image' : ''); ?>">
-      <?php 
-      switch ($menulevel_article_badge){
-         case 2:
-               if(($astroid_article_badge1 == 3) || ($astroid_article_badge1 == 1)) {         
-               if ($astroidArticle->article->params->get('astroid_article_badge', 0)) { ?>
-                  <?php
-                  if ($astroidArticle->article->params->get('astroid_article_badge_type', 2) == 1) {
-                     $style = '.article-badge.article-badge-custom.article-id-'.$this->item->id.':after{ border-left-color: ' . $astroidArticle->article->params->get('astroid_article_badge_color', '#000'). '} .article-badge.article-badge-custom.article-id-'.$this->item->id.':before{ border-bottom-color: ' . $astroidArticle->article->params->get('astroid_article_badge_color', '#000'). '; }';
-                     $document->addStyleDeclaration($style);
-                     ?>
-                  <div style="background: <?php echo $astroidArticle->article->params->get('astroid_article_badge_color', '#000'); ?>; color: <?php echo $astroidArticle->article->params->get('astroid_article_badge_text_color', '#000'); ?>" class="article-badge article-badge-<?php 
-                  if($astroidArticle->article->params->get('astroid_article_badge_type', 2) == 1){
-                        echo 'custom article-id-'.$this->item->id;
-                     } else {   
-                        echo $astroidArticle->article->params->get('astroid_article_badge_type', 2);
-                     }
-                  ?>"><?php echo JText::_($astroidArticle->article->params->get('astroid_article_badge_text', '')); ?></div>
-                  <?php } else { ?>
-                     <div class="article-badge article-badge-<?php echo $astroidArticle->article->params->get('astroid_article_badge_type', 2); ?>"><?php echo JText::_('ASTROID_ARTICLE_OPTIONS_BADGE_' . ($astroidArticle->article->params->get('astroid_article_badge_type', 2)) . '_LBL'); ?></div>
-                  <?php } ?>
-               <?php } ?>
-            <?php }
-      break ;
-      case 1:
-      if ($astroidArticle->article->params->get('astroid_article_badge', 0)) { ?>
-         <?php
-         if ($astroidArticle->article->params->get('astroid_article_badge_type', 2) == 1) {
-            $style = '.article-badge.article-badge-custom.article-id-'.$this->item->id.':after{ border-left-color: ' . $astroidArticle->article->params->get('astroid_article_badge_color', '#000'). '} .article-badge.article-badge-custom.article-id-'.$this->item->id.':before{ border-bottom-color: ' . $astroidArticle->article->params->get('astroid_article_badge_color', '#000'). '; }';
-            $document->addStyleDeclaration($style);
-            ?>
-           <div style="background: <?php echo $astroidArticle->article->params->get('astroid_article_badge_color', '#000'); ?>; color: <?php echo $astroidArticle->article->params->get('astroid_article_badge_text_color', '#000'); ?>" class="article-badge article-badge-<?php 
-         if($astroidArticle->article->params->get('astroid_article_badge_type', 2) == 1){
-               echo 'custom article-id-'.$this->item->id;
-            } else {   
-               echo $astroidArticle->article->params->get('astroid_article_badge_type', 2);
-            }
-         ?>"><?php echo JText::_($astroidArticle->article->params->get('astroid_article_badge_text', '')); ?></div>
-         <?php } else { ?>
-            <div class="article-badge article-badge-<?php echo $astroidArticle->article->params->get('astroid_article_badge_type', 2); ?>"><?php echo JText::_('ASTROID_ARTICLE_OPTIONS_BADGE_' . ($astroidArticle->article->params->get('astroid_article_badge_type', 2)) . '_LBL'); ?></div>
-         <?php } ?>
-      <?php } 
-   break;
-   } ?>
-
+   <div class="card-body<?php echo $tpl_params->get('show_post_format') ? ' has-post-format' : ''; ?><?php echo (!empty($image) ? ' has-image' : ''); ?>">
+      <?php $astroidArticle->renderArticleBadge(); ?>
       <div class="item-title">
          <?php echo JLayoutHelper::render('joomla.content.blog_style_default_item_title', $this->item); ?>
       </div>
@@ -96,7 +51,8 @@ $post_format = $post_attribs->get('post_format', 'standard');
       <?php echo $this->item->introtext; ?>
       <?php if ($info == 1 || $info == 2) : ?>
          <?php if ($useDefList) : ?>
-            <?php // Todo: for Joomla4 joomla.content.info_block.block can be changed to joomla.content.info_block ?>
+            <?php // Todo: for Joomla4 joomla.content.info_block.block can be changed to joomla.content.info_block 
+                  ?>
             <?php echo JLayoutHelper::render('joomla.content.info_block.block', array('item' => $this->item, 'params' => $params, 'astroidArticle' => $astroidArticle, 'position' => 'below')); ?>
          <?php endif; ?>
       <?php endif; ?>

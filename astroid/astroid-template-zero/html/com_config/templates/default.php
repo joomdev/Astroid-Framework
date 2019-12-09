@@ -32,7 +32,7 @@ JFactory::getDocument()->addScriptDeclaration("
 		<div class="btn-toolbar" role="toolbar" aria-label="<?php echo JText::_('JTOOLBAR'); ?>">
 			<div class="btn-group">
 				<button type="button" class="btn btn-primary mr-2" onclick="Joomla.submitbutton('config.save.templates.apply')">
-					<span class="icon-ok"></span> <?php echo JText::_('JSAVE') ?>
+					<span class="icon-ok"></span> <?php echo JText::_('ASTROID_SAVE') ?>
 				</button>
 			</div>
 			<div class="btn-group">

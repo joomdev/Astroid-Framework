@@ -178,7 +178,7 @@ $astroid_shortcut_enable = $plugin_params->get('astroid_shortcut_enable', 1);
       <!--<nav class="astroid-manager-navbar navbar fixed-top navbar-expand-lg navbar-light bg-white justify-content-between">
          <a class="navbar-brand" href="#"><img src="<?php echo JURI::root() . 'media' . '/' . 'astroid' . '/' . 'assets' . '/' . 'images' . '/' . 'favicon.png'; ?>" width="28" height="28" class="d-inline-block align-top" alt=""> Astroid Framework</a>
          <div class="form-inline">
-            <button id="save-options" class="btn btn-success my-2 my-sm-0" type="button"><i class="fa fa-save"></i>&nbsp;<?php echo JText::_('JSAVE'); ?></button>
+            <button id="save-options" class="btn btn-success my-2 my-sm-0" type="button"><i class="fa fa-save"></i>&nbsp;<?php echo JText::_('ASTROID_SAVE'); ?></button>
             <button id="saving-options" class="btn btn-blue disabled my-2 my-sm-0 d-none" type="button"><i class="fa fa-circle-notch fa-spin"></i>&nbsp;<?php echo JText::_('ASTROID_TEMPLATE_SAVING'); ?></button>
             <a href="<?php echo $joomla_url; ?>" class="btn btn-link my-2 my-sm-0 text-white"><i class="fab fa-joomla"></i></a>
          </div>
@@ -372,7 +372,7 @@ $astroid_shortcut_enable = $plugin_params->get('astroid_shortcut_enable', 1);
             <div class="astroid-manager-navbar fixed-top m-0 row">
                <ul class="list-unstyled m-0 col-auto p-0">
                   <li class="float-left">
-                     <button id="save-options" class="astroid-sidebar-btn align-items-center text-white" type="button"><div><i class="fa fa-save"></i><span><?php echo JText::_('JSAVE'); ?></span></div></button>
+                     <button id="save-options" class="astroid-sidebar-btn align-items-center text-white" type="button"><div><i class="fa fa-save"></i><span><?php echo JText::_('ASTROID_SAVE'); ?></span></div></button>
                      <a href="javascript:void(0);" id="saving-options" class="astroid-sidebar-btn align-items-center d-none"><div><i class="fa fa-circle-notch fa-spin"></i><span><?php echo JText::_('ASTROID_TEMPLATE_SAVING'); ?></span></div></a>
                   </li>
                   <li class="float-left">
@@ -415,7 +415,7 @@ $astroid_shortcut_enable = $plugin_params->get('astroid_shortcut_enable', 1);
             <div class="astroid-ring-loading"></div>
             <div id="element-settings-form" ng-bind-html="elementFormContent"></div>
             <div class="ezlb-pop-footer text-right">
-               <button type="button" id="element-settings-save" class="btn btn-lg btn-wide btn-round btn-astroid"><?php echo JText::_('JSAVE'); ?></button>
+               <button type="button" id="element-settings-save" class="btn btn-lg btn-wide btn-round btn-astroid"><?php echo JText::_('ASTROID_SAVE'); ?></button>
             </div>
          </div>
       </div>

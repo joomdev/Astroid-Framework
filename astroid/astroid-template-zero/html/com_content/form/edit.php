@@ -239,7 +239,7 @@ JFactory::getDocument()->addScriptDeclaration("
 		</fieldset>
 		<div class="btn-toolbar">
 				<button type="button" class="btn btn-primary" onclick="Joomla.submitbutton('article.save')">
-					<span class="fa fa-check"></span> <?php echo JText::_('JSAVE') ?>
+					<span class="fa fa-check"></span> <?php echo JText::_('ASTROID_SAVE') ?>
 				</button>
 				<button type="button" class="btn btn-secondary ml-2" onclick="Joomla.submitbutton('article.cancel')">
 					<span class="fa fa-times"></span> <?php echo JText::_('JCANCEL') ?>

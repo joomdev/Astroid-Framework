@@ -150,14 +150,16 @@ class AstroidFrameworkArticle
       }
 
       $view  = JFactory::getApplication()->input->get('view', '');
-      $menu_level = $this->params->get('astroid_readtime', '');
       if ($view === 'article') {
-         $article_level = $this->article->params->get('astroid_article_readtime', '');
+         // for single
+         $article_level = $this->article->params->get('astroid_readtime', ''); // from article
+         $astroid_level = $this->template->params->get('astroid_article_readtime', 1);
       } else {
-         $article_level = $this->article->params->get('astroid_readtime', '');
+         // for listing
+         $article_level = $this->params->get('astroid_readtime', ''); // from menu
+         $astroid_level = $this->template->params->get('astroid_readtime', 1);
       }
-      $astroid_level = $this->template->params->get('astroid_readtime', 1);
-      return $this->checkPriority($menu_level, $article_level, $astroid_level);
+      return $this->checkPriority('', $article_level, $astroid_level);
    }
 
    // Social Share
@@ -210,7 +212,7 @@ class AstroidFrameworkArticle
          $article_relatedposts_count = $this->article->params->get('article_relatedposts_count', '');
 
          if (!empty($article_relatedposts_count) && $article_relatedposts_count == 1) {
-            $count = $this->template->params->get('article_relatedposts_count_custom', 4);
+            $count = $this->article->params->get('article_relatedposts_count_custom', 4);
          } else {
             $count = $this->template->params->get('article_relatedposts_count', 4);
          }

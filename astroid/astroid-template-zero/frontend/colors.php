@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @package   Astroid Framework
  * @author    JoomDev https://www.joomdev.com
@@ -53,6 +54,8 @@ $mobile_menu_text_color = $template->params->get('mobile_menu_text_color', '');
 $mobile_hover_background_color = $template->params->get('mobile_hover_background_color', '');
 $mobile_active_link_color = $template->params->get('mobile_menu_active_link_color', '');
 $mobile_active_background_color = $template->params->get('mobile_menu_active_bg_color', '');
+$mobile_menu_icon_color = $template->params->get('mobile_menu_icon_color', '');
+$mobile_menu_active_icon_color = $template->params->get('mobile_menu_active_icon_color', '');
 
 //Miscellaneous -> Contact Us
 $icon_color = $template->params->get('icon_color', '');
@@ -173,6 +176,12 @@ if (!empty($mobile_active_link_color)) {
 if (!empty($mobile_active_background_color)) {
    $mobilemenu_styles[] = '.astroid-mobilemenu-container .astroid-mobilemenu-inner .menu-item.active, .astroid-mobilemenu-container .astroid-mobilemenu-inner .menu-item.nav-item-active, .menu-go-back { background-color: ' . $mobile_active_background_color . ' !important;}';
 }
+if (!empty($mobile_menu_icon_color)) {
+   $mobilemenu_styles[] = '.burger-menu-button .inner, .burger-menu-button .inner::before, .burger-menu-button .inner::after{background-color: ' . $mobile_menu_icon_color . ';}';
+}
+if (!empty($mobile_menu_active_icon_color)) {
+   $mobilemenu_styles[] = '.astroid-mobilemenu-open .burger-menu-button .inner, .astroid-mobilemenu-open .burger-menu-button .inner::before, .astroid-mobilemenu-open .burger-menu-button .inner::after, .astroid-offcanvas .burger-menu-button .inner, .astroid-offcanvas .burger-menu-button .inner::before, .astroid-offcanvas .burger-menu-button .inner::after{background-color: ' . $mobile_menu_active_icon_color . ';}';
+}
 ?>
 
 <?php
@@ -184,11 +193,11 @@ if (!empty($icon_color)) {
 ?>
 
 <?php
-   $template->addStyledeclaration(implode('', $body_styles));
-   $template->addStyledeclaration(implode('', $header_styles));
-   $template->addStyledeclaration(implode('', $sticky_header_styles));
-   $template->addStyledeclaration(implode('', $main_menu_styles));
-   $template->addStyledeclaration(implode('', $dropdown_styles));
-   $template->addStyledeclaration(implode('', $mobilemenu_styles));
-   $template->addStyledeclaration($contact_icon_color);
+$template->addStyledeclaration(implode('', $body_styles));
+$template->addStyledeclaration(implode('', $header_styles));
+$template->addStyledeclaration(implode('', $sticky_header_styles));
+$template->addStyledeclaration(implode('', $main_menu_styles));
+$template->addStyledeclaration(implode('', $dropdown_styles));
+$template->addStyledeclaration(implode('', $mobilemenu_styles));
+$template->addStyledeclaration($contact_icon_color);
 ?>

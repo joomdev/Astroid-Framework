@@ -4,7 +4,7 @@
 		<fieldset label="ASTROID_OPTIONS_ARTICLE_BLOG" icon="far fa-newspaper" name="articles" addfieldpath="/libraries/astroid/framework/fields" order="6">
 
 			<field type="astroidgroup" name="article_single_options" title="ASTROID_ARTICLE_OPTIONS_ADVANCE"/>
-			<field type="astroidgroup" name="article_listing_options" title="ASTROID_ARTICLE_OPTIONS_LISTING_ADVANCE"/>
+			<field type="astroidgroup" name="article_listing_options" title="ASTROID_ARTICLES_LISTING_OPTIONS"/>
 
 			<field astroidgroup="article_listing_options" name="article_posttype" type="astroidtext" astroid-switch="true" default="1" label="ASTROID_ARTICLE_TYPE_ICON_LBL" description="ASTROID_ARTICLE_TYPE_ICON_DESC"></field>
 

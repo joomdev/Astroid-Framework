@@ -67,9 +67,9 @@
 			</field>
 			<field astroidgroup="off_canvas" name="mobile_menu_active_bg_color" type="astroidcolor" large="true" label="TPL_ASTROID_ACTIVE_BACKGROUND_COLOR_LABEL" description="TPL_ASTROID_OFF_CANVAS_ACTIVE_BGCOLOR_DESC">
 			</field>
-			<field astroidgroup="off_canvas" name="mobile_menu_icon_color" type="astroidcolor" large="true" default="" label="Toggle Icon Color" description="">
+			<field astroidgroup="off_canvas" name="mobile_menu_icon_color" type="astroidcolor" large="true" default="" label="TPL_ASTROID_HAMBURGER_ICON_COLOR">
 			</field>
-			<field astroidgroup="off_canvas" name="mobile_menu_active_icon_color" type="astroidcolor" large="true" default="" label="Active Toggle Icon Color" description="">
+			<field astroidgroup="off_canvas" name="mobile_menu_active_icon_color" type="astroidcolor" large="true" default="" label="TPL_ASTROID_ACTIVE_HAMBURGER_ICON_COLOR">
 			</field>
 		</fieldset>
 	</fields>

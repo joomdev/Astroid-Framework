@@ -15,13 +15,13 @@
 			</field>
 			<field showon="astroid_banner_title_enabled:1[AND]astroid_banner_enabled:1" name="astroid_banner_subtitle" type="text" label="ASTROID_BANNER_SUBTITLE_LABEL">
 			</field>
-			<field showon="astroid_banner_enabled:1" name="astroid_banner_textcolor" type="color" label="TPL_ASTROID_TEXT_COLOR_LABEL">
+			<field name="astroid_banner_textcolor" type="color" showon="astroid_banner_title_enabled:1[AND]astroid_banner_enabled:1" label="TPL_ASTROID_TEXT_COLOR_LABEL">
 			</field>
 			<field showon="astroid_banner_enabled:1" name="astroid_banner_bgcolor" type="color" label="TPL_ASTROID_BACKGROUND_COLOR_LABEL">
 			</field>
 			<field showon="astroid_banner_enabled:1" name="astroid_banner_bgimage" type="media" label="TPL_ASTROID_BACKGROUND_IMAGE_LABEL">
 			</field>
-			<field showon="astroid_banner_enabled:1" name="astroid_banner_title_tag" type="headertag" default="h3" label="ASTROID_BANNER_TITLE_TAG_LABEL">
+			<field showon="astroid_banner_title_enabled:1[AND]astroid_banner_enabled:1" name="astroid_banner_title_tag" type="headertag" default="h3" label="ASTROID_BANNER_TITLE_TAG_LABEL">
 			</field>
 			<field showon="astroid_banner_enabled:1" name="astroid_banner_class" type="text" label="ASTROID_BANNER_CLASS_LABEL">
 			</field>

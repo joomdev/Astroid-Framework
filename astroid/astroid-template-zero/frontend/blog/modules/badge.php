@@ -15,10 +15,6 @@ extract($displayData);
 
 $article = $params['article'];
 $params = $article->params;
-$badge = $params->get('astroid_article_badge', 0);
-if (!$badge) {
-    return;
-}
 $type = $params->get('astroid_article_badge_type', 2);
 if ($type != 1) {
     ?>

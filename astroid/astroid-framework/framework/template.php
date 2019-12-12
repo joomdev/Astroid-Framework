@@ -1072,6 +1072,28 @@ class AstroidFrameworkTemplate
                $this->params->set($typoOption, $typoParams);
             }
          }
+
+         $menuType = $this->params->get('menus_typography');
+         if (trim($menuType) == 'custom') {
+            $menu_font = $this->params->get('menu_typography_options');
+            foreach (['font_size', 'font_size_unit', 'letter_spacing', 'letter_spacing_unit', 'line_height', 'line_height_unit'] as $prop) {
+               if (!is_string($menu_font->{$prop})) {
+                  $menu_font->{$prop} = $menu_font->{$prop}->desktop;
+               }
+            }
+            $this->params->set('menu_typography_options', $menu_font);
+         }
+
+         $submenuType = $this->params->get('submenus_typography');
+         if (trim($submenuType) == 'custom') {
+            $submenu_font = $this->params->get('submenu_typography_options');
+            foreach (['font_size', 'font_size_unit', 'letter_spacing', 'letter_spacing_unit', 'line_height', 'line_height_unit'] as $prop) {
+               if (!is_string($submenu_font->{$prop})) {
+                  $submenu_font->{$prop} = $submenu_font->{$prop}->desktop;
+               }
+            }
+            $this->params->set('submenu_typography_options', $submenu_font);
+         }
       }
    }
 }

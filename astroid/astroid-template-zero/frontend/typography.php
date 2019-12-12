@@ -139,21 +139,6 @@ if (trim($menuType) == 'custom') {
          }
       }
    }
-   if ((isset($menu_font->font_size) && !empty($menu_font->font_size)) && (is_object($menu_font->font_size))) {
-      $font_size_unit = isset($menu_font->font_size_unit->desktop) ? $menu_font->font_size_unit->desktop : 'em';
-      $menu_style['desktop'] .= 'font-size: ' . $menu_font->font_size->desktop . $font_size_unit . ';';
-
-      // tablet
-      $font_size_unit = isset($menu_font->font_size_unit->tablet) ? $menu_font->font_size_unit->tablet : 'em';
-      $menu_style['tablet'] .= 'font-size: ' . $menu_font->font_size->tablet . $font_size_unit . ';';
-
-      // mobile
-      $font_size_unit = isset($menu_font->font_size_unit->mobile) ? $menu_font->font_size_unit->mobile : 'em';
-      $menu_style['mobile'] .= 'font-size: ' . $menu_font->font_size->mobile . $font_size_unit . ';';
-   } else {
-      $font_size_unit = isset($menu_font->font_size_unit) ? $menu_font->font_size_unit : 'em';
-      $menu_style['desktop'] .= 'font-size: ' . $menu_font->font_size . $font_size_unit . ';';
-   }
 
    if (isset($menu_font->font_size) && !empty($menu_font->font_size)) {
       if (is_object($menu_font->font_size)) {

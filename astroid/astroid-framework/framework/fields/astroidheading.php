@@ -47,7 +47,7 @@ class JFormFieldAstroidHeading extends JFormField {
          $attrs[] = 'ng-hide="' . $ngRequired . '"';
       }
 
-      return "<div " . implode(' ', $attrs) . " class='form-group form-group-heading'><h3>" . ((!empty($this->element['icon']) ? "<i class='" . $this->element['icon'] . "'></i> " : "")) . JText::_($this->element['title']) . "</h3><p class='mb-0'>" . JText::_($this->description) . "</p></div>";
+      return "<div " . implode(' ', $attrs) . " class='form-group form-group-heading'><h3 class='mb-0'>" . ((!empty($this->element['icon']) ? "<i class='" . $this->element['icon'] . "'></i> " : "")) . JText::_($this->element['title']) . "</h3><p class='mb-0'>" . JText::_($this->description) . "</p></div>";
    }
 
 }

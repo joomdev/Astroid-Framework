@@ -315,7 +315,6 @@ if (trim($submenuType) == 'custom') {
 
 // styles for tablet
 $tabletCSS = '';
-$tabletCSS .= '@media (max-width: 991.98px) {';
 if (!empty($styles['tablet'])) {
    $tabletCSS .= $styles['tablet'];
 }
@@ -325,11 +324,9 @@ if (!empty($menu_style['tablet'])) {
 if (isset($submenu_style['tablet'])) {
    $tabletCSS .= $submenu_style['tablet'];
 }
-$tabletCSS .= '}';
 
 // styles for mobile
 $mobileCSS = '';
-$mobileCSS .= '@media (max-width: 767.98px) {';
 if (!empty($styles['mobile'])) {
    $mobileCSS .= $styles['mobile'];
 }
@@ -339,7 +336,6 @@ if (!empty($menu_style['mobile'])) {
 if (isset($submenu_style['mobile'])) {
    $mobileCSS .= $submenu_style['mobile'];
 }
-$mobileCSS .= '}';
 
 
 
@@ -357,8 +353,8 @@ if ($in_head) {
    $template->addStyleDeclaration($menu_style['desktop']);
    $template->addStyleDeclaration($submenu_style['desktop']);
 
-   $template->addStyleDeclaration($tabletCSS);
-   $template->addStyleDeclaration($mobileCSS);
+   $template->addStyleDeclaration($tabletCSS, 'tablet');
+   $template->addStyleDeclaration($mobileCSS, 'mobile');
 } else {
    if (!empty($ast_fontfamily_list)) {
       echo '<link href="' . 'https://fonts.googleapis.com/css?family=' . $ast_fontfamily_list . '" rel="stylesheet" type="text/css" />';

@@ -8,12 +8,6 @@
             <option value="0">ASTROID_HIDE</option>
          </field>
 
-         <field type="radio" name="article_rating" label="ASTROID_ARTICLE_RATING" class="btn-group" default="">
-            <option value="">JGLOBAL_INHERIT</option>
-            <option value="1">ASTROID_SHOW</option>
-            <option value="0">ASTROID_HIDE</option>
-         </field>
-
          <field type="radio" name="astroid_relatedposts" label="ASTROID_RELATED_POSTS" class="btn-group" default="">
             <option value="">JGLOBAL_INHERIT</option>
             <option value="1">ASTROID_SHOW</option>

@@ -184,9 +184,34 @@ astroidFramework.directive("astroidspacing", ["$http", function ($http) {
                ['top', 'right', 'bottom', 'left', 'unit'].forEach(function (_prop) {
                   $element.find('[data-device=' + _device + '][data-attr=' + _prop + ']').val(_value[_device][_prop]);
                });
+               if (_value[_device].lock) {
+                  $element.find('button[data-device=' + _device + ']').removeClass('btn-light').addClass('btn-purple').addClass('active');
+               } else {
+                  $element.find('button[data-device=' + _device + ']').removeClass('btn-purple').removeClass('active').addClass('btn-light');
+               }
+
+               if (_value[_device].lock) {
+                  ['right', 'bottom', 'left'].forEach(function (_prop) {
+                     $element.find('input[data-device=' + _device + '][data-attr=' + _prop + ']').prop('disabled', true);
+                  });
+               } else {
+                  ['right', 'bottom', 'left'].forEach(function (_prop) {
+                     $element.find('input[data-device=' + _device + '][data-attr=' + _prop + ']').prop('disabled', false);
+                  });
+               }
+
             });
 
          }, 100);
+
+         $scope.setDevice = function (_device) {
+            $element.find('a').removeClass('active');
+            $element.find('a[data-device=' + _device + ']').addClass('active');
+            $element.find('.astroid-spacing-field').addClass('d-none');
+            $element.find('.astroid-spacing-field[data-device=' + _device + ']').removeClass('d-none');
+         }
+
+         $scope.setDevice('desktop');
 
          $scope.updateInput = function (_input) {
             var _device = _input.data('device');
@@ -194,8 +219,9 @@ astroidFramework.directive("astroidspacing", ["$http", function ($http) {
             _value[_device][_attr] = _input.val();
             if (_attr == 'top' && _value[_device].lock) {
                var _topVal = _value[_device][_attr];
-               ['right', 'bottom', 'left', 'unit'].forEach(function (_prop) {
+               ['right', 'bottom', 'left'].forEach(function (_prop) {
                   $element.find('input[data-device=' + _device + '][data-attr=' + _prop + ']').val(_topVal);
+                  _value[_device][_prop] = _topVal;
                });
             }
             $element.find('textarea').val(JSON.stringify(_value));
@@ -215,23 +241,29 @@ astroidFramework.directive("astroidspacing", ["$http", function ($http) {
 
          $scope.switchLock = function (_device) {
             _value[_device].lock = !_value[_device].lock;
-            $element.find('textarea').val(JSON.stringify(_value));
             $scope.updateLock(_device);
          }
 
          $scope.updateLock = function (_device) {
             if (_value[_device].lock) {
                var _topVal = $element.find('input[data-device=' + _device + '][data-attr=top]').val();
-               ['right', 'bottom', 'left', 'unit'].forEach(function (_prop) {
+               ['right', 'bottom', 'left'].forEach(function (_prop) {
                   $element.find('input[data-device=' + _device + '][data-attr=' + _prop + ']').val(_topVal);
                   $element.find('input[data-device=' + _device + '][data-attr=' + _prop + ']').prop('disabled', true);
+                  _value[_device][_prop] = _topVal;
                });
                $element.find('input[data-device=' + _device + '][data-attr=top]').focus();
             } else {
-               ['right', 'bottom', 'left', 'unit'].forEach(function (_prop) {
+               ['right', 'bottom', 'left'].forEach(function (_prop) {
                   $element.find('input[data-device=' + _device + '][data-attr=' + _prop + ']').prop('disabled', false);
                });
             }
+            if (_value[_device].lock) {
+               $element.find('button[data-device=' + _device + ']').removeClass('btn-light').addClass('btn-purple').addClass('active');
+            } else {
+               $element.find('button[data-device=' + _device + ']').removeClass('btn-purple').removeClass('active').addClass('btn-light');
+            }
+            $element.find('textarea').val(JSON.stringify(_value));
          }
       }
    }

@@ -21,7 +21,7 @@ class AstroidFrameworkTemplate
    protected $logs;
    protected $debug = false;
    public $cssFile = true;
-   public $_styles = [];
+   public $_styles = ['desktop' => [], 'tablet' => [], 'mobile' => []];
    public $_js = [];
    public $mods = array();
    public $modules = array();
@@ -820,10 +820,10 @@ class AstroidFrameworkTemplate
       }
    }
 
-   public function addStyledeclaration($styles)
+   public function addStyledeclaration($styles, $device = 'desktop')
    {
       if ($this->cssFile) {
-         $this->_styles[] = $styles;
+         $this->_styles[$device][] = $styles;
       } else {
          $document = JFactory::getDocument();
          $document->addStyledeclaration($styles);
@@ -874,7 +874,17 @@ class AstroidFrameworkTemplate
    public function loadCSSFile()
    {
       if ($this->cssFile) {
-         $styles = implode('', $this->_styles);
+         $styles = [];
+         foreach (['desktop', 'tablet', 'mobile'] as $device) {
+            if ($device == 'mobile') {
+               $styles[] = '@media (max-width: 767.98px) {' . implode('', $this->_styles[$device]) . '}';
+            } elseif ($device == 'tablet') {
+               $styles[] = '@media (max-width: 991.98px) {' . implode('', $this->_styles[$device]) . '}';
+            } else {
+               $styles[] = implode('', $this->_styles[$device]);
+            }
+         }
+         $styles = implode('', $styles);
          $document = JFactory::getDocument();
          $mediaVersion = $document->getMediaVersion();
          $version = md5($styles);

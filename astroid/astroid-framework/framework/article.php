@@ -31,11 +31,11 @@ class AstroidFrameworkArticle
 
       $mainframe = JFactory::getApplication();
       $this->params = new JRegistry();
-      $itemId = $mainframe->input->get('Itemid', 0);
+      $itemId = $mainframe->input->get('Itemid', 0, 'INT');
       if ($itemId) {
          $menu = $mainframe->getMenu();
          $item = $menu->getItem($itemId);
-         if ($item->query['option'] == 'com_content' && ($item->query['view'] == 'category' || $item->query['view'] == 'article')) {
+         if ($item->query['option'] == 'com_content' && ($item->query['view'] == 'category' || $item->query['view'] == 'article' || $item->query['view'] == 'featured')) {
             $this->params = $item->params;
          }
       }
@@ -334,10 +334,12 @@ class AstroidFrameworkArticle
          return FALSE;
       }
 
-      $menu_level = $this->params->get('article_rating', '');
-      $article_level = $this->article->params->get('article_rating', '');
+      if (!$this->article->params->get('show_vote', 0)) {
+         return FALSE;
+      }
+
       $astroid_level = $this->template->params->get('article_rating', 1);
-      return $this->checkPriority('', $article_level, $astroid_level);
+      return $astroid_level ? true : false;
    }
 
    // Utility Functions

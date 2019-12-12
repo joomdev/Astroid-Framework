@@ -1057,8 +1057,22 @@ class AstroidFrameworkTemplate
 
    public function inspect()
    {
-      // $this->version;
-      // $this->astroidVersion;
+      // fix for typography
+      if ($this->version < 2.3) {
+         foreach (['body', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'] as $typo) {
+            $typoType = $this->params->get($typo . '_typography');
+            if (trim($typoType) == 'custom') {
+               $typoOption = $typo . '_typography_options';
+               $typoParams = $this->params->get($typoOption);
+               foreach (['font_size', 'font_size_unit', 'letter_spacing', 'letter_spacing_unit', 'line_height', 'line_height_unit'] as $prop) {
+                  if (!is_string($typoParams->{$prop})) {
+                     $typoParams->{$prop} = $typoParams->{$prop}->desktop;
+                  }
+               }
+               $this->params->set($typoOption, $typoParams);
+            }
+         }
+      }
    }
 }
 

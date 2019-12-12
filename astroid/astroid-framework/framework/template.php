@@ -17,6 +17,8 @@ class AstroidFrameworkTemplate
    public $params;
    public $language;
    public $title = "";
+   public $version = "";
+   public $astroidVersion = "";
    public $direction;
    protected $logs;
    protected $debug = false;
@@ -44,8 +46,18 @@ class AstroidFrameworkTemplate
       $language = JFactory::getApplication()->getLanguage();
       $this->language = $language->getTag();
       $this->direction = $language->isRtl() ? 'rtl' : 'ltr';
+      $this->version = $this->templateVersion();
+      $this->astroidVersion = AstroidFrameworkHelper::frameworkVersion();
       $this->initAgent();
       $this->addMeta();
+      $this->inspect();
+   }
+
+   public function templateVersion()
+   {
+      $xml = JFactory::getXML(JPATH_SITE . "/templates/{$this->template}/templateDetails.xml");
+      $version = (string) $xml->version;
+      return $version;
    }
 
    public function addMeta()
@@ -1041,6 +1053,12 @@ class AstroidFrameworkTemplate
          $presets[] = $preset;
       }
       return $presets;
+   }
+
+   public function inspect()
+   {
+      // $this->version;
+      // $this->astroidVersion;
    }
 }
 

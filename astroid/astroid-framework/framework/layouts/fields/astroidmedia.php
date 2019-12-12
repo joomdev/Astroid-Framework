@@ -75,7 +75,7 @@ $params = JComponentHelper::getParams('com_media');
          <button ng-show="<?php echo $fieldname; ?> != ''" ng-click="selectMedia = true; getLibrary('','astroid-media-tab-library-<?php echo $id; ?>');" type="button" class="btn btn-white float-left btn-round astroid-fade-fast-animation"><?php echo JText::_('TPL_ASTROID_CHANGE_'.$mediaType); ?></button>
       </li>
       <li ng-show="<?php echo $fieldname; ?> != ''" class="list-inline-item astroid-fade-fast-animation">
-         <button ng-click="clearImage('<?php echo $id; ?>');" type="button" class="btn btn-link float-left text-danger"><?php echo JText::_('JCLEAR'); ?></button>
+         <button ng-click="clearImage('<?php echo $id; ?>');" type="button" class="btn btn-link float-left text-danger"><?php echo JText::_('ASTROID_CLEAR'); ?></button>
       </li>
    </ul>
    

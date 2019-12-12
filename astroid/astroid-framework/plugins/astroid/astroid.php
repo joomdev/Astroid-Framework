@@ -19,11 +19,13 @@ use Leafo\ScssPhp\Compiler;
  *
  * @since  1.0
  */
-class plgSystemAstroid extends JPlugin {
+class plgSystemAstroid extends JPlugin
+{
 
    protected $app;
 
-   public function onBeforeRender() {
+   public function onBeforeRender()
+   {
       if ($this->app->isAdmin()) {
          if (JFactory::getUser()->id) {
             $astroid_redirect = $this->app->input->get->get('ast', '', 'RAW');
@@ -34,7 +36,8 @@ class plgSystemAstroid extends JPlugin {
       }
    }
 
-   public function onExtensionAfterSave($context, $table, $isNew) {
+   public function onExtensionAfterSave($context, $table, $isNew)
+   {
       if ($this->app->isAdmin() && $context == "com_templates.style" && $isNew && $this->isAstroidTemplate($table->template)) {
          $params = \json_decode($table->params, TRUE);
          $parent_id = $params['astroid'];
@@ -42,7 +45,8 @@ class plgSystemAstroid extends JPlugin {
       }
    }
 
-   public function onAfterRoute() {
+   public function onAfterRoute()
+   {
       $option = $this->app->input->get('option', '');
       $astroid = $this->app->input->get('astroid', '');
 
@@ -130,7 +134,7 @@ class plgSystemAstroid extends JPlugin {
                         $options[$font['category']][$value] = $font['family'];
                      }
                      // $return .= '<div class="item" data-value="">Inherit</div>';
-                     $return .= '<div class="ui horizontal divider">System Fonts</div>';
+                     $return .= '<div class="ui horizontal divider">' . JText::_('TPL_ASTROID_TYPOGRAPHY_SYSTEM') . '</div>';
                      foreach (AstroidFrameworkConstants::$system_fonts as $name => $system_font) {
                         $return .= '<div class="item" data-value="' . $name . '">' . $system_font . '</div>';
                      }
@@ -140,21 +144,19 @@ class plgSystemAstroid extends JPlugin {
                      $uploadedFonts = AstroidFrameworkHelper::getUploadedFonts($template);
 
                      if (!empty($uploadedFonts)) {
-                        $return .= '<div class="ui horizontal divider">Custom Fonts</div>';
+                        $return .= '<div class="ui horizontal divider">' . JText::_('TPL_ASTROID_TYPOGRAPHY_CUSTOM') . '</div>';
                         foreach ($uploadedFonts as $uploaded_font) {
                            $return .= '<div class="item" data-value="' . $uploaded_font['id'] . '">' . $uploaded_font['name'] . '</div>';
                         }
                      }
 
-                     $return .= '<div class="ui horizontal divider">Google Fonts</div>';
+                     $return .= '<div class="ui horizontal divider">' . JText::_('TPL_ASTROID_TYPOGRAPHY_GOOGLE') . '</div>';
                      foreach ($options as $group => $fonts) {
                         foreach ($fonts as $fontValue => $font) {
                            $return .= '<div class="item" data-value="' . $fontValue . '">' . $font . '</div>';
                         }
                      }
-                  } catch (\Exception $e) {
-                     
-                  }
+                  } catch (\Exception $e) { }
                   echo $return;
                   die();
                   break;
@@ -183,6 +185,7 @@ class plgSystemAstroid extends JPlugin {
                   }
                   $id = $this->app->input->get('id', NULL, 'INT');
                   $template = AstroidFrameworkHelper::getTemplateById($id);
+                  AstroidFramework::setTemplate($template);
                   if (!defined('ASTROID_TEMPLATE_NAME')) {
                      define('ASTROID_TEMPLATE_NAME', $template->template);
                   }
@@ -204,8 +207,17 @@ class plgSystemAstroid extends JPlugin {
                case 'clear-cache':
                   try {
                      $template = $this->app->input->get->get('template', '', 'RAW');
-                     AstroidFrameworkHelper::clearCache($template, ['style', 'custom', 'astroid']);
-                     echo \json_encode(['status' => 'success', 'code' => 200, 'message' => 'Cache successfully cleared.']);
+                     AstroidFrameworkHelper::clearCache($template, ['style', 'custom', 'astroid', 'preset']);
+                     echo \json_encode(['status' => 'success', 'code' => 200, 'message' => JText::_('TPL_ASTROID_SYSTEM_MESSAGES_CACHE')]);
+                  } catch (\Exception $e) {
+                     echo \json_encode(['status' => 'error', 'code' => $e->getCode(), 'message' => $e->getMessage()]);
+                  }
+                  die();
+                  break;
+               case 'clear-joomla-cache':
+                  try {
+                     AstroidFrameworkHelper::clearJoomlaCache();
+                     echo \json_encode(['status' => 'success', 'code' => 200, 'message' => JText::_('TPL_ASTROID_SYSTEM_MESSAGES_JCACHE')]);
                   } catch (\Exception $e) {
                      echo \json_encode(['status' => 'error', 'code' => $e->getCode(), 'message' => $e->getMessage()]);
                   }
@@ -260,7 +272,8 @@ class plgSystemAstroid extends JPlugin {
       }
    }
 
-   public function onContentPrepareForm($form, $data) {
+   public function onContentPrepareForm($form, $data)
+   {
       $astroid_dir = 'libraries' . '/' . 'astroid';
       \JForm::addFormPath(JPATH_SITE . '/' . $astroid_dir . '/framework/forms');
       if ($form->getName() == 'com_menus.item') {
@@ -275,7 +288,7 @@ class plgSystemAstroid extends JPlugin {
          $form->loadFile('opengraph', false);
       }
 
-      if ($form->getName() == 'com_menus.item' && (isset($data->request['option']) && $data->request['option'] == 'com_content') && (isset($data->request['view']) && $data->request['view'] == 'category')) {
+      if ($form->getName() == 'com_menus.item' && (isset($data->request['option']) && $data->request['option'] == 'com_content') && (isset($data->request['view']) && $data->request['view'] == 'category') && (isset($data->request['layout']) && $data->request['layout'] == 'blog')) {
          $form->loadFile('menu_blog', false);
       }
       if ($form->getName() == 'com_menus.item' && (isset($data->request['option']) && $data->request['option'] == 'com_content') && (isset($data->request['view']) && $data->request['view'] == 'featured')) {
@@ -287,11 +300,12 @@ class plgSystemAstroid extends JPlugin {
       }
    }
 
-   public function onAfterRender() {
+   public function onAfterRender()
+   {
       if ($this->app->isAdmin()) {
          $body = $this->app->getBody();
          $astroid_templates = $this->getAstroidTemplates();
-         $body = preg_replace_callback('/(<a\s[^>]*href=")([^"]*)("[^>]*>)(.*)(<\/a>)/siU', function($matches) use($astroid_templates) {
+         $body = preg_replace_callback('/(<a\s[^>]*href=")([^"]*)("[^>]*>)(.*)(<\/a>)/siU', function ($matches) use ($astroid_templates) {
             $html = $matches[0];
             if (strpos($matches[2], 'task=style.edit')) {
                $uri = new JUri($matches[2]);
@@ -308,18 +322,19 @@ class plgSystemAstroid extends JPlugin {
       }
    }
 
-   private function getAstroidTemplates() {
+   private function getAstroidTemplates()
+   {
       if (!file_exists(JPATH_LIBRARIES . '/astroid/framework/helper.php')) {
          return [];
       }
       $db = JFactory::getDbo();
       $query = $db
-              ->getQuery(true)
-              ->select('s.id, s.template')
-              ->from('#__template_styles as s')
-              ->where('s.client_id = 0')
-              ->where('e.enabled = 1')
-              ->leftJoin('#__extensions as e ON e.element=s.template AND e.type=' . $db->quote('template') . ' AND e.client_id=s.client_id');
+         ->getQuery(true)
+         ->select('s.id, s.template')
+         ->from('#__template_styles as s')
+         ->where('s.client_id = 0')
+         ->where('e.enabled = 1')
+         ->leftJoin('#__extensions as e ON e.element=s.template AND e.type=' . $db->quote('template') . ' AND e.client_id=s.client_id');
 
       $db->setQuery($query);
       $templates = $db->loadObjectList();
@@ -327,27 +342,37 @@ class plgSystemAstroid extends JPlugin {
       foreach ($templates as $template) {
          if ($this->isAstroidTemplate($template->template)) {
             AstroidFrameworkHelper::setTemplateDefaults($template->template, $template->id);
+            // AstroidFrameworkHelper::setTemplateTypography($template->template, $template->id);
             $return[] = $template->id;
          }
       }
       return $return;
    }
 
-   private function isAstroidTemplate($name) {
+   private function isAstroidTemplate($name)
+   {
       return file_exists(JPATH_SITE . "/templates/{$name}/frontend");
    }
 
-   public function onAfterGetMenuTypeOptions(&$list) {
-//      $types = [];
-//      $o = new JObject;
-//      $o->title = 'ASTROID_LINKS_ONEPAGE_TITLE';
-//      $o->type = 'astroid_onepage';
-//      $o->description = 'ASTROID_LINKS_ONEPAGE_DESC';
-//      $o->request = ['astroid_onepage' => 1];
-//      $types[] = $o;
-//
-//      $list['ASTROID_LINKS'] = $types;
-//      return $list;
+   public function onAfterGetMenuTypeOptions(&$list)
+   {
+      //      $types = [];
+      //      $o = new JObject;
+      //      $o->title = 'ASTROID_LINKS_ONEPAGE_TITLE';
+      //      $o->type = 'astroid_onepage';
+      //      $o->description = 'ASTROID_LINKS_ONEPAGE_DESC';
+      //      $o->request = ['astroid_onepage' => 1];
+      //      $types[] = $o;
+      //
+      //      $list['ASTROID_LINKS'] = $types;
+      //      return $list;
    }
 
+   public function onAfterAstroidFormLoad($template, $form)
+   {
+      if (!count($template->presets)) {
+         $form->removeField('template_preset', 'params');
+         $form->removeField('presets', 'params');
+      }
+   }
 }

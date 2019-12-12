@@ -10,8 +10,9 @@
 defined('_JEXEC') or die;
 
 // Including fallback code for the placeholder attribute in the search field.
-JHtml::_('jquery.framework');
-JHtml::_('script', 'system/html5fallback.js', array('version' => 'auto', 'relative' => true, 'conditional' => 'lt IE 9'));
+// Joomla core mod_search includes it too but I don't think we need it.
+//JHtml::_('jquery.framework');
+//JHtml::_('script', 'system/html5fallback.js', array('version' => 'auto', 'relative' => true, 'conditional' => 'lt IE 9'));
 
 if ($width)
 {

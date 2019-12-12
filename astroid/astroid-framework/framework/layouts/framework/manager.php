@@ -40,11 +40,10 @@ $langdir = $lang->get('rtl') ? 'rtl' : 'ltr';
 $assets = JURI::root() . 'media' . '/' . 'astroid' . '/' . 'assets' . '/';
 $semanticComponents = ['icon', 'transition', 'api', 'dropdown'];
 
-
 // adding styles
 $stylesheets = [];
 $stylesheets[] = 'https://fonts.googleapis.com/css?family=Nunito:300,400,600';
-$stylesheets[] = 'https://use.fontawesome.com/releases/v' . AstroidFrameworkConstants::$fontawesome_version . '/css/all.css';
+$stylesheets[] = $assets.'fontawesome/css/font-awesome.css';
 
 foreach ($semanticComponents as $semanticComponent) {
    $semanticComponentPath = 'vendor' . '/' . 'semantic-ui' . '/' . 'components' . '/' . $semanticComponent . '.min.css';
@@ -58,7 +57,10 @@ $stylesheets[] = $assets . 'css' . '/' . 'admin.css?v=' . $document->getMediaVer
 $stylesheets[] = $assets . 'css' . '/' . 'animate.min.css?v=' . $document->getMediaVersion();
 // getting form
 
+JPluginHelper::importPlugin('astroid');
+$dispatcher = JDispatcher::getInstance();
 $form = new JForm('template');
+$dispatcher->trigger('onBeforeAstroidFormLoad', [&$template, &$form]);
 $form_dir = JPATH_LIBRARIES . '/' . 'astroid' . '/' . 'framework' . '/' . 'options';
 $forms = array_filter(glob($form_dir . '/' . '*.xml'), 'is_file');
 JForm::addFormPath($form_dir);
@@ -75,13 +77,11 @@ foreach ($template_forms as $fname) {
    $form->loadFile($fname, false);
 }
 
-
+$dispatcher->trigger('onAfterAstroidFormLoad', [&$template, &$form]);
 $fieldsets = AstroidFrameworkHelper::getAstroidFieldsets($form);
-
 foreach ($params as $key => $value) {
    $form->setValue($key, 'params', $value);
 }
-
 
 $plugin = JPluginHelper::getPlugin('system', 'astroid');
 $plugin_params = new JRegistry($plugin->params);
@@ -112,6 +112,7 @@ $astroid_shortcut_enable = $plugin_params->get('astroid_shortcut_enable', 1);
          var TEMPLATE_NAME = '<?php echo $template->template; ?>';
          var SYSTEM_FONTS = <?php echo json_encode(array_keys(AstroidFrameworkConstants::$system_fonts)); ?>;
          var LIBRARY_FONTS = <?php echo json_encode(array_keys(AstroidFrameworkHelper::getUploadedFonts($template->template))); ?>;
+         var TEMPLATE_PRESETS = <?php echo \json_encode($template->presets); ?>;
       </script>
       <style>
         .falling-astroid-container{position:fixed;width:100%;height:100%;top:0;left:0;background:rgba(0,0,0,.7)!important;z-index:9999999;transition:.2s linear}.falling-astroid{position:absolute;width:100%;height:100%;top:0;left:0;transform:rotate(-45deg)}.falling-astroid span{position:absolute;height:20%;width:2px;background:#999}.falling-astroid span:nth-child(1){left:20%;animation:lf .6s linear infinite;animation-delay:-5s}.falling-astroid span:nth-child(2){left:40%;animation:lf2 .8s linear infinite;animation-delay:-1s}.falling-astroid span:nth-child(3){left:60%;animation:lf3 .6s linear infinite}.falling-astroid span:nth-child(4){left:80%;animation:lf4 .5s linear infinite;animation-delay:-3s}@keyframes lf{0%{top:200%}to{top:-200%;opacity:0}}@keyframes lf2{0%{top:200%}to{top:-200%;opacity:0}}@keyframes lf3{0%{top:200%}to{top:-100%;opacity:0}}@keyframes lf4{0%{top:200%}to{top:-100%;opacity:0}}@keyframes fazer1{0%{top:0}to{top:-120px;opacity:0;transform:scale(.5)}}@keyframes fazer2{0%{top:0}to{top:-150px;opacity:0;transform:scale(.4)}}@keyframes fazer3{0%{top:0}to{top:-100px;opacity:0;transform:scale(.3)}}@keyframes fazer4{0%{top:0}to{top:-200px;opacity:0;transform:scale(.2)}}@keyframes speeder{0%,90%{transform:translate(2px,1px) rotate(0)}10%{transform:translate(-1px,-3px) rotate(-1deg)}20%{transform:translate(-2px) rotate(1deg)}30%{transform:translate(1px,2px) rotate(0)}40%{transform:translate(1px,-1px) rotate(1deg)}50%{transform:translate(-1px,3px) rotate(-1deg)}60%{transform:translate(-1px,1px) rotate(0)}70%{transform:translate(3px,1px) rotate(-1deg)}80%{transform:translate(-2px,-1px) rotate(1deg)}to{transform:translate(1px,-2px) rotate(-1deg)}}.falling-astroid-imgs{transform:rotate(-45deg);position:absolute;z-index:1;top:30px;left:10px}.falling-astroid-img{background:url(<?php echo JURI::root(); ?>media/astroid/assets/images/astroid/1.png) center no-repeat;background-size:contain!important;width:90px;height:90px}.falling-astroid-logo{animation:speeder .4s linear infinite;width:100px;height:100px;position:absolute;top:50%;left:50%;margin-left:-75px;margin-top:-75px}.falling-astroid-imgs span{position:absolute;background-size:contain!important}.falling-astroid-imgs span:nth-child(1){background:url(<?php echo JURI::root(); ?>media/astroid/assets/images/astroid/2.png) center no-repeat;width:40px;height:40px;left:-50px;animation:fazer1 .6s linear infinite}.falling-astroid-imgs span:nth-child(2){background:url(<?php echo JURI::root(); ?>media/astroid/assets/images/astroid/3.png) center no-repeat;width:35px;height:35px;left:40px;top:-40px;animation:fazer2 .4s linear infinite}.falling-astroid-imgs span:nth-child(3){background:url(<?php echo JURI::root(); ?>media/astroid/assets/images/astroid/4.png) center no-repeat;width:30px;height:30px;left:-10px;top:-40px;animation:fazer3 .4s linear infinite;animation-delay:-1s}.falling-astroid-imgs span:nth-child(4){background:url(<?php echo JURI::root(); ?>media/astroid/assets/images/astroid/3.png) center no-repeat;width:20px;height:20px;left:0;top:-80px;animation:fazer4 1s linear infinite;animation-delay:-1s}.falling-astroid-imgs span:nth-child(5){background:url(<?php echo JURI::root(); ?>media/astroid/assets/images/astroid/4.png) center no-repeat;width:20px;height:20px;left:-30px;top:-25px;animation:fazer1 .2s linear infinite}.falling-astroid-imgs span:nth-child(6){background:url(<?php echo JURI::root(); ?>media/astroid/assets/images/astroid/3.png) center no-repeat;width:10px;height:10px;left:-50px;top:-90px;animation:fazer4 1s linear infinite;animation-delay:-1s}.falling-astroid-imgs span:nth-child(7){background:url(<?php echo JURI::root(); ?>media/astroid/assets/images/astroid/4.png) center no-repeat;width:15px;height:15px;left:25px;top:-25px;transform:rotate(-45deg);animation:fazer2 .4s linear infinite}.falling-astroid-imgs span:nth-child(8){background:url(<?php echo JURI::root(); ?>media/astroid/assets/images/astroid/9.png) center no-repeat;width:10px;height:15px;left:-50px;top:-60px;animation:fazer3 .4s linear infinite;animation-delay:-1s}
@@ -145,6 +146,9 @@ $astroid_shortcut_enable = $plugin_params->get('astroid_shortcut_enable', 1);
          }
          ?>
       </script>
+      <script>
+         var astroid_shortcut_enable = <?php echo $astroid_shortcut_enable ? 'true' : 'false'; ?>;
+      </script>
    </head>
    <body ng-app="astroid-framework" id="astroid-framework" ng-controller="astroidController">
       <input type="hidden" id="astroid-admin-token" value="<?php echo JSession::getFormToken(); ?>" />
@@ -174,7 +178,7 @@ $astroid_shortcut_enable = $plugin_params->get('astroid_shortcut_enable', 1);
       <!--<nav class="astroid-manager-navbar navbar fixed-top navbar-expand-lg navbar-light bg-white justify-content-between">
          <a class="navbar-brand" href="#"><img src="<?php echo JURI::root() . 'media' . '/' . 'astroid' . '/' . 'assets' . '/' . 'images' . '/' . 'favicon.png'; ?>" width="28" height="28" class="d-inline-block align-top" alt=""> Astroid Framework</a>
          <div class="form-inline">
-            <button id="save-options" class="btn btn-success my-2 my-sm-0" type="button"><i class="fa fa-save"></i>&nbsp;<?php echo JText::_('JSAVE'); ?></button>
+            <button id="save-options" class="btn btn-success my-2 my-sm-0" type="button"><i class="fa fa-save"></i>&nbsp;<?php echo JText::_('ASTROID_SAVE'); ?></button>
             <button id="saving-options" class="btn btn-blue disabled my-2 my-sm-0 d-none" type="button"><i class="fa fa-circle-notch fa-spin"></i>&nbsp;<?php echo JText::_('ASTROID_TEMPLATE_SAVING'); ?></button>
             <a href="<?php echo $joomla_url; ?>" class="btn btn-link my-2 my-sm-0 text-white"><i class="fab fa-joomla"></i></a>
          </div>
@@ -229,6 +233,13 @@ $astroid_shortcut_enable = $plugin_params->get('astroid_shortcut_enable', 1);
                      </li>
                      <?php $active = false; ?>
                   <?php } ?>
+                  <?php if ($application->input->get('export-preset', 0, 'INT')) { ?>
+                     <li class="nav-item row">
+                        <a id="export-preset" ng-click="exportPreset()" class="nav-link col-12" href="javascript:void(0);">
+                           <i class="fa fa-palette"></i>&nbsp;<?php echo JText::_('TPL_ASTROID_EXPORT_PRESET'); ?>
+                        </a>
+                     </li>
+                  <?php } ?>
                   <li class="nav-item row">
                      <a id="export-options" class="nav-link col-12" href="javascript:void(0);">
                         <i class="fa fa-download"></i>&nbsp;<?php echo JText::_('TPL_ASTROID_EXPORT'); ?>
@@ -263,7 +274,7 @@ $astroid_shortcut_enable = $plugin_params->get('astroid_shortcut_enable', 1);
                </nav>-->
                <div class="container-fluid">
                   <input type="file" accept=".json" id="astroid-settings-import" class="d-none" />
-                  <form id="astroid-form" action="<?php echo $save_url; ?>" method="POST">
+                  <form id="astroid-form" action="<?php echo $save_url; ?>" method="POST"> 
                      <?php echo JHtml::_('form.token'); ?>
                      <input type="hidden" id="export-form" name="export_settings" value="0" />
                      <div class="tab-content">
@@ -278,7 +289,7 @@ $astroid_shortcut_enable = $plugin_params->get('astroid_shortcut_enable', 1);
                               $groups = [];
                               foreach ($fields as $key => $field) {
                                  if ($field->type == 'astroidgroup') {
-                                    $groups[$field->fieldname] = ['title' => $field->getAttribute('title', ''), 'icon' => $field->getAttribute('icon', ''), 'description' => $field->getAttribute('description', ''), 'fields' => []];
+                                    $groups[$field->fieldname] = ['title' => $field->getAttribute('title', ''), 'icon' => $field->getAttribute('icon', ''), 'description' => $field->getAttribute('description', ''), 'fields' => [], 'help' => $field->getAttribute('help', '')];
                                  }
                               }
                               $groups['none'] = ['fields' => []];
@@ -300,8 +311,8 @@ $astroid_shortcut_enable = $plugin_params->get('astroid_shortcut_enable', 1);
                                  <div style="padding-top:20px" id="astroid-form-fieldset-section-<?php echo $groupname; ?>">
                                     <?php
                                     if (!empty($group['title']) && !empty($group['fields'])) {
-                                       echo '<h3 class="'.(!empty($group['description']) ? 'mb-0' : '').'">' . (!empty($group['icon']) ? '<i class="' . $group['icon'] . '"></i>&nbsp;' : '') . JText::_($group['title']) . '</h3>';
-                                       if (!empty($group['description'])) {
+                                       echo '<h3 class="astroid-group-title ' . (!empty($group['description']) ? 'mb-0' : '') . '">' . (!empty($group['icon']) ? '<i class="' . $group['icon'] . '"></i>&nbsp;' : '') . JText::_($group['title']) . '' . (!empty($group['help']) ? ' <a target="_blank" href="' . $group['help'] . '"><span class="fa fa-question-circle"></span></a>' : '') . '</h3>';
+               if (!empty($group['description'])) {
                                           echo '<p><small>' . JText::_($group['description']) . '</small></p>';
                                        }
                                     }
@@ -361,7 +372,7 @@ $astroid_shortcut_enable = $plugin_params->get('astroid_shortcut_enable', 1);
             <div class="astroid-manager-navbar fixed-top m-0 row">
                <ul class="list-unstyled m-0 col-auto p-0">
                   <li class="float-left">
-                     <button id="save-options" class="astroid-sidebar-btn align-items-center text-white" type="button"><div><i class="fa fa-save"></i><span><?php echo JText::_('JSAVE'); ?></span></div></button>
+                     <button id="save-options" class="astroid-sidebar-btn align-items-center text-white" type="button"><div><i class="fa fa-save"></i><span><?php echo JText::_('ASTROID_SAVE'); ?></span></div></button>
                      <a href="javascript:void(0);" id="saving-options" class="astroid-sidebar-btn align-items-center d-none"><div><i class="fa fa-circle-notch fa-spin"></i><span><?php echo JText::_('ASTROID_TEMPLATE_SAVING'); ?></span></div></a>
                   </li>
                   <li class="float-left">
@@ -379,14 +390,13 @@ $astroid_shortcut_enable = $plugin_params->get('astroid_shortcut_enable', 1);
                      </a>
                   </li>
                   <li class="float-left">
-                     <a href="<?php echo JURI::root(); ?>" target="_blank" class="astroid-sidebar-btn d-flex align-items-center bg-light text-dark"><div><i class="fa fa-external-link-alt"></i><span><?php echo JText::_('ASTROID_TEMPLATE_PREVIEW'); ?></span></div></a>
+                     <a id="show-previews" href="<?php echo JURI::root(); ?>" target="_blank" class="astroid-sidebar-btn d-flex align-items-center bg-light  text-dark"><div><i class="fa fa-external-link-alt"></i><span><?php echo JText::_('ASTROID_TEMPLATE_PREVIEW'); ?></span></div></a>
                   </li>
                </ul>
                <div class="col p-0 template-title"><?php echo $template->title; ?></div>
                <ul class="list-inline m-0 col-auto p-0">
-                  <li class="float-left"><a title="<?php echo JText::_('TPL_ASTROID_BACK_TO_JOOMLA'); ?>" href="<?php echo $joomla_url; ?>" class="astroid-sidebar-btn astroid-back-btn d-flex align-items-center"><div><i class="fa fa-times"></i><span><?php echo JText::_('ASTROID_TEMPLATE_CLOSE'); ?></span></div></a></li>
+                  <li class="float-left"><a id="close-editor" title="<?php echo JText::_('TPL_ASTROID_BACK_TO_JOOMLA'); ?>" href="<?php echo $joomla_url; ?>" class="astroid-sidebar-btn astroid-back-btn d-flex align-items-center"><div><i class="fa fa-times"></i><span><?php echo JText::_('ASTROID_TEMPLATE_CLOSE'); ?></span></div></a></li>
                </ul>
-               
             </div>
             <div id="astroid-preview-wrapper" class="col showin-live-preview">
                <div class="d-flex justify-content-center" style="margin: 10px 0px;">
@@ -405,13 +415,10 @@ $astroid_shortcut_enable = $plugin_params->get('astroid_shortcut_enable', 1);
             <div class="astroid-ring-loading"></div>
             <div id="element-settings-form" ng-bind-html="elementFormContent"></div>
             <div class="ezlb-pop-footer text-right">
-               <button type="button" id="element-settings-save" class="btn btn-lg btn-wide btn-round btn-astroid"><?php echo JText::_('JSAVE'); ?></button>
+               <button type="button" id="element-settings-save" class="btn btn-lg btn-wide btn-round btn-astroid"><?php echo JText::_('ASTROID_SAVE'); ?></button>
             </div>
          </div>
       </div>
-      <!-- Getting value from astroid plugin then JS is using to enable and disable Keyboard shortcut  -->
-         <input type="hidden" id="astroid_shortcut_enable" value="<?php echo $astroid_shortcut_enable == '1'? 'true': 'false'; ?>">
-       <!-- End  -->
       <?php
       $scripts = [];
       $scripts[] = $assets . 'vendor' . '/' . 'jquery' . '/' . 'jquery-3.2.1.min.js?v=' . $document->getMediaVersion();
@@ -419,7 +426,7 @@ $astroid_shortcut_enable = $plugin_params->get('astroid_shortcut_enable', 1);
       $scripts[] = $assets . 'vendor' . '/' . 'bootstrap' . '/' . 'popper.min.js?v=' . $document->getMediaVersion();
       $scripts[] = $assets . 'vendor' . '/' . 'bootstrap' . '/' . 'bootstrap.min.js?v=' . $document->getMediaVersion();
       $scripts[] = $assets . 'vendor' . '/' . 'spectrum' . '/' . 'spectrum.js?v=' . $document->getMediaVersion();
-      $scripts[] = 'https://cdnjs.cloudflare.com/ajax/libs/ace/1.3.3/ace.js?v=' . $document->getMediaVersion();
+      $scripts[] = $assets . 'vendor' . '/' . 'ace' . '/' . '1.3.3' . '/' . 'ace.js?v=' . $document->getMediaVersion();
       $scripts[] = $assets . 'vendor' . '/' . 'dropzone' . '/' . 'dropzone.min.js?v=' . $document->getMediaVersion();
       $scripts[] = $assets . 'vendor' . '/' . 'moment.min.js?v=' . $document->getMediaVersion();
       $scripts[] = $assets . 'vendor' . '/' . 'moment-timezone.min.js?v=' . $document->getMediaVersion();
@@ -452,36 +459,35 @@ $astroid_shortcut_enable = $plugin_params->get('astroid_shortcut_enable', 1);
       ?>
       <script src="<?php echo $assets . 'js' . '/' . 'astroid.min.js?v=' . $document->getMediaVersion(); ?>"></script>
       <?php
-$screen_sizes = [
-    'xs' => [
-        'label' => 'Extra small',
-        'info' => '<576px'
-    ],
-    'sm' => [
-        'label' => 'Small',
-        'info' => '&#8805;576px'
-    ],
-    'md' => [
-        'label' => 'Medium',
-        'info' => '&#8805;768px'
-    ],
-    'lg' => [
-        'label' => 'Large',
-        'info' => '&#8805;992px'
-    ],
-    'xl' => [
-        'label' => 'Extra large',
-        'info' => '&#8805;1200px'
-    ],
-];
-
-$column_sizes = ['inherit', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
-?>
+         $screen_sizes = [
+            'xs' => [
+               'label' => 'Extra small',
+               'info' => '<576px'
+            ],
+            'sm' => [
+               'label' => 'Small',
+               'info' => '&#8805;576px'
+            ],
+            'md' => [
+               'label' => 'Medium',
+               'info' => '&#8805;768px'
+            ],
+            'lg' => [
+               'label' => 'Large',
+               'info' => '&#8805;992px'
+            ],
+            'xl' => [
+               'label' => 'Extra large',
+               'info' => '&#8805;1200px'
+            ],
+         ];
+         $column_sizes = ['inherit', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
+      ?>
 <script type="text/ng-template" id="column-responsive-field-template">
    <table class="table table-bordered"><tr><th width="30%"></th><th class="" width="30%"><?php echo JText::_('ASTROID_COLUMN_SIZE_LABEL'); ?></th><th class="" width="30%"><?php echo JText::_('TPL_ASTROID_VISIBILITY_LABEL'); ?></th></tr><?php foreach ($screen_sizes as $key => $screen_size) { ?><tr><td class=""><p class="mb-0 h4 font-weight-normal"><strong><?php echo $screen_size['label']; ?></strong></p><p class="text-muted mb-0"><code><?php echo $screen_size['info']; ?></code></p></td><td class="align-middle"><select <?php echo ($key=="lg" ? 'readonly disabled' : ''); ?> data-name="size_<?php echo $key; ?>" class="responsive-field form-control"><?php foreach ($column_sizes as $column_size) { ?><option<?php echo $column_size == 'inherit' ? ' selected' : ''; ?> value="<?php echo $column_size; ?>"><?php echo (($column_size == 'inherit' || $column_size == 'col') ? '' : 'col-'.$key.'-' ) . $column_size; ?></option><?php } ?></select></td><td class="align-middle"><div class="jd-ui"><div class="d-inline-block"><input checked type="checkbox" data-name="hide_<?php echo $key; ?>" id="visible-<?php echo $key; ?>" class="responsive-field jd-switch" /><label class="jd-switch-btn m-0" for="visible-<?php echo $key; ?>"></label></div></div></td></tr><?php } ?></table>
 </script>
-   
-   <script type="text/javascript">
+
+<script type="text/javascript">
    astroidFramework.controller('astroidController', function ($scope) {
 <?php foreach ($fieldsets as $key => $fieldset) { ?>
    <?php $fields = $form->getFieldset($key); ?>
@@ -506,6 +512,59 @@ $column_sizes = ['inherit', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '
    }
    ?>
 <?php } ?>
+      $scope.chosePreset = function (_name) {
+         var _preset = null;
+         TEMPLATE_PRESETS.forEach(function(preset){
+            if(preset.name==_name){
+               _preset = Object.assign({}, preset);
+               return false;
+            }
+         });
+         if(_preset != null){
+            for (var key in _preset.preset) {
+               if (_preset.preset.hasOwnProperty(key)) {
+                   if(typeof _preset.preset[key] == 'object'){
+                      for (var subkey in _preset.preset[key]) {
+                        if (_preset.preset[key].hasOwnProperty(subkey)) {
+                           $scope['params_' + key + '_' + subkey] = _preset.preset[key][subkey];
+                        }
+                      }
+                   }else{
+                     $scope[key] = _preset.preset[key];
+                   }
+               }
+            }
+         }
+         $('.astroid-presets-option').removeClass('active');
+         $('.astroid-presets-option-' + _name).addClass('active');
+         Admin.notify('<?php echo \JText::_('TPL_ASTROID_SYSTEM_MESSAGES_PRESET'); ?>', 'success');
+      }
+
+      $scope.exportPreset = function(){
+         var title = prompt("Please enter your desired name", "My Preset");
+         if(title==""){
+            return false;
+         }
+
+         var _colors = {};
+         presetProps.forEach(function(prop){
+            if(prop.split('.').length > 1){
+               var param = prop.split('.');
+               _colors[param[0]] = {};
+               _colors[param[0]][param[1]] = $scope['params_' + param[0] + '_' + param[1]];
+            }else{
+               _colors[prop] = $scope[prop];
+            }
+         });
+
+         var _preset = {'title': title, 'thumbnail': '', colors: _colors};
+         var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(_preset));
+         var dlAnchorElem = document.getElementById('downloadAnchorElem');
+         dlAnchorElem.setAttribute("href", dataStr);
+         dlAnchorElem.setAttribute("download", Admin.slugify(title) + ".json");
+         dlAnchorElem.click();
+      }
+
       });
       </script>
       <?php
@@ -521,5 +580,62 @@ $column_sizes = ['inherit', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '
          ?>
       </script>
       <a href="#" class="d-none" data-template-name="<?php echo JFilterOutput::stringURLSafe($template->title); ?>" id="export-link">Export Settings</a>
+      <a href="#" class="d-none" id="downloadAnchorElem">Export Preset</a>
+      <div id="astroidUnderlay" class="astroid-underlay astroid-isVisible">
+		  <div id="helpModal" class="astroid-modal">
+		   <div class="modal-heading">
+            <h3 class="m-0"><?php echo JText::_('ASTROID_KEYBOARD_SHORTCUTS'); ?></h3>
+            <div id="helpClose" class="astroid-close">&times;</div>
+         </div>
+				<div id="helpModalContent" class="astroid-modal-content p-0">
+				  <div id="helpListWrap" class="astroid-list-wrap"> 
+               <div class="table-responsive p-3">
+                  <table class="table table-bordered">
+                     <thead>
+                        <tr>
+                           <th><?php echo JText::_('ASTROID_SHORTCUT_ACTION_LABEL'); ?></th>
+                           <th><?php echo JText::_('ASTROID_SHORTCUT_LABEL'); ?></th>
+                           <th><?php echo JText::_('ASTROID_SHORTCUT_DESCRIPTION_LABEL'); ?></th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr>
+                           <td><?php echo JText::_('ASTROID_SHORTCUT_SAVE'); ?></td>
+                           <td>
+                             <div class="pb-2"><span class="badge badge-light p-2">Ctrl</span><span class="px-1">+</span><span class="badge badge-light p-2">S</span></div>
+                             <div><span class="badge badge-light p-2">⌘</span><span class="px-1">+</span><span class="badge badge-light p-2">S</span></div>
+                           </td>
+                           <td><?php echo JText::_('ASTROID_SHORTCUT_SAVE_DESC'); ?></td>
+                        </tr>
+                        <tr>
+                           <td><?php echo JText::_('ASTROID_SHORTCUT_PREVIEW'); ?></td>
+                           <td>
+                              <div class="pb-2"><span class="badge badge-light p-2">Ctrl</span><span class="px-1">+</span><span class="badge badge-light p-2">P</span></div>
+                              <div><span class="badge badge-light p-2">⌘</span><span class="px-1">+</span><span class="badge badge-light p-2">P</span></div>
+                           </td>
+                           <td><?php echo JText::_('ASTROID_SHORTCUT_PREVIEW_DESC'); ?></td>
+                        </tr>
+                        <tr>
+                           <td><?php echo JText::_('ASTROID_SHORTCUT_CACHE'); ?></td>
+                           <td>
+                              <div class="pb-2"><span class="badge badge-light p-2"><?php echo JText::_('ASTROID_SHORTCUT_DELETE'); ?></span></div>
+                              <div><span class="badge badge-light p-2"><?php echo JText::_('ASTROID_SHORTCUT_DEL'); ?></span></div>
+                           </td>
+                           <td><?php echo JText::_('ASTROID_SHORTCUT_CACHE_DESC'); ?></td>
+                        </tr>
+                        <tr>
+                           <td><?php echo JText::_('ASTROID_SHORTCUT_CLOSE_POPUP'); ?></td>
+                           <td>
+                              <div class="pb-2"><span class="badge badge-light p-2"><?php echo JText::_('ASTROID_SHORTCUT_ESC'); ?></span></div>
+                           </td>
+                           <td><?php echo JText::_('ASTROID_SHORTCUT_CLOSE_POPUP_DESC'); ?></td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+			  </div>
+			</div>
+		  </div>
+		</div>
    </body>
 </html>

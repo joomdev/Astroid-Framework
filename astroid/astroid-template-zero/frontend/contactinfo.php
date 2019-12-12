@@ -4,8 +4,8 @@
  * @author    JoomDev https://www.joomdev.com
  * @copyright Copyright (C) 2009 - 2019 JoomDev.
  * @license https://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
- * 	DO NOT MODIFY THIS FILE DIRECTLY AS IT WILL BE OVERWRITTEN IN THE NEXT UPDATE
- *  You can easily override all files under /frontend/ folder.
+ * DO NOT MODIFY THIS FILE DIRECTLY AS IT WILL BE OVERWRITTEN IN THE NEXT UPDATE
+ * You can easily override all files under /frontend/ folder.
  *	Just copy the file to ROOT/templates/YOURTEMPLATE/html/frontend/ folder to create and override
  */
 // No direct access.
@@ -25,9 +25,9 @@ $contact_display = $template->params->get('contact_display', 'icons');
 
 <div class="astroid-contact-info">
    <?php if (!empty($address)) { ?>
-      <span class="mr-3 d-inline-block">
+      <span class="astroid-contact-address">
          <?php if ($contact_display == "icons") : ?>
-            <i class="fas fa-map-marker-alt mr-1"></i>
+            <i class="fas fa-map-marker-alt"></i>
          <?php endif; ?>
          <?php if ($contact_display == "text") : ?>
             <?php echo JText::_('TPL_ASTROID_ADDRESS_LABEL'); ?>:
@@ -37,9 +37,9 @@ $contact_display = $template->params->get('contact_display', 'icons');
    <?php } ?>
 
    <?php if (!empty($phone)) { ?>
-      <span class="mr-3 d-inline-block">
+      <span class="astroid-contact-phone">
          <?php if ($contact_display == "icons") : ?>
-            <i class="fas fa-phone fa-rotate-90 mr-1"></i>
+            <i class="fas fa-phone-alt"></i>
          <?php endif; ?>
          <?php if ($contact_display == "text") : ?>
             <?php echo JText::_('TPL_ASTROID_PHONE_LABEL'); ?>:
@@ -49,9 +49,9 @@ $contact_display = $template->params->get('contact_display', 'icons');
    <?php } ?>
 
    <?php if (!empty($mobile)) { ?>
-      <span class="mr-3 d-inline-block">
+      <span class="astroid-contact-mobile">
          <?php if ($contact_display == "icons") : ?>
-            <i class="fas fa-mobile-alt mr-1"></i>
+            <i class="fas fa-mobile-alt"></i>
          <?php endif; ?>
          <?php if ($contact_display == "text") : ?>
             <?php echo JText::_('TPL_ASTROID_MOBILE_LABEL'); ?>:
@@ -61,9 +61,9 @@ $contact_display = $template->params->get('contact_display', 'icons');
    <?php } ?>
 
    <?php if (!empty($email)) { ?>
-      <span class="mr-3 d-inline-block">
+      <span class="astroid-contact-email">
          <?php if ($contact_display == "icons") : ?>
-            <i class="far fa-envelope mr-1"></i>
+            <i class="far fa-envelope"></i>
          <?php endif; ?>
          <?php if ($contact_display == "text") : ?>
             <?php echo JText::_('JGLOBAL_EMAIL'); ?>:
@@ -73,9 +73,9 @@ $contact_display = $template->params->get('contact_display', 'icons');
    <?php } ?>
 
    <?php if (!empty($openhours)) { ?>
-      <span class="mr-3 d-inline-block">
+      <span class="astroid-contact-openhours">
          <?php if ($contact_display == "icons") : ?>
-            <i class="far fa-clock mr-1"></i>
+            <i class="far fa-clock"></i>
          <?php endif; ?>
          <?php if ($contact_display == "text") : ?>:
             <?php echo JText::_('TPL_ASTROID_OPENHOURS_LABEL'); ?>

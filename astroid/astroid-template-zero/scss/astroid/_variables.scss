@@ -1,13 +1,13 @@
 // Logo
-$logo-max-width: 250px;
-$logo-max-height: 65px;
+$logo-max-width: 250px !default;
+$logo-max-height: 65px !default;
 
 // Header Section
 $header-padding-y: 15px !default;
 $header-padding-x: 0 !default;
 $header-section-zindex: $zindex-dropdown !default;
-$header-sidebar-width: 320px !default;
-$header-sidebar-mini-width: 54px !default;
+$header-border-bottom: 1px solid #dee2e6 !default;
+$header-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075) !default;
 
 // Sticky Header
 $sticky-header-zindex: $zindex-sticky !default;
@@ -20,6 +20,15 @@ $sticky-header-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075) !default;
 // Stacked Header
 $stacked-header-bg: #fff !default;
 $stacked-header-zindex: $zindex-dropdown !default;
+
+// Sidebar Header
+$sidebar-header-shadow: 0 0 2px 0 rgba(56, 69, 84, .2) !default;
+$sidebar-header-width: 320px !default;
+$sidebar-header-mini-width: 54px !default;
+
+// Deprecated Variable
+$header-sidebar-width: 320px !default;
+$header-sidebar-mini-width: 54px !default;
 
 // Back to top
 $backtotop-right: 20px !default;
@@ -57,7 +66,6 @@ $selection-bg: $primary !default;
 $selection-text-color: $white !default;
 
 // Post Type
-$post-type-regular-bg: #000 !default;
 $post-type-quote-bg: #bfe6ff !default;
 $post-type-gallery-bg: #e5f9f1 !default;
 $post-type-review-bg: #f5db8b !default;
@@ -65,16 +73,14 @@ $post-type-youtube-bg: #fee8eb !default;
 $post-type-vimeo-bg: #76d3f2 !default;
 $post-type-soundcloud-bg: #fff1ea !default;
 $post-type-spotify-bg: #1ed760 !default;
-
-$post-type-regular-color: #fff !default; 
-$post-type-quote-color: #45a9ea !default; 
+$post-type-regular-color: #fff !default;
+$post-type-quote-color: #45a9ea !default;
 $post-type-gallery-color: #0dc772 !default;
 $post-type-review-color: #bb900b !default;
 $post-type-youtube-color: #f23453 !default;
 $post-type-vimeo-color: #1dabda !default;
 $post-type-soundcloud-color: #ff7930 !default;
 $post-type-spotify-color: #181413 !default;
-
 $post-type-padding: 10px 10px !default;
 
 // Badge

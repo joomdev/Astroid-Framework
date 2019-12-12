@@ -119,7 +119,7 @@
                </span>
                <div class="col-12">
                   <div class="row" ng-sortable="{draggable: '.ezlb-col',animation: 100}">
-                     <div ng-repeat="column in row.cols track by $index" class="ezlb-col col-{{ column.size}} ezlb-col-{{ sectionIndex}}-{{ rowIndex}}-{{ columnIndex}} {{ column.elements.length == 0 ? 'ezlb-col-empty' : '' }}" ng-init="columnIndex = $index; column.type='column'">
+                     <div data-label="col-lg-{{ column.size}}" ng-repeat="column in row.cols track by $index" class="ezlb-col col-{{ column.size}} ezlb-col-{{ sectionIndex}}-{{ rowIndex}}-{{ columnIndex}} {{ column.elements.length == 0 ? 'ezlb-col-empty' : '' }}" ng-init="columnIndex = $index; column.type='column'">
                         <div ng-if="column.elements.length != 0" class="ezlb-col-overlay"></div>
                         <div ng-if="column.elements.length == 0" ng-click="addingElement(columnIndex, rowIndex, sectionIndex, null)" class="ezlb-add-element">
                         </div>

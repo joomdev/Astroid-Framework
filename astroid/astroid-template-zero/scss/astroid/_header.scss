@@ -1,5 +1,5 @@
 .astroid-nav .megamenu-container a.nav-link.megamenu-title:hover {
-   background: inherit !important;
+   background-color: inherit !important;
    color: currentColor !important;
 }
 
@@ -8,6 +8,8 @@
    width: 100%;
    left: 0;
    z-index: $header-section-zindex;
+   border-bottom: $header-border-bottom;
+   box-shadow: $header-shadow;
 
    /* Header Element */
    header {
@@ -24,7 +26,7 @@
          height: 100%;
          width: 100%;
          display: none;
-         background: $stacked-header-bg;
+         background-color: $stacked-header-bg;
          z-index: $stacked-header-zindex;
       }
    }
@@ -74,8 +76,8 @@
    }
 
    img {
-      max-width: 250px;
-      max-height: 65px;
+      max-width: $logo-max-width;
+      max-height: $logo-max-height;
    }
 
    .astroid-logo-mobile {
@@ -113,21 +115,17 @@
    }
 }
 /* Sidebar Header */
-#astroid-header {
+.astroid-header {
    &.has-sidebar {
       position: fixed;
-      width: $header-sidebar-width;
+      width: $sidebar-header-width;
       top: 0;
       height: 100%;
       z-index: 1;
-      -webkit-transition: .1s linear all;
-      -moz-transition: .1s linear all;
-      -ms-transition: .1s linear all;
-      -o-transition: .1s linear all;
       transition: .1s linear all;
-      box-shadow: 0 0 2px 0 rgba(56,69,84,.2);
+      box-shadow: $sidebar-header-shadow;
       @media(max-width: 1200px) {
-         width: $header-sidebar-mini-width;
+         width: $sidebar-header-mini-width;
       }
       &.sidebar-dir-left {
          left: 0 !important;
@@ -173,17 +171,13 @@
    }
    @media (max-width: 1200px) {
       &.has-sidebar {
-         .astroid-sidebar-mobile-menu {
-            display: block;
-         }
-      }
-   }
-   @media (max-width: 1200px) {
-      &.has-sidebar {
          display: block;
          width: 100%;
          position: relative;
          padding: 15px 0;
+         .astroid-sidebar-mobile-menu {
+            display: block;
+         }
          .astroid-sidebar-logo {
             display: flex;
             padding: 0 15px;
@@ -192,13 +186,10 @@
       }
    }
    .dropdown-menus {
-      max-width: $header-sidebar-width;
+      max-width: $sidebar-header-width;
    }
    .astroid-sidebar-content {
       overflow-y: auto;
-      .astroid-sidebar-logo {
-         // height: 150px;
-      }
    }
    .astroid-sidebar-collapsable {
       padding: 1rem;
@@ -229,7 +220,7 @@
          }
       }
       &.expanded {
-         width: $header-sidebar-width !important;
+         width: $sidebar-header-width !important;
          -webkit-transition: .1s linear all;
          -moz-transition: .1s linear all;
          -ms-transition: .1s linear all;
@@ -255,10 +246,11 @@
    }
 }
 
-@media(min-width: 1200px) and (max-width: 1600px) {
-   body{
-      &.header-sidebar-left{
-         margin-left: 320px;
-      }
-   }      
+@media (min-width:1201px) {
+   body.header-sidebar-left{
+      margin-left: $sidebar-header-width;
+   }
+   body.header-sidebar-right{
+      margin-right: $sidebar-header-width;
+   }
 }

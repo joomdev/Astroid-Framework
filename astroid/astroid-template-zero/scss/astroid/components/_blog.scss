@@ -55,7 +55,7 @@ $article-posttype-icon-width: 40px;
 	}
 
 	&.article-icon-quote {
-		background: $post-type-quote-bg;
+		background-color: $post-type-quote-bg;
 		color: $post-type-quote-color;
 
 		&:before {
@@ -68,7 +68,7 @@ $article-posttype-icon-width: 40px;
 	}
 
 	&.article-icon-gallery {
-		background: $post-type-gallery-bg;
+		background-color: $post-type-gallery-bg;
 		color: $post-type-gallery-color;
 
 		&:before {
@@ -81,7 +81,7 @@ $article-posttype-icon-width: 40px;
 	}
 
 	&.article-icon-review {
-		background: $post-type-review-bg;
+		background-color: $post-type-review-bg;
 		color: $post-type-review-color;
 
 		&:before {
@@ -94,7 +94,7 @@ $article-posttype-icon-width: 40px;
 	}
 
 	&.article-icon-youtube {
-		background: $post-type-youtube-bg;
+		background-color: $post-type-youtube-bg;
 		color: $post-type-youtube-color;
 
 		&:before {
@@ -107,7 +107,7 @@ $article-posttype-icon-width: 40px;
 	}
 
 	&.article-icon-vimeo {
-		background: $post-type-vimeo-bg;
+		background-color: $post-type-vimeo-bg;
 		color: $post-type-vimeo-color;
 
 		&:before {
@@ -120,7 +120,7 @@ $article-posttype-icon-width: 40px;
 	}
 
 	&.article-icon-soundcloud {
-		background: $post-type-soundcloud-bg;
+		background-color: $post-type-soundcloud-bg;
 		color: $post-type-soundcloud-color;
 
 		&:before {
@@ -133,7 +133,7 @@ $article-posttype-icon-width: 40px;
 	}
 
 	&.article-icon-spotify {
-		background: $post-type-spotify-bg;
+		background-color: $post-type-spotify-bg;
 		color: $post-type-spotify-color;
 
 		&:before {
@@ -155,7 +155,7 @@ $article-posttype-icon-width: 40px;
 		position: absolute;
 		bottom: 0;
 		width: 100%;
-		background: rgba(0, 0, 0, .5);
+		background-color: rgba(0, 0, 0, .5);
 		color: #fff;
 		margin: 0;
 		padding: 5px;

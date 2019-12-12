@@ -58,8 +58,13 @@ if($option == 'com_media' && $tmpl =='component'){
 if($view == 'article' && $option == 'com_content' && $layout == 'pagebreak' && $e_name=='jform_articletext'){
 	$addtemplatejs = true;
 }
+//Content History
+if($view == 'history' && $option == 'com_contenthistory' && $layout == 'modal'){
+	$addtemplatejs = true;
+}
  
 if($addtemplatejs){
+	JHtml::_('script', juri::root().'media/jui/js/bootstrap.min.js', array('version' => 'auto', 'relative' => true));
 	JHtml::_('script', 'isis.js', array('version' => 'auto', 'relative' => true));
 	JHtml::_('stylesheet', 'isis/isis.css', array('version' => 'auto', 'relative' => true));  
 }

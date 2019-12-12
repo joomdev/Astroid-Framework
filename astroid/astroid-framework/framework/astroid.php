@@ -18,6 +18,10 @@ abstract class AstroidFramework {
       return self::$template;
    }
 
+   public static function setTemplate($template) {
+      self::$template = $template;
+   }
+
    public static function addStyleSheet($url) {
       self::$stylesheets[] = $url;
    }

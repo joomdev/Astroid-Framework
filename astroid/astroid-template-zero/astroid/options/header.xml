@@ -3,7 +3,7 @@
    <fields name="params">
       <fieldset icon="fas fa-heading" label="ASTROID_OPTIONS_HEADER" name="astroid_header" addfieldpath="/libraries/astroid/framework/fields" order="2">
 
-         <field type="astroidgroup" name="header_element" title="TPL_ASTROID_HEADER_ELEMENT_MAIN_TITLE_LABEL" description="TPL_ASTROID_HEADER_ELEMENT_MAIN_TITLE_DESC" />
+         <field type="astroidgroup" name="header_element" title="TPL_ASTROID_HEADER_ELEMENT_MAIN_TITLE_LABEL" description="TPL_ASTROID_HEADER_ELEMENT_MAIN_TITLE_DESC" help="https://docs.joomdev.com/category/astroid-user-manual/header"/>
 
          <field astroidgroup="header_element" class="astroid-header-switch" name="header" type="astroidtext" astroid-switch="true" default="1" label="TPL_ASTROID_HEADER_ENABLE_HEADER_LABEL" description="TPL_ASTROID_HEADER_ENABLE_HEADER_DESC"></field>
 
@@ -60,7 +60,28 @@
 
          <field ngShow="header==true" astroidgroup="header_element" name="header_menu" type="sql" query="SELECT * FROM #__menu_types" default="mainmenu" class="form-control astroid-select-ui" key_field="menutype" value_field="title" label="TPL_ASTROID_HEADER_MENU_LABEL" description="TPL_ASTROID_HEADER_MENU_DESC"></field>
          
-         <field
+        <field
+            name="header_startLevel"
+            type="astroidlist"
+            label="TPL_ASTROID_HEADER_MENU_STARTLEVEL_LABEL"
+            description="TPL_ASTROID_HEADER_MENU_STARTLEVEL_DESC"
+            default="1"
+            filter="integer"
+            ngShow="header==true"
+            astroidgroup="header_element"
+         >
+            <option value="1">J1</option>
+            <option value="2">J2</option>
+            <option value="3">J3</option>
+            <option value="4">J4</option>
+            <option value="5">J5</option>
+            <option value="6">J6</option>
+            <option value="7">J7</option>
+            <option value="8">J8</option>
+            <option value="9">J9</option>
+            <option value="10">J10</option>
+         </field> 
+		 <field
             name="header_endLevel"
             type="astroidlist"
             label="TPL_ASTROID_HEADER_MENU_ENDLEVEL_LABEL"
@@ -84,10 +105,32 @@
          </field>
 
          <field ngShow="header==true" astroidgroup="header_element" name="header_mobile_menu" type="sql" query="SELECT * FROM #__menu_types" default="" class="form-control astroid-select-ui" key_field="menutype" value_field="title" label="TPL_ASTROID_HEADER_MOBILE_MENU_LABEL">
-            <option value="">JNONE</option>
+            <option value="">ASTROID_NONE</option>
          </field>
          
          <field
+            name="header_mobile_startLevel"
+            type="astroidlist"
+            label="TPL_ASTROID_HEADER_MENU_STARTLEVEL_LABEL"
+            description="TPL_ASTROID_HEADER_MENU_STARTLEVEL_DESC"
+            default="1"
+            filter="integer"
+            ngShow="header==true"
+            astroidgroup="header_element"
+         >
+            <option value="1">J1</option>
+            <option value="2">J2</option>
+            <option value="3">J3</option>
+            <option value="4">J4</option>
+            <option value="5">J5</option>
+            <option value="6">J6</option>
+            <option value="7">J7</option>
+            <option value="8">J8</option>
+            <option value="9">J9</option>
+            <option value="10">J10</option>
+         </field>
+		 
+		 <field
             name="header_mobile_endLevel"
             type="astroidlist"
             label="TPL_ASTROID_HEADER_MENU_ENDLEVEL_LABEL"
@@ -116,7 +159,7 @@
             <option value="click">JGLOBAL_CLICK</option>
          </field>
      
-         <field ngShow="header==true AND header_mode!='sidebar'" astroidgroup="header_element" name="dropdown_arrow" type="astroidtext" astroid-switch="true" default="0" label="TPL_ASTROID_MENU_OPTIONS_SELECT_ARROW_LABEL" description="TPL_ASTROID_MENU_OPTIONS_SELECT_ARROW_DESC"></field>
+         <field ngShow="header==true AND header_mode!='sidebar'" astroidgroup="header_element" name="dropdown_arrow" type="astroidtext" astroid-switch="true" default="1" label="TPL_ASTROID_MENU_OPTIONS_SELECT_ARROW_LABEL" description="TPL_ASTROID_MENU_OPTIONS_SELECT_ARROW_DESC"></field>
 
          <field ngShow="header==true" astroidgroup="header_element" description="TPL_ASTROID_HEADER_LOGO_OPTION_DESC" title="TPL_ASTROID_HEADER_LOGO_OPTION" type="astroidheading" />
 
@@ -207,7 +250,7 @@
          <field ngShow="header==true AND header_mode!='sidebar'" astroidgroup="header_element" description="TPL_ASTROID_HEADER_MENU_ANIMATION_DESC" title="TPL_ASTROID_HEADER_MENU_ANIMATION" type="astroidheading" />
 
          <field ngShow="header==true AND header_mode!='sidebar'" astroidgroup="header_element" name="dropdown_animation_type" type="astroidradio" default="fade" label="TPL_ASTROID_HEADER_MENU_ANIMATION">
-            <option class="btn-danger" value="none">JNONE</option>
+            <option class="btn-danger" value="none">ASTROID_NONE</option>
             <option value="fade">TPL_ASTROID_HEADER_MENU_ANIMATION_OPTION_FADE</option>
             <option value="slide">TPL_ASTROID_HEADER_MENU_ANIMATION_OPTION_SILDE</option>
          </field>

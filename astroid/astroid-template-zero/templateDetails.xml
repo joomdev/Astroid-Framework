@@ -2,13 +2,13 @@
 <!DOCTYPE install PUBLIC "-//Joomla! 2.5//DTD template 1.0//EN" "https://www.joomla.org/xml/dtd/1.6/template-install.dtd">
 <extension version="3.1" type="template" client="site" method="upgrade">
    <name>astroid_template_zero</name>
-   <creationDate>July 2019</creationDate>
+   <creationDate>Dec 2019</creationDate>
    <author>JoomDev</author>
    <authorEmail>info@joomdev.com</authorEmail>
    <authorUrl>https://www.joomdev.com</authorUrl>
    <copyright>Copyright (C) 2019 Joomdev, Inc. All rights reserved.</copyright>
    <license>GNU General Public License version 2 or later; see LICENSE.txt</license>
-   <version>2.2.3</version>
+   <version>2.3.0</version>
    <description>TPL_ASTROID_XML_DESCRIPTION</description>
    <updateservers>
       <server type="extension" name="astroid_framework" priority="1">https://cdn.joomdev.com/updates/astroid_template_zero.xml</server>
@@ -24,6 +24,7 @@
       <folder>language</folder>
       <folder>frontend</folder>
       <filename>index.php</filename>
+      <filename>helper.php</filename>
       <filename>templateDetails.xml</filename>
       <filename>template_preview.png</filename>
       <filename>template_thumbnail.png</filename>

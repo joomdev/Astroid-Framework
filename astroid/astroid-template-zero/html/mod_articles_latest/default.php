@@ -8,7 +8,7 @@
 
 defined('_JEXEC') or die;
 ?>
-<div class="latestnews menu list-inline">
+<div class="latestnews menu list-inline view-default">
 	<ul class="menu list-inline">
 		<?php foreach ($list as $item) : $image = json_decode($item->images); ?>
 		<li itemscope itemtype="https://schema.org/Article">

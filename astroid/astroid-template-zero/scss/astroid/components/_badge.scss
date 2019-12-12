@@ -16,7 +16,7 @@
 	}
 
 	&.article-badge-1 {
-		background: $article-badge-2-bg;
+		background-color: $article-badge-2-bg;
 
 		&:before {
 			@include triangle(8px, darken(#000, 15%), down-right);
@@ -31,7 +31,7 @@
 	}
 
 	&.article-badge-2 {
-		background: $article-badge-2-bg;
+		background-color: $article-badge-2-bg;
 
 		&:before {
 			@include triangle(8px, darken($article-badge-2-bg, 15%), down-right);
@@ -46,7 +46,7 @@
 	}
 
 	&.article-badge-3 {
-		background: $article-badge-3-bg;
+		background-color: $article-badge-3-bg;
 
 		&:before {
 			@include triangle(8px, darken($article-badge-3-bg, 15%), down-right);
@@ -61,7 +61,7 @@
 	}
 
 	&.article-badge-4 {
-		background: $article-badge-4-bg;
+		background-color: $article-badge-4-bg;
 
 		&:before {
 			@include triangle(8px, darken($article-badge-4-bg, 15%), down-right);
@@ -76,7 +76,7 @@
 	}
 
 	&.article-badge-5 {
-		background: $article-badge-5-bg;
+		background-color: $article-badge-5-bg;
 
 		&:before {
 			@include triangle(8px, darken($article-badge-5-bg, 15%), down-right);
@@ -91,7 +91,7 @@
 	}
 
 	&.article-badge-6 {
-		background: $article-badge-6-bg;
+		background-color: $article-badge-6-bg;
 
 		&:before {
 			@include triangle(8px, darken($article-badge-6-bg, 15%), down-right);

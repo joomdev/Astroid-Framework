@@ -94,7 +94,7 @@ class AstroidMenu
             $item->parent = 1;
          }
          $options = self::getAstroidMenuOptions($item, $list);
-         $class = self::getLiClass($item, $options, $default_id, $active_id, $path);
+         $class = self::getLiClass($item, $options, $default_id, $active_id, $path, $header_endLevel);
 
          if ($item->level == 1) {
             // Code for adding Centered Logo
@@ -487,10 +487,15 @@ class AstroidMenu
       }
    }
 
-   public static function getLiClass($item, $options, $default_id, $active_id, $path)
+   public static function getLiClass($item, $options, $default_id, $active_id, $path, $endLevel = null)
    {
       $template = AstroidFramework::getTemplate();
+     
       $header_endLevel = $template->params->get('header_endLevel', 0);
+      if ($endLevel !== null) {
+         $header_endLevel = $endLevel;
+      }
+
       $class = [];
       if ($item->level != 1) {
          $class[] = 'nav-item-submenu';

@@ -23,7 +23,7 @@ JHtml::_('bootstrap.tooltip');
          <label for="modlgn-username" class="sr-only"><?php echo JText::_('MOD_LOGIN_VALUE_USERNAME'); ?></label>
          <div class="input-group mb-3">
             <div class="input-group-prepend">
-               <span class="input-group-text p-2"><span class="fa fa-user hasTooltip" title="<?php echo JText::_('MOD_LOGIN_VALUE_USERNAME'); ?>"></span></span>
+               <span class="input-group-text p-2"><span class="far fa-user hasTooltip" title="<?php echo JText::_('MOD_LOGIN_VALUE_USERNAME'); ?>"></span></span>
             </div>
             <input id="modlgn-username" type="text" name="username" class="form-control p-2" tabindex="0" size="18" placeholder="<?php echo JText::_('MOD_LOGIN_VALUE_USERNAME'); ?>" />
          </div>
@@ -38,7 +38,7 @@ JHtml::_('bootstrap.tooltip');
          <label for="modlgn-passwd" class="sr-only"><?php echo JText::_('JGLOBAL_PASSWORD'); ?></label>
          <div class="input-group mb-3">
             <div class="input-group-prepend">
-               <span class="input-group-text p-2"><span class="fa fa-lock hasTooltip" title="<?php echo JText::_('JGLOBAL_PASSWORD'); ?>"></span></span>
+               <span class="input-group-text p-2"><span class="fas fa-lock hasTooltip" title="<?php echo JText::_('JGLOBAL_PASSWORD'); ?>"></span></span>
             </div>
             <input id="modlgn-passwd" type="password" name="password" class="form-control p-2" tabindex="0" size="18" placeholder="<?php echo JText::_('JGLOBAL_PASSWORD'); ?>" />
          </div>

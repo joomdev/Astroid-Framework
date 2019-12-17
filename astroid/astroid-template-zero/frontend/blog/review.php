@@ -83,7 +83,7 @@ if (empty($overall_rating)) {
                <?php
                foreach (explode("\n", $good_things) as $good_thing) {
                   ?>
-                  <li><i class="fa fa-check-circle text-success"></i> <?php echo $good_thing; ?></li>
+                  <li><i class="far fa-check-circle text-success"></i> <?php echo $good_thing; ?></li>
                <?php } ?>
             </ul>
          </div>
@@ -93,7 +93,7 @@ if (empty($overall_rating)) {
                <?php
                foreach (explode("\n", $bad_things) as $bad_thing) {
                   ?>
-                  <li><i class="fa fa-minus-circle text-danger"></i> <?php echo $bad_thing; ?></li>
+                  <li><i class="fas fa-minus-circle text-danger"></i> <?php echo $bad_thing; ?></li>
                <?php } ?>
             </ul>
          </div>

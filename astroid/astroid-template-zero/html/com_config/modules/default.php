@@ -62,7 +62,7 @@ JFactory::getDocument()->addScriptDeclaration("
 				<div class="btn-group">
 					<button type="button" class="btn "
 						onclick="Joomla.submitbutton('config.cancel.modules')">
-						<i class="fa fa-times-circle"></i>
+						<i class="far fa-times-circle"></i>
 						<?php echo JText::_('JCANCEL'); ?>
 					</button>
 				</div>

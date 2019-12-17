@@ -141,10 +141,10 @@ if($item->type == 'url'){
       <?php } ?>
       <?php if ((!$is_mobile_menu && $item->level == 1 && (($item->parent && $item->deeper == 1) || $options->megamenu)) && ($item->level != $header_endLevel)) { ?>
          <?php if($template->params->get('dropdown_arrow', 0)) {  ?>  
-            <i class="fa fa-chevron-down nav-item-caret"></i>
+            <i class="fas fa-chevron-down nav-item-caret"></i>
           <?php } ?>
       <?php } elseif ((!$is_mobile_menu && $item->parent && !($item->type == "heading" || $item->type == "separator")) && $item->level != $header_endLevel) { ?>
-         <i class="fa fa-chevron-right nav-item-caret"></i>
+         <i class="fas fa-chevron-right nav-item-caret"></i>
       <?php } ?>
    </span>
    <?php if (!$is_mobile_menu && $item->level == 1 && !empty($options->subtitle)) { ?>
@@ -152,6 +152,6 @@ if($item->type == 'url'){
    <?php } ?>
 </a>
 <?php if ($slidemenu && ($item->parent && $item->deeper == 1)) { ?>
-   <i class="fa fa-plus nav-item-caret<?php echo $active ? ' open' : ''; ?>"></i>
+   <i class="fas fa-plus nav-item-caret<?php echo $active ? ' open' : ''; ?>"></i>
 <?php } ?>
 <!--menu link ends-->

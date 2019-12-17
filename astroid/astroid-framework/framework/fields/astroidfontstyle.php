@@ -142,22 +142,22 @@ class JFormFieldAstroidFontStyle extends JFormFieldList {
 
       $bold = new stdClass();
       $bold->value = "bold";
-      $bold->text = '<span class="fa fa-bold"></span>';
+      $bold->text = '<span class="far fa-bold"></span>';
       $bold->checked = false;
       
       $italic = new stdClass();
       $italic->value = "italic";
-      $italic->text = '<span class="fa fa-italic"></span>';
+      $italic->text = '<span class="far fa-italic"></span>';
       $italic->checked = false;
       
       $underline = new stdClass();
       $underline->value = "underline";
-      $underline->text = '<span class="fa fa-underline"></span>';
+      $underline->text = '<span class="far fa-underline"></span>';
       $underline->checked = false;
       
       $strikethrough = new stdClass();
       $strikethrough->value = "strikethrough";
-      $strikethrough->text = '<span class="fa fa-strikethrough"></span>';
+      $strikethrough->text = '<span class="far fa-strikethrough"></span>';
       $strikethrough->checked = false;
 
 

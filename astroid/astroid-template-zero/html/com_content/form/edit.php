@@ -239,10 +239,10 @@ JFactory::getDocument()->addScriptDeclaration("
 		</fieldset>
 		<div class="btn-toolbar">
 				<button type="button" class="btn btn-primary" onclick="Joomla.submitbutton('article.save')">
-					<span class="fa fa-check"></span> <?php echo JText::_('ASTROID_SAVE') ?>
+					<span class="fas fa-check"></span> <?php echo JText::_('ASTROID_SAVE') ?>
 				</button>
 				<button type="button" class="btn btn-secondary ml-2" onclick="Joomla.submitbutton('article.cancel')">
-					<span class="fa fa-times"></span> <?php echo JText::_('JCANCEL') ?>
+					<span class="far fa-times"></span> <?php echo JText::_('JCANCEL') ?>
 				</button>
 			<?php if ($params->get('save_history', 0) && $this->item->id) : ?>
 				<?php echo $this->form->getInput('contenthistory'); ?>

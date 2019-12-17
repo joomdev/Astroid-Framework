@@ -26,7 +26,7 @@ if (empty($value)) {
             <div ng-repeat="profile in profiles track by $index" class="card mb-2 social-profile-item" ng-init="profileIndex = $index">
                <div class="card-header">
                   <span style="font-size: 18px;"><i ng-style="{'color':profile.color}" class="{{ profile.icon}}"></i> {{ profile.title}}</span>
-                  <span ng-click="removeSocialProfile(profileIndex)" class="text-danger float-right" style="cursor: pointer"><i class="fa fa-trash"></i></span>
+                  <span ng-click="removeSocialProfile(profileIndex)" class="text-danger float-right" style="cursor: pointer"><i class="fas fa-trash"></i></span>
                   <div class="clearfix"></div>
                </div>
                <div class="card-body">

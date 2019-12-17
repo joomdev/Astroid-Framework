@@ -42,7 +42,7 @@ if (empty($value)) {
                   </div>
                </td>
                <td>
-                  <button ng-click="removeOverride(overrideIndex)" type="button" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                  <button ng-click="removeOverride(overrideIndex)" type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button>
                </td>
             </tr>
          </table>

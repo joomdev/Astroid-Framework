@@ -117,6 +117,6 @@ JHtml::_('stylesheet', 'system/fields/calendar' . $cssFileExt, array(), true);
               data-only-months-nav="<?php echo $singleheader; ?>"
               <?php echo!empty($minYear) ? 'data-min-year="' . $minYear . '"' : ''; ?>
               <?php echo!empty($maxYear) ? 'data-max-year="' . $maxYear . '"' : ''; ?>
-              ><span class="fa fa-calendar"></span></button>
+              ><span class="fas fa-calendar"></span></button>
    </div>
 </div>

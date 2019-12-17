@@ -93,13 +93,13 @@ foreach ($fonts as $font) {
                <ul class="nav tabmedia" data-typography-tab role="tablist">
                   <li> <label class="astroid-label d-inline-block"><?php echo JText::_('TPL_ASTROID_FONT_SIZE_LABEL'); ?></label> </li>
                   <li>
-                     <a class="active" href="javascript:void(0);" id="astroid-font-size-desktop-<?php echo $id; ?>" data-toggle="tab" data-target="#astroid-fontsize-desktop-<?php echo $id; ?>" role="tab" aria-controls="astroid-fontsize-desktop-<?php echo $id; ?>" aria-selected="true" data-typography-field-id="<?php echo $id; ?>" data-typography-tab-device="desktop"><i class="fa fa-desktop"></i></a>
+                     <a class="active" href="javascript:void(0);" id="astroid-font-size-desktop-<?php echo $id; ?>" data-toggle="tab" data-target="#astroid-fontsize-desktop-<?php echo $id; ?>" role="tab" aria-controls="astroid-fontsize-desktop-<?php echo $id; ?>" aria-selected="true" data-typography-field-id="<?php echo $id; ?>" data-typography-tab-device="desktop"><i class="fas fa-desktop"></i></a>
                   </li>
                   <li>
-                     <a href="javascript:void(0);" id="astroid-font-size-tablet-<?php echo $id; ?>" data-toggle="tab" data-target="#astroid-fontsize-tablet-<?php echo $id; ?>" role="tab" aria-controls="astroid-fontsize-tablet-<?php echo $id; ?>" aria-selected="true" data-typography-field-id="<?php echo $id; ?>" data-typography-tab-device="tablet"><i class="fa fa-tablet-alt"></i></a>
+                     <a href="javascript:void(0);" id="astroid-font-size-tablet-<?php echo $id; ?>" data-toggle="tab" data-target="#astroid-fontsize-tablet-<?php echo $id; ?>" role="tab" aria-controls="astroid-fontsize-tablet-<?php echo $id; ?>" aria-selected="true" data-typography-field-id="<?php echo $id; ?>" data-typography-tab-device="tablet"><i class="fas fa-tablet-alt"></i></a>
                   </li>
                   <li>
-                     <a href="javascript:void(0);" id="astroid-font-size-mobile-<?php echo $id; ?>" data-toggle="tab" data-target="#astroid-fontsize-mobile-<?php echo $id; ?>" role="tab" aria-controls="astroid-fontsize-mobile-<?php echo $id; ?>" aria-selected="true" data-typography-field-id="<?php echo $id; ?>" data-typography-tab-device="mobile"><i class="fa fa-mobile-alt"></i></a>
+                     <a href="javascript:void(0);" id="astroid-font-size-mobile-<?php echo $id; ?>" data-toggle="tab" data-target="#astroid-fontsize-mobile-<?php echo $id; ?>" role="tab" aria-controls="astroid-fontsize-mobile-<?php echo $id; ?>" aria-selected="true" data-typography-field-id="<?php echo $id; ?>" data-typography-tab-device="mobile"><i class="fas fa-mobile-alt"></i></a>
                   </li>
                </ul>
                <div class="tab-content" id="astroid-font-size-tab-content">
@@ -128,13 +128,13 @@ foreach ($fonts as $font) {
                <ul class="nav tabmedia" data-typography-tab role="tablist">
                   <li><label class="astroid-label d-inline-block"><?php echo JText::_('TPL_ASTROID_LETTER_SPACING_LABEL'); ?></label></li>
                   <li>
-                     <a class="active" href="javascript:void(0);" id="astroid-letter-spacing-desktop-<?php echo $id; ?>" data-toggle="tab" data-target="#astroid-letterspacing-desktop-<?php echo $id; ?>" role="tab" aria-controls="astroid-letterspacing-desktop-<?php echo $id; ?>" aria-selected="true" data-typography-field-id="<?php echo $id; ?>" data-typography-tab-device="desktop"><i class="fa fa-desktop"></i></a>
+                     <a class="active" href="javascript:void(0);" id="astroid-letter-spacing-desktop-<?php echo $id; ?>" data-toggle="tab" data-target="#astroid-letterspacing-desktop-<?php echo $id; ?>" role="tab" aria-controls="astroid-letterspacing-desktop-<?php echo $id; ?>" aria-selected="true" data-typography-field-id="<?php echo $id; ?>" data-typography-tab-device="desktop"><i class="fas fa-desktop"></i></a>
                   </li>
                   <li>
-                     <a href="javascript:void(0);" id="astroid-font-size-tablet-<?php echo $id; ?>" data-toggle="tab" data-target="#astroid-letterspacing-tablet-<?php echo $id; ?>" role="tab" aria-controls="astroid-letterspacing-tablet-<?php echo $id; ?>" aria-selected="true" data-typography-field-id="<?php echo $id; ?>" data-typography-tab-device="tablet"><i class="fa fa-tablet-alt"></i></a>
+                     <a href="javascript:void(0);" id="astroid-font-size-tablet-<?php echo $id; ?>" data-toggle="tab" data-target="#astroid-letterspacing-tablet-<?php echo $id; ?>" role="tab" aria-controls="astroid-letterspacing-tablet-<?php echo $id; ?>" aria-selected="true" data-typography-field-id="<?php echo $id; ?>" data-typography-tab-device="tablet"><i class="fas fa-tablet-alt"></i></a>
                   </li>
                   <li>
-                     <a href="javascript:void(0);" id="astroid-font-size-mobile-<?php echo $id; ?>" data-toggle="tab" data-target="#astroid-letterspacing-mobile-<?php echo $id; ?>" role="tab" aria-controls="astroid-letterspacing-mobile-<?php echo $id; ?>" aria-selected="true" data-typography-field-id="<?php echo $id; ?>" data-typography-tab-device="mobile"><i class="fa fa-mobile-alt"></i></a>
+                     <a href="javascript:void(0);" id="astroid-font-size-mobile-<?php echo $id; ?>" data-toggle="tab" data-target="#astroid-letterspacing-mobile-<?php echo $id; ?>" role="tab" aria-controls="astroid-letterspacing-mobile-<?php echo $id; ?>" aria-selected="true" data-typography-field-id="<?php echo $id; ?>" data-typography-tab-device="mobile"><i class="fas fa-mobile-alt"></i></a>
                   </li>
                </ul>
                <div class="tab-content" id="astroid-font-size-tab-content">
@@ -160,13 +160,13 @@ foreach ($fonts as $font) {
                <ul class="nav tabmedia" data-typography-tab role="tablist">
                   <li><label class="astroid-label"><?php echo JText::_('TPL_ASTROID_LINE_HEIGHT_LABEL'); ?></label></li>
                   <li>
-                     <a class="active" href="javascript:void(0);" id="astroid-line-height-desktop-<?php echo $id; ?>" data-toggle="tab" data-target="#astroid-lineheight-desktop-<?php echo $id; ?>" role="tab" aria-controls="astroid-lineheight-desktop-<?php echo $id; ?>" aria-selected="true" data-typography-field-id="<?php echo $id; ?>" data-typography-tab-device="desktop"><i class="fa fa-desktop"></i></a>
+                     <a class="active" href="javascript:void(0);" id="astroid-line-height-desktop-<?php echo $id; ?>" data-toggle="tab" data-target="#astroid-lineheight-desktop-<?php echo $id; ?>" role="tab" aria-controls="astroid-lineheight-desktop-<?php echo $id; ?>" aria-selected="true" data-typography-field-id="<?php echo $id; ?>" data-typography-tab-device="desktop"><i class="fas fa-desktop"></i></a>
                   </li>
                   <li>
-                     <a href="javascript:void(0);" id="astroid-line-height-tablet-<?php echo $id; ?>" data-toggle="tab" data-target="#astroid-lineheight-tablet-<?php echo $id; ?>" role="tab" aria-controls="astroid-lineheight-tablet-<?php echo $id; ?>" aria-selected="true" data-typography-field-id="<?php echo $id; ?>" data-typography-tab-device="tablet"><i class="fa fa-tablet-alt"></i></a>
+                     <a href="javascript:void(0);" id="astroid-line-height-tablet-<?php echo $id; ?>" data-toggle="tab" data-target="#astroid-lineheight-tablet-<?php echo $id; ?>" role="tab" aria-controls="astroid-lineheight-tablet-<?php echo $id; ?>" aria-selected="true" data-typography-field-id="<?php echo $id; ?>" data-typography-tab-device="tablet"><i class="fas fa-tablet-alt"></i></a>
                   </li>
                   <li>
-                     <a href="javascript:void(0);" id="astroid-line-height-mobile-<?php echo $id; ?>" data-toggle="tab" data-target="#astroid-lineheight-mobile-<?php echo $id; ?>" role="tab" aria-controls="astroid-lineheight-mobile-<?php echo $id; ?>" aria-selected="true" data-typography-field-id="<?php echo $id; ?>" data-typography-tab-device="mobile"><i class="fa fa-mobile-alt"></i></a>
+                     <a href="javascript:void(0);" id="astroid-line-height-mobile-<?php echo $id; ?>" data-toggle="tab" data-target="#astroid-lineheight-mobile-<?php echo $id; ?>" role="tab" aria-controls="astroid-lineheight-mobile-<?php echo $id; ?>" aria-selected="true" data-typography-field-id="<?php echo $id; ?>" data-typography-tab-device="mobile"><i class="fas fa-mobile-alt"></i></a>
                   </li>
                </ul>
                <div class="tab-content" id="astroid-line-height-tab-content">
@@ -199,7 +199,7 @@ foreach ($fonts as $font) {
                <fieldset class="astroid-font-style-selector checkboxes">
                   <?php foreach (array('italic', 'underline') as $style) { ?>
                      <label for="<?php echo $id; ?>_font_style_<?php echo $style; ?>" class="checkbox">
-                        <input data-typography-field="<?php echo $id; ?>" data-typography-property="font-style" type="checkbox" id="<?php echo $id; ?>_font_style_<?php echo $style; ?>" name="<?php echo $name; ?>[font_style][]" value="<?php echo $style; ?>" <?php echo in_array($style, $font_style) ? ' checked' : ''; ?> /><span class="fa fa-<?php echo $style; ?>"></span></label>
+                        <input data-typography-field="<?php echo $id; ?>" data-typography-property="font-style" type="checkbox" id="<?php echo $id; ?>_font_style_<?php echo $style; ?>" name="<?php echo $name; ?>[font_style][]" value="<?php echo $style; ?>" <?php echo in_array($style, $font_style) ? ' checked' : ''; ?> /><span class="fas fa-<?php echo $style; ?>"></span></label>
                   <?php } ?>
                </fieldset>
                <div class="clearfix"></div>

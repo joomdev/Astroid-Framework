@@ -137,7 +137,7 @@ if ($showPreview) {
       $tooltip = $previewImgEmpty . $previewImg;
       $options = array(
           'title' => JText::_('JLIB_FORM_MEDIA_PREVIEW_SELECTED_IMAGE'),
-          'text' => '<span class="fa fa-eye" aria-hidden="true"></span>',
+          'text' => '<span class="far fa-eye" aria-hidden="true"></span>',
           'class' => 'hasTipPreview input-group-text'
       );
 
@@ -163,7 +163,7 @@ echo ($readonly ? '' : ($link ?: 'index.php?option=com_media&amp;view=images&amp
  . ' rel="{handler: \'iframe\', size: {x: 800, y: 500}}"';
 ?>>
 <?php echo JText::_('JLIB_FORM_BUTTON_SELECT'); ?></a><a class="btn btn-outline-dark hasTooltip" title="<?php echo JText::_('JLIB_FORM_BUTTON_CLEAR'); ?>" href="#" onclick="jInsertFieldValue('', '<?php echo $id; ?>'); return false;">
-   <span class="fa fa-trash" aria-hidden="true"></span></a>
+   <span class="fas fa-trash" aria-hidden="true"></span></a>
 
 </div>
 </div>

@@ -23,9 +23,9 @@ $active = false;
       </li>
       <?php $active = true; } $active = false; ?>
    </ul>
-   <span class="dismiss" id="element-settings-close"><i class="fa fa-times"></i></span>
-   <span class="compress"><i class="fa fa-compress"></i></span>
-   <span class="expand"><i class="fa fa-expand"></i></span>
+   <span class="dismiss" id="element-settings-close"><i class="far fa-times"></i></span>
+   <span class="compress"><i class="fas fa-compress"></i></span>
+   <span class="expand"><i class="fas fa-expand"></i></span>
 </div>
 <div class="row">
    <div class="col-12">

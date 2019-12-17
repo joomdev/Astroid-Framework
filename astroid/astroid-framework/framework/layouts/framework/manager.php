@@ -178,8 +178,8 @@ $astroid_shortcut_enable = $plugin_params->get('astroid_shortcut_enable', 1);
       <!--<nav class="astroid-manager-navbar navbar fixed-top navbar-expand-lg navbar-light bg-white justify-content-between">
          <a class="navbar-brand" href="#"><img src="<?php echo JURI::root() . 'media' . '/' . 'astroid' . '/' . 'assets' . '/' . 'images' . '/' . 'favicon.png'; ?>" width="28" height="28" class="d-inline-block align-top" alt=""> Astroid Framework</a>
          <div class="form-inline">
-            <button id="save-options" class="btn btn-success my-2 my-sm-0" type="button"><i class="fa fa-save"></i>&nbsp;<?php echo JText::_('ASTROID_SAVE'); ?></button>
-            <button id="saving-options" class="btn btn-blue disabled my-2 my-sm-0 d-none" type="button"><i class="fa fa-circle-notch fa-spin"></i>&nbsp;<?php echo JText::_('ASTROID_TEMPLATE_SAVING'); ?></button>
+            <button id="save-options" class="btn btn-success my-2 my-sm-0" type="button"><i class="far fa-save"></i>&nbsp;<?php echo JText::_('ASTROID_SAVE'); ?></button>
+            <button id="saving-options" class="btn btn-blue disabled my-2 my-sm-0 d-none" type="button"><i class="fas fa-circle-notch fa-spin"></i>&nbsp;<?php echo JText::_('ASTROID_TEMPLATE_SAVING'); ?></button>
             <a href="<?php echo $joomla_url; ?>" class="btn btn-link my-2 my-sm-0 text-white"><i class="fab fa-joomla"></i></a>
          </div>
       </nav>-->
@@ -236,23 +236,23 @@ $astroid_shortcut_enable = $plugin_params->get('astroid_shortcut_enable', 1);
                   <?php if ($application->input->get('export-preset', 0, 'INT')) { ?>
                      <li class="nav-item row">
                         <a id="export-preset" ng-click="exportPreset()" class="nav-link col-12" href="javascript:void(0);">
-                           <i class="fa fa-palette"></i>&nbsp;<?php echo JText::_('TPL_ASTROID_EXPORT_PRESET'); ?>
+                           <i class="fas fa-palette"></i>&nbsp;<?php echo JText::_('TPL_ASTROID_EXPORT_PRESET'); ?>
                         </a>
                      </li>
                   <?php } ?>
                   <li class="nav-item row">
                      <a id="export-options" class="nav-link col-12" href="javascript:void(0);">
-                        <i class="fa fa-download"></i>&nbsp;<?php echo JText::_('TPL_ASTROID_EXPORT'); ?>
+                        <i class="fas fa-download"></i>&nbsp;<?php echo JText::_('TPL_ASTROID_EXPORT'); ?>
                      </a>
                   </li>
                   <li class="nav-item row">
                      <a id="import-options" class="nav-link col-12" href="javascript:void(0);">
-                        <i class="fa fa-upload"></i>&nbsp;<?php echo JText::_('TPL_ASTROID_IMPORT'); ?>
+                        <i class="fas fa-upload"></i>&nbsp;<?php echo JText::_('TPL_ASTROID_IMPORT'); ?>
                      </a>
                   </li>
                   <li class="nav-item row showin-live-preview">
                      <a class="nav-link col-12" href="javascript:void(0);" onclick="Admin.closeLivePreview()">
-                        <i class="fa fa-eye"></i>&nbsp;<?php echo JText::_('TPL_ASTROID_CLOSE_LIVEPREVIEW'); ?>
+                        <i class="far fa-eye"></i>&nbsp;<?php echo JText::_('TPL_ASTROID_CLOSE_LIVEPREVIEW'); ?>
                      </a>
                   </li>
                   <li class="nav-item row showin-live-preview">
@@ -279,7 +279,7 @@ $astroid_shortcut_enable = $plugin_params->get('astroid_shortcut_enable', 1);
                      <input type="hidden" id="export-form" name="export_settings" value="0" />
                      <div class="tab-content">
                         <div class="live-preview-toolbar">
-                           <span onclick="Admin.showOptions()" class="btn btn-round btn-wide btn-white"><i class="fa fa-chevron-left"></i> Back</span>
+                           <span onclick="Admin.showOptions()" class="btn btn-round btn-wide btn-white"><i class="fas fa-chevron-left"></i> Back</span>
                         </div>
                         <?php $active = false; ?>
                         <?php foreach ($fieldsets as $key => $fieldset) { ?>
@@ -311,7 +311,7 @@ $astroid_shortcut_enable = $plugin_params->get('astroid_shortcut_enable', 1);
                                  <div style="padding-top:20px" id="astroid-form-fieldset-section-<?php echo $groupname; ?>">
                                     <?php
                                     if (!empty($group['title']) && !empty($group['fields'])) {
-                                       echo '<h3 class="astroid-group-title ' . (!empty($group['description']) ? 'mb-0' : '') . '">' . (!empty($group['icon']) ? '<i class="' . $group['icon'] . '"></i>&nbsp;' : '') . JText::_($group['title']) . '' . (!empty($group['help']) ? ' <a target="_blank" href="' . $group['help'] . '"><span class="fa fa-question-circle"></span></a>' : '') . '</h3>';
+                                       echo '<h3 class="astroid-group-title ' . (!empty($group['description']) ? 'mb-0' : '') . '">' . (!empty($group['icon']) ? '<i class="' . $group['icon'] . '"></i>&nbsp;' : '') . JText::_($group['title']) . '' . (!empty($group['help']) ? ' <a target="_blank" href="' . $group['help'] . '"><span class="far fa-question-circle"></span></a>' : '') . '</h3>';
                if (!empty($group['description'])) {
                                           echo '<p><small>' . JText::_($group['description']) . '</small></p>';
                                        }
@@ -372,38 +372,38 @@ $astroid_shortcut_enable = $plugin_params->get('astroid_shortcut_enable', 1);
             <div class="astroid-manager-navbar fixed-top m-0 row">
                <ul class="list-unstyled m-0 col-auto p-0">
                   <li class="float-left">
-                     <button id="save-options" class="astroid-sidebar-btn align-items-center text-white" type="button"><div><i class="fa fa-save"></i><span><?php echo JText::_('ASTROID_SAVE'); ?></span></div></button>
-                     <a href="javascript:void(0);" id="saving-options" class="astroid-sidebar-btn align-items-center d-none"><div><i class="fa fa-circle-notch fa-spin"></i><span><?php echo JText::_('ASTROID_TEMPLATE_SAVING'); ?></span></div></a>
+                     <button id="save-options" class="astroid-sidebar-btn align-items-center text-white" type="button"><div><i class="far fa-save"></i><span><?php echo JText::_('ASTROID_SAVE'); ?></span></div></button>
+                     <a href="javascript:void(0);" id="saving-options" class="astroid-sidebar-btn align-items-center d-none"><div><i class="fas fa-circle-notch fa-spin"></i><span><?php echo JText::_('ASTROID_TEMPLATE_SAVING'); ?></span></div></a>
                   </li>
                   <li class="float-left">
                      <a id="clear-cache" href="javascript:void(0);" class="astroid-sidebar-btn align-items-center bg-light text-dark">
                         <div>
-                           <i class="fa fa-eraser"></i>
+                           <i class="fas fa-eraser"></i>
                            <span><?php echo JText::_('ASTROID_TEMPLATE_CLEAR_CACHE'); ?></span>
                         </div>
                      </a>
                      <a id="clearing-cache" href="javascript:void(0);" class="astroid-sidebar-btn align-items-center bg-light text-dark d-none">
                         <div>
-                           <i class="fa fa-circle-notch fa-spin"></i>
+                           <i class="fas fa-circle-notch fa-spin"></i>
                            <span><?php echo JText::_('ASTROID_TEMPLATE_CLEARING_CACHE'); ?></span>
                         </div>
                      </a>
                   </li>
                   <li class="float-left">
-                     <a id="show-previews" href="<?php echo JURI::root(); ?>" target="_blank" class="astroid-sidebar-btn d-flex align-items-center bg-light  text-dark"><div><i class="fa fa-external-link-alt"></i><span><?php echo JText::_('ASTROID_TEMPLATE_PREVIEW'); ?></span></div></a>
+                     <a id="show-previews" href="<?php echo JURI::root(); ?>" target="_blank" class="astroid-sidebar-btn d-flex align-items-center bg-light  text-dark"><div><i class="fas fa-external-link-alt"></i><span><?php echo JText::_('ASTROID_TEMPLATE_PREVIEW'); ?></span></div></a>
                   </li>
                </ul>
                <div class="col p-0 template-title"><?php echo $template->title; ?></div>
                <ul class="list-inline m-0 col-auto p-0">
-                  <li class="float-left"><a id="close-editor" title="<?php echo JText::_('TPL_ASTROID_BACK_TO_JOOMLA'); ?>" href="<?php echo $joomla_url; ?>" class="astroid-sidebar-btn astroid-back-btn d-flex align-items-center"><div><i class="fa fa-times"></i><span><?php echo JText::_('ASTROID_TEMPLATE_CLOSE'); ?></span></div></a></li>
+                  <li class="float-left"><a id="close-editor" title="<?php echo JText::_('TPL_ASTROID_BACK_TO_JOOMLA'); ?>" href="<?php echo $joomla_url; ?>" class="astroid-sidebar-btn astroid-back-btn d-flex align-items-center"><div><i class="far fa-times"></i><span><?php echo JText::_('ASTROID_TEMPLATE_CLOSE'); ?></span></div></a></li>
                </ul>
             </div>
             <div id="astroid-preview-wrapper" class="col showin-live-preview">
                <div class="d-flex justify-content-center" style="margin: 10px 0px;">
                   <ul class="list-inline viewport-options">
-                     <li class="list-inline-item"><a onclick="Admin.setPreviewViewport('desktop', this)" href="javascript:void(0);"><i class="fa fa-desktop"></i></a></li>
-                     <li class="list-inline-item"><a onclick="Admin.setPreviewViewport('tablet portrait', this)" href="javascript:void(0);"><i class="fa fa-tablet-alt"></i></a></li>
-                     <li class="list-inline-item"><a onclick="Admin.setPreviewViewport('mobile portrait', this)" href="javascript:void(0);"><i class="fa fa-mobile-alt"></i></a></li>
+                     <li class="list-inline-item"><a onclick="Admin.setPreviewViewport('desktop', this)" href="javascript:void(0);"><i class="fas fa-desktop"></i></a></li>
+                     <li class="list-inline-item"><a onclick="Admin.setPreviewViewport('tablet portrait', this)" href="javascript:void(0);"><i class="fas fa-tablet-alt"></i></a></li>
+                     <li class="list-inline-item"><a onclick="Admin.setPreviewViewport('mobile portrait', this)" href="javascript:void(0);"><i class="fas fa-mobile-alt"></i></a></li>
                   </ul>
                </div>
             </div>

@@ -33,7 +33,7 @@ switch ($type) {
       $icon = 'far fa-star';
       break;
    case 'quote':
-      $icon = 'fa fa-quote-left';
+      $icon = 'fas fa-quote-left';
       break;
 }
 ?>

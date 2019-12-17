@@ -86,7 +86,7 @@ class JFormFieldAstroidfonts extends JFormField {
          $speciman .= '<span>' . $i . '</span>';
       }
 
-      $html .= '</select><div class="astroid-font-preview inline astroid-font-preview-' . $this->fieldname . '"><div class="light"><span>Aa</span></div><div class="dark"><span>Aa</span></div><div data-target="astroid-font-preview-' . $this->fieldname . '" class="more" title="' . JText::_('ASTROID_FIELDS_FONTS_PREVIEW_TOGGLE') . '"><span class="fa fa-caret-square-down"></span></div><div title="' . JText::_('ASTROID_FIELDS_FONTS_PREVIEW_TOGGLE') . '" data-target="astroid-font-preview-' . $this->fieldname . '" class="less"><span class="fa fa-caret-square-up"></span></div></div><div class="clearfix"></div><div class="astroid-font-preview astroid-font-preview-' . $this->fieldname . '"><div class="light">' . $speciman . '</div><div class="dark">' . $speciman . '</div></div>';
+      $html .= '</select><div class="astroid-font-preview inline astroid-font-preview-' . $this->fieldname . '"><div class="light"><span>Aa</span></div><div class="dark"><span>Aa</span></div><div data-target="astroid-font-preview-' . $this->fieldname . '" class="more" title="' . JText::_('ASTROID_FIELDS_FONTS_PREVIEW_TOGGLE') . '"><span class="far fa-caret-square-down"></span></div><div title="' . JText::_('ASTROID_FIELDS_FONTS_PREVIEW_TOGGLE') . '" data-target="astroid-font-preview-' . $this->fieldname . '" class="less"><span class="far fa-caret-square-up"></span></div></div><div class="clearfix"></div><div class="astroid-font-preview astroid-font-preview-' . $this->fieldname . '"><div class="light">' . $speciman . '</div><div class="dark">' . $speciman . '</div></div>';
 
       return $html;
    }

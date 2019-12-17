@@ -648,7 +648,7 @@ astroidFramework.directive("astroidDatetimepicker", function () {
                previous: "fas fa-angle-left",
                today: "fas fa-bullseye",
                clear: "far fa-trash-alt",
-               close: "fas fa-times"
+               close: "far fa-times"
             },
             format: "MMMM Do YYYY, h:mm a",
             timeZone: TIMEZONE

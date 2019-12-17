@@ -16,17 +16,17 @@ extract($displayData);
             <li></li>
             <li>
                 <a data-device="desktop" ng-click="setDevice('desktop')" class="active" href="javascript:void(0);">
-                    <i class="fa fa-desktop"></i>
+                    <i class="fas fa-desktop"></i>
                 </a>
             </li>
             <li>
                 <a data-device="tablet" ng-click="setDevice('tablet')" href="javascript:void(0);">
-                    <i class="fa fa-tablet-alt"></i>
+                    <i class="fas fa-tablet-alt"></i>
                 </a>
             </li>
             <li>
                 <a data-device="mobile" ng-click="setDevice('mobile')" href="javascript:void(0);">
-                    <i class="fa fa-mobile-alt"></i>
+                    <i class="fas fa-mobile-alt"></i>
                 </a>
             </li>
         </ul>
@@ -40,7 +40,7 @@ extract($displayData);
             <?php } ?>
             <div class="text-center">
                 <button data-device="<?php echo $device; ?>" ng-click="switchLock('<?php echo $device; ?>')" type="button" class="btn btn-light">
-                    <span class="fa fa-lock"></span>
+                    <span class="fas fa-lock"></span>
                 </button>
             </div>
             <div>

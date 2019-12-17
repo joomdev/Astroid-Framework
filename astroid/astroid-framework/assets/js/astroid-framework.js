@@ -642,13 +642,13 @@ astroidFramework.directive("astroidDatetimepicker", function () {
             icons: {
                time: "far fa-clock",
                date: "far fa-calendar-alt",
-               up: "fa fa-angle-up",
-               down: "fa fa-angle-down",
-               next: "fa fa-angle-right",
-               previous: "fa fa-angle-left",
-               today: "fa fa-bullseye",
+               up: "fas fa-angle-up",
+               down: "fas fa-angle-down",
+               next: "fas fa-angle-right",
+               previous: "fas fa-angle-left",
+               today: "fas fa-bullseye",
                clear: "far fa-trash-alt",
-               close: "fa fa-times"
+               close: "fas fa-times"
             },
             format: "MMMM Do YYYY, h:mm a",
             timeZone: TIMEZONE

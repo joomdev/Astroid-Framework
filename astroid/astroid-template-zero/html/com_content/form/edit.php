@@ -242,7 +242,7 @@ JFactory::getDocument()->addScriptDeclaration("
 					<span class="fas fa-check"></span> <?php echo JText::_('ASTROID_SAVE') ?>
 				</button>
 				<button type="button" class="btn btn-secondary ml-2" onclick="Joomla.submitbutton('article.cancel')">
-					<span class="far fa-times"></span> <?php echo JText::_('JCANCEL') ?>
+					<span class="fas fa-times"></span> <?php echo JText::_('JCANCEL') ?>
 				</button>
 			<?php if ($params->get('save_history', 0) && $this->item->id) : ?>
 				<?php echo $this->form->getInput('contenthistory'); ?>

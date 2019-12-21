@@ -71,7 +71,7 @@ foreach ($items as $i => $item) {
          <div class="ezlb-pop-body">
             <div class="ezlb-pop-header">
                <span class="title"><?php echo JText::_('TPL_ASTROID_MENU_SELECT_A_GRID_LAYOUT'); ?></span>
-               <span class="dismiss" ng-click="chooseRowColumns.open = 0; chooseRowColumns.row = null;"><i class="far fa-times"></i></span>
+               <span class="dismiss" ng-click="chooseRowColumns.open = 0; chooseRowColumns.row = null;"><i class="fas fa-times"></i></span>
             </div>
             <div class="ezlb-grid-items">
                <div class="row m-0">
@@ -89,7 +89,7 @@ foreach ($items as $i => $item) {
          <div class="ezlb-pop-body">
             <div class="ezlb-pop-header">
                <span class="title"><?php echo JText::_('TPL_ASTROID_MENU_SELECT_AN_ITEM'); ?></span>
-               <span class="dismiss" ng-click="chooseModule.open = 0; chooseModule.row = null; chooseModule.column = null;"><i class="far fa-times"></i></span>
+               <span class="dismiss" ng-click="chooseModule.open = 0; chooseModule.row = null; chooseModule.column = null;"><i class="fas fa-times"></i></span>
                <input style="float: right;line-height: 60px;" type="text" class="form-control astroid-module-search" ng-model="searchModule" placeholder="<?php echo JText::_('TPL_ASTROID_MENU_SEARCH_MODULE'); ?>" />
             </div>
             <div class="ezlb-grid-items">
@@ -223,7 +223,7 @@ foreach ($items as $i => $item) {
                         <div ng-repeat="row in rows track by $index" class="ezlb-row row ezlb-row-{{ rowIndex}}" ng-init="rowIndex = $index">
                            <span class="ezlb-toolbar">
                               <span data-astroid-tooltip="<?php echo JText::_('TPL_ASTROID_EDIT_GRID_ROW'); ?>" class="ezlb-action" ng-click="chooseRowColumns.open = 1; chooseRowColumns.row = rowIndex;"><i class="fas fa-columns"></i></span>
-                              <span  data-astroid-tooltip="<?php echo JText::_('TPL_ASTROID_REMOVE_ROW'); ?>" ng-click="removeRow(rowIndex)" class="ezlb-action text-danger"><i class="fas fa-trash"></i></span>
+                              <span  data-astroid-tooltip="<?php echo JText::_('TPL_ASTROID_REMOVE_ROW'); ?>" ng-click="removeRow(rowIndex)" class="ezlb-action text-danger"><i class="fas fa-trash-alt"></i></span>
                            </span>
                            <span class="ezlb-toolbar toolbar-left">
                               <span class="ezlb-action ezlb-row-handle set-align"  data-astroid-tooltip="<?php echo JText::_('TPL_ASTROID_MOVE_ROW'); ?>" ng-show="rows.length > 1"><i class="fas fa-arrows-alt"></i></span>
@@ -240,7 +240,7 @@ foreach ($items as $i => $item) {
 
                                           <span class="ezlb-toolbar">
                                              <span ng-show="column.elements.length > 1" class="ezlb-action ezlb-element-handle" data-astroid-tooltip="<?php echo JText::_('TPL_ASTROID_MOVE_ELEMENT'); ?>"><i class="fas fa-arrows-alt"></i></span>
-                                             <span  data-astroid-tooltip="<?php echo JText::_('TPL_ASTROID_REMOVE_ELEMENT'); ?>" class="ezlb-action text-danger" ng-click="removeElement(elementIndex, columnIndex, rowIndex);"><i class="fas fa-trash"></i></span>
+                                             <span  data-astroid-tooltip="<?php echo JText::_('TPL_ASTROID_REMOVE_ELEMENT'); ?>" class="ezlb-action text-danger" ng-click="removeElement(elementIndex, columnIndex, rowIndex);"><i class="fas fa-trash-alt"></i></span>
                                           </span>
 
                                           <span class="element-title">{{ element.title}}</span>

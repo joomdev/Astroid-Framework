@@ -43,7 +43,7 @@ class JFormFieldAstroidpreloadersFont extends JFormField {
 
       $html .= '<div class="astroid-preloaders-selector">';
       $html .= '<div class="overlay"></div>';
-      $html .= '<div class="head">Select Preloader Style<span class="astroid-preloaders-selector-exit-fs"><i class="far fa-times"></i></span></div>';
+      $html .= '<div class="head">Select Preloader Style<span class="astroid-preloaders-selector-exit-fs"><i class="fas fa-times"></i></span></div>';
       $html .= '<div class="body">';
       $html .= '<div class="">';
 

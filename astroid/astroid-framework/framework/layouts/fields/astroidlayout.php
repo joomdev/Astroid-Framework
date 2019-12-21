@@ -11,7 +11,7 @@
       <div class="ezlb-pop-body">
          <div class="ezlb-pop-header">
             <span class="title"><?php echo JText::_('TPL_ASTROID_SELECT_GRID_LAYOUT'); ?></span>
-            <span class="dismiss" ng-click="chooseRow.open = 0; chooseRow.section = null;"><i class="far fa-times"></i></span>
+            <span class="dismiss" ng-click="chooseRow.open = 0; chooseRow.section = null;"><i class="fas fa-times"></i></span>
          </div>
          <div class="ezlb-grid-items">
             <div class="row m-0">
@@ -34,7 +34,7 @@
       <div class="ezlb-pop-body">
          <div class="ezlb-pop-header">
             <span class="title"><?php echo JText::_('TPL_ASTROID_SELECT_GRID_LAYOUT'); ?></span>
-            <span class="dismiss" ng-click="chooseRowColumns.open = 0; chooseRowColumns.section = null; chooseRowColumns.row = null;"><i class="far fa-times"></i></span>
+            <span class="dismiss" ng-click="chooseRowColumns.open = 0; chooseRowColumns.section = null; chooseRowColumns.row = null;"><i class="fas fa-times"></i></span>
          </div>
          <div class="ezlb-grid-items">
             <div class="row m-0">
@@ -57,7 +57,7 @@
       <div class="ezlb-pop-body">
          <div class="ezlb-pop-header">
             <span class="title"><?php echo JText::_('TPL_ASTROID_SELECT_AN_ELEMENT'); ?></span>
-            <span class="dismiss" ng-click="chooseElement.open = 0; chooseElement.row = null; chooseElement.column = null; chooseElement.section = null; chooseElement.element = null;"><i class="far fa-times"></i></span>
+            <span class="dismiss" ng-click="chooseElement.open = 0; chooseElement.row = null; chooseElement.column = null; chooseElement.section = null; chooseElement.element = null;"><i class="fas fa-times"></i></span>
             <span class="compress"><i class="fas fa-compress"></i></span>
             <span class="expand"><i class="fas fa-expand"></i></span>
          </div>
@@ -77,7 +77,7 @@
       <div class="ezlb-pop-body">
          <div class="ezlb-pop-header">
             <span class="title">OPTIONS</span>
-            <span class="dismiss" ng-click="chooseRowColumns.open = 0; chooseRowColumns.section = null; chooseRowColumns.row = null;"><i class="far fa-times"></i></span>
+            <span class="dismiss" ng-click="chooseRowColumns.open = 0; chooseRowColumns.section = null; chooseRowColumns.row = null;"><i class="fas fa-times"></i></span>
             <span class="compress"><i class="fas fa-compress"></i></span>
             <span class="expand"><i class="fas fa-expand"></i></span>
          </div>
@@ -102,7 +102,7 @@
             <span class="ezlb-action ezlb-section-handle"><i class="fas fa-arrows-alt"></i></span>
             <span data-astroid-tooltip="<?php echo JText::_('TPL_ASTROID_EDIT_SECTION'); ?>" class="ezlb-action" ng-click="editElement(section)"><i class="fas fa-pencil-alt"></i></span>
             <span data-astroid-tooltip="<?php echo JText::_('TPL_ASTROID_DUPLICATE_SECTION'); ?>" class="ezlb-action" ng-click="duplicateSection(sectionIndex)"><i class="far fa-copy"></i></span>
-            <span data-astroid-tooltip="<?php echo JText::_('TPL_ASTROID_REMOVE_SECTION'); ?>" class="ezlb-action text-danger" ng-show="layout.sections.length > 1" ng-click="removeSection(sectionIndex);"><i class="fas fa-trash"></i></span>
+            <span data-astroid-tooltip="<?php echo JText::_('TPL_ASTROID_REMOVE_SECTION'); ?>" class="ezlb-action text-danger" ng-show="layout.sections.length > 1" ng-click="removeSection(sectionIndex);"><i class="fas fa-trash-alt"></i></span>
             <span data-astroid-tooltip="<?php echo JText::_('TPL_ASTROID_NEW_ROW'); ?>" class="ezlb-action" ng-click="addingRow(sectionIndex)"><i class="fas fa-align-left"></i> <span class="hidein-live-preview"><?php echo JText::_('TPL_ASTROID_NEW_ROW'); ?></span></span>
             <span data-astroid-tooltip="<?php echo JText::_('TPL_ASTROID_NEW_SECTION'); ?>" class="ezlb-action" ng-click="addSection(sectionIndex)"><i class="fas fa-plus"></i> <span class="hidein-live-preview"><?php echo JText::_('TPL_ASTROID_NEW_SECTION'); ?></span></span>
          </span>
@@ -112,7 +112,7 @@
                   <span data-astroid-tooltip="<?php echo JText::_('TPL_ASTROID_EDIT_GRID_ROW'); ?>" class="ezlb-action" ng-click="editRow(rowIndex, sectionIndex)"><i class="fas fa-columns"></i></span>
                   <span data-astroid-tooltip="<?php echo JText::_('TPL_ASTROID_DUPLICATE_ROW'); ?>" ng-click="duplicateRow(rowIndex, sectionIndex)" class="ezlb-action"><i class="far fa-copy"></i></span>
                   <span data-astroid-tooltip="<?php echo JText::_('TPL_ASTROID_EDIT_ROW'); ?>" ng-click="editElement(row)" class="ezlb-action"><i class="fas fa-pencil-alt"></i></span>
-                  <span data-astroid-tooltip="<?php echo JText::_('TPL_ASTROID_REMOVE_ROW'); ?>" ng-show="section.rows.length > 1" ng-click="removeRow(rowIndex, sectionIndex)" class="ezlb-action text-danger"><i class="fas fa-trash"></i></span>
+                  <span data-astroid-tooltip="<?php echo JText::_('TPL_ASTROID_REMOVE_ROW'); ?>" ng-show="section.rows.length > 1" ng-click="removeRow(rowIndex, sectionIndex)" class="ezlb-action text-danger"><i class="fas fa-trash-alt"></i></span>
                </span>
                <span class="ezlb-toolbar toolbar-left">
                   <span class="ezlb-action ezlb-row-handle" ng-show="section.rows.length > 1"><i class="fas fa-arrows-alt"></i></span>
@@ -134,7 +134,7 @@
                                  <span data-astroid-tooltip="<?php echo JText::_('TPL_ASTROID_EDIT_ELEMENT'); ?>" class="ezlb-action" ng-click="editElement(element)"><i class="fas fa-pencil-alt"></i></span>
                                  <span data-astroid-tooltip="<?php echo JText::_('TPL_ASTROID_DUPLICATE_ELEMENT'); ?>" class="ezlb-action" ng-show="canAddElement(getElementByType(element.type))" ng-click="duplicateElement(elementIndex, columnIndex, rowIndex, sectionIndex)"><i class="far fa-copy"></i></span>
                                  <span ng-show="column.elements.length > 1" class="ezlb-action ezlb-element-handle"><i class="fas fa-arrows-alt"></i></span>
-                                 <span data-astroid-tooltip="<?php echo JText::_('TPL_ASTROID_REMOVE_ELEMENT'); ?>" class="ezlb-action text-danger" ng-click="removeElement(elementIndex, columnIndex, rowIndex, sectionIndex);"><i class="fas fa-trash"></i></span>
+                                 <span data-astroid-tooltip="<?php echo JText::_('TPL_ASTROID_REMOVE_ELEMENT'); ?>" class="ezlb-action text-danger" ng-click="removeElement(elementIndex, columnIndex, rowIndex, sectionIndex);"><i class="fas fa-trash-alt"></i></span>
                               </span>
 
                               <span class="element-title"><i class="{{ getElementByType(element.type).icon}}"></i> {{ getParam(element, 'title')}}</span>

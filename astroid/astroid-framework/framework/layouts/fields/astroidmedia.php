@@ -93,7 +93,7 @@ $params = JComponentHelper::getParams('com_media');
                   <a class="nav-link" href="javascript:void(0);" id="astroid-media-tab-library-<?php echo $id; ?>" data-toggle="tab" data-target="#astroid-media-library-<?php echo $id; ?>" role="tab"><?php echo JText::_('TPL_ASTROID_MEDIA_LIB'); ?></a>
                </li>
             </ul>
-            <span class="dismiss" ng-click="selectMedia = false"><i class="far fa-times"></i></span>
+            <span class="dismiss" ng-click="selectMedia = false"><i class="fas fa-times"></i></span>
          </div>
          <div class="">
             <div class="tab-content" id="astroid-media-tab-content">

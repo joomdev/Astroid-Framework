@@ -395,7 +395,7 @@ $astroid_shortcut_enable = $plugin_params->get('astroid_shortcut_enable', 1);
                </ul>
                <div class="col p-0 template-title"><?php echo $template->title; ?></div>
                <ul class="list-inline m-0 col-auto p-0">
-                  <li class="float-left"><a id="close-editor" title="<?php echo JText::_('TPL_ASTROID_BACK_TO_JOOMLA'); ?>" href="<?php echo $joomla_url; ?>" class="astroid-sidebar-btn astroid-back-btn d-flex align-items-center"><div><i class="far fa-times"></i><span><?php echo JText::_('ASTROID_TEMPLATE_CLOSE'); ?></span></div></a></li>
+                  <li class="float-left"><a id="close-editor" title="<?php echo JText::_('TPL_ASTROID_BACK_TO_JOOMLA'); ?>" href="<?php echo $joomla_url; ?>" class="astroid-sidebar-btn astroid-back-btn d-flex align-items-center"><div><i class="fas fa-times"></i><span><?php echo JText::_('ASTROID_TEMPLATE_CLOSE'); ?></span></div></a></li>
                </ul>
             </div>
             <div id="astroid-preview-wrapper" class="col showin-live-preview">

@@ -103,7 +103,7 @@
             <span data-astroid-tooltip="<?php echo JText::_('TPL_ASTROID_EDIT_SECTION'); ?>" class="ezlb-action" ng-click="editElement(section)"><i class="fas fa-pencil-alt"></i></span>
             <span data-astroid-tooltip="<?php echo JText::_('TPL_ASTROID_DUPLICATE_SECTION'); ?>" class="ezlb-action" ng-click="duplicateSection(sectionIndex)"><i class="far fa-copy"></i></span>
             <span data-astroid-tooltip="<?php echo JText::_('TPL_ASTROID_REMOVE_SECTION'); ?>" class="ezlb-action text-danger" ng-show="layout.sections.length > 1" ng-click="removeSection(sectionIndex);"><i class="fas fa-trash-alt"></i></span>
-            <span data-astroid-tooltip="<?php echo JText::_('TPL_ASTROID_NEW_ROW'); ?>" class="ezlb-action" ng-click="addingRow(sectionIndex)"><i class="fas fa-align-left"></i> <span class="hidein-live-preview"><?php echo JText::_('TPL_ASTROID_NEW_ROW'); ?></span></span>
+            <span data-astroid-tooltip="<?php echo JText::_('TPL_ASTROID_NEW_ROW'); ?>" class="ezlb-action" ng-click="addingRow(sectionIndex)"><i class="fas fa-plus"></i> <span class="hidein-live-preview"><?php echo JText::_('TPL_ASTROID_NEW_ROW'); ?></span></span>
             <span data-astroid-tooltip="<?php echo JText::_('TPL_ASTROID_NEW_SECTION'); ?>" class="ezlb-action" ng-click="addSection(sectionIndex)"><i class="fas fa-plus"></i> <span class="hidein-live-preview"><?php echo JText::_('TPL_ASTROID_NEW_SECTION'); ?></span></span>
          </span>
          <div class="col-12 ezlb-content" ng-sortable="{draggable:'.ezlb-row', animation: 100, handle: '.ezlb-row-handle'}">

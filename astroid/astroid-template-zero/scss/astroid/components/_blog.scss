@@ -17,9 +17,13 @@ $article-posttype-icon-width: 40px;
 .article-info {
 	margin: 0 0 10px;
 	font-size: 14px;
-	a, span, i {
+
+	a,
+	span,
+	i {
 		color: #6b6b6b;
 	}
+
 	>dd {
 		display: inline-block;
 		padding-right: 5px;
@@ -38,7 +42,7 @@ $article-posttype-icon-width: 40px;
 	line-height: $article-posttype-icon-width;
 	text-align: center;
 	font-size: 24px;
-	
+
 	&:before,
 	&:after {
 		content: "";
@@ -167,4 +171,27 @@ $article-posttype-icon-width: 40px;
 	.author-thumb {
 		min-width: 80px;
 	}
+}
+
+.full-image {
+	margin-bottom: 20px;
+	&.text-left {}
+	&.text-right {
+		.img_caption {
+			margin-left: auto;
+			margin-right: 0;
+		}
+	}
+	&.text-none {
+		text-align: center;
+	}
+	&.text-none {
+		.img_caption {
+			margin: 0 auto;
+		}
+	}
+}
+
+.item-image.text-none {
+	text-align: center;
 }

@@ -133,7 +133,7 @@ if (!empty($main_link_active_color)) {
 // Dropdown Coloring
 $dropdown_styles = [];
 if (!empty($dropdown_main_background_color)) {
-   $dropdown_styles[] = '.nav-submenu, .megamenu-container{ background: ' . $dropdown_main_background_color . ' !important;}';
+   $dropdown_styles[] = '.nav-submenu, .megamenu-container{ background-color: ' . $dropdown_main_background_color . ' !important;}';
 }
 if (!empty($dropdown_main_background_color)) {
    $dropdown_styles[] = '.has-megamenu.open .arrow{ border-bottom-color: ' . $dropdown_main_background_color . ' !important;}';
@@ -142,7 +142,7 @@ if (!empty($dropdown_main_link_color)) {
    $dropdown_styles[] = '.astroid-nav .megamenu-container .megamenu-title, .astroid-nav .megamenu-container li.nav-item-submenu > a{ color: ' . $dropdown_main_link_color . ' !important;}';
 }
 if (!empty($dropdown_main_active_link_color)) {
-   $dropdown_styles[] = '.astroid-nav .megamenu-container li.nav-item-active > a, .menu_open .menu-go-back .fas{ color: ' . $dropdown_main_active_link_color . ' !important;}';
+   $dropdown_styles[] = '.astroid-nav .megamenu-container li.nav-item-active > a{ color: ' . $dropdown_main_active_link_color . ' !important;}';
 }
 if (!empty($dropdown_main_active_background_color)) {
    $dropdown_styles[] = '.astroid-nav .megamenu-container li.nav-item-active > a{ background-color: ' . $dropdown_main_active_background_color . ' !important;}';
@@ -162,19 +162,19 @@ if (!empty($mobile_background_color)) {
    $mobilemenu_styles[] = '.astroid-offcanvas, .astroid-mobilemenu, .astroid-mobilemenu-container .astroid-mobilemenu-inner .dropdown-menus,.astroid-offcanvas .burger-menu-button{ background-color: ' . $mobile_background_color . ' !important;}';
 }
 if (!empty($mobile_menu_text_color)) {
-   $mobilemenu_styles[] = '.astroid-offcanvas, .astroid-mobilemenu, .menu-indicator-back .fas { color: ' . $mobile_menu_text_color . ' !important;}';
+   $mobilemenu_styles[] = '.astroid-offcanvas, .astroid-mobilemenu { color: ' . $mobile_menu_text_color . ' !important;}';
 }
 if (!empty($mobile_link_color)) {
-   $mobilemenu_styles[] = '.astroid-mobilemenu-container .astroid-mobilemenu-inner .menu-item a, .astroid-mobilemenu-container .astroid-mobilemenu-inner .menu-indicator .menu-item .fas{ color: ' . $mobile_link_color . ' !important;}';
+   $mobilemenu_styles[] = '.astroid-mobilemenu-container .astroid-mobilemenu-inner .menu-item a, .menu-indicator{ color: ' . $mobile_link_color . ' !important;}';
 }
 if (!empty($mobile_hover_background_color)) {
-   $mobilemenu_styles[] = '.fgfdfd{ background-color: ' . $mobile_hover_background_color . ' !important;}';
+   $mobilemenu_styles[] = '.astroid-mobilemenu-container .astroid-mobilemenu-inner .menu-item a:hover{ background-color: ' . $mobile_hover_background_color . ' !important;}';
 }
 if (!empty($mobile_active_link_color)) {
-   $mobilemenu_styles[] = '.astroid-mobilemenu-container .astroid-mobilemenu-inner .menu-item.active > a, .astroid-mobilemenu-container .astroid-mobilemenu-inner .menu-item.active > .nav-header, .astroid-mobilemenu-container .astroid-mobilemenu-inner .menu-item.nav-item-active > a, .astroid-mobilemenu-container .astroid-mobilemenu-inner .menu-item.active > .menu-indicator .fas, .astroid-mobilemenu-container .astroid-mobilemenu-inner .menu-item.nav-item-active .fas, .menu-indicator-back, .menu_open .menu-indicator-back .fas { color: ' . $mobile_active_link_color . ' !important;}';
+   $mobilemenu_styles[] = '.astroid-mobilemenu-container .astroid-mobilemenu-inner .menu-item.active > a, .astroid-mobilemenu-container .astroid-mobilemenu-inner .menu-item.active > .nav-header, .astroid-mobilemenu-container .astroid-mobilemenu-inner .menu-item.nav-item-active > a, .astroid-mobilemenu-container .astroid-mobilemenu-inner .menu-item.nav-item-active > a + .menu-indicator{ color: ' . $mobile_active_link_color . ' !important;}';
 }
 if (!empty($mobile_active_background_color)) {
-   $mobilemenu_styles[] = '.astroid-mobilemenu-container .astroid-mobilemenu-inner .menu-item.active, .astroid-mobilemenu-container .astroid-mobilemenu-inner .menu-item.nav-item-active, .menu-go-back { background-color: ' . $mobile_active_background_color . ' !important;}';
+   $mobilemenu_styles[] = '.astroid-mobilemenu-container .astroid-mobilemenu-inner .menu-item.active, .astroid-mobilemenu-container .astroid-mobilemenu-inner .menu-item.nav-item-active { background-color: ' . $mobile_active_background_color . ' !important;}';
 }
 if (!empty($mobile_menu_icon_color)) {
    $mobilemenu_styles[] = '.burger-menu-button .inner, .burger-menu-button .inner::before, .burger-menu-button .inner::after{background-color: ' . $mobile_menu_icon_color . ';}';

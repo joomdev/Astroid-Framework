@@ -21,7 +21,7 @@
                <option value="0">JNO</option>
             </field>
             <field name="astroid_load_fontawesome" type="radio" default="cdn" label="ASTROID_LOAD_FONTAWESOME" description="ASTROID_LOAD_FONTAWESOME_DESC" class="btn-group btn-group-yesno">
-               <option value="off">OFF</option>
+               <option value="0">OFF</option>
                <option value="cdn">CDN</option>
                <option value="local">Local</option>
             </field>

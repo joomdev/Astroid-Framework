@@ -136,6 +136,18 @@ var AstroidContentLayout = function AstroidContentLayout() {
       _this.positions.change(function () {
          _this.refresh();
       });
+      if ($(window).width() < 992) {
+         ASTROID_IS_MOBILE = true;
+      } else {
+         ASTROID_IS_MOBILE = false;
+      }
+      $(window).resize(function () {
+         if ($(window).width() < 992) {
+            ASTROID_IS_MOBILE = true;
+         } else {
+            ASTROID_IS_MOBILE = false;
+         }
+      });
    };
 };
 
@@ -216,19 +228,36 @@ var AstroidAdmin = function AstroidAdmin() {
          $('body, html').animate({
             scrollTop: 2
          }, 0);
+
+         if (ASTROID_IS_MOBILE) {
+            if ($(e.target).siblings('.sidebar-submenu').children('li').length < 2) {
+               Admin.toggleSidebar();
+            }
+         }
       });
    };
+
+   this.toggleSidebar = function () {
+      $('#astroid-wrapper').toggleClass('sidebar-hidden');
+      this.refreshScroll();
+   }
 
    this.initTabs = function () {
       $('.hash-link').click(function (e) {
          e.preventDefault();
          var _group = $(this).attr('href');
+
+         var _offset = ASTROID_IS_MOBILE ? 118 : 68;
+
          $('body, html').animate({
-            scrollTop: $(_group).offset().top - 68
+            scrollTop: $(_group).offset().top - _offset
          }, 100);
          setTimeout(function () {
             $(window).trigger('scroll');
          }, 110);
+         if (ASTROID_IS_MOBILE) {
+            Admin.toggleSidebar();
+         }
       });
    };
 
@@ -684,6 +713,9 @@ var AstroidAdmin = function AstroidAdmin() {
          _this.loading(false);
       }, 500);
       this.initCodeArea();
+      if (ASTROID_IS_MOBILE) {
+         Admin.toggleSidebar();
+      }
    };
 
    this.loading = function (_start) {

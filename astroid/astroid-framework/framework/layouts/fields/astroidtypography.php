@@ -53,7 +53,7 @@ foreach ($fonts as $font) {
 <div class="row">
    <div class="col-12">
       <div class="row astroid-typography-field-group">
-         <div class="col-4">
+         <div class="col-sm-4">
             <?php if ($fontpicker) { ?>
                <label class="astroid-label"><?php echo JText::_('TPL_ASTROID_FONT_FAMILY_LABEL'); ?></label>
 
@@ -88,7 +88,7 @@ foreach ($fonts as $font) {
                </select>
             <?php } ?>
          </div>
-         <div class="col-4">
+         <div class="col-sm-4">
             <?php if ($sizepicker) { ?>
                <ul class="nav tabmedia" data-typography-tab role="tablist">
                   <li> <label class="astroid-label d-inline-block"><?php echo JText::_('TPL_ASTROID_FONT_SIZE_LABEL'); ?></label> </li>
@@ -188,7 +188,7 @@ foreach ($fonts as $font) {
                </div>
             <?php } ?>
          </div>
-         <div class="col-4">
+         <div class="col-sm-4">
             <?php if ($colorpicker) { ?>
                <label class="astroid-label"><?php echo JText::_('TPL_ASTROID_FONT_COLOR_LABEL'); ?></label>
                <input color-picker data-typography-field="<?php echo $id; ?>" data-typography-property="color" type="text" name="<?php echo $name; ?>[font_color]" id="<?php echo $id; ?>_font_color" ng-init="<?php echo $id; ?>_font_color='<?php echo $font_color; ?>'" ng-model="<?php echo $id; ?>_font_color" data-value="<?php echo $font_color; ?>" value="<?php echo $font_color; ?>" class="form-control astroid-color-picker" />

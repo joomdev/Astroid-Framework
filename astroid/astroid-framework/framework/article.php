@@ -271,9 +271,11 @@ class AstroidFrameworkArticle
       if (JFactory::getApplication()->input->get('option', '') === 'com_content' && JFactory::getApplication()->input->get('view', '') === 'article') {
          return FALSE;
       }
+      $article_level = $this->article->params->get('astroid_article_badge', 0);
       $menu_level = $this->params->get('astroid_badge', '');
       $astroid_level = $this->template->params->get('astroid_badge', 1);
-      return $this->checkPriority('', $menu_level, $astroid_level);
+      $return =  $this->checkPriority($article_level, $menu_level, $astroid_level);
+      return $return;
    }
 
 
@@ -345,9 +347,9 @@ class AstroidFrameworkArticle
    // Utility Functions
    public function checkPriority($firstPriority, $secondPriority, $thirdPriority)
    {
-      $firstPriority = $firstPriority == '' ? -1 : (int) $firstPriority;
-      $secondPriority = $secondPriority == '' ? -1 : (int) $secondPriority;
-      $thirdPriority = $thirdPriority == '' ? -1 : (int) $thirdPriority;
+      $firstPriority = $firstPriority === '' ? -1 : (int) $firstPriority;
+      $secondPriority = $secondPriority === '' ? -1 : (int) $secondPriority;
+      $thirdPriority = $thirdPriority === '' ? -1 : (int) $thirdPriority;
 
       $enabled = false;
       switch ($firstPriority) {

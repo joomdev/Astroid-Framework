@@ -124,15 +124,13 @@
                }
 
                if (_duration != '' && _duration != 0 && _duration != '0' && _duration != undefined) {
-                  _duration = parseInt(_duration);
+                  _duration = parseInt(_duration) + 10;
                } else {
-                  _duration = 0;
+                  _duration = 1010;
                }
 
                var _this = this;
-               if (_duration != 0) {
-                  $(_this).css('animation-duration', _duration + 'ms');
-               }
+               $(_this).css('animation-duration', _duration + 'ms');
                setTimeout(function () {
                   $(_this).css('visibility', 'visible');
                   $(_this).addClass('animated');
@@ -141,7 +139,7 @@
                   setTimeout(function () {
                      $(_this).removeClass('animated');
                      $(_this).removeClass(_animation);
-                  }, (1010 + _delay));
+                  }, (_duration + _delay));
                }, _delay);
             }
          });

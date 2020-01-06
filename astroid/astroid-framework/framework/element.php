@@ -438,10 +438,8 @@ class AstroidElement
          }
       }
 
-      if ($this->type == 'section') {
-         $styles = $this->Style();
-         $this->MarginPadding();
-      }
+      $styles = $this->Style();
+      $this->MarginPadding();
 
       if ($this->type == 'column') {
          $styles = $this->Style();

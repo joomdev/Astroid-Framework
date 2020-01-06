@@ -57,6 +57,9 @@
 
             <field ngShow="background_setting =='gradient'" description="ASTROID_SELECT_BACKGROUND_COLOR_DESC" name="background_gradient" type="astroidgradient" label="TPL_ASTROID_BG_GREDIENT_LABEL"></field>
             
+            <field name="spacing_settings" type="astroidheading" title="ASTROID_ELEMENT_HEAD_SPACING_LABEL" />
+            <field name="margin" type="astroidspacing" label="Margin" />
+            <field name="padding" type="astroidspacing" label="Padding" />
          </fieldset>
          <fieldset name="responsive-settings" label="ASTROID_ELEMENT_HEAD_RESPONSIVE_SEETINGS_LABEL" addfieldpath="/libraries/astroid/framework/fields">
             <field name="device_settings" type="astroidheading" title="ASTROID_ELEMENT_HEAD_DEVICE_VISIBILITY_LABEL" />

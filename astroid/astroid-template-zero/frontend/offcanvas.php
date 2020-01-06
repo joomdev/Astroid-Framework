@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @package   Astroid Framework
  * @author    JoomDev https://www.joomdev.com
@@ -33,7 +34,12 @@ $openfrom = $params->get('offcanvas_openfrom', 'left');
       </button>
    </div>
    <div class="astroid-offcanvas-inner">
-      <?php echo $template->renderModulePosition($module_position, 'astroidxhtml'); ?>
+      <?php $content = $template->renderModulePosition($module_position, 'astroidxhtml');
+
+      if (empty($content)) {
+         echo '<div class="alert alert-danger">' . \JText::_('TPL_OFFCANVAS_EMPTY_ERROR') . '</div>';
+      }
+      ?>
    </div>
 </div>
 

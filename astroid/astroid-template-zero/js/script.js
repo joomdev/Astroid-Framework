@@ -31,15 +31,15 @@
    };
    var initBackToTop = function () {
       $(window).scroll(function () {
-         if ($(this).scrollTop() >= 200) {        // If page is scrolled more than 200px
-            $('#astroid-backtotop').fadeIn(200);    // Fade in the arrow
+         if ($(this).scrollTop() >= 200) { // If page is scrolled more than 200px
+            $('#astroid-backtotop').fadeIn(200); // Fade in the arrow
          } else {
-            $('#astroid-backtotop').fadeOut(200);   // Else fade out the arrow
+            $('#astroid-backtotop').fadeOut(200); // Else fade out the arrow
          }
       });
-      $('#astroid-backtotop').click(function () {      // When arrow is clicked
+      $('#astroid-backtotop').click(function () { // When arrow is clicked
          $('body,html').animate({
-            scrollTop: 0                       // Scroll to top of body
+            scrollTop: 0 // Scroll to top of body
          }, 500);
       });
    };
@@ -115,13 +115,24 @@
          $('[data-animation]').each(function () {
             var _animation = $(this).data('animation');
             var _delay = $(this).data('animation-delay');
+            var _duration = $(this).data('animation-duration');
             if (_animation != '' && elementInViewport($(this)) && !$(this).hasClass('animation-done')) {
-               if (_delay != '' && _delay != 0 && _delay != '0') {
+               if (_delay != '' && _delay != 0 && _delay != '0' && _delay != undefined) {
                   _delay = parseInt(_delay);
                } else {
                   _delay = 0;
                }
+
+               if (_duration != '' && _duration != 0 && _duration != '0' && _duration != undefined) {
+                  _duration = parseInt(_duration);
+               } else {
+                  _duration = 0;
+               }
+
                var _this = this;
+               if (_duration != 0) {
+                  $(_this).css('animation-duration', _duration + 'ms');
+               }
                setTimeout(function () {
                   $(_this).css('visibility', 'visible');
                   $(_this).addClass('animated');
@@ -232,8 +243,7 @@
  * It requires that you have jQuery loaded and if you are dealing with Mootools + jQuery is a good idea to add the call just before this javascript code.
  * This issue shouldn't affect Bootstrap 3 templates but the fix explained here should be compatible with both.
  */
-(function ($)
-{
+(function ($) {
    $(document).ready(function () {
       var bootstrapLoaded = (typeof $().tooltip == 'function');
       var mootoolsLoaded = (typeof MooTools != 'undefined');

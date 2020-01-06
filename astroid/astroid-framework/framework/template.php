@@ -344,7 +344,8 @@ class AstroidFrameworkTemplate
                      $col_stylesEnable = $columnObject->getStyles() ? true : false;
                      $col_animationEnable = $columnObject->getAnimation() ? true : false;
                      $col_animationDelay = $columnObject->getAnimationDelay() ? true : false;
-                     $columnHTML .= '<div id="' . $columnObject->getID() . '" class="' . $columnObject->getClass() . (($col_stylesEnable) ? '" style="' . $columnObject->getStyles() : '') . (($col_animationEnable) ? '" data-animation= "' . $columnObject->getAnimation() : '') . (($col_animationDelay && $col_animationEnable) ? '" data-animation-delay="' . $columnObject->getAnimationDelay() : '') . '" ' . $columnObject->getAttributes() . '>';
+                     $col_animationDuration = $columnObject->getAnimationDuration() ? true : false;
+                     $columnHTML .= '<div id="' . $columnObject->getID() . '" class="' . $columnObject->getClass() . (($col_stylesEnable) ? '" style="' . $columnObject->getStyles() : '') . (($col_animationEnable) ? '" data-animation= "' . $columnObject->getAnimation() : '') . (($col_animationDelay && $col_animationEnable) ? '" data-animation-delay="' . $columnObject->getAnimationDelay() : '') . (($col_animationDuration && $col_animationEnable) ? '" data-animation-duration="' . $columnObject->getAnimationDuration() : '') . '" ' . $columnObject->getAttributes() . '>';
                      $columnHTML .= $renderedHTML;
                      $columnHTML .= '</div>';
                   }
@@ -366,7 +367,8 @@ class AstroidFrameworkTemplate
                $row_stylesEnable = $rowObject->getStyles() ? true : false;
                $row_animationEnable = $rowObject->getAnimation() ? true : false;
                $row_animationDelay = $rowObject->getAnimationDelay() ? true : false;
-               $rowHTML .= '<div  id="' . $rowObject->getID() . '" class="row' . ($no_gutter ? ' no-gutters' : '') . (!empty($rowObject->getClass()) ? ' ' . $rowObject->getClass() : '') . (($row_stylesEnable) ? '" style="' . $rowObject->getStyles() : '') . (($row_animationEnable) ? '" data-animation= "' . $rowObject->getAnimation() : '') . (($row_animationDelay && $row_animationEnable) ? '" data-animation-delay="' . $rowObject->getAnimationDelay() : '') . '" ' . $rowObject->getAttributes() . '>';
+               $row_animationDuration = $rowObject->getAnimationDuration() ? true : false;
+               $rowHTML .= '<div  id="' . $rowObject->getID() . '" class="row' . ($no_gutter ? ' no-gutters' : '') . (!empty($rowObject->getClass()) ? ' ' . $rowObject->getClass() : '') . (($row_stylesEnable) ? '" style="' . $rowObject->getStyles() : '') . (($row_animationEnable) ? '" data-animation= "' . $rowObject->getAnimation() : '') . (($row_animationDelay && $row_animationEnable) ? '" data-animation-delay="' . $rowObject->getAnimationDelay() : '') . (($row_animationDuration && $row_animationEnable) ? '" data-animation-duration="' . $rowObject->getAnimationDuration() : '') . '" ' . $rowObject->getAttributes() . '>';
                $rowHTML .= $columnHTML;
                $rowHTML .= '</div>';
             }
@@ -374,7 +376,7 @@ class AstroidFrameworkTemplate
          if (!empty($rowHTML)) {
             $stylesEnable = $sectionObject->getStyles() ? true : false;
             $animationEnable = $sectionObject->getAnimation() ? true : false;
-            $sectionHTML .= '<section  id="' . $sectionObject->getID() . '" class="' . $sectionObject->getClass() . (($stylesEnable) ? '" style="' . $sectionObject->getStyles() : '') . (($animationEnable) ? '" data-animation= "' . $sectionObject->getAnimation() : '') . ((!empty($sectionObject->getAnimationDelay()) && $animationEnable) ? '" data-animation-delay="' . $sectionObject->getAnimationDelay() : '') . '" ' . $sectionObject->getAttributes() . '>';
+            $sectionHTML .= '<section  id="' . $sectionObject->getID() . '" class="' . $sectionObject->getClass() . (($stylesEnable) ? '" style="' . $sectionObject->getStyles() : '') . (($animationEnable) ? '" data-animation= "' . $sectionObject->getAnimation() : '') . ((!empty($sectionObject->getAnimationDelay()) && $animationEnable) ? '" data-animation-delay="' . $sectionObject->getAnimationDelay() : '')  . ((!empty($sectionObject->getAnimationDuration()) && $animationEnable) ? '" data-animation-duration="' . $sectionObject->getAnimationDuration() : '') . '" ' . $sectionObject->getAttributes() . '>';
 
             $section_layout_type = ($sppb && $hasComponent) ? '' : $section_layout_type;
             if (!empty($section_layout_type)) {

@@ -222,6 +222,7 @@ class AstroidElement
          if (!empty($this->getAnimation())) {
             $elHtml[] = 'data-animation="' . $this->getAnimation() . '"';
             $elHtml[] = 'data-animation-delay="' . $this->getAnimationDelay() . '"';
+            $elHtml[] = 'data-animation-duration="' . $this->getAnimationDuration() . '"';
          }
          if (!empty($this->getAttributes())) {
             $elHtml[] = $this->getAttributes();
@@ -397,6 +398,13 @@ class AstroidElement
       $params = $this->getParams();
       $animation = $params->get('animation', '');
       return $animation;
+   }
+
+   public function getAnimationDuration()
+   {
+      $params = $this->getParams();
+      $animation_duration = $params->get('animation_duration', 0);
+      return $animation_duration;
    }
 
    public function getAnimationDelay()

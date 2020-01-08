@@ -50,6 +50,9 @@ $navWrapperClass = ['align-self-center', 'px-2', 'd-none', 'd-lg-block'];
          }
          ?>
       </div>
+      <?php if (!$enable_offcanvas && $mode == 'left') : ?>
+         <div></div>
+      <?php endif; ?>
       <?php
       if ($mode == 'center') {
          echo '<div class="header-center-section d-none d-lg-block justify-content-center">';

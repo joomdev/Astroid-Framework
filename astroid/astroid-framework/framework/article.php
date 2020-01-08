@@ -272,9 +272,12 @@ class AstroidFrameworkArticle
          return FALSE;
       }
       $article_level = $this->article->params->get('astroid_article_badge', 0);
+      if (!$article_level) {
+         return false;
+      }
       $menu_level = $this->params->get('astroid_badge', '');
       $astroid_level = $this->template->params->get('astroid_badge', 1);
-      $return =  $this->checkPriority($article_level, $menu_level, $astroid_level);
+      $return =  $this->checkPriority('', $menu_level, $astroid_level);
       return $return;
    }
 

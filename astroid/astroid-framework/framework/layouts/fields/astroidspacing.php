@@ -39,8 +39,9 @@ extract($displayData);
                 </div>
             <?php } ?>
             <div class="text-center">
-                <button data-device="<?php echo $device; ?>" ng-click="switchLock('<?php echo $device; ?>')" type="button" class="btn btn-light">
+                <button data-device="<?php echo $device; ?>" ng-click="switchLock('<?php echo $device; ?>')" type="button" class="btn-lock btn btn-light">
                     <span class="fas fa-lock"></span>
+                    <span class="fas fa-unlock"></span>
                 </button>
             </div>
             <div>

@@ -470,7 +470,11 @@ class AstroidFrameworkTemplate
       }
       $this->setLog("Rending Module Position : " . $position);
       $return = '';
-      $return .= '<jdoc:include type="modules" name="' . $position . '" style="' . $style . '" />';
+
+      $modules = JModuleHelper::getModules($position);
+      if (count($modules)) {
+         $return .= '<jdoc:include type="modules" name="' . $position . '" style="' . $style . '" />';
+      }
       return $return;
    }
 

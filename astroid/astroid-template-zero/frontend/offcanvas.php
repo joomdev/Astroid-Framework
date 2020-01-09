@@ -38,6 +38,8 @@ $openfrom = $params->get('offcanvas_openfrom', 'left');
 
       if (empty($content)) {
          echo '<div class="alert alert-danger">' . \JText::_('TPL_OFFCANVAS_EMPTY_ERROR') . '</div>';
+      }else{
+         echo $content;
       }
       ?>
    </div>

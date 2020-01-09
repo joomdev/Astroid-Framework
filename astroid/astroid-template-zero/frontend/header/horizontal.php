@@ -50,7 +50,7 @@ $navWrapperClass = ['align-self-center', 'px-2', 'd-none', 'd-lg-block'];
          }
          ?>
       </div>
-      <?php if (!$enable_offcanvas && $mode == 'left') : ?>
+      <?php if (!$enable_offcanvas && ($mode == 'left' || $mode == 'center')) : ?>
          <div></div>
       <?php endif; ?>
       <?php

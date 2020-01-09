@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form>
+   <fields name="params">
+      <fieldset icon="fas fa-cogs" label="ASTROID_OPTIONS_MISCELLANEOUS" name="astroid_mscellaneous" addfieldpath="/libraries/astroid/framework/fields" order="9">
+         <field type="astroidgroup" order="2" name="lazyloadgroup" title="TPL_ASTROID_LAZYLOAD_TITLE_LABEL" />
+
+         <field astroidgroup="lazyloadgroup" name="lazyload" type="astroidtext" astroid-switch="true" default="0" label="Enable Lazy Load" description="">
+         </field>
+
+         <field astroidgroup="lazyloadgroup" name="lazyload_imgs" type="astroidtextarea" label="Selected Images" class="form-control" ngShow="lazyload==1" description="TPL_ASTROID_LAZYLOAD_IMAGE_SELECTION_DESC">
+         </field>
+
+         <field astroidgroup="lazyloadgroup" name="lazyload_imgs_action" type="astroidradio" default="include" label="" ngShow="lazyload" description="" groupClass="border-top-0 mb-4">
+            <option value="include">Include</option>
+            <option class="btn-danger" value="exclude">Exclude</option>
+         </field>
+
+         <field astroidgroup="lazyloadgroup" name="lazyload_components" type="astroidtextarea" label="Selected Components" class="form-control" ngShow="lazyload==1" description="TPL_ASTROID_LAZYLOAD_COMPONENT_SELECTION_DESC">
+         </field>
+
+         <field astroidgroup="lazyloadgroup" name="lazyload_components_action" type="astroidradio" default="include" label="" ngShow="lazyload" description="" groupClass="border-top-0 mb-4">
+            <option value="include">Include</option>
+            <option class="btn-danger" value="exclude">Exclude</option>
+         </field>
+
+         <field astroidgroup="lazyloadgroup" name="lazyload_urls" type="astroidtextarea" label="Selected URLs" class="form-control" ngShow="lazyload==1" description="TPL_ASTROID_LAZYLOAD_URL_SELECTION_DESC">
+         </field>
+
+         <field astroidgroup="lazyloadgroup" name="lazyload_urls_action" type="astroidradio" default="include" label="" ngShow="lazyload" description="" groupClass="border-top-0 mb-4">
+            <option value="include">Include</option>
+            <option class="btn-danger" value="exclude">Exclude</option>
+         </field>
+
+         <field astroidgroup="lazyloadgroup" name="lazyload_classes" type="astroidtextarea" label="Selected Classes" class="form-control" ngShow="lazyload==1" description="TPL_ASTROID_LAZYLOAD_CLASSES_SELECTION_DESC">
+         </field>
+
+         <field astroidgroup="lazyloadgroup" name="lazyload_classes_action" type="astroidradio" default="include" label="" ngShow="lazyload" description="" groupClass="border-top-0 mb-4">
+            <option value="include">Include</option>
+            <option class="btn-danger" value="exclude">Exclude</option>
+         </field>
+
+         <field astroidgroup="lazyloadgroup" name="lazyload_exclude_views" type="astroidtextarea" label="Excluded Template Views" class="form-control" ngShow="lazyload==1" description="TPL_ASTROID_LAZYLOAD_COMPONENT_SELECTION_DESC">
+         </field>
+
+      </fieldset>
+   </fields>
+</form>

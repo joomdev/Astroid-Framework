@@ -906,6 +906,21 @@ class AstroidFrameworkTemplate
       }
    }
 
+   public function getStyleDeclaration()
+   {
+      $styles = [];
+      foreach (['desktop', 'tablet', 'mobile'] as $device) {
+         if ($device == 'mobile') {
+            $styles[] = '@media (max-width: 767.98px) {' . implode('', $this->_styles[$device]) . '}';
+         } elseif ($device == 'tablet') {
+            $styles[] = '@media (max-width: 991.98px) {' . implode('', $this->_styles[$device]) . '}';
+         } else {
+            $styles[] = implode('', $this->_styles[$device]);
+         }
+      }
+      $styles = implode('', $styles);
+   }
+
    public function loadJS()
    {
       $document = JFactory::getDocument();

@@ -333,8 +333,9 @@ $astroid_shortcut_enable = $plugin_params->get('astroid_shortcut_enable', 1);
                                           } else {
                                              $ngHide = AstroidFrameworkHelper::replaceRelationshipOperators($field->getAttribute('ngHide'));
                                              $ngShow = AstroidFrameworkHelper::replaceRelationshipOperators($field->getAttribute('ngShow'));
+                                             $gclass = (string) $field->getAttribute('groupClass');
                                              ?>
-                                             <div<?php echo!empty($ngHide) ? ' ng-hide="' . $ngHide . '"' : ''; ?><?php echo!empty($ngShow) ? ' ng-show="' . $ngShow . '"' : ''; ?> class="form-group">
+                                             <div<?php echo !empty($ngHide) ? ' ng-hide="' . $ngHide . '"' : ''; ?><?php echo!empty($ngShow) ? ' ng-show="' . $ngShow . '"' : ''; ?> class="form-group<?php echo !empty($gclass) ? ' '.$gclass : ''; ?>">
                                                 <div class="row">
                                                    <?php if ($field->label !== false) { ?>
                                                       <div class="col-sm-5">

@@ -345,6 +345,7 @@ if ($in_head) {
       echo '<link href="' . 'https://fonts.googleapis.com/css?family=' . $ast_fontfamily_list . '" rel="stylesheet" type="text/css" />';
    }
    echo "<style>";
+   echo $template->getStyleDeclaration();
    echo $styles['desktop'];
    echo $menu_style['desktop'];
    echo $submenu_style['desktop'];

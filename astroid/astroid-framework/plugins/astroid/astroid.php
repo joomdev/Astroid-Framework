@@ -8,6 +8,7 @@
  */
 defined('_JEXEC') or die;
 define('COMPILE_SASS', 0);
+jimport('astroid.framework.astroid');
 jimport('astroid.framework.helper');
 jimport('astroid.framework.template');
 jimport('astroid.framework.article');
@@ -33,6 +34,12 @@ class plgSystemAstroid extends JPlugin
                $this->app->redirect(base64_decode(urldecode($astroid_redirect)));
             }
          }
+      }
+
+      if ($this->app->isSite()) {
+         $js = JURI::root() . 'media/astroid/assets/js/astroid-lazyload.min.js';
+         $document = JFactory::getDocument();
+         $document->addScript($js);
       }
    }
 
@@ -156,7 +163,8 @@ class plgSystemAstroid extends JPlugin
                            $return .= '<div class="item" data-value="' . $fontValue . '">' . $font . '</div>';
                         }
                      }
-                  } catch (\Exception $e) { }
+                  } catch (\Exception $e) {
+                  }
                   echo $return;
                   die();
                   break;
@@ -319,6 +327,79 @@ class plgSystemAstroid extends JPlugin
             return $html;
          }, $body);
          $this->app->setBody($body);
+      }
+
+      if (!$this->app->isAdmin()) {
+         $this->astroidLazyLoad();
+      }
+   }
+
+   public function astroidLazyLoad()
+   {
+      $template = AstroidFramework::getTemplate();
+      $lazyload = $template->params->get('lazyload', 0);
+      if (!$lazyload) {
+         return;
+      }
+
+      if ($template->params->get('lazyload_components', '')) {
+         $run = AstroidFrameworkHelper::selectedComponents($template->params->get('lazyload_components', ''), $template->params->get('lazyload_components_action', 'include'));
+         if (!$run) {
+            return;
+         }
+      }
+
+      if ($template->params->get('lazyload_urls', '')) {
+         $run = AstroidFrameworkHelper::selectedURLs($template->params->get('lazyload_urls', ''), $template->params->get('lazyload_urls_action', 'include'));
+         if (!$run) {
+            return;
+         }
+      }
+
+      if ($template->params->get('lazyload_exclude_views', '')) {
+         $run = AstroidFrameworkHelper::exclidedViews($template->params->get('lazyload_exclude_views', ''));
+         if (!$run) {
+            return;
+         }
+      }
+
+      $blankImage = JURI::root() . 'media/astroid/assets/images/blank.png';
+      $patternImage = "@<img[^>]*src=[\"\']([^\"\']*)[\"\'][^>]*>@";
+      $body = $inputString = JFactory::getApplication()->getBody(false);
+
+      preg_match_all($patternImage, $inputString, $matches);
+
+      if ($template->params->get('lazyload_imgs', '') && !empty($matches)) {
+         AstroidFrameworkHelper::selectedImages($matches, $template->params->get('lazyload_imgs', ''), $template->params->get('lazyload_imgs_action', 'include'));
+      }
+
+      if ($template->params->get('lazyload_classes', '') && !empty($matches)) {
+         AstroidFrameworkHelper::selectedClasses($matches, $template->params->get('lazyload_classes', ''), $template->params->get('lazyload_classes_action', 'include'));
+      }
+
+      if (!empty($matches[0])) {
+         $base = JUri::base();
+         $basePath = JUri::base(true);
+
+         foreach ($matches[0] as $key => $match) {
+            if (strpos($matches[1][$key], 'http://') === false && strpos($matches[1][$key], 'https://') === false) {
+               if (!empty($basePath)) {
+                  if (strpos($matches[1][$key], $basePath) === false) {
+                     $match = str_replace($matches[1][$key], $basePath . '/' . $matches[1][$key], $match);
+                  }
+               } else {
+                  if (strpos($matches[1][$key], $base) === false) {
+                     $match = str_replace($matches[1][$key], $base . $matches[1][$key], $match);
+                  }
+               }
+            }
+
+            $matchLazy = str_replace('src=', 'src="' . $blankImage . '" data-astroid-lazyload=', $match);
+
+            $body = str_replace($matches[0][$key], $matchLazy, $body);
+         }
+
+         JFactory::getApplication()->setBody($body);
       }
    }
 

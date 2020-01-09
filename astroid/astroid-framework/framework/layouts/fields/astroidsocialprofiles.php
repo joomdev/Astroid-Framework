@@ -8,9 +8,25 @@
 defined('JPATH_BASE') or die;
 jimport('astroid.framework.constants');
 extract($displayData);
+
 if (empty($value)) {
    $value = json_encode([]);
+}else{
+   $value = \json_decode($value, true);
+   $profile_icons = [];
+   foreach(AstroidFrameworkConstants::$social_profiles as $profile){
+      $profile_icons[$profile['title']] = $profile['icons'];
+   }
+
+   foreach($value as &$item){
+      if(isset($profile_icons[$item['title']])){
+         $item['icons'] = $profile_icons[$item['title']];
+      }
+   }
+
+   $value = \json_encode($value);
 }
+
 ?>
 <script>
    var AstroidSocialProfiles = <?php echo json_encode(AstroidFrameworkConstants::$social_profiles); ?>;

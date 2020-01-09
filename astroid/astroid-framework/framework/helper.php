@@ -471,7 +471,8 @@ class AstroidFrameworkHelper
    public static function getModules()
    {
       $db = JFactory::getDbo();
-      $query = "SELECT `#__modules`.*,`#__usergroups`.`title` as `access_title` FROM `#__modules` JOIN `#__usergroups` ON `#__usergroups`.`id`=`#__modules`.`access` WHERE `#__modules`.`client_id`=0";
+      $query = "SELECT #__modules.*, #__usergroups.title as access_title FROM #__modules JOIN #__usergroups ON #__usergroups.id=#__modules.access WHERE #__modules.client_id=0";
+
       $db->setQuery($query);
       $results = $db->loadObjectList();
 
@@ -640,8 +641,7 @@ class AstroidFrameworkHelper
       }
       $style = '';
       foreach ($font['files'] as $file) {
-         $style .= '@font-face { font-family: "' . $font['name'] . '"; src: url("' . $file . '");
-}';
+         $style .= '@font-face { font-family: "' . $font['name'] . '"; src: url("' . JURI::root() . "templates/{$template->template}/css/" . $file . '");}';
       }
       $template->addStyleDeclaration($style);
    }
@@ -907,4 +907,123 @@ class AstroidFrameworkHelper
       return $version;
    }
 
+
+   public static function selectedImages(&$matches, $images = '', $toggle = '')
+   {
+      $images = array_map('trim', explode("\n", $images));
+      $matchesTemp = array();
+
+      foreach ($images as $image) {
+         $count = 0;
+
+         foreach ($matches[1] as $match) {
+            if (preg_match('@' . preg_quote($image) . '@', $match)) {
+               if ($toggle == 'exclude') {
+                  unset($matches[0][$count]);
+               } else {
+                  $matchesTemp[] = $matches[0][$count];
+               }
+            }
+
+            $count++;
+         }
+      }
+
+      if ($toggle == 'include') {
+         unset($matches[0]);
+         $matches[0] = $matchesTemp;
+      }
+   }
+
+   public static function selectedComponents($components = '', $toggle = '')
+   {
+      $option = JFactory::getApplication()->input->getWord('option');
+      $components = array_map('trim', explode("\n", $components));
+      $hit = false;
+      $return = true;
+      foreach ($components as $component) {
+         if ($option === $component) {
+            $hit = true;
+            break;
+         }
+      }
+
+      if ($toggle == 'include') {
+         if ($hit === false) {
+            $return = false;
+         }
+         return $return;
+      }
+
+      if ($hit === true) {
+         $return = false;
+      }
+
+      return $return;
+   }
+
+   public static function selectedURLs($surls = '', $toggle = '')
+   {
+      $url = JUri::getInstance()->toString();
+      $surls = array_map('trim', explode("\n", $surls));
+      $hit = false;
+      $return = true;
+
+      foreach ($surls as $surl) {
+         if ($url === $surl) {
+            $hit = true;
+            break;
+         }
+      }
+
+      if ($toggle == 'include') {
+         if ($hit === false) {
+            $return = false;
+         }
+
+         return $return;
+      }
+
+      if ($hit === true) {
+         $return = false;
+      }
+
+      return $return;
+   }
+
+   public static function exclidedViews($views = '')
+   {
+      $view = JFactory::getApplication()->input->getWord('tmpl', '');
+      $views = array_map('trim', explode(",", $views));
+      $return = true;
+
+      if (in_array($view, $views)) {
+         $return = false;
+      }
+
+      return $return;
+   }
+
+   public static function selectedClasses(&$matches, $classes = '', $toggle = '')
+   {
+      $classes = array_map('trim', explode("\n", $classes));
+
+      foreach ($matches[0] as $key => $match) {
+         foreach ($classes as $classname) {
+            $classExists = preg_match('@class=[\"\'].*' . $classname . '.*[\"\']@Ui', $match);
+
+            if ($toggle == 'include') {
+               if (empty($classExists)) {
+                  unset($matches[0][$key]);
+               }
+
+               continue;
+            }
+
+            if (!empty($classExists)) {
+               unset($matches[0][$key]);
+            }
+         }
+      }
+   }
 }

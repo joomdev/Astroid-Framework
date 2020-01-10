@@ -95,18 +95,18 @@ $template->_loadFontAwesome();
       $bodystyle = 'body {' . $styles . '}';
       $template->addStyleDeclaration($bodystyle);
    }
-   $template->loadLayout('typography');
+   if($template->params->exists('developemnt_mode')){
+      $devMode = $template->params->get('developemnt_mode', 0);
+   }else{
+      $devMode = $template->params->get('development_mode', 0);
+   }
+   $template->loadLayout('typography', true, ['in_head' => $devMode ? true : false]);
    $template->loadLayout('colors');
    ?>
    <?php $template->head(); ?>
 </head>
 <body class="<?php echo $template->bodyClass($template->language, $template->direction); ?>">
    <?php
-   if($template->params->exists('developemnt_mode')){
-      $devMode = $template->params->get('developemnt_mode', 0);
-   }else{
-      $devMode = $template->params->get('development_mode', 0);
-   }
    if ($devMode) {
       $template->loadLayout('comingsoon');
    } else {

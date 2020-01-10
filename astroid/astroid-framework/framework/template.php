@@ -923,6 +923,7 @@ class AstroidFrameworkTemplate
          }
       }
       $styles = implode('', $styles);
+      return $styles;
    }
 
    public function loadJS()

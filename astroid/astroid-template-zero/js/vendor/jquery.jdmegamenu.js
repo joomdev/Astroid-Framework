@@ -4,7 +4,7 @@
       var contentClass = $(this).data('megamenu-content-class');
       var submenuClass = $(this).data('megamenu-submenu-class');
       var megamenuClass = $(this).data('megamenu-class');
-      var animation = $(this).data('animation');
+      var animation = $(this).data('megamenu-animation');
       var dropdownArrows = $(this).data('dropdown-arrow');
       var headerOffset = $(this).data('header-offset');
       var transitionSpeed = parseInt($(this).data('transition-speed'));

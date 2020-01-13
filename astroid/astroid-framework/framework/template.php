@@ -450,22 +450,6 @@ class AstroidFrameworkTemplate
       return $text;
    }
 
-   public function renderLayoutOld()
-   {
-      // Load Astroid elements classes
-      AstroidFrameworkHelper::loadAstroidElements();
-      $params = $this->params;
-      $layout = $params->get("layout", NULL);
-      if ($layout === NULL) {
-         $value = file_get_contents(JPATH_SITE . '/' . 'media' . '/' . 'astroid' . '/' . 'assets' . '/' . 'json' . '/' . 'layouts' . '/' . 'default.json');
-         $layout = \json_decode($value, true);
-      } else {
-         $layout = \json_decode($layout, true);
-      }
-      $element = new AstroidElement($layout, $this);
-      echo $element->render();
-   }
-
    public function modulePosition($position = '', $style = 'none')
    {
       if (empty($position)) {
@@ -792,12 +776,12 @@ class AstroidFrameworkTemplate
    {
       $this->setLog("Rending template partial : " . $partial);
 
-      astroidTemplatePath
-
       if (file_exists(JPATH_SITE . '/templates/' . $this->template . '/html/frontend/' . str_replace('.', '/', $partial) . '.php')) {
          $layout = new JLayoutFile($partial, JPATH_SITE . '/templates/' . $this->template . '/html/frontend');
+      } else if (file_exists(self::$astroidTemplatePath . '/frontend/' . str_replace('.', '/', $partial) . '.php')) {
+         $layout = new JLayoutFile($partial, self::$astroidTemplatePath . '/frontend');
       } else {
-         $layout = new JLayoutFile($partial, JPATH_SITE . '/templates/' . $this->template . '/frontend');
+         return;
       }
       $data = [];
       $data['template'] = $this;

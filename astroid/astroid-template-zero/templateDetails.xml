@@ -22,7 +22,6 @@
       <folder>images</folder>
       <folder>js</folder>
       <folder>language</folder>
-      <folder>frontend</folder>
       <filename>index.php</filename>
       <filename>helper.php</filename>
       <filename>templateDetails.xml</filename>

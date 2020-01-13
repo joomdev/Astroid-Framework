@@ -27,6 +27,7 @@ class AstroidFrameworkTemplate
    public $_js = [];
    public $mods = array();
    public $modules = array();
+   public static $astroidTemplatePath = JPATH_LIBRARIES . '/astroid/framework/template';
 
    public function __construct($template)
    {
@@ -186,7 +187,8 @@ class AstroidFrameworkTemplate
    }
 
    public function head()
-   { }
+   {
+   }
 
    public function initAgent()
    {
@@ -223,7 +225,8 @@ class AstroidFrameworkTemplate
         ASTROID_TEMPLATE.DEVICE_NAME = "<?php echo config('agent.name'); ?>";
         ASTROID_TEMPLATE.DEVICE_BROWSER = "<?php echo config('agent.browser'); ?>";
         ASTROID_TEMPLATE.BASE_URL = "<?php echo url('/'); ?>";
-       */ }
+       */
+   }
 
    public function body()
    {
@@ -788,6 +791,9 @@ class AstroidFrameworkTemplate
    public function loadLayout($partial = '', $display = true, $params = null)
    {
       $this->setLog("Rending template partial : " . $partial);
+
+      astroidTemplatePath
+
       if (file_exists(JPATH_SITE . '/templates/' . $this->template . '/html/frontend/' . str_replace('.', '/', $partial) . '.php')) {
          $layout = new JLayoutFile($partial, JPATH_SITE . '/templates/' . $this->template . '/html/frontend');
       } else {

@@ -238,6 +238,7 @@ class AstroidFrameworkTemplate
 
    public function renderLayout()
    {
+      define('ASTROID_FRONTEND', 1);
       $params = $this->params;
       $layout = $params->get("layout", NULL);
       if ($layout === NULL) {

@@ -73,10 +73,12 @@ class AstroidElement
          $this->xml_file = $library_elements_directory . $this->type . '/' . $this->type . '.xml';
          $this->layout = $library_elements_directory . $this->type . '/' . $this->type . '.php';
       }
-      if ($this->xml_file !== null) {
-         $this->loadXML();
+      if (!defined('ASTROID_FRONTEND')) {
+         if ($this->xml_file !== null) {
+            $this->loadXML();
+         }
+         $this->loadForm();
       }
-      $this->loadForm();
    }
 
    protected function setClassName()
@@ -181,7 +183,7 @@ class AstroidElement
          $data = (array) $data;
          $formData[$data['name']] = $data['value'];
       }
-      $params = [];
+      /* $params = [];
       foreach ($this->params as $param) {
          $param = (array) $param;
          if (isset($formData[$param['name']])) {
@@ -189,9 +191,9 @@ class AstroidElement
          } else {
             $params[$param['name']] = $param['value'];
          }
-      }
+      } */
 
-      return $AstroidParams = new AstroidParams($params);
+      return $AstroidParams = new AstroidParams($formData);
    }
 
    public function render()

@@ -12,7 +12,7 @@
 // No direct access.
 defined('_JEXEC') or die;
 extract($displayData);
-jimport('astroid.framework.menu');
+
 $params = Astroid\Framework::getTemplate()->getParams();
 $document = Astroid\Framework::getDocument();
 

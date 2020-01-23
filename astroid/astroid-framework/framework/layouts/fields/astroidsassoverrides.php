@@ -6,7 +6,6 @@
  * @license https://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
  */
 defined('JPATH_BASE') or die;
-jimport('astroid.framework.constants');
 extract($displayData);
 if (empty($value)) {
    $value = json_encode([]);

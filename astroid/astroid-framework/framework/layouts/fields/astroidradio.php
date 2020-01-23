@@ -7,8 +7,6 @@
  */
 defined('JPATH_BASE') or die;
 
-jimport('astroid.framework.astroid');
-
 extract($displayData);
 
 /**
@@ -40,7 +38,7 @@ extract($displayData);
  * @var   array    $options         Options available for this field.
  */
 
-$template = AstroidFramework::getTemplate();
+$template = Astroid\Framework::getTemplate();
 $imageRadio = false;
 if (isset($images) && $images == 'true') {
    $imageRadio = true;

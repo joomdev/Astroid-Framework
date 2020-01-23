@@ -34,15 +34,15 @@ class JFormFieldAstroidHeading extends JFormField {
    protected function getInput() {
 
       $attrs = [];
-      $ngShow = AstroidFrameworkHelper::replaceRelationshipOperators($this->element['ngShow']);
+      $ngShow = Astroid\Helper::replaceRelationshipOperators($this->element['ngShow']);
       if (!empty($ngShow)) {
          $attrs[] = 'ng-show="' . $ngShow . '"';
       }
-      $ngHide = AstroidFrameworkHelper::replaceRelationshipOperators($this->element['ngHide']);
+      $ngHide = Astroid\Helper::replaceRelationshipOperators($this->element['ngHide']);
       if (!empty($ngHide)) {
          $attrs[] = 'ng-hide="' . $ngHide . '"';
       }
-      $ngRequired = AstroidFrameworkHelper::replaceRelationshipOperators($this->element['ngRequired']);
+      $ngRequired = Astroid\Helper::replaceRelationshipOperators($this->element['ngRequired']);
       if (!empty($ngRequired)) {
          $attrs[] = 'ng-hide="' . $ngRequired . '"';
       }

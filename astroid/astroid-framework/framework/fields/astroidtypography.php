@@ -34,7 +34,7 @@ class JFormFieldAstroidTypography extends JFormField
       }
 
       foreach (['font_size', 'font_size_unit', 'letter_spacing', 'letter_spacing_unit', 'line_height', 'line_height_unit'] as $responsiveField) {
-         if (!isset($value[$responsiveField]) || is_string($value[$responsiveField])) {
+         if (isset($value[$responsiveField]) && is_string($value[$responsiveField])) {
             $object = new \stdClass();
             $object->desktop = $value[$responsiveField];
             $object->tablet = $value[$responsiveField];

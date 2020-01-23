@@ -6,12 +6,10 @@
  * @license https://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
  */
 defined('JPATH_BASE') or die;
-jimport('astroid.framework.constants');
-jimport('astroid.framework.helper');
 
 extract($displayData);
 $document = \JFactory::getDocument();
-$document->addStyleSheet('https://use.fontawesome.com/releases/v' . AstroidFrameworkConstants::$fontawesome_version . '/css/all.css');
+$document->addStyleSheet('https://use.fontawesome.com/releases/v' . Astroid\Helper\Constants::$fontawesome_version . '/css/all.css');
 $document->addStyleSheet('https://fonts.googleapis.com/css?family=Nunito:300,400,600');
 $document->addStyleSheet(JURI::root(false) . 'media/astroid/assets/css/astroid-menu-options.css' . '?v=' . $document->getMediaVersion());
 $document->addScriptDeclaration('var astroidSearchUrl = "' . JURI::root() . 'administrator/index.php?option=com_ajax&astroid=search";');
@@ -404,12 +402,12 @@ foreach ($scripts as $script) {
 
       // Global Variables
       // All Types of Grid
-      $scope.grids = <?php echo \json_encode(AstroidFrameworkConstants::$layout_grids); ?>;
+      $scope.grids = <?php echo \json_encode(Astroid\Helper\Constants::$layout_grids); ?>;
 
       $scope.<?php echo $id; ?>_megamenu = <?php echo $megamenu; ?>;
       $scope.<?php echo $id; ?>_badge = <?php echo $badge; ?>;
       $scope.<?php echo $id; ?>_showtitle = <?php echo $showtitle; ?>;
-      $scope.joomla_modules = <?php echo \json_encode(AstroidFrameworkHelper::getModules()); ?>;
+      $scope.joomla_modules = <?php echo \json_encode(Astroid\Helper::getModules()); ?>;
       $scope.rows = <?php echo json_encode($rows); ?>;
 
       $scope.chooseRowColumns = {open: 0, row: null};

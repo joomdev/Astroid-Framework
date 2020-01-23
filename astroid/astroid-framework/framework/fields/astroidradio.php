@@ -1,6 +1,4 @@
 <?php
-
-jimport('astroid.framework.helper');
 /**
  * @package   Astroid Framework
  * @author    JoomDev https://www.joomdev.com
@@ -67,9 +65,9 @@ class JFormFieldAstroidRadio extends JFormFieldList {
           'options' => $this->getOptions(),
           'value' => (string) $this->value,
           'fieldname' => $this->fieldname,
-          'ngShow' => AstroidFrameworkHelper::replaceRelationshipOperators($this->element['ngShow']),
-          'ngHide' => AstroidFrameworkHelper::replaceRelationshipOperators($this->element['ngHide']),
-          'ngRequired' => AstroidFrameworkHelper::replaceRelationshipOperators($this->element['ngRequired']),
+          'ngShow' => Astroid\Helper::replaceRelationshipOperators($this->element['ngShow']),
+          'ngHide' => Astroid\Helper::replaceRelationshipOperators($this->element['ngHide']),
+          'ngRequired' => Astroid\Helper::replaceRelationshipOperators($this->element['ngRequired']),
           'images' => $this->element['radio-image'],
           'imageWidth' => $this->element['image-width'],
       );

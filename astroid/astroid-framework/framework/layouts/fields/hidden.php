@@ -46,8 +46,8 @@ extract($displayData);
 $class    = !empty($class) ? ' class="' . $class . '"' : '';
 $disabled = $disabled ? ' disabled' : '';
 $onchange = $onchange ? ' onchange="' . $onchange . '"' : '';
+$id = (empty($id) ? '' : ' id="' . $id . '"');
 ?>
 <input type="hidden" name="<?php
-echo $name; ?>" id="<?php
-echo $id; ?>" value="<?php
-echo htmlspecialchars($value, ENT_COMPAT, 'UTF-8'); ?>"<?php echo $class, $disabled, $onchange; ?> />
+echo $name; ?>" value="<?php
+echo htmlspecialchars($value, ENT_COMPAT, 'UTF-8'); ?>"<?php echo $id; ?><?php echo $class, $disabled, $onchange; ?> />

@@ -7,12 +7,9 @@
  * @license https://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
  */
 defined('JPATH_BASE') or die;
-jimport('astroid.framework.constants');
 
 extract($displayData);
 $value = array_merge($defaults, $value);
-
-$fonts = AstroidFrameworkHelper::getGoogleFonts();
 $font_face = (string) $value['font_face'];
 $alt_font_face = (string) $value['alt_font_face'];
 $font_unit = (string) $value['font_unit'];
@@ -26,29 +23,8 @@ $line_height_unit = (object) $value['line_height_unit'];
 $font_style = (array) $value['font_style'];
 $font_weight = (string) $value['font_weight'];
 $text_transform = (string) $value['text_transform'];
-$options = [];
 $unit_options = ['px', 'em', 'rem', 'pt'];
 $media_types = ['desktop', 'tablet', 'mobile'];
-foreach ($fonts as $font) {
-
-   $variants = [];
-   if (count($font['variants']) > 1) {
-      foreach ($font['variants'] as $v) {
-         if ($v == 'regular') {
-            $variants[] = '400';
-         } else if ($v == 'italic') {
-            $variants[] = '400i';
-         } else {
-            $variants[] = str_replace('talic', '', $v);
-         }
-      }
-   }
-   $value = str_replace(' ', '+', $font['family']);
-   if (!empty($variants)) {
-      $value .= ':' . implode(',', $variants);
-   }
-   $options[$font['category']][$value] = $font['family'];
-}
 ?>
 <div class="row">
    <div class="col-12">
@@ -68,7 +44,7 @@ foreach ($fonts as $font) {
                <label class="astroid-label"><?php echo JText::_('TPL_ASTROID_ALT_FONT_FAMILY_LABEL'); ?></label>
 
                <select data-placeholder="<?php echo JText::_('JGLOBAL_INHERIT'); ?>" name="<?php echo $name; ?>[alt_font_face]" ng-model="<?php echo $id; ?>_alt_font_face" ng-init="<?php echo $id; ?>_alt_font_face = '<?php echo $alt_font_face; ?>'" class="form-control" select-ui>
-                  <?php foreach (AstroidFrameworkConstants::$system_fonts as $s_font_value => $s_font_title) { ?>
+                  <?php foreach (Astroid\Helper\Font::$system_fonts as $s_font_value => $s_font_title) { ?>
                      <option value="<?php echo $s_font_value; ?>"><?php echo $s_font_title; ?></option>
                   <?php } ?>
                </select>
@@ -81,10 +57,10 @@ foreach ($fonts as $font) {
                <select data-typography-field="<?php echo $id; ?>" data-typography-property="font-weight" name="<?php echo $name; ?>[font_weight]" class="form-control" select-ui-div>
                   <option <?php echo ($font_weight == '' ? ' selected' : ''); ?> value=""><?php JText::_('JDEFAULT'); ?></option>
                   <?php
-                     foreach (array(100, 200, 300, 400, 500, 600, 700, 800, 900) as $weight) {
-                        echo '<option ' . ($font_weight == $weight ? ' selected' : '') . ' value="' . $weight . '">' . $weight . '</option>';
-                     }
-                     ?>
+                  foreach (array(100, 200, 300, 400, 500, 600, 700, 800, 900) as $weight) {
+                     echo '<option ' . ($font_weight == $weight ? ' selected' : '') . ' value="' . $weight . '">' . $weight . '</option>';
+                  }
+                  ?>
                </select>
             <?php } ?>
          </div>
@@ -209,10 +185,10 @@ foreach ($fonts as $font) {
                <select data-typography-field="<?php echo $id; ?>" data-typography-property="text-transform" name="<?php echo $name; ?>[text_transform]" class="form-control" select-ui-div>
                   <option <?php echo ($text_transform == '' ? ' selected="selected"' : ''); ?> value="none"><?php echo JText::_('ASTROID_NONE'); ?></option>
                   <?php
-                     foreach (array('uppercase' => 'JGLOBAL_UPPERCASE', 'lowercase' => 'JGLOBAL_LOWERCASE', 'capitalize' => 'JGLOBAL_CAPITALIZE') as $transform => $transform_title) {
-                        echo '<option ' . ($text_transform == $transform ? ' selected="selected"' : '') . ' value="' . $transform . '">' . JText::_($transform_title) . '</option>';
-                     }
-                     ?>
+                  foreach (array('uppercase' => 'JGLOBAL_UPPERCASE', 'lowercase' => 'JGLOBAL_LOWERCASE', 'capitalize' => 'JGLOBAL_CAPITALIZE') as $transform => $transform_title) {
+                     echo '<option ' . ($text_transform == $transform ? ' selected="selected"' : '') . ' value="' . $transform . '">' . JText::_($transform_title) . '</option>';
+                  }
+                  ?>
                </select>
             <?php } ?>
          </div>

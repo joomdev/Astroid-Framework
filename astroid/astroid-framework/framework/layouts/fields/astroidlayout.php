@@ -159,7 +159,7 @@
    var _layout = <?php echo json_encode($options); ?>;
    var AstroidLayoutBuilderElements = [];
 <?php
-$astroidElements = AstroidFrameworkHelper::getAllAstroidElements();
+$astroidElements = Astroid\Helper::getAllAstroidElements();
 
 foreach ($astroidElements as $astroidElement) {
    echo 'AstroidLayoutBuilderElements.push(' . json_encode($astroidElement->getInfo()) . ');';

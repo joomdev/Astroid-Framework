@@ -7,7 +7,6 @@
  * @license https://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
  */
 defined('JPATH_PLATFORM') or die;
-jimport('astroid.framework.astroid');
 
 /**
  * Form Field class for the Joomla Platform.
@@ -15,7 +14,8 @@ jimport('astroid.framework.astroid');
  *
  * @since  11.1
  */
-class JFormFieldAstroidpresets extends JFormField {
+class JFormFieldAstroidpresets extends JFormField
+{
 
    /**
     * The form field type.
@@ -33,17 +33,20 @@ class JFormFieldAstroidpresets extends JFormField {
     *
     * @since   3.7.0
     */
-   public function __get($name) {
+   public function __get($name)
+   {
       return parent::__get($name);
    }
 
-   public function __set($name, $value) {
+   public function __set($name, $value)
+   {
       parent::__set($name, $value);
    }
 
-   protected function getInput() {
-      $temp = AstroidFramework::getTemplate();
-      $presets = $temp->presets;
+   protected function getInput()
+   {
+      $temp = Astroid\Framework::getTemplate();
+      $presets = $temp->getPresets();
       if (!count($presets)) {
          return false;
       }
@@ -65,5 +68,4 @@ class JFormFieldAstroidpresets extends JFormField {
       $html[] = '</div>';
       return implode('', $html);
    }
-
 }

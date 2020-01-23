@@ -259,10 +259,10 @@ class JFormFieldAstroidtext extends JFormField {
           'inputmode' => $inputmode,
           'dirname' => $dirname,
           'options' => $options,
-          'ngShow' => AstroidFrameworkHelper::replaceRelationshipOperators($this->element['ngShow']),
-          'ngHide' => AstroidFrameworkHelper::replaceRelationshipOperators($this->element['ngHide']),
+          'ngShow' => Astroid\Helper::replaceRelationshipOperators($this->element['ngShow']),
+          'ngHide' => Astroid\Helper::replaceRelationshipOperators($this->element['ngHide']),
           'ngModel' => $this->element['ngModel'],
-          'ngRequired' => AstroidFrameworkHelper::replaceRelationshipOperators($this->element['ngRequired']),
+          'ngRequired' => Astroid\Helper::replaceRelationshipOperators($this->element['ngRequired']),
           'isSwitch' => $this->element['astroid-switch'] == true ? 1 : 0,
       );
 

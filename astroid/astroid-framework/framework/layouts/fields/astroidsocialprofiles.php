@@ -6,7 +6,6 @@
  * @license https://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
  */
 defined('JPATH_BASE') or die;
-jimport('astroid.framework.constants');
 extract($displayData);
 
 if (empty($value)) {
@@ -14,7 +13,7 @@ if (empty($value)) {
 }else{
    $value = \json_decode($value, true);
    $profile_icons = [];
-   foreach(AstroidFrameworkConstants::$social_profiles as $profile){
+   foreach(Astroid\Helper\Constants::$social_profiles as $profile){
       $profile_icons[$profile['title']] = $profile['icons'];
    }
 
@@ -29,7 +28,7 @@ if (empty($value)) {
 
 ?>
 <script>
-   var AstroidSocialProfiles = <?php echo json_encode(AstroidFrameworkConstants::$social_profiles); ?>;
+   var AstroidSocialProfiles = <?php echo json_encode(Astroid\Helper\Constants::$social_profiles); ?>;
    var AstroidSocialProfilesSelected = <?php echo $value; ?>;
 </script>
 <div class="astroidsocialprofiles" astroidsocialprofiles>

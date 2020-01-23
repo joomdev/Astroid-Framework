@@ -70,7 +70,8 @@ if (isset($isSwitch) && $isSwitch) {
    $attributes[] = 'astroid-switch';
    $inputType = 'hidden';
 }
+$id = (empty($id) ? '' : ' id="' . $id . '"');
 ?>
-<input type="<?php echo $inputType; ?>" name="<?php echo $name; ?>" id="<?php echo $id; ?>" value="<?php echo htmlspecialchars($value, ENT_COMPAT, 'UTF-8'); ?>" <?php echo (isset($colorpicker) && $colorpicker === true) ? 'color-picker' : ''; ?> <?php echo implode(' ', $attributes); ?> />
+<input type="<?php echo $inputType; ?>" name="<?php echo $name; ?>"<?php echo $id; ?> value="<?php echo htmlspecialchars($value, ENT_COMPAT, 'UTF-8'); ?>" <?php echo (isset($colorpicker) && $colorpicker === true) ? 'color-picker' : ''; ?> <?php echo implode(' ', $attributes); ?> />
 <?php if (isset($colorpicker) && $colorpicker === true && !empty($sassVariable)) { ?>
 <?php } ?>

@@ -6,7 +6,6 @@
  * @license https://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
  */
 defined('JPATH_PLATFORM') or die;
-jimport('astroid.framework.constants');
 
 /**
  * Form Field class for the Joomla Platform.
@@ -33,7 +32,7 @@ class JFormFieldAstroidpreloadersFont extends JFormField {
     * @since   3.7.0
     */
    protected function getInput() {
-      $selected = AstroidFrameworkConstants::$preloadersFont['spinner'];
+      $selected = Astroid\Helper\Constants::$preloadersFont['spinner'];
       if (empty($this->value)) {
          $this->value = $selected['name'];
       }
@@ -47,7 +46,7 @@ class JFormFieldAstroidpreloadersFont extends JFormField {
       $html .= '<div class="body">';
       $html .= '<div class="">';
 
-      foreach (AstroidFrameworkConstants::$preloadersFont as $preloader) {
+      foreach (Astroid\Helper\Constants::$preloadersFont as $preloader) {
          $html .= '<div class="astroid-preloader-select" data-value="' . $preloader['name'] . '"><div class="astroid-preloader-select-inner">';
          $html .= $preloader['code'];
          $html .= '</div></div>';

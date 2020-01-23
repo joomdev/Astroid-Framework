@@ -228,12 +228,6 @@ var AstroidAdmin = function AstroidAdmin() {
          $('body, html').animate({
             scrollTop: 2
          }, 0);
-
-         if (ASTROID_IS_MOBILE) {
-            if ($(e.target).siblings('.sidebar-submenu').children('li').length < 2) {
-               Admin.toggleSidebar();
-            }
-         }
       });
    };
 
@@ -575,7 +569,7 @@ var AstroidAdmin = function AstroidAdmin() {
             dataType: 'json',
             url: BASE_URL + 'index.php?option=com_ajax&astroid=clear-cache&template=' + TEMPLATE_NAME,
             success: function success(response) {
-               _this.notify(response.message, response.status);
+               _this.notify(response.data.message, response.status);
                $.ajax({
                   method: "GET",
                   dataType: 'json',
@@ -583,7 +577,7 @@ var AstroidAdmin = function AstroidAdmin() {
                   success: function success(response) {
                      $('#clear-cache').removeClass('d-none');
                      $('#clearing-cache').addClass('d-none');
-                     _this.notify(response.message, response.status);
+                     _this.notify(response.data.message, response.status);
                   }
                });
             }
@@ -662,27 +656,32 @@ var AstroidAdmin = function AstroidAdmin() {
 
    // Main
    this.init = function () {
-      // scrollbar
-      this.initScroll();
-      this.initScrollSpy();
+      if (typeof IS_MANAGER !== 'undefined' && IS_MANAGER !== undefined && IS_MANAGER === false) {
+         return;
+      }
+      try {
+         // scrollbar
+         this.initScroll();
+         this.initScrollSpy();
 
-      // sidebar
-      this.initSidebar();
-      this.initTabs();
+         // sidebar
+         this.initSidebar();
+         this.initTabs();
 
-      // form
-      this.initForm();
-      this.watchForm();
-      this.initClearCache();
+         // form
+         this.initForm();
+         this.watchForm();
+         this.initClearCache();
 
-      // Pop
-      this.initPop();
+         // Pop
+         this.initPop();
 
-      // fields
-      this.initSelect();
-      this.initSelectGrouping();
-      //this.initAnimationSelector();
-      //this.initColorPicker();
+         // fields
+         this.initSelect();
+         this.initSelectGrouping();
+         //this.initAnimationSelector();
+         //this.initColorPicker();
+      } catch (e) {}
    };
 
    this.load = function () {

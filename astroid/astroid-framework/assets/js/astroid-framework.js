@@ -602,7 +602,7 @@ astroidFramework.directive("astroidSwitch", function () {
          };
          $scope.$watch($attr["ngModel"], updateElementFromModel);
          var _id = $element.attr("id");
-         $element.attr("id", "");
+         $element.removeAttr("id")
          $element.wrap("<div/>");
          var _container = $element.parent("div");
          $(_container).append('<div class="custom-control custom-toggle"><input type="checkbox" id="' + _id + '" class="custom-control-input" /><label class="custom-control-label" for="' + _id + '"></label></div>');

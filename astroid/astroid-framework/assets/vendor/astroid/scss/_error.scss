@@ -1,0 +1,9 @@
+.btn-backtohome {
+	@extend .btn-primary;
+}
+
+.error-page {
+	height: 100vh;
+	display: flex;
+	align-items: center;
+}

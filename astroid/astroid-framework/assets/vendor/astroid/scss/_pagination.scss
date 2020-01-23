@@ -1,0 +1,32 @@
+.pagination{
+	justify-content: center;
+	.page-item:first-child .page-link,
+	.page-item:last-child .page-link	{
+		border-radius: 0;
+	}
+}
+
+ul.pagenav {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+	text-align: center;
+	overflow: hidden;
+	li {
+		display: inline-block;
+		a {
+			padding: $nav-link-padding-y $nav-link-padding-x;
+			line-height: $line-height-base;
+			background-color: $white;
+			border: 1px solid #dee2e6;
+			border-radius: $border-radius;
+			display: block;
+		}
+		&.previous {
+			float: left;
+		}
+		&.next {
+			float: right;
+		}
+	}
+}

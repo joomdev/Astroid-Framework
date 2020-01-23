@@ -77,8 +77,8 @@ $active = false;
                               if ($field->type == 'layout' || $field->type == 'astroidheading' || $field->type == 'Hidden') {
                                  echo $field->input;
                               } else {
-                                 $ngHide = AstroidFrameworkHelper::replaceRelationshipOperators($field->getAttribute('ngHide'));
-                                 $ngShow = AstroidFrameworkHelper::replaceRelationshipOperators($field->getAttribute('ngShow'));
+                                 $ngHide = Astroid\Helper::replaceRelationshipOperators($field->getAttribute('ngHide'));
+                                 $ngShow = Astroid\Helper::replaceRelationshipOperators($field->getAttribute('ngShow'));
                                  ?>
                                  <div<?php echo!empty($ngHide) ? ' ng-hide="' . $ngHide . '"' : ''; ?><?php echo!empty($ngShow) ? ' ng-show="' . $ngShow . '"' : ''; ?> class="form-group">
                                     <div class="row">

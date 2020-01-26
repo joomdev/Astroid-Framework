@@ -12,7 +12,6 @@
 defined('_JEXEC') or die;
 extract($displayData);
 
-$article = $params['article'];
 $params = $article->params;
 $heading = $params->get('astroid_article_review_heading', '');
 $summery = $params->get('astroid_article_review_summery', '');

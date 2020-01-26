@@ -32,7 +32,7 @@ $mediaVersion = Astroid\Helper::joomlaMediaVersion();
     <script>
         var SITE_URL = '<?php echo \JURI::root(); ?>';
         var BASE_URL = '<?php echo \JURI::root(); ?>administrator/';
-        var TEMPLATE_NAME = '<?php echo $template->template; ?>';
+        var TEMPLATE_NAME = '<?php echo $template->template; ?>-<?php echo $template->id; ?>';
         var SYSTEM_FONTS = <?php echo json_encode(array_keys(Astroid\Helper\Font::$system_fonts)); ?>;
         var LIBRARY_FONTS = <?php echo json_encode(array_keys(Astroid\Helper\Font::getUploadedFonts($template->template))); ?>;
         var TEMPLATE_PRESETS = <?php echo \json_encode($template->getPresets()); ?>;

@@ -46,13 +46,8 @@ class Head
     {
         $styles = '';
         $document = Framework::getDocument();
-        if (Framework::isSite()) {
-            $document->astroidCSS();
-            $document->addStylesheet('css/compiled-' . ASTROID_TEMPLATE_CSS_VERSION . '.css');
-        } else {
-            $styles = '<style type="text/css">' . $document->renderCss() . '</style>';
-        }
         $document->loadFontAwesome();
+        $styles .= $document->astroidCSS();
         return $styles;
     }
 }

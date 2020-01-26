@@ -9,7 +9,7 @@
 defined('_JEXEC') or die;
 jimport('astroid.framework.article');
 jimport('astroid.framework.template');
-$template = new AstroidFrameworkTemplate(JFactory::getApplication()->getTemplate(true));
+$template = Astroid\Framework::getTemplate();
 // Astroid Article/Blog
 $astroidArticle = new AstroidFrameworkArticle($this->item, true);
 // Create a shortcut for params.

@@ -11,7 +11,6 @@
 // No direct access.
 defined('_JEXEC') or die;
 extract($displayData);
-$items = $params['items'];
 if (empty($items)) {
    return;
 }

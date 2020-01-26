@@ -11,6 +11,8 @@ namespace Astroid;
 
 defined('_JEXEC') or die;
 
+require_once __DIR__ . '/../vendor/autoload.php';
+
 \JModelLegacy::addIncludePath(JPATH_ADMINISTRATOR . '/components/com_cache/models', 'CacheModel');
 
 class Helper
@@ -107,6 +109,23 @@ class Helper
         return \json_decode($json, true);
     }
 
+    public static function createDir($dir)
+    {
+        $dir = pathinfo($dir)['dirname'];
+        $dirs = [];
+        while (!file_exists($dir)) {
+            $dirs[] = $dir;
+            $dir = pathinfo($dir)['dirname'];
+        }
+        if (empty($dirs)) {
+            return;
+        }
+        $dirs = array_reverse($dirs);
+        foreach ($dirs as $dir) {
+            mkdir($dir, 0777);
+        }
+    }
+
     public static function getXml($url)
     {
         return simplexml_load_file($url, 'SimpleXMLElement');
@@ -131,7 +150,6 @@ class Helper
         if (!file_exists($template_dir)) {
             throw new \Exception("Template not found.", 404);
         }
-
         if (is_array($prefix)) {
             foreach ($prefix as $pre) {
                 $styles = preg_grep('~^' . $pre . '-.*\.(css)$~', scandir($template_dir));
@@ -145,15 +163,12 @@ class Helper
                 unlink($template_dir . '/' . $style);
             }
         }
-
-        $document = Framework::getDocument();
-        self::clearJoomlaCache();
         return true;
     }
 
     public static function clearJoomlaCache()
     {
-        /* $app = \JFactory::getApplication();
+        $app = \JFactory::getApplication();
         $model = \JModelLegacy::getInstance('Cache', 'CacheModel', array('ignore_request' => true));
         $clients    = array(1, 0);
         foreach ($clients as $client) {
@@ -162,7 +177,21 @@ class Helper
                 $mCache->clean($cache->group);
             }
         }
-        $app->triggerEvent('onAfterPurge', array()); */
+        $app->triggerEvent('onAfterPurge', array());
+    }
+
+    public static function getFileHash($file)
+    {
+        $content = file_get_contents($file);
+        $content = str_replace(array("\n", "\r"), "", $content);
+        return md5($content);
+    }
+
+    public static function putContents($file, $content)
+    {
+        Framework::getReporter('Logs')->add('Saved Cached to <code>' . str_replace(JPATH_SITE . '/', '', $file) . '</code>');
+        self::createDir($file);
+        file_put_contents($file, $content);
     }
 
     public static function minifyCSS($css)
@@ -253,11 +282,6 @@ class Helper
             $xmlfile = $element_dir . '/' . (str_replace($template_elements_dir, '', str_replace($elements_dir, '', $element_dir))) . '.xml';
             if (file_exists($xmlfile)) {
                 $type = str_replace($template_elements_dir, '', str_replace($elements_dir, '', $element_dir));
-
-                $template = new \stdClass();
-                $template->template = ASTROID_TEMPLATE_NAME;
-                $template->params = new \stdClass();
-                $template = Framework::getTemplate();
                 $element = new \AstroidElement($type, [], $template);
                 $return[] = $element;
             }
@@ -281,8 +305,51 @@ class Helper
 
     public static function frameworkVersion()
     {
+        Framework::getDebugger()->log('Getting Framework Version');
         $xml = self::getXML(JPATH_ADMINISTRATOR . '/manifests/libraries/astroid.xml');
         $version = (string) $xml->version;
+        Framework::getDebugger()->log('Getting Framework Version');
         return $version;
+    }
+
+    public static function templateVersion($template)
+    {
+        Framework::getDebugger()->log('Getting Template Version');
+        $xml = self::getXML(JPATH_SITE . "/templates/{$template}/templateDetails.xml");
+        $version = (string) $xml->version;
+        Framework::getDebugger()->log('Getting Template Version');
+        return $version;
+    }
+
+    public static function debug()
+    {
+        $reporters = Framework::getReporters();
+        if (empty($reporters)) {
+            return;
+        }
+        $tabs = [];
+        $contents = [];
+        $active = true;
+        foreach ($reporters as $reporter) {
+            if (empty($reporter->reports)) {
+                continue;
+            }
+            $tabs[] = '<li class="nav-item"><a class="nav-link' . ($active ? ' active' : '') . '" id="' . $reporter->id . '-tab" data-toggle="tab" href="#' . $reporter->id . '" role="tab" aria-controls="' . $reporter->id . '" aria-selected="' . ($active ? ' active' : '') . '">' . $reporter->title . '</a></li>';
+            $content = '<div class="tab-pane fade' . ($active ? ' show active' : '') . '" id="' . $reporter->id . '" role="tabpanel" aria-labelledby="' . $reporter->id . '-tab"><div>';
+            foreach ($reporter->reports as $report) {
+                $content .= '<div class="astroid-reporter-item">' . $report . '</div>';
+            }
+            $content .= '</div></div>';
+            $contents[] = $content;
+            $active = false;
+        }
+
+        if (empty($tabs)) {
+            return;
+        }
+
+        $html = '';
+        $html .= '<div id="astroid-reporter" class="active"><div class="astroid-reporter-heading">Astroid Framework</div><ul class="nav nav-tabs" role="tablist">' . implode('', $tabs) . '</ul><div class="tab-content">' . implode('', $contents) . '</div></div>';
+        return $html;
     }
 }

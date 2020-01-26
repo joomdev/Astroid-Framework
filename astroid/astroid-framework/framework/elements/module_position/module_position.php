@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @package   Astroid Framework
  * @author    JoomDev https://www.joomdev.com
@@ -12,4 +13,14 @@
 // No direct access.
 defined('_JEXEC') or die;
 extract($displayData);
-echo Astroid\Framework::getDocument()->position($params->get('position', ''));
+$position = $params->get('position', '');
+if (empty($position)) {
+    return;
+}
+
+echo Astroid\Framework::getDocument()->_positionContent($position, 'before');
+$modules = \JModuleHelper::getModules($position);
+if (count($modules)) {
+    echo '<jdoc:include type="modules" name="' . $position . '" style="astroidxhtml" />';
+}
+echo Astroid\Framework::getDocument()->_positionContent($position, 'after');

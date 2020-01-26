@@ -191,10 +191,20 @@
          <field astroidgroup="lazyloadgroup" name="lazyload_exclude_views" type="astroidtextarea" label="Excluded Template Views" class="form-control" ngShow="lazyload==1" description="TPL_ASTROID_LAZYLOAD_COMPONENT_SELECTION_DESC">
          </field>
 
-         <field astroidgroup="minifygroup" name="minify_js" type="astroidtext" astroid-switch="true" default="0" label="Minify JS" description="Combine javascript files into one.">
+         <field astroidgroup="minifygroup" description="" title="CSS Minify" type="astroidheading" />
+
+         <field astroidgroup="minifygroup" name="minify_css" type="astroidtext" astroid-switch="true" default="0" label="Minify CSS" description="Minify &amp; combine all CSS.">
          </field>
 
-         <field astroidgroup="minifygroup" name="minify_css" type="astroidtext" astroid-switch="true" default="0" label="Minify CSS" description="Combine CSS files into one.">
+         <field astroidgroup="minifygroup" name="minify_js" type="astroidtext" astroid-switch="true" default="0" label="Minify JS" description="Minify &amp; combine all JS.">
+         </field>
+
+         <field astroidgroup="minifygroup" name="minify_html" type="astroidtext" astroid-switch="true" default="0" label="Minify HTML" description="">
+         </field>
+
+         <field astroidgroup="minifygroup" name="minify_html_level" type="astroidradio" label="HTML Minify Level" description="" default="basic" ngShow="minify_html=='1'">
+            <option value="basic">Basic</option>
+            <option value="advanced">Advanced</option>
          </field>
       </fieldset>
    </fields>

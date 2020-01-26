@@ -17,6 +17,7 @@ class LazyLoad
 {
     public static function run()
     {
+        Framework::getDebugger()->log('Lazy Load');
         $app = \JFactory::getApplication();
         $template = Framework::getTemplate();
         $params = $template->getParams();
@@ -78,13 +79,14 @@ class LazyLoad
                         }
                     }
                 }
-
+                Framework::getReporter('Lazy Load Images')->add('<a href="' . $matches[1][$key] . '" target="_blank"><code>' . Framework::getDocument()->beutifyURL($matches[1][$key]) . '</code></a>');
                 $matchLazy = str_replace('src=', 'src="' . $blankImage . '" data-astroid-lazyload=', $match);
 
                 $body = str_replace($matches[0][$key], $matchLazy, $body);
             }
 
             $app->setBody($body);
+            Framework::getDebugger()->log('Lazy Load');
         }
     }
 

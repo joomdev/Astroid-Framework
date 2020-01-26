@@ -12,7 +12,6 @@
 defined('_JEXEC') or die;
 extract($displayData);
 
-$article = $params['article'];
 $params = $article->params;
 $items = $params->get('astroid_article_gallery_items', []);
 if (empty($items)) {

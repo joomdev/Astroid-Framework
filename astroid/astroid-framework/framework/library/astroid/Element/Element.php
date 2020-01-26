@@ -24,13 +24,10 @@ class Element extends BaseElement
         parent::__construct($data);
     }
 
-    public function render($wrap)
+    public function render()
     {
         $this->_decorateSection();
         $this->content = $this->_content();
-        if (!$wrap) {
-            return $this->content;
-        }
         return $this->wrap();
     }
 

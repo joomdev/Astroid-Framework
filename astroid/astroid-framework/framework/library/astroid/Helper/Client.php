@@ -147,4 +147,36 @@ class Client
             \JFactory::getApplication()->redirect(\JRoute::_('index.php?ast=' . urlencode(base64_encode($return))));
         }
     }
+
+    public function onContentPrepareForm($form, $data)
+    {
+        $astroid_dir = 'libraries/astroid';
+        \JForm::addFormPath(JPATH_SITE . '/' . $astroid_dir . '/framework/forms');
+        if ($form->getName() == 'com_menus.item') {
+            $form->loadFile('menu', false);
+            $form->loadFile('banner', false);
+            $form->loadFile('og', false);
+        }
+
+        if ($form->getName() == 'com_content.article') {
+            $form->loadFile('article', false);
+            $form->loadFile('blog', false);
+            $form->loadFile('opengraph', false);
+        }
+
+        if ($form->getName() == 'com_categories.categorycom_content') {
+            $form->loadFile('category_blog', false);
+        }
+
+        if ($form->getName() == 'com_menus.item' && (isset($data->request['option']) && $data->request['option'] == 'com_content') && (isset($data->request['view']) && $data->request['view'] == 'category') && (isset($data->request['layout']) && $data->request['layout'] == 'blog')) {
+            $form->loadFile('menu_blog', false);
+        }
+        if ($form->getName() == 'com_menus.item' && (isset($data->request['option']) && $data->request['option'] == 'com_content') && (isset($data->request['view']) && $data->request['view'] == 'featured')) {
+            $form->loadFile('menu_blog', false);
+        }
+
+        if ($form->getName() == 'com_users.user' || $form->getName() == 'com_admin.profile') {
+            $form->loadFile('author', false);
+        }
+    }
 }

@@ -27,7 +27,7 @@ class AstroidFrameworkArticle
       $this->article->params->merge($attribs);
 
       $this->type = $this->article->params->get('astroid_article_type', 'regular');
-      $this->template = AstroidFramework::getTemplate();
+      $this->template = Astroid\Framework::getTemplate();
 
       $mainframe = JFactory::getApplication();
       $this->params = new JRegistry();
@@ -131,7 +131,7 @@ class AstroidFrameworkArticle
       if ($this->type == 'regular') {
          return false;
       }
-      $this->template->loadLayout('blog.' . $this->type, true, ['article' => $this->article]);
+      Astroid\Framework::getDocument()->include('blog.' . $this->type, ['article' => $this->article]);
    }
 
    // Read Time
@@ -139,7 +139,7 @@ class AstroidFrameworkArticle
    {
       if ($this->showReadTime()) {
          $this->article->readtime = $this->calculateReadTime($this->article->fulltext);
-         $this->template->loadLayout('blog.modules.readtime', true, ['article' => $this->article]);
+         Astroid\Framework::getDocument()->include('blog.modules.readtime', ['article' => $this->article]);
       }
    }
 
@@ -166,7 +166,7 @@ class AstroidFrameworkArticle
    public function renderSocialShare()
    {
       if ($this->showSocialShare()) {
-         $this->template->loadLayout('blog.modules.social', true, ['article' => $this->article]);
+         Astroid\Framework::getDocument()->include('blog.modules.social', ['article' => $this->article]);
       }
    }
 
@@ -188,7 +188,7 @@ class AstroidFrameworkArticle
    public function renderComments()
    {
       if ($this->showComments()) {
-         $this->template->loadLayout('blog.modules.comments', true, ['article' => $this->article]);
+         Astroid\Framework::getDocument()->include('blog.modules.comments', ['article' => $this->article]);
       }
    }
 
@@ -221,7 +221,7 @@ class AstroidFrameworkArticle
          $params = new JRegistry();
          $params->loadArray(['maximum' => $count]);
          $items = ModRelatedItemsHelper::getList($params);
-         $this->template->loadLayout('blog.modules.related', true, ['items' => $items]);
+         Astroid\Framework::getDocument()->include('blog.modules.related', ['items' => $items]);
       }
    }
 
@@ -240,7 +240,7 @@ class AstroidFrameworkArticle
    public function renderAuthorInfo()
    {
       if ($this->showAuthorInfo()) {
-         $this->template->loadLayout('blog.modules.author_info', true, ['article' => $this->article]);
+         Astroid\Framework::getDocument()->include('blog.modules.author_info', ['article' => $this->article]);
       }
    }
 
@@ -259,7 +259,7 @@ class AstroidFrameworkArticle
    public function renderArticleBadge()
    {
       if ($this->showArticleBadge()) {
-         $this->template->loadLayout('blog.modules.badge', true, ['article' => $this->article]);
+         Astroid\Framework::getDocument()->include('blog.modules.badge', ['article' => $this->article]);
       }
    }
 
@@ -286,7 +286,7 @@ class AstroidFrameworkArticle
    public function renderPostTypeIcon()
    {
       if ($this->showPostTypeIcon()) {
-         $this->template->loadLayout('blog.modules.posttype', true, ['article' => $this->article]);
+         Astroid\Framework::getDocument()->include('blog.modules.posttype', ['article' => $this->article]);
       }
    }
 

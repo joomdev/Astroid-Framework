@@ -13,57 +13,81 @@ defined('_JEXEC') or die;
 
 class Template
 {
-    protected $jtemplate = null;
     public $template = null;
+    public $isAstroid = false;
     public $language = '';
     public $direction = '';
     public $id = 0;
-    protected $params = null;
+    public $hash = '';
+    public $params = null;
     protected static $presets = null;
     protected static $fonts = null;
 
-    public function __construct($id = null)
+    public function __construct()
     {
-        if ($id === null) {
-            $this->jtemplate = \JFactory::getApplication()->getTemplate(true);
-        } else {
-            $this->jtemplate = $this->_getById($id);
-        }
+        $jtemplate = \JFactory::getApplication()->getTemplate(true);
+        $this->template = $jtemplate->template;
 
-        $this->template = $this->jtemplate->template;
         $this->language = \JFactory::getLanguage()->getTag();
         $this->direction = \JFactory::getLanguage()->isRtl() ? 'rtl' : 'ltr';
 
-        $this->title = isset($this->jtemplate->title) ? $this->jtemplate->title : '';
-        if (!defined('ASTROID_TEMPLATE_NAME')) {
-            define('ASTROID_TEMPLATE_NAME', $this->template);
-        }
-        $this->params = new \JRegistry();
-        $this->_ID();
-        $this->loadParams();
-        if (Framework::isAdmin()) {
-            $this->version = $this->_version();
-            $this->astroidVersion = Helper::frameworkVersion();
-        }
-    }
+        $this->params = $jtemplate->params;
+        $this->title = '';
 
-    protected function _version()
-    {
-        $xml = Helper::getXML(JPATH_SITE . "/templates/{$this->template}/templateDetails.xml");
-        $version = (string) $xml->version;
-        return $version;
-    }
+        if (Framework::isSite()) {
+            $this->_set($jtemplate->id);
+        } else if (Framework::isAdmin()) {
+            $app = \JFactory::getApplication();
+            $option = $app->input->get('option', '');
+            $view = $app->input->get('view', '');
+            $layout = $app->input->get('layout', '');
+            $astroid = $app->input->get('astroid', '');
+            $template = $app->input->get('template', '');
+            $id = $app->input->get('id', '', 'INT');
 
-    protected function _ID()
-    {
-        if (!isset($this->jtemplate->id) || empty($this->jtemplate->id)) {
-            $astId = $this->jtemplate->params->get('astroid', 0);
-            if (!empty($astId)) {
-                $this->id = $astId;
+            if ($option == 'com_ajax' && $astroid == 'manager' && !empty($id)) {
+                $this->_upload($id);
+            } else if ($option == 'com_templates' && $view == 'style' && $layout == 'edit' && !empty($id)) {
+                $this->_upload($id);
+            } else if ($option == 'com_ajax' && !empty($astroid) && !empty($template)) {
+                list($template, $id) = explode('-', $template);
+                if (!empty($id)) {
+                    $this->_upload($id);
+                }
             }
-        } else {
-            $this->id = $this->jtemplate->id;
         }
+    }
+
+    private function _set($id)
+    {
+        $this->id = $id;
+        $path = JPATH_SITE . "/templates/{$this->template}/params/" . $this->id . '.json';
+        if (file_exists($path)) {
+            $json = file_get_contents($path);
+            $this->params->loadString($json, 'JSON');
+            $this->hash = md5($this->params->toString() . $this->id);
+            $this->isAstroid = true;
+        } else if (!empty($this->params->get('astroid', 0))) {
+            Helper\Template::setTemplateDefaults($this->template, $this->id);
+            $json = file_get_contents($path);
+            $this->params->loadString($json, 'JSON');
+            $this->hash = md5($this->params->toString() . $this->id);
+            $this->isAstroid = true;
+        }
+        if ($this->isAstroid) {
+            define('ASTROID_TEMPLATE_NAME', $this->template);
+            Helper::loadLanguage('astroid');
+        }
+    }
+
+    private function _upload($id)
+    {
+        $object = $this->_getById($id);
+
+        $this->template = $object->template;
+        $this->title = $object->title;
+        $this->_set($id);
+        $this->version = Helper::templateVersion($this->template);
     }
 
     public function getParams()
@@ -128,17 +152,13 @@ class Template
         return $variables;
     }
 
-    protected function _getById($id)
+    private function _getById($id)
     {
         $db = \JFactory::getDbo();
         $query = "SELECT `template`,`id`,`title` FROM `#__template_styles` WHERE `id`='$id'";
         $db->setQuery($query);
         $result = $db->loadObject();
-        if (!empty($result)) {
-            return $result;
-        } else {
-            return \JFactory::getApplication()->getTemplate(true);
-        }
+        return $result;
     }
 
     protected function _getPresets()

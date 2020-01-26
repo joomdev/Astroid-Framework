@@ -12,7 +12,6 @@
 defined('_JEXEC') or die;
 extract($displayData);
 
-$article = $params['article'];
 $params = $article->params;
 $source = $params->get('astroid_article_audio_source', 'soundcloud');
 $soundcloud = $params->get('astroid_article_audio_soundcloud', '');

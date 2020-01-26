@@ -9,6 +9,8 @@
 
 namespace Astroid\Helper;
 
+use Astroid\Helper;
+
 defined('_JEXEC') or die;
 
 class Media
@@ -197,18 +199,8 @@ class Media
         $media = $input->get('media', '', 'images');
 
         if (empty($dir)) {
-            $dir = JPATH_SITE . '/' . 'images' . '/' . date('Y');
-            if (!file_exists($dir)) {
-                mkdir($dir, 0777);
-            }
-            if (!file_exists($dir . '/' . date('m'))) {
-                mkdir($dir . '/' . date('m'), 0777);
-            }
-            if (!file_exists($dir . '/' . date('m') . '/' . date('d'))) {
-                mkdir($dir . '/' . date('m') . '/' . date('d'), 0777);
-            }
-
-            $uploadDir = $dir . '/' . date('m') . '/' . date('d');
+            $uploadDir = JPATH_SITE . '/' . 'images' . '/' . date('Y') . '/' . date('m') . '/' . date('d');
+            Helper::createDir($uploadDir);
             $uploadFolder = date('Y') . '/' . date('m') . '/' . date('d');
         } else {
             $uploadDir = JPATH_SITE . '/' . $dir;

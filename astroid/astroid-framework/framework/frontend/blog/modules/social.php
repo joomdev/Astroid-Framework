@@ -12,7 +12,8 @@
 defined('_JEXEC') or die;
 extract($displayData);
 
-$article = $params['article'];
+$template = Astroid\Framework::getTemplate();
+
 $params = $article->params;
 $type = $template->params->get('article_socialshare_type', 'none');
 if ($type == 'none') {

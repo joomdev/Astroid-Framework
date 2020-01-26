@@ -30,10 +30,6 @@ $this->setHtml5(true);
    <?php $document->include('document.body'); ?>
    <!-- body and layout -->
    <astroid:include type="body-scripts" /> <!-- body scripts -->
-   <div>
-      <astroid:include type="debug" /> <!-- astroid debug -->
-      <jdoc:include type="modules" name="debug" /> <!-- joomla debug -->
-   </div>
 </body> <!-- document body -->
 
 </html> <!-- document end -->

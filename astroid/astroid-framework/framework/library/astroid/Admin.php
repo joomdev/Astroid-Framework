@@ -15,17 +15,21 @@ defined('_JEXEC') or die;
 
 class Admin extends Helper\Client
 {
+    public function onAfterRender()
+    {
+        $this->addTemplateLabels();
+    }
+
     protected function save()
     {
         $this->checkAuth();
         $app = \JFactory::getApplication();
 
         $params = $app->input->post->get('params', array(), 'RAW');
-        $template_id = $app->input->get('id', NULL, 'INT');
-        $template_name = $app->input->get('template', NULL, 'RAW');
+        $template = Framework::getTemplate();
 
         $params = \json_encode($params);
-        file_put_contents(JPATH_SITE . "/templates/{$template_name}/params" . '/' . $template_id . '.json', $params);
+        Helper::putContents(JPATH_SITE . "/templates/{$template->template}/params" . '/' . $template->id . '.json', $params);
 
         Helper::refreshVersion();
 
@@ -63,34 +67,38 @@ class Admin extends Helper\Client
 
     protected function icons()
     {
-        $return = ['success' => true];
-        $return['results'] = Helper\Font::fontAwesomeIcons(true);
-        return $return;
+        if ($this->format == 'html') {
+            $this->format = 'json';
+            $return = ['success' => true];
+            $return['results'] = Helper\Font::fontAwesomeIcons(true);
+            $this->response($return);
+        } else {
+            $this->response(Helper\Font::fontAwesomeIcons());
+        }
     }
 
     protected function manager()
     {
+        $this->format = 'html'; // Response Format
         $document = Framework::getDocument();
 
-        Framework::getDebugger()->log('forms');
+        Framework::getDebugger()->log('Loading Forms');
         $form = Framework::getForm();
         $form->loadOptions(JPATH_LIBRARIES . '/astroid/framework/options');
         $form->loadOptions(ASTROID_TEMPLATE_PATH . '/astroid/options');
-        Framework::getDebugger()->log('forms');
+        Framework::getDebugger()->log('Loading Forms');
 
-        $this->format = 'html'; // Response Format
         $this->checkAndRedirect(); // Auth
 
-        $app = \JFactory::getApplication();
-        $id = $app->input->get('id', NULL, 'INT');
-        $template = Framework::getTemplate($id);
+        $template = Framework::getTemplate();
+        $form->loadParams($template->getParams());
 
-        Framework::getDebugger()->log('langauges');
+        Framework::getDebugger()->log('Loading Languages');
         Helper::loadLanguage('astroid');
         Helper::loadLanguage('tpl_' . ASTROID_TEMPLATE_NAME);
         Helper::loadLanguage(ASTROID_TEMPLATE_NAME);
         Helper::loadLanguage('mod_menu');
-        Framework::getDebugger()->log('langauges');
+        Framework::getDebugger()->log('Loading Languages');
 
         // scripts
         $scripts = ['vendor/jquery/jquery-3.2.1.min.js', 'vendor/jquery/jquery.cookie.js', 'vendor/bootstrap/js/popper.min.js', 'vendor/bootstrap/js/bootstrap.min.js', 'vendor/spectrum/spectrum.js', 'vendor/ace/1.3.3/ace.js', 'vendor/dropzone/dropzone.min.js', 'vendor/moment/moment.min.js', 'vendor/moment/moment-timezone.min.js', 'vendor/moment/moment-timezone-with-data-2012-2022.min.js', 'vendor/bootstrap/js/bootstrap-datetimepicker.min.js', 'vendor/bootstrap-slider/js/bootstrap-slider.min.js', 'vendor/angular/angular.min.js', 'vendor/angular/angular-animate.js', 'vendor/angular/sortable.min.js', 'vendor/angular/angular-legacy-sortable.js', 'js/parsley.min.js', 'js/notify.min.js', 'js/jquery.hotkeys.js', 'js/jquery.nicescroll.min.js', 'vendor/semantic-ui/components/transition.min.js', 'vendor/semantic-ui/components/api.min.js', 'vendor/semantic-ui/components/dropdown.min.js', 'js/astroid.min.js'];
@@ -103,11 +111,12 @@ class Admin extends Helper\Client
 
         Helper::triggerEvent('onBeforeAstroidAdminRender', [&$template]);
 
-        Framework::getDebugger()->log('manager');
+        Framework::getDebugger()->log('Getting Manager');
         $layout = new \JLayoutFile('manager.index', ASTROID_LAYOUTS);
         $html = $layout->render();
-        Framework::getDebugger()->log('manager');
-        $this->response(Includer::run($html));
+        $html = Includer::run($html);
+        Framework::getDebugger()->log('Getting Manager');
+        $this->response($html);
     }
 
     protected function auditor()
@@ -135,7 +144,7 @@ class Admin extends Helper\Client
 
     protected function clearCache()
     {
-        $template = \JFactory::getApplication()->input->get->get('template', '', 'RAW');
+        $template = Framework::getTemplate()->template;
         Helper::clearCacheByTemplate($template);
         $this->response(['message' => \JText::_('TPL_ASTROID_SYSTEM_MESSAGES_CACHE')]);
     }
@@ -149,6 +158,12 @@ class Admin extends Helper\Client
     public function addTemplateLabels()
     {
         $app = \JFactory::getApplication();
+        $option = $app->input->get('option', '');
+        $view = $app->input->get('view', '');
+        if (!($option == 'com_templates' && $view == 'styles')) {
+            return;
+        }
+
         $body = $app->getBody();
         $astroid_templates = Helper\Template::getAstroidTemplates();
         $body = preg_replace_callback('/(<a\s[^>]*href=")([^"]*)("[^>]*>)(.*)(<\/a>)/siU', function ($matches) use ($astroid_templates) {

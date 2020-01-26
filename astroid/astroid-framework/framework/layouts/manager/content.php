@@ -19,7 +19,7 @@ $form = Astroid\Framework::getForm();
 <div id="astroid-content-wrapper" class="col">
     <div class="container-fluid">
         <input type="file" accept=".json" id="astroid-settings-import" class="d-none" />
-        <form id="astroid-form" action="<?php echo Astroid\Helper::getAstroidUrl('save', ['id' => $template->id, 'template' => $template->template]); ?>" method="POST">
+        <form id="astroid-form" action="<?php echo Astroid\Helper::getAstroidUrl('save', ['template' => $template->template . '-' . $template->id]); ?>" method="POST">
             <?php echo JHtml::_('form.token'); ?>
             <input type="hidden" id="export-form" name="export_settings" value="0" />
             <div class="tab-content">

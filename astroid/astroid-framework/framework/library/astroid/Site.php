@@ -13,6 +13,24 @@ defined('_JEXEC') or die;
 
 class Site extends Helper\Client
 {
+    public function onAfterRender()
+    {
+        if (!Framework::getTemplate()->isAstroid) {
+            return;
+        }
+        Helper::triggerEvent('onBeforeAstroidRender'); // at last process all astroid:include
+        Component\Utility::meta(); // site meta
+        Component\Utility::typography(); // site typography
+        Component\Utility::background(); // site background
+        Component\Utility::colors(); // site colors
+        Component\Utility::smoothScroll(); // smooth scroll utility
+        Component\Utility::custom(); // site custom codes
+        Component\LazyLoad::run(); // to execute lazy load
+        Component\Includer::run(); // at last process all astroid:include
+        Framework::getDocument()->compress(); // compress the html
+        Helper::triggerEvent('onAfterAstroidRender'); // at last process all astroid:include
+    }
+
     protected function rate()
     {
         $this->checkAuth();
@@ -30,26 +48,5 @@ class Site extends Helper\Client
 
         $article = new Component\Article($id);
         $this->response($article->vote($vote));
-    }
-
-    public function beforeRender()
-    {
-        Helper\Head::meta(); // site meta
-        Helper\Head::scripts(); // site scripts
-        Helper\Head::favicon(); // site favicon
-    }
-
-    public function afterRender()
-    {
-        Helper::triggerEvent('onBeforeAstroidRender'); // at last process all astroid:include
-        Component\Utility::meta(); // site meta
-        Component\Utility::typography(); // site typography
-        Component\Utility::background(); // site background
-        Component\Utility::colors(); // site colors
-        Component\Utility::smoothScroll(); // smooth scroll utility
-        Component\Utility::custom(); // site custom codes
-        Component\LazyLoad::run(); // to execute lazy load
-        Component\Includer::run(); // at last process all astroid:include
-        Helper::triggerEvent('onAfterAstroidRender'); // at last process all astroid:include
     }
 }

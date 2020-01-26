@@ -22,9 +22,6 @@ class Debugger
     {
         $params = Helper::getPluginParams();
         $this->debug = $params->get('astroid_debug', 0);
-        if ($this->debug) {
-            Framework::getDocument()->addStyleDeclaration('#astroid-debug{position: fixed;z-index: 999999;width: 100%;bottom: 0;background: #000;color: #fff;left: 0;padding: 10px;}#astroid-debug > div{ max-height: 200px; overflow-y: auto}');
-        }
     }
 
     public function log($name)
@@ -55,31 +52,12 @@ class Debugger
 
         $report = new DebugReport($name);
         $report->save($utime, $stime, memory_get_usage(), memory_get_peak_usage());
-        $this->reports[$name] = $report;
+        Framework::getReporter('Debug')->add($report->render());
     }
 
     protected function getRunTime($ru, $rus, $index)
     {
         return ($ru["ru_$index.tv_sec"] * 1000 + intval($ru["ru_$index.tv_usec"] / 1000)) - ($rus["ru_$index.tv_sec"] * 1000 + intval($rus["ru_$index.tv_usec"] / 1000));
-    }
-
-    public function getReports()
-    {
-        $html = '';
-        if (!empty($this->reports)) {
-            $html .= '<div id="astroid-debug">';
-            $html .= '<p>Astroid Debug</p>';
-            $html .= '<div>';
-            foreach ($this->reports as $report) {
-                if ($report === null) {
-                    continue;
-                }
-                $html .= $report->render();
-            }
-            $html .= '</div>';
-            $html .= '</div>';
-        }
-        return $html;
     }
 }
 
@@ -103,6 +81,6 @@ class DebugReport
 
     public function render()
     {
-        return '<p class="m-0"><strong><em>' . $this->title . '</em></strong> <span class="badge badge-light">Time: ' . $this->utime . ' ms</span> <span class="badge badge-light">Memory: ' . round(($this->memorypeak - $this->memory) / 1048576, 3) . ' MB / ' . round(($this->memorypeak / 1048576), 3) . ' MB</span></p>';
+        return '<p class="m-0"><strong class="mr-2"><em>' . $this->title . '</em></strong> <span class="badge badge-light mr-2">Time: ' . $this->utime . ' ms</span> <span class="badge badge-light">Memory: ' . round(($this->memorypeak - $this->memory) / 1048576, 3) . ' MB' . '</span></p>';
     }
 }

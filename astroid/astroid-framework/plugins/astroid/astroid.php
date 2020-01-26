@@ -6,10 +6,13 @@
  * @copyright Copyright (C) 2009 - 2019 JoomDev.
  * @license https://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
  */
+
 defined('_JEXEC') or die;
 define('COMPILE_SASS', 0);
 
 JLoader::registerNamespace('Astroid', JPATH_LIBRARIES . '/astroid/framework/library/astroid', false, false, 'psr4');
+
+use Astroid\Framework;
 
 /**
  * Astroid system plugin
@@ -21,16 +24,49 @@ class plgSystemAstroid extends JPlugin
 
    protected $app;
 
-   public function onAfterInitialise()
+   public function __construct(&$subject, $config)
    {
-      Astroid\Framework::init();
+      parent::__construct($subject, $config);
+      Framework::init();
    }
 
-   public function onAfterDispatch()
+   public function onAfterRoute()
    {
-      if (Astroid\Framework::isSite() && Astroid\Framework::$isAstroid) {
-         Astroid\Framework::getClient()->beforeRender();
+      $option = $this->app->input->get('option', '');
+      $astroid = $this->app->input->get('astroid', '');
+      if ($option == 'com_ajax' && !empty($astroid)) {
+         Astroid\Framework::getClient()->execute($astroid);
       }
+   }
+
+   public function onContentPrepareForm($form, $data)
+   {
+      Astroid\Framework::getClient()->onContentPrepareForm($form, $data);
+   }
+
+   public function onAfterRender()
+   {
+      Astroid\Framework::getClient()->onAfterRender();
+   }
+
+   public function onAfterRespond()
+   {
+      if (!(Astroid\Helper::getPluginParams()->get('astroid_debug', 0)) || Framework::isAdmin()) {
+         return;
+      }
+
+      $cache = \JPluginHelper::getPlugin('system', 'cache');
+      if (Framework::isSite() && !empty($cache)) {
+         return;
+      }
+
+      // Capture output.
+      $contents = ob_get_contents();
+
+      if ($contents) {
+         ob_end_clean();
+      }
+      echo str_replace('</body>', Astroid\Helper::debug() . '</body>', $contents);
    }
 
    public function onExtensionAfterSave($context, $table, $isNew)
@@ -42,37 +78,9 @@ class plgSystemAstroid extends JPlugin
       }
    }
 
-   public function onAfterRoute()
-   {
-      Astroid\Helper::loadLanguage('astroid');
-
-      $option = $this->app->input->get('option', '');
-      $astroid = $this->app->input->get('astroid', '');
-
-      if ($option == 'com_ajax' && !empty($astroid)) {
-         Astroid\Framework::getClient()->execute($astroid);
-      }
-   }
-
-   public function onContentPrepareForm($form, $data)
-   {
-      Astroid\Framework::forms($form, $data);
-   }
-
-   public function onAfterRender()
-   {
-      if (Astroid\Framework::isAdmin()) {
-         Astroid\Framework::getClient()->addTemplateLabels(); // to add label in styles list
-      }
-
-      if (Astroid\Framework::isSite() && Astroid\Framework::$isAstroid) {
-         Astroid\Framework::getClient()->afterRender();
-      }
-   }
-
    public function onAfterAstroidFormLoad($template, $form)
    {
-      if (!count($template->getPresets())) {
+      if ($template->isAstroid && Framework::isAdmin() && !count($template->getPresets())) {
          $form->removeField('template_preset', 'params');
          $form->removeField('presets', 'params');
       }

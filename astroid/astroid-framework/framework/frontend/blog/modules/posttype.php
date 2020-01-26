@@ -12,7 +12,6 @@
 defined('_JEXEC') or die;
 extract($displayData);
 
-$article = $params['article'];
 $params = $article->params;
 
 $type = $params->get('astroid_article_type', 'regular');

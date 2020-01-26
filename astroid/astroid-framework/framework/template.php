@@ -31,6 +31,7 @@ class AstroidFrameworkTemplate
 
    public function __construct($template)
    {
+      Astroid\Framework::getReporter('Auditor')->backtrace(debug_backtrace());
       if (!defined('ASTROID_TEMPLATE_NAME')) {
          define('ASTROID_TEMPLATE_NAME', $template->template);
       }

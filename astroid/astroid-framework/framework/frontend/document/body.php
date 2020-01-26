@@ -12,8 +12,17 @@
 // No direct access.
 defined('_JEXEC') or die;
 extract($displayData);
-Astroid\Framework::getDebugger()->log('body');
+Astroid\Framework::getDebugger()->log('Render Body');
+
 $document = Astroid\Framework::getDocument();
+
+Astroid\Helper\Head::meta(); // site meta
+Astroid\Helper\Head::scripts(); // site scripts
+Astroid\Helper\Head::favicon(); // site favicon
+
+$document->addScript('vendor/jquery/jquery-3.4.1.min.js', 'body');
+$document->addScript('vendor/bootstrap/js/popper.min.js', 'body');
+$document->addScript('vendor/bootstrap/js/bootstrap.min.js', 'body');
 if ($document->isDev()) { // check is dev
     $document->include('comingsoon'); // load coming soon and return
     return;
@@ -58,4 +67,9 @@ if ($header && !empty($header_mode) && $header_mode != 'sidebar') {
     <!-- end of astroid content -->
 </div>
 <!-- end of astroid container -->
-<?php Astroid\Framework::getDebugger()->log('body'); ?>
+<?php Astroid\Framework::getDebugger()->log('Render Body'); ?>
+<style type="text/css">
+    .my-custom-class {
+        color: inherit;
+    }
+</style>

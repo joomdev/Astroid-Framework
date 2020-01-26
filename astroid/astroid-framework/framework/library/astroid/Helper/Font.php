@@ -62,7 +62,7 @@ class Font
         }
         return $options;
     }
-    
+
     public static function getAllFonts()
     {
         $app = \JFactory::getApplication();
@@ -75,8 +75,7 @@ class Font
             $return .= '<div class="item" data-value="' . $name . '">' . $system_font . '</div>';
         }
 
-        $template = $app->input->get('template', '', 'RAW');
-        $uploadedFonts = self::getUploadedFonts($template);
+        $uploadedFonts = self::getUploadedFonts(Framework::getTemplate()->template);
 
         if (!empty($uploadedFonts)) {
             $return .= '<div class="ui horizontal divider">' . \JText::_('TPL_ASTROID_TYPOGRAPHY_CUSTOM') . '</div>';
@@ -132,17 +131,36 @@ class Font
 
     public static function fontAwesomeIcons($html = false)
     {
+        $icons = self::_getFAIcons();
         if ($html) {
-            $icons = Helper::getJSONData('fa-icons');
             $array = [];
             $array[] = ['value' => '', 'name' => 'None'];
             foreach ($icons as $icon) {
                 $array[] = ['value' => $icon['value'], 'name' => '<i class="' . $icon['value'] . '"></i> ' . $icon['name']];
             }
             $icons = $array;
-        } else {
-            $icons = Helper::getJSONData('fa-icons');
         }
+        return $icons;
+    }
+
+    public static function _getFAIcons()
+    {
+
+        $version = Helper\Constants::$fontawesome_version;
+        if (file_exists(JPATH_ROOT . '/cache/astroid/fontawesome/free-' . $version . '-.json')) {
+            return json_decode(file_get_contents(JPATH_ROOT . '/cache/astroid/fontawesome/free-' . $version . '-.json'), true);
+        }
+
+        $json = file_get_contents(ASTROID_MEDIA . '/vendor/fontawesome/metadata/icons.json');
+        $json = \json_decode($json, true);
+
+        $icons = [];
+        foreach ($json as $icon => $info) {
+            foreach ($info['styles'] as $style) {
+                $icons[] = ['value' => 'fa' . substr($style, 0, 1) . ' fa-' . $icon, 'name' => $info['label'], 'type' => $style];
+            }
+        }
+        Helper::putContents(JPATH_ROOT . '/cache/astroid/fontawesome/free-' . $version . '-.json', json_encode($icons));
         return $icons;
     }
 
@@ -196,5 +214,25 @@ class Font
             }
         }
         return $value;
+    }
+
+    public static function loadFontAwesome()
+    {
+        $params = Helper::getPluginParams();
+        $source = $params->get('astroid_load_fontawesome', "cdn");
+
+        switch ($source) {
+            case 'cdn':
+                Framework::getDocument()->addStyleSheet("https://use.fontawesome.com/releases/v" . Helper\Constants::$fontawesome_version . "/css/all.css", ['version' => Helper\Constants::$fontawesome_version]);
+                break;
+            case 'local':
+                Framework::getDocument()->addStyleSheet("vendor/fontawesome/css/all.min.css", ['version' => Helper\Constants::$fontawesome_version]);
+                break;
+            default:
+                if (Framework::isAdmin()) {
+                    Framework::getDocument()->addStyleSheet("vendor/fontawesome/css/all.min.css", ['version' => Helper\Constants::$fontawesome_version]);
+                }
+                break;
+        }
     }
 }

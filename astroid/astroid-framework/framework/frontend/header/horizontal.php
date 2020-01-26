@@ -45,7 +45,7 @@ $navWrapperClass = ['align-self-center', 'px-2', 'd-none', 'd-lg-block'];
          <?php
          if ($mode == 'left') {
             // header nav starts
-            AstroidMenu::getMenu($header_menu, $navClass, null, 'left', 'horizontal', $navWrapperClass);
+            Astroid\Component\Menu::getMenu($header_menu, $navClass, null, 'left', 'horizontal', $navWrapperClass);
             // header nav ends
          }
          ?>
@@ -57,7 +57,7 @@ $navWrapperClass = ['align-self-center', 'px-2', 'd-none', 'd-lg-block'];
       if ($mode == 'center') {
          echo '<div class="header-center-section d-none d-lg-block justify-content-center">';
          // header nav starts
-         AstroidMenu::getMenu($header_menu, $navClass, null, 'left', 'horizontal', $navWrapperClass);
+         Astroid\Component\Menu::getMenu($header_menu, $navClass, null, 'left', 'horizontal', $navWrapperClass);
          // header nav ends
          echo '</div>';
       }
@@ -67,7 +67,7 @@ $navWrapperClass = ['align-self-center', 'px-2', 'd-none', 'd-lg-block'];
             <?php
             if ($mode == 'right') {
                // header nav starts
-               AstroidMenu::getMenu($header_menu, $navClass, null, 'left', 'horizontal', $navWrapperClass);
+               Astroid\Component\Menu::getMenu($header_menu, $navClass, null, 'left', 'horizontal', $navWrapperClass);
                // header nav ends
             }
             ?>

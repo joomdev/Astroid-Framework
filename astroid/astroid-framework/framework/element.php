@@ -41,7 +41,7 @@ class AstroidElement
       $this->app = JFactory::getApplication();
 
       if ($template === null) {
-         $this->template = AstroidFramework::getTemplate();
+         $this->template = Astroid\Framework::getTemplate();
       } else {
          $this->template = $template;
       }

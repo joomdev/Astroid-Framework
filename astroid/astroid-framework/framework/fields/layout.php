@@ -11,15 +11,18 @@ defined('_JEXEC') or die('Restricted access');
 
 jimport('joomla.form.formfield');
 
-class JFormFieldLayout extends JFormField {
+class JFormFieldLayout extends JFormField
+{
 
    protected $type = 'layout';
 
-   public function getLabel() {
+   public function getLabel()
+   {
       return '';
    }
 
-   public function getInput() {
+   public function getInput()
+   {
       $value = $this->value;
       if (empty($value)) {
          $options = \json_decode(\file_get_contents(JPATH_SITE . '/' . 'media' . '/' . 'astroid' . '/' . 'assets' . '/' . 'json' . '/' . 'layouts' . '/' . 'default.json'), TRUE);
@@ -31,5 +34,4 @@ class JFormFieldLayout extends JFormField {
       return $renderer->render(array('fieldname' => $this->fieldname, 'name' => $this->name, 'options' => $options, 'fieldset' => $fieldset));
       return $output;
    }
-
 }

@@ -32,7 +32,7 @@ class Row extends BaseElement
         foreach ($this->_data['cols'] as $colIndex => $col) {
             $column = new Column($col, $this->section, $this);
             $columns[$colIndex] = $column;
-            $column->render(false);
+            $column->render();
             if ($column->component) {
                 $componentIndex = $colIndex;
             }
@@ -67,7 +67,7 @@ class Row extends BaseElement
                 }
             }
             foreach ($columns as $column) {
-                $this->content .= $column->contents();
+                $this->content .= $column->wrap();
             }
         }
         return $this->wrap();

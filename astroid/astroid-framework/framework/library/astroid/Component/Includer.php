@@ -25,15 +25,27 @@ class Includer
         } else {
             $body = $content;
         }
-        $body = preg_replace_callback('/(<astroid:include\s[^>]*type=")([^"]*)("[^>]* \/>)/siU', function ($matches) {
+        $includers = [];
+        $body = preg_replace_callback('/(<astroid:include\s[^>]*type=")([^"]*)("[^>]* \/>)/siU', function ($matches) use (&$includers) {
             $html = $matches[0];
             $method = Helper::classify($matches[2]);
             if (method_exists(self::class, '_' . $method)) {
-                $method = '_' . $method;
-                $html = self::$method();
+                $includers[] = [
+                    'name' => $matches[2],
+                    'replace' => $matches[0],
+                    'func' => '_' . $method
+                ];
             }
             return $html;
         }, $body);
+
+        $includers = array_reverse($includers);
+
+        foreach ($includers as $includer) {
+            $func = $includer['func'];
+            $body = str_replace($includer['replace'], self::$func(), $body);
+        }
+
         if ($content === null) {
             $app->setBody($body);
         } else {
@@ -73,6 +85,9 @@ class Includer
         if (Framework::isSite()) {
             $document->addScript('vendor/astroid/js/script.js', 'body');
         }
+        if (Helper::getPluginParams()->get('astroid_debug', 0)) {
+            $document->addScript('vendor/astroid/js/debug.js', 'body');
+        }
         $content = '';
         $content .= $document->getScripts('body');
         $content .= $document->getCustomTags('body');
@@ -81,7 +96,6 @@ class Includer
 
     public static function _debug()
     {
-        $debugger = Framework::getDebugger();
-        return $debugger->getReports();
+        return Helper::debug();
     }
 }

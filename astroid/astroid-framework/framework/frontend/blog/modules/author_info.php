@@ -12,7 +12,6 @@
 defined('_JEXEC') or die;
 extract($displayData);
 
-$article = $params['article'];
 // Get User Details
 $user = JFactory::getUser($article->created_by);
 $params = new JRegistry();

@@ -63,19 +63,13 @@ class Template
         if (!file_exists($params_path)) {
             if (!empty($parent_id) && file_exists(JPATH_SITE . "/templates/{$template}/params/" . $parent_id . '.json')) {
                 $params = file_get_contents(JPATH_SITE . "/templates/{$template}/params" . '/' . $parent_id . '.json');
-                file_put_contents(JPATH_SITE . "/templates/{$template}/params" . '/' . $id . '.json', $params);
+                Helper::putContents(JPATH_SITE . "/templates/{$template}/params" . '/' . $id . '.json', $params);
             } else if (file_exists(JPATH_SITE . '/templates/' . $template . '/astroid/default.json')) {
                 $params = file_get_contents(JPATH_SITE . '/templates/' . $template . '/astroid/default.json');
-                if (!file_exists(JPATH_SITE . "/templates/{$template}/params")) {
-                    mkdir(JPATH_SITE . "/templates/{$template}/params");
-                }
                 $params = str_replace('TEMPLATE_NAME', $template, $params);
-                file_put_contents(JPATH_SITE . "/templates/{$template}/params" . '/' . $id . '.json', $params);
+                Helper::putContents(JPATH_SITE . "/templates/{$template}/params" . '/' . $id . '.json', $params);
             } else {
-                if (!file_exists(JPATH_SITE . "/templates/{$template}/params")) {
-                    mkdir(JPATH_SITE . "/templates/{$template}/params");
-                }
-                file_put_contents(JPATH_SITE . "/templates/{$template}/params" . '/' . $id . '.json', '');
+                Helper::putContents(JPATH_SITE . "/templates/{$template}/params" . '/' . $id . '.json', '');
             }
             $db = \JFactory::getDbo();
             $object = new \stdClass();

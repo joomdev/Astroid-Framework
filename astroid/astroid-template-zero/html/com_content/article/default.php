@@ -18,7 +18,7 @@ if (version_compare(JVERSION, '3.99999.99999', 'le')) {
 
 // Astroid Article/Blog
 $astroidArticle = new AstroidFrameworkArticle($this->item);
-$template = new AstroidFrameworkTemplate(JFactory::getApplication()->getTemplate(true));
+$template = Astroid\Framework::getTemplate();
 // Create shortcuts to some parameters.
 $params = $this->item->params;
 $images = json_decode($this->item->images);

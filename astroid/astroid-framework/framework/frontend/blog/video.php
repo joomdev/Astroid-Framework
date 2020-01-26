@@ -13,7 +13,6 @@
 defined('_JEXEC') or die;
 extract($displayData);
 
-$article = $params['article'];
 $params = $article->params;
 
 $type = $params->get('astroid_article_video_type', 'youtube');

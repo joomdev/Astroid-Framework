@@ -18,41 +18,29 @@ abstract class Framework
     protected static $debugger = null;
     protected static $auditor = null;
     protected static $form = null;
+    protected static $reporters = [];
     protected static $client = null;
     public static $isAstroid = false;
+    public static $version = null;
 
     public static function init()
     {
-        self::check();
-        define('_ASTROID', 1);
-        if (self::isSite()) {
-            $template = \JFactory::getApplication()->getTemplate(true);
-            $astId = $template->params->get('astroid', 0);
-            if (!empty($astId)) {
-                self::$isAstroid = true;
-            } else if (file_exists(JPATH_SITE . "/templates/{$template->template}/params/")) {
-                self::$isAstroid = true;
-            }
-            if (self::$isAstroid) {
-                self::$template = new Template();
-                self::$document = new Document();
-            }
-        } else {
-            $astroid = \JFactory::getApplication()->input->get('astroid', 0, 'RAW');
-            $id = \JFactory::getApplication()->input->get('id', 0, 'INT');
-            if (!empty($astroid) && !empty($id)) {
-                $template = new Template($id);
-                if (Helper\Template::isAstroidTemplate($template->template)) {
-                    self::$isAstroid = true;
-                    self::$template = $template;
-                    self::$document = new Document();
-                }
-            }
+        define('_ASTROID', 1); // define astroid
+        self::check(); // check for astroid redirection
+
+        self::$debugger = new Debugger(); // Debuuger
+        self::$template = new Template(); // Template
+        self::$document = new Document(); // Document
+
+        self::constants();
+    }
+
+    public static function getVersion()
+    {
+        if (self::$version === null) {
+            self::$version = Helper::frameworkVersion();
         }
-        if (self::$isAstroid) {
-            self::constants();
-            self::$debugger = new Debugger();
-        }
+        return self::$version;
     }
 
     public static function constants()
@@ -61,14 +49,28 @@ abstract class Framework
         define('ASTROID_MEDIA_URL', \JURI::root() . 'media/astroid/assets/');
         define('ASTROID_LAYOUTS', JPATH_LIBRARIES . '/astroid/framework/layouts');
         define('ASTROID_ELEMENTS', JPATH_LIBRARIES . '/astroid/framework/elements');
+        define('ASTROID_CACHE', JPATH_SITE . '/cache/astroid');
 
-        if (self::$isAstroid) {
-            $template = Framework::getTemplate();
-            define('ASTROID_TEMPLATE_PATH', JPATH_SITE . '/templates/' . $template->template);
-            define('ASTROID_TEMPLATE_MEDIA_VERSION', md5(md5($template->getParams()->toString())));
-            define('ASTROID_TEMPLATE_SCSS_VERSION', md5(serialize($template->getThemeVariables())));
-            define('ASTROID_TEMPLATE_CSS_VERSION', md5(ASTROID_TEMPLATE_MEDIA_VERSION . ASTROID_TEMPLATE_SCSS_VERSION));
+        $template = Framework::getTemplate();
+        define('ASTROID_TEMPLATE_PATH', JPATH_SITE . '/templates/' . $template->template);
+    }
+
+    public static function addReporter(Reporter $reporter)
+    {
+        self::$reporters[$reporter->id] = $reporter;
+    }
+
+    public static function getReporter($name)
+    {
+        if (isset(self::$reporters[Helper::slugify($name) . '-reporter'])) {
+            return self::$reporters[Helper::slugify($name) . '-reporter'];
         }
+        return new Reporter($name);
+    }
+
+    public static function getReporters()
+    {
+        return self::$reporters;
     }
 
     public static function getDocument(): Document
@@ -83,7 +85,7 @@ abstract class Framework
         }
         return self::$template;
     }
-    
+
     public static function getAuditor($id = null): Auditor
     {
         if ($id !== null) {
@@ -141,37 +143,5 @@ abstract class Framework
             self::$form = new Helper\Form('template');
         }
         return self::$form;
-    }
-
-    public static function forms($form, $data)
-    {
-        $astroid_dir = 'libraries' . '/' . 'astroid';
-        \JForm::addFormPath(JPATH_SITE . '/' . $astroid_dir . '/framework/forms');
-        if ($form->getName() == 'com_menus.item') {
-            $form->loadFile('menu', false);
-            $form->loadFile('banner', false);
-            $form->loadFile('og', false);
-        }
-
-        if ($form->getName() == 'com_content.article') {
-            $form->loadFile('article', false);
-            $form->loadFile('blog', false);
-            $form->loadFile('opengraph', false);
-        }
-
-        if ($form->getName() == 'com_categories.categorycom_content') {
-            $form->loadFile('category_blog', false);
-        }
-
-        if ($form->getName() == 'com_menus.item' && (isset($data->request['option']) && $data->request['option'] == 'com_content') && (isset($data->request['view']) && $data->request['view'] == 'category') && (isset($data->request['layout']) && $data->request['layout'] == 'blog')) {
-            $form->loadFile('menu_blog', false);
-        }
-        if ($form->getName() == 'com_menus.item' && (isset($data->request['option']) && $data->request['option'] == 'com_content') && (isset($data->request['view']) && $data->request['view'] == 'featured')) {
-            $form->loadFile('menu_blog', false);
-        }
-
-        if ($form->getName() == 'com_users.user' || $form->getName() == 'com_admin.profile') {
-            $form->loadFile('author', false);
-        }
     }
 }

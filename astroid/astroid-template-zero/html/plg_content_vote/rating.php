@@ -19,7 +19,7 @@ defined('_JEXEC') or die;
  * @var   string   $path     Path to this file
  */
 jimport('astroid.framework.template');
-$template = new AstroidFrameworkTemplate(JFactory::getApplication()->getTemplate(true));
+$template = Astroid\Framework::getTemplate();
 
 if (!$template->params->get('article_rating', 1)) {
    if ($context == 'com_content.category' || $context == 'com_content.featured') {
@@ -39,7 +39,7 @@ if (!$template->params->get('article_rating', 1)) {
    for ($i = $rating; $i < 5; $i++) {
       $img .= $starImageOff;
    }
-   ?>
+?>
    <div class="content_rating" itemprop="aggregateRating" itemscope itemtype="https://schema.org/AggregateRating">
       <p class="unseen element-invisible sr-only">
          <?php echo JText::sprintf('PLG_VOTE_USER_RATING', '<span itemprop="ratingValue">' . $rating . '</span>', '<span itemprop="bestRating">5</span>'); ?>
@@ -52,11 +52,11 @@ if (!$template->params->get('article_rating', 1)) {
    </div>
 <?php } else { ?>
    <?php
-      if ($context == 'com_content.categories') {
-         return;
-      }
-      $rating = (int) $row->rating;
-      ?>
+   if ($context == 'com_content.categories') {
+      return;
+   }
+   $rating = (int) $row->rating;
+   ?>
    <div itemprop="aggregateRating" itemscope itemtype="https://schema.org/AggregateRating">
       <meta itemprop="ratingValue" content="<?php echo $rating; ?>" />
       <meta itemprop="bestRating" content="5" />

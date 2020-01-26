@@ -47,11 +47,6 @@ class BaseElement
         return "<{$this->_tag}{$this->_attrbs()}>" . $this->content . "</{$this->_tag}>";
     }
 
-    public function contents()
-    {
-        return $this->wrap();
-    }
-
     protected function _attrbs()
     {
         $this->_getclasses();
@@ -135,10 +130,11 @@ class BaseElement
             case 'image': // if image background
                 $this->style->addCss('background-color', $this->params->get('img_background_color', ''));
 
-                $image = $this->params->get('image', '');
+                $image = $this->params->get('background_image', '');
                 if (!empty($image)) {
                     $this->style->addCss('background-image', 'url(' . \JURI::root() . Media::getPath() . '/' . $image . ')');
                     $this->style->addCss('background-repeat', $this->params->get('background_repeat', ''));
+                    $this->style->addCss('background-size', $this->params->get('background_size', ''));
                     $this->style->addCss('background-attachment', $this->params->get('background_attchment', ''));
                     $this->style->addCss('background-position', $this->params->get('background_position', ''));
                 }

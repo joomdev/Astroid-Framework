@@ -24,14 +24,14 @@ class Column extends BaseElement
         parent::__construct($data);
     }
 
-    public function render($wrap = true)
+    public function render()
     {
         foreach ($this->_data['elements'] as $element) {
             $element = new Element($element, $this->section, $this->row, $this);
-            $this->content .= $element->render($wrap);
-        }
-        if (!$wrap) {
-            return $this->content;
+            $element_content = $element->render();
+            if (!empty($element->content)) {
+                $this->content .= $element_content;
+            }
         }
         return $this->wrap();
     }

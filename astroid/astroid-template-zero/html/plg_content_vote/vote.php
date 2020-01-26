@@ -18,7 +18,7 @@ defined('_JEXEC') or die;
  * @var   string   $path     Path to this file
  */
 jimport('astroid.framework.template');
-$template = new AstroidFrameworkTemplate(JFactory::getApplication()->getTemplate(true));
+$template = Astroid\Framework::getTemplate();
 if (!$template->params->get('article_rating', 1)) {
    $uri = clone JUri::getInstance();
    $uri->setVar('hitcount', '0');

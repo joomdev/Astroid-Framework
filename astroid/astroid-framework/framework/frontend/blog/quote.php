@@ -12,7 +12,6 @@
 defined('_JEXEC') or die;
 extract($displayData);
 
-$article = $params['article'];
 $params = $article->params;
 $text = $params->get('astroid_article_quote_text', '');
 $author = $params->get('astroid_article_quote_author', '');

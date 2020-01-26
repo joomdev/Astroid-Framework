@@ -17,7 +17,7 @@ class Layout
 {
     public static function render()
     {
-        Framework::getDebugger()->log('layout');
+        Framework::getDebugger()->log('Render Layout');
         $template = Framework::getTemplate();
         $layout = $template->getLayout();
         $content = '';
@@ -25,7 +25,7 @@ class Layout
             $section = new Section($section);
             $content .= $section->render();
         }
-        Framework::getDebugger()->log('layout');
+        Framework::getDebugger()->log('Render Layout');
         return $content;
     }
 }

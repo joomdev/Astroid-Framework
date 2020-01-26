@@ -63,7 +63,7 @@ switch ($mode) {
          <?php
          if ($stickey_mode == 'left') {
             // header nav starts
-            AstroidMenu::getMenu($header_menu, $navClass, null, 'left', 'stickey', $navWrapperClass);
+            Astroid\Component\Menu::getMenu($header_menu, $navClass, null, 'left', 'stickey', $navWrapperClass);
             // header nav ends
          }
          ?>
@@ -72,7 +72,7 @@ switch ($mode) {
       if ($stickey_mode == 'center') {
          echo '<div class="header-center-section d-flex justify-content-center">';
          // header nav starts
-         AstroidMenu::getMenu($header_menu, $navClass, null, 'center', 'stickey', $navWrapperClass);
+         Astroid\Component\Menu::getMenu($header_menu, $navClass, null, 'center', 'stickey', $navWrapperClass);
          // header nav ends
          echo '</div>';
       }
@@ -82,7 +82,7 @@ switch ($mode) {
             <?php
             if ($stickey_mode == 'right') {
                // header nav starts
-               AstroidMenu::getMenu($header_menu, $navClass, null, 'right', 'stickey', $navWrapperClass);
+               Astroid\Component\Menu::getMenu($header_menu, $navClass, null, 'right', 'stickey', $navWrapperClass);
                // header nav ends
             }
             ?>

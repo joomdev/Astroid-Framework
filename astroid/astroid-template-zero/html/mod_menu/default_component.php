@@ -85,4 +85,4 @@ elseif ($item->browserNav == 2)
 	}
 // Show icon showtitle End here
 	
-echo '<a href="'.$item->link.' " title="'.$item->title.'"> <span class="nav-title">'.$iconHtml.$item->title.$badgeHtml.'</span>'.$subtitle.'</a>';
+echo '<a href="'.JFilterOutput::ampReplace(htmlspecialchars($item->flink, ENT_COMPAT, 'UTF-8', false)).'" title="'.$item->title.'"> <span class="nav-title">'.$iconHtml.$item->title.$badgeHtml.'</span>'.$subtitle.'</a>';

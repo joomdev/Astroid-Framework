@@ -13,6 +13,7 @@ defined('_JEXEC') or die;
 
 extract($displayData);
 
+$document = Astroid\Framework::getDocument();
 $params = Astroid\Framework::getTemplate()->getParams();
 $header = $params->get('header', TRUE);
 $header_mode = $params->get('header_mode', 'horizontal');
@@ -48,7 +49,7 @@ $navWrapperClass = ['align-self-center', 'px-2', 'd-none', 'd-lg-block'];
                </div>
             </div>
          <?php } ?>
-         <?php $template->loadLayout('logo'); ?>
+         <?php $document->include('logo'); ?>
       </div>
       <div class="astroid-sidebar-menu">
          <?php Astroid\Component\Menu::getSidebarMenu($header_menu); ?>

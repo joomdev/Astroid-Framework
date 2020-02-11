@@ -12,7 +12,9 @@
 defined('_JEXEC') or die;
 extract($displayData);
 
-$params = $template->params;
+$document = Astroid\Framework::getDocument();
+$params = Astroid\Framework::getTemplate()->getParams();
+
 $mode = $params->get('header_stacked_menu_mode', 'center');
 $block_1_type = $params->get('header_block_1_type', 'blank');
 $block_1_position = $params->get('header_block_1_position', '');
@@ -49,7 +51,7 @@ $navWrapperClass = ['astroid-nav-wraper', 'align-self-center', 'px-2', 'd-none',
             <?php } ?>
             <?php
             echo '<div class="d-flex w-100 justify-content-center">';
-            $template->loadLayout('logo');
+            $document->include('logo');
             echo '</div>';
             if ($enable_offcanvas) {
                ?>
@@ -67,7 +69,7 @@ $navWrapperClass = ['astroid-nav-wraper', 'align-self-center', 'px-2', 'd-none',
             echo '</div>';
             // header nav starts -->
             ?>
-            <div data-megamenu data-megamenu-class=".has-megamenu" data-megamenu-content-class=".megamenu-container" data-dropdown-arrow="<?php echo $template->params->get('dropdown_arrow', 0) ? 'true' : 'false'; ?>" data-header-offset="true" data-transition-speed="<?php echo $template->params->get('dropdown_animation_speed', 300); ?>" data-megamenu-animation="<?php echo $template->params->get('dropdown_animation_type', 'fade'); ?>" data-easing="<?php echo $template->params->get('dropdown_animation_ease', 'linear'); ?>" data-astroid-trigger="<?php echo $template->params->get('dropdown_trigger', 'hover'); ?>" data-megamenu-submenu-class=".nav-submenu" class="w-100 d-none d-lg-flex justify-content-center pt-3">
+            <div data-megamenu data-megamenu-class=".has-megamenu" data-megamenu-content-class=".megamenu-container" data-dropdown-arrow="<?php echo $params->get('dropdown_arrow', 0) ? 'true' : 'false'; ?>" data-header-offset="true" data-transition-speed="<?php echo $params->get('dropdown_animation_speed', 300); ?>" data-megamenu-animation="<?php echo $params->get('dropdown_animation_type', 'fade'); ?>" data-easing="<?php echo $params->get('dropdown_animation_ease', 'linear'); ?>" data-astroid-trigger="<?php echo $params->get('dropdown_trigger', 'hover'); ?>" data-megamenu-submenu-class=".nav-submenu" class="w-100 d-none d-lg-flex justify-content-center pt-3">
                <?php
                Astroid\Component\Menu::getMenu($header_menu, array_merge($navClass), null, 'left', 'stacked', $navWrapperClass);
                ?>
@@ -102,7 +104,7 @@ $navWrapperClass = ['astroid-nav-wraper', 'align-self-center', 'px-2', 'd-none',
             }
             // header nav starts   
             ?>
-            <div data-megamenu data-megamenu-class=".has-megamenu" data-megamenu-content-class=".megamenu-container" data-dropdown-arrow="<?php echo $template->params->get('dropdown_arrow', 0) ? 'true' : 'false'; ?>" data-header-offset="true" data-transition-speed="<?php echo $template->params->get('dropdown_animation_speed', 300); ?>" data-megamenu-animation="<?php echo $template->params->get('dropdown_animation_type', 'fade'); ?>" data-easing="<?php echo $template->params->get('dropdown_animation_ease', 'linear'); ?>" data-astroid-trigger="<?php echo $template->params->get('dropdown_trigger', 'hover'); ?>" data-megamenu-submenu-class=".nav-submenu" class="header-stacked-inner w-100 d-flex justify-content-center">
+            <div data-megamenu data-megamenu-class=".has-megamenu" data-megamenu-content-class=".megamenu-container" data-dropdown-arrow="<?php echo $params->get('dropdown_arrow', 0) ? 'true' : 'false'; ?>" data-header-offset="true" data-transition-speed="<?php echo $params->get('dropdown_animation_speed', 300); ?>" data-megamenu-animation="<?php echo $params->get('dropdown_animation_type', 'fade'); ?>" data-easing="<?php echo $params->get('dropdown_animation_ease', 'linear'); ?>" data-astroid-trigger="<?php echo $params->get('dropdown_trigger', 'hover'); ?>" data-megamenu-submenu-class=".nav-submenu" class="header-stacked-inner w-100 d-flex justify-content-center">
                <?php if (!empty($header_mobile_menu)) { ?>
                   <div class="d-flex d-lg-none justify-content-start">
                      <div class="header-mobilemenu-trigger d-lg-none burger-menu-button align-self-center" data-offcanvas="#astroid-mobilemenu" data-effect="mobilemenu-slide">
@@ -113,7 +115,7 @@ $navWrapperClass = ['astroid-nav-wraper', 'align-self-center', 'px-2', 'd-none',
                }
                echo '<div class="d-flex w-100 justify-content-center">';
                echo '<div class="d-lg-none">';
-               $template->loadLayout('logo');
+               $document->include('logo');
                echo '</div>';
                Astroid\Component\Menu::getMenu($header_menu, $navClass, true, $odd_menu_items, 'stacked', $navWrapperClass);
                echo '</div>';
@@ -163,7 +165,7 @@ $navWrapperClass = ['astroid-nav-wraper', 'align-self-center', 'px-2', 'd-none',
             } else {
                echo '<div class="d-flex w-100 justify-content-center py-3">';
             }
-            $template->loadLayout('logo');
+            $document->include('logo');
             echo '</div>';
 
             // header block starts
@@ -196,7 +198,7 @@ $navWrapperClass = ['astroid-nav-wraper', 'align-self-center', 'px-2', 'd-none',
             // header nav starts -->
             echo '<div class="w-100 d-none d-lg-flex">';
             ?>
-            <div data-megamenu data-megamenu-class=".has-megamenu" data-megamenu-content-class=".megamenu-container" data-dropdown-arrow="<?php echo $template->params->get('dropdown_arrow', 0) ? 'true' : 'false'; ?>" data-header-offset="true" data-transition-speed="<?php echo $template->params->get('dropdown_animation_speed', 300); ?>" data-megamenu-animation="<?php echo $template->params->get('dropdown_animation_type', 'fade'); ?>" data-easing="<?php echo $template->params->get('dropdown_animation_ease', 'linear'); ?>" data-astroid-trigger="<?php echo $template->params->get('dropdown_trigger', 'hover'); ?>" data-megamenu-submenu-class=".nav-submenu" class="d-flex justify-content-start pt-3 flex-grow-1">
+            <div data-megamenu data-megamenu-class=".has-megamenu" data-megamenu-content-class=".megamenu-container" data-dropdown-arrow="<?php echo $params->get('dropdown_arrow', 0) ? 'true' : 'false'; ?>" data-header-offset="true" data-transition-speed="<?php echo $params->get('dropdown_animation_speed', 300); ?>" data-megamenu-animation="<?php echo $params->get('dropdown_animation_type', 'fade'); ?>" data-easing="<?php echo $params->get('dropdown_animation_ease', 'linear'); ?>" data-astroid-trigger="<?php echo $params->get('dropdown_trigger', 'hover'); ?>" data-megamenu-submenu-class=".nav-submenu" class="d-flex justify-content-start pt-3 flex-grow-1">
                <?php
                Astroid\Component\Menu::getMenu($header_menu, $navClassLeft, null, 'left', 'stacked', $navWrapperClass);
                ?>

@@ -12,7 +12,6 @@
 // No direct access.
 defined('_JEXEC') or die;
 extract($displayData);
-Astroid\Framework::getDebugger()->log('Render Body');
 
 $document = Astroid\Framework::getDocument();
 

@@ -13,17 +13,19 @@ defined('_JEXEC') or die;
 extract($displayData);
 
 $article = $params['article'];
-$params = $article->params;
-$article_comments = $template->params->get('article_comments', 'none');
+
+$params = Astroid\Framework::getTemplate()->getParams();
+
+$article_comments = $params->get('article_comments', 'none');
 ?>
 <!--- Facebook Comment Section Start --->
 <?php
 if ($article_comments == 'facebook') {
-   $fb_id = $template->params->get('article_comments_fb_id', '');
+   $fb_id = $params->get('article_comments_fb_id', '');
    ?>
    <?php if (!empty($fb_id)) { ?>
       <div class="astroid-comment">
-         <div class="card-body"><div class="fb-comments"  data-width="<?php echo $template->params->get('article_comments_fb_width'); ?>" data-numposts="5" data-colorscheme="dark">
+         <div class="card-body"><div class="fb-comments"  data-width="<?php echo $params->get('article_comments_fb_width'); ?>" data-numposts="5" data-colorscheme="dark">
             </div>
          </div>
       </div>
@@ -50,7 +52,7 @@ if ($article_comments == 'facebook') {
 <!--- Disqus Comment Section Start --->
 <?php
 if ($article_comments == 'disqus') {
-   $disqus_id = $template->params->get('article_comments_disqus_id', '');
+   $disqus_id = $params->get('article_comments_disqus_id', '');
    ?>
    <?php if (!empty($disqus_id)) { ?>
       <div class="astroid-commen">
@@ -76,7 +78,7 @@ if ($article_comments == 'disqus') {
 <!--- Hyper Comment Section Start --->
 <?php
 if ($article_comments == 'hyper') {
-   $hyper_id = $template->params->get('article_comments_hyper_id', '');
+   $hyper_id = $params->get('article_comments_hyper_id', '');
    ?>
    <?php if (!empty($hyper_id)) { ?>
       <div class="astroid-commen">
@@ -112,7 +114,7 @@ if ($article_comments == 'hyper') {
 <!--- Intense Comment Section Start --->
 <?php
 if ($article_comments == 'intense') {
-   $intense_id = $template->params->get('article_comments_intense_id', '');
+   $intense_id = $params->get('article_comments_intense_id', '');
    ?>
    <?php if (!empty($intense_id)) { ?>
       <div class="astroid-commen">

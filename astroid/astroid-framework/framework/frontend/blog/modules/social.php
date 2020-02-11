@@ -12,16 +12,14 @@
 defined('_JEXEC') or die;
 extract($displayData);
 
-$template = Astroid\Framework::getTemplate();
-
-$params = $article->params;
-$type = $template->params->get('article_socialshare_type', 'none');
+$params = Astroid\Framework::getTemplate()->getParams();
+$type = $params->get('article_socialshare_type', 'none');
 if ($type == 'none') {
    return;
 }
 // Addthis Social Share Start 
 if ($type == 'addthis') {
-	$article_socialshare_addthis = $template->params->get('article_socialshare_addthis', ''); ?>
+	$article_socialshare_addthis = $params->get('article_socialshare_addthis', ''); ?>
 		<?php if(!empty($article_socialshare_addthis)){ ?>
 			<div class="astroid-socialshare">
 				<?php echo $article_socialshare_addthis; ?>
@@ -32,7 +30,7 @@ if ($type == 'addthis') {
 
 // Sharethis Social Share Start 
 if ($type == 'sharethis') {
-	$article_socialshare_sharethis = $template->params->get('article_socialshare_sharethis', ''); ?>
+	$article_socialshare_sharethis = $params->get('article_socialshare_sharethis', ''); ?>
 	<?php if(!empty($article_socialshare_sharethis)){?>
 		<?php $doc = JFactory::getDocument(); $doc->addScript('//platform-api.sharethis.com/js/sharethis.js#property='.$article_socialshare_sharethis.'&product=inline-share-buttons'); ?>
 			<div class="astroid-socialshare">

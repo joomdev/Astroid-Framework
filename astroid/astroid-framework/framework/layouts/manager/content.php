@@ -41,9 +41,15 @@ $form = Astroid\Framework::getForm();
 
 
                         foreach ($fields as $key => $field) {
+
                             if ($field->type == 'astroidgroup') {
                                 continue;
                             }
+
+                            if (empty($field->getAttribute('name'))) {
+                                continue;
+                            }
+
                             $field_group = $field->getAttribute('astroidgroup', 'none');
                             $groups[$field_group]['fields'][] = $field;
                         }

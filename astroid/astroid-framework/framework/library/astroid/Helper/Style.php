@@ -146,9 +146,9 @@ class Style
         $selector = explode(',', $selector);
         foreach ($selector as &$element) {
             if (strpos(trim($element), ':') === 0) {
-                $element = $this->_selector . $element;
+                $element = $this->_selectorize($element);
             } else {
-                $element = $this->_selector . ' ' . trim($element);
+                $element = $this->_selectorize(' ' . trim($element));
             }
         }
 

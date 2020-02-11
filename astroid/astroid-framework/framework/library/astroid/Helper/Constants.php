@@ -337,9 +337,9 @@ class Constants
             'name' => 'fas fa-dharmachakra fa-spin',
             'code' => '<div class="icon-center fas fa-dharmachakra fa-spin" style="font-size: 40px;margin: 0 auto;"></div>'
         ],
-        'haykal' => [
-            'name' => 'fas fa-haykal fa-spin',
-            'code' => '<div class="icon-center fas fa-haykal fa-spin" style="font-size: 40px;margin: 0 auto;"></div>'
+        'bahai' => [
+            'name' => 'fas fa-bahai fa-spin',
+            'code' => '<div class="icon-center fas fa-bahai fa-spin" style="font-size: 40px;margin: 0 auto;"></div>'
         ],
         'life-ring' => [
             'name' => 'fas fa-life-ring fa-spin',

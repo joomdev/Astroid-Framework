@@ -91,7 +91,7 @@ if($preloder_setting == "animations"){
    $preloader_image = $params->get('preloader_image', '');
    $styles = [];
    if (!empty($preloader_image)) {
-      $styles[] = 'background-image:url(' . JURI::root() . $template->SeletedMedia(). '/' . $preloader_image . ')';
+      $styles[] = 'background-image:url(' . JURI::root() . Astroid\Helper\Media::getPath() . '/' . $preloader_image . ')';
       $styles[] = 'background-repeat:' . $params->get('preloader_image_repeat', 'inherit');
       $styles[] = 'background-size:' . $params->get('preloader_image_size', 'inherit');
       $styles[] = 'background-position:' . $params->get('preloader_image_position', 'inherit');

@@ -20,6 +20,7 @@ class Site extends Helper\Client
         }
         Helper::triggerEvent('onBeforeAstroidRender'); // at last process all astroid:include
         Component\Utility::meta(); // site meta
+        Component\Utility::layout(); // site layout
         Component\Utility::typography(); // site typography
         Component\Utility::background(); // site background
         Component\Utility::colors(); // site colors

@@ -89,6 +89,27 @@ class Utility
         }
     }
 
+    public static function layout()
+    {
+        $params = Framework::getTemplate()->getParams();
+        $document = Framework::getDocument();
+        $template_layout = $params->get('template_layout', 'wide');
+        if ($template_layout != 'boxed') {
+            return false;
+        }
+        $layout_background_image = $params->get('layout_background_image', '');
+
+        if (!empty($layout_background_image)) {
+            $style = new Style('.astroid-layout.astroid-layout-boxed');
+            $style->addCss('background-image', 'url(' . \JURI::root() . Helper\Media::getPath() . '/' . $layout_background_image . ')');
+            $style->addCss('background-repeat', $params->get('layout_background_repeat', 'inherit'));
+            $style->addCss('background-size', $params->get('layout_background_size', 'inherit'));
+            $style->addCss('background-position', $params->get('layout_background_position', 'inherit'));
+            $style->addCss('background-attachment', $params->get('layout_background_attachment', 'inherit'));
+            $style->render();
+        }
+    }
+
     public static function smoothScroll()
     {
         $params = Framework::getTemplate()->getParams();
@@ -179,7 +200,7 @@ class Utility
         $stickyHeaderLink = $stickyHeader->child('.astroid-nav .nav-link');
         $stickyHeaderLink->addCss('color', $params->get('stick_header_menu_link_color', ''));
         $stickyHeaderLink->hover()->addCss('color', $params->get('stick_header_menu_link_hover_color', ''));
-        $stickyHeaderLink->active()->addCss('color', $params->get('stick_header_menu_link_active_color', ''));
+        $stickyHeaderLink->active('.active')->addCss('color', $params->get('stick_header_menu_link_active_color', ''));
         $stickyHeader->render();  // render sticky header
 
         // Menu
@@ -191,7 +212,7 @@ class Utility
         $navLink->render(); // render navlink
 
         // Dropdown Menu
-        $dropdown = Style::addCssBySelector('.astroid-nav .megamenu-container', 'background-color', $params->get('dropdown_bg_color', ''));
+        $dropdown = Style::addCssBySelector('.astroid-nav .megamenu-container, .astroid-nav .nav-submenu', 'background-color', $params->get('dropdown_bg_color', ''));
         Style::addCssBySelector('.has-megamenu.open .arrow', 'border-bottom-color', $params->get('dropdown_bg_color', ''));
 
         $link = $dropdown->child('li.nav-item-submenu > a');
@@ -256,5 +277,34 @@ class Utility
 
         $document->addCustomTag($params->get('beforehead', ''));
         $document->addCustomTag($params->get('beforebody', ''), 'body');
+    }
+
+    public static function error()
+    {
+        $params = Framework::getTemplate()->getParams();
+        $document = Framework::getDocument();
+
+        $bodyStyle = new Style('body');
+        $background_setting_404 = $params->get('background_setting_404');
+        if ($background_setting_404) {
+            switch ($background_setting_404) {
+                case 'color':
+                    $bodyStyle->addCss('background-color', $params->get('background_color_404', ''));
+                    break;
+                case 'image':
+                    $bodyStyle->addCss('background-color', $params->get('img_background_color_404', ''));
+
+                    $background_image = $params->get('background_image_404', '');
+                    if (!empty($background_image)) {
+                        $bodyStyle->addCss('background-image', 'url(' . \JURI::root() . Helper\Media::getPath() . '/' . $background_image . ')');
+                        $bodyStyle->addCss('background-repeat', $params->get('background_repeat_404', ''));
+                        $bodyStyle->addCss('background-size', $params->get('background_size_404', ''));
+                        $bodyStyle->addCss('background-attachment', $params->get('background_attchment_404', ''));
+                        $bodyStyle->addCss('background-position', $params->get('background_position_404', ''));
+                    }
+                    break;
+            }
+        }
+        $bodyStyle->render();
     }
 }

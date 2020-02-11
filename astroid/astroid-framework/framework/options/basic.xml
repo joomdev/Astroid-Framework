@@ -47,13 +47,13 @@
 
          <field astroidgroup="preloader_options" description="TPL_ASTROID_BASIC_PRELOADER_ANIMATION_DESC" name="preloader_fontawesome" type="astroidpreloadersFont" class="form-control" default="spinner" label="TPL_ASTROID_BASIC_PRELOADER_ANIMATION_LABEL" ngShow="preloader=='1' AND preloder_setting =='fontawesome'" />
 
-         <field astroidgroup="preloader_options" description="TPL_ASTROID_BASIC_PRELOADER_COLOR_DESC" name="preloader_color" type="astroidcolor" ngShow="preloader=='1' AND preloder_setting =='animations' OR preloder_setting =='fontawesome'" label="TPL_ASTROID_BASIC_PRELOADER_COLOR_LABEL">
+         <field astroidgroup="preloader_options" description="TPL_ASTROID_BASIC_PRELOADER_COLOR_DESC" name="preloader_color" type="astroidcolor" ngShow="preloader=='1' AND (preloder_setting =='animations' OR preloder_setting =='fontawesome')" label="TPL_ASTROID_BASIC_PRELOADER_COLOR_LABEL">
          </field>
 
          <field astroidgroup="preloader_options" description="TPL_ASTROID_BASIC_PRELOADER_BACKGROUND_COLOR_DESC" astroid-scss-variable="preloader-background" name="preloader_bgcolor" type="astroidcolor" ngShow="preloader=='1'" label="TPL_ASTROID_BASIC_PRELOADER_BACKGROUND_COLOR_LABEL">
          </field>
 
-         <field ngShow="preloader=='1' AND preloder_setting =='animations' OR preloder_setting =='fontawesome'" astroidgroup="preloader_options" name="preloader_size" type="astroidrange" astroid-scss-variable="spinkit-size" min="20" max="500" step="1" postfix="px" default="40" label="TPL_ASTROID_BASIC_PRELOADER_SIZE_LABEL" description="TPL_ASTROID_BASIC_PRELOADER_SIZE_DESC" />
+         <field ngShow="preloader=='1' AND (preloder_setting =='animations' OR preloder_setting =='fontawesome')" astroidgroup="preloader_options" name="preloader_size" type="astroidrange" astroid-scss-variable="spinkit-size" min="20" max="500" step="1" postfix="px" default="40" label="TPL_ASTROID_BASIC_PRELOADER_SIZE_LABEL" description="TPL_ASTROID_BASIC_PRELOADER_SIZE_DESC" />
 
          <field astroidgroup="enable_back_to_top" description="TPL_ASTROID_BASIC_BACK_TO_TOP_DESC" name="backtotop" type="astroidtext" astroid-switch="true" default="1" label="TPL_ASTROID_BASIC_BACK_TO_TOP_LABEL" ></field>
 

@@ -11,6 +11,9 @@
       return (st > lastScrollTop);
    };
    var initMobileMenu = function () {
+      if (!$('.astroid-mobile-menu').length) {
+         return;
+      }
       $('.astroid-mobile-menu').astroidMobileMenu();
       $('#astroid-offcanvas').find('ul.menu').astroidMobileMenu();
       $('.astroid-mobile-menu').removeClass('d-none');
@@ -107,7 +110,9 @@
    };
 
    var initTooltip = function () {
-      $('[data-toggle="tooltip"]').tooltip();
+      if ($('[data-toggle="tooltip"]').length) {
+         $('[data-toggle="tooltip"]').tooltip();
+      }
    };
 
    var initAnimations = function () {

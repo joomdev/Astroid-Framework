@@ -12,7 +12,7 @@ $document = \JFactory::getDocument();
 $document->addStyleSheet('https://use.fontawesome.com/releases/v' . Astroid\Helper\Constants::$fontawesome_version . '/css/all.css');
 $document->addStyleSheet('https://fonts.googleapis.com/css?family=Nunito:300,400,600');
 $document->addStyleSheet(JURI::root(false) . 'media/astroid/assets/css/astroid-menu-options.css' . '?v=' . $document->getMediaVersion());
-$document->addScriptDeclaration('var astroidSearchUrl = "' . JURI::root() . 'administrator/index.php?option=com_ajax&astroid=search";');
+$document->addScriptDeclaration('var astroidSearchUrl = "' . JURI::root() . 'administrator/index.php?option=com_ajax&astroid=search&format=html";');
 
 $semanticComponents = ['icon', 'api', 'transition', 'dropdown'];
 
@@ -47,10 +47,9 @@ $badge_color = (string) @$value['badge_color'];
 $badge_bgcolor = (string) @$value['badge_bgcolor'];
 $app = JFactory::getApplication('site');
 $menu = $app->getMenu('site');
-$items = $menu->getItems(['menutype', 'language'], $menu_type);
+$items = $menu->getItems(['menutype'], $menu_type);
 
 $children = [];
-
 
 foreach ($items as $i => $item) {
    if ($item->parent_id != $menu_item_id) {

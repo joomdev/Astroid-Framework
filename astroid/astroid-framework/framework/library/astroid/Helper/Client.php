@@ -84,15 +84,19 @@ class Client
         header('Content-Type: ' . $type);
     }
 
-    protected function response($data)
+    protected function response($data, $raw = false)
     {
         $this->responseMime();
         switch ($this->format) {
             case 'json':
-                $return = [];
-                $return['status'] = 'success';
-                $return['code'] = 200;
-                $return['data'] = $data;
+                if (!$raw) {
+                    $return = [];
+                    $return['status'] = 'success';
+                    $return['code'] = 200;
+                    $return['data'] = $data;
+                } else {
+                    $return = $data;
+                }
                 $data = \json_encode($return);
                 break;
         }
@@ -126,6 +130,7 @@ class Client
             if (!method_exists($this, $func)) {
                 return;
             }
+            Helper::loadLanguage('astroid');
             $this->$func();
         } catch (\Exception $e) {
             $this->errorResponse($e);
@@ -151,6 +156,7 @@ class Client
     public function onContentPrepareForm($form, $data)
     {
         $astroid_dir = 'libraries/astroid';
+        Helper::loadLanguage('astroid');
         \JForm::addFormPath(JPATH_SITE . '/' . $astroid_dir . '/framework/forms');
         if ($form->getName() == 'com_menus.item') {
             $form->loadFile('menu', false);

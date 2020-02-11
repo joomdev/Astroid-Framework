@@ -71,7 +71,7 @@ class Admin extends Helper\Client
             $this->format = 'json';
             $return = ['success' => true];
             $return['results'] = Helper\Font::fontAwesomeIcons(true);
-            $this->response($return);
+            $this->response($return, true);
         } else {
             $this->response(Helper\Font::fontAwesomeIcons());
         }
@@ -94,7 +94,6 @@ class Admin extends Helper\Client
         $form->loadParams($template->getParams());
 
         Framework::getDebugger()->log('Loading Languages');
-        Helper::loadLanguage('astroid');
         Helper::loadLanguage('tpl_' . ASTROID_TEMPLATE_NAME);
         Helper::loadLanguage(ASTROID_TEMPLATE_NAME);
         Helper::loadLanguage('mod_menu');
@@ -123,8 +122,6 @@ class Admin extends Helper\Client
     {
         $this->format = 'html'; // Response Format
         $this->checkAndRedirect(); // Auth
-
-        Helper::loadLanguage('astroid');
 
         $layout = new \JLayoutFile('framework.auditor', ASTROID_LAYOUTS);
         $this->response($layout->render());
@@ -160,7 +157,7 @@ class Admin extends Helper\Client
         $app = \JFactory::getApplication();
         $option = $app->input->get('option', '');
         $view = $app->input->get('view', '');
-        if (!($option == 'com_templates' && $view == 'styles')) {
+        if (!($option == 'com_templates' && ($view == 'styles' || empty($view)))) {
             return;
         }
 

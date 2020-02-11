@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @package   Astroid Framework
  * @author    JoomDev https://www.joomdev.com
@@ -17,7 +18,9 @@ $user = JFactory::getUser($article->created_by);
 $params = new JRegistry();
 $params->loadString($user->params, 'JSON');
 // Get social profiles
-$socials = $params->get('astroid_author_social', []);
+$socials = $params->get('astroid_author_social', '[]');
+$socials = \json_decode($socials, true);
+
 $hash_email = md5(strtolower(trim($user->email)));
 ?>
 
@@ -48,9 +51,9 @@ $hash_email = md5(strtolower(trim($user->email)));
    </div>
    <?php if (!empty($socials)) { ?>
       <ul class="list-inline border-top author-social-links m-0 pt-2">
-         <?php foreach ($socials as $social) { ?>
+         <?php foreach ($socials['icon'] as $key => $icon) { ?>
             <li class="list-inline-item">
-               <a target="_blank" rel="noopener" href="<?php echo $social->link; ?>"><i class="<?php echo $social->icon; ?> fa-lg"></i></a>
+               <a target="_blank" rel="noopener" href="<?php echo $socials['link'][$key]; ?>"><i class="<?php echo $icon; ?> fa-lg"></i></a>
             </li>
          <?php } ?>
       </ul>

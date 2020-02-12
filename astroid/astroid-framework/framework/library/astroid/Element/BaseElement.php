@@ -142,7 +142,7 @@ class BaseElement
                 break;
             case 'video': // if video background
                 $video = $this->params->get('background_video', '');
-                if (empty($video)) {
+                if (!empty($video)) {
                     $this->addAttribute('data-jd-video-bg', \JURI::root() . Media::getPath() . '/' . $video);
                     Framework::getDocument()->addScript('vendor/astroid/js/videobg.js', 'body');
                 }

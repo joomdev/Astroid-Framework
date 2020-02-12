@@ -51,6 +51,11 @@ abstract class Framework
         define('ASTROID_ELEMENTS', JPATH_LIBRARIES . '/astroid/framework/elements');
         define('ASTROID_CACHE', JPATH_SITE . '/cache/astroid');
 
+        $version = new \JVersion;
+        $version = $version->getShortVersion();
+        $version = substr($version, 0, 1);
+        define('ASTROID_JOOMLA_VERSION', $version);
+
         $template = Framework::getTemplate();
         define('ASTROID_TEMPLATE_PATH', JPATH_SITE . '/templates/' . $template->template);
     }

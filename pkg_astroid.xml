@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE install PUBLIC "-//Joomla! 2.5//DTD template 1.0//EN" "https://www.joomla.org/xml/dtd/1.6/template-install.dtd">
+<?xml version="1.0" encoding="UTF-8" ?>
 <extension type="package" version="3.1" method="upgrade">
    <name>Astroid Package</name>
    <packagename>astroid</packagename>

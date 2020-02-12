@@ -224,8 +224,8 @@ class Style
         if (!empty($font_size)) {
             if (is_object($font_size)) {
                 foreach (['desktop', 'tablet', 'mobile'] as $device) {
-                    $font_size_unit = isset($font_size_unit->{$device}) ? $font_size_unit->{$device} : 'em';
-                    $style->addCss('font-size', $font_size->{$device} . $font_size_unit, $device);
+                    $unit = isset($font_size_unit->{$device}) ? $font_size_unit->{$device} : 'em';
+                    $style->addCss('font-size', $font_size->{$device} . $unit, $device);
                 }
             } else {
                 $style->addCss('font-size', $font_size . $font_size_unit);

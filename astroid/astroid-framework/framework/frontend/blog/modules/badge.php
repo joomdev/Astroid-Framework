@@ -13,11 +13,10 @@
 defined('_JEXEC') or die;
 extract($displayData);
 
-$article = $params['article'];
 $params = $article->params;
 $type = $params->get('astroid_article_badge_type', 2);
 if ($type != 1) {
-    ?>
+?>
     <div class="article-badge article-badge-<?php echo $type; ?>"><?php echo \JText::_('ASTROID_ARTICLE_OPTIONS_BADGE_' . $type . '_LBL'); ?></div>
 <?php } else { ?>
     <div class="article-badge article-badge-1 article-badge-custom-<?php echo $article->id; ?>"><?php echo \JText::_($params->get('astroid_article_badge_text', '')); ?></div>
@@ -25,5 +24,5 @@ if ($type != 1) {
     $color = $params->get('astroid_article_badge_text_color', '#fff');
     $bg = $params->get('astroid_article_badge_color', '#000');
     $style = '.article-badge.article-badge-custom-' . $article->id . '{color: ' . $color . '; background-color: ' . $bg . ';} .article-badge.article-badge-custom-' . $article->id . ':after{ border-left-color: ' . $bg . '}';
-    $template->addStyleDeclaration($style);
+    Astroid\Framework::getDocument()->addStyleDeclaration($style);
 } ?>

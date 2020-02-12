@@ -35,8 +35,7 @@ defined('_JEXEC') or die;
 					</dl>
 					<?php echo $item->introtext; ?>
 					<div class="readmore">
-						<a class="btn btn-primary readmore-btn" href="<?php echo $item->link; ?>" itemprop="url" aria-label="Read more: <?php echo $item->title; ?>">
-							Read more ... </a>
+						<a class="btn btn-primary readmore-btn" href="<?php echo $item->link; ?>" itemprop="url"><?php echo JText::_('ASTROID_READ_MORE'); ?> </a>
 					</div>
 				</div>
 			</article>

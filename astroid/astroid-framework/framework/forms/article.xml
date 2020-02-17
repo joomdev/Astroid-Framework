@@ -19,7 +19,7 @@
             <field type="text" name="astroid_article_video_url" label="ASTROID_VIDEO_ID" description="ASTROID_VIDEO_ID_DESC" showon="astroid_article_type:video" />
             <!-- Gallery Options -->
             <field type="spacer" showon="astroid_article_type:gallery" name="astroidarticlegallery" label="ASTROID_ARTICLE_OPTIONS_GALLERY_LABEL" />
-            <field showon="astroid_article_type:gallery" name="astroid_article_gallery_width" type="text" default="" label="ASTROID_GALLERY_WIDTH_LBL" description="ASTROID_GALLERY_WIDTH_DESC" />
+            <field showon="astroid_article_type:gallery" name="astroid_article_gallery_width" type="text" hint="ASTROID_GALLERY_WIDTH_PLACEHOLDER" label="ASTROID_GALLERY_WIDTH_LBL" description="ASTROID_GALLERY_WIDTH_DESC" />
             <field showon="astroid_article_type:gallery" name="astroid_article_gallery_bullets" type="radio" default="1" label="ASTROID_GALLERY_BULLETS_LBL" description="ASTROID_GALLERY_BULLETS_DESC" class="btn-group btn-group-yesno">
                 <option value="1">JYES</option>
                 <option value="0">JNO</option>

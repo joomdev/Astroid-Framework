@@ -19,15 +19,13 @@ if (empty($text) && empty($author)) {
    return;
 }
 ?>
-<div class="card mb-3">
-   <div class="card-body">
-      <blockquote class="blockquote text-right">
-         <?php if (!empty($text)) { ?>
-            <p class="mb-0"><?php echo $text; ?></p>
+<div class="article-quote-area">
+   <blockquote class="blockquote">
+      <?php if (!empty($text)) { ?>
+         <p><?php echo $text; ?></p>
+      <?php } ?>
+      <?php if (!empty($author)) { ?>
+         <footer class="blockquote-footer"><cite title="<?php echo $author; ?>"><?php echo $author; ?></cite></footer>
          <?php } ?>
-         <?php if (!empty($author)) { ?>
-            <footer class="blockquote-footer"><cite title="<?php echo $author; ?>"><?php echo $author; ?></cite></footer>
-            <?php } ?>
-      </blockquote>
-   </div>
+   </blockquote>
 </div>

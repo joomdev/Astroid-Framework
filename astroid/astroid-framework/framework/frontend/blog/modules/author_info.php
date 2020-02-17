@@ -24,9 +24,8 @@ $socials = \json_decode($socials, true);
 $hash_email = md5(strtolower(trim($user->email)));
 ?>
 
-<div class="author-wrap bg-light border p-2 mt-5">
+<div class="author-wrap">
    <div class="author-body d-flex">
-      <div class="author-thumb mr-4">
          <?php if (!empty($params->get('astroid_author_picture', 0))) { ?>
             <div class="author-thumb mr-4">
                <?php if ($params->get('astroid_author_picture', 'gravatar') == "upload") { ?>
@@ -41,21 +40,20 @@ $hash_email = md5(strtolower(trim($user->email)));
                <?php } ?>
             </div>
          <?php } ?>
-      </div>
       <div class="author-info">
          <h3 class="p-0"><?php echo $user->name; ?></h3>
+         <?php if (!empty($socials)) { ?>
+            <ul class="author-social-links list-inline">
+               <?php foreach ($socials['icon'] as $key => $icon) { ?>
+                  <li class="list-inline-item">
+                     <a target="_blank" rel="noopener" href="<?php echo $socials['link'][$key]; ?>"><i class="<?php echo $icon; ?> fa-lg"></i></a>
+                  </li>
+               <?php } ?>
+            </ul>
+         <?php } ?>
          <?php if (!empty($params->get('astroid_author_aboutme', ''))) { ?>
-            <p class="mt-2 pt-3 text-muted border-top"><?php echo $params->get('astroid_author_aboutme', ''); ?></p>
+            <p class="author-description text-muted"><?php echo $params->get('astroid_author_aboutme', ''); ?></p>
          <?php } ?>
       </div>
    </div>
-   <?php if (!empty($socials)) { ?>
-      <ul class="list-inline border-top author-social-links m-0 pt-2">
-         <?php foreach ($socials['icon'] as $key => $icon) { ?>
-            <li class="list-inline-item">
-               <a target="_blank" rel="noopener" href="<?php echo $socials['link'][$key]; ?>"><i class="<?php echo $icon; ?> fa-lg"></i></a>
-            </li>
-         <?php } ?>
-      </ul>
-   <?php } ?>
 </div>

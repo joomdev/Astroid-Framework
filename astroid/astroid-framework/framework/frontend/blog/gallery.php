@@ -22,7 +22,7 @@ $active = true;
 $width = $params->get('astroid_article_gallery_width', '');
 $width = !empty($width) ? 'max-width:' . $width : '';
 ?>
-<div style="<?php echo $width; ?>" id="article-gallery" class="carousel mb-3 slide" data-ride="carousel">
+<div style="<?php echo $width; ?>" id="article-gallery" class="article-gallery carousel mb-3 slide" data-ride="carousel">
    <?php if (!empty($params->get('astroid_article_gallery_bullets', 1))) { ?>
       <ol class="carousel-indicators">
          <?php foreach ($items as $item) { ?>

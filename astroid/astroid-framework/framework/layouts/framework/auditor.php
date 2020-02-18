@@ -91,11 +91,11 @@ $stylesheets[] = $assets . 'css' . '/' . 'admin.css?v=' . $document->getMediaVer
 
       .astroid-manager-navbar {
          background: #e9f2ee;
-         box-shadow: 0px 0px 10px #b0e2cc;
+         box-shadow: 0 0 10px #b0e2cc;
       }
 
       .astroid-logo {
-         box-shadow: 0px 0px 10px #b0e2cc;
+         box-shadow: 0 0 10px #b0e2cc;
       }
 
       body {

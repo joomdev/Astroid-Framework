@@ -74,7 +74,7 @@ foreach ($items as $i => $item) {
                <div class="row m-0">
                   <div ng-click="updateRow(chooseRowColumns.row, grid);" ng-repeat="grid in grids track by $index" class="col-3 ezlb-grid-item">
                      <div class="row m-0 p-0">
-                        <div ng-repeat="gridsize in grid track by $index" style="padding: 0px 3px;" class="ezlb-grid-item-col col-{{ gridsize}}"><span>{{ gridsize}}</span></div>
+                        <div ng-repeat="gridsize in grid track by $index" style="padding: 0 3px;" class="ezlb-grid-item-col col-{{ gridsize}}"><span>{{ gridsize}}</span></div>
                      </div>
                   </div>
                </div>

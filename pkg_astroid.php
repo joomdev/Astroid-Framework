@@ -75,7 +75,7 @@ class pkg_astroidInstallerScript
 ?>
       <style>
          .astroid-install {
-            margin: 0px 0 30px 0px;
+            margin: 0 0 30px 0;
             padding: 40px 0;
             text-align: center;
             border-radius: 0;
@@ -167,7 +167,7 @@ class pkg_astroidInstallerScript
          .astroid-support-link a {
             color: #8E2DE2;
             text-decoration: none;
-            margin: 0px 5px;
+            margin: 0 5px;
          }
 
          .astroid-support-link a:hover {

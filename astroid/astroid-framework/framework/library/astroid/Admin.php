@@ -170,7 +170,7 @@ class Admin extends Helper\Client
                 $id = (int) $uri->getVar('id');
                 if ($id && in_array($uri->getVar('option'), array('com_templates')) && (in_array($id, $astroid_templates))) {
                     $html = $matches[1] . $uri . $matches[3] . $matches[4] . $matches[5];
-                    $html .= ' <span class="label" style="background: rgba(0, 0, 0, 0) linear-gradient(to right, #8E2DE2, #4A00E0) repeat scroll 0 0; color:#fff;padding-left: 10px;padding-right: 10px;margin-left: 5px;border-radius: 30px;box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.20);display: inline-block;">Astroid</span>';
+                    $html .= ' <span class="label" style="background: rgba(0, 0, 0, 0) linear-gradient(to right, #8E2DE2, #4A00E0) repeat scroll 0 0; color:#fff;padding-left: 10px;padding-right: 10px;margin-left: 5px;border-radius: 30px;box-shadow: 0 0 20px rgba(0, 0, 0, 0.20);display: inline-block;">Astroid</span>';
                 }
             }
             return $html;

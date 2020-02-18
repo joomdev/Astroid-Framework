@@ -41,12 +41,9 @@ $form = Astroid\Framework::getForm();
         <?php } ?>
         $scope.chosePreset = function(_name) {
             var _preset = null;
-            TEMPLATE_PRESETS.forEach(function(preset) {
-                if (preset.name == _name) {
-                    _preset = Object.assign({}, preset);
-                    return false;
-                }
-            });
+            if(_name in TEMPLATE_PRESETS){
+                _preset = TEMPLATE_PRESETS[_name];
+            }
             if (_preset != null) {
                 for (var key in _preset.preset) {
                     if (_preset.preset.hasOwnProperty(key)) {

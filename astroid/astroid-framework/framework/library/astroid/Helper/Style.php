@@ -3,7 +3,7 @@
 /**
  * @package   Astroid Framework
  * @author    JoomDev https://www.joomdev.com
- * @copyright Copyright (C) 2009 - 2019 JoomDev.
+ * @copyright Copyright (C) 2009 - 2020 JoomDev.
  * @license https://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
  */
 
@@ -158,9 +158,8 @@ class Style
 
     public function render()
     {
-        $css = [];
+        $css = ['desktop' => '', 'tablet' => '', 'mobile' => ''];
         foreach ($this->_css as $device => $styles) {
-            $css[$device] = '';
             foreach ($styles as $property => $value) {
                 $css[$device] .= $property . ':' . $value . ';';
             }
@@ -168,7 +167,7 @@ class Style
 
         foreach ($this->_styles as $device => $cssScript) {
             if (!empty($cssScript)) {
-                $css[$device] .= $cssScript;
+                $css[$device] .= implode(';', $cssScript);
             }
         }
 

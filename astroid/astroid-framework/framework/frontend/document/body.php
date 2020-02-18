@@ -27,6 +27,7 @@ if ($document->isDev()) { // check is dev
     $document->include('comingsoon'); // load coming soon and return
     return;
 }
+$document->include('bodyStart'); // Body Start
 $document->include('preloader'); // load preloader
 $document->include('backtotop'); // load back to top
 
@@ -48,23 +49,40 @@ if ($header && !empty($header_mode) && $header_mode != 'sidebar') {
 <!-- astroid container -->
 <div class="astroid-container">
     <?php
+    $document->include('containerStart'); // Container Start
     $document->include('header.sidebar'); // sidebar
     $document->include('offcanvas'); // offcanvas
     $document->include('mobilemenu'); // mobile menu
     ?>
     <!-- astroid content -->
     <div class="<?php echo implode(' ', $astroid_content_class); ?>">
+        <?php $document->include('contentStart'); // Content Start 
+        ?>
         <!-- astroid layout -->
         <div class="astroid-layout astroid-layout-<?php echo $params->get('template_layout', 'wide') ?>">
+            <?php $document->include('layoutStart'); // Layout Start 
+            ?>
             <!-- astroid wrapper -->
             <div class="astroid-wrapper">
+                <?php $document->include('wrapperStart'); // Wrapper Start 
+                ?>
                 <?php echo Astroid\Element\Layout::render(); ?>
+                <?php $document->include('wrapperEnd'); // Wrapper End 
+                ?>
             </div>
             <!-- end of astroid wrapper -->
+            <?php $document->include('layoutEnd'); // Layout End 
+            ?>
         </div>
         <!-- end of astroid layout -->
+        <?php $document->include('contentEnd'); // Content End 
+        ?>
     </div>
     <!-- end of astroid content -->
+    <?php $document->include('containerEnd'); // Container End 
+    ?>
 </div>
 <!-- end of astroid container -->
+<?php $document->include('bodyEnd'); // Body End 
+?>
 <?php Astroid\Framework::getDebugger()->log('Render Body'); ?>

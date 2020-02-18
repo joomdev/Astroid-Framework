@@ -746,10 +746,6 @@ class Document
 
         $scss = new Compiler();
         $content = '';
-        if (file_exists($templateScssPath . '/variables_override.scss')) {
-            $content .= '@import "' . ASTROID_MEDIA . '/vendor/bootstrap/scss/functions";';
-            $content .= '@import "' . $templateScssPath . '/variables_override";';
-        }
 
         $content .= '@import "' . ASTROID_MEDIA . '/vendor/bootstrap/scss/bootstrap";';
         $content .= '@import "' . ASTROID_MEDIA . '/vendor/astroid/scss/astroid";';

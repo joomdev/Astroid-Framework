@@ -63,10 +63,10 @@ astroid-template-zero/
 				<div class="astroid-layout">
 					<div class="astroid-wrapper">
 					</div>
-        </div>
+        			</div>
 			</div>
 		</div>
-	</bidy>
+	</body>
 </html>
 ```
 

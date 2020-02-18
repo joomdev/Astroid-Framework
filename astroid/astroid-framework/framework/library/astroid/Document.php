@@ -742,7 +742,7 @@ class Document
         Framework::getDebugger()->log('Rendering Scss');
         $template = Framework::getTemplate();
         Helper::clearCache($template->template, ['compiled-scss']);
-        $templateScssPath = ASTROID_TEMPLATE_PATH . '/scss/' . $template->template;
+        $templateScssPath = ASTROID_TEMPLATE_PATH . '/scss/';
 
         $scss = new Compiler();
         $content = '';

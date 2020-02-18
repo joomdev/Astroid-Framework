@@ -10,7 +10,9 @@
 defined('_JEXEC') or die;
 defined('_ASTROID') or die('Please install and activate <a href="https://www.astroidframework.com/" target="_blank">Astroid Framework</a> in order to use this template.');
 
-require_once "helper.php"; // Template's Helper
+if(file_exists("helper.php")){
+   require_once "helper.php"; // Template's Helper
+}
 
 $document = Astroid\Framework::getDocument(); // Astroid Document
 // Output as HTML5

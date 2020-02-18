@@ -2,7 +2,7 @@
 /**
  * @package   Astroid Framework
  * @author    JoomDev https://www.joomdev.com
- * @copyright Copyright (C) 2009 - 2019 JoomDev.
+ * @copyright Copyright (C) 2009 - 2020 JoomDev.
  * @license https://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
  * 	DO NOT MODIFY THIS FILE DIRECTLY AS IT WILL BE OVERWRITTEN IN THE NEXT UPDATE
  *  You can easily override all files under /frontend/ folder.
@@ -19,15 +19,13 @@ if (empty($text) && empty($author)) {
    return;
 }
 ?>
-<div class="card mb-3">
-   <div class="card-body">
-      <blockquote class="blockquote text-right">
-         <?php if (!empty($text)) { ?>
-            <p class="mb-0"><?php echo $text; ?></p>
+<div class="article-quote-area">
+   <blockquote class="blockquote">
+      <?php if (!empty($text)) { ?>
+         <p><?php echo $text; ?></p>
+      <?php } ?>
+      <?php if (!empty($author)) { ?>
+         <footer class="blockquote-footer"><cite title="<?php echo $author; ?>"><?php echo $author; ?></cite></footer>
          <?php } ?>
-         <?php if (!empty($author)) { ?>
-            <footer class="blockquote-footer"><cite title="<?php echo $author; ?>"><?php echo $author; ?></cite></footer>
-            <?php } ?>
-      </blockquote>
-   </div>
+   </blockquote>
 </div>

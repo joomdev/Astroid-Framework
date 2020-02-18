@@ -6,17 +6,16 @@
    align-items: center;
 }
 
-.comingsoon-page-logo {
-   margin-bottom: $comingsoon-logo-margin-bottom;
-}
-
-.comingsoon-content {
-   margin-bottom: $comingsoon-content-margin-bottom;
+#comingsoon > * + * {
+   margin-top: 100px;
 }
 
 .comingsoon-date{
    > div{
       display: inline-block;
+      background: #fff;
+      box-shadow: 2px 2px 9px rgba(0, 0, 0, 0.05);
+      padding: 20px;
       span{
          display: block;
          font-size: $comingsoon-count-title-font-size;

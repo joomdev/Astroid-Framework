@@ -2,7 +2,7 @@
 /**
  * @package   Astroid Framework
  * @author    JoomDev https://www.joomdev.com
- * @copyright Copyright (C) 2009 - 2019 JoomDev.
+ * @copyright Copyright (C) 2009 - 2020 JoomDev.
  * @license https://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
  * 	DO NOT MODIFY THIS FILE DIRECTLY AS IT WILL BE OVERWRITTEN IN THE NEXT UPDATE
  *  You can easily override all files under /frontend/ folder.
@@ -22,7 +22,7 @@ $active = true;
 $width = $params->get('astroid_article_gallery_width', '');
 $width = !empty($width) ? 'max-width:' . $width : '';
 ?>
-<div style="<?php echo $width; ?>" id="article-gallery" class="carousel mb-3 slide" data-ride="carousel">
+<div style="<?php echo $width; ?>" id="article-gallery" class="article-gallery carousel mb-3 slide" data-ride="carousel">
    <?php if (!empty($params->get('astroid_article_gallery_bullets', 1))) { ?>
       <ol class="carousel-indicators">
          <?php foreach ($items as $item) { ?>

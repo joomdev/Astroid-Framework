@@ -195,11 +195,37 @@ ul.tags{
 
 // Author Info
 .author-wrap {
-	background-color: $light;
-	padding: 15px;
-	border: 1px solid darken($color: $light, $amount: 2);
+	padding: 35px;
+	border: 1px solid #eaeaea;
+	@include media-breakpoint-down(sm) {
+		padding: 15px;
+	}
+	.author-header {
+		display: flex;
+		align-items: center;
+		border-bottom: 1px solid #eaeaea;
+		margin-bottom: 15px;
+		padding-bottom: 20px;
+	}
+	.author-social-links {
+		margin: 0;
+		a {
+			color: #8e8e8e;
+			font-size: 14px;
+		}
+	}
 	.author-thumb {
 		min-width: 80px;
+		margin-right: 20px;
+	}
+	.author-label {
+		font-size: 14px;
+		font-weight: normal;
+	}
+	.author-name {
+		font-size: 22px;
+		font-weight: 600;
+		line-height: normal;
 	}
 }
 

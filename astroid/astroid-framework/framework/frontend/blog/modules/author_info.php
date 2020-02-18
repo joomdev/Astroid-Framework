@@ -25,14 +25,15 @@ $hash_email = md5(strtolower(trim($user->email)));
 ?>
 
 <div class="author-wrap">
-   <div class="author-body d-flex">
+   <div class="author-body">
+      <div class="author-header">
          <?php if (!empty($params->get('astroid_author_picture', 0))) { ?>
-            <div class="author-thumb mr-4">
+            <div class="author-thumb">
                <?php if ($params->get('astroid_author_picture', 'gravatar') == "upload") { ?>
                   <?php if (!empty($params->get('upload', ''))) { ?>
-                     <img width="80" src="<?php echo JURI::base() . $params->get('upload', ''); ?>">
+                     <img width="100" src="<?php echo JURI::base() . $params->get('upload', ''); ?>">
                   <?php } else { ?>
-                     <img width="80" src="<?php echo JURI::base(); ?>images/<?php echo $template->template; ?>/user-avatar.png">
+                     <img width="100" src="<?php echo JURI::base(); ?>images/<?php echo $template->template; ?>/user-avatar.png">
                   <?php } ?>
                <?php } ?>
                <?php if ($params->get('astroid_author_picture', '') == "gravatar") { ?>
@@ -40,20 +41,21 @@ $hash_email = md5(strtolower(trim($user->email)));
                <?php } ?>
             </div>
          <?php } ?>
-      <div class="author-info">
-         <h3 class="p-0"><?php echo $user->name; ?></h3>
-         <?php if (!empty($socials)) { ?>
-            <ul class="author-social-links list-inline">
-               <?php foreach ($socials['icon'] as $key => $icon) { ?>
-                  <li class="list-inline-item">
-                     <a target="_blank" rel="noopener" href="<?php echo $socials['link'][$key]; ?>"><i class="<?php echo $icon; ?> fa-lg"></i></a>
-                  </li>
-               <?php } ?>
-            </ul>
-         <?php } ?>
-         <?php if (!empty($params->get('astroid_author_aboutme', ''))) { ?>
-            <p class="author-description text-muted"><?php echo $params->get('astroid_author_aboutme', ''); ?></p>
-         <?php } ?>
+         <div class="author-info">
+            <h3 class="author-name"><?php echo $user->name; ?></h3>
+            <?php if (!empty($socials)) { ?>
+               <ul class="author-social-links list-inline">
+                  <?php foreach ($socials['icon'] as $key => $icon) { ?>
+                     <li class="list-inline-item">
+                        <a target="_blank" rel="noopener" href="<?php echo $socials['link'][$key]; ?>"><i class="<?php echo $icon; ?> fa-lg"></i></a>
+                     </li>
+                  <?php } ?>
+               </ul>
+            <?php } ?>
+         </div>
       </div>
+      <?php if (!empty($params->get('astroid_author_aboutme', ''))) { ?>
+         <p class="author-description"><?php echo $params->get('astroid_author_aboutme', ''); ?></p>
+      <?php } ?>
    </div>
 </div>

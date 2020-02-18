@@ -47,6 +47,7 @@ $menu-indicator-width: 60px !default;
       position: relative;
       width: 100%;
       height: 100%;
+      overflow: auto;
       > li.menu-item:first-child{
          border-top: 1px solid #ddd; 
       }
@@ -95,7 +96,6 @@ $menu-indicator-width: 60px !default;
          display: block;
          padding: 15px;
          box-sizing: border-box;
-         font-weight: bold;
       }
       .menu-indicator-back i {
          margin-right: 10px;

@@ -122,8 +122,8 @@ astroid-framework
 ┃ ┃ ┃ ┃ ┃ ┣ _modal.scss  
 ┃ ┃ ┃ ┃ ┃ ┣ _responsive.scss  
 ┃ ┃ ┃ ┃ ┃ ┗ _utilities.scss  
-┃ ┃ ┃ ┃ ┣ _comingsoon.scss
-┃ ┃ ┃ ┃ ┣ _contactinfo.scss
+┃ ┃ ┃ ┃ ┣ _comingsoon.scss  
+┃ ┃ ┃ ┃ ┣ _contactinfo.scss  
 ┃ ┃ ┃ ┃ ┣ _error.scss  
 ┃ ┃ ┃ ┃ ┣ _header.scss  
 ┃ ┃ ┃ ┃ ┣ _layouts.scss  

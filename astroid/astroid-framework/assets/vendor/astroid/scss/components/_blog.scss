@@ -262,6 +262,8 @@ ul.tags{
 		top: 50%;
 		transform: translateY(-50%);
 		background-color: $primary;
+		background-color: lighten($color: $primary, $amount: 20);
+		opacity: 1;
 	}
 	.carousel-control-prev {
 		border-radius: 0 4px 4px 0;

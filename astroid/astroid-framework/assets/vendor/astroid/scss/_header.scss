@@ -40,8 +40,6 @@
       z-index: $sticky-header-zindex;
       -webkit-animation-duration: $sticky-header-animation-duration;
       animation-duration: $sticky-header-animation-duration;
-      border-bottom: $sticky-header-border-bottom;
-      box-shadow: $sticky-header-shadow;
       > div{
          padding-top: $sticky-header-padding-y;
          padding-bottom: $sticky-header-padding-y;

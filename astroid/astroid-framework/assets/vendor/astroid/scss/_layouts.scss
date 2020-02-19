@@ -35,8 +35,10 @@ img {
 
 .navHorizontalView {
 	li {
-		margin: 0 5px;
-
+		margin: 0 10px;
+		&:first-child {
+			margin-left: 0;
+		}
 		&:last-child {
 			margin-right: 0;
 		}
@@ -208,4 +210,19 @@ div.search{
 
 ul.fa-ul {
 	margin-left: 25px;
+}
+
+// Footer Section
+.footer-section {
+	color: #fff;
+	background-color: $primary;
+	a {
+		color: #fff;
+		&:hover {
+			color: darken($color: #fff, $amount: 10);
+		}
+	}
+	.astroid-row {
+		padding: 50px 0 10px;
+	}
 }

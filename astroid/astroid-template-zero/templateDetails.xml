@@ -28,6 +28,7 @@
       <filename>template_thumbnail.png</filename>
       <filename>component.php</filename>
       <filename>error.php</filename>
+      <filename>offline.php</filename>
    </files>
    <positions>
       <position>topbar-1</position>

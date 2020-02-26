@@ -42,7 +42,7 @@ if ($article_comments == 'facebook') {
          }(document, 'script', 'facebook-jssdk'));
       </script>
    <?php } else { ?>
-      <div class="alert alert-danger" role="alert">
+      <div class="alert alert-danger mt-4" role="alert">
          <h4 class="alert-heading"><?php echo JText::_('ASTROID_FACEBOOK_COMMENT_ERROR_LBL'); ?></h4>
          <p><?php echo JText::_('ASTROID_FACEBOOK_COMMENT_ERROR_DESC'); ?></h4>
       </div>
@@ -71,7 +71,7 @@ if ($article_comments == 'disqus') {
          })();
       </script>
    <?php } else { ?>
-      <div class="alert alert-danger" role="alert">
+      <div class="alert alert-danger mt-4" role="alert">
          <h4 class="alert-heading"><?php echo JText::_('ASTROID_DISQUS_COMMENT_ERROR_LBL'); ?></h4>
          <p><?php echo JText::_('ASTROID_DISQUS_COMMENT_ERROR_DESC'); ?></h4>
       </div>
@@ -110,7 +110,7 @@ if ($article_comments == 'hyper') {
          </div>
       </div>
    <?php } else { ?>
-      <div class="alert alert-danger" role="alert">
+      <div class="alert alert-danger mt-4" role="alert">
          <h4 class="alert-heading"><?php echo JText::_('ASTROID_HYPER_COMMENT_ERROR_LBL'); ?></h4>
          <p><?php echo JText::_('ASTROID_HYPER_COMMENT_ERROR_DESC'); ?></h4>
       </div>
@@ -136,7 +136,7 @@ if ($article_comments == 'intense') {
          </div>
       </div>
    <?php } else { ?>
-      <div class="alert alert-danger" role="alert">
+      <div class="alert alert-danger mt-4" role="alert">
          <h4 class="alert-heading"><?php echo JText::_('ASTROID_INTENSE_COMMENT_ERROR_LBL'); ?></h4>
          <p><?php echo JText::_('ASTROID_INTENSE_COMMENT_ERROR_DESC'); ?></h4>
       </div>

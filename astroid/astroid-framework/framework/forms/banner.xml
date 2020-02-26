@@ -75,7 +75,16 @@
 			<field showon="astroid_banner_title_enabled:1[AND]astroid_banner_enabled:1" name="astroid_banner_title_tag" type="headertag" default="h3" label="ASTROID_BANNER_TITLE_TAG_LABEL">
 			</field>
 
-			<field showon="astroid_banner_title_enabled:1[AND]astroid_banner_enabled:1" name="astroid_banner_subtitle_tag" type="headertag" default="p" label="ASTROID_BANNER_SUBTITLE_TAG_LABEL">
+			<field showon="astroid_banner_title_enabled:1[AND]astroid_banner_enabled:1" name="astroid_banner_subtitle_tag" type="list" default="span" label="ASTROID_BANNER_SUBTITLE_TAG_LABEL">
+				<option value="h1">h1</option>
+				<option value="h2">h2</option>
+				<option value="h3">h3</option>
+				<option value="h4">h4</option>
+				<option value="h5">h5</option>
+				<option value="h6">h6</option>
+				<option value="p">p</option>
+				<option value="div">div</option>
+				<option value="span">span</option>
 			</field>
 
 			<field showon="astroid_banner_enabled:1" name="astroid_banner_class" type="text" label="ASTROID_BANNER_CLASS_LABEL">

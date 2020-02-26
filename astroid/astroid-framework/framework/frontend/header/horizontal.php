@@ -85,7 +85,7 @@ $navWrapperClass = ['align-self-center', 'px-2', 'd-none', 'd-lg-block'];
                   <?php
                   if ($block_1_type == 'position') {
                      echo '<div class="header-block-item">';
-                     echo $template->renderModulePosition($block_1_position, 'xhtml');
+                     echo $document->position($block_1_position, 'xhtml');
                      echo '</div>';
                   }
                   if ($block_1_type == 'custom') {

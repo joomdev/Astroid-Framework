@@ -42,14 +42,14 @@ astroidFramework.directive("astroidmediagallery", ["$http", function ($http) {
          $scope.clearImage = function (_id) {
             ngModel.$setViewValue("");
             try {
-               Admin.refreshScroll()
+               Admin.checkForm();
             } catch (e) {}
          };
          $scope.selectImage = function (_id, _value) {
             ngModel.$setViewValue(_value);
             $scope.selectMedia = false;
             try {
-               Admin.refreshScroll()
+               Admin.checkForm();
             } catch (e) {}
          };
          $scope.getLibrary = function (folder, tab) {
@@ -290,13 +290,24 @@ astroidFramework.directive("astroidsocialprofiles", ["$http", function ($http) {
                link: "",
                id: $scope.getId()
             });
-            $scope.astroidsocialprofiles = _profiles
+            $scope.astroidsocialprofiles = _profiles;
          };
          $scope.selectSocialProfile = function (_profile) {
             var _profiles = $scope.profiles;
             _profiles.push(angular.copy(_profile));
             $scope.profiles = _profiles
+            Admin.notify("`" + _profile.title + "` profile added.", "success");
+            $('body, html').animate({
+               scrollTop: $('.social-profile-item:last-child').offset().top
+            }, 100);
          };
+         $scope.getPlaceholder = function (type) {
+            type = type.toUpperCase(type);
+            if (window['TPL_ASTROID_SOCIAL_' + type + '_PLACEHOLDER'] != undefined) {
+               return window['TPL_ASTROID_SOCIAL_' + type + '_PLACEHOLDER'];
+            }
+            return window['TPL_ASTROID_SOCIAL_LINK_PLACEHOLDER'];
+         }
          $scope.removeSocialProfile = function (_index) {
             var _c = confirm("Are you sure?");
             if (_c) {
@@ -309,7 +320,7 @@ astroidFramework.directive("astroidsocialprofiles", ["$http", function ($http) {
             profile.enabled = $("#" + _this).is(":checked");
             try {
                $scope.setProfiles();
-               Admin.refreshScroll()
+               Admin.checkForm();
             } catch (e) {}
          };
          $scope.setProfiles = function () {
@@ -400,13 +411,13 @@ astroidFramework.directive("dropzone", function () {
                   Admin.notify(response.message, "error")
                }
                try {
-                  Admin.refreshScroll()
+                  Admin.checkForm();
                } catch (e) {}
             },
             complete: function (file) {
                this.removeAllFiles(true);
                try {
-                  Admin.refreshScroll()
+                  Admin.checkForm();
                } catch (e) {}
             },
             sending: function (file, xhr, formData) {
@@ -420,17 +431,25 @@ astroidFramework.directive("dropzone", function () {
       }
    }
 });
-astroidFramework.directive("rangeSlider", function () {
+astroidFramework.directive("rangeSlider", function ($compile) {
    return {
       restrict: "A",
       require: "ngModel",
       link: function (scope, element, attrs, ngModel) {
+         scope.initValue = null;
          setTimeout(function () {
             ngModel.$setViewValue(parseFloat($(element).data("slider-value")));
-            scope.$apply()
+            scope.$apply();
          }, 50);
          setTimeout(function () {
-            $(element).slider(rangeConfig)
+            $(element).slider(rangeConfig);
+            $(element).after('<span data-astroid-tooltip="Reset" class="slider-reset"><span class="fas fa-redo"></span></span>');
+            $(element).siblings('.slider-reset').bind('click', function () {
+               setTimeout(function () {
+                  ngModel.$setViewValue(parseFloat($(element).data("slider-value")));
+                  scope.$apply();
+               }, 50);
+            });
          }, 100);
          setTimeout(function () {
             var _prefix = $(element).data("prefix");
@@ -579,7 +598,7 @@ astroidFramework.directive("astroidSwitch", function () {
                ngModel.$setViewValue(0)
             }
             try {
-               Admin.refreshScroll()
+               Admin.checkForm();
             } catch (e) {}
          };
          var updateElementFromModel = function () {

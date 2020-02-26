@@ -12,4 +12,4 @@
 defined('_JEXEC') or die;
 extract($displayData);
 ?>
-<img class="card-img-top" src="<?php echo @$params['image']; ?>" alt="<?php echo @$params['title']; ?>" />
+<img class="card-img-top" src="<?php echo @$image; ?>" alt="<?php echo @$title; ?>" />

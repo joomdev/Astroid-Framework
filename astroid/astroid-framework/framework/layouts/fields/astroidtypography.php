@@ -200,6 +200,7 @@ $media_types = ['desktop', 'tablet', 'mobile'];
    <div class="col-12">
       <label class="astroid-label"><?php echo JText::_('TPL_ASTROID_OPTIONS_PREVIEW_LABEL'); ?></label>
       <small class="library-font-warning text-danger d-none">* <?php echo JText::_('TPL_ASTROID_OPTIONS_LIBRARY_FONT_WARNING'); ?></small>
+      <small class="default-font-warning text-danger d-none">* <?php echo JText::_('TPL_ASTROID_OPTIONS_DEFAULT_FONT_WARNING'); ?></small>
       <?php
       $alphas = range('A', 'Z');
 

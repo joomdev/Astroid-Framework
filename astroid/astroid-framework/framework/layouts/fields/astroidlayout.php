@@ -118,7 +118,7 @@
                   <span class="ezlb-action ezlb-row-handle" ng-show="section.rows.length > 1"><i class="fas fa-arrows-alt"></i></span>
                </span>
                <div class="col-12">
-                  <div class="row" ng-sortable="{draggable: '.ezlb-col',animation: 100}">
+                  <div class="row" ng-sortable="{draggable: '.ezlb-col',animation: 100, handle:'.ezlb-element-col-move'}">
                      <div data-label="col-lg-{{ column.size}}" ng-repeat="column in row.cols track by $index" class="ezlb-col col-{{ column.size}} ezlb-col-{{ sectionIndex}}-{{ rowIndex}}-{{ columnIndex}} {{ column.elements.length == 0 ? 'ezlb-col-empty' : '' }}" ng-init="columnIndex = $index; column.type='column'">
                         <div ng-if="column.elements.length != 0" class="ezlb-col-overlay"></div>
                         <div ng-if="column.elements.length == 0" ng-click="addingElement(columnIndex, rowIndex, sectionIndex, null)" class="ezlb-add-element">
@@ -127,6 +127,7 @@
                         <div ng-if="column.elements.length != 0" ng-click="addingElement(columnIndex, rowIndex, sectionIndex, null)" class="ezlb-add-element">
                         </div>
                         <span data-astroid-tooltip="<?php echo JText::_('TPL_ASTROID_EDIT_COLUMN'); ?>" ng-click="editElement(column)" class="ezlb-element-col-edit"><i class="fas fa-pencil-alt"></i></span>
+                        <span data-astroid-tooltip="<?php echo JText::_('TPL_ASTROID_MOVE_COLUMN'); ?>" class="ezlb-element-col-move"><i class="fas fa-arrows-alt"></i></span>
                         <div ng-show="column.elements.length != 0" class="ezlb-elements" ng-sortable="{draggable: '.ezlb-element',animation: 100, 'handle': '.ezlb-element-handle'}">
                            <div ng-repeat="element in column.elements track by $index" ng-init="elementIndex = $index" class="ezlb-element">
 

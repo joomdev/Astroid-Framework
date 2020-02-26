@@ -79,7 +79,7 @@ $navWrapperClass = ['astroid-nav-wraper', 'align-self-center', 'px-2', 'd-none',
             // header block starts
             if ($block_1_type == 'position') {
                echo '<div class="w-100 header-block-item d-none d-lg-flex justify-content-center py-3">';
-               echo $template->renderModulePosition($block_1_position, 'xhtml');
+               echo $document->position($block_1_position, 'xhtml');
                echo '</div>';
             }
             if ($block_1_type == 'custom') {
@@ -94,7 +94,7 @@ $navWrapperClass = ['astroid-nav-wraper', 'align-self-center', 'px-2', 'd-none',
             // header block starts
             if ($block_1_type == 'position') {
                echo '<div class="w-100 header-block-item d-none d-lg-flex justify-content-center py-3">';
-               echo $template->renderModulePosition($block_1_position, 'xhtml');
+               echo $document->position($block_1_position, 'xhtml');
                echo '</div>';
             }
             if ($block_1_type == 'custom') {
@@ -139,7 +139,7 @@ $navWrapperClass = ['astroid-nav-wraper', 'align-self-center', 'px-2', 'd-none',
             // header block starts
             if ($block_2_type == 'position') {
                echo '<div class="w-100 header-block-item d-none d-lg-flex justify-content-center py-3">';
-               echo $template->renderModulePosition($block_2_position, 'xhtml');
+               echo $document->position($block_2_position, 'xhtml');
                echo '</div>';
             }
             if ($block_2_type == 'custom') {
@@ -171,7 +171,7 @@ $navWrapperClass = ['astroid-nav-wraper', 'align-self-center', 'px-2', 'd-none',
             // header block starts
             if ($block_1_type == 'position') {
                echo '<div class="d-none d-lg-flex w-100 header-block-item justify-content-end py-3 align-items-center">';
-               echo $template->renderModulePosition($block_1_position, 'xhtml');
+               echo $document->position($block_1_position, 'xhtml');
                echo '</div>';
             }
             if ($block_1_type == 'custom') {
@@ -208,7 +208,7 @@ $navWrapperClass = ['astroid-nav-wraper', 'align-self-center', 'px-2', 'd-none',
             // header block starts
             if ($block_2_type == 'position') {
                echo '<div class="d-flex header-block-item justify-content-end py-3 align-items-center">';
-               echo $template->renderModulePosition($block_2_position, 'xhtml');
+               echo $document->position($block_2_position, 'xhtml');
                echo '</div>';
             }
             if ($block_2_type == 'custom') {

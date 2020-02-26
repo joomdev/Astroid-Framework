@@ -145,7 +145,7 @@ $params = JComponentHelper::getParams('com_media');
                         <div class="file-manager mb-5">
                            <div class="row">
                               <div ng-click="getLibrary(folder.path_relative,'astroid-media-tab-library-<?php echo $id; ?>')" class="col-2 file-manager-item file-manager-folder" ng-repeat="folder in gallery.folders">
-                                 <span class="icon d-flex fa far-folder align-items-center justify-content-center"></span>
+                                 <span class="icon d-flex fas fa-folder align-items-center justify-content-center"></span>
                                  <span class="name">{{ folder.name}}</span>
                               </div>
                               <div ng-click="selectImage('<?php echo $id; ?>', image.path_relative)" class="col-2 file-manager-item file-manager-image" ng-repeat="image in gallery.<?php echo $media; ?>">

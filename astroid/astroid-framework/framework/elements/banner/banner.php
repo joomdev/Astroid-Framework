@@ -42,6 +42,7 @@ if ($astroid_banner_enabled) {
       $astroid_banner_subtitle = $params->get('astroid_banner_subtitle', '');
       $astroid_banner_title = empty($astroid_banner_title) ? $item->title : $astroid_banner_title;
       $astroid_banner_title_tag = $params->get('astroid_banner_title_tag', 'h3');
+      $astroid_banner_subtitle_tag = $params->get('astroid_banner_subtitle_tag', 'p');
    }
    $astroid_banner_bgcolor = $params->get('astroid_banner_bgcolor', '');
 
@@ -95,22 +96,22 @@ if ($astroid_banner_enabled) {
       $styletext[] = 'color:' . $astroid_banner_textcolor;
    }
    $styletext = !empty($styletext) ? 'style="' . implode(';', $styletext) . '"' : '';
-   ?>
+?>
    <div class="astroid-banner-inner<?php echo !empty($astroid_banner_class) ? ' ' . $astroid_banner_class : ''; ?>" <?php echo $style; ?>>
       <?php
-         if (!empty($astroid_banner_wrapper)) {
-            echo '<div class="' . $astroid_banner_wrapper . '">';
+      if (!empty($astroid_banner_wrapper)) {
+         echo '<div class="' . $astroid_banner_wrapper . '">';
+      }
+      if ($astroid_banner_title_enabled) {
+         echo '<' . $astroid_banner_title_tag . ' class="astroid-banner-title"' . $styletext . '>' . $astroid_banner_title . '</' . $astroid_banner_title_tag . '>';
+         if (!empty($astroid_banner_subtitle)) {
+            echo '<' . $astroid_banner_subtitle_tag . ' class="astroid-banner-subtitle"' . $styletext . '>' . $astroid_banner_subtitle . '</' . $astroid_banner_subtitle_tag . '>';
          }
-         if ($astroid_banner_title_enabled) {
-            echo '<' . $astroid_banner_title_tag . ' class="astroid-banner-title"' . $styletext . '>' . $astroid_banner_title . '</' . $astroid_banner_title_tag . '>';
-            if (!empty($astroid_banner_subtitle)) {
-               echo '<span class="astroid-banner-subtitle"' . $styletext . '>' . $astroid_banner_subtitle . '</span>';
-            }
-         }
-         if (!empty($astroid_banner_wrapper)) {
-            echo '</div>';
-         }
-         ?>
+      }
+      if (!empty($astroid_banner_wrapper)) {
+         echo '</div>';
+      }
+      ?>
    </div>
 <?php
 }

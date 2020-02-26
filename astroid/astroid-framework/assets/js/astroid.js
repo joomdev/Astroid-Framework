@@ -34,7 +34,7 @@ var dropdownConfig = {
 
 var rangeConfig = {};
 
-var presetProps = ["preloader_color", "preloader_bgcolor", "backtotop_icon_color", "backtotop_icon_bgcolor", "body_background_color", "body_text_color", "body_link_color", "body_link_hover_color", "header_bg", "header_text_color", "header_logo_text_color", "header_logo_text_tagline_color", "stick_header_bg_color", "stick_header_menu_link_color", "stick_header_menu_link_active_color", "stick_header_menu_link_hover_color", "main_menu_link_color", "main_menu_link_active_color", "main_menu_link_hover_color", "dropdown_bg_color", "dropdown_link_color", "dropdown_menu_active_link_color", "dropdown_menu_active_bg_color", "dropdown_menu_link_hover_color", "dropdown_menu_hover_bg_color", "mobile_backgroundcolor", "mobile_menu_text_color", "mobile_menu_link_color", "mobile_menu_active_link_color", "mobile_menu_active_bg_color", "h1_typography_options.font_color", "h2_typography_options.font_color", "h3_typography_options.font_color", "h4_typography_options.font_color", "h5_typography_options.font_color", "h6_typography_options.font_color", "icon_color", "background_color", "img_background_color", "background_color_404", "img_background_color_404", "theme_blue", "theme_indigo", "theme_purple", "theme_pink", "theme_red", "theme_orange", "theme_yellow", "theme_green", "theme_teal", "theme_cyan", "theme_white", "theme_gray100", "theme_gray600", "theme_gray800"];
+var presetProps = ["preloader_color", "preloader_bgcolor", "backtotop_icon_color", "backtotop_icon_bgcolor", "body_background_color", "body_text_color", "body_link_color", "body_link_hover_color", "header_bg", "header_text_color", "header_logo_text_color", "header_logo_text_tagline_color", "stick_header_bg_color", "stick_header_menu_link_color", "stick_header_menu_link_active_color", "stick_header_menu_link_hover_color", "main_menu_link_color", "main_menu_link_active_color", "main_menu_link_hover_color", "dropdown_bg_color", "dropdown_link_color", "dropdown_menu_active_link_color", "dropdown_menu_active_bg_color", "dropdown_menu_link_hover_color", "dropdown_menu_hover_bg_color", "mobile_backgroundcolor", "mobile_menu_text_color", "mobile_menu_link_color", "mobile_menu_active_link_color", "mobile_menu_active_bg_color", "mobile_menu_icon_color", "mobile_menu_active_icon_color", "h1_typography_options.font_color", "h2_typography_options.font_color", "h3_typography_options.font_color", "h4_typography_options.font_color", "h5_typography_options.font_color", "h6_typography_options.font_color", "icon_color", "background_color", "img_background_color", "background_color_404", "img_background_color_404", "theme_blue", "theme_indigo", "theme_purple", "theme_pink", "theme_red", "theme_orange", "theme_yellow", "theme_green", "theme_teal", "theme_cyan", "theme_white", "theme_gray100", "theme_gray600", "theme_gray800"];
 
 // Custom Plugins
 (function ($) {
@@ -154,7 +154,8 @@ var AstroidContentLayout = function AstroidContentLayout() {
 var AstroidAdmin = function AstroidAdmin() {
    _classCallCheck(this, AstroidAdmin);
 
-   this.saved = true;
+   this.saved = false;
+   this.lastSession = null;
    /*
     this.initAstroidHeaderSwitch = function () {
     setTimeout(function () {
@@ -184,6 +185,14 @@ var AstroidAdmin = function AstroidAdmin() {
     }, 250);
     };
     */
+
+   this.saveMe = function () {
+      this.saved = true;
+      this.lastSession = $('#astroid-form').serializeArray();
+      $('#save-options').removeClass('btn-unsaved');
+   }
+
+
    this.notify = function (message, type) {
       $.notify(message, {
          className: type,
@@ -430,9 +439,9 @@ var AstroidAdmin = function AstroidAdmin() {
                   Admin.notify(response.message, 'error');
                   return false;
                }
-               Admin.saved = true;
                Admin.reloadPreview();
                if (!_export) {
+                  Admin.saveMe();
                   Admin.notify('Template Saved.', 'success');
                } else {
                   Admin.exportSettings(response.data);
@@ -486,7 +495,7 @@ var AstroidAdmin = function AstroidAdmin() {
       $('#export-options').addClass('disabled');
       $('#export-preset').addClass('disabled');
       $('#import-options').addClass('disabled');
-      var _token = $('#astroid-admin-token').val();
+      var _token = $('#astroid-admin-token').attr('name');
       var _data = {
          params: _params
       };
@@ -500,7 +509,7 @@ var AstroidAdmin = function AstroidAdmin() {
             if (response.status == 'error') {
                Admin.notify(response.message, 'error');
             } else {
-               Admin.saved = true;
+               Admin.saveMe();
                Admin.reloadPreview();
                Admin.notify('Settings Imported.', 'success');
             }
@@ -531,17 +540,17 @@ var AstroidAdmin = function AstroidAdmin() {
       var hours = date.getHours();
       var minutes = date.getMinutes();
       var seconds = date.getSeconds();
-      var exportName = prompt("Please enter your desired name", "astroid-zero-template");
+      var exportName = prompt("Please enter your desired name", TEMPLATE_NAME);
       if (exportName === "") {
-         Admin.notify("Can't be empty", "error");
+         Admin.notify("Filename can't be empty", "error");
          return false
       } else if (exportName) {
          var re = /^[0-9a-zA-Z].*/;
          if (!re.test(exportName) || /\s/.test(exportName)) {
-            Admin.notify("Invalid", "error");
+            Admin.notify("Invalid file name, It must be alphanumeric.", "error");
             return false
          } else {
-            var exportFileDefaultName = exportName + ' ' + (year + "-" + month + "-" + day + " " + hours + ":" + minutes + ":" + seconds) + '.json';
+            var exportFileDefaultName = exportName + '-' + (year + "-" + month + "-" + day + "-" + hours + "-" + minutes + "-" + seconds) + '.json';
          }
       }
       $('#export-link').attr('href', dataUri);
@@ -550,14 +559,28 @@ var AstroidAdmin = function AstroidAdmin() {
    };
 
    this.watchForm = function () {
-      var _this = this;
+      // lastSession
       $("form#astroid-form :input").change(function () {
-         _this.saved = false;
-         try {
-            Admin.refreshScroll();
-         } catch (e) {};
+         Admin.checkForm();
       });
    };
+
+   this.checkForm = function () {
+      try {
+         var currentSession = $('#astroid-form').serializeArray();
+         if (!_.isEqual(currentSession, Admin.lastSession)) {
+            Admin.saved = false;
+         } else {
+            Admin.saved = true;
+         }
+         if (!Admin.saved) {
+            $('#save-options').addClass('btn-unsaved');
+         } else {
+            $('#save-options').removeClass('btn-unsaved');
+         }
+         Admin.refreshScroll();
+      } catch (e) {};
+   }
 
    this.initClearCache = function () {
       var _this = this;
@@ -635,6 +658,7 @@ var AstroidAdmin = function AstroidAdmin() {
          _editor.getSession().setValue($(_textarea).val());
          _editor.getSession().on('change', function () {
             $(_textarea).val(_editor.getSession().getValue());
+            Admin.checkForm();
          });
       });
    };
@@ -670,7 +694,6 @@ var AstroidAdmin = function AstroidAdmin() {
 
          // form
          this.initForm();
-         this.watchForm();
          this.initClearCache();
 
          // Pop
@@ -706,7 +729,8 @@ var AstroidAdmin = function AstroidAdmin() {
       }
       //Admin.livePreview();
       setTimeout(function () {
-         Admin.saved = true;
+         Admin.saveMe();
+         Admin.watchForm();
       }, 150);
       setTimeout(function () {
          _this.loading(false);
@@ -991,6 +1015,7 @@ var Admin = new AstroidAdmin();
    var loadGoogleFont = function loadGoogleFont(_font, _dropdown, _preview) {
       if (_preview !== null) {
          _preview.parent('.astroid-typography-preview-container').siblings('.library-font-warning').addClass('d-none');
+         _preview.parent('.astroid-typography-preview-container').siblings('.default-font-warning').addClass('d-none');
       }
 
       var _isSystemFont = false;
@@ -1009,10 +1034,19 @@ var Admin = new AstroidAdmin();
          }
       });
 
+
       if (_isLibraryFont) {
          if (_preview !== null) {
             _preview.css('font-family', _font);
             _preview.parent('.astroid-typography-preview-container').siblings('.library-font-warning').removeClass('d-none');
+         }
+         return false;
+      }
+
+      if (_font === '__default') {
+         if (_preview !== null) {
+            _preview.css('font-family', 'initial');
+            _preview.parent('.astroid-typography-preview-container').siblings('.default-font-warning').removeClass('d-none');
          }
          return false;
       }

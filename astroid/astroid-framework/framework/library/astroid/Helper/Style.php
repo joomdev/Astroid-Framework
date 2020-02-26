@@ -271,6 +271,11 @@ class Style
 
     public static function getFontFamilyValue($value, $alt_font = '')
     {
+        $value = ($value == '__default' ? '' : $value);
+        if (empty($value) && empty($alt_font)) {
+            return '';
+        }
+
         $return = [];
         $font = Helper\Font::getFontFamily($value);
         if (!empty($font)) {

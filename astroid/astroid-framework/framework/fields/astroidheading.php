@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @package   Astroid Framework
  * @author    JoomDev https://www.joomdev.com
@@ -13,7 +14,8 @@ defined('JPATH_PLATFORM') or die;
  *
  * @since  11.1
  */
-class JFormFieldAstroidHeading extends JFormField {
+class JFormFieldAstroidHeading extends JFormField
+{
 
    /**
     * The form field type.
@@ -31,7 +33,8 @@ class JFormFieldAstroidHeading extends JFormField {
     *
     * @since   3.7.0
     */
-   protected function getInput() {
+   protected function getInput()
+   {
 
       $attrs = [];
       $ngShow = Astroid\Helper::replaceRelationshipOperators($this->element['ngShow']);
@@ -47,7 +50,11 @@ class JFormFieldAstroidHeading extends JFormField {
          $attrs[] = 'ng-hide="' . $ngRequired . '"';
       }
 
-      return "<div " . implode(' ', $attrs) . " class='form-group form-group-heading'><h3 class='mb-0'>" . ((!empty($this->element['icon']) ? "<i class='" . $this->element['icon'] . "'></i> " : "")) . JText::_($this->element['title']) . "</h3><p class='mb-0'>" . JText::_($this->description) . "</p></div>";
-   }
+      $helpLink = '';
+      if (!empty($this->element['help'])) {
+         $helpLink = ' <a target="_blank" href="' . $this->element['help'] . '"><span class="far fa-question-circle"></span></a>';
+      }
 
+      return "<div " . implode(' ', $attrs) . " class='form-group form-group-heading'><h3 class='mb-0'>" . ((!empty($this->element['icon']) ? "<i class='" . $this->element['icon'] . "'></i> " : "")) . JText::_($this->element['title']) . $helpLink . "</h3><p class='mb-0'>" . JText::_($this->description) . "</p></div>";
+   }
 }

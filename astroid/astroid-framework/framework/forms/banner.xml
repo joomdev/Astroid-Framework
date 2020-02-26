@@ -24,7 +24,7 @@
 
 			<field showon="astroid_banner_enabled:1" name="astroid_banner_bgimage" type="media" label="TPL_ASTROID_BACKGROUND_IMAGE_LABEL">
 			</field>
-			
+
 			<field showon="astroid_banner_enabled:1[AND]astroid_banner_bgimage!:" name="astroid_banner_bgimage_position" type="list" default="" label="Background Position">
 				<option value="">Default</option>
 				<option value="left top">Left Top</option>
@@ -73,6 +73,9 @@
 			<field type="spacer" showon="astroid_banner_enabled:1[AND]astroid_banner_bgimage!:" name="astroid_banner_bgimage_spacer2" hr="true"></field>
 
 			<field showon="astroid_banner_title_enabled:1[AND]astroid_banner_enabled:1" name="astroid_banner_title_tag" type="headertag" default="h3" label="ASTROID_BANNER_TITLE_TAG_LABEL">
+			</field>
+
+			<field showon="astroid_banner_title_enabled:1[AND]astroid_banner_enabled:1" name="astroid_banner_subtitle_tag" type="headertag" default="p" label="ASTROID_BANNER_SUBTITLE_TAG_LABEL">
 			</field>
 
 			<field showon="astroid_banner_enabled:1" name="astroid_banner_class" type="text" label="ASTROID_BANNER_CLASS_LABEL">

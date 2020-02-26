@@ -34,7 +34,8 @@ if (empty($input)) {
 <div<?php echo !empty($ngHide) ? ' ng-hide="' . $ngHide . '"' : ''; ?><?php echo !empty($ngShow) ? ' ng-show="' . $ngShow . '"' : ''; ?> class="form-group<?php echo !empty($gclass) ? ' ' . $gclass : ''; ?>">
     <div class="row">
         <?php
-        if ($field->getAttribute('label') != 'false') { ?>
+        $label = $field->getAttribute('label');
+        if ($label != 'false' && !empty($label)) { ?>
             <div class="col-sm-5">
                 <label for="<?php echo $field->id; ?>" class="astroid-label"><?php echo strip_tags($field->label); ?></label>
                 <?php if (!empty($field->getAttribute('description'))) { ?>

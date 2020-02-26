@@ -156,8 +156,15 @@ class Utility
     public static function typography()
     {
         $params = Framework::getTemplate()->getParams();
-        $types = array('body' => 'body, .body', 'h1' => 'h1, .h1', 'h2' => 'h2, .h2', 'h3' => 'h3, .h3', 'h4' => 'h4, .h4', 'h5' => 'h5, .h5', 'h6' => 'h6, .h6', 'menu' => '.astroid-nav > li > a, .astroid-sidebar-menu > li > a', 'submenu' => '.nav-submenu-container .nav-submenu > li, .jddrop-content .megamenu-item .megamenu-menu li, .nav-submenu');
+        $customselector = $params->get('custom_typography_selectors', '');
+
+        $types = array('body' => 'body, .body', 'h1' => 'h1, .h1', 'h2' => 'h2, .h2', 'h3' => 'h3, .h3', 'h4' => 'h4, .h4', 'h5' => 'h5, .h5', 'h6' => 'h6, .h6', 'menu' => '.astroid-nav > li > a, .astroid-sidebar-menu > li > a', 'submenu' => '.nav-submenu-container .nav-submenu > li, .jddrop-content .megamenu-item .megamenu-menu li, .nav-submenu', 'custom' => $customselector);
+        
         foreach ($types as $type => $selector) {
+            if (empty($selector)) {
+                continue;
+            }
+
             if ($params->exists($type . '_typography')) {
                 $status = $params->get($type . '_typography');
             } else {

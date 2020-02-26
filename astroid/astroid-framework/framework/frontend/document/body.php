@@ -28,7 +28,6 @@ if ($document->isDev()) { // check is dev
     return;
 }
 $document->include('bodyStart'); // Body Start
-$document->include('preloader'); // load preloader
 $document->include('backtotop'); // load back to top
 
 $params = Astroid\Framework::getTemplate()->getParams();
@@ -83,6 +82,7 @@ if ($header && !empty($header_mode) && $header_mode != 'sidebar') {
     ?>
 </div>
 <!-- end of astroid container -->
-<?php $document->include('bodyEnd'); // Body End 
+<?php $document->include('bodyEnd'); // Body End
+$document->include('preloader'); // load preloader 
 ?>
 <?php Astroid\Framework::getDebugger()->log('Render Body'); ?>

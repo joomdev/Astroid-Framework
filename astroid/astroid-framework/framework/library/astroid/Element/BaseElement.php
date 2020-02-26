@@ -71,7 +71,7 @@ class BaseElement
             $id = $customid;
         } else {
             $prefix = !empty($this->params->get('title')) ? $this->params->get('title') : 'astroid-' . $this->type;
-            $id = Helper::slugify($prefix . '-' . $this->id);
+            $id = Helper::shortify($prefix) . '-' . $this->id;
         }
         if (!empty($id)) {
             $this->addAttribute('id', $id);
@@ -159,8 +159,8 @@ class BaseElement
         $padding = $this->params->get('padding', '');
 
 
-        
-        
+
+
         if (!empty($margin)) {
             $margin = \json_decode($margin, false);
             foreach ($margin as $device => $props) {
@@ -178,6 +178,9 @@ class BaseElement
 
     protected function _typography()
     {
+        if (!$this->params->get('custom_colors', 0)) {
+            return;
+        }
         $this->style->addCss('color', $this->params->get('text_color', ''));
 
         $link = $this->style->addChild('a');

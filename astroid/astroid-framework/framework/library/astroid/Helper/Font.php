@@ -69,6 +69,7 @@ class Font
         $googleFonts = self::googleFonts();
 
         $return = '';
+        $return .= '<div class="item" data-value="__default">' . \JText::_('TPL_ASTROID_OPTIONS_DEFAULT') . '</div>';
 
         $return .= '<div class="ui horizontal divider">' . \JText::_('TPL_ASTROID_TYPOGRAPHY_SYSTEM') . '</div>';
         foreach (self::$system_fonts as $name => $system_font) {
@@ -197,7 +198,7 @@ class Font
     {
         $document = Framework::getDocument();
         $document->addStyleSheet('https://fonts.googleapis.com/css?family=' . $value);
-        list($font, $variants) = explode(":", $value);
+        @list($font, $variants) = explode(":", $value);
         return str_replace('+', ' ', $font);
     }
 

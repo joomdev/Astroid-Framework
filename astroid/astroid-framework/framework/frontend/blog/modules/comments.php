@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @package   Astroid Framework
  * @author    JoomDev https://www.joomdev.com
@@ -12,25 +13,25 @@
 defined('_JEXEC') or die;
 extract($displayData);
 
-$article = $params['article'];
-
 $params = Astroid\Framework::getTemplate()->getParams();
 
 $article_comments = $params->get('article_comments', 'none');
 ?>
-<!--- Facebook Comment Section Start --->
 <?php
 if ($article_comments == 'facebook') {
    $fb_id = $params->get('article_comments_fb_id', '');
-   ?>
+?>
+   <!--- Facebook Comment Section Start --->
    <?php if (!empty($fb_id)) { ?>
       <div class="astroid-comment">
-         <div class="card-body"><div class="fb-comments"  data-width="<?php echo $params->get('article_comments_fb_width'); ?>" data-numposts="5" data-colorscheme="dark">
+         <div class="card-body">
+            <div class="fb-comments" data-width="<?php echo $params->get('article_comments_fb_width'); ?>" data-numposts="5" data-colorscheme="dark">
             </div>
          </div>
       </div>
       <div id="fb-root"></div>
-      <script>(function (d, s, id) {
+      <script>
+         (function(d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0];
             if (d.getElementById(id))
                return;
@@ -46,21 +47,24 @@ if ($article_comments == 'facebook') {
          <p><?php echo JText::_('ASTROID_FACEBOOK_COMMENT_ERROR_DESC'); ?></h4>
       </div>
    <?php } ?>
+   <!--- Facebook Comment Section End --->
 <?php } ?>
-<!--- Facebook Comment Section End --->
 
-<!--- Disqus Comment Section Start --->
 <?php
 if ($article_comments == 'disqus') {
    $disqus_id = $params->get('article_comments_disqus_id', '');
-   ?>
+?>
+   <!--- Disqus Comment Section Start --->
    <?php if (!empty($disqus_id)) { ?>
       <div class="astroid-commen">
-         <div class="card-body"><div id="disqus_thread"></div></div>
+         <div class="card-body">
+            <div id="disqus_thread"></div>
+         </div>
       </div>
       <script>
-         (function () { // DON'T EDIT BELOW THIS LINE
-            var d = document, s = d.createElement('script');
+         (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document,
+               s = d.createElement('script');
             s.src = 'https://<?php echo $disqus_id; ?>.disqus.com/embed.js';
             s.setAttribute('data-timestamp', +new Date());
             (d.head || d.body).appendChild(s);
@@ -72,22 +76,25 @@ if ($article_comments == 'disqus') {
          <p><?php echo JText::_('ASTROID_DISQUS_COMMENT_ERROR_DESC'); ?></h4>
       </div>
    <?php } ?>
+   <!--- Disqus Comment Section End --->
 <?php } ?>
-<!--- Disqus Comment Section End --->
 
-<!--- Hyper Comment Section Start --->
 <?php
 if ($article_comments == 'hyper') {
    $hyper_id = $params->get('article_comments_hyper_id', '');
-   ?>
+?>
+   <!--- Hyper Comment Section Start --->
    <?php if (!empty($hyper_id)) { ?>
       <div class="astroid-commen">
          <div class="card-body">
             <div id="hypercomments_widget"></div>
             <script type="text/javascript">
                _hcwp = window._hcwp || [];
-               _hcwp.push({widget: "Stream", widget_id:<?php echo $hyper_id; ?>});
-               (function () {
+               _hcwp.push({
+                  widget: "Stream",
+                  widget_id: <?php echo $hyper_id; ?>
+               });
+               (function() {
                   if ("HC_LOAD_INIT" in window)
                      return;
                   HC_LOAD_INIT = true;
@@ -108,14 +115,14 @@ if ($article_comments == 'hyper') {
          <p><?php echo JText::_('ASTROID_HYPER_COMMENT_ERROR_DESC'); ?></h4>
       </div>
    <?php } ?>
+   <!--- Hyper Comment Section End --->
 <?php } ?>
-<!--- Hyper Comment Section End --->
 
-<!--- Intense Comment Section Start --->
 <?php
 if ($article_comments == 'intense') {
    $intense_id = $params->get('article_comments_intense_id', '');
-   ?>
+?>
+   <!--- Intense Comment Section Start --->
    <?php if (!empty($intense_id)) { ?>
       <div class="astroid-commen">
          <div class="card-body">
@@ -134,6 +141,5 @@ if ($article_comments == 'intense') {
          <p><?php echo JText::_('ASTROID_INTENSE_COMMENT_ERROR_DESC'); ?></h4>
       </div>
    <?php } ?>
-
+   <!--- Intense Comment Section End --->
 <?php } ?>
-<!--- Intense Comment Section End --->

@@ -76,6 +76,17 @@ class Helper
         return $text;
     }
 
+    public static function shortify($text)
+    {
+        $text = self::slugify($text);
+        $return = [];
+        $text = explode('-', $text);
+        foreach ($text as $t) {
+            $return[] = substr($t, 0, 1);
+        }
+        return implode('', $return);
+    }
+
     public static function startsWith($haystack, $needles)
     {
         foreach ((array) $needles as $needle) {

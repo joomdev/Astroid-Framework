@@ -11,6 +11,7 @@
          <field type="astroidgroup" name="h4_header_typography" title="TPL_ASTROID_TYPOGRAPHY_H4" description="TPL_ASTROID_TYPOGRAPHY_H4_DESC" help="https://docs.joomdev.com/article/astroid-h1-h6-typography" />
          <field type="astroidgroup" name="h5_header_typography" title="TPL_ASTROID_TYPOGRAPHY_H5" description="TPL_ASTROID_TYPOGRAPHY_H5_DESC" help="https://docs.joomdev.com/article/astroid-h1-h6-typography" />
          <field type="astroidgroup" name="h6_header_typography" title="TPL_ASTROID_TYPOGRAPHY_H6" description="TPL_ASTROID_TYPOGRAPHY_H6_DESC" help="https://docs.joomdev.com/article/astroid-h1-h6-typography" />
+         <field type="astroidgroup" name="custom_header_typography" title="TPL_ASTROID_TYPOGRAPHY_CUSTOMTYPE" description="TPL_ASTROID_TYPOGRAPHY_CUSTOMTYPE_DESC" help="https://docs.joomdev.com/article/astroid-custom-typography" />
 
          <field astroidgroup="body_typography_group" description="TPL_ASTROID_BODY_TYPOGRAPHY_OPTION_DESC" name="body_typography" type="astroidradio" default="default" label="TPL_ASTROID_TYPOGRAPHY_OPTIONS_LABEL">
             <option value="default">TPL_ASTROID_OPTIONS_DEFAULT</option>
@@ -85,6 +86,17 @@
          </field>
 
          <field astroidgroup="h6_header_typography" ngShow="h6_typography=='custom'" name="h6_typography_options" type="astroidtypography" font-style-picker="false" font-face="Arial, Helvetica, sans-serif" alt-font-face="Arial, Helvetica, sans-serif" font-color="#000" font-size="0.7" font-unit="em" letter-spacing="0" line-height="1" font-weight="500" text-transform="none"></field>
+
+         <!-- Custom Typography Options -->
+         <field astroidgroup="custom_header_typography" description="TPL_ASTROID_TYPOGRAPHY_OPTION_DESC" name="custom_typography" type="astroidradio" default="inherit" label="TPL_ASTROID_TYPOGRAPHY_OPTIONS_LABEL">
+            <option value="inherit">JGLOBAL_INHERIT</option>
+            <option value="custom">TPL_ASTROID_OPTIONS_CUSTOM</option>
+         </field>
+
+         <field astroidgroup="custom_header_typography" description="TPL_ASTROID_TYPOGRAPHY_CUSTOMTYPE_SELECTORS_DESC" ngShow="custom_typography=='custom'" name="custom_typography_selectors" type="astroidtext" class="form-control" label="TPL_ASTROID_TYPOGRAPHY_CUSTOMTYPE_SELECTORS">
+         </field>
+
+         <field astroidgroup="custom_header_typography" ngShow="custom_typography=='custom'" name="custom_typography_options" type="astroidtypography" font-style-picker="false" font-face="Arial, Helvetica, sans-serif" alt-font-face="Arial, Helvetica, sans-serif" font-color="#000" font-size="0.7" font-unit="em" letter-spacing="0" line-height="1" font-weight="500" text-transform="none"></field>
 
       </fieldset>
    </fields>

@@ -425,7 +425,7 @@ class AstroidFrameworkArticle
             break;
       }
       $images = json_decode($this->article->images);
-      if (isset($images->image_intro) && !empty($images->image_intro)) {
+      if (isset($images->image_intro) && !empty($images->image_intro) && empty($thumbnail)) {
          $thumbnail = true;
       }
       return $thumbnail;

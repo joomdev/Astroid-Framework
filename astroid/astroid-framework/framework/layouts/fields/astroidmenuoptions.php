@@ -147,13 +147,13 @@ foreach ($items as $i => $item) {
                   </div>
                </div>
             </div>
-            <div class="col-<?php echo $menu_item_level != 1 ? '5' : '6'; ?>">
+            <div class="col-6">
                <div class="row">
-                  <div style="<?php echo $menu_item_level != 1 ? 'display:none' : ''; ?>" class="col-3">
+                  <div class="col-3">
                      <label class="astroid-label" id="<?php echo $id; ?>_subtitle-lbl" for="<?php echo $id; ?>_subtitle"><?php echo JText::_('TPL_ASTROID_SUBTITLE'); ?></label>
                      <input type="text" name="<?php echo $name; ?>[subtitle]" id="<?php echo $id; ?>_subtitle" class="form-control" value="<?php echo $subtitle; ?>" />
                   </div>
-                  <div class="col-<?php echo $menu_item_level != 1 ? '7' : '6'; ?>">
+                  <div class="col-6">
                      <label class="astroid-label" id="<?php echo $id; ?>_icon-lbl" for="<?php echo $id; ?>_icon"><?php echo JText::_('TPL_ASTROID_ICON'); ?></label>
                      <div>
                         <div class="ui fluid search selection dropdown astroid-icon-selector">
@@ -164,7 +164,7 @@ foreach ($items as $i => $item) {
                         </div>
                      </div>
                   </div>
-                  <div class="col-<?php echo $menu_item_level != 1 ? '5' : '3'; ?>">
+                  <div class="col-3">
                      <label class="astroid-label" id="<?php echo $id; ?>_customclass-lbl" for="<?php echo $id; ?>_customclass"><?php echo JText::_('ASTROID_CUSTOM_CLASS'); ?></label>
                      <input type="text" name="<?php echo $name; ?>[customclass]" id="<?php echo $id; ?>_customclass" class="form-control" value="<?php echo $customclass; ?>" />
                   </div>

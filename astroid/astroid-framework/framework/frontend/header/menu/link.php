@@ -131,7 +131,7 @@ if ($item->type == 'url') {
          <i class="fas fa-chevron-right nav-item-caret"></i>
       <?php } ?>
    </span>
-   <?php if (!$is_mobile_menu && $item->level == 1 && !empty($options->subtitle)) { ?>
+   <?php if (!$is_mobile_menu && !empty($options->subtitle)) { ?>
       <small class="nav-subtitle"><?php echo $options->subtitle ?></small>
    <?php } ?>
 </a>

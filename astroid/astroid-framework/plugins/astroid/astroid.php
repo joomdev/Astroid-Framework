@@ -66,7 +66,7 @@ class plgSystemAstroid extends JPlugin
       if ($contents) {
          ob_end_clean();
       }
-      echo str_replace('</body>', Astroid\Helper::debug() . '</body>', $contents);
+      echo Astroid\Helper::str_lreplace('</body>', Astroid\Helper::debug() . '</body>', $contents);
    }
 
    public function onExtensionAfterSave($context, $table, $isNew)

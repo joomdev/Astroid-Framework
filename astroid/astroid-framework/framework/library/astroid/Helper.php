@@ -363,4 +363,15 @@ class Helper
         $html .= '<div id="astroid-reporter" class="active"><div class="astroid-reporter-heading">Astroid Framework</div><ul class="nav nav-tabs" role="tablist">' . implode('', $tabs) . '</ul><div class="tab-content">' . implode('', $contents) . '</div></div>';
         return $html;
     }
+
+    public static function str_lreplace($search, $replace, $subject)
+    {
+        $pos = strrpos($subject, $search);
+
+        if ($pos !== false) {
+            $subject = substr_replace($subject, $replace, $pos, strlen($search));
+        }
+
+        return $subject;
+    }
 }

@@ -41,7 +41,7 @@ if ($background_setting) {
 
       $background_image = $params->get('background_image', '');
       if (!empty($background_image)) {
-         $styles[] = 'background-image: url(' . JURI::root() . $template->SeletedMedia() . '/' . $background_image . ')';
+         $styles[] = 'background-image: url(' . JURI::root() . Astroid\Helper\Media::getPath() . '/' . $background_image . ')';
          $background_repeat = $params->get('background_repeat', '');
          $background_repeat = empty($background_repeat) ? 'inherit' : $background_repeat;
          $styles[] = 'background-repeat:' . $background_repeat;
@@ -71,7 +71,7 @@ if ($background_setting) {
       $attributes = [];
       $background_video = $params->get('background_video', '');
       if (!empty($background_video)) {
-         $attributes['data-jd-video-bg'] = JURI::root() . $template->SeletedMedia() . '/' . $background_video;
+         $attributes['data-jd-video-bg'] = JURI::root() . Astroid\Helper\Media::getPath() . '/' . $background_video;
          $document->addScript('vendor/astroid/js/videobg.js', 'body');
       }
 
@@ -86,7 +86,7 @@ if ($background_setting) {
 $comingsoon_logo = "";
 $hascs_logo = 0;
 if ($cs_logo = $params->get('coming_soon_logo')) {
-   $comingsoon_logo = JURI::root() . $template->SeletedMedia() . '/' . $cs_logo;
+   $comingsoon_logo = JURI::root() . Astroid\Helper\Media::getPath() . '/' . $cs_logo;
    $hascs_logo = 1;
 }
 $comingsoon_date = $params->get("coming_soon_countdown_date", 'January 1st 2022, 00:00 am');

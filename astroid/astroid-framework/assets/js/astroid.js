@@ -731,10 +731,10 @@ var AstroidAdmin = function AstroidAdmin() {
       setTimeout(function () {
          Admin.saveMe();
          Admin.watchForm();
-      }, 750);
+      }, 1100);
       setTimeout(function () {
          _this.loading(false);
-      }, 1000);
+      }, 1200);
       this.initCodeArea();
       if (ASTROID_IS_MOBILE) {
          Admin.toggleSidebar();

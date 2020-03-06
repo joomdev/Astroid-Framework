@@ -283,7 +283,7 @@ class Style
         }
         $alt_font = Helper\Font::getFontFamily($alt_font);
         if (!empty($alt_font)) {
-            $return[] = $font;
+            $return[] = $alt_font;
         }
         return implode(', ', $return);
     }

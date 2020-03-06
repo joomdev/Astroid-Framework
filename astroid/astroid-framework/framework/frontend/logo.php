@@ -43,10 +43,10 @@ $class = ['astroid-logo', 'astroid-logo-' . $logo_type, 'd-flex align-items-cent
    <?php
    $mr = ($header_mode == 'stacked' && ($header_stacked_menu_mode == 'seperated' || $header_stacked_menu_mode == 'center')) ? '' : ' mr-0 mr-lg-4';
    ?>
-   <div class="<?php echo implode(' ', $class); ?> flex-column<?php echo $mr; ?>">
+   <logo class="<?php echo implode(' ', $class); ?> flex-column<?php echo $mr; ?>">
       <a class="site-title" href="<?php echo JURI::root(); ?>"><?php echo $logo_text; ?></a>
       <p class="site-tagline"><?php echo $tag_line; ?></p>
-   </div>
+   </logo>
    <!-- text logo ends -->
 <?php endif; ?>
 <?php if ($logo_type == 'image') : ?>
@@ -54,17 +54,19 @@ $class = ['astroid-logo', 'astroid-logo-' . $logo_type, 'd-flex align-items-cent
    <?php
    $mr = ($header_mode == 'stacked' && ($header_stacked_menu_mode == 'seperated' || $header_stacked_menu_mode == 'center')) ? '' : ' mr-0 mr-lg-4';
    ?>
-   <a class="<?php echo implode(' ', $class); ?><?php echo $mr; ?>" href="<?php echo JURI::root(); ?>">
-      <?php if (!empty($default_logo)) { ?>
-         <img src="<?php echo JURI::root() . Astroid\Helper\Media::getPath() . '/' . $default_logo; ?>" alt="<?php echo $sitename; ?>" class="astroid-logo-default" />
-      <?php } ?>
-      <?php if (!empty($mobile_logo)) { ?>
-         <img src="<?php echo JURI::root() . Astroid\Helper\Media::getPath() . '/' . $mobile_logo; ?>" alt="<?php echo $sitename; ?>" class="astroid-logo-mobile" />
-      <?php } ?>
-      <?php if (!empty($stickey_header_logo)) { ?>
-         <img src="<?php echo JURI::root() . Astroid\Helper\Media::getPath() . '/' . $stickey_header_logo; ?>" alt="<?php echo $sitename; ?>" class="astroid-logo-sticky" />
-      <?php } ?>
-   </a>
+   <logo>
+      <a class="<?php echo implode(' ', $class); ?><?php echo $mr; ?>" href="<?php echo JURI::root(); ?>">
+         <?php if (!empty($default_logo)) { ?>
+            <img src="<?php echo JURI::root() . Astroid\Helper\Media::getPath() . '/' . $default_logo; ?>" alt="<?php echo $sitename; ?>" class="astroid-logo-default" />
+         <?php } ?>
+         <?php if (!empty($mobile_logo)) { ?>
+            <img src="<?php echo JURI::root() . Astroid\Helper\Media::getPath() . '/' . $mobile_logo; ?>" alt="<?php echo $sitename; ?>" class="astroid-logo-mobile" />
+         <?php } ?>
+         <?php if (!empty($stickey_header_logo)) { ?>
+            <img src="<?php echo JURI::root() . Astroid\Helper\Media::getPath() . '/' . $stickey_header_logo; ?>" alt="<?php echo $sitename; ?>" class="astroid-logo-sticky" />
+         <?php } ?>
+      </a>
+   </logo>
    <!-- image logo ends -->
 <?php endif; ?>
 <!-- </div> -->

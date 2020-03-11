@@ -9,6 +9,7 @@
 defined('_JEXEC') or die;
 $doc = JFactory::getDocument();
 $app = JFactory::getApplication();
+$doc->setGenerator(''); // 	hide the meta tag generator for website security
 
 /** @var JDocumentHtml $this */
 JLoader::import('joomla.filesystem.file');

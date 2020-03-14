@@ -204,7 +204,7 @@ class Style
         }
     }
 
-    public static function renderTypography($selector, $object)
+    public static function renderTypography($selector, $object, $defaultObject = null)
     {
         $typography = new \JRegistry();
         $typography->loadObject($object);
@@ -265,6 +265,13 @@ class Style
         // font family
         $font_face = $typography->get('font_face', '');
         $alt_font_face = $typography->get('alt_font_face', '');
+
+        if ($defaultObject !== null) {
+            $defaultTypography = new \JRegistry();
+            $defaultTypography->loadObject($defaultObject);
+            $font_face = ($font_face == '__default' ? $defaultTypography->get('font_face', '') : $font_face);
+            $alt_font_face = ($alt_font_face == '__default' ? $defaultTypography->get('alt_font_face', '') : $alt_font_face);
+        }
         $style->addCss('font-family', self::getFontFamilyValue($font_face, $alt_font_face));
         $style->render();
     }

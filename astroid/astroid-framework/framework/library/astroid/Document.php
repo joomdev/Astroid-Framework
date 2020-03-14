@@ -742,7 +742,7 @@ class Document
         Framework::getDebugger()->log('Rendering Scss');
         $template = Framework::getTemplate();
         Helper::clearCache($template->template, ['compiled-scss']);
-        $templateScssPath = ASTROID_TEMPLATE_PATH . '/scss/';
+        $templateScssPath = ASTROID_TEMPLATE_PATH . '/scss';
 
         $scss = new Compiler();
         $content = '';
@@ -895,6 +895,9 @@ class Document
                 Framework::getReporter('Logs')->add('Getting Compiled CSS <code>' . str_replace(JPATH_SITE . '/', '', $cssFile) . '</code> from cache.');
             }
             $this->addStyleSheet('css/compiled-' . $cssVersion . '.css');
+            if (file_exists(ASTROID_TEMPLATE_PATH . '/css/custom.css')) {
+                $this->addStyleSheet('css/custom.css');
+            }
             return '';
         } else {
             $minifier = new Minify\CSS($css);

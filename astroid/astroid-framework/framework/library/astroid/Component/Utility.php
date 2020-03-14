@@ -159,7 +159,8 @@ class Utility
         $customselector = $params->get('custom_typography_selectors', '');
 
         $types = array('body' => 'body, .body', 'h1' => 'h1, .h1', 'h2' => 'h2, .h2', 'h3' => 'h3, .h3', 'h4' => 'h4, .h4', 'h5' => 'h5, .h5', 'h6' => 'h6, .h6', 'menu' => '.astroid-nav > li > a, .astroid-sidebar-menu > li > a', 'submenu' => '.nav-submenu-container .nav-submenu > li, .jddrop-content .megamenu-item .megamenu-menu li, .nav-submenu', 'custom' => $customselector);
-        
+
+        $bodyTypography = null;
         foreach ($types as $type => $selector) {
             if (empty($selector)) {
                 continue;
@@ -177,7 +178,10 @@ class Utility
             if (empty($typography)) {
                 continue;
             }
-            Helper\Style::renderTypography($selector, $typography);
+            if ($type == 'body') {
+                $bodyTypography = $typography;
+            }
+            Helper\Style::renderTypography($selector, $typography, $bodyTypography);
         }
     }
 

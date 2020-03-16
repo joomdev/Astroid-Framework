@@ -44,9 +44,9 @@ $hash_email = md5(strtolower(trim($user->email)));
          <div class="author-info">
             <h3 class="author-name"><?php echo $user->name; ?></h3>
             <?php if (!empty($socials)) { ?>
-               <ul class="author-social-links list-inline">
+               <ul class="author-social-links">
                   <?php foreach ($socials['icon'] as $key => $icon) { ?>
-                     <li class="list-inline-item">
+                     <li class="author-social-link">
                         <a target="_blank" rel="noopener" href="<?php echo $socials['link'][$key]; ?>"><i class="<?php echo $icon; ?> fa-lg"></i></a>
                      </li>
                   <?php } ?>

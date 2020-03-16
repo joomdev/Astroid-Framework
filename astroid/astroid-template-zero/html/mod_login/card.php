@@ -81,7 +81,7 @@ JHtml::_('bootstrap.tooltip');
                </label>
             </div>
          <?php endif; ?>
-         <button class="btn btn-lg btn-primary btn-block" type="submit"><?php echo JText::_('JLOGIN'); ?></button>
+         <button class="btn btn-lg btn-primary w-100" type="submit"><?php echo JText::_('JLOGIN'); ?></button>
          <?php if ($params->get('posttext')) : ?>
             <div class="posttext">
                <p class="my-3 text-muted"><?php echo $params->get('posttext'); ?></p>
@@ -93,11 +93,11 @@ JHtml::_('bootstrap.tooltip');
          <?php echo JHtml::_('form.token'); ?>
 
          <?php $usersConfig = JComponentHelper::getParams('com_users'); ?>
-         <ul class="list-group mt-3">
+         <ul class="list-group">
             <?php if ($usersConfig->get('allowUserRegistration')) : ?>
                <li class="list-group-item">
                   <a href="<?php echo JRoute::_('index.php?option=com_users&view=registration'); ?>">
-                     <?php echo JText::_('MOD_LOGIN_REGISTER'); ?> <span class="icon-arrow-right"></span></a>
+                     <?php echo JText::_('MOD_LOGIN_REGISTER'); ?></a>
                </li>
             <?php endif; ?>
             <li class="list-group-item">

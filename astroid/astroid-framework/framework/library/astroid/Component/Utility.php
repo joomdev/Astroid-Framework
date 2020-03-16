@@ -223,7 +223,7 @@ class Utility
         $navLink->render(); // render navlink
 
         // Dropdown Menu
-        $dropdown = Style::addCssBySelector('.astroid-nav .megamenu-container, .astroid-nav .nav-submenu', 'background-color', $params->get('dropdown_bg_color', ''));
+        $dropdown = Style::addCssBySelector('.megamenu-container', 'background-color', $params->get('dropdown_bg_color', ''));
         Style::addCssBySelector('.has-megamenu.open .arrow', 'border-bottom-color', $params->get('dropdown_bg_color', ''));
 
         $link = $dropdown->child('li.nav-item-submenu > a');

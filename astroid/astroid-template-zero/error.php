@@ -47,27 +47,23 @@ if ($params->get('background_setting_404') == 'video' && !empty($params->get('ba
    ?>
 </head>
 
-<body <?php echo implode(' ', $bodyAttrs); ?>>
+<body class="error-page" <?php echo implode(' ', $bodyAttrs); ?>>
    <div class="container">
       <div class="row">
          <div class="col-12 text-center align-self-center">
-            <div class="error-page">
-               <div>
-                  <?php
-                  if (!empty($errorContent)) {
-                     echo str_replace('{errormessage}', htmlspecialchars($this->error->getMessage(), ENT_QUOTES, 'UTF-8'), str_replace('{errorcode}', $this->error->getCode(), $document->loadModule($errorContent)));
-                  } else {
-                  ?>
-                     <div class="py-5">
-                        <h2 class="display-1"><?php echo $this->error->getCode(); ?></h2>
-                        <h5 class="display-4"><?php echo htmlspecialchars($this->error->getMessage(), ENT_QUOTES, 'UTF-8'); ?></h5>
-                     </div>
-                  <?php
-                  }
-                  ?>
-                  <a class="btn btn-backtohome" href="<?php echo JURI::root(); ?>" role="button"><?php echo $errorButton; ?></a>
+            <?php
+            if (!empty($errorContent)) {
+               echo str_replace('{errormessage}', htmlspecialchars($this->error->getMessage(), ENT_QUOTES, 'UTF-8'), str_replace('{errorcode}', $this->error->getCode(), $document->loadModule($errorContent)));
+            } else {
+            ?>
+               <div class="py-5">
+                  <h2 class="display-1"><?php echo $this->error->getCode(); ?></h2>
+                  <h5 class="display-4"><?php echo htmlspecialchars($this->error->getMessage(), ENT_QUOTES, 'UTF-8'); ?></h5>
                </div>
-            </div>
+            <?php
+            }
+            ?>
+            <a class="btn btn-backtohome" href="<?php echo JURI::root(); ?>" role="button"><?php echo $errorButton; ?></a>
          </div>
       </div>
       <?php if ($this->debug) : ?>

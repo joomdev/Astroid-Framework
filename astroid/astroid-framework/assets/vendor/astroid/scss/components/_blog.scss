@@ -1,4 +1,5 @@
 $article-posttype-icon-width: 40px;
+$article-posttype-spacing: 50px;
 
 .items-more {
 	>a {
@@ -51,6 +52,7 @@ ul.tags{
 		font-weight: 900;
 		margin-right: 10px;
 		color: $tag-icon-color;
+		font-size: 20px;
 	}
 	.label {
 		background-color: $tag-bg;
@@ -212,9 +214,15 @@ ul.tags{
 	}
 	.author-social-links {
 		margin: 0;
+		padding: 0;
+		list-style: none;
 		a {
 			color: #8e8e8e;
 			font-size: 14px;
+		}
+		.author-social-link {
+			display: inline-block;
+			margin-right: 15px;
 		}
 	}
 	.author-thumb {
@@ -230,6 +238,9 @@ ul.tags{
 		font-weight: 600;
 		line-height: normal;
 	}
+}
+.author-description {
+	margin: 0;
 }
 
 .full-image {
@@ -281,7 +292,7 @@ ul.tags{
 .article-quote-area {
 	background-color: rgba($primary, .1);
 	padding: 60px;
-	margin-bottom: 50px;
+	margin-bottom: $article-posttype-spacing;
 	p {
 		font-size: 150%;
 		line-height: normal;
@@ -318,10 +329,16 @@ ul.tags{
 	}
 }
 
+// Video Type
+
+.article-video {
+	margin-bottom: $article-posttype-spacing;
+}
+
 // Review Type
 
 .article-review {
-	margin-bottom: 50px;
+	margin-bottom: $article-posttype-spacing;
 }
 
 .review-total-score {
@@ -351,24 +368,28 @@ ul.tags{
 }
 
 .review-good-bad {
-	background-color: rgba($primary, .2);
+	background-color: rgba($primary, .15);
 	padding: 30px;
 	margin-bottom: 30px;
-	ul {
-		li {
-
-		}
+	.cons-heading,
+	.pros-heading {
+		font-size: 24px;
+		font-weight: bold;
+		line-height: 1.5rem;
+		margin-bottom: 20px;
 	}
 }
 
 .review-head {
 	@extend .border;
-	margin-bottom: 50px;
+	margin-bottom: 30px;
 }
 
 .review-criterias {
-	margin-bottom: 50px;
-	.review-criteria {
+	margin-bottom: 30px;
+	// border: 1px solid #ddd;
+	// padding: 30px 15px;
+	.review-criteria:not(:last-child) {
 		margin-bottom: 30px;
 	}
 }
@@ -398,6 +419,10 @@ ul.tags{
 
 .review-content {
 	padding: 25px;
+}
+
+.review-summary {
+	margin: 0;
 }
 
 .btn-prosandcons-wrapper {

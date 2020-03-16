@@ -22,7 +22,7 @@ if (empty($content)) {
    return;
 }
 ?>
-<div itemprop="video" itemscope itemtype="https://schema.org/VideoObject" class="embed-responsive embed-responsive-16by9 mb-3">
+<div itemprop="video" itemscope itemtype="https://schema.org/VideoObject" class="embed-responsive embed-responsive-16by9 article-video">
    <meta itemprop="name" content="<?php echo $article->title; ?>" />
    <?php echo $content; ?>
 </div>

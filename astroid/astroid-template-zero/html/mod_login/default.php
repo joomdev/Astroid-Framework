@@ -61,14 +61,14 @@ JHtml::_('bootstrap.tooltip');
    <div class="d-flex justify-content-between">
       <div class="form-group d-flex justify-content-start">
       <?php if (JPluginHelper::isEnabled('system', 'remember')) : ?>
-         <div class="custom-control custom-checkbox checkbox">
+         <div class="custom-control custom-checkbox checkbox text-muted">
             <input type="checkbox" class="custom-control-input" id="modlgn-remember" name="remember" value="yes">
             <label class="custom-control-label" for="modlgn-remember"><?php echo JText::_('MOD_LOGIN_REMEMBER_ME'); ?></label>
          </div>
       <?php endif; ?>
       </div>
       <div class="form-check form-group d-flex justify-content-end">
-         <a class="login-help-link" href="<?php echo JRoute::_('index.php?option=com_users&view=reset'); ?>"><?php echo JText::_('MOD_LOGIN_FORGOT_YOUR_PASSWORD'); ?></a>
+         <a class="forget-password-link" href="<?php echo JRoute::_('index.php?option=com_users&view=reset'); ?>"><?php echo JText::_('MOD_LOGIN_FORGOT_YOUR_PASSWORD'); ?></a>
       </div>
    </div>
    <div class="login-button">

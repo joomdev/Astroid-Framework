@@ -1,0 +1,22 @@
+.form-signin {
+	.form-control {
+		box-shadow: 2px 2px 9px rgba(0,0,0,.06);
+		border: 1px solid #fdfdfd;
+	}
+	.input-group-text {
+		background-color: transparent;
+	}
+	.login-button {
+		margin-top: 10px;
+		margin-bottom: 20px;
+	}
+	.login-helping-links {
+		color: $text-muted;
+		a {
+			color: currentColor;
+		}
+	}
+	.login-help-link {
+		color: $text-muted;
+	}
+}

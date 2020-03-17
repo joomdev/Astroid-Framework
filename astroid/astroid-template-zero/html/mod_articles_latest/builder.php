@@ -20,11 +20,11 @@ defined('_JEXEC') or die;
 					<div class="item-title">
 
 						<div class="page-header">
-							<h2 itemprop="name">
+							<h4 itemprop="name">
 								<a href="<?php echo $item->link; ?>" itemprop="url">
 									<?php echo $item->title; ?>
 								</a>
-							</h2>
+							</h4>
 						</div>
 					</div>
 					<dl class="article-info muted">

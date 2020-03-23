@@ -360,7 +360,7 @@ class Helper
         }
 
         $html = '';
-        $html .= '<div id="astroid-reporter" class="active"><div class="astroid-reporter-heading">Astroid Framework</div><ul class="nav nav-tabs" role="tablist">' . implode('', $tabs) . '</ul><div class="tab-content">' . implode('', $contents) . '</div></div>';
+        $html .= '<div id="astroid-reporter"><div class="astroid-reporter-heading">Astroid Framework</div><ul class="nav nav-tabs" role="tablist">' . implode('', $tabs) . '</ul><div class="tab-content">' . implode('', $contents) . '</div></div>';
         return $html;
     }
 

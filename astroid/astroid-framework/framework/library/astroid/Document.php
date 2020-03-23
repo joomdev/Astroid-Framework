@@ -863,16 +863,60 @@ class Document
         return (($option == "com_sppagebuilder" && $view == "page") || ($option == "com_quix" && $view == "page") || ($option == "com_jdbuilder" && $view == "page"));
     }
 
+    public static function getDir($dir, $extension = null, &$results = array())
+    {
+        $files = scandir($dir);
+
+        foreach ($files as $key => $value) {
+            $path = realpath($dir . DIRECTORY_SEPARATOR . $value);
+            if (!is_dir($path)) {
+                $pathinfo = pathinfo($path);
+                if ($extension !== null && $pathinfo['extension'] == $extension) {
+                    $include_path = str_replace(JPATH_THEMES, '', $path);
+                    $component_name = str_replace('.min', '', $pathinfo['filename']);
+                    $results[$component_name] = ['component_name' => $component_name, 'name' => $pathinfo['basename'], 'path' => $include_path, 'basepath' => $path];
+                } elseif ($extension === null) {
+                    $include_path = str_replace(JPATH_THEMES, '', $path);
+                    $results[] = ['name' => $pathinfo['basename'], 'path' => $include_path];
+                }
+            } else if ($value != "." && $value != "..") {
+                self::getDir($path, $extension, $results);
+            }
+        }
+
+        return $results;
+    }
+
+    public static function scssHash()
+    {
+        $params = Helper::getPluginParams();
+        $debug = $params->get('astroid_debug', 0);
+        if (!$debug) {
+            return '';
+        }
+        Framework::getDebugger()->log('Checking Scss');
+        $template = Framework::getTemplate();
+        $scss_files = self::getDir(JPATH_SITE . '/templates/' . $template->template . '/scss', 'scss');
+
+        $name = '';
+        foreach ($scss_files as $scss) {
+            $name .= md5_file($scss['basepath']);
+        }
+        Framework::getDebugger()->log('Checking Scss');
+        return md5($name);
+    }
+
     public function astroidCSS()
     {
         // Scss
         if (Framework::isSite()) {
             $template = Framework::getTemplate();
-            $scssVersion = md5(serialize($template->getThemeVariables()) . $template->id);
+            $scssVersion = md5(serialize($template->getThemeVariables()) . $template->id . self::scssHash());
             $scssFile = ASTROID_CACHE . '/compiled/' . $template->id . '-' . $scssVersion . '.css';
 
             if (!file_exists($scssFile)) {
                 Framework::getReporter('Logs')->add('Rendering Scss');
+                Helper::clearCache($template->template, ['compiled']);
                 $this->renderScss($scssFile);
             } else {
                 Framework::getReporter('Logs')->add('Getting SCSS Compiled CSS <code>' . str_replace(JPATH_SITE . '/', '', $scssFile) . '</code> from cache.');

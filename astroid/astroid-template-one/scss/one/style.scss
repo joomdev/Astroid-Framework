@@ -1,0 +1,16 @@
+@import "modules/modules";
+@import "plugin/plugin";
+
+.fa-ul {
+	margin-left: 1.5em;
+}
+
+.megamenu-container {
+	border-color: $primary;
+	border-top: 4px solid rgba($primary, .4);
+}
+
+.form-control {
+	box-shadow: 2px 2px 9px rgba(0, 0, 0, 0.06);
+	border: 1px solid #fdfdfd;
+}

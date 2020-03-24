@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="3.1" type="template" client="site" method="upgrade">
+   <name>astroid_template_one</name>
+   <creationDate>Dec 2019</creationDate>
+   <author>JoomDev</author>
+   <authorEmail>info@joomdev.com</authorEmail>
+   <authorUrl>https://www.joomdev.com</authorUrl>
+   <copyright>Copyright (C) 2019 Joomdev, Inc. All rights reserved.</copyright>
+   <license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+   <version>2.3.0</version>
+   <description>TPL_ASTROID_XML_DESCRIPTION</description>
+   <updateservers>
+      <server type="extension" name="astroid_framework" priority="1">https://cdn.joomdev.com/updates/astroid_template_one.xml</server>
+   </updateservers>
+
+   <files>
+      <folder>css</folder>
+      <folder>scss</folder>
+      <folder>html</folder>
+      <folder>astroid</folder>
+      <folder>images</folder>
+      <folder>js</folder>
+      <folder>language</folder>
+      <filename>index.php</filename>
+      <filename>helper.php</filename>
+      <filename>templateDetails.xml</filename>
+      <filename>template_preview.png</filename>
+      <filename>template_thumbnail.png</filename>
+      <filename>component.php</filename>
+      <filename>error.php</filename>
+      <filename>offline.php</filename>
+   </files>
+   <positions>
+      <position>topbar-1</position>
+      <position>topbar-2</position>
+      <position>header</position>
+      <position>hero-section</position>
+      <position>language-switcher</position>
+      <position>astroid-top-contact</position>
+      <position>astroid-top-social</position>
+      <position>astroid-content-left</position>
+      <position>astroid-home-page</position>
+      <position>astroid-header</position>
+      <position>astroid-footer</position>
+      <position>content-top</position>
+      <position>content-bottom</position>
+      <position>breadcrumbs</position>
+      <position>position-1</position>
+      <position>position-2</position>
+      <position>position-3</position>
+      <position>position-4</position>
+      <position>position-5</position>
+      <position>position-6</position>
+      <position>position-7</position>
+      <position>position-8</position>
+      <position>position-9</position>
+      <position>position-10</position>
+      <position>left</position>
+      <position>right</position>
+      <position>bottom-1</position>
+      <position>bottom-2</position>
+      <position>bottom-3</position>
+      <position>bottom-4</position>
+      <position>footer-1</position>
+      <position>footer-2</position>
+      <position>footer-3</position>
+      <position>footer-4</position>
+      <position>fullwidth</position>
+      <position>offcanvas</position>
+      <position>debug</position>
+   </positions>
+   <languages folder="language/en-GB">
+      <language tag="en-GB">en-GB.tpl_astroid_template_one.ini</language>
+      <language tag="en-GB">en-GB.tpl_astroid_template_one.sys.ini</language>
+   </languages>
+   <config>
+      <fields name="params">
+         <fieldset name="basic" addfieldpath="/libraries/astroid/framework/fields">
+            <field name="astroid" type="astroidmanagerlink"></field>
+         </fieldset>
+      </fields>
+   </config>
+</extension>

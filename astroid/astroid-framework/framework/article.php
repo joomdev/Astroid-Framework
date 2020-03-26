@@ -11,6 +11,13 @@ jimport('astroid.framework.helper');
 jimport('astroid.framework.constants');
 jimport('astroid.framework.astroid');
 
+if (ASTROID_JOOMLA_VERSION == 3) {
+   JLoader::register('ModRelatedItemsHelper', JPATH_ROOT . '/modules/mod_related_items/helper.php');
+   \JLoader::registerAlias('RelatedItemsHelper', 'ModRelatedItemsHelper');
+} else {
+   \JLoader::registerAlias('RelatedItemsHelper', '\\Joomla\\Module\\RelatedItems\\Site\\Helper\\RelatedItemsHelper');
+}
+
 class AstroidFrameworkArticle
 {
 
@@ -217,10 +224,9 @@ class AstroidFrameworkArticle
             $count = $this->template->params->get('article_relatedposts_count', 4);
          }
 
-         JLoader::register('ModRelatedItemsHelper', JPATH_ROOT . '/modules/mod_related_items/helper.php');
          $params = new JRegistry();
          $params->loadArray(['maximum' => $count]);
-         $items = ModRelatedItemsHelper::getList($params);
+         $items = RelatedItemsHelper::getList($params);
          Astroid\Framework::getDocument()->include('blog.modules.related', ['items' => $items]);
       }
    }

@@ -6,7 +6,7 @@
  * @copyright   Copyright (C) 2005 - 2019 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
-
+use Joomla\Utilities\ArrayHelper;
 defined('_JEXEC') or die;
 
 $attributes = array();
@@ -84,5 +84,8 @@ elseif ($item->browserNav == 2)
 		$subtitle="";
 	}
 // Show icon showtitle End here
-	
-echo '<a href="'.JFilterOutput::ampReplace(htmlspecialchars($item->flink, ENT_COMPAT, 'UTF-8', false)).'" title="'.$item->title.'"> <span class="nav-title">'.$iconHtml.$item->title.$badgeHtml.'</span>'.$subtitle.'</a>';
+	if (is_array($attributes))
+	{
+		$attributes = ArrayHelper::toString($attributes);
+	}
+echo '<a href="'.JFilterOutput::ampReplace(htmlspecialchars($item->flink, ENT_COMPAT, 'UTF-8', false)).'" title="'.$item->title.'" '.$attributes.'> <span class="nav-title">'.$iconHtml.$item->title.$badgeHtml.'</span>'.$subtitle.'</a>';

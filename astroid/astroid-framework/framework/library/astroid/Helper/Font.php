@@ -199,6 +199,11 @@ class Font
         $document = Framework::getDocument();
         $document->addStyleSheet('https://fonts.googleapis.com/css?family=' . $value);
         @list($font, $variants) = explode(":", $value);
+
+        if (preg_match('~[0-9]+~', $font)) {
+            $font = "'{$font}'";
+        }
+
         return str_replace('+', ' ', $font);
     }
 

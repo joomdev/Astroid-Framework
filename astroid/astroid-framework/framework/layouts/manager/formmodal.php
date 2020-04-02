@@ -19,3 +19,20 @@ extract($displayData);
         </div>
     </div>
 </div>
+
+<div class="ezlb-pop" id="astroid-import-confirm">
+    <div class="ezlb-pop-overlay"></div>
+    <div class="ezlb-pop-body text-center">
+        <h1><?php echo JText::_('ASTROID_IMPORT_POPUP_TITLE'); ?></h1>
+        <p><?php echo JText::_('ASTROID_IMPORT_POPUP_DESC'); ?></p>
+        <strong><label><input type="checkbox" id="astroid-import-option" /> <?php echo JText::_('ASTROID_IMPORT_POPUP_OPTION'); ?></label></strong>
+        <div class="row mt-3">
+            <div class="col text-right">
+                <button id="astroid-import-cancel" type="button" class="btn btn-lg btn-wide btn-round astroid-back-btn">Cancel</button>
+            </div>
+            <div class="col text-left">
+                <button id="astroid-import-continue" type="button" class="btn btn-lg btn-wide btn-round btn-astroid">Continue</button>
+            </div>
+        </div>
+    </div>
+</div>

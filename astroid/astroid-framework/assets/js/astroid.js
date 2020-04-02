@@ -444,7 +444,7 @@ var AstroidAdmin = function AstroidAdmin() {
                   Admin.saveMe();
                   Admin.notify('Template Saved.', 'success');
                } else {
-                  Admin.exportSettings(response.data);
+                  Admin.exportSettings(response.data, (_export == 1));
                }
             }
          });
@@ -465,22 +465,73 @@ var AstroidAdmin = function AstroidAdmin() {
       });
       $('#astroid-settings-import').on('change', function () {
          var input = document.getElementById('astroid-settings-import');
-         if (!input) {} else if (!input.files) {} else if (!input.files[0]) {} else {
-            var file = input.files[0];
-            var reader = new FileReader();
-            reader.addEventListener("load", function () {
-               var _json = Admin.checkUploadedSettings(reader.result);
-               if (_json !== false) {
-                  Admin.saveImportedSettings(_json);
-               }
-            }, false);
-            if (file) {
-               reader.readAsText(file);
-            }
+         if (!input) {
+            return false;
+         } else if (!input.files) {
+            return false;
+         } else if (!input.files[0]) {
+            return false;
          }
-         $("#astroid-settings-import").val("");
+
+
+         $('#astroid-import-confirm').addClass('open');
+
+         var importConfirm = new Promise(function (resolve, reject) {
+            $('#astroid-import-cancel').on('click', function () {
+               resolve(false);
+            });
+            $('#astroid-import-continue').on('click', function () {
+               resolve(true);
+            });
+         });
+
+         importConfirm.then(
+            function (result) {
+               $('#astroid-import-confirm').removeClass('open');
+               if (result) {
+                  if ($('#astroid-import-option').prop('checked')) {
+                     Admin.exportBeforeImportLayout();
+                  } else {
+                     Admin.importLayout();
+                  }
+               }
+               return false;
+            },
+            function (error) {
+               $('#astroid-import-confirm').removeClass('open');
+               $("#astroid-settings-import").val("");
+               $('#astroid-import-option').prop('checked', false)
+               return false;
+            }
+         );
       });
    };
+
+   this.exportBeforeImportLayout = function () {
+      $('#export-form').val(2);
+      $('#astroid-form').submit();
+      $(window).unbind('onAstroidSettingsExported');
+      $(window).bind('onAstroidSettingsExported', function () {
+         Admin.importLayout();
+      });
+   }
+
+   this.importLayout = function () {
+      var input = document.getElementById('astroid-settings-import');
+      var file = input.files[0];
+      var reader = new FileReader();
+      reader.addEventListener("load", function () {
+         var _json = Admin.checkUploadedSettings(reader.result);
+         if (_json !== false) {
+            Admin.saveImportedSettings(_json);
+         }
+      }, false);
+      if (file) {
+         reader.readAsText(file);
+      }
+      $("#astroid-settings-import").val("");
+      $('#astroid-import-option').prop('checked', false);
+   }
 
    this.saveImportedSettings = function (_params) {
       $('#astroid-manager-disabled').show();
@@ -530,7 +581,7 @@ var AstroidAdmin = function AstroidAdmin() {
       return json;
    };
 
-   this.exportSettings = function (_settings) {
+   this.exportSettings = function (_settings, _askname) {
       var dataStr = JSON.stringify(_settings);
       var dataUri = 'data:text/json;charset=utf-8,' + encodeURIComponent(dataStr);
       var date = new Date();
@@ -540,7 +591,11 @@ var AstroidAdmin = function AstroidAdmin() {
       var hours = date.getHours();
       var minutes = date.getMinutes();
       var seconds = date.getSeconds();
-      var exportName = prompt("Please enter your desired name", TEMPLATE_NAME);
+      if (_askname) {
+         var exportName = prompt("Please enter your desired name", TEMPLATE_NAME);
+      } else {
+         exportName = TEMPLATE_NAME;
+      }
       if (exportName === "") {
          Admin.notify("Filename can't be empty", "error");
          return false
@@ -556,6 +611,7 @@ var AstroidAdmin = function AstroidAdmin() {
       $('#export-link').attr('href', dataUri);
       $('#export-link').attr('download', exportFileDefaultName);
       $('#export-link')[0].click();
+      $(window).trigger('onAstroidSettingsExported');
    };
 
    this.watchForm = function () {

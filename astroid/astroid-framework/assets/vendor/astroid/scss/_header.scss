@@ -40,7 +40,8 @@
       z-index: $sticky-header-zindex;
       -webkit-animation-duration: $sticky-header-animation-duration;
       animation-duration: $sticky-header-animation-duration;
-      > div{
+
+      >div {
          padding-top: $sticky-header-padding-y;
          padding-bottom: $sticky-header-padding-y;
       }
@@ -92,6 +93,7 @@
 
 .fixed-header {
    .astroid-logo {
+
       .astroid-logo-default,
       .astroid-logo-mobile {
          display: none;
@@ -110,6 +112,7 @@
       }
    }
 }
+
 /* Sidebar Header */
 .astroid-header {
    &.has-sidebar {
@@ -120,60 +123,81 @@
       z-index: 1;
       transition: .1s linear all;
       box-shadow: $sidebar-header-shadow;
+
       @media(max-width: 1200px) {
          width: $sidebar-header-mini-width;
       }
+
       &.sidebar-dir-left {
          left: 0 !important;
          right: auto !important;
       }
+
       &.sidebar-dir-right {
          right: 0 !important;
          left: auto !important;
       }
-      > .container {
+
+      >.container {
          height: 100%;
-         > .row {
+
+         >.row {
             height: 100%;
+
             .astroid-column {
-               > div {
+               >div {
                   height: 100%;
                }
             }
          }
       }
+
       .astroid-sidebar-logo {
          margin: 15px 0;
       }
+
       .astroid-logo {
          margin: 0 auto !important;
          justify-content: center;
       }
+
       .astroid-sidebar-mobile-menu {
          display: none;
       }
+
       .astroid-sidebar-block {
          padding: 10px 15px;
       }
    }
+
    @media (min-width: 1200px) {
       .astroid-sidebar-content {
          display: flex;
          flex-direction: column;
       }
+
       .astroid-sidebar-block {
-         margin-top: auto;
+         &:not(.astroid-sidebar-block-1) {
+            margin-top: auto;
+         }
+      }
+
+      .astroid-sidebar-block-1 {
+         margin-bottom: auto;
       }
    }
+
    @media (max-width: 1200px) {
       &.has-sidebar {
          display: block;
          width: 100%;
          position: relative;
          padding: 15px 0;
+
          .astroid-sidebar-mobile-menu {
             display: block;
          }
+
          .astroid-sidebar-logo {
             display: flex;
             padding: 0 15px;
@@ -181,12 +205,15 @@
          }
       }
    }
+
    .dropdown-menus {
       max-width: $sidebar-header-width;
    }
+
    .astroid-sidebar-content {
       overflow-y: auto;
    }
+
    .astroid-sidebar-collapsable {
       padding: 1rem;
       font-size: 24px;
@@ -197,24 +224,29 @@
       -moz-user-select: none;
       -ms-user-select: none;
       user-select: none;
-      > i {
+
+      >i {
          width: 22px;
          text-align: center;
          display: block;
+
          &:before {
             content: "\f0c9";
          }
       }
    }
+
    @media(max-width: 1200px) {
       .astroid-sidebar-content {
-         > div.astroid-sidebar-menu {
-            display: none; 
+         >div.astroid-sidebar-menu {
+            display: none;
          }
-         > div.astroid-sidebar-block {
-           display: none;
+
+         >div.astroid-sidebar-block {
+            display: none;
          }
       }
+
       &.expanded {
          width: $sidebar-header-width !important;
          -webkit-transition: .1s linear all;
@@ -222,20 +254,24 @@
          -ms-transition: .1s linear all;
          -o-transition: .1s linear all;
          transition: .1s linear all;
+
          .astroid-sidebar-collapsable {
-            > i {
+            >i {
                &:before {
                   content: "\f00d";
                }
             }
          }
+
          .astroid-sidebar-logo {
             display: block;
          }
-         .astroid-sidebar-content > div.astroid-sidebar-menu {
+
+         .astroid-sidebar-content>div.astroid-sidebar-menu {
             display: block;
          }
-         .astroid-sidebar-content > div.astroid-sidebar-block {
+
+         .astroid-sidebar-content>div.astroid-sidebar-block {
             display: block;
          }
       }
@@ -243,10 +279,11 @@
 }
 
 @media (min-width:1201px) {
-   body.header-sidebar-left{
+   body.header-sidebar-left {
       margin-left: $sidebar-header-width;
    }
-   body.header-sidebar-right{
+
+   body.header-sidebar-right {
       margin-right: $sidebar-header-width;
    }
 }

@@ -9,6 +9,7 @@
 
 namespace Astroid\Helper;
 
+use Astroid\Framework;
 use Astroid\Helper;
 
 defined('_JEXEC') or die;
@@ -155,33 +156,35 @@ class Client
 
     public function onContentPrepareForm($form, $data)
     {
+        $pluginParams = Helper::getPluginParams();
         $astroid_dir = 'libraries/astroid';
         Helper::loadLanguage('astroid');
+        $frontendVisibility = $pluginParams->get('frontend_tabs_visibility', 1);
         \JForm::addFormPath(JPATH_SITE . '/' . $astroid_dir . '/framework/forms');
-        if ($form->getName() == 'com_menus.item') {
+        if ($form->getName() == 'com_menus.item' && Framework::isAdmin()) {
             $form->loadFile('menu', false);
             $form->loadFile('banner', false);
             $form->loadFile('og', false);
         }
 
-        if ($form->getName() == 'com_content.article') {
+        if ($form->getName() == 'com_content.article' && ((Framework::isSite() && $frontendVisibility) || Framework::isAdmin())) {
             $form->loadFile('article', false);
             $form->loadFile('blog', false);
             $form->loadFile('opengraph', false);
         }
 
-        if ($form->getName() == 'com_categories.categorycom_content') {
+        if ($form->getName() == 'com_categories.categorycom_content' && ((Framework::isSite() && $frontendVisibility) || Framework::isAdmin())) {
             $form->loadFile('category_blog', false);
         }
 
-        if ($form->getName() == 'com_menus.item' && (isset($data->request['option']) && $data->request['option'] == 'com_content') && (isset($data->request['view']) && $data->request['view'] == 'category') && (isset($data->request['layout']) && $data->request['layout'] == 'blog')) {
+        if ($form->getName() == 'com_menus.item' && (isset($data->request['option']) && $data->request['option'] == 'com_content') && (isset($data->request['view']) && $data->request['view'] == 'category') && (isset($data->request['layout']) && $data->request['layout'] == 'blog') && ((Framework::isSite() && $frontendVisibility) || Framework::isAdmin())) {
             $form->loadFile('menu_blog', false);
         }
-        if ($form->getName() == 'com_menus.item' && (isset($data->request['option']) && $data->request['option'] == 'com_content') && (isset($data->request['view']) && $data->request['view'] == 'featured')) {
+        if ($form->getName() == 'com_menus.item' && (isset($data->request['option']) && $data->request['option'] == 'com_content') && (isset($data->request['view']) && $data->request['view'] == 'featured') && ((Framework::isSite() && $frontendVisibility) || Framework::isAdmin())) {
             $form->loadFile('menu_blog', false);
         }
 
-        if ($form->getName() == 'com_users.user' || $form->getName() == 'com_admin.profile') {
+        if ($form->getName() == 'com_users.user' || $form->getName() == 'com_admin.profile' && ((Framework::isSite() && $frontendVisibility) || Framework::isAdmin())) {
             $form->loadFile('author', false);
         }
     }

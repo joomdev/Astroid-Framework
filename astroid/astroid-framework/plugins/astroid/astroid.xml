@@ -34,6 +34,12 @@
                <option value="0">JNO</option>
             </field>
          </fieldset>
+         <fieldset name="astroid-tabs-visibility">
+            <field name="frontend_tabs_visibility" type="radio" default="1" label="ASTROID_TABS_FRONTEND_VISIBILTY" description="" class="btn-group btn-group-yesno">
+               <option value="1">ASTROID_VISIBLE</option>
+               <option value="0">ASTROID_HIDDEN</option>
+            </field>
+         </fieldset>
       </fields>
    </config>
    <updateservers>

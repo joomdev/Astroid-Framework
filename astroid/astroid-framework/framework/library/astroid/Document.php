@@ -91,7 +91,7 @@ class Document
             $body = $this->minifyCSS($body);
         }
 
-        if ($this->minify_js) {
+        if ($this->minify_js && !$this->isFrontendEditing()) {
             $body = $this->minifyJS($body);
         }
 
@@ -99,6 +99,30 @@ class Document
             $body = $this->minifyHTML($body);
         }
         $app->setBody($body);
+    }
+
+    public function isFrontendEditing()
+    {
+        if (!Framework::isSite()) {
+            return false;
+        }
+
+        $app = \JFactory::getApplication();
+        $option = $app->input->get('option', '', 'STRING');
+        $view = $app->input->get('view', '', 'STRING');
+        $layout = $app->input->get('layout', 'default', 'STRING');
+        $task = $app->input->get('task', '', 'STRING');
+        $tmpl = $app->input->get('tmpl', '', 'STRING');
+
+        if ($option == 'com_content' && $view == 'form' && $layout == 'edit') {
+            return true;
+        }
+
+        if ($option == 'com_media' && !empty($view) && $tmpl == 'component') {
+            return true;
+        }
+
+        return false;
     }
 
     public function _cssPath($file)

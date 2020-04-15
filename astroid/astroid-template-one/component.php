@@ -52,7 +52,8 @@ if($view == 'articles' && $layout =='modal' && $option=='com_content' && $editor
 }
 //Editor Image button
 if($option == 'com_media' && $tmpl =='component'){
-	$addtemplatejs = true;
+	$addtemplatejs = false;
+	JHtml::_('stylesheet', 'isis/isis.css', array('version' => 'auto', 'relative' => true));
 }
 //Editor Page break button
 if($view == 'article' && $option == 'com_content' && $layout == 'pagebreak' && $e_name=='jform_articletext'){

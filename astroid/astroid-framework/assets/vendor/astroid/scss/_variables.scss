@@ -5,7 +5,7 @@ $logo-max-height: 65px !default;
 // Header Section
 $header-padding-y: 15px !default;
 $header-padding-x: 0 !default;
-$header-section-zindex: $zindex-dropdown !default;
+$header-section-zindex: $zindex-dropdown + 2 !default;
 $header-border-bottom: 1px solid #dee2e6 !default;
 $header-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075) !default;
 

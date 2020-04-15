@@ -255,7 +255,7 @@ class Document
                 $excludes = Framework::getTemplate()->getParams()->get('minify_js_excludes', '');
                 $minifier = new Minify\JS();
                 if ($javascript['type'] == 'url') {
-                    $file = JPATH_SITE . '/' . strtok($javascript['content'], '?');
+                    $file = basename(strtok($javascript['content'], '?'));
                     if (!Helper::matchFilename($file, \explode(',', $excludes))) {
                         if (file_exists(JPATH_SITE . '/' . strtok($javascript['content'], '?'))) {
                             $minifier->add(JPATH_SITE . '/' . strtok($javascript['content'], '?'));

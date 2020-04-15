@@ -406,6 +406,7 @@ class Helper
         $status = false;
         $needles = !is_array($needles) ? [$needles] : $needles;
         foreach ($needles as $string) {
+            $string = trim($string);
             if (self::startsWith($string, '*') && self::endsWith($string, '*')) {
                 $string = preg_replace('/' . preg_quote('*', '/') . '/', '', $string, -1);
                 $string = preg_replace('/' . preg_quote('*', '/') . '/', '', $string, 1);

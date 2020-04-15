@@ -227,19 +227,36 @@ class Document
             Framework::getReporter('Logs')->add('Minifying JS <code>' . implode('</code>, <code>', $javascriptFiles) . '</code>.');
 
             Helper::putContents($jsFile, '');
-            $minifier = new Minify\JS($jsFile);
             foreach ($javascripts as $javascript) {
+                $excludes = Framework::getTemplate()->getParams()->get('minify_js_excludes', '');
+                $minifier = new Minify\JS();
                 if ($javascript['type'] == 'url') {
-                    if (file_exists(JPATH_SITE . '/' . strtok($javascript['content'], '?'))) {
-                        $minifier->add(JPATH_SITE . '/' . strtok($javascript['content'], '?'));
+                    $file = JPATH_SITE . '/' . strtok($javascript['content'], '?');
+                    if (!Helper::matchFilename($file, \explode(',', $excludes))) {
+                        if (file_exists(JPATH_SITE . '/' . strtok($javascript['content'], '?'))) {
+                            $minifier->add(JPATH_SITE . '/' . strtok($javascript['content'], '?'));
+                        } else {
+                            $minifier->add(file_get_contents($this->addProtocol($javascript['content'])));
+                        }
+                        $content = $minifier->minify();
                     } else {
-                        $minifier->add(file_get_contents($this->addProtocol($javascript['content'])));
+                        if (file_exists(JPATH_SITE . '/' . strtok($javascript['content'], '?'))) {
+                            $content = file_get_contents(JPATH_SITE . '/' . strtok($javascript['content'], '?'));
+                        } else {
+                            $content = file_get_contents($this->addProtocol($javascript['content']));
+                        }
                     }
                 } else {
                     $minifier->add($javascript['content']);
+                    $content = $minifier->minify();
                 }
+                if (!Helper::endsWith($content, ';')) {
+                    $content .= ';';
+                }
+
+                Helper::putContents($jsFile, $content, true);
+                Helper::putContents($jsFile, "\n", true);
             }
-            $minifier->minify($jsFile);
         } else {
             Framework::getReporter('Logs')->add('Getting Minified JS <code>' . (str_replace(JPATH_SITE . '/', '', $jsFile)) . '</code>.');
         }

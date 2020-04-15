@@ -87,10 +87,15 @@ class Helper
         return implode('', $return);
     }
 
+    public static function title($value)
+    {
+        return mb_convert_case($value, MB_CASE_TITLE, 'UTF-8');
+    }
+
     public static function startsWith($haystack, $needles)
     {
         foreach ((array) $needles as $needle) {
-            if ($needle !== '' && substr($haystack, 0, strlen($needle)) === (string) $needle) {
+            if ((string) $needle !== '' && strncmp($haystack, $needle, strlen($needle)) === 0) {
                 return true;
             }
         }
@@ -98,9 +103,26 @@ class Helper
         return false;
     }
 
-    public static function title($value)
+    public static function endsWith($haystack, $needles)
     {
-        return mb_convert_case($value, MB_CASE_TITLE, 'UTF-8');
+        foreach ((array) $needles as $needle) {
+            if (substr($haystack, -strlen($needle)) === (string) $needle) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public static function contains($haystack, $needles)
+    {
+        foreach ((array) $needles as $needle) {
+            if ($needle !== '' && mb_strpos($haystack, $needle) !== false) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public static function joomlaMediaVersion()
@@ -198,11 +220,15 @@ class Helper
         return md5($content);
     }
 
-    public static function putContents($file, $content)
+    public static function putContents($file, $content, $append = false)
     {
         Framework::getReporter('Logs')->add('Saved Cached to <code>' . str_replace(JPATH_SITE . '/', '', $file) . '</code>');
         self::createDir($file);
-        file_put_contents($file, $content);
+        if ($append) {
+            file_put_contents($file, $content, FILE_APPEND);
+        } else {
+            file_put_contents($file, $content);
+        }
     }
 
     public static function minifyCSS($css)
@@ -373,5 +399,37 @@ class Helper
         }
 
         return $subject;
+    }
+
+    public static function matchFilename($haystack, $needles)
+    {
+        $status = false;
+        $needles = !is_array($needles) ? [$needles] : $needles;
+        foreach ($needles as $string) {
+            if (self::startsWith($string, '*') && self::endsWith($string, '*')) {
+                $string = preg_replace('/' . preg_quote('*', '/') . '/', '', $string, -1);
+                $string = preg_replace('/' . preg_quote('*', '/') . '/', '', $string, 1);
+                if (self::contains($haystack, $string)) {
+                    $status = true;
+                    break;
+                }
+            } else if (self::startsWith($string, '*')) {
+                $string = preg_replace('/' . preg_quote('*', '/') . '/', '', $string, -1);
+                if (self::endsWith($haystack, $string)) {
+                    $status = true;
+                    break;
+                }
+            } else if (self::endsWith($string, '*')) {
+                $string = preg_replace('/' . preg_quote('*', '/') . '/', '', $string, 1);
+                if (self::startsWith($haystack, $string)) {
+                    $status = true;
+                    break;
+                }
+            } else if ($string == $haystack) {
+                $status = true;
+                break;
+            }
+        }
+        return $status;
     }
 }

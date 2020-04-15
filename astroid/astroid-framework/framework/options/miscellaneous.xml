@@ -199,6 +199,8 @@
          <field astroidgroup="minifygroup" name="minify_js" type="astroidtext" astroid-switch="true" default="0" label="Minify JS" description="Minify &amp; combine all JS.">
          </field>
 
+         <field astroidgroup="minifygroup" ngShow="minify_js==true" name="minify_js_excludes" type="astroidtextarea" filter="raw" class="form-control" label="TPL_ASTROID_MINIFYJS_EXCLUDES_LABEL" description="TPL_ASTROID_MINIFYJS_EXCLUDES_DESC" hint="jquery.*,.min.js" />
+
          <field astroidgroup="minifygroup" name="minify_html" type="astroidtext" astroid-switch="true" default="0" label="Minify HTML" description="">
          </field>
 

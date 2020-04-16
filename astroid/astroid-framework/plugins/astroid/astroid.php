@@ -27,11 +27,11 @@ class plgSystemAstroid extends JPlugin
    public function __construct(&$subject, $config)
    {
       parent::__construct($subject, $config);
-      Framework::init();
    }
-
+   
    public function onAfterRoute()
    {
+      Framework::init();
       $option = $this->app->input->get('option', '');
       $astroid = $this->app->input->get('astroid', '');
       if ($option == 'com_ajax' && !empty($astroid)) {

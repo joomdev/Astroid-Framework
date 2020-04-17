@@ -257,7 +257,7 @@ class Document
                 if ($javascript['type'] == 'url') {
                     $file = basename(strtok($javascript['content'], '?'));
                     if (!Helper::matchFilename($file, \explode(',', $excludes))) {
-                        $content = "<!-- `{$javascript['content']}` minified by Astroid -->";
+                        $content = "/* `{$javascript['content']}` minified by Astroid */";
                         if (file_exists(JPATH_SITE . '/' . strtok($javascript['content'], '?'))) {
                             $minifier->add(JPATH_SITE . '/' . strtok($javascript['content'], '?'));
                         } else {
@@ -265,7 +265,7 @@ class Document
                         }
                         $content .= $minifier->minify();
                     } else {
-                        $content = "<!-- `{$javascript['content']}` minification skipped by Astroid -->";
+                        $content = "/* `{$javascript['content']}` minification skipped by Astroid */";
                         if (file_exists(JPATH_SITE . '/' . strtok($javascript['content'], '?'))) {
                             $content .= file_get_contents(JPATH_SITE . '/' . strtok($javascript['content'], '?'));
                         } else {

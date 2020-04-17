@@ -462,9 +462,9 @@
          "mobile": "px"
       },
       "letter_spacing": {
-         "desktop": "1",
-         "tablet": "1",
-         "mobile": "1"
+         "desktop": "0",
+         "tablet": "0",
+         "mobile": "0"
       },
       "line_height_unit": {
          "desktop": "px",
@@ -490,7 +490,7 @@
    "article_opengraph": "0",
    "article_opengraph_facebook": "",
    "article_opengraph_twitter": "",
-   "article_comments": "disqus",
+   "article_comments": "none",
    "article_comments_fb_id": "",
    "article_comments_fb_width": "200",
    "article_comments_disqus_id": "",

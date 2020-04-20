@@ -23,15 +23,19 @@ class AstroidFrameworkArticle
 
    public $type;
    public $article;
-   private $params;
+   public $params;
+   public $attribs;
    public $template;
+   public $category_params;
 
    function __construct($article, $categoryView = false)
    {
       $this->article = $article;
       $attribs = new JRegistry();
       $attribs->loadString($this->article->attribs, 'JSON');
+      $this->attribs = $attribs;
       $this->article->params->merge($attribs);
+      $this->getCategoryParams();
 
       $this->type = $this->article->params->get('astroid_article_type', 'regular');
       $this->template = Astroid\Framework::getTemplate();
@@ -157,16 +161,18 @@ class AstroidFrameworkArticle
       }
 
       $view  = JFactory::getApplication()->input->get('view', '');
-      if ($view === 'article') {
+      if ($view != 'category') {
          // for single
-         $article_level = $this->article->params->get('astroid_readtime', ''); // from article
+         $article_level = $this->attribs->get('astroid_readtime', ''); // from article
+         $category_level = $this->category_params->get('astroid_readtime', ''); // from article
          $astroid_level = $this->template->params->get('astroid_article_readtime', 1);
       } else {
          // for listing
          $article_level = $this->params->get('astroid_readtime', ''); // from menu
+         $category_level = '';
          $astroid_level = $this->template->params->get('astroid_readtime', 1);
       }
-      return $this->checkPriority('', $article_level, $astroid_level);
+      return $this->checkPriority($article_level, $category_level, $astroid_level);
    }
 
    // Social Share
@@ -184,11 +190,11 @@ class AstroidFrameworkArticle
          return FALSE;
       }
 
-      $menu_level = $this->params->get('astroid_socialshare', '');
-      $article_level = $this->article->params->get('astroid_socialshare', '');
+      $article_level = $this->attribs->get('astroid_socialshare', '');
+      $category_level = $this->category_params->get('astroid_socialshare', '');
       $astroid_level = $this->template->params->get('article_socialshare_type', "none");
       $astroid_level = $astroid_level == 'none' ? 0 : 1;
-      return $this->checkPriority($menu_level, $article_level, $astroid_level);
+      return $this->checkPriority($article_level, $category_level, $astroid_level);
    }
 
    // Comments
@@ -204,11 +210,11 @@ class AstroidFrameworkArticle
       if (JFactory::getApplication()->input->get('tmpl', '') === 'component') {
          return FALSE;
       }
-      $menu_level = $this->params->get('astroid_comments', '');
+      $category_level = $this->params->get('astroid_comments', '');
       $article_level = $this->article->params->get('astroid_comments', '');
       $astroid_level = $this->template->params->get('article_comments', "none");
       $astroid_level = $astroid_level == 'none' ? 0 : 1;
-      return $this->checkPriority($menu_level, $article_level, $astroid_level);
+      return $this->checkPriority($article_level, $category_level, $astroid_level);
    }
 
    // Related Posts
@@ -216,10 +222,13 @@ class AstroidFrameworkArticle
    {
       if ($this->showRelatedPosts()) {
 
-         $article_relatedposts_count = $this->article->params->get('article_relatedposts_count', '');
+         $article_relatedposts_count = $this->attribs->get('article_relatedposts_count', '');
+         $category_relatedposts_count = $this->category_params->get('article_relatedposts_count', '');
 
          if (!empty($article_relatedposts_count) && $article_relatedposts_count == 1) {
-            $count = $this->article->params->get('article_relatedposts_count_custom', 4);
+            $count = $this->attribs->get('article_relatedposts_count_custom', 4);
+         } else if (!empty($category_relatedposts_count) && $category_relatedposts_count == 1) {
+            $count = $this->category_params->get('article_relatedposts_count_custom', 4);
          } else {
             $count = $this->template->params->get('article_relatedposts_count', 4);
          }
@@ -227,7 +236,7 @@ class AstroidFrameworkArticle
          $params = new JRegistry();
          $params->loadArray(['maximum' => $count]);
          $items = RelatedItemsHelper::getList($params);
-         Astroid\Framework::getDocument()->include('blog.modules.related', ['items' => $items]);
+         Astroid\Framework::getDocument()->include('blog.modules.related', ['items' => $items, 'display_posttypeicon' => $this->showRelatedPostTypeIcon(), 'display_badge' => $this->showRelatedArticleBadge()]);
       }
    }
 
@@ -236,10 +245,10 @@ class AstroidFrameworkArticle
       if (JFactory::getApplication()->input->get('tmpl', '') === 'component') {
          return FALSE;
       }
-      // $menu_level = $this->params->get('astroid_relatedposts', '');
-      $article_level = $this->article->params->get('astroid_relatedposts', '');
+      $article_level = $this->attribs->get('astroid_relatedposts', '');
+      $category_level = $this->category_params->get('astroid_relatedposts', '');
       $astroid_level = $this->template->params->get('article_relatedposts', 1);
-      return $this->checkPriority('', $article_level, $astroid_level);
+      return $this->checkPriority($article_level, $category_level, $astroid_level);
    }
 
    // Author Info
@@ -255,10 +264,10 @@ class AstroidFrameworkArticle
       if (JFactory::getApplication()->input->get('tmpl', '') === 'component') {
          return FALSE;
       }
-      $menu_level = $this->params->get('astroid_authorinfo', '');
-      $article_level = $this->article->params->get('astroid_authorinfo', '');
+      $article_level = $this->attribs->get('astroid_authorinfo', '');
+      $category_level = $this->category_params->get('astroid_authorinfo', '');
       $astroid_level = $this->template->params->get('article_authorinfo', 1);
-      return $this->checkPriority($menu_level, $article_level, $astroid_level);
+      return $this->checkPriority($article_level, $category_level, $astroid_level);
    }
 
    // menu level article badge
@@ -284,6 +293,15 @@ class AstroidFrameworkArticle
       $menu_level = $this->params->get('astroid_badge', '');
       $astroid_level = $this->template->params->get('astroid_badge', 1);
       $return =  $this->checkPriority('', $menu_level, $astroid_level);
+      return $return;
+   }
+   
+   public function showRelatedArticleBadge()
+   {
+      $article_level = $this->attribs->get('article_relatedposts_badge', '');
+      $category_level = $this->category_params->get('article_relatedposts_badge', '');
+      $astroid_level = $this->template->params->get('article_relatedposts_badge', 1);
+      $return =  $this->checkPriority($article_level, $category_level, $astroid_level);
       return $return;
    }
 
@@ -322,6 +340,14 @@ class AstroidFrameworkArticle
             break;
       }
       return $this->checkPriority($menu_level, $article_level, $astroid_level);
+   }
+
+   public function showRelatedPostTypeIcon()
+   {
+      $article_level = $this->attribs->get('article_relatedposts_posttype', '');
+      $category_level = $this->category_params->get('article_relatedposts_posttype', '');
+      $astroid_level = $this->template->params->get('article_relatedposts_posttype', 1);
+      return $this->checkPriority($article_level, $category_level, $astroid_level);
    }
 
    public function renderRating()
@@ -508,5 +534,20 @@ class AstroidFrameworkArticle
       } else {
          return ceil($result->rating_sum / $result->rating_count);
       }
+   }
+
+   public function getCategoryParams()
+   {
+      $params = new JRegistry();
+      if (\JFactory::getApplication()->input->get('view', '') == 'article' && !empty($this->article->catid)) {
+         $db = \JFactory::getDbo();
+         $query = "SELECT `params` FROM `#__categories` WHERE `id`=" . $this->article->catid;
+         $db->setQuery($query);
+         $result = $db->loadObject();
+         if (!empty($result)) {
+            $params->loadString($result->params, 'JSON');
+         }
+      }
+      $this->category_params = $params;
    }
 }

@@ -12,7 +12,7 @@
 defined('_JEXEC') or die;
 extract($displayData);
 
-$params = $article->params;
+$params = $article->attribs;
 
 $type = $params->get('astroid_article_type', 'regular');
 $icon = '';

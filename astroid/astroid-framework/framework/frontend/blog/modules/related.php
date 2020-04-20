@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @package   Astroid Framework
  * @author    JoomDev https://www.joomdev.com
@@ -10,6 +11,8 @@
  */
 // No direct access.
 defined('_JEXEC') or die;
+jimport('astroid.framework.article');
+
 extract($displayData);
 if (empty($items)) {
    return;
@@ -18,19 +21,31 @@ if (empty($items)) {
 <div class="relatedposts-wrap mb-3 mt-5">
    <h4><?php echo JText::_('ASTROID_ARTICLE_RELATED_LBL'); ?></h4>
    <div class="relateditems row">
-      <?php foreach ($items as $item) : $images = json_decode($item->images); ?>
+      <?php foreach ($items as $item) : $images = json_decode($item->images);
+         $astroidArticle = new AstroidFrameworkArticle($item, true);
+      ?>
          <div class="col-md-6 p-2">
             <div class="card h-100 mb-4">
                <?php
                if (!empty($images->image_intro)) {
-                  ?>
+               ?>
                   <a href="<?php echo $item->route; ?>">
                      <img class="card-img-top" src="<?php echo $images->image_intro; ?>" data-holder-rendered="true">
                   </a>
                <?php } ?>
                <div class="card-body">
+                  <?php
+                  if ($display_posttypeicon) {
+                     Astroid\Framework::getDocument()->include('blog.modules.posttype', ['article' => $astroidArticle]);
+                  }
+                  if ($display_badge) {
+                     Astroid\Framework::getDocument()->include('blog.modules.badge', ['article' => $astroidArticle]);
+                  }
+                  ?>
                   <small class="text-muted"> <?php echo $item->category_title; ?></small>
-                  <a href="<?php echo $item->route; ?>"><h3><?php echo $item->title; ?></h3></a>
+                  <a href="<?php echo $item->route; ?>">
+                     <h3><?php echo $item->title; ?></h3>
+                  </a>
                   <?php echo $item->introtext; ?>
                </div>
             </div>

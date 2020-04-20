@@ -22,6 +22,18 @@
          <field type="number" name="article_relatedposts_count_custom" label="ASTROID_BLANK_LBL" showon="astroid_relatedposts:1[AND]article_relatedposts_count:1" default="4">
          </field>
 
+         <field type="radio" name="article_relatedposts_posttype" label="ASTROID_RELATED_POSTS_TYPE_ICONS" class="btn-group" default="">
+            <option value="">JGLOBAL_INHERIT</option>
+            <option value="1">ASTROID_SHOW</option>
+            <option value="0">ASTROID_HIDE</option>
+         </field>
+
+         <field type="radio" name="article_relatedposts_badge" label="ASTROID_RELATED_POSTS_BADGE" class="btn-group" default="">
+            <option value="">JGLOBAL_INHERIT</option>
+            <option value="1">ASTROID_SHOW</option>
+            <option value="0">ASTROID_HIDE</option>
+         </field>
+
          <field type="radio" name="astroid_readtime" label="ASTROID_READ_TIME" class="btn-group" default="">
             <option value="">JGLOBAL_INHERIT</option>
             <option value="1">ASTROID_SHOW</option>

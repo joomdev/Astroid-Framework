@@ -13,6 +13,10 @@ defined('_JEXEC') or die;
 extract($displayData);
 
 $params = $article->attribs;
+if(is_string($params)){
+   $params = new \JRegistry();
+   $params->loadString($params, 'JSON');
+}
 
 $type = $params->get('astroid_article_type', 'regular');
 $icon = '';

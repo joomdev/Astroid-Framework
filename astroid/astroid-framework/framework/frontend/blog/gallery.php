@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @package   Astroid Framework
  * @author    JoomDev https://www.joomdev.com
@@ -17,10 +18,12 @@ $items = $params->get('astroid_article_gallery_items', []);
 if (empty($items)) {
    return;
 }
+
 $index = 0;
 $active = true;
 $width = $params->get('astroid_article_gallery_width', '');
 $width = !empty($width) ? 'max-width:' . $width : '';
+$hasItems = false;
 ?>
 <div style="<?php echo $width; ?>" id="article-gallery" class="article-gallery carousel mb-3 slide" data-ride="carousel">
    <?php if (!empty($params->get('astroid_article_gallery_bullets', 1))) { ?>
@@ -32,7 +35,7 @@ $width = !empty($width) ? 'max-width:' . $width : '';
             }
             ?>
             <li data-target="#article-gallery" data-slide-to="<?php echo $index; ?>" class="<?php echo $active ? 'active' : ''; ?>"></li>
-            <?php
+         <?php
             $index++;
             $active = false;
          }
@@ -46,6 +49,7 @@ $width = !empty($width) ? 'max-width:' . $width : '';
          if (empty($item['image'])) {
             continue;
          }
+         $hasItems = true;
          ?>
          <div class="carousel-item<?php echo $active ? ' active' : ''; ?>">
             <?php if (!empty($item['image'])) { ?>
@@ -62,19 +66,19 @@ $width = !empty($width) ? 'max-width:' . $width : '';
                </div>
             <?php } ?>
          </div>
-         <?php
+      <?php
          $active = false;
       }
       ?>
    </div>
-   <?php if (!empty($params->get('astroid_article_gallery_navigation', 1))) { ?>
+   <?php if ($hasItems && !empty($params->get('astroid_article_gallery_navigation', 1))) { ?>
       <a class="carousel-control-prev" href="#article-gallery" role="button" data-slide="prev">
          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
          <span class="sr-only"><?php echo JText::_('JPREVIOUS'); ?></span>
       </a>
       <a class="carousel-control-next" href="#article-gallery" role="button" data-slide="next">
          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-         <span class="sr-only"><?php echo JText::_('JNEXT') ;?></span>
+         <span class="sr-only"><?php echo JText::_('JNEXT'); ?></span>
       </a>
    <?php } ?>
 </div>

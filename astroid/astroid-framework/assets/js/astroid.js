@@ -1116,6 +1116,9 @@ var Admin = new AstroidAdmin();
 
       var _family = _font.split(':');
       _family = _family[0];
+      if (/\d/.test(_family)) {
+         _family = "'" + _family + "'";
+      }
       _family = _family.replace(/\+/g, ' ');
 
       var _id = _font.replace(/\+/g, '-');

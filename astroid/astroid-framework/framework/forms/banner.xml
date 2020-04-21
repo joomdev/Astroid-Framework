@@ -17,6 +17,8 @@
 			</field>
 			<field name="astroid_banner_textcolor" type="color" showon="astroid_banner_title_enabled:1[AND]astroid_banner_enabled:1" label="TPL_ASTROID_TEXT_COLOR_LABEL">
 			</field>
+			<field name="astroid_banner_subtextcolor" type="color" showon="astroid_banner_title_enabled:1[AND]astroid_banner_enabled:1" label="TPL_ASTROID_SUBTEXT_COLOR_LABEL">
+			</field>
 			<field showon="astroid_banner_enabled:1" name="astroid_banner_bgcolor" type="color" label="TPL_ASTROID_BACKGROUND_COLOR_LABEL">
 			</field>
 

@@ -82,6 +82,7 @@ if ($astroid_banner_enabled) {
    $astroid_banner_class = $params->get('astroid_banner_class', '');
    $astroid_banner_wrapper = $params->get('astroid_banner_wrapper', '');
    $astroid_banner_textcolor = $params->get('astroid_banner_textcolor', '');
+   $astroid_banner_subtextcolor = $params->get('astroid_banner_subtextcolor', '');
 
 
    if (!empty($astroid_banner_bgcolor)) {
@@ -92,10 +93,15 @@ if ($astroid_banner_enabled) {
    }
    $style = !empty($style) ? 'style="' . implode(';', $style) . '"' : '';
    $styletext = [];
+   $stylesubtext = [];
    if (!empty($astroid_banner_textcolor)) {
       $styletext[] = 'color:' . $astroid_banner_textcolor;
    }
+   if (!empty($astroid_banner_subtextcolor)) {
+      $stylesubtext[] = 'color:' . $astroid_banner_subtextcolor;
+   }
    $styletext = !empty($styletext) ? 'style="' . implode(';', $styletext) . '"' : '';
+   $stylesubtext = !empty($stylesubtext) ? 'style="' . implode(';', $stylesubtext) . '"' : '';
 ?>
    <div class="astroid-banner-inner<?php echo !empty($astroid_banner_class) ? ' ' . $astroid_banner_class : ''; ?>" <?php echo $style; ?>>
       <?php
@@ -105,7 +111,7 @@ if ($astroid_banner_enabled) {
       if ($astroid_banner_title_enabled) {
          echo '<' . $astroid_banner_title_tag . ' class="astroid-banner-title"' . $styletext . '>' . $astroid_banner_title . '</' . $astroid_banner_title_tag . '>';
          if (!empty($astroid_banner_subtitle)) {
-            echo '<' . $astroid_banner_subtitle_tag . ' class="astroid-banner-subtitle"' . $styletext . '>' . $astroid_banner_subtitle . '</' . $astroid_banner_subtitle_tag . '>';
+            echo '<' . $astroid_banner_subtitle_tag . ' class="astroid-banner-subtitle"' . $stylesubtext . '>' . $astroid_banner_subtitle . '</' . $astroid_banner_subtitle_tag . '>';
          }
       }
       if (!empty($astroid_banner_wrapper)) {

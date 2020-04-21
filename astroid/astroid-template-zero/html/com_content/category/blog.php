@@ -81,7 +81,7 @@ $articles = $category->getItems();
             <?php $row = $counter / $this->columns; ?>
             <div class="items-row <?php echo 'row-' . $row; ?> row clearfix">
             <?php endif; ?>
-            <div class="col-lg-<?php echo round((12 / $this->columns)); ?> p-3">
+            <div class="col-lg-<?php echo round((12 / $this->columns)); ?>">
                <div class="card h-100">
                   <article class="item column-<?php echo $rowcount; ?><?php echo $item->state == 0 ? ' system-unpublished' : null; ?><?php echo $item->featured ? ' item-featured' : ''; ?>"
                            itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
@@ -110,10 +110,10 @@ $articles = $category->getItems();
          <?php echo $this->loadTemplate('children'); ?> </div>
    <?php endif; ?>
    <?php if (($this->params->def('show_pagination', 1) == 1 || ($this->params->get('show_pagination') == 2)) && ($this->pagination->get('pages.total') > 1)) : ?>
-      <div class="mt-3">
+      <div class="pagination-wrapper">
          <?php echo $this->pagination->getPagesLinks(); ?>
          <?php if ($this->params->def('show_pagination_results', 1)) : ?>
-            <p class="counter d-flex justify-content-center"> <?php echo $this->pagination->getPagesCounter(); ?> </p>
+            <p class="counter"> <?php echo $this->pagination->getPagesCounter(); ?> </p>
          <?php endif; ?>
       </div>
    <?php endif; ?>

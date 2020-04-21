@@ -59,7 +59,7 @@ if (version_compare(JVERSION, '3.99999.99999', 'le'))
             <div class="items-row <?php echo 'row-' . $row; ?> row clearfix">
 				 <?php foreach ($this->intro_items as $key => &$item) : ?>
 				  <?php $rowcount = ((int) $key % (int) $this->columns) + 1; ?>
-							<div class="col-lg-<?php echo round((12 / $this->columns)); ?> p-3">
+							<div class="col-lg-<?php echo round((12 / $this->columns)); ?>">
 							   <div class="card h-100">
 									  <article class="item column-<?php echo $rowcount; ?><?php echo $item->state == 0 ? ' system-unpublished' : null; ?><?php echo $item->featured ? ' item-featured' : ''; ?>"
 											   itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
@@ -83,10 +83,10 @@ if (version_compare(JVERSION, '3.99999.99999', 'le'))
    <?php endif; ?>
 
   <?php if ($this->params->def('show_pagination', 2) == 1  || ($this->params->get('show_pagination') == 2 && $this->pagination->pagesTotal > 1)) : ?>
-    <div class="mt-3">
+    <div class="pagination-wrapper">
       <?php echo $this->pagination->getPagesLinks(); ?>
       <?php if ($this->params->def('show_pagination_results', 1)) : ?>
-          <p class="counter d-flex justify-content-center"> <?php echo $this->pagination->getPagesCounter(); ?> </p>
+          <p class="counter"> <?php echo $this->pagination->getPagesCounter(); ?> </p>
       <?php endif; ?>
     </div>
   <?php endif; ?>

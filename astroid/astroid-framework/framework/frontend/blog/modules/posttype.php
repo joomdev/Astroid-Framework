@@ -14,8 +14,7 @@ extract($displayData);
 
 $params = $article->attribs;
 if(is_string($params)){
-   $params = new \JRegistry();
-   $params->loadString($params, 'JSON');
+   $params = $article->params;
 }
 
 $type = $params->get('astroid_article_type', 'regular');

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @package   Astroid Framework
  * @author    JoomDev https://www.joomdev.com
@@ -13,7 +14,7 @@ defined('_JEXEC') or die;
 extract($displayData);
 
 $params = $article->attribs;
-if(is_string($params)){
+if (is_string($params)) {
    $params = $article->params;
 }
 
@@ -41,6 +42,6 @@ switch ($type) {
 ?>
 <?php if (!empty($icon)) { ?>
    <dd class="article-post-type">
-      <span class="article-icon article-icon-<?php echo $type; ?>"><?php echo!empty($icon) ? '<i class="' . $icon . '"></i>' : ''; ?></span>
+      <span class="article-icon article-icon-<?php echo $type; ?>"><?php echo !empty($icon) ? '<i class="' . $icon . '"></i>' : ''; ?></span>
    </dd>
 <?php } ?>

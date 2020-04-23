@@ -14,7 +14,7 @@
             <option value="0">ASTROID_HIDE</option>
          </field>
 
-         <field type="radio" name="article_relatedposts_count" label="ASTROID_RELATED_POSTS" class="btn-group" default="" showon="astroid_relatedposts:1">
+         <field type="radio" name="article_relatedposts_count" label="ASTROID_ARTICLE_COUNT_LBL" class="btn-group" default="" showon="astroid_relatedposts:1">
             <option value="">JGLOBAL_INHERIT</option>
             <option value="1">Custom</option>
          </field>

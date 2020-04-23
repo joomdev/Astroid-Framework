@@ -213,7 +213,7 @@ class AstroidFrameworkArticle
       if (JFactory::getApplication()->input->get('tmpl', '') === 'component') {
          return FALSE;
       }
-      $category_level = $this->params->get('astroid_comments', '');
+      $category_level = $this->category_params->get('astroid_comments', '');
       $category_level = $category_level == 1 ? '' : $category_level;
       $article_level = $this->article->params->get('astroid_comments', '');
       $article_level = $article_level == 1 ? '' : $article_level;
@@ -226,21 +226,16 @@ class AstroidFrameworkArticle
    public function renderRelatedPosts()
    {
       if ($this->showRelatedPosts()) {
-
          $article_relatedposts_count = $this->attribs->get('article_relatedposts_count', '');
          $category_relatedposts_count = $this->category_params->get('article_relatedposts_count', '');
 
          if ($this->attribs->get('astroid_relatedposts', '') === '' && $this->category_params->get('astroid_relatedposts', '') === '') {
             $count = $this->template->params->get('article_relatedposts_count', 4);
          } else if ($this->attribs->get('astroid_relatedposts', '') === '' && $this->category_params->get('astroid_relatedposts', '') !== '') {
-            if ($article_relatedposts_count === '' && $category_relatedposts_count === '') {
+            if ($category_relatedposts_count === '') {
                $count = $this->template->params->get('article_relatedposts_count', 4);
-            } else if ($article_relatedposts_count === '' && $category_relatedposts_count !== '') {
-               $count = $this->category_params->get('article_relatedposts_count_custom', 4);
-            } else if ($article_relatedposts_count !== '') {
-               $count = $this->attribs->get('article_relatedposts_count_custom', 4);
             } else {
-               $count = $this->template->params->get('article_relatedposts_count', 4);
+               $count = $this->category_params->get('article_relatedposts_count_custom', 4);
             }
          } else if ($this->attribs->get('astroid_relatedposts', '') !== '') {
             if ($article_relatedposts_count === '' && $category_relatedposts_count === '') {
@@ -324,7 +319,7 @@ class AstroidFrameworkArticle
       } else {
          $article_level = $this->attribs->get('article_relatedposts_badge', '');
       }
-      if ($this->category_params->get('article_relatedposts_badge', '') === '') {
+      if ($this->category_params->get('astroid_relatedposts', '') === '') {
          $category_level = '';
       } else {
          $category_level = $this->category_params->get('article_relatedposts_badge', '');

@@ -13,7 +13,14 @@
 defined('_JEXEC') or die;
 extract($displayData);
 
-$params = $article->params;
+$params = $article->attribs;
+if (is_string($params)) {
+    $params = $article->params;
+}
+$status = (int) $params->get('astroid_article_badge', 0);
+if (!$status) {
+    return;
+}
 $type = $params->get('astroid_article_badge_type', 2);
 if ($type != 1) {
 ?>

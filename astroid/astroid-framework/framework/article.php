@@ -161,7 +161,7 @@ class AstroidFrameworkArticle
       }
 
       $view  = JFactory::getApplication()->input->get('view', '');
-      if ($view != 'category') {
+      if ($view != 'category' && $view != 'featured') {
          // for single
          $article_level = $this->attribs->get('astroid_readtime', ''); // from article
          $category_level = $this->category_params->get('astroid_readtime', ''); // from article
@@ -295,12 +295,24 @@ class AstroidFrameworkArticle
       $return =  $this->checkPriority('', $menu_level, $astroid_level);
       return $return;
    }
-   
+
    public function showRelatedArticleBadge()
    {
-      $article_level = $this->attribs->get('article_relatedposts_badge', '');
-      $category_level = $this->category_params->get('article_relatedposts_badge', '');
-      $astroid_level = $this->template->params->get('article_relatedposts_badge', 1);
+      if ($this->attribs->get('astroid_relatedposts', '') === '') {
+         $article_level = '';
+      } else {
+         $article_level = $this->attribs->get('article_relatedposts_badge', '');
+      }
+      if ($this->category_params->get('article_relatedposts_badge', '') === '') {
+         $category_level = '';
+      } else {
+         $category_level = $this->category_params->get('article_relatedposts_badge', '');
+      }
+      if ($this->template->params->get('article_relatedposts', 1)) {
+         $astroid_level = $this->template->params->get('article_relatedposts_badge', 1);
+      } else {
+         $astroid_level = 0;
+      }
       $return =  $this->checkPriority($article_level, $category_level, $astroid_level);
       return $return;
    }
@@ -344,9 +356,21 @@ class AstroidFrameworkArticle
 
    public function showRelatedPostTypeIcon()
    {
-      $article_level = $this->attribs->get('article_relatedposts_posttype', '');
-      $category_level = $this->category_params->get('article_relatedposts_posttype', '');
-      $astroid_level = $this->template->params->get('article_relatedposts_posttype', 1);
+      if ($this->attribs->get('astroid_relatedposts', '') === '') {
+         $article_level = '';
+      } else {
+         $article_level = $this->attribs->get('article_relatedposts_posttype', '');
+      }
+      if ($this->category_params->get('astroid_relatedposts', '') === '') {
+         $category_level = '';
+      } else {
+         $category_level = $this->category_params->get('article_relatedposts_posttype', '');
+      }
+      if ($this->template->params->get('article_relatedposts', 1)) {
+         $astroid_level = $this->template->params->get('article_relatedposts_posttype', 1);
+      } else {
+         $astroid_level = 0;
+      }
       return $this->checkPriority($article_level, $category_level, $astroid_level);
    }
 

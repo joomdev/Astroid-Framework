@@ -42,13 +42,11 @@
 
          <field type="radio" name="astroid_socialshare" label="ASTROID_SOCIAL_SHARE" class="btn-group" default="">
             <option value="">JGLOBAL_INHERIT</option>
-            <option value="1">ASTROID_SHOW</option>
             <option value="0">ASTROID_HIDE</option>
          </field>
 
          <field type="radio" name="astroid_comments" label="ASTROID_COMMENTS" class="btn-group" default="">
             <option value="">JGLOBAL_INHERIT</option>
-            <option value="1">ASTROID_SHOW</option>
             <option value="0">ASTROID_HIDE</option>
          </field>
 

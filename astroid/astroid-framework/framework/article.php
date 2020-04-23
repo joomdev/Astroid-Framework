@@ -191,7 +191,10 @@ class AstroidFrameworkArticle
       }
 
       $article_level = $this->attribs->get('astroid_socialshare', '');
+      $article_level = $article_level == 1 ? '' : $article_level;
       $category_level = $this->category_params->get('astroid_socialshare', '');
+      $category_level = $category_level == 1 ? '' : $category_level;
+
       $astroid_level = $this->template->params->get('article_socialshare_type', "none");
       $astroid_level = $astroid_level == 'none' ? 0 : 1;
       return $this->checkPriority($article_level, $category_level, $astroid_level);
@@ -211,7 +214,9 @@ class AstroidFrameworkArticle
          return FALSE;
       }
       $category_level = $this->params->get('astroid_comments', '');
+      $category_level = $category_level == 1 ? '' : $category_level;
       $article_level = $this->article->params->get('astroid_comments', '');
+      $article_level = $article_level == 1 ? '' : $article_level;
       $astroid_level = $this->template->params->get('article_comments', "none");
       $astroid_level = $astroid_level == 'none' ? 0 : 1;
       return $this->checkPriority($article_level, $category_level, $astroid_level);
@@ -225,12 +230,28 @@ class AstroidFrameworkArticle
          $article_relatedposts_count = $this->attribs->get('article_relatedposts_count', '');
          $category_relatedposts_count = $this->category_params->get('article_relatedposts_count', '');
 
-         if (!empty($article_relatedposts_count) && $article_relatedposts_count == 1) {
-            $count = $this->attribs->get('article_relatedposts_count_custom', 4);
-         } else if (!empty($category_relatedposts_count) && $category_relatedposts_count == 1) {
-            $count = $this->category_params->get('article_relatedposts_count_custom', 4);
-         } else {
+         if ($this->attribs->get('astroid_relatedposts', '') === '' && $this->category_params->get('astroid_relatedposts', '') === '') {
             $count = $this->template->params->get('article_relatedposts_count', 4);
+         } else if ($this->attribs->get('astroid_relatedposts', '') === '' && $this->category_params->get('astroid_relatedposts', '') !== '') {
+            if ($article_relatedposts_count === '' && $category_relatedposts_count === '') {
+               $count = $this->template->params->get('article_relatedposts_count', 4);
+            } else if ($article_relatedposts_count === '' && $category_relatedposts_count !== '') {
+               $count = $this->category_params->get('article_relatedposts_count_custom', 4);
+            } else if ($article_relatedposts_count !== '') {
+               $count = $this->attribs->get('article_relatedposts_count_custom', 4);
+            } else {
+               $count = $this->template->params->get('article_relatedposts_count', 4);
+            }
+         } else if ($this->attribs->get('astroid_relatedposts', '') !== '') {
+            if ($article_relatedposts_count === '' && $category_relatedposts_count === '') {
+               $count = $this->template->params->get('article_relatedposts_count', 4);
+            } else if ($article_relatedposts_count === '' && $category_relatedposts_count !== '') {
+               $count = $this->category_params->get('article_relatedposts_count_custom', 4);
+            } else if ($article_relatedposts_count !== '') {
+               $count = $this->attribs->get('article_relatedposts_count_custom', 4);
+            } else {
+               $count = $this->template->params->get('article_relatedposts_count', 4);
+            }
          }
 
          $params = new JRegistry();

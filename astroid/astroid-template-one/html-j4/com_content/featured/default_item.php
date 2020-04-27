@@ -39,6 +39,7 @@ $post_format = $post_attribs->get('post_format', 'standard');
    }
    ?>
    <div class="card-body<?php echo $tpl_params->get('show_post_format') ? ' has-post-format' : ''; ?><?php echo (!empty($image) ? ' has-image' : ''); ?>">
+      <?php $astroidArticle->renderPostTypeIcon(); ?>
       <?php $astroidArticle->renderArticleBadge(); ?>
       <div class="item-title">
          <?php echo JLayoutHelper::render('joomla.content.blog_style_default_item_title', $this->item); ?>

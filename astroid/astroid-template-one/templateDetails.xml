@@ -32,41 +32,15 @@
       <filename>offline.php</filename>
    </files>
    <positions>
-      <position>topbar-1</position>
-      <position>topbar-2</position>
-      <position>header</position>
-      <position>hero-section</position>
-      <position>language-switcher</position>
-      <position>astroid-top-contact</position>
-      <position>astroid-top-social</position>
-      <position>astroid-content-left</position>
-      <position>astroid-home-page</position>
       <position>astroid-header</position>
-      <position>astroid-footer</position>
       <position>content-top</position>
       <position>content-bottom</position>
-      <position>breadcrumbs</position>
-      <position>position-1</position>
-      <position>position-2</position>
-      <position>position-3</position>
-      <position>position-4</position>
-      <position>position-5</position>
-      <position>position-6</position>
-      <position>position-7</position>
-      <position>position-8</position>
-      <position>position-9</position>
-      <position>position-10</position>
       <position>left</position>
       <position>right</position>
-      <position>bottom-1</position>
-      <position>bottom-2</position>
-      <position>bottom-3</position>
-      <position>bottom-4</position>
       <position>footer-1</position>
       <position>footer-2</position>
       <position>footer-3</position>
       <position>footer-4</position>
-      <position>fullwidth</position>
       <position>offcanvas</position>
       <position>debug</position>
    </positions>

@@ -59,7 +59,7 @@ function modChrome_border_layout($module, &$params, &$attribs) {
       ?>
       <<?php echo $moduleTag; ?> class="moduletable <?php echo htmlspecialchars($params->get('moduleclass_sfx'), ENT_COMPAT, 'UTF-8') . $moduleClass; ?>">
       <?php
-      echo '<div class="border rounded p-3 mb-4">';
+      echo '<div class="border-layout">';
       ?>
       <?php if ($module->showtitle != 0) : ?>
          <<?php echo $headerTag . $headerClass . '>' . $module->title; ?></<?php echo $headerTag; ?>>

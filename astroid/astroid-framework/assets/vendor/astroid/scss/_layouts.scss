@@ -226,3 +226,10 @@ ul.fa-ul {
 		padding: 50px 0 10px;
 	}
 }
+
+.border-layout {
+	@extend .border;
+	@extend .rounded;
+	@extend .p-3;
+	@extend .mb-4;
+}

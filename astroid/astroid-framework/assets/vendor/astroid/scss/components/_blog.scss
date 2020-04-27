@@ -63,6 +63,14 @@ ul.tags{
 	}
 }
 
+.article-wraper {
+	margin-bottom: 30px;
+	@extend .card;
+	article {
+		height: 100%;
+	}
+}
+
 .article-icon {
 	position: absolute;
 	margin-bottom: 80px;

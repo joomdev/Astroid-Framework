@@ -46,12 +46,9 @@ if (version_compare(JVERSION, '3.99999.99999', 'le'))
       </div><!-- end items-leading -->
    <?php endif; ?>
 
-
    <?php
- 
    $introcount = (count($this->intro_items));
    $counter = 0;
-    
    ?>
 
      <?php if (!empty($this->intro_items)) : ?>
@@ -60,7 +57,7 @@ if (version_compare(JVERSION, '3.99999.99999', 'le'))
 				 <?php foreach ($this->intro_items as $key => &$item) : ?>
 				  <?php $rowcount = ((int) $key % (int) $this->columns) + 1; ?>
 							<div class="col-lg-<?php echo round((12 / $this->columns)); ?>">
-							   <div class="card h-100">
+							   <div class="article-wraper">
 									  <article class="item column-<?php echo $rowcount; ?><?php echo $item->state == 0 ? ' system-unpublished' : null; ?><?php echo $item->featured ? ' item-featured' : ''; ?>"
 											   itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
 												  <?php
@@ -74,10 +71,7 @@ if (version_compare(JVERSION, '3.99999.99999', 'le'))
 				  <?php endforeach; ?>
 	        </div>
          <?php endif; ?>
-		 
-	 
-		 
- 
+
    <?php if (!empty($this->link_items)) : ?>
       <?php echo $this->loadTemplate('links'); ?>
    <?php endif; ?>

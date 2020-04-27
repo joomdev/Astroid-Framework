@@ -9,9 +9,9 @@
 defined('_JEXEC') or die;
 ?>
 <div class="latestnews view-media">
-   <ul class="list-group list-group-flush">
+   <ul class="list-group">
       <?php foreach ($list as $item) : $image = json_decode($item->images); ?>
-      <li itemscope itemtype="https://schema.org/Article" class="list-group-item">
+      <li itemscope itemtype="https://schema.org/Article">
          <?php if($image->image_intro != "") : ?>
             <a class="article-media" href="<?php echo $item->link; ?>" itemprop="url">
                <img src="<?php echo JURI::root().$image->image_intro; ?>" alt="<?php echo htmlspecialchars($image->image_fulltext_alt); ?>">

@@ -1,0 +1,8 @@
+.article-badge {
+   right: 0;
+   left: auto;
+   &:before,
+   &:after {
+      display: none;
+   }
+}

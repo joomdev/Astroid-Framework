@@ -60,7 +60,7 @@ $articles = $category->getItems();
                            itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
                               <?php
                               $this->item = & $item;
-                              // echo $this->loadTemplate('item');
+                               echo $this->loadTemplate('item');
                               ?>
                   </article>
                </div></div>

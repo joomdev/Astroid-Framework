@@ -18,7 +18,7 @@ if (empty($items)) {
    return;
 }
 ?>
-<div class="relatedposts-wrap mb-3 mt-5">
+<div class="relatedposts-wrap">
    <h4><?php echo JText::_('ASTROID_ARTICLE_RELATED_LBL'); ?></h4>
    <div class="relateditems row">
       <?php foreach ($items as $item) : $images = json_decode($item->images);
@@ -43,9 +43,9 @@ if (empty($items)) {
                   }
                   ?>
                   <small class="text-muted"> <?php echo $item->category_title; ?></small>
-                  <a href="<?php echo $item->route; ?>">
-                     <h3><?php echo $item->title; ?></h3>
-                  </a>
+                  <h3 class="related-article-title">
+                     <a href="<?php echo $item->route; ?>"><?php echo $item->title; ?></a>
+                  </h3>
                   <?php echo $item->introtext; ?>
                </div>
             </div>

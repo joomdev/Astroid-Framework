@@ -347,6 +347,13 @@ ul.tags{
 
 .article-review {
 	margin-bottom: $article-posttype-spacing;
+	> div:not(:last-child) {
+		margin-bottom: 20px;
+	}
+	> div:not(:last-child):not(.review-head) {
+	   padding-bottom: 20px;
+		padding-top: 20px;
+	}
 }
 
 .review-total-score {
@@ -355,7 +362,6 @@ ul.tags{
 	text-align: center;
 	color: $white;
 	display: flex;
-	margin-right: 20px;
 	.review-total-score-wrapper {
 		align-self: center;
 		width: 100%;
@@ -376,9 +382,6 @@ ul.tags{
 }
 
 .review-good-bad {
-	background-color: rgba($primary, .15);
-	padding: 30px;
-	margin-bottom: 30px;
 	.cons-heading,
 	.pros-heading {
 		font-size: 24px;
@@ -388,15 +391,7 @@ ul.tags{
 	}
 }
 
-.review-head {
-	@extend .border;
-	margin-bottom: 30px;
-}
-
 .review-criterias {
-	margin-bottom: 30px;
-	// border: 1px solid #ddd;
-	// padding: 30px 15px;
 	.review-criteria:not(:last-child) {
 		margin-bottom: 30px;
 	}
@@ -438,5 +433,31 @@ ul.tags{
 }
 
 .btn-prosandcons {
-	@extend .btn-outline-primary;
+	@extend .btn-primary;
+}
+
+.pros-cons-list {
+	list-style-type: none;
+	margin: 0 0 0 1.5em;
+	padding: 0;
+	li {
+		position: relative;
+	}
+	.fas {
+		left: -2em;
+		position: absolute;
+		text-align: center;
+		width: 2em;
+		line-height: inherit;
+	}
+}
+
+// Related Article
+
+.relatedposts-wrap {
+	@extend .mt-5;
+}
+
+.related-article-title {
+	font-size: 24px;
 }

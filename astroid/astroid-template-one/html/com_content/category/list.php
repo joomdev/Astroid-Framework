@@ -11,7 +11,7 @@ JHtml::addIncludePath(JPATH_COMPONENT . '/helpers');
 $category = new ContentModelCategory();
 $articles = $category->getItems();
 ?>
-<div class="blog<?php echo $this->pageclass_sfx; ?>" itemscope itemtype="https://schema.org/Blog">
+<div class="blog list-view-blog<?php echo $this->pageclass_sfx; ?>" itemscope itemtype="https://schema.org/Blog">
    <?php if ($this->params->get('show_page_heading', 1)) : ?>
       <div class="item-title">
          <h1> <?php echo $this->escape($this->params->get('page_heading')); ?> </h1>
@@ -54,15 +54,15 @@ $articles = $category->getItems();
    <?php if (!empty($this->lead_items)) : ?>
       <div class="items-leading clearfix">
          <?php foreach ($this->lead_items as &$item) : ?>
-            <div class="article-wraper">
-               <article class="item leading-<?php echo $leadingcount; ?><?php echo $item->state == 0 ? ' system-unpublished' : null; ?><?php echo $item->featured ? ' item-featured' : ''; ?>"
-                        itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-                           <?php
-                           $this->item = & $item;
-                              echo $this->loadTemplate('item');
-                           ?>
-               </article>
-            </div>
+               <div class="article-wraper">
+                  <article class="item leading-<?php echo $leadingcount; ?><?php echo $item->state == 0 ? ' system-unpublished' : null; ?><?php echo $item->featured ? ' item-featured' : ''; ?>"
+                           itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+                              <?php
+                              $this->item = & $item;
+                               echo $this->loadTemplate('item');
+                              ?>
+                  </article>
+               </div>
             <?php $leadingcount++; ?>
          <?php endforeach; ?>
       </div><!-- end items-leading -->

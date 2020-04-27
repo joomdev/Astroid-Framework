@@ -30,8 +30,7 @@ if (version_compare(JVERSION, '3.99999.99999', 'le'))
    <?php if (!empty($this->lead_items)) : ?>
       <div class="items-leading clearfix">
          <?php foreach ($this->lead_items as &$item) : ?>
-            <div class="card-deck mt-0 mb-4">
-                <div class="card h-100">
+                <div class="article-wraper">
                   <article class="item leading-<?php echo $leadingcount; ?><?php echo $item->state == 0 ? ' system-unpublished' : null; ?><?php echo $item->featured ? ' item-featured' : ''; ?>"
                            itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
                               <?php
@@ -40,18 +39,14 @@ if (version_compare(JVERSION, '3.99999.99999', 'le'))
                               ?>
                   </article>
                  </div>
-			   </div>
             <?php $leadingcount++; ?>
          <?php endforeach; ?>
       </div><!-- end items-leading -->
    <?php endif; ?>
 
-
    <?php
- 
    $introcount = (count($this->intro_items));
    $counter = 0;
-    
    ?>
 
      <?php if (!empty($this->intro_items)) : ?>
@@ -74,10 +69,7 @@ if (version_compare(JVERSION, '3.99999.99999', 'le'))
 				  <?php endforeach; ?>
 	        </div>
          <?php endif; ?>
-		 
-	 
-		 
- 
+
    <?php if (!empty($this->link_items)) : ?>
       <?php echo $this->loadTemplate('links'); ?>
    <?php endif; ?>

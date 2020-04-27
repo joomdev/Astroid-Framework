@@ -69,7 +69,7 @@ if (empty($overall_rating)) {
    <div class="review-good-bad row">
       <div class="col-md-6">
          <h4 class="pros-heading text-success"><?php echo JText::_('ASTROID_ARTICLE_PROS_LBL'); ?></h4>
-         <ul class="list-unstyled">
+         <ul class="pros-cons-list pros-list">
             <?php
             foreach (explode("\n", $good_things) as $good_thing) {
                ?>
@@ -79,7 +79,7 @@ if (empty($overall_rating)) {
       </div>
       <div class="col-md-6">
          <h4 class="cons-heading text-danger"><?php echo JText::_('ASTROID_ARTICLE_CONS_LBL'); ?></h4>
-         <ul class="list-unstyled">
+         <ul class="pros-cons-list cons-list">
             <?php
             foreach (explode("\n", $bad_things) as $bad_thing) {
                ?>

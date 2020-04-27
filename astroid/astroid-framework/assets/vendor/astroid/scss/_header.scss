@@ -11,7 +11,7 @@
 
    /* Header Element */
    header {
-      &.astroid-header {
+      &.astroid-header:not(.astroid-header-sticky) {
          padding: $header-padding-y $header-padding-x;
          z-index: 1;
       }

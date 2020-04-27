@@ -41,13 +41,13 @@ $post_format = $post_attribs->get('post_format', 'standard');
    <div class="card-body<?php echo $tpl_params->get('show_post_format') ? ' has-post-format' : ''; ?><?php echo (!empty($image) ? ' has-image' : ''); ?>">
       <?php $astroidArticle->renderPostTypeIcon(); ?>
       <?php $astroidArticle->renderArticleBadge(); ?>
-      <div class="article-title item-title">
-         <?php echo JLayoutHelper::render('joomla.content.blog_style_default_item_title', $this->item); ?>
-      </div>
       <?php echo JLayoutHelper::render('joomla.content.post_formats.icons', $post_format); ?>
       <?php if ($useDefList && ($info == 0 || $info == 2)) : ?>
          <?php echo JLayoutHelper::render('joomla.content.info_block.block', array('item' => $this->item, 'params' => $params, 'astroidArticle' => $astroidArticle, 'position' => 'above')); ?>
       <?php endif; ?>
+      <div class="article-title item-title">
+         <?php echo JLayoutHelper::render('joomla.content.blog_style_default_item_title', $this->item); ?>
+      </div>
       <div class="article-intro-text"><?php echo $this->item->introtext; ?></div>
       <?php if ($info == 1 || $info == 2) : ?>
          <?php if ($useDefList) : ?>

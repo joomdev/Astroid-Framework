@@ -133,7 +133,7 @@ $comingsoon_date = $date->format('Y/m/d H:i:s');
             <?php } ?>
             <?php
             if ($params->get('coming_soon_social', 1)) {
-               $document->include('social', ['class' => 'd-inline-block mt-5']);
+               $document->include('social', ['class' => 'd-inline-block']);
             }
             ?>
          </div>

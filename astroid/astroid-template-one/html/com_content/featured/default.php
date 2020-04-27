@@ -30,8 +30,7 @@ if (version_compare(JVERSION, '3.99999.99999', 'le'))
    <?php if (!empty($this->lead_items)) : ?>
       <div class="items-leading clearfix">
          <?php foreach ($this->lead_items as &$item) : ?>
-            <div class="card-deck mt-0 mb-4">
-                <div class="card h-100">
+                <div class="article-wraper">
                   <article class="item leading-<?php echo $leadingcount; ?><?php echo $item->state == 0 ? ' system-unpublished' : null; ?><?php echo $item->featured ? ' item-featured' : ''; ?>"
                            itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
                               <?php
@@ -40,7 +39,6 @@ if (version_compare(JVERSION, '3.99999.99999', 'le'))
                               ?>
                   </article>
                  </div>
-			   </div>
             <?php $leadingcount++; ?>
          <?php endforeach; ?>
       </div><!-- end items-leading -->

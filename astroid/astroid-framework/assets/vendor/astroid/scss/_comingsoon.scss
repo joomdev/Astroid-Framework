@@ -16,6 +16,8 @@
       background: #fff;
       box-shadow: 2px 2px 9px rgba(0, 0, 0, 0.05);
       padding: 20px;
+      min-width: 120px;
+      margin: 10px 0px;
       span{
          display: block;
          font-size: $comingsoon-count-title-font-size;

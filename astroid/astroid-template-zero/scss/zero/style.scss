@@ -5,3 +5,13 @@
 .fa-ul {
 	margin-left: 1.5em;
 }
+
+body.site {
+	&.astroid-framework {
+		&.layout-edit {
+			.chzn-container {
+				min-width: 200px;
+			}
+		}
+	}
+}

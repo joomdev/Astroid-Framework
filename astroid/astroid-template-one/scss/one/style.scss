@@ -18,3 +18,13 @@
 .module-title {
 	margin-bottom: 20px;
 }
+
+body.site {
+	&.astroid-framework {
+		&.layout-edit {
+			.chzn-container {
+				min-width: 200px;
+			}
+		}
+	}
+}

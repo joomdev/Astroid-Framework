@@ -789,9 +789,17 @@ class Document
 
         $scss = new Compiler();
         $content = '';
+        $functionsIncluded = false;
+        if (file_exists($templateScssPath . '/custom/variable_overrides.scss')) {
+            $functionsIncluded = true;
+            $content .= '@import "' . ASTROID_MEDIA . '/vendor/bootstrap/scss/functions";';
+            $content .= '@import "' . $templateScssPath . '/custom/variable_overrides";';
+        }
 
         if (file_exists($templateScssPath . '/variable_overrides.scss')) {
-            $content .= '@import "' . ASTROID_MEDIA . '/vendor/bootstrap/scss/functions";';
+            if (!$functionsIncluded) {
+                $content .= '@import "' . ASTROID_MEDIA . '/vendor/bootstrap/scss/functions";';
+            }
             $content .= '@import "' . $templateScssPath . '/variable_overrides";';
         }
 

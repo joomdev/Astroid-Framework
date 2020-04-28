@@ -790,6 +790,11 @@ class Document
         $scss = new Compiler();
         $content = '';
 
+        if (file_exists($templateScssPath . '/variable_overrides.scss')) {
+            $content .= '@import "' . ASTROID_MEDIA . '/vendor/bootstrap/scss/functions";';
+            $content .= '@import "' . $templateScssPath . '/variable_overrides";';
+        }
+
         $content .= '@import "' . ASTROID_MEDIA . '/vendor/bootstrap/scss/bootstrap";';
         $content .= '@import "' . ASTROID_MEDIA . '/vendor/astroid/scss/astroid";';
 
@@ -812,8 +817,10 @@ class Document
 
     public function renderCss()
     {
-        $template = Framework::getTemplate();
-        Helper::clearCache($template->template, ['compiled-css']);
+        if (Framework::isSite()) {
+            $template = Framework::getTemplate();
+            Helper::clearCache($template->template, ['compiled-css']);
+        }
         $cssScript = '';
         foreach ($this->_styles as $device => $css) {
             if ($device == 'mobile') {

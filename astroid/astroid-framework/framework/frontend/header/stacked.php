@@ -93,12 +93,12 @@ $navWrapperClass = ['astroid-nav-wraper', 'align-self-center', 'px-2', 'd-none',
          if ($mode == 'seperated') {
             // header block starts
             if ($block_1_type == 'position') {
-               echo '<div class="w-100 header-block-item d-none d-lg-flex justify-content-center py-3">';
+               echo '<div class="header-block-item header-block-1 d-none d-lg-flex justify-content-center">';
                echo $document->position($block_1_position, 'xhtml');
                echo '</div>';
             }
             if ($block_1_type == 'custom') {
-               echo '<div class="w-100 header-block-item d-none d-lg-flex justify-content-center py-3">';
+               echo '<div class="header-block-item header-block-1 d-none d-lg-flex justify-content-center">';
                echo $block_1_custom;
                echo '</div>';
             }
@@ -138,12 +138,12 @@ $navWrapperClass = ['astroid-nav-wraper', 'align-self-center', 'px-2', 'd-none',
             // header nav ends
             // header block starts
             if ($block_2_type == 'position') {
-               echo '<div class="w-100 header-block-item d-none d-lg-flex justify-content-center py-3">';
+               echo '<div class="header-block-item header-block-2 d-none d-lg-flex justify-content-center">';
                echo $document->position($block_2_position, 'xhtml');
                echo '</div>';
             }
             if ($block_2_type == 'custom') {
-               echo '<div class="w-100 header-block-item d-none d-lg-flex justify-content-center py-3">';
+               echo '<div class="header-block-item header-block-2 d-none d-lg-flex justify-content-center">';
                echo $block_2_custom;
                echo '</div>';
             }

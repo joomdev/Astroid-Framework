@@ -34,6 +34,8 @@
       <position>topbar-1</position>
       <position>topbar-2</position>
       <position>astroid-header</position>
+      <position>astroid-top-social</position>
+      <position>astroid-top-contact</position>
       <position>content-top</position>
       <position>content-bottom</position>
       <position>left</position>

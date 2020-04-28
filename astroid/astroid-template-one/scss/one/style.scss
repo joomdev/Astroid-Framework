@@ -28,3 +28,11 @@ body.site {
 		}
 	}
 }
+
+.footer-section {
+	.astroid-social-icons {
+		@include media-breakpoint-down(md) {
+			margin-bottom: 35px;
+		}
+	}
+}

@@ -80,7 +80,4 @@ $post_format = $post_attribs->get('post_format', 'standard');
    ?>
    </div>
 <?php endif; ?>
-<?php if ($params->get('show_tags') && !empty($this->item->tags->itemTags)) : ?>
-   <?php echo JLayoutHelper::render('joomla.content.tags', $this->item->tags->itemTags); ?>
-<?php endif; ?>
 <?php echo $this->item->event->afterDisplayContent; ?>

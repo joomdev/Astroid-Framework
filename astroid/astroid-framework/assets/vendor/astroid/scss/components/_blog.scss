@@ -8,7 +8,7 @@ $article-posttype-spacing: 50px;
 }
 
 .article-title .page-header [itemprop="name"] {
-	font-size: 24px;
+	font-size: 26px;
 }
 
 .article-info-term {
@@ -40,7 +40,7 @@ $article-posttype-spacing: 50px;
 // Tags
 ul.tags{
 	list-style: none;
-	margin: 0;
+	margin: 0 0 10px;
 	padding: 0;
 	display: flex;
 	li:not(:last-child) {
@@ -210,6 +210,7 @@ ul.tags{
 .author-wrap {
 	padding: 35px;
 	border: 1px solid #eaeaea;
+	margin-bottom: 30px;
 	@include media-breakpoint-down(sm) {
 		padding: 15px;
 	}

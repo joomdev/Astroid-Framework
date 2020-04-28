@@ -12,6 +12,11 @@
 	}
 	.login-helping-links {
 		color: $text-muted;
+		margin: 0;
+		padding: 0;
+		li {
+			display: block;
+		}
 		a {
 			color: currentColor;
 		}

@@ -3,4 +3,9 @@
 @import "registerlogin";
 @import "login";
 @import "skillset";
-@import "mod_articles_latest";
+
+.card-layout {
+   @extend .card;
+   @extend .shadow;
+   border: 0;
+}

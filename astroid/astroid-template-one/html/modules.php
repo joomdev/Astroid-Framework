@@ -26,7 +26,7 @@ function modChrome_card($module, &$params, &$attribs) {
       ?>
       <<?php echo $moduleTag; ?> class="moduletable <?php echo htmlspecialchars($params->get('moduleclass_sfx'), ENT_COMPAT, 'UTF-8') . $moduleClass; ?>">
       <?php 
-      echo '<div class="card">';
+      echo '<div class="card-layout">';
       echo '<div class="card-body">';
       ?>
       <?php if ($module->showtitle != 0) : ?>

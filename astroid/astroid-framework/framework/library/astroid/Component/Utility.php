@@ -117,7 +117,7 @@ class Utility
         $enable_smooth_scroll = $params->get('enable_smooth_scroll', '');
         if ($enable_smooth_scroll == '1') {
             $speed = $params->get('smooth_scroll_speed', '');
-            $document->addScript('vendor/smooth-scroll.polyfills.min.js', 'body');
+            $document->addScript('vendor/astroid/js/smooth-scroll.polyfills.min.js', 'body');
             $script = '
 			var scroll = new SmoothScroll(\'a[href*="#"]\', {
             speed: ' . $speed . ',

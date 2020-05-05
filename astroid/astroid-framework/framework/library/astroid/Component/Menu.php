@@ -149,8 +149,8 @@ class Menu
     public static function getMegaMenu($item, $options, $items)
     {
         $document = Framework::getDocument();
+		$document->addScript('vendor/astroid/js/megamenu.js', 'body');
         if (!empty($options->rows)) {
-            $document->addScript('vendor/astroid/js/megamenu.js', 'body');
             echo '<div style="width:' . $options->width . '" class="megamenu-container">';
             foreach ($options->rows as $row) {
                 echo '<div class="row m-0">';

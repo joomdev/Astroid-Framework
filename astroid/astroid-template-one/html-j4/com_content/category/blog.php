@@ -73,12 +73,14 @@ $afterDisplayContent = trim(implode("\n", $results));
       <div class="items-leading clearfix">
          <?php foreach ($this->lead_items as &$item) : ?>
                <div class="article-wraper">
-                  <article class="item leading-<?php echo $leadingcount; ?><?php echo $item->state == 0 ? ' system-unpublished' : null; ?><?php echo $item->featured ? ' item-featured' : ''; ?>" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-                     <?php
-                     $this->item = &$item;
-                     echo $this->loadTemplate('item');
-                     ?>
-                  </article>
+                  <div class="article-wraper-inner">
+                     <article class="item leading-<?php echo $leadingcount; ?><?php echo $item->state == 0 ? ' system-unpublished' : null; ?><?php echo $item->featured ? ' item-featured' : ''; ?>" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+                        <?php
+                        $this->item = &$item;
+                        echo $this->loadTemplate('item');
+                        ?>
+                     </article>
+                  </div>
                </div>
             <?php $leadingcount++; ?>
          <?php endforeach; ?>
@@ -99,12 +101,14 @@ $afterDisplayContent = trim(implode("\n", $results));
             <?php endif; ?>
             <div class="col-lg-<?php echo round((12 / $this->columns)); ?>">
                <div class="article-wraper">
-                  <article class="item column-<?php echo $rowcount; ?><?php echo $item->state == 0 ? ' system-unpublished' : null; ?><?php echo $item->featured ? ' item-featured' : ''; ?>" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-                     <?php
-                     $this->item = &$item;
-                     echo $this->loadTemplate('item');
-                     ?>
-                  </article>
+                  <div class="article-wraper-inner">
+                     <article class="item column-<?php echo $rowcount; ?><?php echo $item->state == 0 ? ' system-unpublished' : null; ?><?php echo $item->featured ? ' item-featured' : ''; ?>" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+                        <?php
+                        $this->item = &$item;
+                        echo $this->loadTemplate('item');
+                        ?>
+                     </article>
+                  </div>
                </div>
                <?php $counter++; ?>
             </div>

@@ -368,7 +368,7 @@
    "h5_typography_options": {
       "font_face": "__default",
       "alt_font_face": "Arial, Helvetica, sans-serif",
-      "font_weight": "500",
+      "font_weight": "600",
       "font_size_unit": {
          "desktop": "px",
          "tablet": "px",

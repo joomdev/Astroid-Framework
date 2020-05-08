@@ -64,11 +64,14 @@ ul.tags{
 }
 
 .article-wraper {
-	margin-bottom: 30px;
+	height: 100%;
+	padding-bottom: 30px;
+}
+
+.article-wraper-inner {
 	@extend .card;
-	article {
-		height: 100%;
-	}
+	height: 100%;
+	overflow: hidden;
 }
 
 .article-icon {

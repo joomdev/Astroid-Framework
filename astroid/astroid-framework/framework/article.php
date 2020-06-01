@@ -137,11 +137,18 @@ class AstroidFrameworkArticle
       }
    }
 
-   public function render()
+   public function render($position = 'before-title')
    {
       if ($this->type == 'regular') {
          return false;
       }
+
+      $contenPosition = $this->attribs->get('astroid_article_content_position', 'above-title');
+
+      if ($contenPosition != $position) {
+         return false;
+      }
+
       Astroid\Framework::getDocument()->include('blog.' . $this->type, ['article' => $this->article]);
    }
 

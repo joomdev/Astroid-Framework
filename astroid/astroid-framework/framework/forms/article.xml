@@ -58,6 +58,14 @@
             <field type="spacer" showon="astroid_article_type:quote" name="astroidarticlequote" label="ASTROID_ARTICLE_OPTIONS_QUOTE_LABEL" />
             <field type="text" name="astroid_article_quote_text" label="ASTROID_ARTICLE_QUOTE_TEXT" description="ASTROID_ARTICLE_QUOTE_TEXT_DESC" showon="astroid_article_type:quote" />
             <field type="text" name="astroid_article_quote_author" label="ASTROID_ARTICLE_QUOTE_AUTHOR" description="ASTROID_ARTICLE_QUOTE_AUTHOR_DESC" showon="astroid_article_type:quote" />
+
+
+            <field type="list" showon="astroid_article_type!:regular" name="astroid_article_content_position" label="Position" default="above-title">
+                <option value="above-title">Above Title</option>
+                <option value="before-content">Before Content</option>
+                <option value="after-content">After Content</option>
+            </field>
+
             <!-- Badge Options -->
             <field type="spacer" name="astroidarticlebadge" label="ASTROID_ARTICLE_OPTIONS_BADGE_LABEL" />
             <field name="astroid_article_badge" type="radio" default="0" label="ASTROID_ARTICLE_BADGE" description="ASTROID_ARTICLE_BADGE_DESC" class="btn-group btn-group-yesno">

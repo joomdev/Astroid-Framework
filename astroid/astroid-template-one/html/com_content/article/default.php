@@ -58,7 +58,7 @@ $assocParam = (JLanguageAssociations::isEnabled() && $params->get('show_associat
       </div>
       <div class="clearfix"> </div>
    <?php endif; ?>
-   <?php $astroidArticle->render(); ?>
+   <?php $astroidArticle->render('above-title'); ?>
    <?php if (($params->get('show_title') || $params->get('show_author'))) : ?>
       <div class="item-title">
          <?php if ($params->get('show_title')) : ?>
@@ -116,9 +116,11 @@ $assocParam = (JLanguageAssociations::isEnabled() && $params->get('show_associat
       endif;
       ?>
       <?php echo JLayoutHelper::render('joomla.content.full_image', $this->item); ?>
+      <?php $astroidArticle->render('before-content'); ?>
       <div itemprop="articleBody">
          <?php echo $this->item->text; ?>
       </div>
+      <?php $astroidArticle->render('after-content'); ?>
 
       <?php if ($info == 1 || $info == 2) : ?>
          <?php if ($useDefList) : ?>

@@ -252,7 +252,7 @@ class Media
 
         if ($media == 'images' && $uploadedFileExtension != 'svg') {
             $imageinfo = getimagesize($fileTemp);
-            $okMIMETypes = 'image/jpeg,image/pjpeg,image/png,image/x-png,image/gif';
+            $okMIMETypes = 'image/jpeg,image/pjpeg,image/png,image/x-png,image/gif,image/webp';
             $validFileTypes = explode(",", $okMIMETypes);
 
             if (!is_int($imageinfo[0]) || !is_int($imageinfo[1]) || !in_array($imageinfo['mime'], $validFileTypes)) {

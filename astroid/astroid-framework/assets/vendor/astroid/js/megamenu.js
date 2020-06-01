@@ -42,7 +42,7 @@
                if ($(this).children(settings.submenuClass).length) {
                   if (!$(this).children(settings.submenuClass).hasClass('d-block')) {
 
-                     $(this).unbind('mouseenter mouseleave').hover(function () {
+                     $(this).unbind('mouseenter mouseleave').hoverIntent(function () {
                         var _submenu = $(this).children(settings.submenuClass);
                         _submenu.removeClass('right');
                         _submenu.stop(true, true).slideDown();
@@ -210,7 +210,7 @@
          };
 
          if (settings.trigger == 'hover') {
-            _megamenu.unbind('mouseenter mouseleave').hover(function () {
+            _megamenu.unbind('mouseenter mouseleave').hoverIntent(function () {
                openMe($(this));
             }, function () {
                closeMe($(this));

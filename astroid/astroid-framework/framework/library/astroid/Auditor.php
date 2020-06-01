@@ -44,18 +44,19 @@ class Auditor
             'unmergable' => [],
             'notfound' => [],
         ];
-        $hashes = \json_decode(file_get_contents(JPATH_SITE . '/media/astroid/assets/json/hash.json'), true);
-        foreach ($hashes as $item) {
-            $file = JPATH_SITE . '/templates/' . $template . '/' . $item['file'];
+        $hashes = \json_decode(file_get_contents('http://plugins.local/checksum/astroid-hash.json'), true);
+        $templateHashes = isset($hashes[$template]) ? $hashes[$template] : $hashes['astroid_template_zero'];
+        foreach ($templateHashes as $filePath => $fileHashes) {
+            $file = JPATH_SITE . '/templates/' . $template . '/' . $filePath;
             if (file_exists($file)) {
                 $hash = self::getFileHash($file);
-                if (in_array($hash, $item['hash'])) {
-                    $report['mergable'][] = $item['file'];
+                if (in_array($hash, $fileHashes)) {
+                    $report['mergable'][] = $filePath;
                 } else {
-                    $report['unmergable'][] = $item['file'];
+                    $report['unmergable'][] = $filePath;
                 }
             } else {
-                $report['notfound'][] = $item['file'];
+                $report['notfound'][] = $filePath;
             }
         }
         return $report;

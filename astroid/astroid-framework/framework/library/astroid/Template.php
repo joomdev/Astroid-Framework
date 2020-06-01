@@ -50,7 +50,7 @@ class Template
             } else if ($option == 'com_templates' && $view == 'style' && $layout == 'edit' && !empty($id)) {
                 $this->_upload($id);
             } else if ($option == 'com_ajax' && !empty($astroid) && !empty($template)) {
-                list($template, $id) = explode('-', $template);
+                @list($template, $id) = explode('-', $template);
                 if (!empty($id)) {
                     $this->_upload($id);
                 }

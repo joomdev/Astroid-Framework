@@ -1166,7 +1166,9 @@ var Admin = new AstroidAdmin();
    };
 
    var initAstroidUploader = function initAstroidUploader() {
-      Dropzone.autoDiscover = false;
+      try{
+         Dropzone.autoDiscover = false;
+      }catch(e){}
    };
 
    var initAstroidUnitPicker = function initAstroidUnitPicker() {

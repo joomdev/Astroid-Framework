@@ -15,12 +15,12 @@ defined('_JEXEC') or die;
 
 class Template
 {
-    public static function getAstroidTemplates()
+    public static function getAstroidTemplates($full = false)
     {
         $db = \JFactory::getDbo();
         $query = $db
             ->getQuery(true)
-            ->select('s.id, s.template')
+            ->select('s.id, s.template, s.title')
             ->from('#__template_styles as s')
             ->where('s.client_id = 0')
             ->where('e.enabled = 1')
@@ -33,7 +33,11 @@ class Template
             $astroidTemplate = self::isAstroidTemplate($template->template);
             if ($astroidTemplate !== false) {
                 self::setTemplateDefaults($template->template, $template->id);
-                $return[] = $template->id;
+                if (!$full) {
+                    $return[] = $template->id;
+                } else {
+                    $return[] = $template;
+                }
             }
         }
         return $return;

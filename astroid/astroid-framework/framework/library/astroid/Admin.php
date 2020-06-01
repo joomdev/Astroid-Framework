@@ -127,15 +127,29 @@ class Admin extends Helper\Client
     protected function auditor()
     {
         $this->format = 'html'; // Response Format
+        $document = Framework::getDocument();
+
         $this->checkAndRedirect(); // Auth
 
-        $layout = new \JLayoutFile('framework.auditor', ASTROID_LAYOUTS);
-        $this->response($layout->render());
+        // scripts
+        $scripts = ['vendor/jquery/jquery-3.2.1.min.js', 'vendor/jquery/jquery.cookie.js', 'vendor/bootstrap/js/popper.min.js', 'vendor/bootstrap/js/bootstrap.min.old.js', 'vendor/lodash/lodash.min.js', 'vendor/angular/angular.min.js', 'vendor/angular/angular-animate.js', 'vendor/angular/sortable.min.js', 'vendor/angular/angular-legacy-sortable.js', 'js/notify.min.js', 'js/jquery.hotkeys.js', 'js/jquery.nicescroll.min.js', 'js/astroid.min.js'];
+        $document->addScript($scripts, 'body');
+
+        // styles
+        $stylesheets = ['https://fonts.googleapis.com/css?family=Nunito:300,400,600', 'css/astroid-framework.css', 'css/admin.css'];
+        $document->addStyleSheet($stylesheets);
+
+        Framework::getDebugger()->log('Getting Auditor');
+        $layout = new \JLayoutFile('auditor.index', ASTROID_LAYOUTS);
+        $html = $layout->render();
+        $html = Includer::run($html);
+        Framework::getDebugger()->log('Getting Auditor');
+        $this->response($html);
     }
 
     protected function audit()
     {
-        $template = \JFactory::getApplication()->input->get->get('template', '', 'RAW');
+        $template = \JFactory::getApplication()->input->post->get('template', '', 'RAW');
         $this->response(Auditor::audit($template));
     }
 

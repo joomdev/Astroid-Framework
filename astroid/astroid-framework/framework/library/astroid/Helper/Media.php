@@ -240,7 +240,7 @@ class Media
         $uploadedFileExtension = $pathinfo['extension'];
         $uploadedFileExtension = strtolower($uploadedFileExtension);
         if ($media == 'images') {
-            $validFileExts = explode(',', 'jpeg,jpg,png,gif');
+            $validFileExts = explode(',', 'jpeg,jpg,png,gif,ico,odg,xcf,bmp,tiff,webp,svg');
         } else {
             $validFileExts = explode(',', 'mp4,mpeg,mpg');
         }
@@ -250,7 +250,7 @@ class Media
 
         $fileTemp = $_FILES[$fieldName]['tmp_name'];
 
-        if ($media == 'images') {
+        if ($media == 'images' && $uploadedFileExtension != 'svg') {
             $imageinfo = getimagesize($fileTemp);
             $okMIMETypes = 'image/jpeg,image/pjpeg,image/png,image/x-png,image/gif';
             $validFileTypes = explode(",", $okMIMETypes);

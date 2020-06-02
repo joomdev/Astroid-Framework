@@ -2,7 +2,7 @@ $burger-layer-width: 30px !default;
 $close-btn-height: 50px !default;
 $menu-indicator-width: 60px !default;
 
-.astroid-mobilemenu{
+.astroid-mobilemenu {
    position: fixed;
    top: 0;
    left: 0;
@@ -16,23 +16,31 @@ $menu-indicator-width: 60px !default;
    -webkit-transition: all .5s;
    transition: all .5s;
    max-width: 100vw !important;
+
+   &.dir-right {
+      right: 0;
+      left: auto;
+   }
+
    a small {
       display: block !important;
    }
-   .burger-menu-button{
-		padding: 10px;
-		position: sticky;
-		top: 0;
-		left: 0;
-		width: 100%;
-		z-index: 9;
-	}
+
+   .burger-menu-button {
+      padding: 10px;
+      position: sticky;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 9;
+   }
 }
 
 .offcanvas-right {
    .astroid-mobilemenu-container .astroid-mobilemenu-inner .dropdown-menus {
       left: auto;
       right: -100%;
+
       &.menu_open {
          left: auto;
          right: 0;
@@ -41,26 +49,30 @@ $menu-indicator-width: 60px !default;
 }
 
 .astroid-mobilemenu-container .astroid-mobilemenu-inner {
-   ul{
+   ul {
       padding: 0;
       display: block;
       position: relative;
       width: 100%;
       height: 100%;
       overflow: auto;
-      > li.menu-item:first-child{
-         border-top: 1px solid #ddd; 
+
+      >li.menu-item:first-child {
+         border-top: 1px solid #ddd;
       }
-      li.menu-item.menu-go-back{
+
+      li.menu-item.menu-go-back {
          margin-top: $close-btn-height;
          border-top: 0;
       }
    }
+
    .menu-item {
       border-bottom: 1px solid #ddd;
       display: table;
       width: 100%;
    }
+
    .menu-item a,
    .menu-item span.separator,
    .menu-item span.nav-header {
@@ -73,6 +85,7 @@ $menu-indicator-width: 60px !default;
       color: $black;
       padding: 15px;
    }
+
    .menu-item .menu-indicator {
       width: $menu-indicator-width;
       text-align: center;
@@ -81,6 +94,7 @@ $menu-indicator-width: 60px !default;
       border-left: 1px solid #ddd;
       cursor: pointer;
    }
+
    .dropdown-menus {
       position: fixed;
       left: -150%;
@@ -89,6 +103,7 @@ $menu-indicator-width: 60px !default;
       width: 100% !important;
       transition: all .5s;
       background-color: $white;
+
       .menu-indicator-back {
          text-align: left;
          width: 100%;
@@ -97,12 +112,15 @@ $menu-indicator-width: 60px !default;
          padding: 15px;
          box-sizing: border-box;
       }
+
       .menu-indicator-back i {
          margin-right: 10px;
       }
+
       .dropdown-menus-item {
          width: 100%;
       }
+
       &.menu_open {
          left: 0;
          z-index: 1;
@@ -116,7 +134,8 @@ $menu-indicator-width: 60px !default;
    margin: 0;
 }
 
-.astroid-mobilemenu-open{
+.astroid-mobilemenu-open {
+
    .close-offcanvas,
    .close-offcanvas:hover {
       color: $black;
@@ -127,6 +146,7 @@ $menu-indicator-width: 60px !default;
       box-sizing: content-box;
       z-index: 999999;
    }
+
    .burger-menu-button .inner,
    .burger-menu-button .inner::before,
    .burger-menu-button .inner::after {
@@ -135,20 +155,23 @@ $menu-indicator-width: 60px !default;
    }
 }
 
-body.astroid-mobilemenu-opened{
+body.astroid-mobilemenu-opened {
    max-height: 100vh;
    overflow: hidden;
-   .astroid-mobilemenu-open{
+
+   .astroid-mobilemenu-open {
       overflow-x: hidden;
    }
-   .astroid-content:after{
+
+   .astroid-content:after {
       width: 100%;
       height: 100%;
       opacity: 1;
       -webkit-transition: opacity .5s;
       transition: opacity .5s;
    }
-   .astroid-mobilemenu:after{
+
+   .astroid-mobilemenu:after {
       width: 0;
       height: 0;
       opacity: 0;

@@ -25,9 +25,15 @@ if (empty($header_mobile_menu)) {
    return;
 }
 
+$dir = 'left';
+$header = $params->get('header', TRUE);
+$header_mode = $params->get('header_mode', 'horizontal');
+$mode = $params->get('header_sidebar_menu_mode', 'left');
+$dir = $header ? ($header_mode == 'sidebar' ? $mode : $dir) : $dir;
+
 $document->addScript('vendor/astroid/js/mobilemenu.js', 'body');
 ?>
-<div class="astroid-mobilemenu d-none d-init" data-class-prefix="astroid-mobilemenu" id="astroid-mobilemenu">
+<div class="astroid-mobilemenu d-none d-init dir-<?php echo $dir; ?>" data-class-prefix="astroid-mobilemenu" id="astroid-mobilemenu">
    <div class="burger-menu-button active">
       <button type="button" class="button close-offcanvas offcanvas-close-btn">
          <span class="box">
@@ -38,6 +44,6 @@ $document->addScript('vendor/astroid/js/mobilemenu.js', 'body');
    <?php Astroid\Component\Menu::getMobileMenu($header_mobile_menu); ?>
 </div>
 <?php
-$style = '.mobilemenu-slide.astroid-mobilemenu{visibility:visible;-webkit-transform:translate3d(-100%, 0, 0);transform:translate3d(-100%, 0, 0);}.mobilemenu-slide.astroid-mobilemenu-open .mobilemenu-slide.astroid-mobilemenu {visibility:visible;-webkit-transform:translate3d(0, 0, 0);transform:translate3d(0, 0, 0);}.mobilemenu-slide.astroid-mobilemenu::after{display:none;}';
+$style = '.mobilemenu-slide.astroid-mobilemenu{visibility:visible;-webkit-transform:translate3d(' . ($dir == 'left' ? '-' : '') . '100%, 0, 0);transform:translate3d(' . ($dir == 'left' ? '-' : '') . '100%, 0, 0);}.mobilemenu-slide.astroid-mobilemenu-open .mobilemenu-slide.astroid-mobilemenu {visibility:visible;-webkit-transform:translate3d(0, 0, 0);transform:translate3d(0, 0, 0);}.mobilemenu-slide.astroid-mobilemenu::after{display:none;}';
 $document->addStyledeclaration($style);
 ?>

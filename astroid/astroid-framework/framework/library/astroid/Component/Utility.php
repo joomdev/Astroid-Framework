@@ -232,7 +232,7 @@ class Utility
         $link->active('.active')->addCss('color', $params->get('dropdown_menu_active_link_color', ''))->addCss('background-color', $params->get('dropdown_menu_active_bg_color', ''));
         $dropdown->render(); // render dropdown
 
-        // Mobile Menu / Offcanvas Menu
+        // Offcanvas Menu
         $mobile_background_color = $params->get('mobile_backgroundcolor', '');
         $mobile_link_color = $params->get('mobile_menu_link_color', '');
         $mobile_menu_text_color = $params->get('mobile_menu_text_color', '');
@@ -244,10 +244,10 @@ class Utility
 
         $mobilemenu_styles = [];
         if (!empty($mobile_background_color)) {
-            $mobilemenu_styles[] = '.astroid-offcanvas, .astroid-mobilemenu, .astroid-mobilemenu-container .astroid-mobilemenu-inner .dropdown-menus,.astroid-offcanvas .burger-menu-button{ background-color: ' . $mobile_background_color . ' !important;}';
+            $mobilemenu_styles[] = '.astroid-offcanvas,.astroid-offcanvas .burger-menu-button{ background-color: ' . $mobile_background_color . ' !important;}';
         }
         if (!empty($mobile_menu_text_color)) {
-            $mobilemenu_styles[] = '.astroid-offcanvas, .astroid-mobilemenu { color: ' . $mobile_menu_text_color . ' !important;}';
+            $mobilemenu_styles[] = '.astroid-offcanvas { color: ' . $mobile_menu_text_color . ' !important;}';
         }
         if (!empty($mobile_link_color)) {
             $mobilemenu_styles[] = '.astroid-mobilemenu-container .astroid-mobilemenu-inner .menu-item a, .menu-indicator{ color: ' . $mobile_link_color . ' !important;}';
@@ -265,11 +265,49 @@ class Utility
             $mobilemenu_styles[] = '.burger-menu-button .inner, .burger-menu-button .inner::before, .burger-menu-button .inner::after{background-color: ' . $mobile_menu_icon_color . ';}';
         }
         if (!empty($mobile_menu_active_icon_color)) {
-            $mobilemenu_styles[] = '.astroid-mobilemenu-open .burger-menu-button .inner, .astroid-mobilemenu-open .burger-menu-button .inner::before, .astroid-mobilemenu-open .burger-menu-button .inner::after, .astroid-offcanvas .burger-menu-button .inner, .astroid-offcanvas .burger-menu-button .inner::before, .astroid-offcanvas .burger-menu-button .inner::after{background-color: ' . $mobile_menu_active_icon_color . ';}';
+            $mobilemenu_styles[] = '.astroid-offcanvas .burger-menu-button .inner, .astroid-offcanvas .burger-menu-button .inner::before, .astroid-offcanvas .burger-menu-button .inner::after{background-color: ' . $mobile_menu_active_icon_color . ';}';
         }
 
         Framework::getDocument()->addStyleDeclaration(implode('', $mobilemenu_styles));
 
+        // Mobile Menu
+        $mobilemenu_background_color = $params->get('mobilemenu_backgroundcolor', '');
+        $mobilemenu_link_color = $params->get('mobilemenu_menu_link_color', '');
+        $mobilemenu_menu_text_color = $params->get('mobilemenu_menu_text_color', '');
+        $mobilemenu_hover_background_color = $params->get('mobilemenu_hover_background_color', '');
+        $mobilemenu_active_link_color = $params->get('mobilemenu_menu_active_link_color', '');
+        $mobilemenu_active_background_color = $params->get('mobilemenu_menu_active_bg_color', '');
+        $mobilemenu_menu_icon_color = $params->get('mobilemenu_menu_icon_color', '');
+        $mobilemenu_menu_active_icon_color = $params->get('mobilemenu_menu_active_icon_color', '');
+
+        $mobilemenu_styles = [];
+        if (!empty($mobilemenu_background_color)) {
+            $mobilemenu_styles[] = '.astroid-mobilemenu, .astroid-mobilemenu-container .astroid-mobilemenu-inner .dropdown-menus{ background-color: ' . $mobilemenu_background_color . ' !important;}';
+        }
+        if (!empty($mobilemenu_menu_text_color)) {
+            $mobilemenu_styles[] = '.astroid-mobilemenu { color: ' . $mobilemenu_menu_text_color . ' !important;}';
+        }
+        if (!empty($mobilemenu_link_color)) {
+            $mobilemenu_styles[] = '.astroid-mobilemenu-container .astroid-mobilemenu-inner .menu-item a, .menu-indicator{ color: ' . $mobilemenu_link_color . ' !important;}';
+        }
+        if (!empty($mobilemenu_hover_background_color)) {
+            $mobilemenu_styles[] = '.astroid-mobilemenu-container .astroid-mobilemenu-inner .menu-item a:hover{ background-color: ' . $mobilemenu_hover_background_color . ' !important;}';
+        }
+        if (!empty($mobilemenu_active_link_color)) {
+            $mobilemenu_styles[] = '.astroid-mobilemenu-container .astroid-mobilemenu-inner .menu-item.active > a, .astroid-mobilemenu-container .astroid-mobilemenu-inner .menu-item.active > .nav-header, .astroid-mobilemenu-container .astroid-mobilemenu-inner .menu-item.nav-item-active > a, .astroid-mobilemenu-container .astroid-mobilemenu-inner .menu-item.nav-item-active > a + .menu-indicator{ color: ' . $mobilemenu_active_link_color . ' !important;}';
+        }
+        if (!empty($mobilemenu_active_background_color)) {
+            $mobilemenu_styles[] = '.astroid-mobilemenu-container .astroid-mobilemenu-inner .menu-item.active, .astroid-mobilemenu-container .astroid-mobilemenu-inner .menu-item.nav-item-active { background-color: ' . $mobilemenu_active_background_color . ' !important;}';
+        }
+        if (!empty($mobilemenu_menu_icon_color)) {
+            $mobilemenu_styles[] = '.burger-menu-button .inner, .burger-menu-button .inner::before, .burger-menu-button .inner::after{background-color: ' . $mobilemenu_menu_icon_color . ';}';
+        }
+        if (!empty($mobilemenu_menu_active_icon_color)) {
+            $mobilemenu_styles[] = '.astroid-mobilemenu-open .burger-menu-button .inner, .astroid-mobilemenu-open .burger-menu-button .inner::before, .astroid-mobilemenu-open .burger-menu-button .inner::after{background-color: ' . $mobilemenu_menu_active_icon_color . ';}';
+        }
+
+        Framework::getDocument()->addStyleDeclaration(implode('', $mobilemenu_styles));
+        
         // Contact Icon
         Style::addCssBySelector('.astroid-contact-info i[class*="fa-"]', 'color', $params->get('icon_color', ''));
     }

@@ -582,8 +582,8 @@ var AstroidAdmin = function AstroidAdmin() {
    };
 
    this.exportSettings = function (_settings, _askname) {
-      var dataStr = JSON.stringify(_settings);
-      var dataUri = 'data:text/json;charset=utf-8,' + encodeURIComponent(dataStr);
+      // var dataStr = JSON.stringify(_settings);
+      // var dataUri = 'data:text/json;charset=utf-8,' + encodeURIComponent(dataStr);
       var date = new Date();
       var year = date.getFullYear();
       var month = date.getMonth() + 1;
@@ -608,9 +608,17 @@ var AstroidAdmin = function AstroidAdmin() {
             var exportFileDefaultName = exportName + '-' + (year + "-" + month + "-" + day + "-" + hours + "-" + minutes + "-" + seconds) + '.json';
          }
       }
-      $('#export-link').attr('href', dataUri);
+      /* $('#export-link').attr('href', dataUri);
       $('#export-link').attr('download', exportFileDefaultName);
-      $('#export-link')[0].click();
+      $('#export-link')[0].click(); */
+
+
+      var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(_settings));
+      var dlAnchorElem = document.getElementById('export-link');
+      dlAnchorElem.setAttribute("href", dataStr);
+      dlAnchorElem.setAttribute("download", Admin.slugify(exportFileDefaultName) + ".json");
+      dlAnchorElem.click();
+
       $(window).trigger('onAstroidSettingsExported');
    };
 
@@ -1166,9 +1174,9 @@ var Admin = new AstroidAdmin();
    };
 
    var initAstroidUploader = function initAstroidUploader() {
-      try{
+      try {
          Dropzone.autoDiscover = false;
-      }catch(e){}
+      } catch (e) {}
    };
 
    var initAstroidUnitPicker = function initAstroidUnitPicker() {

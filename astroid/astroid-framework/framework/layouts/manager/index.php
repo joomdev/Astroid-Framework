@@ -61,7 +61,7 @@ $mediaVersion = Astroid\Helper::joomlaMediaVersion();
     <!-- shortcut keys --> <?php $document->include('manager.help'); ?>
 
     <!-- hidden links for export and download -->
-    <a href="#" class="d-none" target="_blank" data-template-name="<?php echo \JFilterOutput::stringURLSafe($template->title); ?>" id="export-link">Export Settings</a>
+    <a href="#" class="d-none" data-template-name="<?php echo \JFilterOutput::stringURLSafe($template->title); ?>" id="export-link">Export Settings</a>
     <a href="#" class="d-none" id="downloadAnchorElem">Export Preset</a>
 
     <astroid:include type="body-scripts" /> <!-- body scripts -->

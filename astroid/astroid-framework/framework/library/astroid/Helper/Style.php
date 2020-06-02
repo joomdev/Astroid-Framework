@@ -238,8 +238,8 @@ class Style
         if (!empty($letter_spacing)) {
             if (is_object($letter_spacing)) {
                 foreach (['desktop', 'tablet', 'mobile'] as $device) {
-                    $letter_spacing_unit = isset($letter_spacing_unit->{$device}) ? $letter_spacing_unit->{$device} : 'em';
-                    $style->addCss('letter-spacing', $letter_spacing->{$device} . $letter_spacing_unit, $device);
+                    $letter_spacing_unit_value = isset($letter_spacing_unit->{$device}) ? $letter_spacing_unit->{$device} : 'em';
+                    $style->addCss('letter-spacing', $letter_spacing->{$device} . $letter_spacing_unit_value, $device);
                 }
             } else {
                 $style->addCss('letter-spacing', $letter_spacing . $letter_spacing_unit);
@@ -253,9 +253,8 @@ class Style
         if (!empty($line_height)) {
             if (is_object($line_height)) {
                 foreach (['desktop', 'tablet', 'mobile'] as $device) {
-                    $line_height_unit = isset($line_height_unit->{$device}) ? $line_height_unit->{$device} : 'em';
-                    $styles[$device][] = 'line-height: ' . $line_height->{$device} . $line_height_unit . ';';
-                    $style->addCss('line-height', $line_height->{$device} . $line_height_unit, $device);
+                    $line_height_unit_value = isset($line_height_unit->{$device}) ? $line_height_unit->{$device} : 'em';
+                    $style->addCss('line-height', $line_height->{$device} . $line_height_unit_value, $device);
                 }
             } else {
                 $style->addCss('line-height', $line_height . $line_height_unit);

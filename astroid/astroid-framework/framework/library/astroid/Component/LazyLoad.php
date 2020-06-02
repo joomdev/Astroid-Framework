@@ -81,7 +81,7 @@ class LazyLoad
                 }
                 Framework::getReporter('Lazy Load Images')->add('<a href="' . $matches[1][$key] . '" target="_blank"><code>' . Framework::getDocument()->beutifyURL($matches[1][$key]) . '</code></a>');
                 @list($width, $height) = @getimagesize($matches[1][$key]);
-                $matchLazy = str_replace('src=', 'src="' . $blankImage . '" data-astroid-lazyload-ratio="' . ($height / $width) . '" data-astroid-lazyload=', $match);
+                $matchLazy = str_replace('src=', 'src="' . $blankImage . '" data-astroid-lazyload-width="' . $width . '" data-astroid-lazyload-height="' . $height . '" data-astroid-lazyload=', $match);
 
                 $body = str_replace($matches[0][$key], $matchLazy, $body);
             }

@@ -44,34 +44,6 @@ class plgSystemAstroid extends JPlugin
       Astroid\Framework::getClient()->onContentPrepareForm($form, $data);
    }
 
-   public function onBeforeCompileHead()
-   {
-      if (Framework::isAdmin()) {
-         return;
-      }
-      $doc = \JFactory::getDocument();
-
-      $dontInclude = array(
-         '/media/jui/js/jquery.js',
-         '/media/jui/js/jquery.min.js',
-         '/media/jui/js/jquery-noconflict.js',
-         '/media/jui/js/jquery-migrate.js',
-         '/media/jui/js/jquery-migrate.min.js',
-         '/media/jui/js/bootstrap.js',
-         '/media/system/js/core-uncompressed.js',
-         '/media/system/js/tabs-state.js',
-         '/media/system/js/core.js',
-         '/media/system/js/mootools-core.js',
-         '/media/system/js/mootools-core-uncompressed.js',
-      );
-
-      foreach ($doc->_scripts as $key => $script) {
-         if (in_array($key, $dontInclude)) {
-            unset($doc->_scripts[$key]);
-         }
-      }
-   }
-
    public function onAfterRender()
    {
       Astroid\Framework::getClient()->onAfterRender();

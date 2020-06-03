@@ -149,8 +149,8 @@ class Menu
     public static function getMegaMenu($item, $options, $items)
     {
         $document = Framework::getDocument();
-		$document->addScript('vendor/astroid/js/megamenu.js', 'body');
-		$document->addScript('vendor/hoverIntent/jquery.hoverIntent.min.js', 'body');
+        $document->addScript('vendor/astroid/js/megamenu.js', 'body');
+        $document->addScript('vendor/hoverIntent/jquery.hoverIntent.min.js', 'body');
         if (!empty($options->rows)) {
             echo '<div style="width:' . $options->width . '" class="megamenu-container">';
             foreach ($options->rows as $row) {
@@ -599,6 +599,71 @@ class Menu
             }
         }
         echo '</ul>';
+    }
+
+    public static function getNewMobileMenu($menutype = '', $id = '')
+    {
+        if (empty($menutype)) {
+            return '';
+        }
+
+        $params = Framework::getTemplate()->getParams();
+        $document = Framework::getDocument();
+
+        $header_menu_params = '{"menutype":"' . $menutype . '","base":"","startLevel":"' . $params->get('header_mobile_startLevel', 1) . '","endLevel":"' . $params->get('header_mobile_endLevel', 0) . '","showAllChildren":"1","tag_id":"","class_sfx":"","window_open":"","layout":"_:default","moduleclass_sfx":"","cache":"1","cache_time":"900","cachemode":"itemid","module_tag":"div","bootstrap_size":"0","header_tag":"h3","header_class":"","style":"0"}';
+
+        $menu_params = new \JRegistry();
+        $menu_params->loadString($header_menu_params);
+
+        $list = \MenuHelper::getList($menu_params);
+        $base = \MenuHelper::getBase($menu_params);
+        $active = \MenuHelper::getActive($menu_params);
+        $default = \MenuHelper::getDefault();
+
+        $active_id = $active->id;
+        $default_id = $default->id;
+        $path = $base->tree;
+        $showAll = 1;
+
+        $megamenu = false;
+        $count_menu = 0;
+        foreach ($list as $i => &$item) {
+            if ($item->level == 1) {
+                $count_menu++;
+            }
+        }
+
+        $listNew = [];
+        $parentItems = [];
+        foreach ($list as $i => &$item) {
+            if (!isset($listNew[$item->parent_id])) {
+                $listNew[$item->parent_id] = [];
+            }
+            $listNew[$item->parent_id][] = $item;
+            if ($item->parent) {
+                $parentItems[$item->id] = $item;
+            }
+        }
+
+        echo '<nav id="' . $id . '" class="ast-menu"><div class="ast-menu__wrap">';
+        foreach ($listNew as $i => $list) {
+            echo '<ul data-menu="ast-' . $id . '-' . $i . '" id="ast-' . $id . '-' . $i . '" class="ast-menu__level" tabindex="-1" role="menu" aria-label="' . (isset($parentItems[$i]) ? $parentItems[$i]->title : 'All') . '">';
+            foreach ($list as $i => &$item) {
+                $props = [];
+                if ($item->parent) {
+                    $props['data-submenu'] = 'ast-' . $id . '-' . $item->id;
+                    $props['aria-owns'] = 'ast-' . $id . '-' . $item->id;
+                }
+
+                $options = self::getAstroidMenuOptions($item, $list);
+                $class = self::getLiClass($item, $options, $default_id, $active_id, $path);
+                echo '<li class="ast-menu__item" role="menuitem">';
+                $document->include('header.menu.link', ['item' => $item, 'options' => $options, 'mobilemenu' => true, 'active' => in_array('nav-item-active', $class), 'props' => $props]);
+                echo '</li>';
+            }
+            echo '</ul>';
+        }
+        echo '</div></nav>';
     }
 
     public static function getSidebarMenu($menutype = '')

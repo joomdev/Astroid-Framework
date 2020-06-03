@@ -31,6 +31,9 @@ $header_mode = $params->get('header_mode', 'horizontal');
 $mode = $params->get('header_sidebar_menu_mode', 'left');
 $dir = $header ? ($header_mode == 'sidebar' ? $mode : $dir) : $dir;
 
+$document->addScript('vendor/astroid/js/modernizr-custom.js', 'body');
+$document->addScript('vendor/astroid/js/classie.js', 'body');
+$document->addScript('vendor/astroid/js/newmobilemenu.js', 'body');
 $document->addScript('vendor/astroid/js/mobilemenu.js', 'body');
 ?>
 <div class="astroid-mobilemenu d-none d-init dir-<?php echo $dir; ?>" data-class-prefix="astroid-mobilemenu" id="astroid-mobilemenu">
@@ -41,9 +44,15 @@ $document->addScript('vendor/astroid/js/mobilemenu.js', 'body');
          </span>
       </button>
    </div>
-   <?php Astroid\Component\Menu::getMobileMenu($header_mobile_menu); ?>
+   <?php // Astroid\Component\Menu::getMobileMenu($header_mobile_menu); 
+   ?>
+   <?php Astroid\Component\Menu::getNewMobileMenu($header_mobile_menu, 'menu-astroid-mobilemenu'); ?>
 </div>
 <?php
 $style = '.mobilemenu-slide.astroid-mobilemenu{visibility:visible;-webkit-transform:translate3d(' . ($dir == 'left' ? '-' : '') . '100%, 0, 0);transform:translate3d(' . ($dir == 'left' ? '-' : '') . '100%, 0, 0);}.mobilemenu-slide.astroid-mobilemenu-open .mobilemenu-slide.astroid-mobilemenu {visibility:visible;-webkit-transform:translate3d(0, 0, 0);transform:translate3d(0, 0, 0);}.mobilemenu-slide.astroid-mobilemenu::after{display:none;}';
 $document->addStyledeclaration($style);
+$document->addScriptDeclaration('(function(){
+   var menuEl = document.getElementById(\'menu-astroid-mobilemenu\'); 
+   var mlmenu = new MLMenu(menuEl, { backCtrl : false });
+})()', 'body');
 ?>

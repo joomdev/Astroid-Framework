@@ -33,6 +33,11 @@ if ($item->type == "heading") {
 }
 
 $attributes = [];
+if (isset($props)) {
+   foreach ($props as $prop => $val) {
+      $attributes[$prop] = $val;
+   }
+}
 if ($item->anchor_title) {
    $attributes['title'] = $item->anchor_title;
 } else {
@@ -46,7 +51,11 @@ if ($item->anchor_css) {
 }
 
 if ($item->level == 1 || $is_mobile_menu) {
-   $attributes['class'] .= ' nav-link';
+   // $attributes['class'] .= ' nav-link';
+}
+
+if ($is_mobile_menu) {
+   $attributes['class'] .= ' ast-menu__link';
 }
 
 if ($active) {

@@ -51,11 +51,7 @@ if ($item->anchor_css) {
 }
 
 if ($item->level == 1 || $is_mobile_menu) {
-   // $attributes['class'] .= ' nav-link';
-}
-
-if ($is_mobile_menu) {
-   $attributes['class'] .= ' ast-menu__link';
+   $attributes['class'] .= ' nav-link';
 }
 
 if ($active) {

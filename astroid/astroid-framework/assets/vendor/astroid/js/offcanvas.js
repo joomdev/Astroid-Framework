@@ -26,7 +26,7 @@
             var _li  = $(_content).find('li');
             var _li_a  = _li.find("a");
             _li_a.click(function(){
-               // _reset();
+               _reset();
             });
       
             

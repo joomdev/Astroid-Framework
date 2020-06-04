@@ -11,12 +11,12 @@
       return (st > lastScrollTop);
    };
    var initMobileMenu = function () {
-      /* if (!$('.astroid-mobile-menu').length) {
+      if (!$('.astroid-mobile-menu').length) {
          return;
-      } */
-      // $('.astroid-mobile-menu').astroidMobileMenu();
+      }
+      $('.astroid-mobile-menu').astroidMobileMenu();
       $('#astroid-offcanvas').find('ul.menu').astroidMobileMenu();
-      // $('.astroid-mobile-menu').removeClass('d-none');
+      $('.astroid-mobile-menu').removeClass('d-none');
       $('.astroid-sidebar-menu .nav-item-caret').click(function () {
          $(this).parent('li').siblings('li').children('ul').slideUp();
          $(this).parent('li').siblings('li').children('.nav-item-caret').removeClass('open');

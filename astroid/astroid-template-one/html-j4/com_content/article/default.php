@@ -58,7 +58,7 @@ $assocParam = (JLanguageAssociations::isEnabled() && $params->get('show_associat
       </div>
       <div class="clearfix"> </div>
    <?php endif; ?>
-   <?php $astroidArticle->render('before-title'); ?>
+   <?php $astroidArticle->render('above-title'); ?>
    <?php if (($params->get('show_title') || $params->get('show_author'))) : ?>
       <div class="item-title">
          <?php if ($params->get('show_title')) : ?>

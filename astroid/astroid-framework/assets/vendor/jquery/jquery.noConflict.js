@@ -1,1 +1,1 @@
-var $ast = jQuery.noConflict(true);
+var $ast = jQuery.noConflict();

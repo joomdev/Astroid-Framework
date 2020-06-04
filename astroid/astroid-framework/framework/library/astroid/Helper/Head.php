@@ -38,7 +38,7 @@ class Head
     {
         $document = Framework::getDocument();
         $document->addScript('vendor/jquery/jquery-3.5.1.min.js', 'body');
-        // $document->addScript('vendor/jquery/jquery.noConflict.js', 'body');
+        $document->addScript('vendor/jquery/jquery.noConflict.js', 'body');
     }
 
     public static function styles()

@@ -77,9 +77,9 @@ class Document
             }
         } */
         if ($return) {
-            return $content;
+            return trim($content);
         }
-        echo $content;
+        echo trim($content);
     }
 
     public function compress()

@@ -137,7 +137,7 @@ class AstroidFrameworkArticle
       }
    }
 
-   public function render($position = 'before-title')
+   public function render($position = 'above-title')
    {
       if ($this->type == 'regular') {
          return false;

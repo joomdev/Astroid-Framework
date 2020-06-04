@@ -19,7 +19,11 @@ $document = Astroid\Framework::getDocument();
 $app = JFactory::getApplication();
 $sitename = $app->get('sitename');
 
-$logo_type = $params->get('logo_type', 'image'); // Logo Type
+$logo_type = $params->get('logo_type', 'none'); // Logo Type
+
+if ($logo_type === 'none') {
+   return;
+}
 
 $header_mode = $params->get('header_mode', 'horizontal');
 $header_stacked_menu_mode = $params->get('header_stacked_menu_mode', 'center');
@@ -35,6 +39,17 @@ if ($logo_type == 'text') {
    $stickey_header_logo = $params->get('stickey_header_logo', false);
 }
 $class = ['astroid-logo', 'astroid-logo-' . $logo_type, 'd-flex align-items-center'];
+
+$logo_link_type = $params->get('logo_link_type', 'default');
+$logo_link = \JURI::root();
+$logo_link_target = '_self';
+if ($logo_link_type === 'custom') {
+   $logo_link = $params->get('logo_link_custom', '');
+   if ($params->get('logo_link_target_blank', 0)) {
+      $logo_link_target = '_blank';
+   }
+}
+
 ?>
 <!-- logo starts -->
 <!-- <div class="<?php /* echo implode(' ', $class); */ ?>"> -->
@@ -44,7 +59,7 @@ $class = ['astroid-logo', 'astroid-logo-' . $logo_type, 'd-flex align-items-cent
    $mr = ($header_mode == 'stacked' && ($header_stacked_menu_mode == 'seperated' || $header_stacked_menu_mode == 'center')) ? '' : ' mr-0 mr-lg-4';
    ?>
    <logo class="<?php echo implode(' ', $class); ?> flex-column<?php echo $mr; ?>">
-      <a class="site-title" href="<?php echo JURI::root(); ?>"><?php echo $logo_text; ?></a>
+      <a target="<?php echo $logo_link_target; ?>" class="site-title" href="<?php echo $logo_link; ?>"><?php echo $logo_text; ?></a>
       <p class="site-tagline"><?php echo $tag_line; ?></p>
    </logo>
    <!-- text logo ends -->
@@ -55,7 +70,7 @@ $class = ['astroid-logo', 'astroid-logo-' . $logo_type, 'd-flex align-items-cent
    $mr = ($header_mode == 'stacked' && ($header_stacked_menu_mode == 'seperated' || $header_stacked_menu_mode == 'center')) ? '' : ' mr-0 mr-lg-4';
    ?>
    <logo>
-      <a class="<?php echo implode(' ', $class); ?><?php echo $mr; ?>" href="<?php echo JURI::root(); ?>">
+      <a target="<?php echo $logo_link_target; ?>" class="<?php echo implode(' ', $class); ?><?php echo $mr; ?>" href="<?php echo $logo_link; ?>">
          <?php if (!empty($default_logo)) { ?>
             <img src="<?php echo JURI::root() . Astroid\Helper\Media::getPath() . '/' . $default_logo; ?>" alt="<?php echo $sitename; ?>" class="astroid-logo-default" />
          <?php } ?>

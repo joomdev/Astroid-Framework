@@ -61,7 +61,7 @@ class Utility
 
         $meta = [];
 
-        $document->addMeta('twitter:card', 'summary');
+        $document->addMeta('twitter:card', $params->get('twittercardtype', 'summary_large_image'));
 
         if ($item->type == 'component' && isset($item->query) && $item->query['option'] == 'com_content' && $item->query['view'] == 'article') {
             $document->addMeta('', 'article', ['property' => 'og:type']);
@@ -307,7 +307,7 @@ class Utility
         }
 
         Framework::getDocument()->addStyleDeclaration(implode('', $mobilemenu_styles));
-        
+
         // Contact Icon
         Style::addCssBySelector('.astroid-contact-info i[class*="fa-"]', 'color', $params->get('icon_color', ''));
     }

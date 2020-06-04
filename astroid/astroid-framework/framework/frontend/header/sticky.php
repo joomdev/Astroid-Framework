@@ -58,7 +58,7 @@ switch ($mode) {
             </div>
          </div>
       <?php } ?>
-      <div class="header-left-section d-flex justify-content-between">
+      <div class="header-left-section d-flex justify-content-between<?php echo $stickey_mode == 'left' ? ' flex-grow-1' : ''; ?>">
          <?php $document->include('logo'); ?>
          <?php
          if ($stickey_mode == 'left') {
@@ -70,7 +70,7 @@ switch ($mode) {
       </div>
       <?php
       if ($stickey_mode == 'center') {
-         echo '<div class="header-center-section d-flex justify-content-center">';
+         echo '<div class="header-center-section d-flex justify-content-center' . ($stickey_mode == 'center' ? ' flex-grow-1' : '') . '">';
          // header nav starts
          Astroid\Component\Menu::getMenu($header_menu, $navClass, null, 'center', 'stickey', $navWrapperClass);
          // header nav ends
@@ -78,7 +78,7 @@ switch ($mode) {
       }
       ?>
       <?php if ($block_1_type != 'blank' || $stickey_mode == 'right' || $enable_offcanvas) : ?>
-         <div class="header-right-section d-flex justify-content-end">
+         <div class="header-right-section d-flex justify-content-end<?php echo $stickey_mode == 'right' ? ' flex-grow-1' : ''; ?>">
             <?php
             if ($stickey_mode == 'right') {
                // header nav starts

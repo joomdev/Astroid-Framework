@@ -63,10 +63,21 @@
          }
       }
    }
+
    // Stacked Header
    .astroid-stacked-seperated-header {
       .header-stacked-inner {
          padding: 20px 0;
+      }
+   }
+
+   .header-left-section,
+   .header-center-section,
+   .header-right-section {
+      &.flex-grow-1 {
+         >div {
+            width: max-content;
+         }
       }
    }
 }

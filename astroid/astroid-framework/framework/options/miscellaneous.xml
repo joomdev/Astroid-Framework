@@ -8,6 +8,7 @@
          <field type="astroidgroup" name="favicongroup" title="TPL_ASTROID_FAVICON_TITLE_LABEL" help="https://docs.joomdev.com/article/astroid-favicon" />
          <field type="astroidgroup" name="lazyloadgroup" title="TPL_ASTROID_LAZYLOAD_TITLE_LABEL" />
          <field type="astroidgroup" name="minifygroup" title="TPL_ASTROID_MINIFY_TITLE_LABEL" />
+         <field type="astroidgroup" name="opengraphgroup" title="TPL_ASTROID_OPEN_GRAPH_TITLE_LABEL" />
 
          <field astroidgroup="contact_info" name="contact_details" type="astroidtext" astroid-switch="true" default="1" label="TPL_ASTROID_CONTACT_DEATILS_LABEL" description="TPL_ASTROID_CONTACT_DEATILS_DESC">
          </field>
@@ -207,6 +208,13 @@
          <field astroidgroup="minifygroup" name="minify_html_level" type="astroidradio" label="HTML Minify Level" description="" default="basic" ngShow="minify_html=='1'">
             <option value="basic">Basic</option>
             <option value="advanced">Advanced</option>
+         </field>
+
+         <field astroidgroup="opengraphgroup" name="twittercardtype" type="list" label="Twitter Card Type" description="" default="summary_large_image">
+            <option value="summary_large_image">Summary Card with Large Image</option>
+            <option value="summary">Summary Card</option>
+            <option value="app">App Card</option>
+            <option value="player">Player Card</option>
          </field>
       </fieldset>
    </fields>

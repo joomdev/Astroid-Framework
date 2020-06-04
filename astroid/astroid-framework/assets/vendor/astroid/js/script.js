@@ -109,6 +109,26 @@
       }
    };
 
+   var initEmptyHeaderContent = function () {
+      $('.header-left-section:empty').each(function () {
+         if (!$.trim($(this).html())) {
+            $(this).prop('hidden', true);
+         }
+      });
+
+      $('.header-center-section:empty').each(function () {
+         if (!$.trim($(this).html())) {
+            $(this).prop('hidden', true);
+         }
+      });
+
+      $('.header-right-section:empty').each(function () {
+         if (!$.trim($(this).html())) {
+            $(this).prop('hidden', true);
+         }
+      });
+   };
+
    var initTooltip = function () {
       if ($('[data-toggle="tooltip"]').length) {
          $('[data-toggle="tooltip"]').tooltip();
@@ -207,6 +227,7 @@
       //initSubmenu();
       initBackToTop();
       initHeader();
+      initEmptyHeaderContent();
       initTooltip();
       deviceBreakpoint(false);
    };

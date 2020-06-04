@@ -80,8 +80,24 @@ class LazyLoad
                     }
                 }
                 Framework::getReporter('Lazy Load Images')->add('<a href="' . $matches[1][$key] . '" target="_blank"><code>' . Framework::getDocument()->beutifyURL($matches[1][$key]) . '</code></a>');
+                // echo $matches[1][$key];
                 @list($width, $height) = @getimagesize($matches[1][$key]);
-                $matchLazy = str_replace('src=', 'src="' . $blankImage . '" data-astroid-lazyload-width="' . $width . '" data-astroid-lazyload-height="' . $height . '" data-astroid-lazyload=', $match);
+
+                if (!empty($width) && !empty($height)) {
+                    $image = imagecreatetruecolor($width, $height);
+                    imagesavealpha($image, true);
+                    $transparent = imagecolorallocatealpha($image, 0, 0, 0, 127);
+                    imagefill($image, 0, 0, $transparent);
+                    ob_start();
+                    imagepng($image);
+                    $blankImageBuffer = ob_get_clean();
+                    if (ob_get_length() > 0) {
+                        ob_end_clean();
+                    }
+                    $blankImage = 'data:image/png;base64,' . base64_encode($blankImageBuffer);
+                }
+
+                $matchLazy = str_replace('src=', 'src="' . $blankImage . '" data-astroid-lazyload=', $match);
 
                 $body = str_replace($matches[0][$key], $matchLazy, $body);
             }
@@ -95,6 +111,7 @@ class LazyLoad
     {
         $images = array_map('trim', explode("\n", $images));
         $matchesTemp = array();
+        $matches1Temp = array();
 
         foreach ($images as $image) {
             $count = 0;
@@ -103,8 +120,10 @@ class LazyLoad
                 if (preg_match('@' . preg_quote($image) . '@', $match)) {
                     if ($toggle == 'exclude') {
                         unset($matches[0][$count]);
+                        unset($matches[1][$count]);
                     } else {
                         $matchesTemp[] = $matches[0][$count];
+                        $matches1Temp[] = $matches[1][$count];
                     }
                 }
 
@@ -114,7 +133,9 @@ class LazyLoad
 
         if ($toggle == 'include') {
             unset($matches[0]);
+            unset($matches[1]);
             $matches[0] = $matchesTemp;
+            $matches[1] = $matches1Temp;
         }
     }
 
@@ -198,6 +219,7 @@ class LazyLoad
                 if ($toggle == 'include') {
                     if (empty($classExists)) {
                         unset($matches[0][$key]);
+                        unset($matches[1][$key]);
                     }
 
                     continue;
@@ -205,6 +227,7 @@ class LazyLoad
 
                 if (!empty($classExists)) {
                     unset($matches[0][$key]);
+                    unset($matches[1][$key]);
                 }
             }
         }

@@ -241,4 +241,4 @@
    $(function () {
       $('[data-megamenu]').JDMegaMenu();
    });
-})(jQuery);
+})($ast);

@@ -80,4 +80,4 @@
    $(function () {
       $('[data-offcanvas]').offCanvas();
    });
-}(jQuery));
+}($ast));

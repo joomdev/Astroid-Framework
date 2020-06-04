@@ -700,7 +700,13 @@ class Document
     protected function _systemUrl($url, $version = true)
     {
         $root = \JURI::root();
-        $postfix = $version ? '?' . Helper::joomlaMediaVersion() : '';
+        $config = \JFactory::getConfig();
+        $params = Helper::getPluginParams();
+        if ($config->get('debug', 0) || $params->get('astroid_debug', 0)) {
+            $postfix = $version ? '?' . Helper::joomlaMediaVersion() : '';
+        } else {
+            $postfix = $version ? '?v=' . Helper::frameworkVersion() : '';
+        }
         if (file_exists(ASTROID_MEDIA . '/' . $url)) {
             $url = $root . 'media/astroid/assets/' . $url;
         } elseif (Framework::isSite() && file_exists(ASTROID_TEMPLATE_PATH . '/' . $url)) {

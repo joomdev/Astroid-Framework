@@ -15,7 +15,7 @@ class Debugger
 {
     protected $markers = [];
     protected $reports = [];
-    protected $debug = 0;
+    public $debug = 0;
     protected $_last = null;
 
     public function __construct()

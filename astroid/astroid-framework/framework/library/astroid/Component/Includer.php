@@ -91,7 +91,9 @@ class Includer
         $content = '';
         $content .= $document->getScripts('body');
         $content .= $document->getCustomTags('body');
-        $content .= '<script>jQuery.noConflict(true);</script>';
+        if (Framework::isSite()) {
+            $content .= '<script>jQuery.noConflict(true);</script>';
+        }
         return $content;
     }
 

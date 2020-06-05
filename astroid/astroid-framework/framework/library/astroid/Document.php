@@ -831,10 +831,10 @@ class Document
 
     public function renderCss()
     {
-        if (Framework::isSite()) {
+        /* if (Framework::isSite()) {
             $template = Framework::getTemplate();
             Helper::clearCache($template->template, ['compiled-css']);
-        }
+        } */
         $cssScript = '';
         foreach ($this->_styles as $device => $css) {
             if ($device == 'mobile') {

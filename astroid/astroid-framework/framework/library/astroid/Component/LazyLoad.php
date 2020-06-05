@@ -10,6 +10,7 @@
 namespace Astroid\Component;
 
 use Astroid\Framework;
+use Astroid\Helper;
 
 defined('_JEXEC') or die;
 
@@ -22,6 +23,7 @@ class LazyLoad
         $template = Framework::getTemplate();
         $params = $template->getParams();
         $run = $params->get('lazyload', 0);
+        Helper::createDir(ASTROID_CACHE . '/lazy-load/' . $template->id);
         if (!$run) {
             return;
         }
@@ -64,6 +66,14 @@ class LazyLoad
         }
 
         if (!empty($matches[0])) {
+
+            $imageMapFile = ASTROID_CACHE . '/lazy-load/' . $template->id . '.json';
+            $imageMapChanged = false;
+            $imageMap = [];
+            if (file_exists($imageMapFile)) {
+                $imageMap = \json_decode(\file_get_contents($imageMapFile), true);
+            }
+
             $base = \JUri::base();
             $basePath = \JUri::base(true);
 
@@ -79,22 +89,21 @@ class LazyLoad
                         }
                     }
                 }
-                Framework::getReporter('Lazy Load Images')->add('<a href="' . $matches[1][$key] . '" target="_blank"><code>' . Framework::getDocument()->beutifyURL($matches[1][$key]) . '</code></a>');
-                // echo $matches[1][$key];
-                @list($width, $height) = @getimagesize($matches[1][$key]);
 
-                if (!empty($width) && !empty($height)) {
-                    $image = imagecreatetruecolor($width, $height);
-                    imagesavealpha($image, true);
-                    $transparent = imagecolorallocatealpha($image, 0, 0, 0, 127);
-                    imagefill($image, 0, 0, $transparent);
-                    ob_start();
-                    imagepng($image);
-                    $blankImageBuffer = ob_get_clean();
-                    if (ob_get_length() > 0) {
-                        ob_end_clean();
-                    }
-                    $blankImage = 'data:image/png;base64,' . base64_encode($blankImageBuffer);
+                if (Framework::getDebugger()->debug) {
+                    Framework::getReporter('Lazy Load Images')->add('<a href="' . $matches[1][$key] . '" target="_blank"><code>' . Framework::getDocument()->beutifyURL($matches[1][$key]) . '</code></a>');
+                }
+
+                if (!isset($imageMap[md5($matches[1][$key])])) {
+                    $base64thumbnail = self::getBase64Thumbnail($matches[1][$key]);
+                    $imageMap[md5($matches[1][$key])] = $base64thumbnail;
+                    $imageMapChanged = true;
+                }
+
+                $base64Image = $imageMap[md5($matches[1][$key])];
+
+                if ($base64Image !== false) {
+                    $blankImage = $base64Image;
                 }
 
                 $matchLazy = str_replace('src=', 'src="' . $blankImage . '" data-astroid-lazyload=', $match);
@@ -102,9 +111,37 @@ class LazyLoad
                 $body = str_replace($matches[0][$key], $matchLazy, $body);
             }
 
+            if ($imageMapChanged) {
+                file_put_contents($imageMapFile, \json_encode($imageMap));
+            }
+
             $app->setBody($body);
             Framework::getDebugger()->log('Lazy Load');
         }
+    }
+
+    public static function getBase64Thumbnail($sourceImage)
+    {
+        $info = getimagesize($sourceImage);
+        if (!in_array($info['mime'], ['image/jpeg', 'image/gif', 'image/png'])) {
+            return false;
+        }
+
+        list($origWidth, $origHeight) = $info;
+        $image = imagecreatetruecolor($origWidth, $origHeight);
+
+        imagesavealpha($image, true);
+        $transparent = imagecolorallocatealpha($image, 255, 0, 0, 127);
+        imagefill($image, 0, 0, $transparent);
+
+        ob_start();
+        imagepng($image);
+        $blankImageBuffer = ob_get_clean();
+        if (ob_get_length() > 0) {
+            ob_end_clean();
+        }
+        $blankImage = 'data:image/png;base64,' . base64_encode($blankImageBuffer);
+        return $blankImage;
     }
 
     public static function selectedImages(&$matches, $images = '', $toggle = '')

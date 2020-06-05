@@ -45,7 +45,25 @@
                      $(this).unbind('mouseenter mouseleave').hoverIntent(function () {
                         var _submenu = $(this).children(settings.submenuClass);
                         _submenu.removeClass('right');
-                        _submenu.stop(true, true).slideDown();
+
+                        var _animations = {
+                           duration: settings.transition,
+                           easing: settings.easing
+                        };
+
+                        switch (settings.animation) {
+                           case 'none':
+                              _submenu.stop(true, true).show();
+                              break;
+                           case 'fade':
+                              _submenu.stop(true, true).fadeIn(_animations);
+                              break;
+                           default:
+                              _submenu.stop(true, true).slideDown(_animations);
+                              break;
+                        }
+
+
                         if (_submenu.offset().left + _submenu.outerWidth() > $(window).innerWidth()) {
                            _submenu.addClass('right');
                         } else {
@@ -54,6 +72,22 @@
                      }, function () {
                         var _submenu = $(this).children(settings.submenuClass);
                         _submenu.stop(true, true).slideUp();
+
+                        var _animations = {
+                           duration: settings.transition,
+                           easing: settings.easing
+                        };
+                        switch (settings.animation) {
+                           case 'none':
+                              _submenu.stop(true, true).hide();
+                              break;
+                           case 'fade':
+                              _submenu.stop(true, true).fadeOut(_animations);
+                              break;
+                           default:
+                              _submenu.stop(true, true).slideUp(_animations);
+                              break;
+                        }
                      });
                   }
                }
@@ -76,7 +110,7 @@
                }
                var _top = _container.outerHeight() - $(this).outerHeight();
                var _arrow = $(this).children('.arrow');
-				_content.css('left', '0px');
+               _content.css('left', '0px');
 
                if (settings.headerOffset) {
                   _arrow.css('margin-bottom', -(_top / 2));
@@ -85,7 +119,7 @@
                } else {
                   _content.css('top', '100%');
                }
-				
+
                switch ($(this).data('position')) {
                   case 'left':
                      var offsetleft = $(this).offset().left;
@@ -124,14 +158,16 @@
 
          var observering = function (_this) {
             var callback = function (mutationsList, observer) {
-				mutationsList.forEach(function(mutation) {
-					 if (mutation.type == 'attributes' && mutation.attributeName == 'class') {
-						 init();
-					  }
-				});	               
+               mutationsList.forEach(function (mutation) {
+                  if (mutation.type == 'attributes' && mutation.attributeName == 'class') {
+                     init();
+                  }
+               });
             };
             var observer = new MutationObserver(callback);
-            observer.observe(_this, {attributes: true});
+            observer.observe(_this, {
+               attributes: true
+            });
          }
 
          observering($(this)[0]);

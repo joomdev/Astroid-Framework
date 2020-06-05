@@ -38,6 +38,7 @@ class Head
     {
         $document = Framework::getDocument();
         $document->addScript('vendor/jquery/jquery-3.5.1.min.js', 'body');
+        $document->addScript('vendor/bootstrap/js/bootstrap.min.js', 'body');
         $document->addScript('vendor/jquery/jquery.noConflict.js', 'body');
     }
 

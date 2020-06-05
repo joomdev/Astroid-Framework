@@ -637,7 +637,7 @@ class Menu
             $options = self::getAstroidMenuOptions($item, $list);
             $class = self::getLiClass($item, $options, $default_id, $active_id, $path);
             echo '<li class="' . \implode(' ', $class) . '">';
-            $document->include('header.menu.link', ['item' => $item, 'options' => $options, 'mobilemenu' => true, 'slidemenu' => 1, 'active' => in_array('nav-item-active', $class)]);
+            $document->include('header.menu.link', ['item' => $item, 'options' => $options, 'mobilemenu' => false, 'slidemenu' => 1, 'active' => in_array('nav-item-active', $class)]);
             if ($item->deeper) {
                 echo '<ul class="nav-child list-group navbar-subnav level-' . $item->level . '">';
             } elseif ($item->shallower) {

@@ -85,6 +85,11 @@ foreach ($items as $i => $item) {
                         <div ng-repeat="gridsize in grid track by $index" style="padding: 0 3px;" class="ezlb-grid-item-col col-{{ gridsize}}"><span>{{ gridsize}}</span></div>
                      </div>
                   </div>
+                  <div ng-click="updateRow(chooseRowColumns.row, 'custom');" class="col-3 ezlb-grid-item">
+                     <div class="row m-0 p-0">
+                        <div style="padding: 0 3px;" class="ezlb-grid-item-col col-12"><span>Custom</span></div>
+                     </div>
+                  </div>
                </div>
             </div>
          </div>
@@ -446,10 +451,43 @@ foreach ($scripts as $script) {
          $scope.chooseRowColumns.row = (_rows.length - 1);
       };
 
+      $scope.isValidGrid = function(_grid) {
+         var _total = 0;
+         _grid.forEach(function(_g) {
+            _total += parseInt(_g);
+         });
+         if (_total == 12) {
+            return true;
+         } else {
+            return false;
+         }
+      };
+      
+      $scope.getCustomGrid = function() {
+         var grid = prompt("Please enter custom grid size (eg. 2+3+6+1)", "");
+         if (grid != null) {
+            grid = grid.split('+');
+            if ($scope.isValidGrid(grid)) {
+               return grid;
+            } else {
+               alert("Invalid grid size.");
+               return false;
+            }
+         }
+         return false;
+      };
+
       $scope.updateRow = function(_rowIndex, _grid) {
+
+         if (_grid == 'custom') {
+            var _grid = $scope.getCustomGrid();
+            if (_grid === false) {
+               return false;
+            }
+         }
+
          var _columns = $scope.rows[_rowIndex].cols;
          var _updatedColumns = [];
-
 
          if (_grid.length < _columns.length) {
             // decresing columns

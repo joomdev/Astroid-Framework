@@ -61,7 +61,7 @@ class Utility
 
         $meta = [];
 
-        $document->addMeta('twitter:card', $params->get('twittercardtype', 'summary_large_image'));
+        $document->addMeta('twitter:card', 'summary');
 
         if ($item->type == 'component' && isset($item->query) && $item->query['option'] == 'com_content' && $item->query['view'] == 'article') {
             $document->addMeta('', 'article', ['property' => 'og:type']);

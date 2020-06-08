@@ -50,8 +50,10 @@ class AstroidFrameworkArticle
             $this->params = $item->params;
          }
       }
-      $this->addMeta();
-      $this->renderRating();
+      if (!$categoryView) {
+         $this->addMeta();
+         $this->renderRating();
+      }
    }
 
    public function addMeta()
@@ -108,7 +110,7 @@ class AstroidFrameworkArticle
 
       $meta = [];
       $meta[] = '<meta property="og:type" content="article">';
-      $meta[] = '<meta name="twitter:card" content="summary" />';
+      $meta[] = '<meta name="twitter:card" content="' . $this->template->params->get('twittercardtype', 'summary_large_image') . '" />';
       if (!empty($og_title)) {
          $meta[] = '<meta property="og:title" content="' . $og_title . '">';
       }

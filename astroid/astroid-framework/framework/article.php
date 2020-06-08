@@ -47,7 +47,7 @@ class AstroidFrameworkArticle
          $menu = $mainframe->getMenu();
          $item = $menu->getItem($itemId);
          if ($item->query['option'] == 'com_content' && ($item->query['view'] == 'category' || $item->query['view'] == 'article' || $item->query['view'] == 'featured')) {
-            $this->params = $item->params;
+            $this->params = $item->getParams();
          }
       }
       if (!$categoryView) {
@@ -66,8 +66,7 @@ class AstroidFrameworkArticle
       $item = $menu->getItem($itemid);
 
       if (!empty($item)) {
-         $params = new JRegistry();
-         $params->loadString($item->params);
+         $params = $item->getParams();
 
          $enabled = $params->get('astroid_opengraph_menuitem', 0);
          $enabled = (int) $enabled;

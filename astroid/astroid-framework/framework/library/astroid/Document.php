@@ -902,13 +902,14 @@ class Document
         }
 
         if (isset($menu) && $menu) {
-            if ($menu->params->get('pageclass_sfx')) {
-                $class[] = $menu->params->get('pageclass_sfx');
+            $menu_params = $menu->getParams();
+            if ($menu_params->get('pageclass_sfx')) {
+                $class[] = $menu_params->get('pageclass_sfx');
             }
-            if ($menu->get('alias')) {
+            if ($menu->alias) {
                 // menu alias without -alias appended will be removed in the next version.
-                $class[] = $menu->get('alias');
-                $class[] = $menu->get('alias') . '-alias';
+                $class[] = $menu->alias;
+                $class[] = $menu->alias . '-alias';
             }
         }
         if (!empty($template->id)) {

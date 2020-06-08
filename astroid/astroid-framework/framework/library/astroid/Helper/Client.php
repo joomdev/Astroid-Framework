@@ -161,31 +161,62 @@ class Client
         Helper::loadLanguage('astroid');
         $frontendVisibility = $pluginParams->get('frontend_tabs_visibility', 1);
         \JForm::addFormPath(JPATH_SITE . '/' . $astroid_dir . '/framework/forms');
+
+        $loaded = false;
+
         if ($form->getName() == 'com_menus.item' && Framework::isAdmin()) {
             $form->loadFile('menu', false);
             $form->loadFile('banner', false);
             $form->loadFile('og', false);
+            $loaded = true;
         }
 
         if ($form->getName() == 'com_content.article' && ((Framework::isSite() && $frontendVisibility) || Framework::isAdmin())) {
             $form->loadFile('article', false);
             $form->loadFile('blog', false);
             $form->loadFile('opengraph', false);
+            $loaded = true;
         }
 
         if ($form->getName() == 'com_categories.categorycom_content' && ((Framework::isSite() && $frontendVisibility) || Framework::isAdmin())) {
             $form->loadFile('category_blog', false);
+            $loaded = true;
         }
 
         if ($form->getName() == 'com_menus.item' && (isset($data->request['option']) && $data->request['option'] == 'com_content') && (isset($data->request['view']) && $data->request['view'] == 'category') && (isset($data->request['layout']) && $data->request['layout'] == 'blog') && ((Framework::isSite() && $frontendVisibility) || Framework::isAdmin())) {
             $form->loadFile('menu_blog', false);
+            $loaded = true;
         }
         if ($form->getName() == 'com_menus.item' && (isset($data->request['option']) && $data->request['option'] == 'com_content') && (isset($data->request['view']) && $data->request['view'] == 'featured') && ((Framework::isSite() && $frontendVisibility) || Framework::isAdmin())) {
             $form->loadFile('menu_blog', false);
+            $loaded = true;
         }
 
         if ($form->getName() == 'com_users.user' || $form->getName() == 'com_admin.profile' && ((Framework::isSite() && $frontendVisibility) || Framework::isAdmin())) {
             $form->loadFile('author', false);
+            $loaded = true;
+        }
+
+        if (ASTROID_JOOMLA_VERSION == 4 && $loaded) {
+            \JFactory::getDocument()->addScriptDeclaration('
+            (function(){
+                var fixed = false;
+                var fixTabs = function () {
+                    var items = document.querySelectorAll("[id^=tab-attrib-]");
+                    if (items.length) {
+                        items.forEach(function (item) {
+                            item.innerHTML = item.innerText;
+                        });
+                        fixed = true;
+                    } else {
+                        setTimeout(fixTabs, 50);
+                    }
+                }
+                window.addEventListener(\'DOMContentLoaded\', function(){
+                    setTimeout(fixTabs, 50);
+                });
+            })();
+            ');
         }
     }
 }

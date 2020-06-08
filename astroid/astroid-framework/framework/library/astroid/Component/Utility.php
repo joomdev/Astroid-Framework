@@ -25,7 +25,6 @@ class Utility
         $menu = $app->getMenu();
         $item = $menu->getItem($itemid);
 
-        $params = new \JRegistry();
         $template_params = Framework::getTemplate()->getParams();
         $config = \JFactory::getConfig();
 
@@ -33,7 +32,7 @@ class Utility
             return;
         }
 
-        $params->loadString($item->params);
+        $params = $item->getParams();
 
         $enabled = $params->get('astroid_opengraph_menuitem', 0);
         if (empty($enabled)) {

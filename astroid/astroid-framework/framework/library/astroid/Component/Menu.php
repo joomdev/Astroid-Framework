@@ -266,11 +266,12 @@ class Menu
         $hidden_parents = array();
         $lastitem = 0;
 
+        $item_params = $item->getParams();
         if ($items) {
             foreach ($items as $i => $item) {
                 $item->parent = false;
 
-                if (isset($items[$lastitem]) && $items[$lastitem]->id == $item->parent_id && $item->params->get('menu_show', 1) == 1) {
+                if (isset($items[$lastitem]) && $items[$lastitem]->id == $item->parent_id && $item_params->get('menu_show', 1) == 1) {
                     $items[$lastitem]->parent = true;
                 }
 
@@ -280,7 +281,7 @@ class Menu
                 }
 
                 // Exclude item with menu item option set to exclude from menu modules
-                if (($item->params->get('menu_show', 1) == 0) || in_array($item->parent_id, $hidden_parents)) {
+                if (($item_params->get('menu_show', 1) == 0) || in_array($item->parent_id, $hidden_parents)) {
                     $hidden_parents[] = $item->id;
                     unset($items[$i]);
                     continue;
@@ -317,7 +318,7 @@ class Menu
                         break;
 
                     case 'alias':
-                        $item->flink = 'index.php?Itemid=' . $item->params->get('aliasoptions');
+                        $item->flink = 'index.php?Itemid=' . $item_params->get('aliasoptions');
                         break;
 
                     default:
@@ -326,7 +327,7 @@ class Menu
                 }
 
                 if ((strpos($item->flink, 'index.php?') !== false) && strcasecmp(substr($item->flink, 0, 4), 'http')) {
-                    $item->flink = \JRoute::_($item->flink, true, $item->params->get('secure'));
+                    $item->flink = \JRoute::_($item->flink, true, $item_params->get('secure'));
                 } else {
                     $item->flink = \JRoute::_($item->flink);
                 }
@@ -334,12 +335,12 @@ class Menu
                 // We prevent the double encoding because for some reason the $item is shared for menu modules and we get double encoding
                 // when the cause of that is found the argument should be removed
                 $item->title = htmlspecialchars($item->title, ENT_COMPAT, 'UTF-8', false);
-                $item->anchor_css = htmlspecialchars($item->params->get('menu-anchor_css', ''), ENT_COMPAT, 'UTF-8', false);
-                $item->anchor_title = htmlspecialchars($item->params->get('menu-anchor_title', ''), ENT_COMPAT, 'UTF-8', false);
-                $item->anchor_rel = htmlspecialchars($item->params->get('menu-anchor_rel', ''), ENT_COMPAT, 'UTF-8', false);
-                $item->menu_image = $item->params->get('menu_image', '') ?
-                    htmlspecialchars($item->params->get('menu_image', ''), ENT_COMPAT, 'UTF-8', false) : '';
-                $item->menu_image_css = htmlspecialchars($item->params->get('menu_image_css', ''), ENT_COMPAT, 'UTF-8', false);
+                $item->anchor_css = htmlspecialchars($item_params->get('menu-anchor_css', ''), ENT_COMPAT, 'UTF-8', false);
+                $item->anchor_title = htmlspecialchars($item_params->get('menu-anchor_title', ''), ENT_COMPAT, 'UTF-8', false);
+                $item->anchor_rel = htmlspecialchars($item_params->get('menu-anchor_rel', ''), ENT_COMPAT, 'UTF-8', false);
+                $item->menu_image = $item_params->get('menu_image', '') ?
+                    htmlspecialchars($item_params->get('menu_image', ''), ENT_COMPAT, 'UTF-8', false) : '';
+                $item->menu_image_css = htmlspecialchars($item_params->get('menu_image_css', ''), ENT_COMPAT, 'UTF-8', false);
             }
 
             if (isset($items[$lastitem])) {
@@ -386,7 +387,8 @@ class Menu
 
     public static function getAstroidMenuOptions($item, $list)
     {
-        $astroid_menu_options = $item->params->get('astroid_menu_options', []);
+        $item_params = $item->getParams();
+        $astroid_menu_options = $item_params->get('astroid_menu_options', []);
         $astroid_menu_options = (array) $astroid_menu_options;
         // set defaults
         $data = new \stdClass();
@@ -489,6 +491,7 @@ class Menu
 
     public static function getLiClass($item, $options, $default_id, $active_id, $path)
     {
+        $item_params = $item->getParams();
         $params = Framework::getTemplate()->getParams();
 
         $header_endLevel = $params->get('header_endLevel', 0);
@@ -506,14 +509,14 @@ class Menu
             $class[] = 'nav-item-default';
         }
 
-        if ($item->id == $active_id || ($item->type === 'alias' && $item->params->get('aliasoptions') == $active_id)) {
+        if ($item->id == $active_id || ($item->type === 'alias' && $item_params->get('aliasoptions') == $active_id)) {
             $class[] = 'nav-item-current';
         }
 
         if (in_array($item->id, $path)) {
             $class[] = 'nav-item-active';
         } elseif ($item->type === 'alias') {
-            $aliasToId = $item->params->get('aliasoptions');
+            $aliasToId = $item_params->get('aliasoptions');
             if (count($path) > 0 && $aliasToId == $path[count($path) - 1]) {
                 $class[] = 'nav-item-active';
             } elseif (in_array($aliasToId, $path)) {

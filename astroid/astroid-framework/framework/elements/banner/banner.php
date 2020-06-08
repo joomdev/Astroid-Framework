@@ -23,8 +23,7 @@ if (empty($item)) {
    return;
 }
 
-$params = new JRegistry();
-$params->loadString($item->params);
+$params = $item->getParams();
 
 $astroid_banner_visibility = $params->get('astroid_banner_visibility', "currentPage");
 if ($astroid_banner_visibility == "currentPage") {

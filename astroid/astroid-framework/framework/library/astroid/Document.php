@@ -230,22 +230,24 @@ class Document
         $javascripts = [];
         $javascriptFiles = [];
         $html = preg_replace_callback('/(<script\s[^>]*src=")([^"]*)("[^>]*>)(.*)(<\/script>)|(<script>)(.*)(<\/script>)|(<script\s[^>]*type=")([^"]*)("[^>]*>)(.*)(<\/script>)/siU', function ($matches) use (&$javascripts, &$javascriptFiles) {
-            $script = '';
+            // print_r($matches);
+            $script = [];
             if (isset($matches[5]) && $matches[5] == '</script>' && !empty($matches[2])) {
                 $script = ['content' => $this->beutifyURL($matches[2]), 'type' => 'url'];
                 $javascriptFiles[] = $this->beutifyURL($matches[2]);
-            }
-            if (isset($matches[8]) && $matches[8] == '</script>' && !empty($matches[7])) {
+            } else if (isset($matches[8]) && $matches[8] == '</script>' && !empty($matches[7])) {
                 $script = ['content' => $matches[7], 'type' => 'script'];
-            }
-            if (isset($matches[13]) && $matches[13] == '</script>' && !empty($matches[10]) && ($matches[10] == 'text/matches') && !empty($matches[12])) {
+            } else if (isset($matches[13]) && $matches[13] == '</script>' && !empty($matches[10]) && ($matches[10] == 'text/javascript') && !empty($matches[12])) {
                 $script = ['content' => $matches[12], 'type' => 'script'];
             }
-            if ($script !== '') {
+            if (!empty($script)) {
                 $javascripts[] = $script;
                 return '';
             }
+            return $matches[0];
         }, $html);
+
+        // print_r($javascripts);
 
         $version = md5(json_encode($javascripts));
         $jsFile = ASTROID_CACHE . '/js/' . $version . '.js';

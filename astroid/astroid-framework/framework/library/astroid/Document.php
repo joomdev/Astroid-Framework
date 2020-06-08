@@ -169,7 +169,7 @@ class Document
     function addProtocol($url)
     {
         if (!preg_match("~^(?:f|ht)tps?://~i", $url)) {
-            $url = "https:" . $url;
+            $url = "https:" . (substr($url, 0, 2) == '//' ? $url : '//' . $url);
         }
         return $url;
     }
@@ -223,6 +223,9 @@ class Document
 
     public function minifyJS($html)
     {
+        $juri = \JURI::getInstance();
+        $base_path = str_replace($juri->getScheme() . '://' . $juri->getHost() . '/', '', $juri->root());
+
         Framework::getDebugger()->log('Minifying JS');
         $javascripts = [];
         $javascriptFiles = [];
@@ -245,7 +248,6 @@ class Document
         }, $html);
 
         $version = md5(json_encode($javascripts));
-
         $jsFile = ASTROID_CACHE . '/js/' . $version . '.js';
         if (!file_exists($jsFile)) {
             Framework::getReporter('Logs')->add('Minifying JS <code>' . implode('</code>, <code>', $javascriptFiles) . '</code>.');
@@ -255,19 +257,27 @@ class Document
                 $excludes = Framework::getTemplate()->getParams()->get('minify_js_excludes', '');
                 $minifier = new Minify\JS();
                 if ($javascript['type'] == 'url') {
-                    $file = basename(strtok($javascript['content'], '?'));
+                    $file_path = strtok($javascript['content'], '?');
+
+                    if (substr($file_path, 0, strlen($base_path)) === $base_path) {
+                        $file_path = preg_replace('/' . preg_quote($base_path, '/') . '/', '', $file_path, 1);
+                    }
+
+                    $file = basename($file_path);
+
                     if (!Helper::matchFilename($file, \explode(',', $excludes))) {
-                        $content = "/* `{$javascript['content']}` minified by Astroid */";
-                        if (file_exists(JPATH_SITE . '/' . strtok($javascript['content'], '?'))) {
-                            $minifier->add(JPATH_SITE . '/' . strtok($javascript['content'], '?'));
+                        $content = "/* `{$file_path}` minified by Astroid */";
+                        if (file_exists(JPATH_SITE . '/' . $file_path)) {
+                            $minifier->add(JPATH_SITE . '/' . $file_path);
                         } else {
                             $minifier->add(file_get_contents($this->addProtocol($javascript['content'])));
                         }
                         $content .= $minifier->minify();
                     } else {
-                        $content = "/* `{$javascript['content']}` minification skipped by Astroid */";
-                        if (file_exists(JPATH_SITE . '/' . strtok($javascript['content'], '?'))) {
-                            $content .= file_get_contents(JPATH_SITE . '/' . strtok($javascript['content'], '?'));
+                        $content = "/* `{$file_path}` minification skipped by Astroid */";
+
+                        if (file_exists(JPATH_SITE . '/' . $file_path)) {
+                            $content .= file_get_contents(JPATH_SITE . '/' . $file_path);
                         } else {
                             $content .= file_get_contents($this->addProtocol($javascript['content']));
                         }

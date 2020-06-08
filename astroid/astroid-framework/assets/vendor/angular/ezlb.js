@@ -159,6 +159,7 @@ var AstroidRow = function AstroidRow() {
 
    this.id = generateID();
    this.cols = [];
+   this.type = "row";
 };
 
 var AstroidColumn = function AstroidColumn() {

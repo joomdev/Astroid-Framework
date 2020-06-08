@@ -399,6 +399,7 @@ foreach ($scripts as $script) {
    class AstroidRow {
       constructor() {
          this.cols = [];
+         this.type = 'row';
       }
    }
 
@@ -406,6 +407,7 @@ foreach ($scripts as $script) {
       constructor() {
          this.elements = [];
          this.size = 12;
+         this.type = 'column';
       }
    }
 

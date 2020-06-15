@@ -50,4 +50,17 @@ class Site extends Helper\Client
         $article = new Component\Article($id);
         $this->response($article->vote($vote));
     }
+
+    protected function clearCache()
+    {
+        $template = Framework::getTemplate()->template;
+        Helper::clearCacheByTemplate($template);
+        $this->response(['message' => \JText::_('TPL_ASTROID_SYSTEM_MESSAGES_CACHE')]);
+    }
+
+    protected function clearJoomlaCache()
+    {
+        Helper::clearJoomlaCache();
+        $this->response(['message' => \JText::_('TPL_ASTROID_SYSTEM_MESSAGES_JCACHE')]);
+    }
 }

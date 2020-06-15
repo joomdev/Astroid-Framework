@@ -660,7 +660,7 @@ var AstroidAdmin = function AstroidAdmin() {
                $.ajax({
                   method: "GET",
                   dataType: 'json',
-                  url: BASE_URL + 'index.php?option=com_ajax&astroid=clear-joomla-cache',
+                  url: SITE_URL + 'index.php?option=com_ajax&astroid=clear-joomla-cache',
                   success: function success(response) {
                      $('#clear-cache').removeClass('d-none');
                      $('#clearing-cache').addClass('d-none');

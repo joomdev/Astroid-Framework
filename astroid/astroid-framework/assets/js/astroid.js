@@ -14,7 +14,7 @@ var spectrumConfig = {
    allowEmpty: true,
    showAlpha: true,
    disabled: false,
-   showPalette: true,
+   showPalette: false,
    showPaletteOnly: false,
    showSelectionPalette: true,
    showButtons: false,

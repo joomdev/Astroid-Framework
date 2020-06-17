@@ -223,6 +223,9 @@ class Utility
 
         // Dropdown Menu
         $dropdown = Style::addCssBySelector('.megamenu-container', 'background-color', $params->get('dropdown_bg_color', ''));
+        
+        $submenuDropdown = Style::addCssBySelector('.megamenu-container .nav-submenu .nav-submenu', 'background-color', $params->get('dropdown_bg_color', ''));
+
         Style::addCssBySelector('.has-megamenu.open .arrow', 'border-bottom-color', $params->get('dropdown_bg_color', ''));
 
         $link = $dropdown->child('li.nav-item-submenu > a');

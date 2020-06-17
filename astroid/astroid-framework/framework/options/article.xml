@@ -36,7 +36,7 @@
 
 			<field ngShow="article_socialshare_type=='sharethis'" astroidgroup="article_single_options" name="article_socialshare_sharethis" type="astroidtext" filter="raw" class="form-control" label="ASTROID_SHARETHIS_PID_LBL" description="ASTROID_SHARETHIS_PID_DESC" />
 
-			<field astroidgroup="article_single_options" name="article_opengraph" type="astroidtext" astroid-switch="true" default="0" label="ASTROID_ARTICLE_OPTIONS_OPENGRAPH_LBL" description="ASTROID_ARTICLE_OPTIONS_OPENGRAPH_DESC"></field>
+			<field astroidgroup="article_single_options" name="article_opengraph" type="astroidtext" astroid-switch="true" default="1" label="ASTROID_ARTICLE_OPTIONS_OPENGRAPH_LBL" description="ASTROID_ARTICLE_OPTIONS_OPENGRAPH_DESC"></field>
 
 			<field ngShow="article_opengraph" astroidgroup="article_single_options" name="article_opengraph_facebook" type="astroidtext" filter="raw" class="form-control" label="ASTROID_FACEBOOK_APPID_LBL" description="ASTROID_FACEBOOK_APPID_DESC" />
 
@@ -45,8 +45,6 @@
 			<field ngShow="article_opengraph" astroidgroup="article_single_options" name="twittercardtype" type="astroidlist" class="form-control" label="Twitter Card Type" description="" default="summary_large_image">
 				<option value="summary_large_image">Summary Card with Large Image</option>
 				<option value="summary">Summary Card</option>
-				<option value="app">App Card</option>
-				<option value="player">Player Card</option>
 			</field>
 
 			<field astroidgroup="article_single_options" name="article_comments" type="astroidradio" default="none" label="ASTROID_ARTICLE_OPTIONS_COMMENTS_LBL" description="ASTROID_ARTICLE_OPTIONS_COMMENTS_DESC">

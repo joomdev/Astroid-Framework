@@ -79,7 +79,7 @@ class AstroidFrameworkArticle
          return;
       }
 
-      $enabled = $this->template->params->get('article_opengraph', 0);
+      $enabled = $this->template->params->get('article_opengraph', 1);
       $fb_id = $this->template->params->get('article_opengraph_facebook', '');
       $tw_id = $this->template->params->get('article_opengraph_twitter', '');
 

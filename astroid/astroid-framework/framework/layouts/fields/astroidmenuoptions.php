@@ -324,6 +324,9 @@ foreach ($items as $i => $item) {
       ],
    };
 </script>
+<script>
+
+</script>
 <?php
 $semanticComponents = ['icon', 'transition', 'api', 'dropdown'];
 $document = \JFactory::getDocument();
@@ -344,6 +347,7 @@ $scripts[] = $assets . 'vendor' . '/' . 'angular' . '/' . 'angular-animate.js?v=
 $scripts[] = $assets . 'vendor' . '/' . 'angular' . '/' . 'sortable.min.js?v=' . $document->getMediaVersion();
 $scripts[] = $assets . 'vendor' . '/' . 'angular' . '/' . 'angular-legacy-sortable.js?v=' . $document->getMediaVersion();
 $scripts[] = $assets . 'js' . '/' . 'astroid-framework.js?v=' . $document->getMediaVersion();
+echo "<script src='" . JURI::root() . "/media/astroid/assets/vendor/jquery/jquery-3.5.1.min.js'></script>";
 foreach ($scripts as $script) {
    echo "<script src='" . $script . "'></script>";
 }
@@ -464,7 +468,7 @@ foreach ($scripts as $script) {
             return false;
          }
       };
-      
+
       $scope.getCustomGrid = function() {
          var grid = prompt("Please enter custom grid size (eg. 2+3+6+1)", "");
          if (grid != null) {
@@ -557,3 +561,4 @@ foreach ($scripts as $script) {
 
    });
 </script>
+<script>jQuery.noConflict(true);</script>

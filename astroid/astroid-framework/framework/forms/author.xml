@@ -2,7 +2,7 @@
 <form>
    <fields name="params">
       <fieldset label="ASTROID_AUTHOR_PROFILE_TAB_LABEL" name="astroid_author" addfieldpath="/libraries/astroid/framework/fields">
-         <field type="radio" name="astroid_author_picture" label="ASTROID_AUTHOR_PICTURE_LABEL" description="ASTROID_AUTHOR_PICTURE_DESC" class="btn-group" default="0">
+         <field type="radio" name="astroid_author_picture" label="ASTROID_AUTHOR_PICTURE_LABEL" description="ASTROID_AUTHOR_PICTURE_DESC" class="form-check-inline" default="0">
             <option value="0">ASTROID_NONE</option>
             <option value="gravatar">ASTROID_AUTHOR_PICTURE_GRAVATAR</option>
             <option value="upload">ASTROID_AUTHOR_PICTURE_UPLOAD</option>

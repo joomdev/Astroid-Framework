@@ -603,19 +603,19 @@ astroidFramework.directive("astroidSwitch", function () {
          };
          var updateElementFromModel = function () {
             if (ngModel.$viewValue == 1) {
-               $element.siblings(".custom-toggle").children(".custom-control-input").prop("checked", true);
+               $($element).siblings(".custom-toggle").children(".custom-control-input").prop("checked", true);
                $element.val(1)
             } else {
-               $element.siblings(".custom-toggle").children(".custom-control-input").prop("checked", false);
+               $($element).siblings(".custom-toggle").children(".custom-control-input").prop("checked", false);
                $element.val(0)
             }
          };
          var initElementFromModel = function () {
             if ($element.val() == 1) {
-               $element.siblings(".custom-toggle").children(".custom-control-input").prop("checked", true);
+               $($element).siblings(".custom-toggle").children(".custom-control-input").prop("checked", true);
                ngModel.$setViewValue(1)
             } else {
-               $element.siblings(".custom-toggle").children(".custom-control-input").prop("checked", false);
+               $($element).siblings(".custom-toggle").children(".custom-control-input").prop("checked", false);
                ngModel.$setViewValue(0)
             }
          };

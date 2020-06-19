@@ -72,16 +72,16 @@ $afterDisplayContent = trim(implode("\n", $results));
    <?php if (!empty($this->lead_items)) : ?>
       <div class="items-leading clearfix">
          <?php foreach ($this->lead_items as &$item) : ?>
-               <div class="article-wraper">
-                  <div class="article-wraper-inner">
-                     <article class="item leading-<?php echo $leadingcount; ?><?php echo $item->state == 0 ? ' system-unpublished' : null; ?><?php echo $item->featured ? ' item-featured' : ''; ?>" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-                        <?php
-                        $this->item = &$item;
-                        echo $this->loadTemplate('item');
-                        ?>
-                     </article>
-                  </div>
+            <div class="article-wraper">
+               <div class="article-wraper-inner">
+                  <article class="item leading-<?php echo $leadingcount; ?><?php echo $item->state == 0 ? ' system-unpublished' : null; ?><?php echo $item->featured ? ' item-featured' : ''; ?>" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+                     <?php
+                     $this->item = &$item;
+                     echo $this->loadTemplate('item');
+                     ?>
+                  </article>
                </div>
+            </div>
             <?php $leadingcount++; ?>
          <?php endforeach; ?>
       </div><!-- end items-leading -->
@@ -93,29 +93,16 @@ $afterDisplayContent = trim(implode("\n", $results));
    ?>
 
    <?php if (!empty($this->intro_items)) : ?>
-      <?php foreach ($this->intro_items as $key => &$item) : ?>
-         <?php $rowcount = ((int) $key % (int) $this->columns) + 1; ?>
-         <?php if ($rowcount == 1) : ?>
-            <?php $row = $counter / $this->columns; ?>
-            <div class="items-row <?php echo 'row-' . $row; ?> row clearfix">
-            <?php endif; ?>
-            <div class="col-lg-<?php echo round((12 / $this->columns)); ?>">
-               <div class="article-wraper">
-                  <div class="article-wraper-inner">
-                     <article class="item column-<?php echo $rowcount; ?><?php echo $item->state == 0 ? ' system-unpublished' : null; ?><?php echo $item->featured ? ' item-featured' : ''; ?>" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-                        <?php
-                        $this->item = &$item;
-                        echo $this->loadTemplate('item');
-                        ?>
-                     </article>
-                  </div>
-               </div>
-               <?php $counter++; ?>
+      <div class="com-content-category-blog__items blog-items <?php echo $this->params->get('blog_class'); ?>">
+         <?php foreach ($this->intro_items as $key => &$item) : ?>
+            <div class="com-content-category-blog__item blog-item" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+               <?php
+               $this->item = &$item;
+               echo $this->loadTemplate('item');
+               ?>
             </div>
-            <?php if (($rowcount == $this->columns) or ($counter == $introcount)) : ?>
-            </div>
-         <?php endif; ?>
-      <?php endforeach; ?>
+         <?php endforeach; ?>
+      </div>
    <?php endif; ?>
 
    <?php if (!empty($this->link_items)) : ?>

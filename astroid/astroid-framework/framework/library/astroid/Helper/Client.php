@@ -160,6 +160,7 @@ class Client
         $astroid_dir = 'libraries/astroid';
         Helper::loadLanguage('astroid');
         $frontendVisibility = $pluginParams->get('frontend_tabs_visibility', 1);
+        
         \JForm::addFormPath(JPATH_SITE . '/' . $astroid_dir . '/framework/forms');
 
         $loaded = false;
@@ -212,6 +213,10 @@ class Client
                         setTimeout(fixTabs, 50);
                     }
                 }
+
+                var body = document.body;
+                body.classList.add("astroidOnJ4");
+
                 window.addEventListener(\'DOMContentLoaded\', function(){
                     setTimeout(fixTabs, 50);
                 });

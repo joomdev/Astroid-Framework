@@ -112,22 +112,32 @@ class Template
         $variables['gray100'] = $this->params->get('theme_gray100', '#f8f9fa');
         $variables['gray600'] = $this->params->get('theme_gray600', '#6c757d');
         $variables['gray800'] = $this->params->get('theme_gray800', '#343a40');
+
         $primary = $this->params->get('theme_primary', 'blue');
-        $variables['primary'] = $variables[$primary];
+        $variables['primary'] = ($primary == 'custom' ? $this->params->get('theme_primary_custom', $variables['blue']) : $variables[$primary]);
+
         $secondary = $this->params->get('theme_secondary', 'gray600');
-        $variables['secondary'] = $variables[$secondary];
+        $variables['secondary'] = ($secondary == 'custom' ? $this->params->get('theme_secondary_custom', $variables['gray600']) : $variables[$secondary]);
+
         $success = $this->params->get('theme_success', 'green');
-        $variables['success'] = $variables[$success];
+        $variables['success'] = ($success == 'custom' ? $this->params->get('theme_success_custom', $variables['green']) : $variables[$success]);
+
         $info = $this->params->get('theme_info', 'cyan');
-        $variables['info'] = $variables[$info];
+        $variables['info'] = ($info == 'custom' ? $this->params->get('theme_info_custom', $variables['cyan']) : $variables[$info]);
+
         $warning = $this->params->get('theme_warning', 'yellow');
-        $variables['warning'] = $variables[$warning];
+        $variables['warning'] = ($warning == 'custom' ? $this->params->get('theme_warning_custom', $variables['yellow']) : $variables[$warning]);
+
         $danger = $this->params->get('theme_danger', 'red');
         $variables['danger'] = $variables[$danger];
+        $variables['danger'] = ($danger == 'custom' ? $this->params->get('theme_danger_custom', $variables['red']) : $variables[$danger]);
+
         $light = $this->params->get('theme_light', 'gray100');
-        $variables['light'] = $variables[$light];
+        $variables['light'] = ($light == 'custom' ? $this->params->get('theme_light_custom', $variables['gray100']) : $variables[$light]);
+
         $dark = $this->params->get('theme_dark', 'gray800');
-        $variables['dark'] = $variables[$dark];
+        $variables['dark'] = ($dark == 'custom' ? $this->params->get('theme_dark_custom', $variables['gray800']) : $variables[$dark]);
+
         $variables = $this->_variableOverrides($variables);
         return $variables;
     }

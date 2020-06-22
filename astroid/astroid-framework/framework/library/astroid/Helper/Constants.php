@@ -41,7 +41,8 @@ class Constants
         'white' => 'TPL_COLOR_WHITE',
         'gray100' => 'TPL_COLOR_LIGHT_GREY',
         'gray600' => 'TPL_COLOR_GREY',
-        'gray800' => 'TPL_COLOR_GREY_DARK'
+        'gray800' => 'TPL_COLOR_GREY_DARK',
+        'custom' => 'TPL_COLOR_CUSTOM'
     ];
 
     public static $animations = [

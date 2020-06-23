@@ -66,3 +66,7 @@
 .review-good-bad {
    background-color: rgba($primary, .15);
 }
+
+.article-wraper .card-body:not(.has-image) {
+   padding-top: 50px;
+}

@@ -66,12 +66,16 @@ ul.tags{
 .article-wraper {
 	height: 100%;
 	padding-bottom: 30px;
+	.card-body:not(.has-image) {
+		.article-post-type {
+			display: none;
+		}
+	}
 }
 
 .article-wraper-inner {
 	@extend .card;
 	height: 100%;
-	overflow: hidden;
 }
 
 .article-icon {

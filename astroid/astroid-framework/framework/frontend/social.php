@@ -12,6 +12,7 @@
 // No direct access.
 defined('_JEXEC') or die;
 extract($displayData);
+$document = Astroid\Framework::getDocument();
 $params = Astroid\Framework::getTemplate()->getParams();
 
 $social_profiles = $params->get('social_profiles', []);
@@ -39,7 +40,11 @@ $class = @$class;
             $social_profile_link = $social_profile->link;
             break;
       }
-      echo '<li><a style="color:' . ($style == 1 ? 'inherit;' : $social_profile->color . ' !important;') . '" href="' . $social_profile_link . '" target="_blank" rel="noopener"><i class="' . $social_profile->icon . '"></i></a></li>';
+      $sid = md5($social_profile->color . $social_profile_link . $social_profile->icon);
+      echo '<li><a id="' . $sid . '" href="' . $social_profile_link . '" target="_blank" rel="noopener"><i class="' . $social_profile->icon . '"></i></a></li>';
+      if ($style == 1) {
+         $document->addStyledeclaration('#' . $sid . '{color: ' . $social_profile->color . '}');
+      }
    }
    ?>
 </ul>

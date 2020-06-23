@@ -40,7 +40,7 @@ $navWrapperClass = ['align-self-center', 'px-2', 'd-none', 'd-lg-block'];
             </div>
          </div>
       <?php } ?>
-      <div class="header-left-section d-flex justify-content-center<?php echo $mode == 'left' ? ' flex-grow-1' : ''; ?>">
+      <div class="header-left-section d-flex justify-content-center<?php echo $mode == 'left' ? ' flex-md-grow-1' : ''; ?>">
          <?php $document->include('logo'); ?>
          <?php
          if ($mode == 'left') {
@@ -55,7 +55,7 @@ $navWrapperClass = ['align-self-center', 'px-2', 'd-none', 'd-lg-block'];
       <?php endif; ?>
       <?php
       if ($mode == 'center') {
-         echo '<div class="header-center-section d-none d-lg-flex justify-content-center' . ($mode == 'center' ? ' flex-grow-1' : '') . '">';
+         echo '<div class="header-center-section d-none d-lg-flex justify-content-center' . ($mode == 'center' ? ' flex-md-grow-1' : '') . '">';
          // header nav starts
          Astroid\Component\Menu::getMenu($header_menu, $navClass, null, 'left', 'horizontal', $navWrapperClass);
          // header nav ends
@@ -63,7 +63,7 @@ $navWrapperClass = ['align-self-center', 'px-2', 'd-none', 'd-lg-block'];
       }
       ?>
       <?php if ($block_1_type != 'blank' || $mode == 'right' || $enable_offcanvas) : ?>
-         <div class="header-right-section d-flex justify-content-end<?php echo $mode == 'right' ? ' flex-grow-1' : ''; ?>">
+         <div class="header-right-section d-flex justify-content-end<?php echo $mode == 'right' ? ' flex-md-grow-1' : ''; ?>">
             <?php
             if ($mode == 'right') {
                // header nav starts

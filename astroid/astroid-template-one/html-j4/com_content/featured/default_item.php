@@ -44,10 +44,14 @@ $post_format = $post_attribs->get('post_format', 'standard');
       <div class="item-title">
          <?php echo JLayoutHelper::render('joomla.content.blog_style_default_item_title', $this->item); ?>
       </div>
+      <?php if (!$params->get('show_intro')) : ?>
+         <?php echo $this->item->event->afterDisplayTitle; ?>
+      <?php endif; ?>
       <?php echo JLayoutHelper::render('joomla.content.post_formats.icons', $post_format); ?>
       <?php if ($useDefList && ($info == 0 || $info == 2)) : ?>
          <?php echo JLayoutHelper::render('joomla.content.info_block.block', array('item' => $this->item, 'params' => $params, 'astroidArticle' => $astroidArticle, 'position' => 'above')); ?>
       <?php endif; ?>
+      <?php echo $this->item->event->beforeDisplayContent; ?>
       <?php echo $this->item->introtext; ?>
       <?php if ($info == 1 || $info == 2) : ?>
          <?php if ($useDefList) : ?>
@@ -56,10 +60,6 @@ $post_format = $post_attribs->get('post_format', 'standard');
             <?php echo JLayoutHelper::render('joomla.content.info_block.block', array('item' => $this->item, 'params' => $params, 'astroidArticle' => $astroidArticle, 'position' => 'below')); ?>
          <?php endif; ?>
       <?php endif; ?>
-      <?php if (!$params->get('show_intro')) : ?>
-         <?php echo $this->item->event->afterDisplayTitle; ?>
-      <?php endif; ?>
-      <?php echo $this->item->event->beforeDisplayContent; ?>
       <?php
       if ($params->get('show_readmore') && $this->item->readmore) :
          if ($params->get('access-view')) :

@@ -630,6 +630,10 @@ var AstroidAdmin = function AstroidAdmin() {
    };
 
    this.checkForm = function () {
+      if (Admin.lastSession === null) {
+         Admin.saveMe();
+         return false;
+      }
       try {
          var currentSession = $('#astroid-form').serializeArray();
          if (!_.isEqual(currentSession, Admin.lastSession)) {
@@ -793,7 +797,6 @@ var AstroidAdmin = function AstroidAdmin() {
       }
       //Admin.livePreview();
       setTimeout(function () {
-         Admin.saveMe();
          Admin.watchForm();
       }, 1100);
       setTimeout(function () {

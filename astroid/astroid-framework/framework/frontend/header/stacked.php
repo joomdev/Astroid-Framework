@@ -51,7 +51,7 @@ $navWrapperClass = ['astroid-nav-wraper', 'align-self-center', 'px-2', 'd-none',
                </div>
             <?php } ?>
             <?php
-            $logo = $document->include('logo');
+            $logo = $document->include('logo', [], true);
             if (!empty($logo)) {
                echo '<div class="d-flex w-100 justify-content-center">' . $logo . '</div>';
             }
@@ -116,7 +116,7 @@ $navWrapperClass = ['astroid-nav-wraper', 'align-self-center', 'px-2', 'd-none',
                <?php
                }
                echo '<div class="d-flex w-100 justify-content-center">';
-               $logo = $document->include('logo');
+               $logo = $document->include('logo', [], true);
                if (empty($logo)) {
                   echo '<div class="d-lg-none">' . $logo . '</div>';
                }

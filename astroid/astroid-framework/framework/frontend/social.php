@@ -42,7 +42,7 @@ $class = @$class;
       }
       $sid = md5($social_profile->color . $social_profile_link . $social_profile->icon);
       echo '<li><a id="' . $sid . '" href="' . $social_profile_link . '" target="_blank" rel="noopener"><i class="' . $social_profile->icon . '"></i></a></li>';
-      if ($style == 1) {
+      if ($style != 1) {
          $document->addStyledeclaration('#' . $sid . '{color: ' . $social_profile->color . '}');
       }
    }

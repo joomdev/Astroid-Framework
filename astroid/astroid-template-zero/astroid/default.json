@@ -492,6 +492,7 @@
    "article_opengraph": "1",
    "article_opengraph_facebook": "",
    "article_opengraph_twitter": "",
+   "twittercardtype": "summary_large_image",
    "article_comments": "none",
    "article_comments_fb_id": "",
    "article_comments_fb_width": "200",

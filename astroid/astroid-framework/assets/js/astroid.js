@@ -794,13 +794,11 @@ var AstroidAdmin = function AstroidAdmin() {
       //Admin.livePreview();
       setTimeout(function () {
          Admin.saveMe();
+         Admin.watchForm();
       }, 1100);
       setTimeout(function () {
          _this.loading(false);
       }, 1200);
-      setTimeout(function () {
-         Admin.watchForm();
-      }, 1300);
       this.initCodeArea();
       if (ASTROID_IS_MOBILE) {
          Admin.toggleSidebar();

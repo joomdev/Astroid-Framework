@@ -538,6 +538,16 @@ astroidFramework.directive("selectUi", function () {
                fullTextSearch: true
             })
          }, 200)
+
+         setTimeout(function () {
+            var setColor = function () {
+               if ($(element).val() != ngModel.$modelValue) {
+                  $(element).val(ngModel.$modelValue);
+                  $(element).dropdown('refresh');
+               }
+            };
+            scope.$watch(attrs["ngModel"], setColor)
+         }, 1000);
       }
    }
 });

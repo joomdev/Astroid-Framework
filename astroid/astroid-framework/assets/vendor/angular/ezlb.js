@@ -227,7 +227,7 @@ astroidFramework.controller('layoutController', function ($scope, $compile) {
    $scope.layout = _layout;
 
    $scope.save = function () {
-      console.log($scope.layout);
+      // console.log($scope.layout);
    };
 
    $scope.focusEditTitle = function ($event, _section) {
@@ -299,8 +299,8 @@ astroidFramework.controller('layoutController', function ($scope, $compile) {
    };
 
    $scope.addToLibrarySection = function (_section) {
-      console.log(_section);
-      console.log("Added to library");
+      // console.log(_section);
+      // console.log("Added to library");
       $scope.savingSection = {
          open: 0,
          section: null

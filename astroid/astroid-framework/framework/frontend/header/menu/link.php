@@ -128,11 +128,11 @@ if ($item->type == 'url') {
             </span>
          <?php } ?>
       <?php } ?>
-      <?php if ((!$is_mobile_menu && $item->level == 1 && (($item->parent && $item->deeper == 1) || $options->megamenu)) && ($item->level != $header_endLevel)) { ?>
+      <?php if ((!$is_mobile_menu && $item->level == 1 && (($item->parent && $item->deeper == 1) || $options->megamenu)) && ($item->level != $header_endLevel) && !$slidemenu) { ?>
          <?php if ($params->get('dropdown_arrow', 0)) {  ?>
             <i class="fas fa-chevron-down nav-item-caret"></i>
          <?php } ?>
-      <?php } elseif ((!$is_mobile_menu && $item->parent && !($item->type == "heading" || $item->type == "separator")) && $item->level != $header_endLevel) { ?>
+      <?php } elseif ((!$is_mobile_menu && $item->parent && !($item->type == "heading" || $item->type == "separator")) && $item->level != $header_endLevel && !$slidemenu) { ?>
          <i class="fas fa-chevron-right nav-item-caret"></i>
       <?php } ?>
    </span>

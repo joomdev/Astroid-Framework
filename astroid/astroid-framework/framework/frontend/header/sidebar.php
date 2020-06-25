@@ -20,7 +20,7 @@ $header = $params->get('header', TRUE);
 $header_mode = $params->get('header_mode', 'horizontal');
 
 if (!($header && !empty($header_mode) && $header_mode == 'sidebar')) {
-   return;
+    return;
 }
 
 $mode = $params->get('header_sidebar_menu_mode', 'left');
@@ -55,7 +55,9 @@ $navWrapperClass = ['align-self-center', 'px-2', 'd-none', 'd-lg-block'];
                     </div>
                 </div>
             <?php } ?>
-            <?php $document->include('logo'); ?>
+            <div class="flex-grow-1">
+                <?php $document->include('logo'); ?>
+            </div>
         </div>
         <?php if ($block_1_type != 'blank') : ?>
             <div class="astroid-sidebar-block astroid-sidebar-block-1">

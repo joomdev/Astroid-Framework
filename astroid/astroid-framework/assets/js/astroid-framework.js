@@ -539,14 +539,13 @@ astroidFramework.directive("selectUi", function () {
             })
          }, 200)
 
+         var setValue = function () {
+            $(element).dropdown('set selected', ngModel.$modelValue);
+            $(element).dropdown('refresh');
+         };
+
          setTimeout(function () {
-            var setColor = function () {
-               if ($(element).val() != ngModel.$modelValue) {
-                  $(element).val(ngModel.$modelValue);
-                  $(element).dropdown('refresh');
-               }
-            };
-            scope.$watch(attrs["ngModel"], setColor)
+            scope.$watch(attrs["ngModel"], setValue);
          }, 1000);
       }
    }

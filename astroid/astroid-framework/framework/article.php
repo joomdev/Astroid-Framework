@@ -6,6 +6,9 @@
  * @copyright Copyright (C) 2009 - 2020 JoomDev.
  * @license https://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
  */
+
+use Astroid\Framework;
+
 defined('_JEXEC') or die;
 jimport('astroid.framework.helper');
 jimport('astroid.framework.constants');
@@ -401,9 +404,9 @@ class AstroidFrameworkArticle
    public function renderRating()
    {
       if ($this->showRating()) {
-         $document = JFactory::getDocument();
-         $document->addCustomTag('<script src="//cdn.jsdelivr.net/npm/semantic-ui@2.4.0/dist/components/rating.min.js"></script>');
-         $document->addStylesheet('//cdn.jsdelivr.net/npm/semantic-ui@2.4.0/dist/components/rating.min.css');
+         $document = Framework::getDocument();
+         $document->addScript('//cdn.jsdelivr.net/npm/semantic-ui@2.4.0/dist/components/rating.min.js', 'body');
+         $document->addStyleSheet('//cdn.jsdelivr.net/npm/semantic-ui@2.4.0/dist/components/rating.min.css');
       }
    }
 

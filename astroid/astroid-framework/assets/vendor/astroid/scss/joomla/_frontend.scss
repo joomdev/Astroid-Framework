@@ -13,3 +13,11 @@ ul.categories-module {
 		}
 	}
 }
+
+.content-edit-dropdown.open {
+	*z-index: 1000;
+}
+
+.content-edit-dropdown.open>.dropdown-menu {
+	display: block;
+}

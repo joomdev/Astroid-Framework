@@ -1,6 +1,6 @@
 {
-   "title": "My Preset",
-   "thumbnail": "",
+   "title": "Preset 1",
+   "thumbnail": "astroid/presets/preset1.jpg",
    "colors": {
       "preloader_color": "rgb(69, 191, 85)",
       "preloader_bgcolor": "rgb(255, 255, 255)",
@@ -34,6 +34,13 @@
       "mobile_menu_active_bg_color": "rgb(255, 255, 255)",
       "mobile_menu_icon_color": "rgb(0, 0, 0)",
       "mobile_menu_active_icon_color": "rgb(0, 0, 0)",
+      "mobilemenu_backgroundcolor": "rgb(255, 255, 255)",
+      "mobilemenu_menu_text_color": "rgb(0, 0, 0)",
+      "mobilemenu_menu_link_color": "rgb(0, 0, 0)",
+      "mobilemenu_menu_active_link_color": "rgb(255, 51, 102)",
+      "mobilemenu_menu_active_bg_color": "rgb(255, 255, 255)",
+      "mobilemenu_menu_icon_color": "rgb(0, 0, 0)",
+      "mobilemenu_menu_active_icon_color": "rgb(0, 0, 0)",
       "h1_typography_options": {
          "font_color": ""
       },
@@ -70,6 +77,22 @@
       "theme_white": "rgb(255, 255, 255)",
       "theme_gray100": "rgb(248, 249, 250)",
       "theme_gray600": "rgb(108, 117, 125)",
-      "theme_gray800": "rgb(44, 46, 54)"
+      "theme_gray800": "rgb(44, 46, 54)",
+      "theme_primary": "green",
+      "theme_primary_custom": "",
+      "theme_secondary": "gray800",
+      "theme_secondary_custom": "",
+      "theme_success": "green",
+      "theme_success_custom": "",
+      "theme_info": "cyan",
+      "theme_info_custom": "",
+      "theme_warning": "yellow",
+      "theme_warning_custom": "",
+      "theme_danger": "red",
+      "theme_danger_custom": "",
+      "theme_light": "gray100",
+      "theme_light_custom": "",
+      "theme_dark": "gray800",
+      "theme_dark_custom": ""
    }
 }

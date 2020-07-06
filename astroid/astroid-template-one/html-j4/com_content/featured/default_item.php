@@ -49,7 +49,7 @@ $post_format = $post_attribs->get('post_format', 'standard');
       <?php endif; ?>
       <?php echo JLayoutHelper::render('joomla.content.post_formats.icons', $post_format); ?>
       <?php if ($useDefList && ($info == 0 || $info == 2)) : ?>
-         <?php echo JLayoutHelper::render('joomla.content.info_block.block', array('item' => $this->item, 'params' => $params, 'astroidArticle' => $astroidArticle, 'position' => 'above')); ?>
+         <?php echo JLayoutHelper::render('joomla.content.info_block', array('item' => $this->item, 'params' => $params, 'astroidArticle' => $astroidArticle, 'position' => 'above')); ?>
       <?php endif; ?>
       <?php echo $this->item->event->beforeDisplayContent; ?>
       <?php echo $this->item->introtext; ?>
@@ -57,7 +57,7 @@ $post_format = $post_attribs->get('post_format', 'standard');
          <?php if ($useDefList) : ?>
             <?php // Todo: for Joomla4 joomla.content.info_block.block can be changed to joomla.content.info_block 
             ?>
-            <?php echo JLayoutHelper::render('joomla.content.info_block.block', array('item' => $this->item, 'params' => $params, 'astroidArticle' => $astroidArticle, 'position' => 'below')); ?>
+            <?php echo JLayoutHelper::render('joomla.content.info_block', array('item' => $this->item, 'params' => $params, 'astroidArticle' => $astroidArticle, 'position' => 'below')); ?>
          <?php endif; ?>
       <?php endif; ?>
       <?php

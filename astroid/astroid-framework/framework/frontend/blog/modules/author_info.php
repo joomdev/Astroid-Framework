@@ -19,8 +19,16 @@ $params = new JRegistry();
 $params->loadString($user->params, 'JSON');
 // Get social profiles
 $socials = $params->get('astroid_author_social', '[]');
-$socials = \json_decode($socials, true);
-
+if (is_string($socials)) {
+   $socials = \json_decode($socials, true);
+} else {
+   $items = [];
+   foreach ($socials as $social) {
+      $items['icon'][] = $social->icon;
+      $items['link'][] = $social->link;
+   }
+   $socials = $items;
+}
 $hash_email = md5(strtolower(trim($user->email)));
 ?>
 

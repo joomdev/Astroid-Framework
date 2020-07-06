@@ -56,6 +56,13 @@ class Template
                 }
             }
         }
+
+        if (Framework::isSite()) {
+            $preset = \JFactory::getApplication()->input->get('preset', '');
+            if (!empty($preset)) {
+                $this->setPreset($preset);
+            }
+        }
     }
 
     private function _set($id)
@@ -235,14 +242,17 @@ class Template
     public function setPreset($preset)
     {
         $presets = $this->getPresets();
-        if (!in_array($preset, $presets)) {
+        if (!in_array($preset, array_keys($presets))) {
             return;
         }
 
-        $data = $presets[$preset];
+        $data = $presets[$preset]['preset'];
         foreach ($data as $attr => $val) {
             if (is_array($val)) {
                 $obj = $this->params->get($attr);
+                if ($obj == null) {
+                    $obj = new \stdClass();
+                }
                 foreach ($val as $subattr => $subval) {
                     $obj->{$subattr} = $subval;
                 }

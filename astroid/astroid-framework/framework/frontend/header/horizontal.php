@@ -40,7 +40,7 @@ $navWrapperClass = ['align-self-center', 'px-2', 'd-none', 'd-lg-block'];
             </div>
          </div>
       <?php } ?>
-      <div class="header-left-section d-flex justify-content-center<?php echo $mode == 'left' ? ' flex-lg-grow-1' : ''; ?>">
+      <div class="header-left-section d-flex justify-content-start<?php echo $mode == 'left' ? ' flex-lg-grow-1' : ''; ?>">
          <?php $document->include('logo'); ?>
          <?php
          if ($mode == 'left') {

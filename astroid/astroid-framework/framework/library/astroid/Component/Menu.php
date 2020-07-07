@@ -33,6 +33,8 @@ class Menu
 
         $params = Framework::getTemplate()->getParams();
         $document = Framework::getDocument();
+        $document->addScript('vendor/astroid/js/megamenu.js', 'body');
+        $document->addScript('vendor/hoverIntent/jquery.hoverIntent.min.js', 'body');
 
         $header_endLevel = $params->get('header_endLevel', 0);
         if ($endLevel !== null) {
@@ -149,8 +151,6 @@ class Menu
     public static function getMegaMenu($item, $options, $items)
     {
         $document = Framework::getDocument();
-        $document->addScript('vendor/astroid/js/megamenu.js', 'body');
-        $document->addScript('vendor/hoverIntent/jquery.hoverIntent.min.js', 'body');
         if (!empty($options->rows)) {
             echo '<div style="width:' . $options->width . '" class="megamenu-container">';
             foreach ($options->rows as $row) {

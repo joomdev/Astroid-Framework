@@ -160,7 +160,7 @@ class Client
         $astroid_dir = 'libraries/astroid';
         Helper::loadLanguage('astroid');
         $frontendVisibility = $pluginParams->get('frontend_tabs_visibility', 1);
-        
+
         \JForm::addFormPath(JPATH_SITE . '/' . $astroid_dir . '/framework/forms');
 
         $loaded = false;
@@ -203,7 +203,7 @@ class Client
             (function(){
                 var fixed = false;
                 var fixTabs = function () {
-                    var items = document.querySelectorAll("[id^=tab-attrib-]");
+                    var items = document.querySelectorAll("[href^=\'#attrib-\']");
                     if (items.length) {
                         items.forEach(function (item) {
                             item.innerHTML = item.innerText;
@@ -215,7 +215,7 @@ class Client
                 }
 
                 var body = document.body;
-                body.classList.add("astroidOnJ4");
+                if(body!==null){body.classList.add("astroidOnJ4");}
 
                 window.addEventListener(\'DOMContentLoaded\', function(){
                     setTimeout(fixTabs, 50);

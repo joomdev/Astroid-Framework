@@ -103,7 +103,7 @@ class AstroidFrameworkTemplate
       $og_siteurl = JURI::getInstance();
 
       $meta = [];
-      $meta[] = '<meta name="twitter:card" content="summary" />';
+      $meta[] = '<meta name="twitter:card" content="summary_large_image" />';
 
       if ($item->type == 'component' && isset($item->query) && $item->query['option'] == 'com_content' && $item->query['view'] == 'article') {
          $meta[] = '<meta property="og:type" content="article">';

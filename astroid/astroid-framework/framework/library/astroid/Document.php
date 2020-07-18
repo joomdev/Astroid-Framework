@@ -811,14 +811,14 @@ class Document
         if (file_exists($templateScssPath . '/custom/variable_overrides.scss')) {
             $functionsIncluded = true;
             $content .= '@import "' . ASTROID_MEDIA . '/vendor/bootstrap/scss/functions";';
-            $content .= '@import "' . $templateScssPath . '/custom/variable_overrides";';
+            $content .= '@import "' . $templateScssPath . '/custom/variable_overrides.scss";';
         }
 
         if (file_exists($templateScssPath . '/variable_overrides.scss')) {
             if (!$functionsIncluded) {
                 $content .= '@import "' . ASTROID_MEDIA . '/vendor/bootstrap/scss/functions";';
             }
-            $content .= '@import "' . $templateScssPath . '/variable_overrides";';
+            $content .= '@import "' . $templateScssPath . '/variable_overrides.scss";';
         }
 
         $content .= '@import "' . ASTROID_MEDIA . '/vendor/bootstrap/scss/bootstrap";';

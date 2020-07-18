@@ -28,6 +28,7 @@ class Constants
     public static $jd_builder_link = 'https://www.joomdev.com/jd-builder';
 
     public static $bootstrap_colors = [
+        '' => 'TPL_COLOR_DEFAULT',
         'blue' => 'TPL_COLOR_BLUE',
         'indigo' => 'TPL_COLOR_INDIGO',
         'purple' => 'TPL_COLOR_PURPLE',

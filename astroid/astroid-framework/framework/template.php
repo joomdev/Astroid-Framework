@@ -1072,7 +1072,11 @@ class AstroidFrameworkTemplate
    public function inspect()
    {
       // fix for typography
-      if ($this->version < 2.3) {
+      $extension = \JTable::getInstance('extension');
+      $id = $extension->find(array('element' => 'astroid', 'type' => 'library'));
+      $extension->load($id);
+      $frameworkInfo = json_decode($extension->manifest_cache, true);
+      if ($frameworkInfo['version'] < 2.3) {
          foreach (['body', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'] as $typo) {
             $typoType = $this->params->get($typo . '_typography');
             if (trim($typoType) == 'custom') {

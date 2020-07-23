@@ -25,7 +25,7 @@ class Menu
 
     public static $parentlist = [];
 
-    public static function getMenu($menutype = '', $nav_class = [], $logo = null, $logoOdd = 'left', $headerType = 'horizontal', $nav_wrapper_class = [], $endLevel = null, $mobileMenu = false)
+    public static function getMenu($menutype = '', $nav_class = [], $logo = null, $logoOdd = 'left', $headerType = 'horizontal', $nav_wrapper_class = [], $endLevel = null)
     {
         if (empty($menutype)) {
             return '';
@@ -112,7 +112,7 @@ class Menu
                 echo '</li>';
             } elseif (!$options->megamenu) {
                 echo '<li data-position="' . $options->alignment . '" class="' . \implode(' ', $class) . '">';
-                $document->include('header.menu.link', ['item' => $item, 'options' => $options, 'mobilemenu' => $mobileMenu, 'active' => in_array('nav-item-active', $class), 'header' => $headerType]);
+                $document->include('header.menu.link', ['item' => $item, 'options' => $options, 'mobilemenu' => false, 'active' => in_array('nav-item-active', $class), 'header' => $headerType]);
 
                 if ($item->level == 1 && $item->parent) {
                     echo '<div style="width:' . $options->width . '" class="megamenu-container nav-submenu-container nav-item-level-' . $item->level . '">';
@@ -555,7 +555,7 @@ class Menu
         return $class;
     }
 
-    public static function getMobileMenu($menutype = '')
+    public static function getMobileMenu($menutype = '', $nav_class = [])
     {
         if (empty($menutype)) {
             return '';
@@ -579,7 +579,7 @@ class Menu
         $path = $base->tree;
         $showAll = 1;
 
-        echo '<ul class="astroid-mobile-menu d-none">';
+        echo '<ul class="astroid-mobile-menu d-none' . (empty($nav_class) ? '' : ' ' . implode(' ', $nav_class)) . '">';
         $megamenu = false;
         $count_menu = 0;
         foreach ($list as $i => &$item) {

@@ -25,7 +25,7 @@ class Menu
 
     public static $parentlist = [];
 
-    public static function getMenu($menutype = '', $nav_class = [], $logo = null, $logoOdd = 'left', $headerType = 'horizontal', $nav_wrapper_class = [], $endLevel = null)
+    public static function getMenu($menutype = '', $nav_class = [], $logo = null, $logoOdd = 'left', $headerType = 'horizontal', $nav_wrapper_class = [], $endLevel = null, $mobileMenu = false)
     {
         if (empty($menutype)) {
             return '';
@@ -112,7 +112,7 @@ class Menu
                 echo '</li>';
             } elseif (!$options->megamenu) {
                 echo '<li data-position="' . $options->alignment . '" class="' . \implode(' ', $class) . '">';
-                $document->include('header.menu.link', ['item' => $item, 'options' => $options, 'mobilemenu' => false, 'active' => in_array('nav-item-active', $class), 'header' => $headerType]);
+                $document->include('header.menu.link', ['item' => $item, 'options' => $options, 'mobilemenu' => $mobileMenu, 'active' => in_array('nav-item-active', $class), 'header' => $headerType]);
 
                 if ($item->level == 1 && $item->parent) {
                     echo '<div style="width:' . $options->width . '" class="megamenu-container nav-submenu-container nav-item-level-' . $item->level . '">';

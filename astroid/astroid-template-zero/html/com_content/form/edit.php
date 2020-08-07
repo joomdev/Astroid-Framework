@@ -100,7 +100,7 @@ JFactory::getDocument()->addScriptDeclaration("
 	{
 		if (task == 'article.cancel' || document.formvalidator.isValid(document.getElementById('adminForm')))
 		{
-			" . $this->form->getField('articletext')->save() . "
+			".$this->form->getField('articletext')->save()."
 			Joomla.submitform(task);
 		}
 	}
@@ -115,7 +115,7 @@ JFactory::getDocument()->addScriptDeclaration("
 	</div>
 	<?php endif; ?>
 
-	<form action="<?php echo JRoute::_('index.php?option=com_content&a_id=' . (int) $this->item->id); ?>" method="post" name="adminForm" id="adminForm" class="form-validate form-vertical com-content-adminForm">
+	<form action="<?php echo JRoute::_('index.php?option=com_content&a_id='.(int) $this->item->id); ?>" method="post" name="adminForm" id="adminForm" class="form-validate form-vertical com-content-adminForm">
 		<fieldset>
 			<?php echo JHtml::_('bootstrap.startTabSet', $this->tab_name, array('active' => 'editor')); ?>
 

@@ -15,7 +15,7 @@ $astroidArticle = new AstroidFrameworkArticle($this->item, true);
 // Create a shortcut for params.
 $params = $this->item->params;
 $tpl_params = JFactory::getApplication()->getTemplate(true)->params;
-JHtml::addIncludePath(JPATH_COMPONENT . '/helpers/html');
+JHtml::addIncludePath(JPATH_COMPONENT.'/helpers/html');
 $canEdit = $this->item->params->get('access-edit');
 $info = $params->get('info_block_position', 0);
 $useDefList = ($params->get('show_modify_date') || $params->get('show_publish_date') || $params->get('show_create_date') || $params->get('show_hits') || $params->get('show_category') || $params->get('show_parent_category') || $params->get('show_author') ||  $template->params->get('astroid_readtime', 1));
@@ -32,7 +32,7 @@ $post_format = $post_attribs->get('post_format', 'standard');
    if ($post_format == 'standard') {
       echo JLayoutHelper::render('joomla.content.intro_image', $this->item);
    } else {
-      echo JLayoutHelper::render('joomla.content.post_formats.post_' . $post_format, array('params' => $post_attribs, 'item' => $this->item));
+      echo JLayoutHelper::render('joomla.content.post_formats.post_'.$post_format, array('params' => $post_attribs, 'item' => $this->item));
    }
    $image = $astroidArticle->getImage();
    if (is_string($image) && !empty($image)) {
@@ -68,7 +68,7 @@ $post_format = $post_attribs->get('post_format', 'standard');
             $menu = JFactory::getApplication()->getMenu();
             $active = $menu->getActive();
             $itemId = $active->id;
-            $link1 = JRoute::_('index.php?option=com_users&view=login&Itemid=' . $itemId);
+            $link1 = JRoute::_('index.php?option=com_users&view=login&Itemid='.$itemId);
             $returnURL = JRoute::_(ContentHelperRoute::getArticleRoute($this->item->slug, $this->item->catid, $this->item->language));
             $link = new JUri($link1);
             $link->setVar('return', base64_encode($returnURL));

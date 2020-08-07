@@ -18,7 +18,7 @@ $mode = $template->params->get('header_mode', 'horizontal');
 if (!$header || $mode == 'sidebar') {
    return;
 }
-$template->loadLayout('header.' . $mode, true);
+$template->loadLayout('header.'.$mode, true);
 $enable_sticky_menu = $template->params->get('enable_sticky_menu', false);
 if ($enable_sticky_menu) {
    $template->loadLayout('header.sticky', true);

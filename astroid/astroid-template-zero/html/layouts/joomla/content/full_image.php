@@ -23,7 +23,7 @@ if(isset($attribs->spfeatured_image) && $attribs->spfeatured_image != '') {
 	<?php $imgfloat = (empty($images->float_fulltext)) ? $params->get('float_fulltext') : $images->float_fulltext; ?>
 	<div class="entry-image full-image mb-3"> <img
 		<?php if ($images->image_fulltext_caption):
-		echo 'class="caption"' . ' title="' . htmlspecialchars($images->image_fulltext_caption) . '"';
+		echo 'class="caption"'.' title="'.htmlspecialchars($images->image_fulltext_caption).'"';
 		endif; ?>
 		src="<?php echo htmlspecialchars($full_image); ?>" alt="<?php echo htmlspecialchars($images->image_fulltext_alt); ?>" itemprop="image" class="img-fluid"/> </div>
 <?php } ?>

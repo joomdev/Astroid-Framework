@@ -47,7 +47,7 @@ extract($displayData);
 
 if (!$readonly)
 {
-	JHtml::_('behavior.modal', 'a.modal_' . $id);
+	JHtml::_('behavior.modal', 'a.modal_'.$id);
 	JHtml::_('script', 'jui/fielduser.min.js', array('version' => 'auto', 'relative' => true));
 }
 
@@ -96,7 +96,7 @@ if (!$readonly)
 }
 
 $anchorAttributes = array(
-	'class' => 'btn btn-primary modal_' . $id, 'title' => JText::_('JLIB_FORM_CHANGE_USER'), 'rel' => '{handler: \'iframe\', size: {x: 800, y: 500}}'
+	'class' => 'btn btn-primary modal_'.$id, 'title' => JText::_('JLIB_FORM_CHANGE_USER'), 'rel' => '{handler: \'iframe\', size: {x: 800, y: 500}}'
 );
 
 ?>

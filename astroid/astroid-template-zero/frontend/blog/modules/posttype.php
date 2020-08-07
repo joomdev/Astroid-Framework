@@ -20,14 +20,14 @@ $icon = '';
 switch ($type) {
    case 'video':
       $type = $params->get('astroid_article_video_type', 'youtube');
-      $icon = 'fab fa-' . $type;
+      $icon = 'fab fa-'.$type;
       break;
    case 'gallery':
       $icon = 'far fa-images';
       break;
    case 'audio':
       $type = $params->get('astroid_article_audio_source', 'soundcloud');
-      $icon = 'fab fa-' . $type;
+      $icon = 'fab fa-'.$type;
       break;
    case 'review':
       $icon = 'far fa-star';
@@ -39,6 +39,6 @@ switch ($type) {
 ?>
 <?php if (!empty($icon)) { ?>
    <dd class="article-post-type">
-      <span class="article-icon article-icon-<?php echo $type; ?>"><?php echo!empty($icon) ? '<i class="' . $icon . '"></i>' : ''; ?></span>
+      <span class="article-icon article-icon-<?php echo $type; ?>"><?php echo!empty($icon) ? '<i class="'.$icon.'"></i>' : ''; ?></span>
    </dd>
 <?php } ?>

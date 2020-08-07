@@ -71,7 +71,7 @@ defined('_JEXEC') or die;
 function pagination_list_footer($list) {
    $html = "<div class=\"pagination\">\n";
    $html .= $list['pageslinks'];
-   $html .= "\n<input type=\"hidden\" name=\"" . $list['prefix'] . "limitstart\" value=\"" . $list['limitstart'] . "\" />";
+   $html .= "\n<input type=\"hidden\" name=\"".$list['prefix']."limitstart\" value=\"".$list['limitstart']."\" />";
    $html .= "\n</div>";
 
    return $html;
@@ -104,7 +104,7 @@ function pagination_list_render($list) {
       }
    }
 
-   $html = '<nav role="navigation" aria-label="' . JText::_('JLIB_HTML_PAGINATION') . '">';
+   $html = '<nav role="navigation" aria-label="'.JText::_('JLIB_HTML_PAGINATION').'">';
    $html .= '<ul class="pagination">';
    $html .= $list['start']['data'];
    $html .= $list['previous']['data'];
@@ -168,7 +168,7 @@ function pagination_item_active(&$item) {
       $class = ' class="hideonxs page-item"';
    }
 
-   return '<li' . $class . '><a title="' . $item->text . '" href="' . $item->link . '" class="pagenav page-link" aria-label="' . $aria . '">' . $display . '</a></li>';
+   return '<li'.$class.'><a title="'.$item->text.'" href="'.$item->link.'" class="pagenav page-link" aria-label="'.$aria.'">'.$display.'</a></li>';
 }
 
 /**
@@ -205,9 +205,9 @@ function pagination_item_inactive(&$item) {
    if (isset($item->active) && $item->active) {
       $aria = JText::sprintf('JLIB_HTML_PAGE_CURRENT', $item->text);
 
-      return '<li class="active page-item"><a class="page-link" href="#" aria-current="true" aria-label="' . $aria . '">' . $item->text . '</a></li>';
+      return '<li class="active page-item"><a class="page-link" href="#" aria-current="true" aria-label="'.$aria.'">'.$item->text.'</a></li>';
    }
 
    // Doesn't match any other condition, render a normal item
-   return '<li class="d-none hidden-phone page-item"><a>' . $item->text . '</a></li>';
+   return '<li class="d-none hidden-phone page-item"><a>'.$item->text.'</a></li>';
 }

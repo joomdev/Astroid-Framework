@@ -58,7 +58,7 @@ $format = '<input type="checkbox" id="%1$s" name="%2$s" value="%3$s" %4$s />';
 $alt = preg_replace('/[^a-zA-Z0-9_\-]/', '_', $name);
 ?>
 
-<fieldset id="<?php echo $id; ?>" class="<?php echo trim($class . ' checkboxes'); ?>"
+<fieldset id="<?php echo $id; ?>" class="<?php echo trim($class.' checkboxes'); ?>"
 	<?php echo $required ? 'required aria-required="true"' : ''; ?>
 	<?php echo $autofocus ? 'autofocus' : ''; ?>>
 
@@ -69,14 +69,14 @@ $alt = preg_replace('/[^a-zA-Z0-9_\-]/', '_', $name);
 
 			// In case there is no stored value, use the option's default state.
 			$checked        = (!$hasValue && $option->checked) ? 'checked' : $checked;
-			$optionClass    = !empty($option->class) ? 'class="' . $option->class . '"' : '';
+			$optionClass    = !empty($option->class) ? 'class="'.$option->class.'"' : '';
 			$optionDisabled = !empty($option->disable) || $disabled ? 'disabled' : '';
 
 			// Initialize some JavaScript option attributes.
-			$onclick  = !empty($option->onclick) ? 'onclick="' . $option->onclick . '"' : '';
-			$onchange = !empty($option->onchange) ? 'onchange="' . $option->onchange . '"' : '';
+			$onclick  = !empty($option->onclick) ? 'onclick="'.$option->onclick.'"' : '';
+			$onchange = !empty($option->onchange) ? 'onchange="'.$option->onchange.'"' : '';
 
-			$oid        = $id . $i;
+			$oid        = $id.$i;
 			$value      = htmlspecialchars($option->value, ENT_COMPAT, 'UTF-8');
 			$attributes = array_filter(array($checked, $optionClass, $optionDisabled, $onchange, $onclick));
 		?>

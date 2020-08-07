@@ -13,7 +13,7 @@ $app = JFactory::getApplication();
 /** @var JDocumentHtml $this */
 JLoader::import('joomla.filesystem.file');
 JHtml::_('behavior.framework', true);
-$lib = JPATH_SITE . '/libraries/astroid/framework/template.php';
+$lib = JPATH_SITE.'/libraries/astroid/framework/template.php';
 if (file_exists($lib)) {
    jimport('astroid.framework.astroid');
    jimport('astroid.framework.template');
@@ -47,7 +47,7 @@ $template->_loadFontAwesome();
     */
    $favicon = $template->params->get('favicon', '');
    if (!empty($favicon = $template->params->get('favicon', ''))) {
-      $doc->addFavicon(JURI::root() . 'images/' . $favicon, '');
+      $doc->addFavicon(JURI::root().'images/'.$favicon, '');
    }
    // Let's add the Smooth Scroll JD is enabled.
     $enable_smooth_scroll = $template->params->get('enable_smooth_scroll', '');
@@ -64,7 +64,7 @@ $template->_loadFontAwesome();
 	}
 	// Adding basic Scripts, jQuery & Bootstrap JS
 
-   if (isset($doc->_scripts[JURI::root(true) . '/media/jui/js/jquery.min.js'])) {
+   if (isset($doc->_scripts[JURI::root(true).'/media/jui/js/jquery.min.js'])) {
       $template->loadTemplateJS('vendor/jquery.easing.min.js,vendor/bootstrap/popper.min.js,vendor/bootstrap/bootstrap.min.js,vendor/jquery.astroidmobilemenu.js,vendor/jquery.jdmegamenu.js,vendor/jquery.offcanvas.js');
    } else {
       $template->loadTemplateJS('vendor/bootstrap/jquery.min.js,vendor/jquery.easing.min.js,vendor/bootstrap/popper.min.js,vendor/bootstrap/bootstrap.min.js,vendor/jquery.astroidmobilemenu.js,vendor/jquery.jdmegamenu.js,vendor/jquery.offcanvas.js');
@@ -79,20 +79,20 @@ $template->_loadFontAwesome();
       $styles = '';
       // Background color
       if ($template->params->get('color_body_background_color')) {
-         $styles .= 'background-color: ' . $template->params->get('color_body_background_color') . ';';
+         $styles .= 'background-color: '.$template->params->get('color_body_background_color').';';
       }
       // Let's add the image styles only if an image is selected.
       if ($template->params->get('basic_background_image')) {
          $styles .= '
-				background-image: url("' . JURI::root() .$template->SeletedMedia(). '/' . $template->params->get('basic_background_image') . '");
-				background-repeat: ' . $template->params->get('basic_background_repeat') . ';
-				background-size: ' . $template->params->get('basic_background_size') . ';
-				background-position: ' . str_replace('_', ' ', $template->params->get('basic_background_position')) . ';
-				background-attachment: ' . $template->params->get('basic_background_attachment') . ';
+				background-image: url("'.JURI::root() .$template->SeletedMedia(). '/'.$template->params->get('basic_background_image').'");
+				background-repeat: '.$template->params->get('basic_background_repeat').';
+				background-size: '.$template->params->get('basic_background_size').';
+				background-position: '.str_replace('_', ' ', $template->params->get('basic_background_position')).';
+				background-attachment: '.$template->params->get('basic_background_attachment').';
 			';
       }
 
-      $bodystyle = 'body {' . $styles . '}';
+      $bodystyle = 'body {'.$styles.'}';
       $template->addStyleDeclaration($bodystyle);
    }
    $template->loadLayout('typography');

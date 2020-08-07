@@ -306,7 +306,7 @@ class OutlineSimple extends Outline {
             $path .= "Q{$point_p1['x']},{$point_p1['y']},{$point_p2['x']},{$point_p2['y']} ";
           }
           else {
-            $path .= "Q{$point_p1['x']},{$point_p1['y']}," . $this->midValue($point_p1['x'], $point_p2['x']) . "," . $this->midValue($point_p1['y'], $point_p2['y']) . " ";
+            $path .= "Q{$point_p1['x']},{$point_p1['y']},".$this->midValue($point_p1['x'], $point_p2['x']).",".$this->midValue($point_p1['y'], $point_p2['y'])." ";
           }
 
           $offset += 2;
@@ -317,7 +317,7 @@ class OutlineSimple extends Outline {
           $path .= "Q{$point['x']},{$point['y']},{$point_p1['x']},{$point_p1['y']} ";
         }
         else {
-          $path .= "Q{$point['x']},{$point['y']}," . $this->midValue($point['x'], $point_p1['x']) . "," . $this->midValue($point['y'], $point_p1['y']) . " ";
+          $path .= "Q{$point['x']},{$point['y']},".$this->midValue($point['x'], $point_p1['x']).",".$this->midValue($point['y'], $point_p1['y'])." ";
         }
 
         $offset++;

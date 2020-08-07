@@ -9,7 +9,7 @@ defined('_JEXEC') or die;
 
 jimport('astroid.framework.article');
 
-JHtml::addIncludePath(JPATH_COMPONENT . '/helpers');
+JHtml::addIncludePath(JPATH_COMPONENT.'/helpers');
 if (version_compare(JVERSION, '3.99999.99999', 'le')) {
    JHtml::_('behavior.caption');
 } else {
@@ -27,10 +27,10 @@ $canEdit = $params->get('access-edit');
 $user = JFactory::getUser();
 $info = $params->get('info_block_position', 0);
 
-$url = JRoute::_(ContentHelperRoute::getArticleRoute($this->item->id . ':' . $this->item->alias, $this->item->catid, $this->item->language));
+$url = JRoute::_(ContentHelperRoute::getArticleRoute($this->item->id.':'.$this->item->alias, $this->item->catid, $this->item->language));
 $root = JURI::base();
 $root = new JURI($root);
-$url = $root->getScheme() . '://' . $root->getHost() . $url;
+$url = $root->getScheme().'://'.$root->getHost().$url;
 
 // Check if associations are implemented. If they are, define the parameter.
 $assocParam = (JLanguageAssociations::isEnabled() && $params->get('show_associations'));
@@ -148,7 +148,7 @@ $assocParam = (JLanguageAssociations::isEnabled() && $params->get('show_associat
          <?php $menu = JFactory::getApplication()->getMenu(); ?>
          <?php $active = $menu->getActive(); ?>
          <?php $itemId = $active->id; ?>
-         <?php $link = new JUri(JRoute::_('index.php?option=com_users&view=login&Itemid=' . $itemId, false)); ?>
+         <?php $link = new JUri(JRoute::_('index.php?option=com_users&view=login&Itemid='.$itemId, false)); ?>
          <?php $link->setVar('return', base64_encode(ContentHelperRoute::getArticleRoute($this->item->slug, $this->item->catid, $this->item->language))); ?>
          <div class="readmore">
             <a href="<?php echo $link; ?>" class="register">

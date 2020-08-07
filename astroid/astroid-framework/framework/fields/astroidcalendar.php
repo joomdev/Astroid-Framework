@@ -224,7 +224,7 @@ class JFormFieldAstroidCalendar extends JFormField {
         }
        */
 
-      $renderer = new JLayoutFile($this->layout, JPATH_LIBRARIES . '/astroid/framework/layouts');
+      $renderer = new JLayoutFile($this->layout, JPATH_LIBRARIES.'/astroid/framework/layouts');
 
       return $renderer->render($this->getLayoutData());
    }
@@ -245,17 +245,17 @@ class JFormFieldAstroidCalendar extends JFormField {
       // Get the appropriate file for the current language date helper
       $helperPath = 'system/fields/calendar-locales/date/gregorian/date-helper.min.js';
 
-      if (!empty($calendar) && is_dir(JPATH_ROOT . '/media/system/js/fields/calendar-locales/date/' . strtolower($calendar))) {
-         $helperPath = 'system/fields/calendar-locales/date/' . strtolower($calendar) . '/date-helper.min.js';
+      if (!empty($calendar) && is_dir(JPATH_ROOT.'/media/system/js/fields/calendar-locales/date/'.strtolower($calendar))) {
+         $helperPath = 'system/fields/calendar-locales/date/'.strtolower($calendar).'/date-helper.min.js';
       }
 
       // Get the appropriate locale file for the current language
       $localesPath = 'system/fields/calendar-locales/en.js';
 
-      if (is_file(JPATH_ROOT . '/media/system/js/fields/calendar-locales/' . strtolower($tag) . '.js')) {
-         $localesPath = 'system/fields/calendar-locales/' . strtolower($tag) . '.js';
-      } elseif (is_file(JPATH_ROOT . '/media/system/js/fields/calendar-locales/' . strtolower(substr($tag, 0, -3)) . '.js')) {
-         $localesPath = 'system/fields/calendar-locales/' . strtolower(substr($tag, 0, -3)) . '.js';
+      if (is_file(JPATH_ROOT.'/media/system/js/fields/calendar-locales/'.strtolower($tag).'.js')) {
+         $localesPath = 'system/fields/calendar-locales/'.strtolower($tag).'.js';
+      } elseif (is_file(JPATH_ROOT.'/media/system/js/fields/calendar-locales/'.strtolower(substr($tag, 0, -3)).'.js')) {
+         $localesPath = 'system/fields/calendar-locales/'.strtolower(substr($tag, 0, -3)).'.js';
       }
 
       $extraData = array(

@@ -17,7 +17,7 @@ class JFormFieldAstroidGradient extends JFormField {
    protected $type = 'AstroidGradient';
 
    public function getInput() {
-      $renderer = new JLayoutFile('fields.astroidgradient', JPATH_LIBRARIES . '/astroid/framework/layouts');
+      $renderer = new JLayoutFile('fields.astroidgradient', JPATH_LIBRARIES.'/astroid/framework/layouts');
       $data = $this->getLayoutData();
 
       $extraData = array(

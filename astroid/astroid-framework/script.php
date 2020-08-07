@@ -17,8 +17,8 @@ class astroidInstallerScript {
     * Function to run before installing the component	 
     */
    public function preflight($type, $parent) {
-      $plugin_dir = JPATH_LIBRARIES . '/' . 'astroid' . '/' . 'plugins' . '/';
-      $plugins = array_filter(glob($plugin_dir . '*'), 'is_dir');
+      $plugin_dir = JPATH_LIBRARIES.'/'.'astroid'.'/'.'plugins'.'/';
+      $plugins = array_filter(glob($plugin_dir.'*'), 'is_dir');
       foreach ($plugins as $plugin) {
          if ($type == "uninstall") {
             $this->uninstallPlugin($plugin, $plugin_dir);
@@ -31,8 +31,8 @@ class astroidInstallerScript {
     * Function to run after installing the component	 
     */
    public function postflight($type, $parent) {
-      $plugin_dir = JPATH_LIBRARIES . '/' . 'astroid' . '/' . 'plugins' . '/';
-      $plugins = array_filter(glob($plugin_dir . '*'), 'is_dir');
+      $plugin_dir = JPATH_LIBRARIES.'/'.'astroid'.'/'.'plugins'.'/';
+      $plugins = array_filter(glob($plugin_dir.'*'), 'is_dir');
       foreach ($plugins as $plugin) {
          if ($type == "install" || $type == "update") {
             $this->installPlugin($plugin, $plugin_dir);
@@ -49,9 +49,9 @@ class astroidInstallerScript {
 
       $query = $db->getQuery(true);
       $query->update('#__extensions');
-      $query->set($db->quoteName('enabled') . ' = 1');
-      $query->where($db->quoteName('element') . ' = ' . $db->quote($plugin_name));
-      $query->where($db->quoteName('type') . ' = ' . $db->quote('plugin'));
+      $query->set($db->quoteName('enabled').' = 1');
+      $query->where($db->quoteName('element').' = '.$db->quote($plugin_name));
+      $query->where($db->quoteName('type').' = '.$db->quote('plugin'));
       $db->setQuery($query);
       $db->execute();
       return true;
@@ -62,9 +62,9 @@ class astroidInstallerScript {
       $plugin_name = str_replace($plugin_dir, '', $plugin);
       $query = $db->getQuery(true);
       $query->update('#__extensions');
-      $query->set($db->quoteName('enabled') . ' = 0');
-      $query->where($db->quoteName('element') . ' = ' . $db->quote($plugin_name));
-      $query->where($db->quoteName('type') . ' = ' . $db->quote('plugin'));
+      $query->set($db->quoteName('enabled').' = 0');
+      $query->where($db->quoteName('element').' = '.$db->quote($plugin_name));
+      $query->where($db->quoteName('type').' = '.$db->quote('plugin'));
       $db->setQuery($query);
       $db->execute();
       return true;

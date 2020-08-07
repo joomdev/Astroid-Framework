@@ -60,7 +60,7 @@ class Table extends BinaryStream {
   }
 
   public function toHTML() {
-    return "<pre>" . var_export($this->data, true) . "</pre>";
+    return "<pre>".var_export($this->data, true)."</pre>";
   }
 
   final public function encode() {

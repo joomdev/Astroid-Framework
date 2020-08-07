@@ -22,12 +22,12 @@ class JFormFieldLayout extends JFormField {
    public function getInput() {
       $value = $this->value;
       if (empty($value)) {
-         $options = \json_decode(\file_get_contents(JPATH_SITE . '/' . 'media' . '/' . 'astroid' . '/' . 'assets' . '/' . 'json' . '/' . 'layouts' . '/' . 'default.json'), TRUE);
+         $options = \json_decode(\file_get_contents(JPATH_SITE.'/'.'media'.'/'.'astroid'.'/'.'assets'.'/'.'json'.'/'.'layouts'.'/'.'default.json'), TRUE);
       } else {
          $options = \json_decode($value, true);
       }
       $fieldset = $this->element['data-fieldset'];
-      $renderer = new JLayoutFile('fields.astroidlayout', JPATH_LIBRARIES . '/astroid/framework/layouts');
+      $renderer = new JLayoutFile('fields.astroidlayout', JPATH_LIBRARIES.'/astroid/framework/layouts');
       return $renderer->render(array('fieldname' => $this->fieldname, 'name' => $this->name, 'options' => $options, 'fieldset' => $fieldset));
       return $output;
    }

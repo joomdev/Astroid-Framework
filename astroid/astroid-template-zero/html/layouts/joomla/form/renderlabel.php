@@ -22,19 +22,19 @@ extract($displayData);
  */
 $classes = array_filter((array) $classes);
 
-$id = $for . '-lbl';
+$id = $for.'-lbl';
 $title = '';
 
 if (!empty($description)) {
    if ($text && $text !== $description) {
-      $title = ' title="' . htmlspecialchars(trim($text, ':')) . '"'
-              . ' data-content="' . htmlspecialchars($description) . '"';
+      $title = ' title="'.htmlspecialchars(trim($text, ':')).'"'
+             .' data-content="'.htmlspecialchars($description).'"';
 
       if (!$position && JFactory::getLanguage()->isRtl()) {
          $position = ' data-placement="left" ';
       }
    } else {
-      $title = ' title="' . JHtml::_('tooltipText', trim($text, ':'), $description, 0) . '"';
+      $title = ' title="'.JHtml::_('tooltipText', trim($text, ':'), $description, 0).'"';
    }
 }
 
@@ -42,6 +42,6 @@ if ($required) {
    $classes[] = 'required';
 }
 ?>
-<label data-toggle="popover" id="<?php echo $id; ?>" for="<?php echo $for; ?>"<?php if (!empty($classes)) echo ' class="' . implode(' ', $classes) . '"'; ?><?php echo $title; ?><?php echo $position; ?>>
+<label data-toggle="popover" id="<?php echo $id; ?>" for="<?php echo $for; ?>"<?php if (!empty($classes)) echo ' class="'.implode(' ', $classes).'"'; ?><?php echo $title; ?><?php echo $position; ?>>
    <?php echo $text; ?><?php if ($required) : ?><span class="star">&#160;*</span><?php endif; ?>
 </label>

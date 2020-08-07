@@ -23,5 +23,5 @@ $legacy = $displayData['legacy'];
 		<?php echo JText::_('JNEW'); ?>
 	<?php endif; ?>
 <?php else : ?>
-	<?php echo JText::_('JNEW') . '&#160;'; ?>
+	<?php echo JText::_('JNEW').'&#160;'; ?>
 <?php endif; ?>

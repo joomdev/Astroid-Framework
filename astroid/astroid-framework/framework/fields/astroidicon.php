@@ -33,12 +33,12 @@ class JFormFieldAstroidicon extends JFormField {
     * @since   3.7.0
     */
    protected function getInput() {
-      $html = '<div class="form-control ui fluid search selection dropdown" select-ui-div><input type="hidden" value="' . $this->value . '" name="' . $this->name . '"><i class="dropdown icon"></i><div class="default text">Select Icon</div><div class="menu">';
+      $html = '<div class="form-control ui fluid search selection dropdown" select-ui-div><input type="hidden" value="'.$this->value.'" name="'.$this->name.'"><i class="dropdown icon"></i><div class="default text">Select Icon</div><div class="menu">';
       $groups = AstroidFrameworkConstants::$icons;
       $options = array();
       foreach ($groups as $group => $icons) {
          foreach ($icons as $key => $value) {
-            $html .= '<div class="item" data-value="' . $key . '"><i class="' . $key . '"></i> ' . $value . '</div>';
+            $html .= '<div class="item" data-value="'.$key.'"><i class="'.$key.'"></i> '.$value.'</div>';
          }
       }
       $html .= '</div></div>';

@@ -45,7 +45,7 @@ foreach ($fonts as $font) {
    }
    $value = str_replace(' ', '+', $font['family']);
    if (!empty($variants)) {
-      $value .= ':' . implode(',', $variants);
+      $value .= ':'.implode(',', $variants);
    }
    $options[$font['category']][$value] = $font['family'];
 }
@@ -82,7 +82,7 @@ foreach ($fonts as $font) {
                   <option <?php echo ($font_weight == '' ? ' selected' : ''); ?> value=""><?php JText::_('JDEFAULT'); ?></option>
                   <?php
                      foreach (array(100, 200, 300, 400, 500, 600, 700, 800, 900) as $weight) {
-                        echo '<option ' . ($font_weight == $weight ? ' selected' : '') . ' value="' . $weight . '">' . $weight . '</option>';
+                        echo '<option '.($font_weight == $weight ? ' selected' : '').' value="'.$weight.'">'.$weight.'</option>';
                      }
                      ?>
                </select>
@@ -210,7 +210,7 @@ foreach ($fonts as $font) {
                   <option <?php echo ($text_transform == '' ? ' selected="selected"' : ''); ?> value="none"><?php echo JText::_('ASTROID_NONE'); ?></option>
                   <?php
                      foreach (array('uppercase' => 'JGLOBAL_UPPERCASE', 'lowercase' => 'JGLOBAL_LOWERCASE', 'capitalize' => 'JGLOBAL_CAPITALIZE') as $transform => $transform_title) {
-                        echo '<option ' . ($text_transform == $transform ? ' selected="selected"' : '') . ' value="' . $transform . '">' . JText::_($transform_title) . '</option>';
+                        echo '<option '.($text_transform == $transform ? ' selected="selected"' : '').' value="'.$transform.'">'.JText::_($transform_title).'</option>';
                      }
                      ?>
                </select>
@@ -229,11 +229,11 @@ foreach ($fonts as $font) {
 
       $speciman = '';
       foreach ($alphas as $alpha) {
-         $speciman .= '<span>' . $alpha . strtolower($alpha) . '</span>';
+         $speciman .= '<span>'.$alpha.strtolower($alpha).'</span>';
       }
       $speciman .= '<div class="clearfix"></div>';
       for ($i = 0; $i <= 9; $i++) {
-         $speciman .= '<span>' . $i . '</span>';
+         $speciman .= '<span>'.$i.'</span>';
       }
       ?>
       <div class="astroid-typography-preview-container">

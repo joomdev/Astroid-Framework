@@ -45,14 +45,14 @@ JHtml::_('jquery.framework');
 JHtml::_('script', 'system/html5fallback.js', array('version' => 'auto', 'relative' => true, 'conditional' => 'lt IE 9'));
 JHtml::_('behavior.combobox');
 
-$attr  = !empty($class) ? ' class="combobox ' . $class . '"' : ' class="combobox"';
-$attr .= !empty($size) ? ' size="' . $size . '"' : '';
+$attr  = !empty($class) ? ' class="combobox '.$class.'"' : ' class="combobox"';
+$attr .= !empty($size) ? ' size="'.$size.'"' : '';
 $attr .= !empty($readonly) ? ' readonly' : '';
 $attr .= !empty($disabled) ? ' disabled' : '';
 $attr .= !empty($required) ? ' required aria-required="true"' : '';
 
 // Initialize JavaScript field attributes.
-$attr .= !empty($onchange) ? ' onchange="' . $onchange . '"' : '';
+$attr .= !empty($onchange) ? ' onchange="'.$onchange.'"' : '';
 
 ?>
 <div class="combobox input-append">

@@ -68,7 +68,7 @@ class Header extends \FontLib\Header {
 
     switch ($this->data["Version"]) {
       default:
-        throw new Exception("Unknown EOT version " . $this->data["Version"]);
+        throw new Exception("Unknown EOT version ".$this->data["Version"]);
 
       case 0x00010000:
         // Nothing to do more

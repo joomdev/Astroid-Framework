@@ -16,8 +16,8 @@ $button = $displayData;
 	<?php
 		$class    = $button->get('class') ?: null;
 		$class	 .= $button->get('modal') ? ' modal-button' : null;
-		$href     = $button->get('link') ? ' href="' . JUri::base() . $button->get('link') . '"' : null;
-		$onclick  = $button->get('onclick') ? ' onclick="' . $button->get('onclick') . '"' : '';
+		$href     = $button->get('link') ? ' href="'.JUri::base().$button->get('link').'"' : null;
+		$onclick  = $button->get('onclick') ? ' onclick="'.$button->get('onclick').'"' : '';
 		$title    = $button->get('title') ?: $button->get('text');
 
 	// Load modal popup behavior

@@ -39,7 +39,7 @@ foreach ($list as $item) : ?>
 			<?php echo '<ul class="list-group list-group-flush">'; ?>
 			<?php $temp = $list; ?>
 			<?php $list = $item->getChildren(); ?>
-			<?php require JModuleHelper::getLayoutPath('mod_articles_categories', $params->get('layout', 'default') . '_items'); ?>
+			<?php require JModuleHelper::getLayoutPath('mod_articles_categories', $params->get('layout', 'default').'_items'); ?>
 			<?php $list = $temp; ?>
 			<?php echo '</ul>'; ?>
 		<?php endif; ?>

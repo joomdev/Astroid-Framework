@@ -46,20 +46,20 @@ extract($displayData);
 JHtml::_('jquery.framework');
 JHtml::_('script', 'system/html5fallback.js', array('version' => 'auto', 'relative' => true, 'conditional' => 'lt IE 9'));
 
-$autocomplete = !$autocomplete ? ' autocomplete="off"' : ' autocomplete="' . $autocomplete . '"';
+$autocomplete = !$autocomplete ? ' autocomplete="off"' : ' autocomplete="'.$autocomplete.'"';
 $autocomplete = $autocomplete === ' autocomplete="on"' ? '' : $autocomplete;
 
 $attributes = array(
-    !empty($size) ? ' size="' . $size . '"' : '',
+    !empty($size) ? ' size="'.$size.'"' : '',
     $disabled ? ' disabled' : '',
     $readonly ? ' readonly' : '',
-    strlen($hint) ? ' placeholder="' . htmlspecialchars($hint, ENT_COMPAT, 'UTF-8') . '"' : '',
+    strlen($hint) ? ' placeholder="'.htmlspecialchars($hint, ENT_COMPAT, 'UTF-8').'"' : '',
     $autocomplete,
     $autofocus ? ' autofocus' : '',
     $spellcheck ? '' : ' spellcheck="false"',
-    $onchange ? ' onchange="' . $onchange . '"' : '',
+    $onchange ? ' onchange="'.$onchange.'"' : '',
     !empty($maxLength) ? $maxLength : '',
     $required ? ' required aria-required="true"' : '',
 );
 ?>
-<input <?php echo $inputType; ?> name="<?php echo $name; ?>" <?php echo!empty($class) ? ' class="form-control ' . $class . '"' : 'class="form-control"'; ?> id="<?php echo $id; ?>" value="<?php echo htmlspecialchars(JStringPunycode::urlToUTF8($value), ENT_COMPAT, 'UTF-8'); ?>" <?php echo implode(' ', $attributes); ?> />
+<input <?php echo $inputType; ?> name="<?php echo $name; ?>" <?php echo!empty($class) ? ' class="form-control '.$class.'"' : 'class="form-control"'; ?> id="<?php echo $id; ?>" value="<?php echo htmlspecialchars(JStringPunycode::urlToUTF8($value), ENT_COMPAT, 'UTF-8'); ?>" <?php echo implode(' ', $attributes); ?> />

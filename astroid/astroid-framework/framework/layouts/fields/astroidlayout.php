@@ -162,7 +162,7 @@
 $astroidElements = AstroidFrameworkHelper::getAllAstroidElements();
 
 foreach ($astroidElements as $astroidElement) {
-   echo 'AstroidLayoutBuilderElements.push(' . json_encode($astroidElement->getInfo()) . ');';
+   echo 'AstroidLayoutBuilderElements.push('.json_encode($astroidElement->getInfo()).');';
 }
 ?>
 </script>

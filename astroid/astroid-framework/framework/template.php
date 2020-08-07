@@ -55,7 +55,7 @@ class AstroidFrameworkTemplate
 
    public function templateVersion()
    {
-      $xml = JFactory::getXML(JPATH_SITE . "/templates/{$this->template}/templateDetails.xml");
+      $xml = JFactory::getXML(JPATH_SITE."/templates/{$this->template}/templateDetails.xml");
       $version = (string) $xml->version;
       return $version;
    }
@@ -94,7 +94,7 @@ class AstroidFrameworkTemplate
       }
       $og_image = '';
       if (!empty($params->get('astroid_og_image_menuitem', ''))) {
-         $og_image = JURI::base() . $params->get('astroid_og_image_menuitem', '');
+         $og_image = JURI::base().$params->get('astroid_og_image_menuitem', '');
       }
 
       $og_sitename = $config->get('sitename');
@@ -107,25 +107,25 @@ class AstroidFrameworkTemplate
          $meta[] = '<meta property="og:type" content="article">';
       }
       if (!empty($og_title)) {
-         $meta[] = '<meta property="og:title" content="' . $og_title . '">';
+         $meta[] = '<meta property="og:title" content="'.$og_title.'">';
       }
       if (!empty($og_sitename)) {
-         $meta[] = '<meta property="og:site_name" content="' . $og_sitename . '">';
+         $meta[] = '<meta property="og:site_name" content="'.$og_sitename.'">';
       }
       if (!empty($og_siteurl)) {
-         $meta[] = '<meta property="og:url" content="' . $og_siteurl . '">';
+         $meta[] = '<meta property="og:url" content="'.$og_siteurl.'">';
       }
       if (!empty($og_description)) {
-         $meta[] = '<meta property="og:description" content="' . substr($og_description, 0, 200) . '">';
+         $meta[] = '<meta property="og:description" content="'.substr($og_description, 0, 200).'">';
       }
       if (!empty($fb_id)) {
-         $meta[] = '<meta property="fb:app_id" content="' . $fb_id . '" />';
+         $meta[] = '<meta property="fb:app_id" content="'.$fb_id.'" />';
       }
       if (!empty($tw_id)) {
-         $meta[] = '<meta name="twitter:creator" content="@' . $tw_id . '" />';
+         $meta[] = '<meta name="twitter:creator" content="@'.$tw_id.'" />';
       }
       if (!empty($og_image)) {
-         $meta[] = '<meta name="og:image" content="' . $og_image . '" />';
+         $meta[] = '<meta name="og:image" content="'.$og_image.'" />';
       }
       $meta = implode('', $meta);
       if (!empty($meta)) {
@@ -153,7 +153,7 @@ class AstroidFrameworkTemplate
          }
       }
 
-      $params_path = JPATH_SITE . "/templates/{$this->template}/params/" . $id . '.json';
+      $params_path = JPATH_SITE."/templates/{$this->template}/params/".$id.'.json';
       $json = file_get_contents($params_path);
       $params = new JRegistry();
       $params->loadString($json, 'JSON');
@@ -238,7 +238,7 @@ class AstroidFrameworkTemplate
       $params = $this->params;
       $layout = $params->get("layout", NULL);
       if ($layout === NULL) {
-         $value = file_get_contents(JPATH_SITE . '/' . 'media' . '/' . 'astroid' . '/' . 'assets' . '/' . 'json' . '/' . 'layouts' . '/' . 'default.json');
+         $value = file_get_contents(JPATH_SITE.'/'.'media'.'/'.'astroid'.'/'.'assets'.'/'.'json'.'/'.'layouts'.'/'.'default.json');
          $layout = \json_decode($value, true);
       } else {
          $layout = \json_decode($layout, true);
@@ -261,16 +261,16 @@ class AstroidFrameworkTemplate
       if ($header && !empty($header_mode) && $header_mode == 'sidebar') {
          $sidebar_dir = $this->params->get('header_sidebar_menu_mode', 'left');
          $content_classes[] = 'has-sidebar';
-         $content_classes[] = 'sidebar-dir-' . $sidebar_dir;
+         $content_classes[] = 'sidebar-dir-'.$sidebar_dir;
       }
 
-      echo '<div class="astroid-content' . (!empty($content_classes) ? ' ' . implode(' ', $content_classes) : '') . '">';
-      echo '<div style="' . $this->getLayoutStyles() . '" class="astroid-layout astroid-layout-' . $template_layout . '">';
+      echo '<div class="astroid-content'.(!empty($content_classes) ? ' '.implode(' ', $content_classes) : '').'">';
+      echo '<div style="'.$this->getLayoutStyles().'" class="astroid-layout astroid-layout-'.$template_layout.'">';
       echo '<div class="astroid-wrapper">';
       foreach ($layout['sections'] as $section) {
          $sectionObject = new AstroidElement($section['type'], $section, $this);
          $sectionHTML = '';
-         $this->setLog("Rending Section : " . $sectionObject->getValue('title'));
+         $this->setLog("Rending Section : ".$sectionObject->getValue('title'));
          $rowHTML = '';
          $layout_type = $sectionObject->getValue('layout_type', '');
          $section_layout_type = $sectionObject->getSectionLayoutType();
@@ -331,7 +331,7 @@ class AstroidFrameworkTemplate
                   $renderedHTML = '';
                   foreach ($col['elements'] as $element) {
                      $el = new AstroidElement($element['type'], $element, $this);
-                     $this->setLog("Rending Element : " . $el->getValue('title'));
+                     $this->setLog("Rending Element : ".$el->getValue('title'));
                      $template_positions_display = JComponentHelper::getParams('com_templates')->get('template_positions_display');
                      if (@$_GET['wf'] == 1 && $template_positions_display) {
                         $renderedHTML .= $el->renderWireframe();
@@ -344,7 +344,7 @@ class AstroidFrameworkTemplate
                      $col_stylesEnable = $columnObject->getStyles() ? true : false;
                      $col_animationEnable = $columnObject->getAnimation() ? true : false;
                      $col_animationDelay = $columnObject->getAnimationDelay() ? true : false;
-                     $columnHTML .= '<div id="' . $columnObject->getID() . '" class="' . $columnObject->getClass() . (($col_stylesEnable) ? '" style="' . $columnObject->getStyles() : '') . (($col_animationEnable) ? '" data-animation= "' . $columnObject->getAnimation() : '') . (($col_animationDelay && $col_animationEnable) ? '" data-animation-delay="' . $columnObject->getAnimationDelay() : '') . '" ' . $columnObject->getAttributes() . '>';
+                     $columnHTML .= '<div id="'.$columnObject->getID().'" class="'.$columnObject->getClass().(($col_stylesEnable) ? '" style="'.$columnObject->getStyles() : '').(($col_animationEnable) ? '" data-animation= "'.$columnObject->getAnimation() : '').(($col_animationDelay && $col_animationEnable) ? '" data-animation-delay="'.$columnObject->getAnimationDelay() : '').'" '.$columnObject->getAttributes().'>';
                      $columnHTML .= $renderedHTML;
                      $columnHTML .= '</div>';
                   }
@@ -366,7 +366,7 @@ class AstroidFrameworkTemplate
                $row_stylesEnable = $rowObject->getStyles() ? true : false;
                $row_animationEnable = $rowObject->getAnimation() ? true : false;
                $row_animationDelay = $rowObject->getAnimationDelay() ? true : false;
-               $rowHTML .= '<div  id="' . $rowObject->getID() . '" class="row' . ($no_gutter ? ' no-gutters' : '') . (!empty($rowObject->getClass()) ? ' ' . $rowObject->getClass() : '') . (($row_stylesEnable) ? '" style="' . $rowObject->getStyles() : '') . (($row_animationEnable) ? '" data-animation= "' . $rowObject->getAnimation() : '') . (($row_animationDelay && $row_animationEnable) ? '" data-animation-delay="' . $rowObject->getAnimationDelay() : '') . '" ' . $rowObject->getAttributes() . '>';
+               $rowHTML .= '<div  id="'.$rowObject->getID().'" class="row'.($no_gutter ? ' no-gutters' : '').(!empty($rowObject->getClass()) ? ' '.$rowObject->getClass() : '').(($row_stylesEnable) ? '" style="'.$rowObject->getStyles() : '').(($row_animationEnable) ? '" data-animation= "'.$rowObject->getAnimation() : '').(($row_animationDelay && $row_animationEnable) ? '" data-animation-delay="'.$rowObject->getAnimationDelay() : '').'" '.$rowObject->getAttributes().'>';
                $rowHTML .= $columnHTML;
                $rowHTML .= '</div>';
             }
@@ -374,11 +374,11 @@ class AstroidFrameworkTemplate
          if (!empty($rowHTML)) {
             $stylesEnable = $sectionObject->getStyles() ? true : false;
             $animationEnable = $sectionObject->getAnimation() ? true : false;
-            $sectionHTML .= '<section  id="' . $sectionObject->getID() . '" class="' . $sectionObject->getClass() . (($stylesEnable) ? '" style="' . $sectionObject->getStyles() : '') . (($animationEnable) ? '" data-animation= "' . $sectionObject->getAnimation() : '') . ((!empty($sectionObject->getAnimationDelay()) && $animationEnable) ? '" data-animation-delay="' . $sectionObject->getAnimationDelay() : '') . '" ' . $sectionObject->getAttributes() . '>';
+            $sectionHTML .= '<section  id="'.$sectionObject->getID().'" class="'.$sectionObject->getClass().(($stylesEnable) ? '" style="'.$sectionObject->getStyles() : '').(($animationEnable) ? '" data-animation= "'.$sectionObject->getAnimation() : '').((!empty($sectionObject->getAnimationDelay()) && $animationEnable) ? '" data-animation-delay="'.$sectionObject->getAnimationDelay() : '').'" '.$sectionObject->getAttributes().'>';
 
             $section_layout_type = ($sppb && $hasComponent) ? '' : $section_layout_type;
             if (!empty($section_layout_type)) {
-               $sectionHTML .= "<div class='" . $section_layout_type . "'>";
+               $sectionHTML .= "<div class='".$section_layout_type."'>";
             }
             $sectionHTML .= $rowHTML;
             if (!empty($section_layout_type)) {
@@ -404,11 +404,11 @@ class AstroidFrameworkTemplate
       }
       $layout_background_image = $this->params->get('layout_background_image', '');
       if (!empty($layout_background_image)) {
-         $styles[] = 'background-image:url(' . JURI::root() . $this->SeletedMedia() . '/' . $layout_background_image . ')';
-         $styles[] = 'background-repeat:' . $this->params->get('layout_background_repeat', 'inherit');
-         $styles[] = 'background-size:' . $this->params->get('layout_background_size', 'inherit');
-         $styles[] = 'background-position:' . $this->params->get('layout_background_position', 'inherit');
-         $styles[] = 'background-attachment:' . $this->params->get('layout_background_attachment', 'inherit');
+         $styles[] = 'background-image:url('.JURI::root().$this->SeletedMedia().'/'.$layout_background_image.')';
+         $styles[] = 'background-repeat:'.$this->params->get('layout_background_repeat', 'inherit');
+         $styles[] = 'background-size:'.$this->params->get('layout_background_size', 'inherit');
+         $styles[] = 'background-position:'.$this->params->get('layout_background_position', 'inherit');
+         $styles[] = 'background-attachment:'.$this->params->get('layout_background_attachment', 'inherit');
       }
       return implode(';', $styles);
    }
@@ -417,7 +417,7 @@ class AstroidFrameworkTemplate
    {
       $params = $this->params;
       $template_layout = $this->params->get('template_layout', 'wide');
-      echo '<div style="' . $this->getLayoutStyles() . '" class="astroid-layout astroid-layout-' . $template_layout . '">';
+      echo '<div style="'.$this->getLayoutStyles().'" class="astroid-layout astroid-layout-'.$template_layout.'">';
       echo '<div class="astroid-wrapper">';
       $this->loadLayout('error');
       echo '</div>';
@@ -452,7 +452,7 @@ class AstroidFrameworkTemplate
       $params = $this->params;
       $layout = $params->get("layout", NULL);
       if ($layout === NULL) {
-         $value = file_get_contents(JPATH_SITE . '/' . 'media' . '/' . 'astroid' . '/' . 'assets' . '/' . 'json' . '/' . 'layouts' . '/' . 'default.json');
+         $value = file_get_contents(JPATH_SITE.'/'.'media'.'/'.'astroid'.'/'.'assets'.'/'.'json'.'/'.'layouts'.'/'.'default.json');
          $layout = \json_decode($value, true);
       } else {
          $layout = \json_decode($layout, true);
@@ -466,9 +466,9 @@ class AstroidFrameworkTemplate
       if (empty($position)) {
          return '';
       }
-      $this->setLog("Rending Module Position : " . $position);
+      $this->setLog("Rending Module Position : ".$position);
       $return = '';
-      $return .= '<jdoc:include type="modules" name="' . $position . '" style="' . $style . '" />';
+      $return .= '<jdoc:include type="modules" name="'.$position.'" style="'.$style.'" />';
       return $return;
    }
 
@@ -516,10 +516,10 @@ class AstroidFrameworkTemplate
          foreach ($astroidcontentlayouts as $astroidcontentlayout) {
             $astroidcontentlayout = explode(':', $astroidcontentlayout);
             if (isset($return[$astroidcontentlayout[1]])) {
-               $return[$astroidcontentlayout[1]][] = $astroidcontentlayout[0] . ':' . $astroidcontentlayout[2];
+               $return[$astroidcontentlayout[1]][] = $astroidcontentlayout[0].':'.$astroidcontentlayout[2];
             } else {
                $return[$astroidcontentlayout[1]] = [];
-               $return[$astroidcontentlayout[1]][] = $astroidcontentlayout[0] . ':' . $astroidcontentlayout[2];
+               $return[$astroidcontentlayout[1]][] = $astroidcontentlayout[0].':'.$astroidcontentlayout[2];
             }
          }
       }
@@ -529,7 +529,7 @@ class AstroidFrameworkTemplate
    public function getStyleName($template_directory, $custom = false)
    {
       if (!$custom) {
-         $scss_files = $this->getDir($template_directory . 'scss', 'scss');
+         $scss_files = $this->getDir($template_directory.'scss', 'scss');
          $name = '';
          foreach ($scss_files as $scss) {
             $name .= md5_file($scss['basepath']);
@@ -539,31 +539,31 @@ class AstroidFrameworkTemplate
          $variables = $this->getThemeVariables();
          $name .= serialize($variables);
 
-         $cssname = 'style-' . md5($name);
+         $cssname = 'style-'.md5($name);
 
-         if (!file_exists($template_directory . 'css/' . $cssname . '.css')) {
+         if (!file_exists($template_directory.'css/'.$cssname.'.css')) {
             //ini_set('xdebug.max_nesting_level', 3000);
             AstroidFrameworkHelper::clearCache($this->template);
-            AstroidFrameworkHelper::compileSass($template_directory . 'scss', $template_directory . 'css', 'style.scss', $cssname . '.css', $variables);
+            AstroidFrameworkHelper::compileSass($template_directory.'scss', $template_directory.'css', 'style.scss', $cssname.'.css', $variables);
          }
-         return $cssname . '.css';
+         return $cssname.'.css';
       } else {
 
-         if (!file_exists($template_directory . 'scss/custom') || !file_exists($template_directory . 'scss/custom/custom.scss')) {
+         if (!file_exists($template_directory.'scss/custom') || !file_exists($template_directory.'scss/custom/custom.scss')) {
             return '';
          }
 
-         $scss_files = $this->getDir($template_directory . 'scss/custom', 'scss');
+         $scss_files = $this->getDir($template_directory.'scss/custom', 'scss');
          $name = '';
          foreach ($scss_files as $scss) {
             $name .= md5_file($scss['basepath']);
          }
-         $cssname = 'custom-' . md5($name);
-         if (!file_exists($template_directory . 'css/' . $cssname . '.css')) {
+         $cssname = 'custom-'.md5($name);
+         if (!file_exists($template_directory.'css/'.$cssname.'.css')) {
             AstroidFrameworkHelper::clearCache($this->template, 'custom');
-            AstroidFrameworkHelper::compileSass($template_directory . 'scss/custom', $template_directory . 'css', 'custom.scss', $cssname . '.css');
+            AstroidFrameworkHelper::compileSass($template_directory.'scss/custom', $template_directory.'css', 'custom.scss', $cssname.'.css');
          }
-         return $cssname . '.css';
+         return $cssname.'.css';
       }
    }
 
@@ -647,7 +647,7 @@ class AstroidFrameworkTemplate
       $files = scandir($dir);
 
       foreach ($files as $key => $value) {
-         $path = realpath($dir . DIRECTORY_SEPARATOR . $value);
+         $path = realpath($dir.DIRECTORY_SEPARATOR.$value);
          if (!is_dir($path)) {
             $pathinfo = pathinfo($path);
             if ($extension !== null && $pathinfo['extension'] == $extension) {
@@ -670,27 +670,27 @@ class AstroidFrameworkTemplate
    {
       $this->setLog("Loading Stylesheets");
       $components = explode(',', $components);
-      $template_directory = JPATH_THEMES . "/" . $this->template . "/css/";
-      $custom_compiled_css = $this->getStyleName(JPATH_THEMES . "/" . $this->template . '/', true);
+      $template_directory = JPATH_THEMES."/".$this->template."/css/";
+      $custom_compiled_css = $this->getStyleName(JPATH_THEMES."/".$this->template.'/', true);
       if (!empty($custom_compiled_css)) {
          array_unshift($components, $custom_compiled_css);
       }
-      $compiled_css = $this->getStyleName(JPATH_THEMES . "/" . $this->template . '/');
+      $compiled_css = $this->getStyleName(JPATH_THEMES."/".$this->template.'/');
       array_unshift($components, $compiled_css);
       $document = JFactory::getDocument();
       foreach ($components as $component) {
-         if (file_exists($template_directory . $component)) {
+         if (file_exists($template_directory.$component)) {
             if ($error) {
-               echo '<link href="' . JURI::root() . 'templates/' . $this->template . "/css/" . $component . '?' . $document->getMediaVersion() . '" rel="stylesheet" />';
+               echo '<link href="'.JURI::root().'templates/'.$this->template."/css/".$component.'?'.$document->getMediaVersion().'" rel="stylesheet" />';
             } else {
-               $document->addStyleSheet(JURI::root() . 'templates/' . $this->template . "/css/" . $component . '?' . $document->getMediaVersion());
+               $document->addStyleSheet(JURI::root().'templates/'.$this->template."/css/".$component.'?'.$document->getMediaVersion());
             }
          }
       }
       if ($error) {
-         echo '<link href="' . JURI::root() . 'media/astroid/assets/css/animate.min.css?' . $document->getMediaVersion() . '" rel="stylesheet" />';
+         echo '<link href="'.JURI::root().'media/astroid/assets/css/animate.min.css?'.$document->getMediaVersion().'" rel="stylesheet" />';
       } else {
-         $document->addStyleSheet(JURI::root() . 'media/astroid/assets/css/animate.min.css?' . $document->getMediaVersion());
+         $document->addStyleSheet(JURI::root().'media/astroid/assets/css/animate.min.css?'.$document->getMediaVersion());
       }
       $this->setLog("Stylesheet Loaded!", "success");
    }
@@ -699,11 +699,11 @@ class AstroidFrameworkTemplate
    {
       $this->setLog("Loading Javascripts");
       $components = explode(',', $components);
-      $template_directory = JPATH_THEMES . "/" . $this->template . "/js/";
+      $template_directory = JPATH_THEMES."/".$this->template."/js/";
       $document = JFactory::getDocument();
       foreach ($components as $component) {
-         if (file_exists($template_directory . $component)) {
-            JHtml::_('script', JURI::root() . 'templates/' . $this->template . "/js/" . $component, array('version' => $document->getMediaVersion(), 'relative' => true));
+         if (file_exists($template_directory.$component)) {
+            JHtml::_('script', JURI::root().'templates/'.$this->template."/js/".$component, array('version' => $document->getMediaVersion(), 'relative' => true));
          }
       }
       $this->setLog("Javascripts Loaded!", "success");
@@ -734,21 +734,21 @@ class AstroidFrameworkTemplate
          $class[] = htmlspecialchars(str_replace('_', '-', $option));
       }
       if (!empty($view)) {
-         $class[] = 'view-' . $view;
+         $class[] = 'view-'.$view;
       }
       if (!empty($layout)) {
-         $class[] = 'layout-' . $layout;
+         $class[] = 'layout-'.$layout;
       }
       if (!empty($task)) {
-         $class[] = 'task-' . $task;
+         $class[] = 'task-'.$task;
       }
       if (!empty($Itemid)) {
-         $class[] = 'itemid-' . $Itemid;
+         $class[] = 'itemid-'.$Itemid;
       }
 
       if ($header && !empty($headerMode) && $headerMode == 'sidebar') {
          $sidebarDirection = $this->params->get('header_sidebar_menu_mode', 'left');
-         $class[] = "header-sidebar-" . $sidebarDirection;
+         $class[] = "header-sidebar-".$sidebarDirection;
       }
 
       if (isset($menu) && $menu) {
@@ -758,11 +758,11 @@ class AstroidFrameworkTemplate
          if ($menu->get('alias')) {
             // menu alias without -alias appended will be removed in the next version.
             $class[] = $menu->get('alias');
-            $class[] = $menu->get('alias') . '-alias';
+            $class[] = $menu->get('alias').'-alias';
          }
       }
       if (!empty($template->id)) {
-         $class[] = 'tp-style-' . $template->id;
+         $class[] = 'tp-style-'.$template->id;
       }
       if (!empty($language)) {
          $class[] = $language;
@@ -781,11 +781,11 @@ class AstroidFrameworkTemplate
 
    public function loadLayout($partial = '', $display = true, $params = null)
    {
-      $this->setLog("Rending template partial : " . $partial);
-      if (file_exists(JPATH_SITE . '/templates/' . $this->template . '/html/frontend/' . str_replace('.', '/', $partial) . '.php')) {
-         $layout = new JLayoutFile($partial, JPATH_SITE . '/templates/' . $this->template . '/html/frontend');
+      $this->setLog("Rending template partial : ".$partial);
+      if (file_exists(JPATH_SITE.'/templates/'.$this->template.'/html/frontend/'.str_replace('.', '/', $partial).'.php')) {
+         $layout = new JLayoutFile($partial, JPATH_SITE.'/templates/'.$this->template.'/html/frontend');
       } else {
-         $layout = new JLayoutFile($partial, JPATH_SITE . '/templates/' . $this->template . '/frontend');
+         $layout = new JLayoutFile($partial, JPATH_SITE.'/templates/'.$this->template.'/frontend');
       }
       $data = [];
       $data['template'] = $this;
@@ -797,7 +797,7 @@ class AstroidFrameworkTemplate
       } else {
          return $layout->render($data);
       }
-      $this->setLog("Template partial rendered!: " . $partial, 'success');
+      $this->setLog("Template partial rendered!: ".$partial, 'success');
    }
 
    public function setLog($message, $type = 'info', $data = [])
@@ -850,9 +850,9 @@ class AstroidFrameworkTemplate
 
    public function addScript($js)
    {
-      $template_directory = JPATH_THEMES . "/" . $this->template . "/js/";
-      if (file_exists($template_directory . $js)) {
-         $this->_js[$js] = JURI::root() . 'templates/' . $this->template . "/js/" . $js;
+      $template_directory = JPATH_THEMES."/".$this->template."/js/";
+      if (file_exists($template_directory.$js)) {
+         $this->_js[$js] = JURI::root().'templates/'.$this->template."/js/".$js;
       } else {
          $this->_js[$js] = $js;
       }
@@ -867,20 +867,20 @@ class AstroidFrameworkTemplate
             $prefix = 'preset-';
          }
 
-         $template_dir = JPATH_SITE . '/templates/' . $this->template . '/css';
-         if (!file_exists($template_dir . '/' . $prefix . $version . '.css')) {
+         $template_dir = JPATH_SITE.'/templates/'.$this->template.'/css';
+         if (!file_exists($template_dir.'/'.$prefix.$version.'.css')) {
             if (empty($issetPreset)) {
                AstroidFrameworkHelper::clearCache($this->template, 'astroid');
             }
-            $styles = preg_grep('~^' . $prefix . '.*\.(css)$~', scandir($template_dir));
+            $styles = preg_grep('~^'.$prefix.'.*\.(css)$~', scandir($template_dir));
             foreach ($styles as $style) {
-               unlink($template_dir . '/' . $style);
+               unlink($template_dir.'/'.$style);
             }
-            file_put_contents($template_dir . '/' . $prefix . $version . '.css', $css);
+            file_put_contents($template_dir.'/'.$prefix.$version.'.css', $css);
          }
       }
       $document = JFactory::getDocument();
-      $document->addStyleSheet(JURI::root() . 'templates/' . $this->template . '/css/' . $prefix . $version . '.css');
+      $document->addStyleSheet(JURI::root().'templates/'.$this->template.'/css/'.$prefix.$version.'.css');
    }
 
    public function loadCSSFile()
@@ -889,9 +889,9 @@ class AstroidFrameworkTemplate
          $styles = [];
          foreach (['desktop', 'tablet', 'mobile'] as $device) {
             if ($device == 'mobile') {
-               $styles[] = '@media (max-width: 767.98px) {' . implode('', $this->_styles[$device]) . '}';
+               $styles[] = '@media (max-width: 767.98px) {'.implode('', $this->_styles[$device]).'}';
             } elseif ($device == 'tablet') {
-               $styles[] = '@media (max-width: 991.98px) {' . implode('', $this->_styles[$device]) . '}';
+               $styles[] = '@media (max-width: 991.98px) {'.implode('', $this->_styles[$device]).'}';
             } else {
                $styles[] = implode('', $this->_styles[$device]);
             }
@@ -909,8 +909,8 @@ class AstroidFrameworkTemplate
       $document = JFactory::getDocument();
       foreach ($this->_js as $key => $js) {
          if ($key == 'custom.js') {
-            $template_directory = JPATH_THEMES . "/" . $this->template . "/js/";
-            if (!file_exists($template_directory . $key)) {
+            $template_directory = JPATH_THEMES."/".$this->template."/js/";
+            if (!file_exists($template_directory.$key)) {
                continue;
             }
          }
@@ -998,25 +998,25 @@ class AstroidFrameworkTemplate
    public function _loadFontAwesome()
    {
       $plugin = JPluginHelper::getPlugin('system', 'astroid');
-      $assets = JURI::root() . 'media' . '/' . 'astroid' . '/' . 'assets' . '/' . 'fontawesome';
+      $assets = JURI::root().'media'.'/'.'astroid'.'/'.'assets'.'/'.'fontawesome';
       $plugin_params = new JRegistry($plugin->params);
       $astroid_load_fontawesome = $plugin_params->get('astroid_load_fontawesome', "cdn");
       $document = JFactory::getDocument();
       if ($astroid_load_fontawesome == "local") {
-         $document->addStyleSheet($assets . '/css/font-awesome.css');
-         $document->addStyleSheet($assets . '/webfonts');
+         $document->addStyleSheet($assets.'/css/font-awesome.css');
+         $document->addStyleSheet($assets.'/webfonts');
       } elseif ($astroid_load_fontawesome == "cdn") {
-         $document->addStyleSheet("https://use.fontawesome.com/releases/v" . AstroidFrameworkConstants::$fontawesome_version . "/css/all.css");
+         $document->addStyleSheet("https://use.fontawesome.com/releases/v".AstroidFrameworkConstants::$fontawesome_version."/css/all.css");
       }
    }
 
    public function getPresets()
    {
-      $presets_path = JPATH_SITE . "/templates/{$this->template}/astroid/presets/";
+      $presets_path = JPATH_SITE."/templates/{$this->template}/astroid/presets/";
       if (!file_exists($presets_path)) {
          return [];
       }
-      $files = array_filter(glob($presets_path . '/' . '*.json'), 'is_file');
+      $files = array_filter(glob($presets_path.'/'.'*.json'), 'is_file');
       $presets = [];
       foreach ($files as $file) {
          $json = file_get_contents($file);
@@ -1026,7 +1026,7 @@ class AstroidFrameworkTemplate
             $preset['title'] = \JText::_($data['title']);
          }
          if (isset($data['thumbnail']) && !empty($data['thumbnail'])) {
-            $preset['thumbnail'] = \JURI::root() . 'templates/' . $this->template . '/' . $data['thumbnail'];
+            $preset['thumbnail'] = \JURI::root().'templates/'.$this->template.'/'.$data['thumbnail'];
          }
          if (isset($data['colors'])) {
             $colors = [];
@@ -1060,9 +1060,9 @@ class AstroidFrameworkTemplate
       // fix for typography
       if ($this->version < 2.3) {
          foreach (['body', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'] as $typo) {
-            $typoType = $this->params->get($typo . '_typography');
+            $typoType = $this->params->get($typo.'_typography');
             if (trim($typoType) == 'custom') {
-               $typoOption = $typo . '_typography_options';
+               $typoOption = $typo.'_typography_options';
                $typoParams = $this->params->get($typoOption);
                foreach (['font_size', 'font_size_unit', 'letter_spacing', 'letter_spacing_unit', 'line_height', 'line_height_unit'] as $prop) {
                   if (!is_string($typoParams->{$prop})) {
@@ -1116,6 +1116,6 @@ class AstroidLog
    public function render()
    {
       $class = $this->type == 'error' ? 'danger' : $this->type;
-      echo '<p class="text-' . $class . '">' . $this->message . '</p>';
+      echo '<p class="text-'.$class.'">'.$this->message.'</p>';
    }
 }

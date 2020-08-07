@@ -40,7 +40,7 @@ class JFormFieldAstroidSpacing extends JFormField
 
         $this->unit = isset($this->element['unit']) ? (string) $this->element['unit'] : '';
 
-        $renderer = new JLayoutFile('fields.astroidspacing', JPATH_LIBRARIES . '/astroid/framework/layouts');
+        $renderer = new JLayoutFile('fields.astroidspacing', JPATH_LIBRARIES.'/astroid/framework/layouts');
 
         $data = $this->getLayoutData();
         $data['fieldname'] = $this->fieldname;

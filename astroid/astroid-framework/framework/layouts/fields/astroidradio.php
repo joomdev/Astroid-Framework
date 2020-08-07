@@ -50,7 +50,7 @@ if (isset($images) && $images == 'true') {
  *     %3 - value
  *     %4 = any other attributes
  */
-$format = '<label class="btn-radio-astroid' . (!$imageRadio ? ' btn-round' : ' btn-image') . ' btn-wide btn" ng-class="{\'btn-white\':' . $fieldname . '!=\'%3$s\',\'%7$s\':' . $fieldname . '==\'%3$s\'}" for="%1$s" ng-class="%6$s"><input ng-model="' . $fieldname . '" ' . (!empty($ngRequired) ? ' ng-required="' . $ngRequired . '"' : '') . ' autocomplete="off" type="radio" id="%1$s" name="%2$s" value="%3$s" %4$s />%5$s</label>';
+$format = '<label class="btn-radio-astroid'.(!$imageRadio ? ' btn-round' : ' btn-image').' btn-wide btn" ng-class="{\'btn-white\':'.$fieldname.'!=\'%3$s\',\'%7$s\':'.$fieldname.'==\'%3$s\'}" for="%1$s" ng-class="%6$s"><input ng-model="'.$fieldname.'" '.(!empty($ngRequired) ? ' ng-required="'.$ngRequired.'"' : '').' autocomplete="off" type="radio" id="%1$s" name="%2$s" value="%3$s" %4$s />%5$s</label>';
 $alt = preg_replace('/[^a-zA-Z0-9_\-]/', '_', $name);
 ?>
 <div id="<?php echo $id; ?>" class="<?php echo $imageRadio ? '' : 'btn-group astroid-radio-btn'; ?> btn-group-toggle"
@@ -63,13 +63,13 @@ $alt = preg_replace('/[^a-zA-Z0-9_\-]/', '_', $name);
          <?php
          // Initialize some option attributes.
          $checked = ((string) $option->value === $value) ? 'ng-checked="true"' : '';
-         $optionClass = !empty($option->class) ? 'class="' . $option->class . '"' : '';
+         $optionClass = !empty($option->class) ? 'class="'.$option->class.'"' : '';
          $disabled = !empty($option->disable) || ($disabled && !$checked) ? 'disabled' : '';
 
          // Initialize some JavaScript option attributes.
-         $onclick = !empty($option->onclick) ? 'onclick="' . $option->onclick . '"' : '';
-         $onchange = !empty($option->onchange) ? 'onchange="' . $option->onchange . '"' : '';
-         $oid = $id . $i;
+         $onclick = !empty($option->onclick) ? 'onclick="'.$option->onclick.'"' : '';
+         $onchange = !empty($option->onchange) ? 'onchange="'.$option->onchange.'"' : '';
+         $oid = $id.$i;
          $ovalue = htmlspecialchars($option->value, ENT_COMPAT, 'UTF-8');
          $attributes = array_filter(array($checked, $optionClass, $disabled, $onchange, $onclick));
          ?>
@@ -77,7 +77,7 @@ $alt = preg_replace('/[^a-zA-Z0-9_\-]/', '_', $name);
          <?php if ($required) : ?>
             <?php $attributes[] = 'required aria-required="true"'; ?>
          <?php endif; ?>
-         <?php $ngClass = "{'active':$fieldname==" . (is_numeric($ovalue) ? $ovalue : "'$ovalue'") . "}"; ?>
+         <?php $ngClass = "{'active':$fieldname==".(is_numeric($ovalue) ? $ovalue : "'$ovalue'")."}"; ?>
 
          <?php
          $optiontext = $option->text;
@@ -85,7 +85,7 @@ $alt = preg_replace('/[^a-zA-Z0-9_\-]/', '_', $name);
          $optionclass = empty($optionclass) ? 'btn-success' : $optionclass;
          if ($imageRadio) {
             $optionclass = 'btn-light';
-            $optiontext = '<img ' . (!empty($imageWidth) ? 'width="' . $imageWidth . '"' : '') . ' src="' . JURI::root() . $optiontext . '" />' . (!empty($option->label) ? '<span>' . $option->label . '</span>' : '');
+            $optiontext = '<img '.(!empty($imageWidth) ? 'width="'.$imageWidth.'"' : '').' src="'.JURI::root().$optiontext.'" />'.(!empty($option->label) ? '<span>'.$option->label.'</span>' : '');
          }
          ?>
          <?php echo sprintf($format, $oid, $name, $ovalue, implode(' ', $attributes), $optiontext, $ngClass, $optionclass); ?>

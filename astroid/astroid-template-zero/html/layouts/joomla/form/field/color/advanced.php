@@ -55,15 +55,15 @@ else
 	$placeholder = '#rrggbb';
 }
 
-$inputclass   = ($keywords && ! in_array($format, array('rgb', 'rgba'), true)) ? ' keywords' : ' ' . $format;
-$class        = ' class="' . trim('minicolors ' . $class) . ($validate === 'color' ? '' : $inputclass) . '"';
-$control      = $control ? ' data-control="' . $control . '"' : '';
-$format       = $format ? ' data-format="' . $format . '"' : '';
-$keywords     = $keywords ? ' data-keywords="' . $keywords . '"' : '';
-$validate     = $validate ? ' data-validate="' . $validate . '"' : '';
+$inputclass   = ($keywords && ! in_array($format, array('rgb', 'rgba'), true)) ? ' keywords' : ' '.$format;
+$class        = ' class="'.trim('minicolors '.$class).($validate === 'color' ? '' : $inputclass).'"';
+$control      = $control ? ' data-control="'.$control.'"' : '';
+$format       = $format ? ' data-format="'.$format.'"' : '';
+$keywords     = $keywords ? ' data-keywords="'.$keywords.'"' : '';
+$validate     = $validate ? ' data-validate="'.$validate.'"' : '';
 $disabled     = $disabled ? ' disabled' : '';
 $readonly     = $readonly ? ' readonly' : '';
-$hint         = strlen($hint) ? ' placeholder="' . $this->escape($hint) . '"' : ' placeholder="' . $placeholder . '"';
+$hint         = strlen($hint) ? ' placeholder="'.$this->escape($hint).'"' : ' placeholder="'.$placeholder.'"';
 $autocomplete = ! $autocomplete ? ' autocomplete="off"' : '';
 
 // Force LTR input value in RTL, due to display issues with rgba/hex colors

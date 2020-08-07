@@ -62,7 +62,7 @@ $sublayout = empty($groupByFieldset) ? 'section' : 'section-byfieldsets';
 				array(
 					'form' => $form,
 					'basegroup' => $fieldname,
-					'group' => $fieldname . $k,
+					'group' => $fieldname.$k,
 					'buttons' => $buttons,
 					'unique_subform_id' => $unique_subform_id,
 				)
@@ -76,7 +76,7 @@ $sublayout = empty($groupByFieldset) ? 'section' : 'section-byfieldsets';
 					array(
 						'form' => $tmpl,
 						'basegroup' => $fieldname,
-						'group' => $fieldname . 'X',
+						'group' => $fieldname.'X',
 						'buttons' => $buttons,
 						'unique_subform_id' => $unique_subform_id,
 					)

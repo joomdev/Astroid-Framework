@@ -47,31 +47,31 @@ class AstroidElement
       }
 
       $this->setClassName();
-      $this->template->setLog("Initiated Element : " . $type, "success");
-      $library_elements_directory = JPATH_LIBRARIES . '/' . 'astroid' . '/' . 'framework' . '/' . 'elements' . '/';
-      $template_elements_directory = JPATH_SITE . '/' . 'templates' . '/' . $this->template->template . '/' . 'astroid' . '/' . 'elements' . '/';
+      $this->template->setLog("Initiated Element : ".$type, "success");
+      $library_elements_directory = JPATH_LIBRARIES.'/'.'astroid'.'/'.'framework'.'/'.'elements'.'/';
+      $template_elements_directory = JPATH_SITE.'/'.'templates'.'/'.$this->template->template.'/'.'astroid'.'/'.'elements'.'/';
 
       switch ($this->type) {
          case 'section':
-            $this->default_xml_file = $library_elements_directory . 'section-default.xml';
+            $this->default_xml_file = $library_elements_directory.'section-default.xml';
             break;
          case 'column':
-            $this->default_xml_file = $library_elements_directory . 'column-default.xml';
+            $this->default_xml_file = $library_elements_directory.'column-default.xml';
             break;
          case 'row':
-            $this->default_xml_file = $library_elements_directory . 'row-default.xml';
+            $this->default_xml_file = $library_elements_directory.'row-default.xml';
             break;
          default:
-            $this->default_xml_file = $library_elements_directory . 'default.xml';
+            $this->default_xml_file = $library_elements_directory.'default.xml';
             break;
       }
 
-      if (file_exists($template_elements_directory . $this->type . '/' . $this->type . '.xml')) {
-         $this->xml_file = $template_elements_directory . $this->type . '/' . $this->type . '.xml';
-         $this->layout = $template_elements_directory . $this->type . '/' . $this->type . '.php';
-      } else if (file_exists($library_elements_directory . $this->type . '/' . $this->type . '.xml')) {
-         $this->xml_file = $library_elements_directory . $this->type . '/' . $this->type . '.xml';
-         $this->layout = $library_elements_directory . $this->type . '/' . $this->type . '.php';
+      if (file_exists($template_elements_directory.$this->type.'/'.$this->type.'.xml')) {
+         $this->xml_file = $template_elements_directory.$this->type.'/'.$this->type.'.xml';
+         $this->layout = $template_elements_directory.$this->type.'/'.$this->type.'.php';
+      } else if (file_exists($library_elements_directory.$this->type.'/'.$this->type.'.xml')) {
+         $this->xml_file = $library_elements_directory.$this->type.'/'.$this->type.'.xml';
+         $this->layout = $library_elements_directory.$this->type.'/'.$this->type.'.php';
       }
       if ($this->xml_file !== null) {
          $this->loadXML();
@@ -85,7 +85,7 @@ class AstroidElement
       $type = str_replace('-', ' ', $type);
       $type = str_replace('_', ' ', $type);
       $type = ucwords(strtolower($type));
-      $classname = 'AstroidElement' . str_replace(' ', '', $type);
+      $classname = 'AstroidElement'.str_replace(' ', '', $type);
       $this->classname = $classname;
    }
 
@@ -144,7 +144,7 @@ class AstroidElement
 
    public function renderForm()
    {
-      $layout = new JLayoutFile('form', JPATH_LIBRARIES . '/' . 'astroid' . '/' . 'framework' . '/' . 'layouts' . '/' . 'framework');
+      $layout = new JLayoutFile('form', JPATH_LIBRARIES.'/'.'astroid'.'/'.'framework'.'/'.'layouts'.'/'.'framework');
       $html = $layout->render(['element' => $this]);
       $form = str_replace(array("\n", "\r", "\t"), '', $html);
       $replacer = [
@@ -197,7 +197,7 @@ class AstroidElement
    public function render()
    {
       if ($this->layout === null || !file_exists($this->layout)) {
-         $this->template->setLog('Layout Not Found - Element : ' . $this->type);
+         $this->template->setLog('Layout Not Found - Element : '.$this->type);
          return '';
       }
       $pathinfo = pathinfo($this->layout);
@@ -211,22 +211,22 @@ class AstroidElement
          $elHtml = [];
          $elHtml[] = '<div';
          if (!empty($this->getClass())) {
-            $elHtml[] = 'class="' . $this->getClass() . '"';
+            $elHtml[] = 'class="'.$this->getClass().'"';
          }
          if (!empty($this->getID())) {
-            $elHtml[] = 'id="' . $this->getID() . '"';
+            $elHtml[] = 'id="'.$this->getID().'"';
          }
          if (!empty($this->getStyles())) {
-            $elHtml[] = 'style="' . $this->getStyles() . '"';
+            $elHtml[] = 'style="'.$this->getStyles().'"';
          }
          if (!empty($this->getAnimation())) {
-            $elHtml[] = 'data-animation="' . $this->getAnimation() . '"';
-            $elHtml[] = 'data-animation-delay="' . $this->getAnimationDelay() . '"';
+            $elHtml[] = 'data-animation="'.$this->getAnimation().'"';
+            $elHtml[] = 'data-animation-delay="'.$this->getAnimationDelay().'"';
          }
          if (!empty($this->getAttributes())) {
             $elHtml[] = $this->getAttributes();
          }
-         $elHtml[] = '>' . $html . '</div>';
+         $elHtml[] = '>'.$html.'</div>';
 
          $return .= implode(' ', $elHtml);
       }
@@ -235,7 +235,7 @@ class AstroidElement
 
    public function renderWireframe()
    {
-      $layout = new JLayoutFile('wireframe', JPATH_LIBRARIES . '/' . 'astroid' . '/' . 'framework' . '/' . 'layouts' . '/' . 'framework');
+      $layout = new JLayoutFile('wireframe', JPATH_LIBRARIES.'/'.'astroid'.'/'.'framework'.'/'.'layouts'.'/'.'framework');
       $html = $layout->render(['params' => $this->getParams(), 'template' => $this->template, 'element' => $this]);
       return $html;
    }
@@ -247,8 +247,8 @@ class AstroidElement
       if (!empty($customid)) {
          return $customid;
       } else {
-         $prefix = !empty($params->get('title')) ? $params->get('title') : 'astroid-' . $this->type;
-         return $this->template->slugify($prefix . '-' . $this->id);
+         $prefix = !empty($params->get('title')) ? $params->get('title') : 'astroid-'.$this->type;
+         return $this->template->slugify($prefix.'-'.$this->id);
       }
    }
 
@@ -256,7 +256,7 @@ class AstroidElement
    {
       $params = $this->getParams();
       $classes = [];
-      $classes[] = $this->template->slugify('astroid-' . $this->type);
+      $classes[] = $this->template->slugify('astroid-'.$this->type);
       if ($this->type == 'section') {
          $section_classes = $this->getSectionClasses();
          if (!empty($section_classes)) {
@@ -376,16 +376,16 @@ class AstroidElement
       $sizes = ['xs', 'sm', 'md', 'lg', 'xl'];
       foreach ($sizes as $size) {
          if ($size == 'lg') {
-            $class[] = 'col-' . $size . '-' . $data['size'];
-            if (isset($responsive_utilities['hide_' . $size]) && $responsive_utilities['hide_' . $size] != 1) {
-               $class[] = 'hideon' . $size;
+            $class[] = 'col-'.$size.'-'.$data['size'];
+            if (isset($responsive_utilities['hide_'.$size]) && $responsive_utilities['hide_'.$size] != 1) {
+               $class[] = 'hideon'.$size;
             }
          } else {
-            if (isset($responsive_utilities['size_' . $size]) && $responsive_utilities['size_' . $size] != 'inherit') {
-               $class[] = $size == 'xs' ? 'col-' . $responsive_utilities['size_' . $size] : 'col-' . $size . '-' . $responsive_utilities['size_' . $size];
+            if (isset($responsive_utilities['size_'.$size]) && $responsive_utilities['size_'.$size] != 'inherit') {
+               $class[] = $size == 'xs' ? 'col-'.$responsive_utilities['size_'.$size] : 'col-'.$size.'-'.$responsive_utilities['size_'.$size];
             }
-            if (isset($responsive_utilities['hide_' . $size]) && $responsive_utilities['hide_' . $size] != 1) {
-               $class[] = 'hideon' . $size;
+            if (isset($responsive_utilities['hide_'.$size]) && $responsive_utilities['hide_'.$size] != 1) {
+               $class[] = 'hideon'.$size;
             }
          }
       }
@@ -415,26 +415,26 @@ class AstroidElement
       if ($background && $this->type != 'section') {
          $background_color = $params->get('background_color', '');
          if (!empty($background_color)) {
-            $styles[] = 'background-color:' . $background_color;
+            $styles[] = 'background-color:'.$background_color;
          }
          $background_image = $params->get('background_image', '');
          if (!empty($background_image)) {
-            $styles[] = 'background-image: url(' . JURI::root() . $this->SeletedMedia() . '/' . $background_image . ')';
+            $styles[] = 'background-image: url('.JURI::root().$this->SeletedMedia().'/'.$background_image.')';
             $background_repeat = $params->get('background_repeat', '');
             $background_repeat = empty($background_repeat) ? 'inherit' : $background_repeat;
-            $styles[] = 'background-repeat:' . $background_repeat;
+            $styles[] = 'background-repeat:'.$background_repeat;
 
             $background_size = $params->get('background_size', '');
             $background_size = empty($background_size) ? 'inherit' : $background_size;
-            $styles[] = 'background-size:' . $background_size;
+            $styles[] = 'background-size:'.$background_size;
 
             $background_attchment = $params->get('background_attchment', '');
             $background_attchment = empty($background_attchment) ? 'inherit' : $background_attchment;
-            $styles[] = 'background-attachment:' . $background_attchment;
+            $styles[] = 'background-attachment:'.$background_attchment;
 
             $background_position = $params->get('background_position', '');
             $background_position = empty($background_position) ? 'inherit' : $background_position;
-            $styles[] = 'background-position:' . $background_position;
+            $styles[] = 'background-position:'.$background_position;
          }
       }
 
@@ -456,13 +456,13 @@ class AstroidElement
          $link_hover_color = $params->get('link_hover_color', '');
          $color_styles = [];
          if (!empty($text_color)) {
-            $color_styles[] = '#' . $this->getID() . '{color:' . $text_color . ' !important; }';
+            $color_styles[] = '#'.$this->getID().'{color:'.$text_color.' !important; }';
          }
          if (!empty($link_color)) {
-            $color_styles[] = '#' . $this->getID() . ' a{color:' . $link_color . ' !important; }';
+            $color_styles[] = '#'.$this->getID().' a{color:'.$link_color.' !important; }';
          }
          if (!empty($link_hover_color)) {
-            $color_styles[] = '#' . $this->getID() . ' a:hover{color:' . $link_hover_color . ' !important; }';
+            $color_styles[] = '#'.$this->getID().' a:hover{color:'.$link_hover_color.' !important; }';
          }
          if (!empty($color_styles)) {
             $document = JFactory::getDocument();
@@ -487,7 +487,7 @@ class AstroidElement
          foreach ($margin as $device => $props) {
             $style = AstroidFrameworkHelper::spacingValue($props, "margin");
             if (!empty($style)) {
-               $style = '#' . $this->getID() . '{' . $style . '}';
+               $style = '#'.$this->getID().'{'.$style.'}';
                $template->addStyleDeclaration($style, $device);
             }
          }
@@ -498,7 +498,7 @@ class AstroidElement
          foreach ($padding as $device => $props) {
             $style = AstroidFrameworkHelper::spacingValue($props, "padding");
             if (!empty($style)) {
-               $style = '#' . $this->getID() . '{' . $style . '}';
+               $style = '#'.$this->getID().'{'.$style.'}';
                $template->addStyleDeclaration($style, $device);
             }
          }
@@ -514,7 +514,7 @@ class AstroidElement
          if ($background_setting == "color") {
             $background_color = $params->get('background_color', '');
             if (!empty($background_color)) {
-               $Style[] = 'background-color:' . $background_color;
+               $Style[] = 'background-color:'.$background_color;
             }
          }
          if ($background_setting == "image") {
@@ -522,25 +522,25 @@ class AstroidElement
 
             $img_background_color = $params->get('img_background_color', '');
             $img_background_color = empty($img_background_color) ? 'inherit' : $img_background_color;
-            $Style[] = 'background-color:' . $img_background_color;
+            $Style[] = 'background-color:'.$img_background_color;
 
             if (!empty($background_image)) {
-               $Style[] = 'background-image: url(' . JURI::root() . $this->SeletedMedia() . '/' . $background_image . ')';
+               $Style[] = 'background-image: url('.JURI::root().$this->SeletedMedia().'/'.$background_image.')';
                $background_repeat = $params->get('background_repeat', '');
                $background_repeat = empty($background_repeat) ? 'inherit' : $background_repeat;
-               $Style[] = 'background-repeat:' . $background_repeat;
+               $Style[] = 'background-repeat:'.$background_repeat;
 
                $background_size = $params->get('background_size', '');
                $background_size = empty($background_size) ? 'inherit' : $background_size;
-               $Style[] = 'background-size:' . $background_size;
+               $Style[] = 'background-size:'.$background_size;
 
                $background_attchment = $params->get('background_attchment', '');
                $background_attchment = empty($background_attchment) ? 'inherit' : $background_attchment;
-               $Style[] = 'background-attachment:' . $background_attchment;
+               $Style[] = 'background-attachment:'.$background_attchment;
 
                $background_position = $params->get('background_position', '');
                $background_position = empty($background_position) ? 'inherit' : $background_position;
-               $Style[] = 'background-position:' . $background_position;
+               $Style[] = 'background-position:'.$background_position;
             }
          }
 
@@ -548,7 +548,7 @@ class AstroidElement
             $background_gradient = $params->get('background_gradient', '');
             $background_gradient = json_decode($background_gradient);
             if (!empty($background_gradient)) {
-               $Style[] = 'background-image: ' . $background_gradient->type . '-gradient(' . $background_gradient->start . ',' . $background_gradient->stop . ')';
+               $Style[] = 'background-image: '.$background_gradient->type.'-gradient('.$background_gradient->start.','.$background_gradient->stop.')';
             }
          }
       }
@@ -575,7 +575,7 @@ class AstroidElement
             break;
       }
       if (!empty($container) && !empty($custom_class)) {
-         $container .= ' ' . $custom_class;
+         $container .= ' '.$custom_class;
       }
       return $container;
    }
@@ -589,7 +589,7 @@ class AstroidElement
       if ($background && $this->type != 'section') {
          $background_video = $params->get('background_video', '');
          if (!empty($background_video)) {
-            $attributes['data-jd-video-bg'] = JURI::root() . $this->SeletedMedia() . '/' . $background_video;
+            $attributes['data-jd-video-bg'] = JURI::root().$this->SeletedMedia().'/'.$background_video;
          }
       }
 
@@ -597,7 +597,7 @@ class AstroidElement
       if ($background_setting && $background_setting == "video") {
          $background_video = $params->get('background_video', '');
          if (!empty($background_video)) {
-            $attributes['data-jd-video-bg'] = JURI::root() . $this->SeletedMedia() . '/' . $background_video;
+            $attributes['data-jd-video-bg'] = JURI::root().$this->SeletedMedia().'/'.$background_video;
             $template = AstroidFramework::getTemplate();
             $videobgjs = 'vendor/jquery.jdvideobg.js';
             if (!isset($template->_js[$videobgjs])) {
@@ -608,7 +608,7 @@ class AstroidElement
 
       $return = [];
       foreach ($attributes as $key => $value) {
-         $return[] = $key . '="' . $value . '"';
+         $return[] = $key.'="'.$value.'"';
       }
       return implode(' ', $return);
    }

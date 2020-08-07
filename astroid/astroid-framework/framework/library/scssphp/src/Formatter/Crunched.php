@@ -43,7 +43,7 @@ class Crunched extends Formatter
     {
         $inner = $this->indentStr();
 
-        $glue = $this->break . $inner;
+        $glue = $this->break.$inner;
 
         foreach ($block->lines as $index => $line) {
             if (substr($line, 0, 2) === '/*') {
@@ -51,7 +51,7 @@ class Crunched extends Formatter
             }
         }
 
-        $this->write($inner . implode($glue, $block->lines));
+        $this->write($inner.implode($glue, $block->lines));
 
         if (! empty($block->children)) {
             $this->write($this->break);

@@ -39,7 +39,7 @@ class JFormFieldAstroidpreloadersFont extends JFormField {
       }
       $html = '<div class="astroid-preloader-field d-inline-block">';
       $html .= '<span class="astroid-preloader-field-select"></span>';
-      $html .= '<input type="hidden" name="' . $this->name . '" value="' . $this->value . '" />';
+      $html .= '<input type="hidden" name="'.$this->name.'" value="'.$this->value.'" />';
 
       $html .= '<div class="astroid-preloaders-selector">';
       $html .= '<div class="overlay"></div>';
@@ -48,7 +48,7 @@ class JFormFieldAstroidpreloadersFont extends JFormField {
       $html .= '<div class="">';
 
       foreach (AstroidFrameworkConstants::$preloadersFont as $preloader) {
-         $html .= '<div class="astroid-preloader-select" data-value="' . $preloader['name'] . '"><div class="astroid-preloader-select-inner">';
+         $html .= '<div class="astroid-preloader-select" data-value="'.$preloader['name'].'"><div class="astroid-preloader-select-inner">';
          $html .= $preloader['code'];
          $html .= '</div></div>';
          if ($this->value == $preloader['name']) {

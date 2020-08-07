@@ -50,17 +50,17 @@ class JFormFieldAstroidpresets extends JFormField {
       $html = [];
       $html[] = '<div astroidpresets class="astroid-presets">';
       foreach ($presets as $preset) {
-         $html[] = '<div class="astroid-presets-option astroid-presets-option-' . $preset['name'] . '" ng-click="chosePreset(\'' . $preset['name'] . '\')">';
+         $html[] = '<div class="astroid-presets-option astroid-presets-option-'.$preset['name'].'" ng-click="chosePreset(\''.$preset['name'].'\')">';
          if (empty($preset['thumbnail'])) {
             $html[] = '<div>';
             foreach ($preset['colors'] as $color) {
-               $html[] = '<span style="background-color: ' . $color . '"></span>';
+               $html[] = '<span style="background-color: '.$color.'"></span>';
             }
             $html[] = '</div>';
          } else {
-            $html[] = '<img src="' . $preset['thumbnail'] . '" width="100%" />';
+            $html[] = '<img src="'.$preset['thumbnail'].'" width="100%" />';
          }
-         $html[] = '<span>' . $preset['title'] . '</span></div>';
+         $html[] = '<span>'.$preset['title'].'</span></div>';
       }
       $html[] = '</div>';
       return implode('', $html);

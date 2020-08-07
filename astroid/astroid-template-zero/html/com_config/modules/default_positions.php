@@ -18,9 +18,9 @@ $attr = array(
 	'id'          => 'jform_position',
 	'list.select' => $this->item['position'],
 	'list.attr'   => 'class="chzn-custom-value" '
-		. 'data-custom_group_text="' . $customGroupText . '" '
-		. 'data-no_results_text="' . JText::_('COM_MODULES_ADD_CUSTOM_POSITION') . '" '
-		. 'data-placeholder="' . JText::_('COM_MODULES_TYPE_OR_SELECT_POSITION') . '" '
+		. 'data-custom_group_text="'.$customGroupText.'" '
+		. 'data-no_results_text="'.JText::_('COM_MODULES_ADD_CUSTOM_POSITION').'" '
+		. 'data-placeholder="'.JText::_('COM_MODULES_TYPE_OR_SELECT_POSITION').'" '
 );
 
 echo JHtml::_('select.groupedlist', $positions, 'jform[position]', $attr);

@@ -7,7 +7,7 @@
  */
 defined('_JEXEC') or die;
 
-JHtml::addIncludePath(JPATH_COMPONENT . '/helpers');
+JHtml::addIncludePath(JPATH_COMPONENT.'/helpers');
 if (version_compare(JVERSION, '3.99999.99999', 'le'))
 {
 	JHtml::_('behavior.caption');
@@ -56,7 +56,7 @@ if (version_compare(JVERSION, '3.99999.99999', 'le'))
 
      <?php if (!empty($this->intro_items)) : ?>
             <?php $row = $counter / $this->columns; ?>
-            <div class="items-row <?php echo 'row-' . $row; ?> row clearfix">
+            <div class="items-row <?php echo 'row-'.$row; ?> row clearfix">
 				 <?php foreach ($this->intro_items as $key => &$item) : ?>
 				  <?php $rowcount = ((int) $key % (int) $this->columns) + 1; ?>
 							<div class="col-lg-<?php echo round((12 / $this->columns)); ?> p-3">

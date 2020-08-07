@@ -33,7 +33,7 @@ if (!$template->params->get('article_rating', 1)) {
    <form method="post" action="<?php echo htmlspecialchars($uri->toString(), ENT_COMPAT, 'UTF-8'); ?>" class="form-inline">
       <div class="form-group mb-3 mr-sm-3">
          <label class="unseen element-invisible sr-only" for="content_vote_<?php echo (int) $row->id; ?>"><?php echo JText::_('PLG_VOTE_LABEL'); ?></label>
-         <?php echo JHtml::_('select.genericlist', $options, 'user_rating', 'class="form-control"', 'value', 'text', '5', 'content_vote_' . (int) $row->id); ?>
+         <?php echo JHtml::_('select.genericlist', $options, 'user_rating', 'class="form-control"', 'value', 'text', '5', 'content_vote_'.(int) $row->id); ?>
       </div>
       <input class="btn btn-primary mb-3" type="submit" name="submit_vote" value="<?php echo JText::_('PLG_VOTE_RATE'); ?>" />
       <input type="hidden" name="task" value="article.vote" />
@@ -48,7 +48,7 @@ if (!$template->params->get('article_rating', 1)) {
    $rating_count = (int) $row->rating_count;
    ?>
    <div class="article-rating">
-      <div class="ui star rating" id="<?php echo 'content_vote_' . (int) $row->id; ?>"></div>
+      <div class="ui star rating" id="<?php echo 'content_vote_'.(int) $row->id; ?>"></div>
       <div data-votes="<?php echo $rating_count; ?>" class="vote-count article-rating-votecount-<?php echo $row->id; ?>">(<?php echo $rating_count; ?> <?php echo JText::_('TPL_ASTROID_VOTE'); ?><?php echo $rating_count == 1 ? '' : JText::_('TPL_ASTROID_VOTES'); ?>)</div>
       <div class="loading article-rating-loading-<?php echo $row->id; ?> d-none"></div>
       <div class="message d-none article-rating-message-<?php echo $row->id; ?>"></div>
@@ -60,7 +60,7 @@ if (!$template->params->get('article_rating', 1)) {
             var ratingtimer2 = null;
             var lastrate = <?php echo $rating; ?>;
             var call = true;
-            $('#<?php echo 'content_vote_' . (int) $row->id; ?>').rating({
+            $('#<?php echo 'content_vote_'.(int) $row->id; ?>').rating({
                initialRating: <?php echo $rating; ?>,
                maxRating: 5,
                onRate: function (value) {
@@ -109,12 +109,12 @@ if (!$template->params->get('article_rating', 1)) {
                            setTimeout(function () {
                               $('.vote-count').removeClass('change');
                               call = false;
-                              $('#<?php echo 'content_vote_' . (int) $row->id; ?>').rating('set rating', lastrate);
+                              $('#<?php echo 'content_vote_'.(int) $row->id; ?>').rating('set rating', lastrate);
                            }, 300);
                         }
                         if (response.status == 'error') {
                            call = false;
-                           $('#<?php echo 'content_vote_' . (int) $row->id; ?>').rating('set rating', lastrate);
+                           $('#<?php echo 'content_vote_'.(int) $row->id; ?>').rating('set rating', lastrate);
                         }
                      }
                   });

@@ -21,7 +21,7 @@ class JFormFieldAstroidMenuOptions extends JFormField {
    }
 
    public function getInput() {
-      $renderer = new JLayoutFile('fields.astroidmenuoptions', JPATH_LIBRARIES . '/astroid/framework/layouts');
+      $renderer = new JLayoutFile('fields.astroidmenuoptions', JPATH_LIBRARIES.'/astroid/framework/layouts');
       $data = $this->getLayoutData();
       if (!is_array($this->value) && empty($this->value)) {
          //$value = [];

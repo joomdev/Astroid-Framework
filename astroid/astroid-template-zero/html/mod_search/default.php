@@ -16,10 +16,10 @@ defined('_JEXEC') or die;
 
 if ($width)
 {
-	$moduleclass_sfx .= ' ' . 'mod_search' . $module->id;
-	$css = 'div.mod_search' . $module->id . ' input[type="search"]{ width:auto; }';
+	$moduleclass_sfx .= ' '.'mod_search'.$module->id;
+	$css = 'div.mod_search'.$module->id.' input[type="search"]{ width:auto; }';
 	JFactory::getDocument()->addStyleDeclaration($css);
-	$width = ' size="' . $width . '"';
+	$width = ' size="'.$width.'"';
 }
 else
 {
@@ -30,24 +30,24 @@ else
 	<form action="<?php echo JRoute::_('index.php'); ?>" method="post" class="form-group">
 	<div class="input-group">
 		<?php
-			$output = '<!-- <label for="mod-search-searchword' . $module->id . '" class="element-invisible">' . $label . '</label> -->';
-			$output .= '<input name="searchword" id="mod-search-searchword' . $module->id . '" maxlength="' . $maxlength . '"  class="inputbox form-control search-query input-medium" type="search"' . $width;
-			$output .= ' placeholder="' . $text . '" />';
+			$output = '<!-- <label for="mod-search-searchword'.$module->id.'" class="element-invisible">'.$label.'</label> -->';
+			$output .= '<input name="searchword" id="mod-search-searchword'.$module->id.'" maxlength="'.$maxlength.'"  class="inputbox form-control search-query input-medium" type="search"'.$width;
+			$output .= ' placeholder="'.$text.'" />';
 
 			if ($button) :
 				if ($imagebutton) :
-					$btn_output = ' <div class="input-group-prepend"><input type="image" alt="' . $button_text . '" class="button btn btn-primary" src="' . $img . '" onclick="this.form.searchword.focus();"/></div>';
+					$btn_output = ' <div class="input-group-prepend"><input type="image" alt="'.$button_text.'" class="button btn btn-primary" src="'.$img.'" onclick="this.form.searchword.focus();"/></div>';
 				else :
-					$btn_output = ' <div class="input-group-prepend"><button class="button btn btn-primary" onclick="this.form.searchword.focus();">' . $button_text . '</button></div>';
+					$btn_output = ' <div class="input-group-prepend"><button class="button btn btn-primary" onclick="this.form.searchword.focus();">'.$button_text.'</button></div>';
 				endif;
 
 				switch ($button_pos) :
 					case 'top' :
-						$output = $btn_output . '<br />' . $output;
+						$output = $btn_output.'<br />'.$output;
 						break;
 
 					case 'bottom' :
-						$output .= '<br />' . $btn_output;
+						$output .= '<br />'.$btn_output;
 						break;
 
 					case 'right' :
@@ -56,7 +56,7 @@ else
 
 					case 'left' :
 					default :
-						$output = $btn_output . $output;
+						$output = $btn_output.$output;
 						break;
 				endswitch;
 			endif;

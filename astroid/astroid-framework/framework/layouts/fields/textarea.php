@@ -43,18 +43,18 @@ extract($displayData);
  */
 
 // Initialize some field attributes.
-$autocomplete = !$autocomplete ? 'autocomplete="off"' : 'autocomplete="' . $autocomplete . '"';
+$autocomplete = !$autocomplete ? 'autocomplete="off"' : 'autocomplete="'.$autocomplete.'"';
 $autocomplete = $autocomplete == 'autocomplete="on"' ? '' : $autocomplete;
 
 $attributes = array(
     $columns ?: '',
     $rows ?: '',
-    !empty($class) ? 'class="' . $class . '"' : '',
-    strlen($hint) ? 'placeholder="' . htmlspecialchars($hint, ENT_COMPAT, 'UTF-8') . '"' : '',
+    !empty($class) ? 'class="'.$class.'"' : '',
+    strlen($hint) ? 'placeholder="'.htmlspecialchars($hint, ENT_COMPAT, 'UTF-8').'"' : '',
     $disabled ? 'disabled' : '',
     $readonly ? 'readonly' : '',
-    $onchange ? 'onchange="' . $onchange . '"' : '',
-    $onclick ? 'onclick="' . $onclick . '"' : '',
+    $onchange ? 'onchange="'.$onchange.'"' : '',
+    $onclick ? 'onclick="'.$onclick.'"' : '',
     $required ? 'required aria-required="true"' : '',
     $autocomplete,
     $autofocus ? 'autofocus' : '',
@@ -62,9 +62,9 @@ $attributes = array(
     $maxlength ? $maxlength : ''
 );
 ?>
-<textarea <?php echo!empty($code) ? 'data-code="' . $code . '"' : ''; ?> name="<?php echo $name; ?>" id="<?php echo $id; ?>" <?php echo implode(' ', $attributes); ?> ><?php echo htmlspecialchars($value, ENT_COMPAT, 'UTF-8'); ?></textarea>
+<textarea <?php echo!empty($code) ? 'data-code="'.$code.'"' : ''; ?> name="<?php echo $name; ?>" id="<?php echo $id; ?>" <?php echo implode(' ', $attributes); ?> ><?php echo htmlspecialchars($value, ENT_COMPAT, 'UTF-8'); ?></textarea>
 <?php
 if (!empty($code)) {
-   echo '<div class="astroid-code-editor"><div class="overlay"></div><div class="head">' . $label . '<span class="astroid-code-editor-exit-fs"><i class="fa fa-compress"></i></span></div><div class="body"><div id="' . $id . '_editor"></div></div><span class="astroid-code-editor-fs"><i class="fa fa-expand"></i></span></div>';
+   echo '<div class="astroid-code-editor"><div class="overlay"></div><div class="head">'.$label.'<span class="astroid-code-editor-exit-fs"><i class="fa fa-compress"></i></span></div><div class="body"><div id="'.$id.'_editor"></div></div><span class="astroid-code-editor-fs"><i class="fa fa-expand"></i></span></div>';
 }
 ?>

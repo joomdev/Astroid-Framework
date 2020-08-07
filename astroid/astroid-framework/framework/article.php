@@ -86,38 +86,38 @@ class AstroidFrameworkArticle
       }
       $images = json_decode($this->article->images);
       if (isset($images->image_intro) && !empty($images->image_intro)) {
-         $og_image = JURI::base() . htmlspecialchars($images->image_intro, ENT_COMPAT, 'UTF-8');
+         $og_image = JURI::base().htmlspecialchars($images->image_intro, ENT_COMPAT, 'UTF-8');
       }
       if (!empty($this->article->params->get('astroid_og_image', ''))) {
-         $og_image = JURI::base() . $this->article->params->get('astroid_og_image', '');
+         $og_image = JURI::base().$this->article->params->get('astroid_og_image', '');
       }
 
       $og_sitename = $config->get('sitename');
-      $og_siteurl = JURI::base() . ContentHelperRoute::getArticleRoute($this->article->slug, $this->article->catid, $this->article->language);
+      $og_siteurl = JURI::base().ContentHelperRoute::getArticleRoute($this->article->slug, $this->article->catid, $this->article->language);
 
       $meta = [];
       $meta[] = '<meta property="og:type" content="article">';
       $meta[] = '<meta name="twitter:card" content="summary" />';
       if (!empty($og_title)) {
-         $meta[] = '<meta property="og:title" content="' . $og_title . '">';
+         $meta[] = '<meta property="og:title" content="'.$og_title.'">';
       }
       if (!empty($og_sitename)) {
-         $meta[] = '<meta property="og:site_name" content="' . $og_sitename . '">';
+         $meta[] = '<meta property="og:site_name" content="'.$og_sitename.'">';
       }
       if (!empty($og_siteurl)) {
-         $meta[] = '<meta property="og:url" content="' . $og_siteurl . '">';
+         $meta[] = '<meta property="og:url" content="'.$og_siteurl.'">';
       }
       if (!empty($og_description)) {
-         $meta[] = '<meta property="og:description" content="' . substr($og_description, 0, 200) . '">';
+         $meta[] = '<meta property="og:description" content="'.substr($og_description, 0, 200).'">';
       }
       if (!empty($og_image)) {
-         $meta[] = '<meta property="og:image" content="' . $og_image . '">';
+         $meta[] = '<meta property="og:image" content="'.$og_image.'">';
       }
       if (!empty($fb_id)) {
-         $meta[] = '<meta property="fb:app_id" content="' . $fb_id . '" />';
+         $meta[] = '<meta property="fb:app_id" content="'.$fb_id.'" />';
       }
       if (!empty($tw_id)) {
-         $meta[] = '<meta name="twitter:creator" content="@' . $tw_id . '" />';
+         $meta[] = '<meta name="twitter:creator" content="@'.$tw_id.'" />';
       }
       $meta = implode('', $meta);
       if (!empty($meta)) {
@@ -131,7 +131,7 @@ class AstroidFrameworkArticle
       if ($this->type == 'regular') {
          return false;
       }
-      $this->template->loadLayout('blog.' . $this->type, true, ['article' => $this->article]);
+      $this->template->loadLayout('blog.'.$this->type, true, ['article' => $this->article]);
    }
 
    // Read Time
@@ -217,7 +217,7 @@ class AstroidFrameworkArticle
             $count = $this->template->params->get('article_relatedposts_count', 4);
          }
 
-         JLoader::register('ModRelatedItemsHelper', JPATH_ROOT . '/modules/mod_related_items/helper.php');
+         JLoader::register('ModRelatedItemsHelper', JPATH_ROOT.'/modules/mod_related_items/helper.php');
          $params = new JRegistry();
          $params->loadArray(['maximum' => $count]);
          $items = ModRelatedItemsHelper::getList($params);
@@ -441,7 +441,7 @@ class AstroidFrameworkArticle
          $first_element = $item;
          break;
       }
-      return JURI::root() . $first_element['image'];
+      return JURI::root().$first_element['image'];
    }
 
    public function getVideoThumbnail()
@@ -459,7 +459,7 @@ class AstroidFrameworkArticle
       $id = self::getVideoId($id, $type);
       switch ($type) {
          case 'youtube':
-            $return = '//img.youtube.com/vi/' . $id . '/maxresdefault.jpg';
+            $return = '//img.youtube.com/vi/'.$id.'/maxresdefault.jpg';
             break;
          case 'vimeo':
             $return = self::getVimeoThumbnailByID($id);
@@ -470,7 +470,7 @@ class AstroidFrameworkArticle
 
    public static function getVimeoThumbnailByID($vid)
    {
-      $hash = unserialize(file_get_contents("https://vimeo.com/api/v2/video/" . $vid . ".php"));
+      $hash = unserialize(file_get_contents("https://vimeo.com/api/v2/video/".$vid.".php"));
       $thumbnail = $hash[0]['thumbnail_large'];
       return $thumbnail;
    }

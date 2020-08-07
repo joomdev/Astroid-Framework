@@ -278,7 +278,7 @@ class SourceMapGenerator
                 $lineMapEncoded[] = $mapEncoded;
             }
 
-            $groupedMapEncoded[] = implode(',', $lineMapEncoded) . ';';
+            $groupedMapEncoded[] = implode(',', $lineMapEncoded).';';
         }
 
         return rtrim(implode($groupedMapEncoded), ';');
@@ -312,7 +312,7 @@ class SourceMapGenerator
             $filename = substr($filename, 1);
         }
 
-        return $rootpath . $filename;
+        return $rootpath.$filename;
     }
 
     /**
@@ -329,7 +329,7 @@ class SourceMapGenerator
 
         if (! empty($path)) {
             $path = str_replace('\\', '/', $path);
-            $path = rtrim($path, '/') . $slash;
+            $path = rtrim($path, '/').$slash;
         }
 
         return $path;

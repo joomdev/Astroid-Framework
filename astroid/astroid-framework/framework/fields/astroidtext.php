@@ -132,18 +132,18 @@ class JFormFieldAstroidtext extends JFormField {
          $inputmode = explode(' ', $inputmode);
 
          if (!empty($inputmode)) {
-            $defaultInputmode = in_array('default', $inputmode) ? JText::_('JLIB_FORM_INPUTMODE') . ' ' : '';
+            $defaultInputmode = in_array('default', $inputmode) ? JText::_('JLIB_FORM_INPUTMODE').' ' : '';
 
             foreach (array_keys($inputmode, 'default') as $key) {
                unset($inputmode[$key]);
             }
 
-            $this->inputmode = $defaultInputmode . implode(' ', $inputmode);
+            $this->inputmode = $defaultInputmode.implode(' ', $inputmode);
          }
 
          // Set the dirname.
          $dirname = ((string) $dirname == 'dirname' || $dirname == 'true' || $dirname == '1');
-         $this->dirname = $dirname ? $this->getName($this->fieldname . '_dir') : false;
+         $this->dirname = $dirname ? $this->getName($this->fieldname.'_dir') : false;
 
          $this->maxLength = (int) $this->element['maxlength'];
       }
@@ -189,7 +189,7 @@ class JFormFieldAstroidtext extends JFormField {
          }
       }
 
-      $renderer = new JLayoutFile($this->layout, JPATH_LIBRARIES . '/astroid/framework/layouts');
+      $renderer = new JLayoutFile($this->layout, JPATH_LIBRARIES.'/astroid/framework/layouts');
 
       $data = $this->getLayoutData();
       $data['fieldname'] = $this->fieldname;
@@ -245,9 +245,9 @@ class JFormFieldAstroidtext extends JFormField {
       $data = parent::getLayoutData();
 
       // Initialize some field attributes.
-      $maxLength = !empty($this->maxLength) ? ' maxlength="' . $this->maxLength . '"' : '';
-      $inputmode = !empty($this->inputmode) ? ' inputmode="' . $this->inputmode . '"' : '';
-      $dirname = !empty($this->dirname) ? ' dirname="' . $this->dirname . '"' : '';
+      $maxLength = !empty($this->maxLength) ? ' maxlength="'.$this->maxLength.'"' : '';
+      $inputmode = !empty($this->inputmode) ? ' inputmode="'.$this->inputmode.'"' : '';
+      $dirname = !empty($this->dirname) ? ' dirname="'.$this->dirname.'"' : '';
 
       /* Get the field options for the datalist.
         Note: getSuggestions() is deprecated and will be changed to getOptions() with 4.0. */

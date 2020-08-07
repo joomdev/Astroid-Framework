@@ -748,10 +748,10 @@ class Compiler
      */
     protected function compileDirective(Block $block)
     {
-        $s = '@' . $block->name;
+        $s = '@'.$block->name;
 
         if (! empty($block->value)) {
-            $s .= ' ' . $this->compileValue($block->value);
+            $s .= ' '.$this->compileValue($block->value);
         }
 
         if ($block->name === 'keyframes' || substr($block->name, -10) === '-keyframes') {
@@ -1058,15 +1058,15 @@ class Compiler
 
             switch ($this->lineNumberStyle) {
                 case static::LINE_COMMENTS:
-                    $annotation->lines[] = '/* line ' . $line
-                                         . ($file ? ', ' . $file : '')
-                                         . ' */';
+                    $annotation->lines[] = '/* line '.$line
+                                        .($file ? ', '.$file : '')
+                                        .' */';
                     break;
 
                 case static::DEBUG_INFO:
                     $annotation->lines[] = '@media -sass-debug-info{'
-                                         . ($file ? 'filename{font-family:"' . $file . '"}' : '')
-                                         . 'line{font-family:' . $line . '}}';
+                                        .($file ? 'filename{font-family:"'.$file.'"}' : '')
+                                        .'line{font-family:'.$line.'}}';
                     break;
             }
 
@@ -1371,14 +1371,14 @@ class Compiler
                     case Type::T_MEDIA_EXPRESSION:
                         if (isset($q[2])) {
                             $parts[] = '('
-                                . $this->compileValue($q[1])
-                                . $this->formatter->assignSeparator
-                                . $this->compileValue($q[2])
-                                . ')';
+                               .$this->compileValue($q[1])
+                               .$this->formatter->assignSeparator
+                               .$this->compileValue($q[2])
+                               .')';
                         } else {
                             $parts[] = '('
-                                . $this->compileValue($q[1])
-                                . ')';
+                               .$this->compileValue($q[1])
+                               .')';
                         }
                         break;
 
@@ -1432,7 +1432,7 @@ class Compiler
             }
 
             array_unshift($merged, $part1);
-            array_unshift($merged, [array_pop($selectors1)[0] . array_pop($selectors2)[0]]);
+            array_unshift($merged, [array_pop($selectors1)[0].array_pop($selectors2)[0]]);
         } while (! empty($selectors1) && ! empty($selectors2));
 
         return $merged;
@@ -1573,7 +1573,7 @@ class Compiler
                 $rawPath = $this->reduce($rawPath);
 
                 if (! $this->compileImport($rawPath, $out, true)) {
-                    $out->lines[] = '@import ' . $this->compileValue($rawPath) . ';';
+                    $out->lines[] = '@import '.$this->compileValue($rawPath).';';
                 }
                 break;
 
@@ -1583,7 +1583,7 @@ class Compiler
                 $rawPath = $this->reduce($rawPath);
 
                 if (! $this->compileImport($rawPath, $out)) {
-                    $out->lines[] = '@import ' . $this->compileValue($rawPath) . ';';
+                    $out->lines[] = '@import '.$this->compileValue($rawPath).';';
                 }
                 break;
 
@@ -1607,7 +1607,7 @@ class Compiler
                 if (! $this->charsetSeen) {
                     $this->charsetSeen = true;
 
-                    $out->lines[] = '@charset ' . $this->compileValue($child[1]) . ';';
+                    $out->lines[] = '@charset '.$this->compileValue($child[1]).';';
                 }
                 break;
 
@@ -1680,7 +1680,7 @@ class Compiler
             case Type::T_FUNCTION:
                 list(, $block) = $child;
 
-                $this->set(static::$namespaces[$block->type] . $block->name, $block);
+                $this->set(static::$namespaces[$block->type].$block->name, $block);
                 break;
 
             case Type::T_EXTEND:
@@ -1823,7 +1823,7 @@ class Compiler
                 list(, $prop) = $child;
 
                 $prefixed = [];
-                $prefix = $this->compileValue($prop->prefix) . '-';
+                $prefix = $this->compileValue($prop->prefix).'-';
 
                 foreach ($prop->children as $child) {
                     switch ($child[0]) {
@@ -1846,7 +1846,7 @@ class Compiler
                 // including a mixin
                 list(, $name, $argValues, $content) = $child;
 
-                $mixin = $this->get(static::$namespaces['mixin'] . $name, false);
+                $mixin = $this->get(static::$namespaces['mixin'].$name, false);
 
                 if (! $mixin) {
                     $this->throwError("Undefined mixin $name");
@@ -1865,7 +1865,7 @@ class Compiler
                 if (isset($content)) {
                     $content->scope = $callingScope;
 
-                    $this->setRaw(static::$namespaces['special'] . 'content', $content, $this->env);
+                    $this->setRaw(static::$namespaces['special'].'content', $content, $this->env);
                 }
 
                 if (isset($mixin->args)) {
@@ -1882,8 +1882,8 @@ class Compiler
                 break;
 
             case Type::T_MIXIN_CONTENT:
-                $content = $this->get(static::$namespaces['special'] . 'content', false, $this->getStoreEnv())
-                         ?: $this->get(static::$namespaces['special'] . 'content', false, $this->env);
+                $content = $this->get(static::$namespaces['special'].'content', false, $this->getStoreEnv())
+                         ?: $this->get(static::$namespaces['special'].'content', false, $this->env);
 
                 if (! $content) {
                     $content = new \stdClass();
@@ -2148,7 +2148,7 @@ class Compiler
                         return static::$false;
                     }
 
-                    $op = $op . ' ';
+                    $op = $op.' ';
                 }
 
                 return [Type::T_STRING, '', [$op, $exp]];
@@ -2334,7 +2334,7 @@ class Compiler
     protected function opDivNumberNumber($left, $right)
     {
         if ($right[1] == 0) {
-            return [Type::T_STRING, '', [$left[1] . $left[2] . '/' . $right[1] . $right[2]]];
+            return [Type::T_STRING, '', [$left[1].$left[2].'/'.$right[1].$right[2]]];
         }
 
         return new Node\Number($left[1] / $right[1], $left[2]);
@@ -2694,14 +2694,14 @@ class Compiler
                 $b = round($b);
 
                 if (count($value) === 5 && $value[4] !== 1) { // rgba
-                    return 'rgba(' . $r . ', ' . $g . ', ' . $b . ', ' . $value[4] . ')';
+                    return 'rgba('.$r.', '.$g.', '.$b.', '.$value[4].')';
                 }
 
                 $h = sprintf('#%02x%02x%02x', $r, $g, $b);
 
                 // Converting hex color to short notation (e.g. #003399 to #039)
                 if ($h[1] === $h[2] && $h[3] === $h[4] && $h[5] === $h[6]) {
-                    $h = '#' . $h[1] . $h[3] . $h[5];
+                    $h = '#'.$h[1].$h[3].$h[5];
                 }
 
                 return $h;
@@ -2710,7 +2710,7 @@ class Compiler
                 return $value->output($this);
 
             case Type::T_STRING:
-                return $value[1] . $this->compileStringContent($value) . $value[1];
+                return $value[1].$this->compileStringContent($value).$value[1];
 
             case Type::T_FUNCTION:
                 $args = ! empty($value[2]) ? $this->compileValue($value[2]) : '';
@@ -2752,10 +2752,10 @@ class Compiler
                 }
 
                 array_walk($filtered, function (&$value, $key) {
-                    $value = $key . ': ' . $value;
+                    $value = $key.': '.$value;
                 });
 
-                return '(' . implode(', ', $filtered) . ')';
+                return '('.implode(', ', $filtered).')';
 
             case Type::T_INTERPOLATED:
                 // node created by extractInterpolation
@@ -2763,12 +2763,12 @@ class Compiler
                 list(,, $whiteLeft, $whiteRight) = $interpolate;
 
                 $left = count($left[2]) > 0 ?
-                    $this->compileValue($left) . $whiteLeft : '';
+                    $this->compileValue($left).$whiteLeft : '';
 
                 $right = count($right[2]) > 0 ?
-                    $whiteRight . $this->compileValue($right) : '';
+                    $whiteRight.$this->compileValue($right) : '';
 
-                return $left . $this->compileValue($interpolate) . $right;
+                return $left.$this->compileValue($interpolate).$right;
 
             case Type::T_INTERPOLATE:
                 // raw parse node
@@ -3154,7 +3154,7 @@ class Compiler
     public function get($name, $shouldThrow = true, Environment $env = null)
     {
         $normalizedName = $this->normalizeName($name);
-        $specialContentKey = static::$namespaces['special'] . 'content';
+        $specialContentKey = static::$namespaces['special'].'content';
 
         if (! isset($env)) {
             $env = $this->getStoreEnv();
@@ -3473,10 +3473,10 @@ class Compiler
                 // check urls for normal import paths
                 foreach ($urls as $full) {
                     $full = $dir
-                        . (! empty($dir) && substr($dir, -1) !== '/' ? '/' : '')
-                        . $full;
+                       .(! empty($dir) && substr($dir, -1) !== '/' ? '/' : '')
+                       .$full;
 
-                    if ($this->fileExists($file = $full . '.scss') ||
+                    if ($this->fileExists($file = $full.'.scss') ||
                         ($hasExtension && $this->fileExists($file = $full))
                     ) {
                         return $file;
@@ -3588,7 +3588,7 @@ class Compiler
      */
     protected function callScssFunction($name, $argValues, &$returnValue)
     {
-        $func = $this->get(static::$namespaces['function'] . $name, false);
+        $func = $this->get(static::$namespaces['function'].$name, false);
 
         if (! $func) {
             return false;
@@ -3674,7 +3674,7 @@ class Compiler
      */
     protected function getBuiltinFunction($name)
     {
-        $libName = 'lib' . preg_replace_callback(
+        $libName = 'lib'.preg_replace_callback(
             '/_(.)/',
             function ($m) {
                 return ucfirst($m[1]);
@@ -5236,7 +5236,7 @@ class Compiler
         $name = $this->compileStringContent($string);
 
         // user defined functions
-        if ($this->has(static::$namespaces['function'] . $name)) {
+        if ($this->has(static::$namespaces['function'].$name)) {
             return true;
         }
 
@@ -5267,7 +5267,7 @@ class Compiler
         $string = $this->coerceString($args[0]);
         $name = $this->compileStringContent($string);
 
-        return $this->has(static::$namespaces['mixin'] . $name);
+        return $this->has(static::$namespaces['mixin'].$name);
     }
 
     protected static $libVariableExists = ['name'];
@@ -5290,7 +5290,7 @@ class Compiler
     {
         $list = array_map([$this, 'compileValue'], $args);
 
-        return [Type::T_STRING, '', ['counter(' . implode(',', $list) . ')']];
+        return [Type::T_STRING, '', ['counter('.implode(',', $list).')']];
     }
 
     protected static $libRandom = ['limit'];
@@ -5321,7 +5321,7 @@ class Compiler
 
         $id += mt_rand(0, 10) + 1;
 
-        return [Type::T_STRING, '', ['u' . str_pad(base_convert($id, 10, 36), 8, '0', STR_PAD_LEFT)]];
+        return [Type::T_STRING, '', ['u'.str_pad(base_convert($id, 10, 36), 8, '0', STR_PAD_LEFT)]];
     }
 
     protected static $libInspect = ['value'];

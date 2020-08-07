@@ -110,7 +110,7 @@ abstract class Formatter
      */
     public function property($name, $value)
     {
-        return rtrim($name) . $this->assignSeparator . $value . ';';
+        return rtrim($name).$this->assignSeparator.$value.';';
     }
 
     /**
@@ -142,9 +142,9 @@ abstract class Formatter
     {
         $inner = $this->indentStr();
 
-        $glue = $this->break . $inner;
+        $glue = $this->break.$inner;
 
-        $this->write($inner . implode($glue, $block->lines));
+        $this->write($inner.implode($glue, $block->lines));
 
         if (! empty($block->children)) {
             $this->write($this->break);
@@ -161,8 +161,8 @@ abstract class Formatter
         $inner = $this->indentStr();
 
         $this->write($inner
-            . implode($this->tagSeparator, $block->selectors)
-            . $this->open . $this->break);
+           .implode($this->tagSeparator, $block->selectors)
+           .$this->open.$this->break);
     }
 
     /**
@@ -213,7 +213,7 @@ abstract class Formatter
                 $this->write($this->break);
             }
 
-            $this->write($pre . $this->close . $this->break);
+            $this->write($pre.$this->close.$this->break);
         }
     }
 

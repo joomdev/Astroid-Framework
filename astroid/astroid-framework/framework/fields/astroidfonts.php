@@ -37,8 +37,8 @@ class JFormFieldAstroidfonts extends JFormField {
       $attr = '';
 
       // Initialize some field attributes.
-      $attr .= !empty($this->class) ? ' class="astroid-font-selector ' . $this->class . '"' : ' class="astroid-font-selector"';
-      $attr .= !empty($this->size) ? ' size="' . $this->size . '"' : '';
+      $attr .= !empty($this->class) ? ' class="astroid-font-selector '.$this->class.'"' : ' class="astroid-font-selector"';
+      $attr .= !empty($this->size) ? ' size="'.$this->size.'"' : '';
       $attr .= $this->multiple ? ' multiple' : '';
       $attr .= $this->required ? ' required aria-required="true"' : '';
       $attr .= $this->autofocus ? ' autofocus' : '';
@@ -49,9 +49,9 @@ class JFormFieldAstroidfonts extends JFormField {
       }
 
       // Initialize JavaScript field attributes.
-      $attr .= $this->onchange ? ' onchange="' . $this->onchange . '"' : '';
+      $attr .= $this->onchange ? ' onchange="'.$this->onchange.'"' : '';
 
-      $html = '<select data-preview="astroid-font-preview-' . $this->fieldname . '" ' . $attr . ' name="' . $this->name . '">';
+      $html = '<select data-preview="astroid-font-preview-'.$this->fieldname.'" '.$attr.' name="'.$this->name.'">';
       $fonts = AstroidFrameworkHelper::getGoogleFonts();
 
       $options = [];
@@ -60,15 +60,15 @@ class JFormFieldAstroidfonts extends JFormField {
          $options[$font['category']][] = $font['family'];
       }
 
-      $html .= '<option ' . ($this->value == '' ? ' selected' : '') . ' value="">Default</option>';
+      $html .= '<option '.($this->value == '' ? ' selected' : '').' value="">Default</option>';
 
       //$options = array();
       foreach ($options as $group => $fonts) {
          if (!empty($group)) {
-            $html .= '<optgroup label="' . $group . '">';
+            $html .= '<optgroup label="'.$group.'">';
          }
          foreach ($fonts as $value) {
-            $html .= '<option ' . ($this->value == $value ? ' selected' : '') . ' value="' . $value . '">' . $value . '</option>';
+            $html .= '<option '.($this->value == $value ? ' selected' : '').' value="'.$value.'">'.$value.'</option>';
          }
          if (!empty($group)) {
             $html .= '</optgroup>';
@@ -79,14 +79,14 @@ class JFormFieldAstroidfonts extends JFormField {
 
       $speciman = '';
       foreach ($alphas as $alpha) {
-         $speciman .= '<span>' . $alpha . strtolower($alpha) . '</span>';
+         $speciman .= '<span>'.$alpha.strtolower($alpha).'</span>';
       }
       $speciman .= '<div class="clearfix"></div>';
       for ($i = 0; $i <= 9; $i++) {
-         $speciman .= '<span>' . $i . '</span>';
+         $speciman .= '<span>'.$i.'</span>';
       }
 
-      $html .= '</select><div class="astroid-font-preview inline astroid-font-preview-' . $this->fieldname . '"><div class="light"><span>Aa</span></div><div class="dark"><span>Aa</span></div><div data-target="astroid-font-preview-' . $this->fieldname . '" class="more" title="' . JText::_('ASTROID_FIELDS_FONTS_PREVIEW_TOGGLE') . '"><span class="fa fa-caret-square-down"></span></div><div title="' . JText::_('ASTROID_FIELDS_FONTS_PREVIEW_TOGGLE') . '" data-target="astroid-font-preview-' . $this->fieldname . '" class="less"><span class="fa fa-caret-square-up"></span></div></div><div class="clearfix"></div><div class="astroid-font-preview astroid-font-preview-' . $this->fieldname . '"><div class="light">' . $speciman . '</div><div class="dark">' . $speciman . '</div></div>';
+      $html .= '</select><div class="astroid-font-preview inline astroid-font-preview-'.$this->fieldname.'"><div class="light"><span>Aa</span></div><div class="dark"><span>Aa</span></div><div data-target="astroid-font-preview-'.$this->fieldname.'" class="more" title="'.JText::_('ASTROID_FIELDS_FONTS_PREVIEW_TOGGLE').'"><span class="fa fa-caret-square-down"></span></div><div title="'.JText::_('ASTROID_FIELDS_FONTS_PREVIEW_TOGGLE').'" data-target="astroid-font-preview-'.$this->fieldname.'" class="less"><span class="fa fa-caret-square-up"></span></div></div><div class="clearfix"></div><div class="astroid-font-preview astroid-font-preview-'.$this->fieldname.'"><div class="light">'.$speciman.'</div><div class="dark">'.$speciman.'</div></div>';
 
       return $html;
    }

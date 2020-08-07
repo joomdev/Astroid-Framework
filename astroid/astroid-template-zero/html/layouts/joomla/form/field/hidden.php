@@ -44,9 +44,9 @@ extract($displayData);
  */
 
 // Initialize some field attributes.
-$class    = !empty($class) ? ' class="' . $class . '"' : '';
+$class    = !empty($class) ? ' class="'.$class.'"' : '';
 $disabled = $disabled ? ' disabled' : '';
-$onchange = $onchange ? ' onchange="' . $onchange . '"' : '';
+$onchange = $onchange ? ' onchange="'.$onchange.'"' : '';
 ?>
 <input type="hidden" name="<?php
 echo $name; ?>" id="<?php

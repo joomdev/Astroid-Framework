@@ -29,7 +29,7 @@ $hash_email = md5(strtolower(trim($user->email)));
             <div class="author-thumb mr-4">
                <?php if ($params->get('astroid_author_picture', 'gravatar') == "upload") { ?>
                   <?php if (!empty($params->get('upload', ''))) { ?>
-                     <img width="80" src="<?php echo JURI::base() . $params->get('upload', ''); ?>">
+                     <img width="80" src="<?php echo JURI::base().$params->get('upload', ''); ?>">
                   <?php } else { ?>
                      <img width="80" src="<?php echo JURI::base(); ?>images/<?php echo $template->template; ?>/user-avatar.png">
                   <?php } ?>

@@ -76,7 +76,7 @@ JHtml::_('script', 'jui/html5.js', array('version' => 'auto', 'relative' => true
 JHtml::_('bootstrap.loadCss', false, $this->direction);
 
 // Load specific language related CSS
-JHtml::_('stylesheet', 'administrator/language/' . $lang->getTag() . '/' . $lang->getTag() . '.css', array('version' => 'auto'));
+JHtml::_('stylesheet', 'administrator/language/'.$lang->getTag().'/'.$lang->getTag().'.css', array('version' => 'auto'));
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo $this->language; ?>" dir="<?php echo $this->direction; ?>">

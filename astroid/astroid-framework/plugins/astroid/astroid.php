@@ -75,7 +75,7 @@ class plgSystemAstroid extends JPlugin
                         $template_id = $this->app->input->get('id', NULL, 'INT');
                         $template_name = $this->app->input->get('template', NULL, 'RAW');
                         $params = \json_encode($params);
-                        file_put_contents(JPATH_SITE . "/templates/{$template_name}/params" . '/' . $template_id . '.json', $params);
+                        file_put_contents(JPATH_SITE."/templates/{$template_name}/params".'/'.$template_id.'.json', $params);
                         $return["status"] = "success";
                         $return["code"] = 200;
                         $version = new \JVersion;
@@ -129,14 +129,14 @@ class plgSystemAstroid extends JPlugin
                         }
                         $value = str_replace(' ', '+', $font['family']);
                         if (!empty($variants)) {
-                           $value .= ':' . implode(',', $variants);
+                           $value .= ':'.implode(',', $variants);
                         }
                         $options[$font['category']][$value] = $font['family'];
                      }
                      // $return .= '<div class="item" data-value="">Inherit</div>';
-                     $return .= '<div class="ui horizontal divider">' . JText::_('TPL_ASTROID_TYPOGRAPHY_SYSTEM') . '</div>';
+                     $return .= '<div class="ui horizontal divider">'.JText::_('TPL_ASTROID_TYPOGRAPHY_SYSTEM').'</div>';
                      foreach (AstroidFrameworkConstants::$system_fonts as $name => $system_font) {
-                        $return .= '<div class="item" data-value="' . $name . '">' . $system_font . '</div>';
+                        $return .= '<div class="item" data-value="'.$name.'">'.$system_font.'</div>';
                      }
 
                      $template = $this->app->input->get('template', '', 'RAW');
@@ -144,16 +144,16 @@ class plgSystemAstroid extends JPlugin
                      $uploadedFonts = AstroidFrameworkHelper::getUploadedFonts($template);
 
                      if (!empty($uploadedFonts)) {
-                        $return .= '<div class="ui horizontal divider">' . JText::_('TPL_ASTROID_TYPOGRAPHY_CUSTOM') . '</div>';
+                        $return .= '<div class="ui horizontal divider">'.JText::_('TPL_ASTROID_TYPOGRAPHY_CUSTOM').'</div>';
                         foreach ($uploadedFonts as $uploaded_font) {
-                           $return .= '<div class="item" data-value="' . $uploaded_font['id'] . '">' . $uploaded_font['name'] . '</div>';
+                           $return .= '<div class="item" data-value="'.$uploaded_font['id'].'">'.$uploaded_font['name'].'</div>';
                         }
                      }
 
-                     $return .= '<div class="ui horizontal divider">' . JText::_('TPL_ASTROID_TYPOGRAPHY_GOOGLE') . '</div>';
+                     $return .= '<div class="ui horizontal divider">'.JText::_('TPL_ASTROID_TYPOGRAPHY_GOOGLE').'</div>';
                      foreach ($options as $group => $fonts) {
                         foreach ($fonts as $fontValue => $font) {
-                           $return .= '<div class="item" data-value="' . $fontValue . '">' . $font . '</div>';
+                           $return .= '<div class="item" data-value="'.$fontValue.'">'.$font.'</div>';
                         }
                      }
                   } catch (\Exception $e) { }
@@ -181,7 +181,7 @@ class plgSystemAstroid extends JPlugin
                   if (!JFactory::getUser()->id) {
                      $uri = JFactory::getURI();
                      $return = $uri->toString();
-                     JFactory::getApplication()->redirect(JRoute::_('index.php?ast=' . urlencode(base64_encode($return))));
+                     JFactory::getApplication()->redirect(JRoute::_('index.php?ast='.urlencode(base64_encode($return))));
                   }
                   $id = $this->app->input->get('id', NULL, 'INT');
                   $template = AstroidFrameworkHelper::getTemplateById($id);
@@ -189,12 +189,12 @@ class plgSystemAstroid extends JPlugin
                   if (!defined('ASTROID_TEMPLATE_NAME')) {
                      define('ASTROID_TEMPLATE_NAME', $template->template);
                   }
-                  $lang->load('tpl_' . ASTROID_TEMPLATE_NAME, JPATH_SITE);
+                  $lang->load('tpl_'.ASTROID_TEMPLATE_NAME, JPATH_SITE);
                   $lang->load(ASTROID_TEMPLATE_NAME, JPATH_SITE);
                   $lang->load('mod_menu', JPATH_SITE);
 
                   // render manager
-                  $layout = new JLayoutFile('framework.manager', JPATH_LIBRARIES . '/astroid/framework/layouts');
+                  $layout = new JLayoutFile('framework.manager', JPATH_LIBRARIES.'/astroid/framework/layouts');
                   JPluginHelper::importPlugin('astroid');
                   $dispatcher = JDispatcher::getInstance();
                   $dispatcher->trigger('onBeforeAstroidAdminRender', [&$template]);
@@ -249,7 +249,7 @@ class plgSystemAstroid extends JPlugin
                         throw new \Exception(\JText::_('ASTROID_INVALID_RATING'), 0);
                      }
                      jimport('joomla.application.component.model');
-                     JModelLegacy::addIncludePath(JPATH_SITE . '/components/com_content/models', 'ContentModel');
+                     JModelLegacy::addIncludePath(JPATH_SITE.'/components/com_content/models', 'ContentModel');
                      $model = JModelLegacy::getInstance('Article', 'ContentModel');
                      if ($model->storeVote($id, $vote)) {
                         $return["status"] = "success";
@@ -274,8 +274,8 @@ class plgSystemAstroid extends JPlugin
 
    public function onContentPrepareForm($form, $data)
    {
-      $astroid_dir = 'libraries' . '/' . 'astroid';
-      \JForm::addFormPath(JPATH_SITE . '/' . $astroid_dir . '/framework/forms');
+      $astroid_dir = 'libraries'.'/'.'astroid';
+      \JForm::addFormPath(JPATH_SITE.'/'.$astroid_dir.'/framework/forms');
       if ($form->getName() == 'com_menus.item') {
          $form->loadFile('menu', false);
          $form->loadFile('banner', false);
@@ -312,7 +312,7 @@ class plgSystemAstroid extends JPlugin
                $id = (int) $uri->getVar('id');
 
                if ($id && in_array($uri->getVar('option'), array('com_templates')) && (in_array($id, $astroid_templates))) {
-                  $html = $matches[1] . $uri . $matches[3] . $matches[4] . $matches[5];
+                  $html = $matches[1].$uri.$matches[3].$matches[4].$matches[5];
                   $html .= ' <span class="label" style="background: rgba(0, 0, 0, 0) linear-gradient(to right, #8E2DE2, #4A00E0) repeat scroll 0 0; color:#fff;padding-left: 10px;padding-right: 10px;margin-left: 5px;border-radius: 30px;box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.20);">Astroid</span>';
                }
             }
@@ -324,7 +324,7 @@ class plgSystemAstroid extends JPlugin
 
    private function getAstroidTemplates()
    {
-      if (!file_exists(JPATH_LIBRARIES . '/astroid/framework/helper.php')) {
+      if (!file_exists(JPATH_LIBRARIES.'/astroid/framework/helper.php')) {
          return [];
       }
       $db = JFactory::getDbo();
@@ -334,7 +334,7 @@ class plgSystemAstroid extends JPlugin
          ->from('#__template_styles as s')
          ->where('s.client_id = 0')
          ->where('e.enabled = 1')
-         ->leftJoin('#__extensions as e ON e.element=s.template AND e.type=' . $db->quote('template') . ' AND e.client_id=s.client_id');
+         ->leftJoin('#__extensions as e ON e.element=s.template AND e.type='.$db->quote('template').' AND e.client_id=s.client_id');
 
       $db->setQuery($query);
       $templates = $db->loadObjectList();
@@ -351,7 +351,7 @@ class plgSystemAstroid extends JPlugin
 
    private function isAstroidTemplate($name)
    {
-      return file_exists(JPATH_SITE . "/templates/{$name}/frontend");
+      return file_exists(JPATH_SITE."/templates/{$name}/frontend");
    }
 
    public function onAfterGetMenuTypeOptions(&$list)

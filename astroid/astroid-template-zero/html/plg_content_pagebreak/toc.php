@@ -16,7 +16,7 @@ defined('_JEXEC') or die;
 
 	<ul class="nav-tabs nav-stacked">
 	<?php foreach ($list as $listItem) : ?>
-		<?php $class = $listItem->liClass ? ' class="' . $listItem->liClass . '"' : ''; ?>
+		<?php $class = $listItem->liClass ? ' class="'.$listItem->liClass.'"' : ''; ?>
 		<li<?php echo $class; ?>>
 			<a href="<?php echo $listItem->link; ?>" class="<?php echo $listItem->class; ?>">
 				<?php echo $listItem->title; ?>

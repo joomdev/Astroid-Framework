@@ -21,7 +21,7 @@ class JFormFieldAstroidsocialprofiles extends JFormField {
    }
 
    public function getInput() {
-      $renderer = new JLayoutFile('fields.astroidsocialprofiles', JPATH_LIBRARIES . '/astroid/framework/layouts');
+      $renderer = new JLayoutFile('fields.astroidsocialprofiles', JPATH_LIBRARIES.'/astroid/framework/layouts');
       return $renderer->render($this->getLayoutData());
    }
 

@@ -37,22 +37,22 @@ $libraryFonts = AstroidFrameworkHelper::getUploadedFonts($template->template);
 
 // Body, H1 - H6 font styles.
 foreach ($typography as $typo) {
-   $typoType = $template->params->get($typo . '_typography');
+   $typoType = $template->params->get($typo.'_typography');
    if (trim($typoType) == 'custom') {
-      $typoOption = $typo . '_typography_options';
+      $typoOption = $typo.'_typography_options';
       $typoParams = $template->params->get($typoOption);
       $fontface = str_replace('+', ' ', explode(":", $typoParams->font_face));
-      $styles['desktop'] .= $typo . ',.' . $typo . '{';
+      $styles['desktop'] .= $typo.',.'.$typo.'{';
 
-      $styles['tablet'] .= $typo . ',.' . $typo . '{';
-      $styles['mobile'] .= $typo . ',.' . $typo . '{';
+      $styles['tablet'] .= $typo.',.'.$typo.'{';
+      $styles['mobile'] .= $typo.',.'.$typo.'{';
 
       if (isset($fontface[0]) && !empty($fontface[0])) {
          if (isset($libraryFonts[$fontface[0]])) {
-            $styles['desktop'] .= 'font-family: ' . $libraryFonts[$fontface[0]]['name'] . ',' . $typoParams->alt_font_face . ';';
+            $styles['desktop'] .= 'font-family: '.$libraryFonts[$fontface[0]]['name'].','.$typoParams->alt_font_face.';';
             AstroidFrameworkHelper::loadLibraryFont($libraryFonts[$fontface[0]], $template);
          } else {
-            $styles['desktop'] .= 'font-family: ' . $fontface[0] . ',' . $typoParams->alt_font_face . ';';
+            $styles['desktop'] .= 'font-family: '.$fontface[0].','.$typoParams->alt_font_face.';';
             if (!AstroidFrameworkHelper::isSystemFont($fontface[0])) {
                array_push($ast_fontfamily, $typoParams->font_face);
             }
@@ -65,17 +65,17 @@ foreach ($typography as $typo) {
             // if responsive
             foreach (['desktop', 'tablet', 'mobile'] as $device) {
                $font_size_unit = isset($typoParams->font_size_unit->{$device}) ? $typoParams->font_size_unit->{$device} : 'em';
-               $styles[$device] .= 'font-size: ' . $typoParams->font_size->{$device} . $font_size_unit . ';';
+               $styles[$device] .= 'font-size: '.$typoParams->font_size->{$device}.$font_size_unit.';';
             }
          } else {
             // if old type value
             $font_size_unit = isset($typoParams->font_size_unit) ? $typoParams->font_size_unit : 'em';
-            $styles['desktop'] .= 'font-size: ' . $typoParams->font_size . $font_size_unit . ';';
+            $styles['desktop'] .= 'font-size: '.$typoParams->font_size.$font_size_unit.';';
          }
       }
 
       if (isset($typoParams->font_color) && !empty($typoParams->font_color)) {
-         $styles['desktop'] .= 'color: ' . $typoParams->font_color . ';';
+         $styles['desktop'] .= 'color: '.$typoParams->font_color.';';
       }
 
       if (isset($typoParams->letter_spacing) && !empty($typoParams->letter_spacing)) {
@@ -83,17 +83,17 @@ foreach ($typography as $typo) {
             // if responsive
             foreach (['desktop', 'tablet', 'mobile'] as $device) {
                $letter_spacing_unit = isset($typoParams->letter_spacing_unit->{$device}) ? $typoParams->letter_spacing_unit->{$device} : 'em';
-               $styles[$device] .= 'letter-spacing: ' . $typoParams->letter_spacing->{$device} . $letter_spacing_unit . ';';
+               $styles[$device] .= 'letter-spacing: '.$typoParams->letter_spacing->{$device}.$letter_spacing_unit.';';
             }
          } else {
             // if old type value
             $letter_spacing_unit = isset($typoParams->letter_spacing_unit) ? $typoParams->letter_spacing_unit : 'em';
-            $styles['desktop'] .= 'letter-spacing: ' . $typoParams->letter_spacing . $letter_spacing_unit . ';';
+            $styles['desktop'] .= 'letter-spacing: '.$typoParams->letter_spacing.$letter_spacing_unit.';';
          }
       }
 
       if (isset($typoParams->font_weight) && !empty($typoParams->font_weight)) {
-         $styles['desktop'] .= 'font-weight: ' . $typoParams->font_weight . ';';
+         $styles['desktop'] .= 'font-weight: '.$typoParams->font_weight.';';
       }
 
       if (isset($typoParams->line_height) && !empty($typoParams->line_height)) {
@@ -101,17 +101,17 @@ foreach ($typography as $typo) {
             // if responsive
             foreach (['desktop', 'tablet', 'mobile'] as $device) {
                $line_height_unit = isset($typoParams->line_height_unit->{$device}) ? $typoParams->line_height_unit->{$device} : 'em';
-               $styles[$device] .= 'line-height: ' . $typoParams->line_height->{$device} . $line_height_unit . ';';
+               $styles[$device] .= 'line-height: '.$typoParams->line_height->{$device}.$line_height_unit.';';
             }
          } else {
             // if old type value
             $line_height_unit = isset($typoParams->line_height_unit) ? $typoParams->line_height_unit : 'em';
-            $styles['desktop'] .= 'line-height: ' . $typoParams->line_height . $line_height_unit . ';';
+            $styles['desktop'] .= 'line-height: '.$typoParams->line_height.$line_height_unit.';';
          }
       }
 
       if (isset($typoParams->text_transform) && !empty($typoParams->text_transform)) {
-         $styles['desktop'] .= 'text-transform: ' . $typoParams->text_transform . ';';
+         $styles['desktop'] .= 'text-transform: '.$typoParams->text_transform.';';
       }
       $styles['desktop'] .= '}';
       $styles['tablet'] .= '}';
@@ -130,10 +130,10 @@ if (trim($menuType) == 'custom') {
    if (isset($menu_fontface[0]) && !empty($menu_fontface[0])) {
 
       if (isset($libraryFonts[$menu_fontface[0]])) {
-         $menu_style['desktop'] .= 'font-family: ' . $libraryFonts[$menu_fontface[0]]['name'] . ';';
+         $menu_style['desktop'] .= 'font-family: '.$libraryFonts[$menu_fontface[0]]['name'].';';
          AstroidFrameworkHelper::loadLibraryFont($libraryFonts[$menu_fontface[0]], $template);
       } else {
-         $menu_style['desktop'] .= 'font-family: ' . $menu_fontface[0] . ';';
+         $menu_style['desktop'] .= 'font-family: '.$menu_fontface[0].';';
          if (!AstroidFrameworkHelper::isSystemFont($menu_fontface[0])) {
             array_push($ast_fontfamily, $menu_font->font_face);
          }
@@ -145,17 +145,17 @@ if (trim($menuType) == 'custom') {
          // if responsive
          foreach (['desktop', 'tablet', 'mobile'] as $device) {
             $font_size_unit = isset($menu_font->font_size_unit->{$device}) ? $menu_font->font_size_unit->{$device} : 'em';
-            $menu_style[$device] .= 'font-size: ' . $menu_font->font_size->{$device} . $font_size_unit . ';';
+            $menu_style[$device] .= 'font-size: '.$menu_font->font_size->{$device}.$font_size_unit.';';
          }
       } else {
          // if old type value
          $font_size_unit = isset($menu_font->font_size_unit) ? $menu_font->font_size_unit : 'em';
-         $menu_style['desktop'] .= 'font-size: ' . $menu_font->font_size . $font_size_unit . ';';
+         $menu_style['desktop'] .= 'font-size: '.$menu_font->font_size.$font_size_unit.';';
       }
    }
 
    if (isset($menu_font->font_color) && !empty($menu_font->font_color)) {
-      $menu_style['desktop'] .= 'color: ' . $menu_font->font_color . ';';
+      $menu_style['desktop'] .= 'color: '.$menu_font->font_color.';';
    }
 
    if (isset($menu_font->letter_spacing) && !empty($menu_font->letter_spacing)) {
@@ -163,17 +163,17 @@ if (trim($menuType) == 'custom') {
          // if responsive
          foreach (['desktop', 'tablet', 'mobile'] as $device) {
             $letter_spacing_unit = isset($menu_font->letter_spacing_unit->{$device}) ? $menu_font->letter_spacing_unit->{$device} : 'em';
-            $menu_style[$device] .= 'letter-spacing: ' . $menu_font->letter_spacing->{$device} . $letter_spacing_unit . ';';
+            $menu_style[$device] .= 'letter-spacing: '.$menu_font->letter_spacing->{$device}.$letter_spacing_unit.';';
          }
       } else {
          // if old type value
          $letter_spacing_unit = isset($menu_font->letter_spacing_unit) ? $menu_font->letter_spacing_unit : 'em';
-         $menu_style['desktop'] .= 'letter-spacing: ' . $menu_font->letter_spacing . $letter_spacing_unit . ';';
+         $menu_style['desktop'] .= 'letter-spacing: '.$menu_font->letter_spacing.$letter_spacing_unit.';';
       }
    }
 
    if (isset($menu_font->font_weight) && !empty($menu_font->font_weight)) {
-      $menu_style['desktop'] .= 'font-weight: ' . $menu_font->font_weight . ';';
+      $menu_style['desktop'] .= 'font-weight: '.$menu_font->font_weight.';';
    }
 
    if (isset($menu_font->line_height) && !empty($menu_font->line_height)) {
@@ -181,17 +181,17 @@ if (trim($menuType) == 'custom') {
          // if responsive
          foreach (['desktop', 'tablet', 'mobile'] as $device) {
             $line_height_unit = isset($menu_font->line_height_unit->{$device}) ? $menu_font->line_height_unit->{$device} : 'em';
-            $menu_style[$device] .= 'line-height: ' . $menu_font->line_height->{$device} . $line_height_unit . ';';
+            $menu_style[$device] .= 'line-height: '.$menu_font->line_height->{$device}.$line_height_unit.';';
          }
       } else {
          // if old type value
          $line_height_unit = isset($menu_font->line_height_unit) ? $menu_font->line_height_unit : 'em';
-         $menu_style['desktop'] .= 'line-height: ' . $menu_font->line_height . $line_height_unit . ';';
+         $menu_style['desktop'] .= 'line-height: '.$menu_font->line_height.$line_height_unit.';';
       }
    }
 
    if (isset($menu_font->text_transform) && !empty($menu_font->text_transform)) {
-      $menu_style['desktop'] .= 'text-transform: ' . $menu_font->text_transform . ';';
+      $menu_style['desktop'] .= 'text-transform: '.$menu_font->text_transform.';';
    }
    $menu_style['desktop'] .= '}';
    $menu_style['mobile'] .= '}';
@@ -202,14 +202,14 @@ if (trim($menuType) == 'custom') {
          // if responsive
          foreach (['desktop', 'tablet', 'mobile'] as $device) {
             $line_height_unit = isset($menu_font->line_height_unit->{$device}) ? $menu_font->line_height_unit->{$device} : 'em';
-            $menu_style[$device] .= 'line-height: ' . $menu_font->line_height->{$device} . $line_height_unit . ';';
-            $menu_style[$device] .= '.astroid-sidebar-menu li > .nav-item-caret{line-height: ' . $menu_font->line_height->{$device} . $line_height_unit . ' !important;}';
+            $menu_style[$device] .= 'line-height: '.$menu_font->line_height->{$device}.$line_height_unit.';';
+            $menu_style[$device] .= '.astroid-sidebar-menu li > .nav-item-caret{line-height: '.$menu_font->line_height->{$device}.$line_height_unit.' !important;}';
          }
       } else {
          // if old type value
          $line_height_unit = isset($menu_font->line_height_unit) ? $menu_font->line_height_unit : 'em';
-         $menu_style['desktop'] .= 'line-height: ' . $menu_font->line_height . $line_height_unit . ';';
-         $menu_style['desktop'] .= '.astroid-sidebar-menu li > .nav-item-caret{line-height: ' . $menu_font->line_height . $line_height_unit . ' !important;}';
+         $menu_style['desktop'] .= 'line-height: '.$menu_font->line_height.$line_height_unit.';';
+         $menu_style['desktop'] .= '.astroid-sidebar-menu li > .nav-item-caret{line-height: '.$menu_font->line_height.$line_height_unit.' !important;}';
       }
    }
 }
@@ -229,10 +229,10 @@ if (trim($submenuType) == 'custom') {
 
    if (isset($submenu_fontface[0]) && !empty($submenu_fontface[0])) {
       if (isset($libraryFonts[$submenu_fontface[0]])) {
-         $submenu_style['desktop'] .= 'font-family: ' . $libraryFonts[$submenu_fontface[0]]['name'] . ',' . $submenu_font->alt_font_face . ';';
+         $submenu_style['desktop'] .= 'font-family: '.$libraryFonts[$submenu_fontface[0]]['name'].','.$submenu_font->alt_font_face.';';
          AstroidFrameworkHelper::loadLibraryFont($libraryFonts[$submenu_fontface[0]], $template);
       } else {
-         $submenu_style['desktop'] .= 'font-family: ' . $submenu_fontface[0] . ', ' . $submenu_font->alt_font_face . ';';
+         $submenu_style['desktop'] .= 'font-family: '.$submenu_fontface[0].', '.$submenu_font->alt_font_face.';';
          if (!AstroidFrameworkHelper::isSystemFont($submenu_fontface[0])) {
             array_push($ast_fontfamily, $submenu_font->font_face);
          }
@@ -244,17 +244,17 @@ if (trim($submenuType) == 'custom') {
          // if responsive
          foreach (['desktop', 'tablet', 'mobile'] as $device) {
             $font_size_unit = isset($submenu_font->font_size_unit->{$device}) ? $submenu_font->font_size_unit->{$device} : 'em';
-            $submenu_style[$device] .= 'font-size: ' . $submenu_font->font_size->{$device} . $font_size_unit . ';';
+            $submenu_style[$device] .= 'font-size: '.$submenu_font->font_size->{$device}.$font_size_unit.';';
          }
       } else {
          // if old type value
          $font_size_unit = isset($submenu_font->font_size_unit) ? $submenu_font->font_size_unit : 'em';
-         $submenu_style['desktop'] .= 'font-size: ' . $submenu_font->font_size . $font_size_unit . ';';
+         $submenu_style['desktop'] .= 'font-size: '.$submenu_font->font_size.$font_size_unit.';';
       }
    }
 
    if (isset($submenu_font->font_color) && !empty($submenu_font->font_color)) {
-      $submenu_style['desktop'] .= 'color: ' . $submenu_font->font_color . ';';
+      $submenu_style['desktop'] .= 'color: '.$submenu_font->font_color.';';
    }
 
    if (isset($submenu_font->letter_spacing) && !empty($submenu_font->letter_spacing)) {
@@ -262,17 +262,17 @@ if (trim($submenuType) == 'custom') {
          // if responsive
          foreach (['desktop', 'tablet', 'mobile'] as $device) {
             $letter_spacing_unit = isset($submenu_font->letter_spacing_unit->{$device}) ? $submenu_font->letter_spacing_unit->{$device} : 'em';
-            $submenu_style[$device] .= 'letter-spacing: ' . $submenu_font->letter_spacing->{$device} . $letter_spacing_unit . ';';
+            $submenu_style[$device] .= 'letter-spacing: '.$submenu_font->letter_spacing->{$device}.$letter_spacing_unit.';';
          }
       } else {
          // if old type value
          $letter_spacing_unit = isset($submenu_font->letter_spacing_unit) ? $submenu_font->letter_spacing_unit : 'em';
-         $submenu_style['desktop'] .= 'letter-spacing: ' . $submenu_font->letter_spacing . $letter_spacing_unit . ';';
+         $submenu_style['desktop'] .= 'letter-spacing: '.$submenu_font->letter_spacing.$letter_spacing_unit.';';
       }
    }
 
    if (isset($submenu_font->font_weight) && !empty($submenu_font->font_weight)) {
-      $submenu_style['desktop'] .= 'font-weight: ' . $submenu_font->font_weight . ';';
+      $submenu_style['desktop'] .= 'font-weight: '.$submenu_font->font_weight.';';
    }
 
    if (isset($submenu_font->line_height) && !empty($submenu_font->line_height)) {
@@ -280,17 +280,17 @@ if (trim($submenuType) == 'custom') {
          // if responsive
          foreach (['desktop', 'tablet', 'mobile'] as $device) {
             $line_height_unit = isset($submenu_font->line_height_unit->{$device}) ? $submenu_font->line_height_unit->{$device} : 'em';
-            $submenu_style[$device] .= 'line-height: ' . $submenu_font->line_height->{$device} . $line_height_unit . ';';
+            $submenu_style[$device] .= 'line-height: '.$submenu_font->line_height->{$device}.$line_height_unit.';';
          }
       } else {
          // if old type value
          $line_height_unit = isset($submenu_font->line_height_unit) ? $submenu_font->line_height_unit : 'em';
-         $submenu_style['desktop'] .= 'line-height: ' . $submenu_font->line_height . $line_height_unit . ';';
+         $submenu_style['desktop'] .= 'line-height: '.$submenu_font->line_height.$line_height_unit.';';
       }
    }
 
    if (isset($submenu_font->text_transform) && !empty($submenu_font->text_transform)) {
-      $submenu_style['desktop'] .= 'text-transform: ' . $submenu_font->text_transform . ';';
+      $submenu_style['desktop'] .= 'text-transform: '.$submenu_font->text_transform.';';
    }
    $submenu_style['desktop'] .= '}';
    $submenu_style['tablet'] .= '}';
@@ -330,7 +330,7 @@ $ast_fontfamily_list = implode("|", str_replace(" ", "+", array_unique($ast_font
 if ($in_head) {
    $document = JFactory::getDocument();
    if (!empty($ast_fontfamily_list)) {
-      $document->addStyleSheet('https://fonts.googleapis.com/css?family=' . $ast_fontfamily_list);
+      $document->addStyleSheet('https://fonts.googleapis.com/css?family='.$ast_fontfamily_list);
    }
 
 
@@ -342,7 +342,7 @@ if ($in_head) {
    $template->addStyleDeclaration($mobileCSS, 'mobile');
 } else {
    if (!empty($ast_fontfamily_list)) {
-      echo '<link href="' . 'https://fonts.googleapis.com/css?family=' . $ast_fontfamily_list . '" rel="stylesheet" type="text/css" />';
+      echo '<link href="'.'https://fonts.googleapis.com/css?family='.$ast_fontfamily_list.'" rel="stylesheet" type="text/css" />';
    }
    echo "<style>";
    echo $styles['desktop'];

@@ -45,7 +45,7 @@ extract($displayData);
  * @var   array    $control         Is this field checked?
  */
 
-$class    = ' class="' . trim('simplecolors chzn-done ' . $class) . '"';
+$class    = ' class="'.trim('simplecolors chzn-done '.$class).'"';
 $disabled = $disabled ? ' disabled' : '';
 $readonly = $readonly ? ' readonly' : '';
 

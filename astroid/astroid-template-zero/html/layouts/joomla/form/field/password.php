@@ -49,9 +49,9 @@ if ($meter) {
    JFactory::getDocument()->addScriptDeclaration(
            "
 		jQuery(document).ready(function() {
-			new Form.PasswordStrength('" . $id . "',
+			new Form.PasswordStrength('".$id."',
 				{
-					threshold: " . $threshold . ",
+					threshold: ".$threshold.",
 					onUpdate: function(element, strength, threshold) {
 						element.set('data-passwordstrength', strength);
 					}
@@ -65,13 +65,13 @@ JHtml::_('jquery.framework');
 JHtml::_('script', 'system/html5fallback.js', array('version' => 'auto', 'relative' => true, 'conditional' => 'lt IE 9'));
 
 $attributes = array(
-    strlen($hint) ? 'placeholder="' . htmlspecialchars($hint, ENT_COMPAT, 'UTF-8') . '"' : '',
+    strlen($hint) ? 'placeholder="'.htmlspecialchars($hint, ENT_COMPAT, 'UTF-8').'"' : '',
     !$autocomplete ? 'autocomplete="off"' : '',
-    !empty($class) ? 'class="form-control ' . $class . '"' : 'class="form-control"',
+    !empty($class) ? 'class="form-control '.$class.'"' : 'class="form-control"',
     $readonly ? 'readonly' : '',
     $disabled ? 'disabled' : '',
-    !empty($size) ? 'size="' . $size . '"' : '',
-    !empty($maxLength) ? 'maxlength="' . $maxLength . '"' : '',
+    !empty($size) ? 'size="'.$size.'"' : '',
+    !empty($maxLength) ? 'maxlength="'.$maxLength.'"' : '',
     $required ? 'required aria-required="true"' : '',
     $autofocus ? 'autofocus' : '',
 );

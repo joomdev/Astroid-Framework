@@ -33,7 +33,7 @@ class AdobeFontMetrics {
 
     if ($encoding) {
       $encoding = preg_replace("/[^a-z0-9-_]/", "", $encoding);
-      $map_file = dirname(__FILE__) . "/../maps/$encoding.map";
+      $map_file = dirname(__FILE__)."/../maps/$encoding.map";
       if (!file_exists($map_file)) {
         throw new \Exception("Unkown encoding ($encoding)");
       }
@@ -196,7 +196,7 @@ class AdobeFontMetrics {
   }
 
   function addArray($key, $array) {
-    $this->addLine("$key " . implode(" ", $array));
+    $this->addLine("$key ".implode(" ", $array));
   }
 
   function addMetric($data) {

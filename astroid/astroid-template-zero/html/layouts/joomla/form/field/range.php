@@ -48,13 +48,13 @@ JHtml::_('script', 'system/html5fallback.js', array('version' => 'auto', 'relati
 
 // Initialize some field attributes.
 $attributes = array(
-    $class ? 'class="custom-range ' . $class . '"' : 'class="custom-range"',
+    $class ? 'class="custom-range '.$class.'"' : 'class="custom-range"',
     $disabled ? 'disabled' : '',
     $readonly ? 'readonly' : '',
-    !empty($onchange) ? 'onchange="' . $onchange . '"' : '',
-    !empty($max) ? 'max="' . $max . '"' : '',
-    !empty($step) ? 'step="' . $step . '"' : '',
-    !empty($min) ? 'min="' . $min . '"' : '',
+    !empty($onchange) ? 'onchange="'.$onchange.'"' : '',
+    !empty($max) ? 'max="'.$max.'"' : '',
+    !empty($step) ? 'step="'.$step.'"' : '',
+    !empty($min) ? 'min="'.$min.'"' : '',
     $autofocus ? 'autofocus' : '',
 );
 

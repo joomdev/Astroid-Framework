@@ -45,19 +45,19 @@ extract($displayData);
  * @var   string   $accept          File types that are accepted.
  */
 
-$autocomplete = !$autocomplete ? 'autocomplete="off"' : 'autocomplete="' . $autocomplete . '"';
+$autocomplete = !$autocomplete ? 'autocomplete="off"' : 'autocomplete="'.$autocomplete.'"';
 $autocomplete = $autocomplete == 'autocomplete="on"' ? '' : $autocomplete;
 
 $attributes = array(
 	$spellcheck ? '' : 'spellcheck="false"',
-	!empty($size) ? 'size="' . $size . '"' : '',
+	!empty($size) ? 'size="'.$size.'"' : '',
 	$disabled ? 'disabled' : '',
 	$readonly ? 'readonly' : '',
-	$onchange ? 'onchange="' . $onchange . '"' : '',
+	$onchange ? 'onchange="'.$onchange.'"' : '',
 	$autocomplete,
 	$multiple ? 'multiple' : '',
-	!empty($maxLength) ? 'maxlength="' . $maxLength . '"' : '',
-	strlen($hint) ? 'placeholder="' . htmlspecialchars($hint, ENT_COMPAT, 'UTF-8') . '"' : '',
+	!empty($maxLength) ? 'maxlength="'.$maxLength.'"' : '',
+	strlen($hint) ? 'placeholder="'.htmlspecialchars($hint, ENT_COMPAT, 'UTF-8').'"' : '',
 	$required ? 'required aria-required="true"' : '',
 	$autofocus ? 'autofocus' : '',
 );
@@ -69,7 +69,7 @@ JHtml::_('script', 'system/html5fallback.js', array('version' => 'auto', 'relati
 ?>
 <input type="email" name="<?php
 echo $name; ?>"<?php
-echo !empty($class) ? ' class="form-control validate-email ' . $class . '"' : ' class="form-control validate-email"'; ?> id="<?php
+echo !empty($class) ? ' class="form-control validate-email '.$class.'"' : ' class="form-control validate-email"'; ?> id="<?php
 echo $id; ?>" value="<?php
 echo htmlspecialchars(JStringPunycode::emailToUTF8($value), ENT_COMPAT, 'UTF-8'); ?>"
 <?php echo implode(' ', $attributes); ?> />

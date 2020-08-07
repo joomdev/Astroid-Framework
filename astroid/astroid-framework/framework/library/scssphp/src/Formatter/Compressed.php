@@ -43,17 +43,17 @@ class Compressed extends Formatter
     {
         $inner = $this->indentStr();
 
-        $glue = $this->break . $inner;
+        $glue = $this->break.$inner;
 
         foreach ($block->lines as $index => $line) {
             if (substr($line, 0, 2) === '/*' && substr($line, 2, 1) !== '!') {
                 unset($block->lines[$index]);
             } elseif (substr($line, 0, 3) === '/*!') {
-                $block->lines[$index] = '/*' . substr($line, 3);
+                $block->lines[$index] = '/*'.substr($line, 3);
             }
         }
 
-        $this->write($inner . implode($glue, $block->lines));
+        $this->write($inner.implode($glue, $block->lines));
 
         if (! empty($block->children)) {
             $this->write($this->break);

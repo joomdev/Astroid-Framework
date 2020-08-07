@@ -26,7 +26,7 @@ $header_mobile_menu = $params->get('header_mobile_menu', '');
 $offcanvas_animation = $params->get('offcanvas_animation', 'st-effect-1');
 $offcanvas_direction = $params->get('offcanvas_direction', 'offcanvasDirLeft');
 $offcanvas_togglevisibility = $params->get('offcanvas_togglevisibility', 'd-block');
-$class = ['astroid-header', 'astroid-horizontal-header', 'astroid-horizontal-' . $mode . '-header'];
+$class = ['astroid-header', 'astroid-horizontal-header', 'astroid-horizontal-'.$mode.'-header'];
 $navClass = ['nav', 'astroid-nav', 'd-none', 'd-lg-flex'];
 $navWrapperClass = ['align-self-center', 'px-2', 'd-none', 'd-lg-block'];
 ?>

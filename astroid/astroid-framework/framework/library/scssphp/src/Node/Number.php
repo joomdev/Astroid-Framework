@@ -253,7 +253,7 @@ class Number extends Node implements \ArrayAccess
             }
         }
 
-        return implode('*', $numerators) . (count($denominators) ? '/' . implode('*', $denominators) : '');
+        return implode('*', $numerators).(count($denominators) ? '/'.implode('*', $denominators) : '');
     }
 
     /**
@@ -286,14 +286,14 @@ class Number extends Node implements \ArrayAccess
         $unitSize = array_sum($units);
 
         if ($compiler && ($unitSize > 1 || $unitSize < 0 || count($units) > 1)) {
-            $compiler->throwError((string) $dimension . $this->unitStr() . " isn't a valid CSS value.");
+            $compiler->throwError((string) $dimension.$this->unitStr()." isn't a valid CSS value.");
         }
 
         reset($units);
         $unit = key($units);
         $dimension = number_format($dimension, static::$precision, '.', '');
 
-        return (static::$precision ? rtrim(rtrim($dimension, '0'), '.') : $dimension) . $unit;
+        return (static::$precision ? rtrim(rtrim($dimension, '0'), '.') : $dimension).$unit;
     }
 
     /**

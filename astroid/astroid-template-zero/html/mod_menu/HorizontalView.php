@@ -13,7 +13,7 @@ $id = '';
 
 if ($tagId = $params->get('tag_id', ''))
 {
-	$id = ' id="' . $tagId . '"';
+	$id = ' id="'.$tagId.'"';
 }
 
 // The menu class is deprecated. Use nav instead
@@ -21,7 +21,7 @@ if ($tagId = $params->get('tag_id', ''))
 <ul class="nav menu menu-module navVerticalView <?php echo $class_sfx; ?>"<?php echo $id; ?>>
 <?php foreach ($list as $i => &$item)
 {
-	$class = 'item-' . $item->id;
+	$class = 'item-'.$item->id;
 
 	if ($item->id == $default_id)
 	{
@@ -66,14 +66,14 @@ if ($tagId = $params->get('tag_id', ''))
 		$class .= ' parent';
 	}
 
-	echo '<li class="' . $class . '">';
+	echo '<li class="'.$class.'">';
 
 	switch ($item->type) :
 		case 'separator':
 		case 'component':
 		case 'heading':
 		case 'url':
-			require JModuleHelper::getLayoutPath('mod_menu', 'default_' . $item->type);
+			require JModuleHelper::getLayoutPath('mod_menu', 'default_'.$item->type);
 			break;
 
 		default:

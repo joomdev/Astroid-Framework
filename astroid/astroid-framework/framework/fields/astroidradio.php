@@ -48,7 +48,7 @@ class JFormFieldAstroidRadio extends JFormFieldList {
          throw new UnexpectedValueException(sprintf('%s has no layout assigned.', $this->name));
       }
 
-      $renderer = new JLayoutFile($this->layout, JPATH_LIBRARIES . '/astroid/framework/layouts');
+      $renderer = new JLayoutFile($this->layout, JPATH_LIBRARIES.'/astroid/framework/layouts');
 
       return $renderer->render($this->getLayoutData());
    }

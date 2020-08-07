@@ -15,7 +15,7 @@ jimport('joomla.filesystem.element');
 
 use Leafo\ScssPhp\Compiler;
 
-\JModelLegacy::addIncludePath(JPATH_ADMINISTRATOR . '/components/com_cache/models', 'CacheModel');
+\JModelLegacy::addIncludePath(JPATH_ADMINISTRATOR.'/components/com_cache/models', 'CacheModel');
 
 class AstroidFrameworkHelper
 {
@@ -23,20 +23,20 @@ class AstroidFrameworkHelper
    public static function getAstroidElements()
    {
 
-      $elements_dir = JPATH_LIBRARIES . '/' . 'astroid' . '/' . 'framework' . '/' . 'elements' . '/';
-      $template_elements_dir = JPATH_SITE . '/' . 'templates' . '/' . ASTROID_TEMPLATE_NAME . '/' . 'astroid' . '/' . 'elements' . '/';
-      $elements = array_filter(glob($elements_dir . '*'), 'is_dir');
-      $template_elements = array_filter(glob($template_elements_dir . '*'), 'is_dir');
+      $elements_dir = JPATH_LIBRARIES.'/'.'astroid'.'/'.'framework'.'/'.'elements'.'/';
+      $template_elements_dir = JPATH_SITE.'/'.'templates'.'/'.ASTROID_TEMPLATE_NAME.'/'.'astroid'.'/'.'elements'.'/';
+      $elements = array_filter(glob($elements_dir.'*'), 'is_dir');
+      $template_elements = array_filter(glob($template_elements_dir.'*'), 'is_dir');
       $elements = array_merge($elements, $template_elements);
       $return = array();
 
-      $defaultxml = JPATH_LIBRARIES . '/' . 'astroid' . '/' . 'framework' . '/' . 'elements' . '/' . 'default.xml';
+      $defaultxml = JPATH_LIBRARIES.'/'.'astroid'.'/'.'framework'.'/'.'elements'.'/'.'default.xml';
 
       $xml = simplexml_load_file($defaultxml);
       $default = self::getElementConfig($xml, "");
 
       foreach ($elements as $element_dir) {
-         $xmlfile = $element_dir . '/' . (str_replace($template_elements_dir, '', str_replace($elements_dir, '', $element_dir))) . '.xml';
+         $xmlfile = $element_dir.'/'.(str_replace($template_elements_dir, '', str_replace($elements_dir, '', $element_dir))).'.xml';
          if (file_exists($xmlfile)) {
             $xml = simplexml_load_file($xmlfile);
             $type = str_replace($template_elements_dir, '', str_replace($elements_dir, '', $element_dir));
@@ -60,12 +60,12 @@ class AstroidFrameworkHelper
    {
 
       // Template Directories
-      $elements_dir = JPATH_LIBRARIES . '/' . 'astroid' . '/' . 'framework' . '/' . 'elements' . '/';
-      $template_elements_dir = JPATH_SITE . '/' . 'templates' . '/' . ASTROID_TEMPLATE_NAME . '/' . 'astroid' . '/' . 'elements' . '/';
+      $elements_dir = JPATH_LIBRARIES.'/'.'astroid'.'/'.'framework'.'/'.'elements'.'/';
+      $template_elements_dir = JPATH_SITE.'/'.'templates'.'/'.ASTROID_TEMPLATE_NAME.'/'.'astroid'.'/'.'elements'.'/';
 
       // Getting Elements from Template Directories
-      $elements = array_filter(glob($elements_dir . '*'), 'is_dir');
-      $template_elements = array_filter(glob($template_elements_dir . '*'), 'is_dir');
+      $elements = array_filter(glob($elements_dir.'*'), 'is_dir');
+      $template_elements = array_filter(glob($template_elements_dir.'*'), 'is_dir');
 
       // Merging Elements
       $elements = array_merge($elements, $template_elements);
@@ -73,7 +73,7 @@ class AstroidFrameworkHelper
       $return = array();
 
       foreach ($elements as $element_dir) {
-         $xmlfile = $element_dir . '/' . (str_replace($template_elements_dir, '', str_replace($elements_dir, '', $element_dir))) . '.xml';
+         $xmlfile = $element_dir.'/'.(str_replace($template_elements_dir, '', str_replace($elements_dir, '', $element_dir))).'.xml';
          if (file_exists($xmlfile)) {
             $type = str_replace($template_elements_dir, '', str_replace($elements_dir, '', $element_dir));
 
@@ -94,7 +94,7 @@ class AstroidFrameworkHelper
       $type = str_replace('-', ' ', $type);
       $type = str_replace('_', ' ', $type);
       $type = ucwords(strtolower($type));
-      return 'AstroidElement' . str_replace(' ', '', $type);
+      return 'AstroidElement'.str_replace(' ', '', $type);
    }
 
    public static function getTemplatePostions()
@@ -105,7 +105,7 @@ class AstroidFrameworkHelper
       $query = $db->getQuery(true)
          ->select('DISTINCT(position)')
          ->from('#__modules')
-         ->where($db->quoteName('client_id') . ' = ' . 0)
+         ->where($db->quoteName('client_id').' = '.0)
          ->order('position');
 
       $db->setQuery($query);
@@ -116,8 +116,8 @@ class AstroidFrameworkHelper
 
       $exists = [];
       for ($i = 1; $i <= 10; $i++) {
-         $return[] = array('name' => "position-" . $i, 'value' => "position-" . $i);
-         $exists[] = "position-" . $i;
+         $return[] = array('name' => "position-".$i, 'value' => "position-".$i);
+         $exists[] = "position-".$i;
       }
 
       foreach ($results as $result) {
@@ -159,20 +159,20 @@ class AstroidFrameworkHelper
    public static function compileSass($sass_path, $css_path, $sass, $css, $variables = array())
    {
       try {
-         require_once JPATH_LIBRARIES . '/' . 'astroid' . '/' . 'framework' . '/' . 'library' . '/' . 'scssphp' . '/' . 'scss.inc.php';
+         require_once JPATH_LIBRARIES.'/'.'astroid'.'/'.'framework'.'/'.'library'.'/'.'scssphp'.'/'.'scss.inc.php';
          $scss = new Compiler();
          $scss->setImportPaths($sass_path);
          $scss->setFormatter('Leafo\ScssPhp\Formatter\Compressed');
          if (!empty($variables)) {
             $scss->setVariables($variables);
          }
-         $content = $scss->compile('@import "' . $sass . '";');
-         file_put_contents($css_path . '/' . $css, $content);
+         $content = $scss->compile('@import "'.$sass.'";');
+         file_put_contents($css_path.'/'.$css, $content);
       } catch (\Exception $e) {
          print_r($e);
          exit;
-         echo '<h1>' . $e->getMessage() . '</h1>';
-         echo '<h3>' . $e->getFile() . ' in ' . $e->getLine() . '</h3>';
+         echo '<h1>'.$e->getMessage().'</h1>';
+         echo '<h3>'.$e->getFile().' in '.$e->getLine().'</h3>';
          exit;
       }
    }
@@ -186,7 +186,7 @@ class AstroidFrameworkHelper
             $input = JFactory::getApplication()->input;
             $folder = $input->get('folder', '', 'RAW');
             $data = self::getMediaLibrary();
-            $data['current_folder'] = $params->get('image_path', 'images') . (empty($folder) ? '' : '/' . $folder);
+            $data['current_folder'] = $params->get('image_path', 'images').(empty($folder) ? '' : '/'.$folder);
             break;
          case "upload":
             $data = self::uploadMedia();
@@ -229,7 +229,7 @@ class AstroidFrameworkHelper
 
       $params = JComponentHelper::getParams('com_media');
 
-      JLoader::register('MediaHelper', JPATH_ADMINISTRATOR . '/components/com_media/helpers/media.php');
+      JLoader::register('MediaHelper', JPATH_ADMINISTRATOR.'/components/com_media/helpers/media.php');
 
 
       // Set the path definitions
@@ -241,10 +241,10 @@ class AstroidFrameworkHelper
          $path = 'image_path';
       }
 
-      define('COM_MEDIA_BASE', JPATH_ROOT . '/' . $params->get($path, 'images'));
-      define('COM_MEDIA_BASEURL', JUri::root() . $params->get($path, 'images'));
+      define('COM_MEDIA_BASE', JPATH_ROOT.'/'.$params->get($path, 'images'));
+      define('COM_MEDIA_BASEURL', JUri::root().$params->get($path, 'images'));
 
-      $mediamodelPath = JPATH_ADMINISTRATOR . DIRECTORY_SEPARATOR . 'components' . DIRECTORY_SEPARATOR . 'com_media' . DIRECTORY_SEPARATOR . 'models';
+      $mediamodelPath = JPATH_ADMINISTRATOR.DIRECTORY_SEPARATOR.'components'.DIRECTORY_SEPARATOR.'com_media'.DIRECTORY_SEPARATOR.'models';
       JModelLegacy::addIncludePath($mediamodelPath);
       $model = JModelLegacy::getInstance('List', 'MediaModel');
       return $model->getList();
@@ -257,21 +257,21 @@ class AstroidFrameworkHelper
       $media = $input->get('media', '', 'images');
 
       if (empty($dir)) {
-         $dir = JPATH_SITE . '/' . 'images' . '/' . date('Y');
+         $dir = JPATH_SITE.'/'.'images'.'/'.date('Y');
          if (!file_exists($dir)) {
             mkdir($dir, 0777);
          }
-         if (!file_exists($dir . '/' . date('m'))) {
-            mkdir($dir . '/' . date('m'), 0777);
+         if (!file_exists($dir.'/'.date('m'))) {
+            mkdir($dir.'/'.date('m'), 0777);
          }
-         if (!file_exists($dir . '/' . date('m') . '/' . date('d'))) {
-            mkdir($dir . '/' . date('m') . '/' . date('d'), 0777);
+         if (!file_exists($dir.'/'.date('m').'/'.date('d'))) {
+            mkdir($dir.'/'.date('m').'/'.date('d'), 0777);
          }
 
-         $uploadDir = $dir . '/' . date('m') . '/' . date('d');
-         $uploadFolder = date('Y') . '/' . date('m') . '/' . date('d');
+         $uploadDir = $dir.'/'.date('m').'/'.date('d');
+         $uploadFolder = date('Y').'/'.date('m').'/'.date('d');
       } else {
-         $uploadDir = JPATH_SITE . '/' . $dir;
+         $uploadDir = JPATH_SITE.'/'.$dir;
          if ($dir == 'images') {
             $uploadFolder = '';
          } else {
@@ -328,14 +328,14 @@ class AstroidFrameworkHelper
          }
       }
 
-      $fileName = preg_replace("/[^A-Za-z0-9]/i", "-", $pathinfo['filename']) . '.' . $pathinfo['extension'];
+      $fileName = preg_replace("/[^A-Za-z0-9]/i", "-", $pathinfo['filename']).'.'.$pathinfo['extension'];
 
-      $uploadPath = $uploadDir . '/' . $fileName;
+      $uploadPath = $uploadDir.'/'.$fileName;
 
       if (file_exists($uploadPath)) {
-         $fileName = preg_replace("/[^A-Za-z0-9]/i", "-", $pathinfo['filename']) . '-' . time() . '.' . $pathinfo['extension'];
+         $fileName = preg_replace("/[^A-Za-z0-9]/i", "-", $pathinfo['filename']).'-'.time().'.'.$pathinfo['extension'];
 
-         $uploadPath = $uploadDir . '/' . $fileName;
+         $uploadPath = $uploadDir.'/'.$fileName;
       }
 
       if (!JFile::upload($fileTemp, $uploadPath)) {
@@ -351,7 +351,7 @@ class AstroidFrameworkHelper
       $directory = $input->get('dir', '', 'RAW');
       $name = $input->get('name', '', 'RAW');
 
-      $dir = JPATH_SITE . '/' . $directory . '/' . $name;
+      $dir = JPATH_SITE.'/'.$directory.'/'.$name;
       if (file_exists($dir)) {
          throw new \Exception("Folder `$name` already exists", 0);
       }
@@ -360,7 +360,7 @@ class AstroidFrameworkHelper
       $folder = $name;
       if ($directory != 'images') {
          $directory = preg_replace('/images\//', '', $directory, 1);
-         $folder = $directory . '/' . $name;
+         $folder = $directory.'/'.$name;
       }
 
       return ['message' => "Folder `$name` successfully created.", 'folder' => $folder];
@@ -368,7 +368,7 @@ class AstroidFrameworkHelper
 
    public static function getJSONData($name)
    {
-      $fontsJSON = file_get_contents(JPATH_SITE . '/' . 'media' . '/' . 'astroid' . '/' . 'assets' . '/' . 'json' . '/' . $name . '.json');
+      $fontsJSON = file_get_contents(JPATH_SITE.'/'.'media'.'/'.'astroid'.'/'.'assets'.'/'.'json'.'/'.$name.'.json');
       return \json_decode($fontsJSON, true);
    }
 
@@ -385,7 +385,7 @@ class AstroidFrameworkHelper
          $array = [];
          $array[] = ['value' => '', 'name' => 'None'];
          foreach ($icons as $icon) {
-            $array[] = ['value' => $icon['value'], 'name' => '<i class="' . $icon['value'] . '"></i> ' . $icon['name']];
+            $array[] = ['value' => $icon['value'], 'name' => '<i class="'.$icon['value'].'"></i> '.$icon['name']];
          }
          $icons = $array;
       } else {
@@ -396,7 +396,7 @@ class AstroidFrameworkHelper
 
    public static function clearCache($template = '', $prefix = 'style')
    {
-      $template_dir = JPATH_SITE . '/' . 'templates' . '/' . $template . '/' . 'css';
+      $template_dir = JPATH_SITE.'/'.'templates'.'/'.$template.'/'.'css';
       $version = new \JVersion;
       $version->refreshMediaVersion();
       if (!file_exists($template_dir)) {
@@ -405,15 +405,15 @@ class AstroidFrameworkHelper
 
       if (is_array($prefix)) {
          foreach ($prefix as $pre) {
-            $styles = preg_grep('~^' . $pre . '-.*\.(css)$~', scandir($template_dir));
+            $styles = preg_grep('~^'.$pre.'-.*\.(css)$~', scandir($template_dir));
             foreach ($styles as $style) {
-               unlink($template_dir . '/' . $style);
+               unlink($template_dir.'/'.$style);
             }
          }
       } else {
-         $styles = preg_grep('~^' . $prefix . '-.*\.(css)$~', scandir($template_dir));
+         $styles = preg_grep('~^'.$prefix.'-.*\.(css)$~', scandir($template_dir));
          foreach ($styles as $style) {
-            unlink($template_dir . '/' . $style);
+            unlink($template_dir.'/'.$style);
          }
       }
       self::clearJoomlaCache();
@@ -490,13 +490,13 @@ class AstroidFrameworkHelper
       $query = $db->getQuery(true);
       $query->select(array('*'));
       $query->from($db->quoteName('#__template_styles'));
-      $query->where($db->quoteName('client_id') . ' = 0');
-      $query->where($db->quoteName('id') . ' = ' . $db->quote(\JFactory::getApplication()->input->get('id', 0, 'INT')));
+      $query->where($db->quoteName('client_id').' = 0');
+      $query->where($db->quoteName('id').' = '.$db->quote(\JFactory::getApplication()->input->get('id', 0, 'INT')));
       $db->setQuery($query);
 
       $template_style = $db->loadObject();
 
-      $templateXML = \JPATH_SITE . '/templates/' . $template_style->template . '/templateDetails.xml';
+      $templateXML = \JPATH_SITE.'/templates/'.$template_style->template.'/templateDetails.xml';
       $template = simplexml_load_file($templateXML);
       $positions = [];
       foreach ($template->positions[0] as $position) {
@@ -508,7 +508,7 @@ class AstroidFrameworkHelper
 
    public static function getTemplatePartials($template)
    {
-      $template_dir = JPATH_SITE . '/' . 'templates' . '/' . $template . '/' . 'frontend' . '/partials/';
+      $template_dir = JPATH_SITE.'/'.'templates'.'/'.$template.'/'.'frontend'.'/partials/';
       if (file_exists($template_dir)) {
          $partials = self::getPartials($template_dir, $template_dir);
          return $partials;
@@ -519,17 +519,17 @@ class AstroidFrameworkHelper
 
    public static function getPartials($dir, $templatedir)
    {
-      $files = glob($dir . '*');
+      $files = glob($dir.'*');
       $partials = [];
       foreach ($files as $file) {
          if (!is_dir($file)) {
             $extension = pathinfo($file, PATHINFO_EXTENSION);
             if ($extension == 'php') {
                $prefix = str_replace(DIRECTORY_SEPARATOR, '.', str_replace($templatedir, '', $dir));
-               $partials[] = $prefix . pathinfo($file, PATHINFO_FILENAME);
+               $partials[] = $prefix.pathinfo($file, PATHINFO_FILENAME);
             }
          } else if ($file != "." && $file != ".." && is_dir($file)) {
-            $sub_partials = self::getPartials($file . '/', $templatedir);
+            $sub_partials = self::getPartials($file.'/', $templatedir);
             $partials = array_merge($partials, $sub_partials);
          }
       }
@@ -543,23 +543,23 @@ class AstroidFrameworkHelper
 
    public static function setTemplateDefaults($template, $id, $parent_id = 0)
    {
-      $params_path = JPATH_SITE . "/templates/{$template}/params/{$id}.json";
+      $params_path = JPATH_SITE."/templates/{$template}/params/{$id}.json";
       if (!file_exists($params_path)) {
-         if (!empty($parent_id) && file_exists(JPATH_SITE . "/templates/{$template}/params/" . $parent_id . '.json')) {
-            $params = file_get_contents(JPATH_SITE . "/templates/{$template}/params" . '/' . $parent_id . '.json');
-            file_put_contents(JPATH_SITE . "/templates/{$template}/params" . '/' . $id . '.json', $params);
-         } else if (file_exists(JPATH_SITE . '/templates/' . $template . '/astroid/default.json')) {
-            $params = file_get_contents(JPATH_SITE . '/templates/' . $template . '/astroid/default.json');
-            if (!file_exists(JPATH_SITE . "/templates/{$template}/params")) {
-               mkdir(JPATH_SITE . "/templates/{$template}/params");
+         if (!empty($parent_id) && file_exists(JPATH_SITE."/templates/{$template}/params/".$parent_id.'.json')) {
+            $params = file_get_contents(JPATH_SITE."/templates/{$template}/params".'/'.$parent_id.'.json');
+            file_put_contents(JPATH_SITE."/templates/{$template}/params".'/'.$id.'.json', $params);
+         } else if (file_exists(JPATH_SITE.'/templates/'.$template.'/astroid/default.json')) {
+            $params = file_get_contents(JPATH_SITE.'/templates/'.$template.'/astroid/default.json');
+            if (!file_exists(JPATH_SITE."/templates/{$template}/params")) {
+               mkdir(JPATH_SITE."/templates/{$template}/params");
             }
             $params = str_replace('TEMPLATE_NAME', $template, $params);
-            file_put_contents(JPATH_SITE . "/templates/{$template}/params" . '/' . $id . '.json', $params);
+            file_put_contents(JPATH_SITE."/templates/{$template}/params".'/'.$id.'.json', $params);
          } else {
-            if (!file_exists(JPATH_SITE . "/templates/{$template}/params")) {
-               mkdir(JPATH_SITE . "/templates/{$template}/params");
+            if (!file_exists(JPATH_SITE."/templates/{$template}/params")) {
+               mkdir(JPATH_SITE."/templates/{$template}/params");
             }
-            file_put_contents(JPATH_SITE . "/templates/{$template}/params" . '/' . $id . '.json', '');
+            file_put_contents(JPATH_SITE."/templates/{$template}/params".'/'.$id.'.json', '');
          }
          $db = JFactory::getDbo();
          $object = new stdClass();
@@ -572,13 +572,13 @@ class AstroidFrameworkHelper
 
    public static function setTemplateTypography($template, $id)
    {
-      $params_path = JPATH_SITE . "/templates/{$template}/params/{$id}.json";
+      $params_path = JPATH_SITE."/templates/{$template}/params/{$id}.json";
       if (file_exists($params_path)) {
          $params = json_decode(file_get_contents($params_path));
          $typographys = array('body_typography', 'menus_typography', 'submenus_typography', 'h1_typography', 'h2_typography', 'h3_typography', 'h4_typography', 'h5_typography', 'h6_typography');
          foreach ($typographys as $typography) {
             if (isset($params->$typography) && $params->$typography == 'custom') {
-               $key = $typography . '_options';
+               $key = $typography.'_options';
                $units = array('font_size_unit', 'font_size', 'letter_spacing_unit', 'letter_spacing', 'line_height_unit', 'line_height');
                foreach ($units as $unit) {
                   if (isset($params->$key->$unit) && !is_object($params->$key->$unit)) {
@@ -591,42 +591,42 @@ class AstroidFrameworkHelper
                }
             }
          }
-         file_put_contents(JPATH_SITE . "/templates/{$template}/params" . '/' . $id . '.json', json_encode($params));
+         file_put_contents(JPATH_SITE."/templates/{$template}/params".'/'.$id.'.json', json_encode($params));
       }
    }
 
    public static function uploadTemplateDefaults($template, $id)
    {
-      $source = JPATH_SITE . '/templates/' . $template . '/images/default';
-      $destination = JPATH_SITE . '/images/' . $template;
+      $source = JPATH_SITE.'/templates/'.$template.'/images/default';
+      $destination = JPATH_SITE.'/images/'.$template;
       $files = JFolder::files($source);
       JFolder::copy($source, $destination, '', true);
    }
 
    public static function getUploadedFonts($template)
    {
-      require_once JPATH_LIBRARIES . '/' . 'astroid' . '/' . 'framework' . '/' . 'library' . '/' . 'FontLib' . '/' . 'Autoloader.php';
-      $template_fonts_path = JPATH_SITE . "/templates/{$template}/fonts";
+      require_once JPATH_LIBRARIES.'/'.'astroid'.'/'.'framework'.'/'.'library'.'/'.'FontLib'.'/'.'Autoloader.php';
+      $template_fonts_path = JPATH_SITE."/templates/{$template}/fonts";
       if (!file_exists($template_fonts_path)) {
          return [];
       }
       $fonts = [];
       $font_extensions = ['otf', 'ttf', 'woff'];
       foreach (scandir($template_fonts_path) as $font_path) {
-         if (is_file($template_fonts_path . '/' . $font_path)) {
-            $pathinfo = pathinfo($template_fonts_path . '/' . $font_path);
+         if (is_file($template_fonts_path.'/'.$font_path)) {
+            $pathinfo = pathinfo($template_fonts_path.'/'.$font_path);
             if (in_array($pathinfo['extension'], $font_extensions)) {
-               $font = \FontLib\Font::load($template_fonts_path . '/' . $font_path);
+               $font = \FontLib\Font::load($template_fonts_path.'/'.$font_path);
                $font->parse();
                $fontname = $font->getFontFullName();
-               $fontid = 'library-font-' . JFilterOutput::stringURLSafe($fontname);
+               $fontid = 'library-font-'.JFilterOutput::stringURLSafe($fontname);
                if (!isset($fonts[$fontid])) {
                   $fonts[$fontid] = [];
                   $fonts[$fontid]['id'] = $fontid;
                   $fonts[$fontid]['name'] = $fontname;
                   $fonts[$fontid]['files'] = [];
                }
-               $fonts[$fontid]['files'][] = './../fonts/' . $font_path;
+               $fonts[$fontid]['files'][] = './../fonts/'.$font_path;
             }
          }
       }
@@ -640,7 +640,7 @@ class AstroidFrameworkHelper
       }
       $style = '';
       foreach ($font['files'] as $file) {
-         $style .= '@font-face { font-family: "' . $font['name'] . '"; src: url("' . $file . '");
+         $style .= '@font-face { font-family: "'.$font['name'].'"; src: url("'.$file.'");
 }';
       }
       $template->addStyleDeclaration($style);
@@ -650,12 +650,12 @@ class AstroidFrameworkHelper
    {
       $params = JComponentHelper::getParams('com_media');
 
-      define('COM_MEDIA_BASE', JPATH_ROOT . '/' . $params->get('image_path', 'images'));
-      define('COM_MEDIA_BASEURL', JUri::root() . $params->get('image_path', 'images'));
+      define('COM_MEDIA_BASE', JPATH_ROOT.'/'.$params->get('image_path', 'images'));
+      define('COM_MEDIA_BASEURL', JUri::root().$params->get('image_path', 'images'));
 
       $current = $folder;
-      $basePath = COM_MEDIA_BASE . ((strlen($current) > 0) ? '/' . $current : '');
-      $mediaBase = str_replace(DIRECTORY_SEPARATOR, '/', COM_MEDIA_BASE . '/');
+      $basePath = COM_MEDIA_BASE.((strlen($current) > 0) ? '/'.$current : '');
+      $mediaBase = str_replace(DIRECTORY_SEPARATOR, '/', COM_MEDIA_BASE.'/');
 
       $images = array();
       $folders = array();
@@ -676,11 +676,11 @@ class AstroidFrameworkHelper
          $tmpBaseObject = new JObject;
 
          foreach ($fileList as $file) {
-            if (is_file($basePath . '/' . $file) && substr($file, 0, 1) != '.' && strtolower($file) !== 'index.html') {
+            if (is_file($basePath.'/'.$file) && substr($file, 0, 1) != '.' && strtolower($file) !== 'index.html') {
                $tmp = clone $tmpBaseObject;
                $tmp->name = $file;
                $tmp->title = $file;
-               $tmp->path = str_replace(DIRECTORY_SEPARATOR, '/', JPath::clean($basePath . '/' . $file));
+               $tmp->path = str_replace(DIRECTORY_SEPARATOR, '/', JPath::clean($basePath.'/'.$file));
                $tmp->path_relative = str_replace($mediaBase, '', $tmp->path);
                $tmp->size = filesize($tmp->path);
 
@@ -730,15 +730,15 @@ class AstroidFrameworkHelper
                   case 'mp4':
                   case 'webm':
                   case 'ogg':
-                     $tmp->icon_32 = 'media/mime-icon-32/' . $ext . '.png';
-                     $tmp->icon_16 = 'media/mime-icon-16/' . $ext . '.png';
+                     $tmp->icon_32 = 'media/mime-icon-32/'.$ext.'.png';
+                     $tmp->icon_16 = 'media/mime-icon-16/'.$ext.'.png';
                      $videos[] = $tmp;
                      break;
 
                      // Non-image document
                   default:
-                     $tmp->icon_32 = 'media/mime-icon-32/' . $ext . '.png';
-                     $tmp->icon_16 = 'media/mime-icon-16/' . $ext . '.png';
+                     $tmp->icon_32 = 'media/mime-icon-32/'.$ext.'.png';
+                     $tmp->icon_16 = 'media/mime-icon-16/'.$ext.'.png';
                      $docs[] = $tmp;
                      break;
                }
@@ -753,7 +753,7 @@ class AstroidFrameworkHelper
          foreach ($folderList as $folder) {
             $tmp = clone $tmpBaseObject;
             $tmp->name = basename($folder);
-            $tmp->path = str_replace(DIRECTORY_SEPARATOR, '/', JPath::clean($basePath . '/' . $folder));
+            $tmp->path = str_replace(DIRECTORY_SEPARATOR, '/', JPath::clean($basePath.'/'.$folder));
             $tmp->path_relative = str_replace($mediaBase, '', $tmp->path);
             $count = self::countFiles($tmp->path);
             $tmp->files = $count[0];
@@ -797,11 +797,11 @@ class AstroidFrameworkHelper
          $d = dir($dir);
 
          while (($entry = $d->read()) !== false) {
-            if ($entry[0] !== '.' && strpos($entry, '.html') === false && strpos($entry, '.php') === false && is_file($dir . DIRECTORY_SEPARATOR . $entry)) {
+            if ($entry[0] !== '.' && strpos($entry, '.html') === false && strpos($entry, '.php') === false && is_file($dir.DIRECTORY_SEPARATOR.$entry)) {
                $total_file++;
             }
 
-            if ($entry[0] !== '.' && is_dir($dir . DIRECTORY_SEPARATOR . $entry)) {
+            if ($entry[0] !== '.' && is_dir($dir.DIRECTORY_SEPARATOR.$entry)) {
                $total_dir++;
             }
          }
@@ -820,14 +820,14 @@ class AstroidFrameworkHelper
          $unit = $value->unit;
          if ($value->lock && is_numeric($value->top)) {
             foreach (['top', 'right', 'bottom', 'left'] as $position) {
-               $return[$position] = self::getPropertySubset($property, $position) . ":{$value->top}{$unit}";
+               $return[$position] = self::getPropertySubset($property, $position).":{$value->top}{$unit}";
                $values[$position] = "{$value->top}{$unit}";
             }
          } else {
             foreach (['top', 'right', 'bottom', 'left'] as $position) {
                $pvalue = $value->{$position};
                if (is_numeric($pvalue)) {
-                  $return[$position] = self::getPropertySubset($property, $position) . ":{$pvalue}{$unit}";
+                  $return[$position] = self::getPropertySubset($property, $position).":{$pvalue}{$unit}";
                   $values[$position] = "{$pvalue}{$unit}";
                }
             }
@@ -843,7 +843,7 @@ class AstroidFrameworkHelper
             continue;
          }
          if (!isset($return[$position])) {
-            $return[$position] = self::getPropertySubset($property, $position) . ":{$default[$position]}{$default['unit']}";
+            $return[$position] = self::getPropertySubset($property, $position).":{$default[$position]}{$default['unit']}";
             $values[$position] = "{$default[$position]}{$default['unit']}";
          }
       }
@@ -851,7 +851,7 @@ class AstroidFrameworkHelper
 
       if (count(array_keys($values)) === 4) {
          $return = [];
-         $return[] = self::getPropertySet($property) . ':' . implode(' ', $values);
+         $return[] = self::getPropertySet($property).':'.implode(' ', $values);
       }
 
       return implode(";", $return);
@@ -877,10 +877,10 @@ class AstroidFrameworkHelper
             }
             break;
          case "border":
-            return $property . '-' . $position . '-width';
+            return $property.'-'.$position.'-width';
             break;
          default:
-            return $property . '-' . $position;
+            return $property.'-'.$position;
             break;
       }
    }
@@ -902,7 +902,7 @@ class AstroidFrameworkHelper
 
    public static function frameworkVersion()
    {
-      $xml = JFactory::getXML(JPATH_ADMINISTRATOR . '/manifests/libraries/astroid.xml');
+      $xml = JFactory::getXML(JPATH_ADMINISTRATOR.'/manifests/libraries/astroid.xml');
       $version = (string) $xml->version;
       return $version;
    }

@@ -50,24 +50,24 @@ extract($displayData);
  */
 
 // Initialize some field attributes.
-$class = 'progress ' . $class;
+$class = 'progress '.$class;
 $class .= $animated ? ' progress-striped' : '';
 $class .= $active ? ' active' : '';
-$class = 'class="' . $class . '"';
+$class = 'class="'.$class.'"';
 
 $value = (float) $value;
 $value = $value < $min ? $min : $value;
 $value = $value > $max ? $max : $value;
 
 $data = '';
-$data .= 'data-max="' . $max . '"';
-$data .= ' data-min="' . $min . '"';
-$data .= ' data-step="' . $step . '"';
-$data .= ' data-value="' . $value . '"';
+$data .= 'data-max="'.$max.'"';
+$data .= ' data-min="'.$min.'"';
+$data .= ' data-step="'.$step.'"';
+$data .= ' data-value="'.$value.'"';
 
 $attributes = array(
 	$class,
-	!empty($width) ? ' style="width:' . $width . ';"' : '',
+	!empty($width) ? ' style="width:'.$width.';"' : '',
 	$data
 );
 
@@ -76,5 +76,5 @@ $value = ((float) ($value - $min) * 100) / ($max - $min);
 <div <?php echo implode(' ', $attributes); ?> >
 	<div class="bar" style="width: <?php
 	echo (string) $value; ?>%;<?php
-	echo !empty($color) ? ' background-color:' . $color . ';' : ''; ?>"></div>
+	echo !empty($color) ? ' background-color:'.$color.';' : ''; ?>"></div>
 </div>

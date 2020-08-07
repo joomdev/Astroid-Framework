@@ -61,7 +61,7 @@ if ($item->browserNav == 1) {
    $attributes['rel'] = 'noopener noreferrer';
 } elseif ($item->browserNav == 2) {
    $iframe_options = 'toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes';
-   $attributes['onclick'] = "window.open(this.href, 'targetWindow', '" . $iframe_options . "'); return false;";
+   $attributes['onclick'] = "window.open(this.href, 'targetWindow', '".$iframe_options."'); return false;";
 }
 $attributes['data-drop-action'] = 'hover';
 if (($options->megamenu || ($item->parent && $item->deeper == 1)) && !$is_mobile_menu) {
@@ -85,12 +85,12 @@ if ($attributes['data-drop-action'] == 'click') {
    //$item->flink = 'javascript:void(0);';
 }
 
-$attributes['class'] .= " item-link-" . $item->type;
-$attributes['class'] .= " item-level-" . $item->level;
+$attributes['class'] .= " item-link-".$item->type;
+$attributes['class'] .= " item-level-".$item->level;
 
 $attr = [];
 foreach ($attributes as $key => $attribute) {
-   $attr[] = $key . '="' . $attribute . '"';
+   $attr[] = $key.'="'.$attribute.'"';
 }
 ?>
 <!--menu link starts-->
@@ -116,7 +116,7 @@ if($item->type == 'url'){
       <?php } ?>
       <?php if (!$options->icononly) { ?>
          <?php if (!empty($item->menu_image)) { ?>
-            <img src="<?php echo JURI::root() . $item->menu_image; ?>" />
+            <img src="<?php echo JURI::root().$item->menu_image; ?>" />
          <?php } ?>
          <?php if (!empty($item->menu_image) && $item->params->get('menu_text', 1)) { ?>
             <?php echo $item->title; ?>

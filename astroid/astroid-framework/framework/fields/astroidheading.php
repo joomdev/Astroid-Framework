@@ -36,18 +36,18 @@ class JFormFieldAstroidHeading extends JFormField {
       $attrs = [];
       $ngShow = AstroidFrameworkHelper::replaceRelationshipOperators($this->element['ngShow']);
       if (!empty($ngShow)) {
-         $attrs[] = 'ng-show="' . $ngShow . '"';
+         $attrs[] = 'ng-show="'.$ngShow.'"';
       }
       $ngHide = AstroidFrameworkHelper::replaceRelationshipOperators($this->element['ngHide']);
       if (!empty($ngHide)) {
-         $attrs[] = 'ng-hide="' . $ngHide . '"';
+         $attrs[] = 'ng-hide="'.$ngHide.'"';
       }
       $ngRequired = AstroidFrameworkHelper::replaceRelationshipOperators($this->element['ngRequired']);
       if (!empty($ngRequired)) {
-         $attrs[] = 'ng-hide="' . $ngRequired . '"';
+         $attrs[] = 'ng-hide="'.$ngRequired.'"';
       }
 
-      return "<div " . implode(' ', $attrs) . " class='form-group form-group-heading'><h3 class='mb-0'>" . ((!empty($this->element['icon']) ? "<i class='" . $this->element['icon'] . "'></i> " : "")) . JText::_($this->element['title']) . "</h3><p class='mb-0'>" . JText::_($this->description) . "</p></div>";
+      return "<div ".implode(' ', $attrs)." class='form-group form-group-heading'><h3 class='mb-0'>".((!empty($this->element['icon']) ? "<i class='".$this->element['icon']."'></i> " : "")).JText::_($this->element['title'])."</h3><p class='mb-0'>".JText::_($this->description)."</p></div>";
    }
 
 }

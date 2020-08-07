@@ -37,8 +37,8 @@ class JFormFieldFaicons extends JFormField {
       $attr = '';
 
       // Initialize some field attributes.
-      $attr .= !empty($this->class) ? ' class="' . $this->class . '"' : '';
-      $attr .= !empty($this->size) ? ' size="' . $this->size . '"' : '';
+      $attr .= !empty($this->class) ? ' class="'.$this->class.'"' : '';
+      $attr .= !empty($this->size) ? ' size="'.$this->size.'"' : '';
       $attr .= $this->multiple ? ' multiple' : '';
       $attr .= $this->required ? ' required aria-required="true"' : '';
       $attr .= $this->autofocus ? ' autofocus' : '';
@@ -49,7 +49,7 @@ class JFormFieldFaicons extends JFormField {
       }
 
       // Initialize JavaScript field attributes.
-      $attr .= $this->onchange ? ' onchange="' . $this->onchange . '"' : '';
+      $attr .= $this->onchange ? ' onchange="'.$this->onchange.'"' : '';
 
       // Get the field options.
       $options = (array) $this->getOptions();
@@ -65,10 +65,10 @@ class JFormFieldFaicons extends JFormField {
             }
 
             foreach ($this->value as $value) {
-               $html[] = '<input type="hidden" name="' . $this->name . '" value="' . htmlspecialchars($value, ENT_COMPAT, 'UTF-8') . '"/>';
+               $html[] = '<input type="hidden" name="'.$this->name.'" value="'.htmlspecialchars($value, ENT_COMPAT, 'UTF-8').'"/>';
             }
          } else {
-            $html[] = '<input type="hidden" name="' . $this->name . '" value="' . htmlspecialchars($this->value, ENT_COMPAT, 'UTF-8') . '"/>';
+            $html[] = '<input type="hidden" name="'.$this->name.'" value="'.htmlspecialchars($this->value, ENT_COMPAT, 'UTF-8').'"/>';
          }
       } else {
          // Create a regular list.

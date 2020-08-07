@@ -140,7 +140,7 @@ class JFormFieldAstroidTextarea extends JFormField {
    protected function getInput() {
       // Trim the trailing line in the layout file
 
-      $renderer = new JLayoutFile($this->layout, JPATH_LIBRARIES . '/astroid/framework/layouts');
+      $renderer = new JLayoutFile($this->layout, JPATH_LIBRARIES.'/astroid/framework/layouts');
 
       return rtrim($renderer->render($this->getLayoutData()), PHP_EOL);
 
@@ -158,9 +158,9 @@ class JFormFieldAstroidTextarea extends JFormField {
       $data = parent::getLayoutData();
 
       // Initialize some field attributes.
-      $columns = $this->columns ? ' cols="' . $this->columns . '"' : '';
-      $rows = $this->rows ? ' rows="' . $this->rows . '"' : '';
-      $maxlength = $this->maxlength ? ' maxlength="' . $this->maxlength . '"' : '';
+      $columns = $this->columns ? ' cols="'.$this->columns.'"' : '';
+      $rows = $this->rows ? ' rows="'.$this->rows.'"' : '';
+      $maxlength = $this->maxlength ? ' maxlength="'.$this->maxlength.'"' : '';
 
       $extraData = array(
           'maxlength' => $maxlength,

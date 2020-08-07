@@ -35,7 +35,7 @@ class JFormFieldAstroidpartial extends JFormField {
     */
    protected function getInput() {
       $id = JFactory::getApplication()->input->get->get('id', 0, 'INT');
-      $html = '<div class="ui fluid search selection dropdown" select-ui-div><input type="hidden" value="' . $this->value . '" name="' . $this->name . '"><i class="dropdown icon"></i><div class="default text">Choose Partial</div><div class="menu">';
+      $html = '<div class="ui fluid search selection dropdown" select-ui-div><input type="hidden" value="'.$this->value.'" name="'.$this->name.'"><i class="dropdown icon"></i><div class="default text">Choose Partial</div><div class="menu">';
       $template = AstroidFrameworkHelper::getTemplateById($id);
       if (!empty($template)) {
          $partials = AstroidFrameworkHelper::getTemplatePartials($template->template);
@@ -44,7 +44,7 @@ class JFormFieldAstroidpartial extends JFormField {
       }
       $html .= '<div class="item" data-value="">None</div>';
       foreach ($partials as $partial) {
-         $html .= '<div class="item" data-value="' . $partial . '">' . $partial . '</div>';
+         $html .= '<div class="item" data-value="'.$partial.'">'.$partial.'</div>';
       }
       $html .= '</div></div>';
       return $html;

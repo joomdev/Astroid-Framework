@@ -13,10 +13,10 @@ defined('_JEXEC') or die;
 extract($displayData);
 
 $doc = JFactory::getDocument();
-$doc->addScript(JURI::root() . 'templates/' . $template->template . '/js/vendor/jquery.countdown.min.js');
-$doc->addScript(JURI::root() . 'media' . '/' . 'astroid' . '/' . 'assets' . '/' . 'vendor' . '/' . 'moment.min.js');
-$doc->addScript(JURI::root() . 'media' . '/' . 'astroid' . '/' . 'assets' . '/' . 'vendor' . '/' . 'moment-timezone.min.js');
-$doc->addScript(JURI::root() . 'media' . '/' . 'astroid' . '/' . 'assets' . '/' . 'vendor' . '/' . 'moment-timezone-with-data-2012-2022.min.js');
+$doc->addScript(JURI::root().'templates/'.$template->template.'/js/vendor/jquery.countdown.min.js');
+$doc->addScript(JURI::root().'media'.'/'.'astroid'.'/'.'assets'.'/'.'vendor'.'/'.'moment.min.js');
+$doc->addScript(JURI::root().'media'.'/'.'astroid'.'/'.'assets'.'/'.'vendor'.'/'.'moment-timezone.min.js');
+$doc->addScript(JURI::root().'media'.'/'.'astroid'.'/'.'assets'.'/'.'vendor'.'/'.'moment-timezone-with-data-2012-2022.min.js');
 $app = JFactory::getApplication();
 // Background Image
  
@@ -27,33 +27,33 @@ $video = [];
       if($background_setting =="color"){
          $background_color = $template->params->get('background_color', '');
          if (!empty($background_color)) {
-            $styles[] = 'background-color:' . $background_color;
+            $styles[] = 'background-color:'.$background_color;
          }
       }
       if($background_setting =="image"){
 
          $img_background_color = $template->params->get('img_background_color', '');
          $img_background_color = empty($img_background_color) ? 'inherit' : $img_background_color;
-         $styles[] = 'background-color:' . $img_background_color;
+         $styles[] = 'background-color:'.$img_background_color;
 
          $background_image = $template->params->get('background_image', '');
          if (!empty($background_image)) {
-            $styles[] = 'background-image: url(' . JURI::root() .$template->SeletedMedia(). '/' . $background_image . ')';
+            $styles[] = 'background-image: url('.JURI::root() .$template->SeletedMedia(). '/'.$background_image.')';
             $background_repeat = $template->params->get('background_repeat', '');
             $background_repeat = empty($background_repeat) ? 'inherit' : $background_repeat;
-            $styles[] = 'background-repeat:' . $background_repeat;
+            $styles[] = 'background-repeat:'.$background_repeat;
 
             $background_size = $template->params->get('background_size', '');
             $background_size = empty($background_size) ? 'inherit' : $background_size;
-            $styles[] = 'background-size:' . $background_size;
+            $styles[] = 'background-size:'.$background_size;
 
             $background_attchment = $template->params->get('background_attchment', '');
             $background_attchment = empty($background_attchment) ? 'inherit' : $background_attchment;
-            $styles[] = 'background-attachment:' . $background_attchment;
+            $styles[] = 'background-attachment:'.$background_attchment;
 
             $background_position = $template->params->get('background_position', '');
             $background_position = empty($background_position) ? 'inherit' : $background_position;
-            $styles[] = 'background-position:' . $background_position;
+            $styles[] = 'background-position:'.$background_position;
          }
       }
 
@@ -68,7 +68,7 @@ $video = [];
             $attributes = [];
             $background_video = $template->params->get('background_video', '');
             if (!empty($background_video)) {
-               $attributes['data-jd-video-bg'] = JURI::root() .$template->SeletedMedia(). '/' . $background_video;
+               $attributes['data-jd-video-bg'] = JURI::root() .$template->SeletedMedia(). '/'.$background_video;
                $template = AstroidFramework::getTemplate();
                $videobgjs = 'vendor/jquery.jdvideobg.js';
                if(!isset($template->_js[$videobgjs])){
@@ -78,7 +78,7 @@ $video = [];
 
             $return = [];
             foreach ($attributes as $key => $value) {
-               $return[] = $key . '="' . $value . '"';
+               $return[] = $key.'="'.$value.'"';
             }
             $video =  $return;  
           }
@@ -87,7 +87,7 @@ $video = [];
 $comingsoon_logo = "";
 $hascs_logo = 0;
 if ($cs_logo = $template->params->get('coming_soon_logo')) {
-   $comingsoon_logo = JURI::root() .$template->SeletedMedia(). '/' . $cs_logo;
+   $comingsoon_logo = JURI::root() .$template->SeletedMedia(). '/'.$cs_logo;
    $hascs_logo = 1;
 }
 $comingsoon_date = $template->params->get("coming_soon_countdown_date", 'January 1st 2022, 00:00 am');

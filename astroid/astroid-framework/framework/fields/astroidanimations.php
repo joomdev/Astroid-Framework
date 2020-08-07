@@ -37,8 +37,8 @@ class JFormFieldAstroidanimations extends JFormField {
       $attr = '';
 
       // Initialize some field attributes.
-      $attr .= !empty($this->class) ? ' class="' . $this->class . '"' : '';
-      $attr .= !empty($this->size) ? ' size="' . $this->size . '"' : '';
+      $attr .= !empty($this->class) ? ' class="'.$this->class.'"' : '';
+      $attr .= !empty($this->size) ? ' size="'.$this->size.'"' : '';
       $attr .= $this->multiple ? ' multiple' : '';
       $attr .= $this->required ? ' required aria-required="true"' : '';
       $attr .= $this->autofocus ? ' autofocus' : '';
@@ -48,17 +48,17 @@ class JFormFieldAstroidanimations extends JFormField {
          $attr .= ' disabled="disabled"';
       }
       // Initialize JavaScript field attributes.
-      $attr .= $this->onchange ? ' onchange="' . $this->onchange . '"' : '';
+      $attr .= $this->onchange ? ' onchange="'.$this->onchange.'"' : '';
 
-      $html = '<select name="' . $this->name . '" ng-model="' . $this->id . '" animation-selector ' . $attr . '>';
+      $html = '<select name="'.$this->name.'" ng-model="'.$this->id.'" animation-selector '.$attr.'>';
       $groups = AstroidFrameworkConstants::$animations;
       $options = array();
       foreach ($groups as $group => $animations) {
          if (!empty($group)) {
-            $html .= '<optgroup label="' . $group . '">';
+            $html .= '<optgroup label="'.$group.'">';
          }
          foreach ($animations as $key => $value) {
-            $html .= '<option value="' . $key . '">' . $value . '</option>';
+            $html .= '<option value="'.$key.'">'.$value.'</option>';
          }
          if (!empty($group)) {
             $html .= '</optgroup>';

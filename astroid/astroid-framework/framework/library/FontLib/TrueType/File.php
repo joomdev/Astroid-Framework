@@ -226,7 +226,7 @@ class File extends BinaryStream {
     $num_tables = count($tags);
     $n          = 16; // @todo
 
-    Font::d("Tables : " . implode(", ", $tags));
+    Font::d("Tables : ".implode(", ", $tags));
 
     /** @var DirectoryEntry[] $entries */
     $entries = array();

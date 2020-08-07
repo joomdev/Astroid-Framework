@@ -7,7 +7,7 @@
  */
 defined('JPATH_BASE') or die;
 
-JLoader::register('ModulesHelper', JPATH_ADMINISTRATOR . '/components/com_modules/helpers/modules.php');
+JLoader::register('ModulesHelper', JPATH_ADMINISTRATOR.'/components/com_modules/helpers/modules.php');
 
 jimport('astroid.framework.helper');
 
@@ -67,23 +67,23 @@ class JFormFieldAstroidModulesPosition extends JFormFieldList {
       $attr = '';
 
       // Initialize some field attributes.
-      $attr .= !empty($this->class) ? ' class="' . $this->class . '"' : '';
-      $attr .= !empty($this->size) ? ' size="' . $this->size . '"' : '';
+      $attr .= !empty($this->class) ? ' class="'.$this->class.'"' : '';
+      $attr .= !empty($this->size) ? ' size="'.$this->size.'"' : '';
       $attr .= $this->multiple ? ' multiple' : '';
       $attr .= $this->required ? ' required aria-required="true"' : '';
       $attr .= $this->autofocus ? ' autofocus' : '';
-      //$attr .= $this->element['ngShow'] ? ' ng-show="' . AstroidFrameworkHelper::replaceRelationshipOperators($this->element['ngShow']) . '"' : '';
-      //$attr .= $this->element['ngHide'] ? ' ng-hide="' . AstroidFrameworkHelper::replaceRelationshipOperators($this->element['ngHide']) . '"' : '';
-      $attr .= ' ng-model="' . $this->fieldname . '"';
-      $attr .= ' data-fieldname="' . $this->fieldname . '"';
-      $attr .= $this->element['ngRequired'] ? ' ng-required="' . AstroidFrameworkHelper::replaceRelationshipOperators($this->element['ngRequired']) . '"' : '';
+      //$attr .= $this->element['ngShow'] ? ' ng-show="'.AstroidFrameworkHelper::replaceRelationshipOperators($this->element['ngShow']).'"' : '';
+      //$attr .= $this->element['ngHide'] ? ' ng-hide="'.AstroidFrameworkHelper::replaceRelationshipOperators($this->element['ngHide']).'"' : '';
+      $attr .= ' ng-model="'.$this->fieldname.'"';
+      $attr .= ' data-fieldname="'.$this->fieldname.'"';
+      $attr .= $this->element['ngRequired'] ? ' ng-required="'.AstroidFrameworkHelper::replaceRelationshipOperators($this->element['ngRequired']).'"' : '';
 
       if (isset($this->element['astroid-content-layout']) && !empty($this->element['astroid-content-layout'])) {
-         $attr .= ' data-astroid-content-layout="' . $this->element['astroid-content-layout'] . '"';
+         $attr .= ' data-astroid-content-layout="'.$this->element['astroid-content-layout'].'"';
       }
 
       if (isset($this->element['astroid-content-layout-load']) && !empty($this->element['astroid-content-layout-load'])) {
-         $attr .= ' data-astroid-content-layout-load="' . $this->element['astroid-content-layout-load'] . '"';
+         $attr .= ' data-astroid-content-layout-load="'.$this->element['astroid-content-layout-load'].'"';
       }
 
       // To avoid user's confusion, readonly="true" should imply disabled="true".
@@ -92,7 +92,7 @@ class JFormFieldAstroidModulesPosition extends JFormFieldList {
       }
 
       // Initialize JavaScript field attributes.
-      $attr .= $this->onchange ? ' onchange="' . $this->onchange . '"' : '';
+      $attr .= $this->onchange ? ' onchange="'.$this->onchange.'"' : '';
 
       if (isset($this->element['astroid-animation-selector']) && $this->element['astroid-animation-selector'] == true) {
          $attr .= ' animation-selector';
@@ -114,10 +114,10 @@ class JFormFieldAstroidModulesPosition extends JFormFieldList {
             }
 
             foreach ($this->value as $value) {
-               $html[] = '<input type="hidden" name="' . $this->name . '" value="' . htmlspecialchars($value, ENT_COMPAT, 'UTF-8') . '"/>';
+               $html[] = '<input type="hidden" name="'.$this->name.'" value="'.htmlspecialchars($value, ENT_COMPAT, 'UTF-8').'"/>';
             }
          } else {
-            $html[] = '<input type="hidden" name="' . $this->name . '" value="' . htmlspecialchars($this->value, ENT_COMPAT, 'UTF-8') . '"/>';
+            $html[] = '<input type="hidden" name="'.$this->name.'" value="'.htmlspecialchars($this->value, ENT_COMPAT, 'UTF-8').'"/>';
          }
       } else {
          // Create a regular list.

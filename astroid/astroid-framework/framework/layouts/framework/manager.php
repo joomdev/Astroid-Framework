@@ -19,11 +19,11 @@ $config = JFactory::getConfig();
 $atm = $application->input->get('atm', 0, 'INT');
 
 if($atm){
-   $joomla_url = JRoute::_('index.php?option=com_advancedtemplates&view=style&layout=edit&id=' . $id);
+   $joomla_url = JRoute::_('index.php?option=com_advancedtemplates&view=style&layout=edit&id='.$id);
 }else{
-   $joomla_url = JRoute::_('index.php?option=com_templates&view=style&layout=edit&id=' . $id);
+   $joomla_url = JRoute::_('index.php?option=com_templates&view=style&layout=edit&id='.$id);
 }
-$save_url = JRoute::_('index.php?option=com_ajax&astroid=save&id=' . $id . '&template=' . $template->template);
+$save_url = JRoute::_('index.php?option=com_ajax&astroid=save&id='.$id.'&template='.$template->template);
 
 if (empty($template)) {
    $application->redirect('index.php?option=com_templates');
@@ -37,7 +37,7 @@ if (empty($params)) {
 
 $lang = JFactory::getLanguage();
 $langdir = $lang->get('rtl') ? 'rtl' : 'ltr';
-$assets = JURI::root() . 'media' . '/' . 'astroid' . '/' . 'assets' . '/';
+$assets = JURI::root().'media'.'/'.'astroid'.'/'.'assets'.'/';
 $semanticComponents = ['icon', 'transition', 'api', 'dropdown'];
 
 // adding styles
@@ -46,31 +46,31 @@ $stylesheets[] = 'https://fonts.googleapis.com/css?family=Nunito:300,400,600';
 $stylesheets[] = $assets.'fontawesome/css/font-awesome.css';
 
 foreach ($semanticComponents as $semanticComponent) {
-   $semanticComponentPath = 'vendor' . '/' . 'semantic-ui' . '/' . 'components' . '/' . $semanticComponent . '.min.css';
-   if (file_exists(JPATH_SITE . '/' . 'media' . '/' . 'astroid' . '/' . 'assets' . '/' . $semanticComponentPath)) {
-      $stylesheets[] = $assets . $semanticComponentPath . '?v=' . $document->getMediaVersion();
+   $semanticComponentPath = 'vendor'.'/'.'semantic-ui'.'/'.'components'.'/'.$semanticComponent.'.min.css';
+   if (file_exists(JPATH_SITE.'/'.'media'.'/'.'astroid'.'/'.'assets'.'/'.$semanticComponentPath)) {
+      $stylesheets[] = $assets.$semanticComponentPath.'?v='.$document->getMediaVersion();
    }
 }
 
-$stylesheets[] = $assets . 'css' . '/' . 'astroid-framework.css?v=' . $document->getMediaVersion();
-$stylesheets[] = $assets . 'css' . '/' . 'admin.css?v=' . $document->getMediaVersion();
-$stylesheets[] = $assets . 'css' . '/' . 'animate.min.css?v=' . $document->getMediaVersion();
+$stylesheets[] = $assets.'css'.'/'.'astroid-framework.css?v='.$document->getMediaVersion();
+$stylesheets[] = $assets.'css'.'/'.'admin.css?v='.$document->getMediaVersion();
+$stylesheets[] = $assets.'css'.'/'.'animate.min.css?v='.$document->getMediaVersion();
 // getting form
 
 JPluginHelper::importPlugin('astroid');
 $dispatcher = JDispatcher::getInstance();
 $form = new JForm('template');
 $dispatcher->trigger('onBeforeAstroidFormLoad', [&$template, &$form]);
-$form_dir = JPATH_LIBRARIES . '/' . 'astroid' . '/' . 'framework' . '/' . 'options';
-$forms = array_filter(glob($form_dir . '/' . '*.xml'), 'is_file');
+$form_dir = JPATH_LIBRARIES.'/'.'astroid'.'/'.'framework'.'/'.'options';
+$forms = array_filter(glob($form_dir.'/'.'*.xml'), 'is_file');
 JForm::addFormPath($form_dir);
 foreach ($forms as $fname) {
    $fname = pathinfo($fname)['filename'];
    $form->loadFile($fname, false);
 }
 
-$template_form_dir = JPATH_SITE . '/' . 'templates' . '/' . $template->template . '/' . 'astroid' . '/' . 'options';
-$template_forms = array_filter(glob($template_form_dir . '/' . '*.xml'), 'is_file');
+$template_form_dir = JPATH_SITE.'/'.'templates'.'/'.$template->template.'/'.'astroid'.'/'.'options';
+$template_forms = array_filter(glob($template_form_dir.'/'.'*.xml'), 'is_file');
 JForm::addFormPath($template_form_dir);
 foreach ($template_forms as $fname) {
    $fname = pathinfo($fname)['filename'];
@@ -94,7 +94,7 @@ $astroid_shortcut_enable = $plugin_params->get('astroid_shortcut_enable', 1);
       <meta charset="utf-8" />
       <meta name="generator" content="Astroid Framework | Template Manager" />
       <title><?php echo $template->title; ?></title>
-      <link href="<?php echo $assets . 'images' . '/' . 'favicon.png'; ?>" rel="shortcut icon" type="image/vnd.microsoft.icon" />
+      <link href="<?php echo $assets.'images'.'/'.'favicon.png'; ?>" rel="shortcut icon" type="image/vnd.microsoft.icon" />
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
       <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -124,10 +124,10 @@ $astroid_shortcut_enable = $plugin_params->get('astroid_shortcut_enable', 1);
       </style>
       <?php
       foreach ($stylesheets as $stylesheet) {
-         echo '<link href="' . $stylesheet . '?' . $document->getMediaVersion() . '" type="text/css" rel="stylesheet" />';
+         echo '<link href="'.$stylesheet.'?'.$document->getMediaVersion().'" type="text/css" rel="stylesheet" />';
       }
       foreach (AstroidFramework::$stylesheets as $stylesheet) {
-         echo '<link href="' . $stylesheet . '?' . $document->getMediaVersion() . '" type="text/css" rel="stylesheet" />';
+         echo '<link href="'.$stylesheet.'?'.$document->getMediaVersion().'" type="text/css" rel="stylesheet" />';
       }
       ?>
       <script>
@@ -136,7 +136,7 @@ $astroid_shortcut_enable = $plugin_params->get('astroid_shortcut_enable', 1);
       </script>
       <?php
       foreach (AstroidFramework::$javascripts['head'] as $script) {
-         echo '<script src="' . $script . '?' . $document->getMediaVersion() . '"></script>';
+         echo '<script src="'.$script.'?'.$document->getMediaVersion().'"></script>';
       }
       ?>
       <script>
@@ -176,7 +176,7 @@ $astroid_shortcut_enable = $plugin_params->get('astroid_shortcut_enable', 1);
          </div>
       <?php } ?>
       <!--<nav class="astroid-manager-navbar navbar fixed-top navbar-expand-lg navbar-light bg-white justify-content-between">
-         <a class="navbar-brand" href="#"><img src="<?php echo JURI::root() . 'media' . '/' . 'astroid' . '/' . 'assets' . '/' . 'images' . '/' . 'favicon.png'; ?>" width="28" height="28" class="d-inline-block align-top" alt=""> Astroid Framework</a>
+         <a class="navbar-brand" href="#"><img src="<?php echo JURI::root().'media'.'/'.'astroid'.'/'.'assets'.'/'.'images'.'/'.'favicon.png'; ?>" width="28" height="28" class="d-inline-block align-top" alt=""> Astroid Framework</a>
          <div class="form-inline">
             <button id="save-options" class="btn btn-success my-2 my-sm-0" type="button"><i class="fa fa-save"></i>&nbsp;<?php echo JText::_('ASTROID_SAVE'); ?></button>
             <button id="saving-options" class="btn btn-blue disabled my-2 my-sm-0 d-none" type="button"><i class="fa fa-circle-notch fa-spin"></i>&nbsp;<?php echo JText::_('ASTROID_TEMPLATE_SAVING'); ?></button>
@@ -189,16 +189,16 @@ $astroid_shortcut_enable = $plugin_params->get('astroid_shortcut_enable', 1);
             <div id="astroid-sidebar-wrapper" class="col">
                <div class="astroid-logo text-center row">
                   <div class="logo-image">
-                     <!--<img width="80" src="<?php echo $assets . 'images' . '/' . 'icon-logo-dark.png'; ?>" /><div class="clearfix"></div>-->
-                     <img style="vertical-align: baseline;" width="150" src="<?php echo $assets . 'images' . '/' . 'logo-dark-wide.png'; ?>" /> <span style="color: #8E2DE2;"><?php echo AstroidFrameworkConstants::$astroid_version; ?></span>
+                     <!--<img width="80" src="<?php echo $assets.'images'.'/'.'icon-logo-dark.png'; ?>" /><div class="clearfix"></div>-->
+                     <img style="vertical-align: baseline;" width="150" src="<?php echo $assets.'images'.'/'.'logo-dark-wide.png'; ?>" /> <span style="color: #8E2DE2;"><?php echo AstroidFrameworkConstants::$astroid_version; ?></span>
                   </div>
                   <!--<div class="astroid-version" style="text-align: center;width: 100%;">version <?php echo AstroidFrameworkConstants::$astroid_version; ?></div>-->
                </div>
                <div class="astroid-logo text-center row d-none">
                   <div class="logo-image">
-                     <img width="40" src="<?php echo $assets . 'images' . '/' . 'icon-logo-dark.png'; ?>" />
+                     <img width="40" src="<?php echo $assets.'images'.'/'.'icon-logo-dark.png'; ?>" />
                      <div class="d-inline ml-2">
-                        <img width="110" src="<?php echo $assets . 'images' . '/' . 'logo-dark-wide.png'; ?>" />
+                        <img width="110" src="<?php echo $assets.'images'.'/'.'logo-dark-wide.png'; ?>" />
                         <div class="clearfix"></div>
                         <small style="position: relative;top: -12px;margin-left: 128px;" class="astroid-version">v <?php echo AstroidFrameworkConstants::$astroid_version; ?></small>
                      </div>
@@ -226,7 +226,7 @@ $astroid_shortcut_enable = $plugin_params->get('astroid_shortcut_enable', 1);
                         <?php if (!empty($groups)) { ?>
                            <ul id="fieldset-groupmenu-<?php echo $fieldset->name; ?>" class="nav flex-column sidebar-submenu">
                               <?php foreach ($groups as $groupname => $group) { ?>
-                                 <li class="nav-item"><a class="nav-link hash-link" href="#astroid-form-fieldset-section-<?php echo $groupname; ?>"><?php echo!empty($group['icon']) ? '<i class="' . $group['icon'] . '"></i>&nbsp;' : ''; ?><?php echo $group['title']; ?></a></li>
+                                 <li class="nav-item"><a class="nav-link hash-link" href="#astroid-form-fieldset-section-<?php echo $groupname; ?>"><?php echo!empty($group['icon']) ? '<i class="'.$group['icon'].'"></i>&nbsp;' : ''; ?><?php echo $group['title']; ?></a></li>
                               <?php } ?>
                            </ul>
                         <?php } ?>
@@ -311,9 +311,9 @@ $astroid_shortcut_enable = $plugin_params->get('astroid_shortcut_enable', 1);
                                  <div style="padding-top:20px" id="astroid-form-fieldset-section-<?php echo $groupname; ?>">
                                     <?php
                                     if (!empty($group['title']) && !empty($group['fields'])) {
-                                       echo '<h3 class="astroid-group-title ' . (!empty($group['description']) ? 'mb-0' : '') . '">' . (!empty($group['icon']) ? '<i class="' . $group['icon'] . '"></i>&nbsp;' : '') . JText::_($group['title']) . '' . (!empty($group['help']) ? ' <a target="_blank" href="' . $group['help'] . '"><span class="fa fa-question-circle"></span></a>' : '') . '</h3>';
+                                       echo '<h3 class="astroid-group-title '.(!empty($group['description']) ? 'mb-0' : '').'">'.(!empty($group['icon']) ? '<i class="'.$group['icon'].'"></i>&nbsp;' : '').JText::_($group['title']).''.(!empty($group['help']) ? ' <a target="_blank" href="'.$group['help'].'"><span class="fa fa-question-circle"></span></a>' : '').'</h3>';
                if (!empty($group['description'])) {
-                                          echo '<p><small>' . JText::_($group['description']) . '</small></p>';
+                                          echo '<p><small>'.JText::_($group['description']).'</small></p>';
                                        }
                                     }
                                     ?>
@@ -329,7 +329,7 @@ $astroid_shortcut_enable = $plugin_params->get('astroid_shortcut_enable', 1);
                                              $ngHide = AstroidFrameworkHelper::replaceRelationshipOperators($field->getAttribute('ngHide'));
                                              $ngShow = AstroidFrameworkHelper::replaceRelationshipOperators($field->getAttribute('ngShow'));
                                              ?>
-                                             <div<?php echo!empty($ngHide) ? ' ng-hide="' . $ngHide . '"' : ''; ?><?php echo!empty($ngShow) ? ' ng-show="' . $ngShow . '"' : ''; ?> class="form-group">
+                                             <div<?php echo!empty($ngHide) ? ' ng-hide="'.$ngHide.'"' : ''; ?><?php echo!empty($ngShow) ? ' ng-show="'.$ngShow.'"' : ''; ?> class="form-group">
                                                 <div class="row">
                                                    <?php if ($field->label !== false) { ?>
                                                       <div class="col-sm-5">
@@ -421,43 +421,43 @@ $astroid_shortcut_enable = $plugin_params->get('astroid_shortcut_enable', 1);
       </div>
       <?php
       $scripts = [];
-      $scripts[] = $assets . 'vendor' . '/' . 'jquery' . '/' . 'jquery-3.2.1.min.js?v=' . $document->getMediaVersion();
-      $scripts[] = $assets . 'vendor' . '/' . 'jquery' . '/' . 'jquery.cookie.js?v=' . $document->getMediaVersion();
-      $scripts[] = $assets . 'vendor' . '/' . 'bootstrap' . '/' . 'popper.min.js?v=' . $document->getMediaVersion();
-      $scripts[] = $assets . 'vendor' . '/' . 'bootstrap' . '/' . 'bootstrap.min.js?v=' . $document->getMediaVersion();
-      $scripts[] = $assets . 'vendor' . '/' . 'spectrum' . '/' . 'spectrum.js?v=' . $document->getMediaVersion();
-      $scripts[] = $assets . 'vendor' . '/' . 'ace' . '/' . '1.3.3' . '/' . 'ace.js?v=' . $document->getMediaVersion();
-      $scripts[] = $assets . 'vendor' . '/' . 'dropzone' . '/' . 'dropzone.min.js?v=' . $document->getMediaVersion();
-      $scripts[] = $assets . 'vendor' . '/' . 'moment.min.js?v=' . $document->getMediaVersion();
-      $scripts[] = $assets . 'vendor' . '/' . 'moment-timezone.min.js?v=' . $document->getMediaVersion();
-      $scripts[] = $assets . 'vendor' . '/' . 'moment-timezone-with-data-2012-2022.min.js?v=' . $document->getMediaVersion();
-      $scripts[] = $assets . 'vendor' . '/' . 'bootstrap-datetimepicker.min.js?v=' . $document->getMediaVersion();
-      $scripts[] = $assets . 'vendor' . '/' . 'bootstrap-slider' . '/' . 'js' . '/' . 'bootstrap-slider.min.js?v=' . $document->getMediaVersion();
-      $scripts[] = $assets . 'vendor' . '/' . 'angular' . '/' . 'angular.min.js?v=' . $document->getMediaVersion();
-      $scripts[] = $assets . 'vendor' . '/' . 'angular' . '/' . 'angular-animate.js?v=' . $document->getMediaVersion();
-      $scripts[] = $assets . 'vendor' . '/' . 'angular' . '/' . 'sortable.min.js?v=' . $document->getMediaVersion();
-      $scripts[] = $assets . 'vendor' . '/' . 'angular' . '/' . 'angular-legacy-sortable.js?v=' . $document->getMediaVersion();
+      $scripts[] = $assets.'vendor'.'/'.'jquery'.'/'.'jquery-3.2.1.min.js?v='.$document->getMediaVersion();
+      $scripts[] = $assets.'vendor'.'/'.'jquery'.'/'.'jquery.cookie.js?v='.$document->getMediaVersion();
+      $scripts[] = $assets.'vendor'.'/'.'bootstrap'.'/'.'popper.min.js?v='.$document->getMediaVersion();
+      $scripts[] = $assets.'vendor'.'/'.'bootstrap'.'/'.'bootstrap.min.js?v='.$document->getMediaVersion();
+      $scripts[] = $assets.'vendor'.'/'.'spectrum'.'/'.'spectrum.js?v='.$document->getMediaVersion();
+      $scripts[] = $assets.'vendor'.'/'.'ace'.'/'.'1.3.3'.'/'.'ace.js?v='.$document->getMediaVersion();
+      $scripts[] = $assets.'vendor'.'/'.'dropzone'.'/'.'dropzone.min.js?v='.$document->getMediaVersion();
+      $scripts[] = $assets.'vendor'.'/'.'moment.min.js?v='.$document->getMediaVersion();
+      $scripts[] = $assets.'vendor'.'/'.'moment-timezone.min.js?v='.$document->getMediaVersion();
+      $scripts[] = $assets.'vendor'.'/'.'moment-timezone-with-data-2012-2022.min.js?v='.$document->getMediaVersion();
+      $scripts[] = $assets.'vendor'.'/'.'bootstrap-datetimepicker.min.js?v='.$document->getMediaVersion();
+      $scripts[] = $assets.'vendor'.'/'.'bootstrap-slider'.'/'.'js'.'/'.'bootstrap-slider.min.js?v='.$document->getMediaVersion();
+      $scripts[] = $assets.'vendor'.'/'.'angular'.'/'.'angular.min.js?v='.$document->getMediaVersion();
+      $scripts[] = $assets.'vendor'.'/'.'angular'.'/'.'angular-animate.js?v='.$document->getMediaVersion();
+      $scripts[] = $assets.'vendor'.'/'.'angular'.'/'.'sortable.min.js?v='.$document->getMediaVersion();
+      $scripts[] = $assets.'vendor'.'/'.'angular'.'/'.'angular-legacy-sortable.js?v='.$document->getMediaVersion();
       foreach ($scripts as $script) {
-         echo "<script src='" . $script . "'></script>";
+         echo "<script src='".$script."'></script>";
       }
       ?>
       <script>
          var TIMEZONE = '<?php echo $config = JFactory::getConfig()->get('offset'); ?>';
          moment.tz.setDefault('<?php echo $config = JFactory::getConfig()->get('offset'); ?>');
       </script>
-      <script src="<?php echo $assets . 'js' . '/' . 'parsley.min.js?v=' . $document->getMediaVersion(); ?>"></script>
-      <script src="<?php echo $assets . 'js' . '/' . 'notify.min.js?v=' . $document->getMediaVersion(); ?>"></script>
-      <script src="<?php echo $assets . 'js' . '/' . 'jquery.hotkeys.js?v=' . $document->getMediaVersion(); ?>"></script>
-      <script src="<?php echo $assets . 'js' . '/' . 'jquery.nicescroll.min.js?v=' . $document->getMediaVersion(); ?>"></script>
+      <script src="<?php echo $assets.'js'.'/'.'parsley.min.js?v='.$document->getMediaVersion(); ?>"></script>
+      <script src="<?php echo $assets.'js'.'/'.'notify.min.js?v='.$document->getMediaVersion(); ?>"></script>
+      <script src="<?php echo $assets.'js'.'/'.'jquery.hotkeys.js?v='.$document->getMediaVersion(); ?>"></script>
+      <script src="<?php echo $assets.'js'.'/'.'jquery.nicescroll.min.js?v='.$document->getMediaVersion(); ?>"></script>
       <?php
       foreach ($semanticComponents as $semanticComponent) {
-         $semanticComponentPath = 'vendor' . '/' . 'semantic-ui' . '/' . 'components' . '/' . $semanticComponent . '.min.js';
-         if (file_exists(JPATH_SITE . '/' . 'media' . '/' . 'astroid' . '/' . 'assets' . '/' . $semanticComponentPath)) {
-            echo "<script src='" . $assets . $semanticComponentPath . '?v=' . $document->getMediaVersion() . "'></script>";
+         $semanticComponentPath = 'vendor'.'/'.'semantic-ui'.'/'.'components'.'/'.$semanticComponent.'.min.js';
+         if (file_exists(JPATH_SITE.'/'.'media'.'/'.'astroid'.'/'.'assets'.'/'.$semanticComponentPath)) {
+            echo "<script src='".$assets.$semanticComponentPath.'?v='.$document->getMediaVersion()."'></script>";
          }
       }
       ?>
-      <script src="<?php echo $assets . 'js' . '/' . 'astroid.min.js?v=' . $document->getMediaVersion(); ?>"></script>
+      <script src="<?php echo $assets.'js'.'/'.'astroid.min.js?v='.$document->getMediaVersion(); ?>"></script>
       <?php
          $screen_sizes = [
             'xs' => [
@@ -484,7 +484,7 @@ $astroid_shortcut_enable = $plugin_params->get('astroid_shortcut_enable', 1);
          $column_sizes = ['inherit', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
       ?>
 <script type="text/ng-template" id="column-responsive-field-template">
-   <table class="table table-bordered"><tr><th width="30%"></th><th class="" width="30%"><?php echo JText::_('ASTROID_COLUMN_SIZE_LABEL'); ?></th><th class="" width="30%"><?php echo JText::_('TPL_ASTROID_VISIBILITY_LABEL'); ?></th></tr><?php foreach ($screen_sizes as $key => $screen_size) { ?><tr><td class=""><p class="mb-0 h4 font-weight-normal"><strong><?php echo $screen_size['label']; ?></strong></p><p class="text-muted mb-0"><code><?php echo $screen_size['info']; ?></code></p></td><td class="align-middle"><select <?php echo ($key=="lg" ? 'readonly disabled' : ''); ?> data-name="size_<?php echo $key; ?>" class="responsive-field form-control"><?php foreach ($column_sizes as $column_size) { ?><option<?php echo $column_size == 'inherit' ? ' selected' : ''; ?> value="<?php echo $column_size; ?>"><?php echo (($column_size == 'inherit' || $column_size == 'col') ? '' : 'col-'.$key.'-' ) . $column_size; ?></option><?php } ?></select></td><td class="align-middle"><div class="jd-ui"><div class="d-inline-block"><input checked type="checkbox" data-name="hide_<?php echo $key; ?>" id="visible-<?php echo $key; ?>" class="responsive-field jd-switch" /><label class="jd-switch-btn m-0" for="visible-<?php echo $key; ?>"></label></div></div></td></tr><?php } ?></table>
+   <table class="table table-bordered"><tr><th width="30%"></th><th class="" width="30%"><?php echo JText::_('ASTROID_COLUMN_SIZE_LABEL'); ?></th><th class="" width="30%"><?php echo JText::_('TPL_ASTROID_VISIBILITY_LABEL'); ?></th></tr><?php foreach ($screen_sizes as $key => $screen_size) { ?><tr><td class=""><p class="mb-0 h4 font-weight-normal"><strong><?php echo $screen_size['label']; ?></strong></p><p class="text-muted mb-0"><code><?php echo $screen_size['info']; ?></code></p></td><td class="align-middle"><select <?php echo ($key=="lg" ? 'readonly disabled' : ''); ?> data-name="size_<?php echo $key; ?>" class="responsive-field form-control"><?php foreach ($column_sizes as $column_size) { ?><option<?php echo $column_size == 'inherit' ? ' selected' : ''; ?> value="<?php echo $column_size; ?>"><?php echo (($column_size == 'inherit' || $column_size == 'col') ? '' : 'col-'.$key.'-' ).$column_size; ?></option><?php } ?></select></td><td class="align-middle"><div class="jd-ui"><div class="d-inline-block"><input checked type="checkbox" data-name="hide_<?php echo $key; ?>" id="visible-<?php echo $key; ?>" class="responsive-field jd-switch" /><label class="jd-switch-btn m-0" for="visible-<?php echo $key; ?>"></label></div></div></td></tr><?php } ?></table>
 </script>
 
 <script type="text/javascript">
@@ -497,7 +497,7 @@ $astroid_shortcut_enable = $plugin_params->get('astroid_shortcut_enable', 1);
          continue;
       }
       if (is_string($field->value)) {
-         $value = "'" . addslashes($field->value) . "'";
+         $value = "'".addslashes($field->value)."'";
       } elseif (is_array($field->value)) {
          $value = \json_encode($value);
       } elseif (is_object($field->value)) {
@@ -505,9 +505,9 @@ $astroid_shortcut_enable = $plugin_params->get('astroid_shortcut_enable', 1);
       } else {
          $value = $field->value;
       }
-      echo '$scope.' . $field->fieldname . ' = ' . $value . ';';
+      echo '$scope.'.$field->fieldname.' = '.$value.';';
       if ($field->type == "layout") {
-         echo '$scope.layoutfield = "' . $field->fieldname . '";';
+         echo '$scope.layoutfield = "'.$field->fieldname.'";';
       }
    }
    ?>
@@ -569,7 +569,7 @@ $astroid_shortcut_enable = $plugin_params->get('astroid_shortcut_enable', 1);
       </script>
       <?php
       foreach (AstroidFramework::$javascripts['body'] as $script) {
-         echo '<script src="' . $script . '?' . $document->getMediaVersion() . '"></script>';
+         echo '<script src="'.$script.'?'.$document->getMediaVersion().'"></script>';
       }
       ?>
       <script>

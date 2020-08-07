@@ -21,7 +21,7 @@ if (empty($items)) {
 $index = 0;
 $active = true;
 $width = $params->get('astroid_article_gallery_width', '');
-$width = !empty($width) ? 'max-width:' . $width : '';
+$width = !empty($width) ? 'max-width:'.$width : '';
 ?>
 <div style="<?php echo $width; ?>" id="article-gallery" class="carousel mb-3 slide" data-ride="carousel">
    <?php if (!empty($params->get('astroid_article_gallery_bullets', 1))) { ?>
@@ -50,7 +50,7 @@ $width = !empty($width) ? 'max-width:' . $width : '';
          ?>
          <div class="carousel-item<?php echo $active ? ' active' : ''; ?>">
             <?php if (!empty($item['image'])) { ?>
-               <img class="d-block w-100" src="<?php echo JURI::root() . $item['image']; ?>" alt="<?php echo empty($item['title']) ? '' : $item['title']; ?>">
+               <img class="d-block w-100" src="<?php echo JURI::root().$item['image']; ?>" alt="<?php echo empty($item['title']) ? '' : $item['title']; ?>">
             <?php } ?>
             <?php if (!empty($item['title']) || !empty($item['description'])) { ?>
                <div class="carousel-caption d-none d-md-block">

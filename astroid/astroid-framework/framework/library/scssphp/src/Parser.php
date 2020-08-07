@@ -90,10 +90,10 @@ class Parser
             $commentMultiLeft   = '\/\*';
             $commentMultiRight  = '\*\/';
 
-            static::$commentPattern = $commentMultiLeft . '.*?' . $commentMultiRight;
+            static::$commentPattern = $commentMultiLeft.'.*?'.$commentMultiRight;
             static::$whitePattern = $this->utf8
-                ? '/' . $commentSingle . '[^\n]*\s*|(' . static::$commentPattern . ')\s*|\s+/AisuS'
-                : '/' . $commentSingle . '[^\n]*\s*|(' . static::$commentPattern . ')\s*|\s+/AisS';
+                ? '/'.$commentSingle.'[^\n]*\s*|('.static::$commentPattern.')\s*|\s+/AisuS'
+                : '/'.$commentSingle.'[^\n]*\s*|('.static::$commentPattern.')\s*|\s+/AisS';
         }
     }
 
@@ -790,7 +790,7 @@ class Parser
             $from = $this->count;
         }
 
-        $r = '/' . $regex . '/' . $this->patternModifiers;
+        $r = '/'.$regex.'/'.$this->patternModifiers;
         $result = preg_match($r, $this->buffer, $out, null, $from);
 
         return $result;
@@ -846,7 +846,7 @@ class Parser
 
         $match = substr($this->buffer, $this->count, $end - $this->count);
         $m = [
-            $match . $token,
+            $match.$token,
             $match,
             $token
         ];
@@ -870,7 +870,7 @@ class Parser
             $eatWhitespace = $this->eatWhiteDefault;
         }
 
-        $r = '/' . $regex . '/' . $this->patternModifiers;
+        $r = '/'.$regex.'/'.$this->patternModifiers;
 
         if (preg_match($r, $this->buffer, $out, null, $this->count)) {
             $this->count += strlen($out[0]);
@@ -1499,7 +1499,7 @@ class Parser
 
         while ($this->keyword($var)) {
             if ($this->literal('=') && $this->expression($exp)) {
-                $args[] = [Type::T_STRING, '', [$var . '=']];
+                $args[] = [Type::T_STRING, '', [$var.'=']];
                 $arg = $exp;
             } else {
                 break;
@@ -1719,9 +1719,9 @@ class Parser
                 }
             } elseif ($m[2] === '\\') {
                 if ($this->literal('"', false)) {
-                    $content[] = $m[2] . '"';
+                    $content[] = $m[2].'"';
                 } elseif ($this->literal("'", false)) {
-                    $content[] = $m[2] . "'";
+                    $content[] = $m[2]."'";
                 } else {
                     $content[] = $m[2];
                 }
@@ -1813,7 +1813,7 @@ class Parser
         $oldWhite = $this->eatWhiteDefault;
         $this->eatWhiteDefault = false;
 
-        $patt = '(.*?)([\'"]|#\{|' . $this->pregQuote($end) . '|' . static::$commentPattern . ')';
+        $patt = '(.*?)([\'"]|#\{|'.$this->pregQuote($end).'|'.static::$commentPattern.')';
 
         $nestingLevel = 0;
 
@@ -2261,7 +2261,7 @@ class Parser
     protected function url(&$out)
     {
         if ($this->match('(url\(\s*(["\']?)([^)]+)\2\s*\))', $m)) {
-            $out = [Type::T_STRING, '', ['url(' . $m[2] . $m[3] . $m[2] . ')']];
+            $out = [Type::T_STRING, '', ['url('.$m[2].$m[3].$m[2].')']];
 
             return true;
         }
@@ -2374,7 +2374,7 @@ class Parser
             $validChars = $allowNewline ? '.' : "[^\n]";
         }
 
-        if (! $this->match('(' . $validChars . '*?)' . $this->pregQuote($what), $m, ! $until)) {
+        if (! $this->match('('.$validChars.'*?)'.$this->pregQuote($what), $m, ! $until)) {
             return false;
         }
 
@@ -2473,7 +2473,7 @@ class Parser
             return;
         }
 
-        $iniDirective = 'mbstring' . '.func_overload'; // deprecated in PHP 7.2
+        $iniDirective = 'mbstring'.'.func_overload'; // deprecated in PHP 7.2
 
         if (ini_get($iniDirective) & 2) {
             $this->encoding = mb_internal_encoding();

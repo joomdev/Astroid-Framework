@@ -10,5 +10,5 @@
 defined('_JEXEC') or die;
 ?>
 <ul class="categories-module list-group list-group-flush">
-   <?php require JModuleHelper::getLayoutPath('mod_articles_categories', $params->get('layout', 'default') . '_items'); ?>
+   <?php require JModuleHelper::getLayoutPath('mod_articles_categories', $params->get('layout', 'default').'_items'); ?>
 </ul>

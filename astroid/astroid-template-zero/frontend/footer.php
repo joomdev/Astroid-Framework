@@ -21,7 +21,7 @@ if ($enable_footer) {
    $find = array('{year}', '{sitename}');
    $replace = array($year, $sitename);
    $footertext = str_replace($find, $replace, $footer_copyright);
-   $html = '<div id="astroid-footer" class="astroid-footer">' . $footertext . '</div>';
+   $html = '<div id="astroid-footer" class="astroid-footer">'.$footertext.'</div>';
    echo $html;
 }
 ?> 

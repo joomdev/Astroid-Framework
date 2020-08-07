@@ -62,9 +62,9 @@ $active = false;
                      <div class="pb-4">
                         <?php
                         if (!empty($group['title']) && !empty($group['fields'])) {
-                           echo '<h3>' . (!empty($group['icon']) ? '<i class="' . $group['icon'] . '"></i>&nbsp;' : '') . JText::_($group['title']) . '</h3>';
+                           echo '<h3>'.(!empty($group['icon']) ? '<i class="'.$group['icon'].'"></i>&nbsp;' : '').JText::_($group['title']).'</h3>';
                            if (!empty($group['description'])) {
-                              echo '<p><small>' . JText::_($group['description']) . '</small></p>';
+                              echo '<p><small>'.JText::_($group['description']).'</small></p>';
                            }
                         }
                         ?>
@@ -80,7 +80,7 @@ $active = false;
                                  $ngHide = AstroidFrameworkHelper::replaceRelationshipOperators($field->getAttribute('ngHide'));
                                  $ngShow = AstroidFrameworkHelper::replaceRelationshipOperators($field->getAttribute('ngShow'));
                                  ?>
-                                 <div<?php echo!empty($ngHide) ? ' ng-hide="' . $ngHide . '"' : ''; ?><?php echo!empty($ngShow) ? ' ng-show="' . $ngShow . '"' : ''; ?> class="form-group">
+                                 <div<?php echo!empty($ngHide) ? ' ng-hide="'.$ngHide.'"' : ''; ?><?php echo!empty($ngShow) ? ' ng-show="'.$ngShow.'"' : ''; ?> class="form-group">
                                     <div class="row">
             <?php if ($field->label !== false) { ?>
                                           <div class="col-sm-5">

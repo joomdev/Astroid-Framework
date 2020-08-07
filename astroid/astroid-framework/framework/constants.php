@@ -384,8 +384,8 @@ class AstroidFrameworkConstants {
    ];
 
    public function getConstant($variable) {
-      if (isset($this->{"$" . $variable})) {
-         return $this->{"$" . $variable};
+      if (isset($this->{"$".$variable})) {
+         return $this->{"$".$variable};
       } else {
          return null;
       }

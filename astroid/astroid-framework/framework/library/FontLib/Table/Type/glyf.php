@@ -76,7 +76,7 @@ class glyf extends Table {
 
     $n = 500;
 
-    $s = "<h3>" . "Only the first $n simple glyphs are shown (" . count($this->data) . " total)
+    $s = "<h3>"."Only the first $n simple glyphs are shown (".count($this->data)." total)
     <div class='glyph-view simple'>Simple glyph</div>
     <div class='glyph-view composite'>Composite glyph</div>
     Zoom: <input type='range' value='100' max='400' onchange='Glyph.resize(this.value)' />

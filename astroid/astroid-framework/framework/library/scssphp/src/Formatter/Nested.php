@@ -58,7 +58,7 @@ class Nested extends Formatter
     {
         $inner = $this->indentStr();
 
-        $glue = $this->break . $inner;
+        $glue = $this->break.$inner;
 
         foreach ($block->lines as $index => $line) {
             if (substr($line, 0, 2) === '/*') {
@@ -66,7 +66,7 @@ class Nested extends Formatter
             }
         }
 
-        $this->write($inner . implode($glue, $block->lines));
+        $this->write($inner.implode($glue, $block->lines));
 
         if (! empty($block->children)) {
             $this->write($this->break);
@@ -81,8 +81,8 @@ class Nested extends Formatter
         $inner = $this->indentStr();
 
         $this->write($inner
-            . implode($this->tagSeparator, $block->selectors)
-            . $this->open . $this->break);
+           .implode($this->tagSeparator, $block->selectors)
+           .$this->open.$this->break);
     }
 
     /**

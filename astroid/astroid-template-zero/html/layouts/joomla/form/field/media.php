@@ -70,14 +70,14 @@ if (!empty($class)) {
 
 $attr = '';
 
-$attr .= ' title="' . htmlspecialchars('<span id="TipImgpath"></span>', ENT_COMPAT, 'UTF-8') . '"';
+$attr .= ' title="'.htmlspecialchars('<span id="TipImgpath"></span>', ENT_COMPAT, 'UTF-8').'"';
 
 // Initialize some field attributes.
-$attr .= !empty($class) ? ' class="form-control input-small field-media-input ' . $class . '"' : ' class="input-small"';
-$attr .= !empty($size) ? ' size="' . $size . '"' : '';
+$attr .= !empty($class) ? ' class="form-control input-small field-media-input '.$class.'"' : ' class="input-small"';
+$attr .= !empty($size) ? ' size="'.$size.'"' : '';
 
 // Initialize JavaScript field attributes.
-$attr .= !empty($onchange) ? ' onchange="' . $onchange . '"' : '';
+$attr .= !empty($onchange) ? ' onchange="'.$onchange.'"' : '';
 
 // The text field.
 echo '<div class="input-group">';
@@ -109,8 +109,8 @@ switch ($preview) {
 
 // Pre fill the contents of the popover
 if ($showPreview) {
-   if ($value && file_exists(JPATH_ROOT . '/' . $value)) {
-      $src = JUri::root() . $value;
+   if ($value && file_exists(JPATH_ROOT.'/'.$value)) {
+      $src = JUri::root().$value;
    } else {
       $src = '';
    }
@@ -118,23 +118,23 @@ if ($showPreview) {
    $width = $previewWidth;
    $height = $previewHeight;
    $style = '';
-   $style .= ($width > 0) ? 'max-width:' . $width . 'px;' : '';
-   $style .= ($height > 0) ? 'max-height:' . $height . 'px;' : '';
+   $style .= ($width > 0) ? 'max-width:'.$width.'px;' : '';
+   $style .= ($height > 0) ? 'max-height:'.$height.'px;' : '';
 
    $imgattr = array(
-       'id' => $id . '_preview',
+       'id' => $id.'_preview',
        'class' => 'media-preview card p-2',
        'style' => $style,
    );
 
    $img = JHtml::_('image', $src, JText::_('JLIB_FORM_MEDIA_PREVIEW_ALT'), $imgattr);
-   $previewImg = '<div id="' . $id . '_preview_img"' . ($src ? '' : ' style="display:none"') . '>' . $img . '</div>';
-   $previewImgEmpty = '<div class="card p-2" id="' . $id . '_preview_empty"' . ($src ? ' style="display:none"' : '') . '>'
-           . JText::_('JLIB_FORM_MEDIA_PREVIEW_EMPTY') . '</div>';
+   $previewImg = '<div id="'.$id.'_preview_img"'.($src ? '' : ' style="display:none"').'>'.$img.'</div>';
+   $previewImgEmpty = '<div class="card p-2" id="'.$id.'_preview_empty"'.($src ? ' style="display:none"' : '').'>'
+          .JText::_('JLIB_FORM_MEDIA_PREVIEW_EMPTY').'</div>';
 
    if ($showAsTooltip) {
       echo '<div class="media-preview input-group-prepend">';
-      $tooltip = $previewImgEmpty . $previewImg;
+      $tooltip = $previewImgEmpty.$previewImg;
       $options = array(
           'title' => JText::_('JLIB_FORM_MEDIA_PREVIEW_SELECTED_IMAGE'),
           'text' => '<span class="fa fa-eye" aria-hidden="true"></span>',
@@ -145,22 +145,22 @@ if ($showPreview) {
       echo '</div>';
    } else {
       echo '<div class="media-preview input-group-prepend" style="height:auto">';
-      echo ' ' . $previewImgEmpty;
-      echo ' ' . $previewImg;
+      echo ' '.$previewImgEmpty;
+      echo ' '.$previewImg;
       echo '</div>';
    }
 }
 
-echo '	<input type="text" name="' . $name . '" id="' . $id . '" value="'
- . htmlspecialchars($value, ENT_COMPAT, 'UTF-8') . '" readonly="readonly"' . $attr . ' data-basepath="'
- . JUri::root() . '"/>';
+echo '	<input type="text" name="'.$name.'" id="'.$id.'" value="'
+.htmlspecialchars($value, ENT_COMPAT, 'UTF-8').'" readonly="readonly"'.$attr.' data-basepath="'
+.JUri::root().'"/>';
 ?>
 <div class="input-group-append">
 <a class="modal btn btn-outline-dark btn-modal" title="<?php echo JText::_('JLIB_FORM_BUTTON_SELECT'); ?>" href="
 <?php
-echo ($readonly ? '' : ($link ?: 'index.php?option=com_media&amp;view=images&amp;tmpl=component&amp;asset=' . $asset . '&amp;author='
-                . $authorField) . '&amp;fieldid=' . $id . '&amp;folder=' . $folder) . '"'
- . ' rel="{handler: \'iframe\', size: {x: 800, y: 500}}"';
+echo ($readonly ? '' : ($link ?: 'index.php?option=com_media&amp;view=images&amp;tmpl=component&amp;asset='.$asset.'&amp;author='
+               .$authorField).'&amp;fieldid='.$id.'&amp;folder='.$folder).'"'
+.' rel="{handler: \'iframe\', size: {x: 800, y: 500}}"';
 ?>>
 <?php echo JText::_('JLIB_FORM_BUTTON_SELECT'); ?></a><a class="btn btn-outline-dark hasTooltip" title="<?php echo JText::_('JLIB_FORM_BUTTON_CLEAR'); ?>" href="#" onclick="jInsertFieldValue('', '<?php echo $id; ?>'); return false;">
    <span class="fa fa-trash" aria-hidden="true"></span></a>

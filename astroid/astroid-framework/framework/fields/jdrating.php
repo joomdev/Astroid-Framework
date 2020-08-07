@@ -12,7 +12,7 @@ class JFormFieldJDRating extends JFormField {
 
    public function getInput() {
       $document = JFactory::getDocument();
-      $document->addStylesheet(JURI::root() . 'media/astroid/jd/fields/rating.min.css');
+      $document->addStylesheet(JURI::root().'media/astroid/jd/fields/rating.min.css');
 
       $clear = $this->element['clear'];
       if (!empty($clear) && $clear) {
@@ -22,27 +22,27 @@ class JFormFieldJDRating extends JFormField {
       }
 
 
-      $document->addScript(JURI::root() . 'media/astroid/jd/fields/rating.min.js');
+      $document->addScript(JURI::root().'media/astroid/jd/fields/rating.min.js');
       $script = '(function($){'
-              . '$(function(){'
-              . '$(".ui.rating").rating({'
-              . 'onRate:function(value){'
-              . '$(this).siblings("input[type=hidden]").val(value);'
-              . '}'
-              . ($clear ? ', clearable: true' : '')
-              . '});'
-              . '$(document).on("subform-row-add", function(event, row){'
-              . '$(row).find(".ui.rating").rating({'
-              . 'onRate:function(value){'
-              . '$(this).siblings("input[type=hidden]").val(value);'
-              . '}'
-              . '});'
-              . '});'
-              . '$(".btn-rating-clear").click(function(){'
-              . '$(this).siblings(".ui.rating").rating("clear rating");'
-              . '});'
-              . '})'
-              . '})(jQuery);';
+             .'$(function(){'
+             .'$(".ui.rating").rating({'
+             .'onRate:function(value){'
+             .'$(this).siblings("input[type=hidden]").val(value);'
+             .'}'
+             .($clear ? ', clearable: true' : '')
+             .'});'
+             .'$(document).on("subform-row-add", function(event, row){'
+             .'$(row).find(".ui.rating").rating({'
+             .'onRate:function(value){'
+             .'$(this).siblings("input[type=hidden]").val(value);'
+             .'}'
+             .'});'
+             .'});'
+             .'$(".btn-rating-clear").click(function(){'
+             .'$(this).siblings(".ui.rating").rating("clear rating");'
+             .'});'
+             .'})'
+             .'})(jQuery);';
       $document->addScriptDeclaration($script);
 
       $rating_type = $this->element['rating-type'];
@@ -63,7 +63,7 @@ class JFormFieldJDRating extends JFormField {
       }
 
 
-      return '<div id="' . $this->id . '" style="line-height: 30px;"><div class="' . implode(' ', $classes) . '" data-rating="' . $this->value . '" data-max-rating="' . $max . '"></div><input name="' . $this->name . '" type="hidden" value="' . $this->value . '" />' . ($clear ? '&nbsp;&nbsp;&nbsp;&nbsp; <a style="margin-top: -8px;" class="btn btn-default btn-rating-clear" href="javascript:void(0);">'.JText::_( 'ASTROID_CLEAR' ).'</a>' : '') . '</div>';
+      return '<div id="'.$this->id.'" style="line-height: 30px;"><div class="'.implode(' ', $classes).'" data-rating="'.$this->value.'" data-max-rating="'.$max.'"></div><input name="'.$this->name.'" type="hidden" value="'.$this->value.'" />'.($clear ? '&nbsp;&nbsp;&nbsp;&nbsp; <a style="margin-top: -8px;" class="btn btn-default btn-rating-clear" href="javascript:void(0);">'.JText::_( 'ASTROID_CLEAR' ).'</a>' : '').'</div>';
    }
 
 }

@@ -16,15 +16,15 @@ $i = 0;
 
 foreach ($fieldSets as $name => $fieldSet) :
 
-$label = !empty($fieldSet->label) ? $fieldSet->label : 'COM_MODULES_' . $name . '_FIELDSET_LABEL';
+$label = !empty($fieldSet->label) ? $fieldSet->label : 'COM_MODULES_'.$name.'_FIELDSET_LABEL';
 $class = isset($fieldSet->class) && !empty($fieldSet->class) ? $fieldSet->class : '';
 
 
 if (isset($fieldSet->description) && trim($fieldSet->description)) :
-echo '<p class="tip">' . $this->escape(JText::_($fieldSet->description)) . '</p>';
+echo '<p class="tip">'.$this->escape(JText::_($fieldSet->description)).'</p>';
 endif;
 ?>
-<?php echo JHtml::_('bootstrap.addSlide', 'collapseTypes', JText::_($label), 'collapse' . ($i++)); ?>
+<?php echo JHtml::_('bootstrap.addSlide', 'collapseTypes', JText::_($label), 'collapse'.($i++)); ?>
 
 <ul class="nav nav-tabs nav-stacked">
 <?php foreach ($this->form->getFieldset($name) as $field) : ?>

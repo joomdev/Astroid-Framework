@@ -25,7 +25,7 @@ $enable_offcanvas = $params->get('enable_offcanvas', FALSE);
 $header_mobile_menu = $params->get('header_mobile_menu', '');
 $offcanvas_animation = $params->get('offcanvas_animation', 'st-effect-1');
 $offcanvas_togglevisibility = $params->get('offcanvas_togglevisibility', 'd-block');
-$class = ['astroid-header', 'astroid-sidebar-header', 'sidebar-dir-' . $mode, 'h-100', 'has-sidebar'];
+$class = ['astroid-header', 'astroid-sidebar-header', 'sidebar-dir-'.$mode, 'h-100', 'has-sidebar'];
 $navClass = ['nav', 'astroid-nav', 'd-none', 'd-lg-flex'];
 $navWrapperClass = ['align-self-center', 'px-2', 'd-none', 'd-lg-block'];
 ?>

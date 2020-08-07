@@ -43,19 +43,19 @@ extract($displayData);
  * @var   array    $spellcheck      Options available for this field.
  * @var   string   $accept          File types that are accepted.
  */
-$autocomplete = !$autocomplete ? ' autocomplete="off"' : ' autocomplete="' . $autocomplete . '"';
+$autocomplete = !$autocomplete ? ' autocomplete="off"' : ' autocomplete="'.$autocomplete.'"';
 $autocomplete = $autocomplete == ' autocomplete="on"' ? '' : $autocomplete;
 
 $attributes = array(
-    !empty($class) ? 'class="form-control ' . $class . '"' : 'class="form-control"',
-    !empty($size) ? 'size="' . $size . '"' : '',
+    !empty($class) ? 'class="form-control '.$class.'"' : 'class="form-control"',
+    !empty($size) ? 'size="'.$size.'"' : '',
     $disabled ? 'disabled' : '',
     $readonly ? 'readonly' : '',
-    strlen($hint) ? 'placeholder="' . htmlspecialchars($hint, ENT_COMPAT, 'UTF-8') . '"' : '',
-    !empty($onchange) ? 'onchange="' . $onchange . '"' : '',
-    isset($max) ? 'max="' . $max . '"' : '',
-    !empty($step) ? 'step="' . $step . '"' : '',
-    isset($min) ? 'min="' . $min . '"' : '',
+    strlen($hint) ? 'placeholder="'.htmlspecialchars($hint, ENT_COMPAT, 'UTF-8').'"' : '',
+    !empty($onchange) ? 'onchange="'.$onchange.'"' : '',
+    isset($max) ? 'max="'.$max.'"' : '',
+    !empty($step) ? 'step="'.$step.'"' : '',
+    isset($min) ? 'min="'.$min.'"' : '',
     $required ? 'required aria-required="true"' : '',
     $autocomplete,
     $autofocus ? 'autofocus' : ''

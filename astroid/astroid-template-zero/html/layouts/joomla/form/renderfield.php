@@ -22,8 +22,8 @@ if (!empty($options['showonEnabled'])) {
    JHtml::_('script', 'jui/cms.js', array('version' => 'auto', 'relative' => true));
 }
 
-$class = empty($options['class']) ? '' : ' ' . $options['class'];
-$rel = empty($options['rel']) ? '' : ' ' . $options['rel'];
+$class = empty($options['class']) ? '' : ' '.$options['class'];
+$rel = empty($options['rel']) ? '' : ' '.$options['rel'];
 ?>
 <div class="form-group<?php echo $class; ?>"<?php echo $rel; ?>>
    <?php if (empty($options['hiddenLabel'])) : ?>

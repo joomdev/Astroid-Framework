@@ -16,7 +16,7 @@ class JFormFieldAstroidMedia extends JFormField {
    protected $layout = 'fields.astroidmedia';
 
    public function getInput() {
-      $renderer = new JLayoutFile($this->layout, JPATH_LIBRARIES . '/astroid/framework/layouts');
+      $renderer = new JLayoutFile($this->layout, JPATH_LIBRARIES.'/astroid/framework/layouts');
       $data = $this->getLayoutData();
       $data['fieldname'] = $this->fieldname;
       $data['media'] = empty($this->element['media']) ? 'images' : $this->element['media'];

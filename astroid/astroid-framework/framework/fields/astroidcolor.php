@@ -171,7 +171,7 @@ class JFormFieldAstroidColor extends JFormField {
     * @since   11.3
     */
    protected function getInput() {
-      $renderer = new JLayoutFile($this->layout, JPATH_LIBRARIES . '/astroid/framework/layouts');
+      $renderer = new JLayoutFile($this->layout, JPATH_LIBRARIES.'/astroid/framework/layouts');
 
       return $renderer->render($this->getLayoutData());
    }
@@ -190,12 +190,12 @@ class JFormFieldAstroidColor extends JFormField {
       $color = !$color ? '' : $color;
 
       // Position of the panel can be: right (default), left, top or bottom (default RTL is left)
-      $position = ' data-position="' . (($lang->isRTL() && $this->position == 'default') ? 'left' : $this->position) . '"';
+      $position = ' data-position="'.(($lang->isRTL() && $this->position == 'default') ? 'left' : $this->position).'"';
 
       if (!$color || in_array($color, array('none', 'transparent'))) {
          $color = 'none';
       } elseif ($color['0'] != '#' && $this->format == 'hex') {
-         $color = '#' . $color;
+         $color = '#'.$color;
       }
 
       // Assign data for simple/advanced mode
@@ -220,7 +220,7 @@ class JFormFieldAstroidColor extends JFormField {
           'fieldname' => $this->fieldname,
       );
 
-      $data['class'] = empty($data['class']) ? 'astroid-color-picker' . ($large ? ' color-picker-lg' : '') : $data['class'] . ' astroid-color-picker' . ($large ? ' color-picker-lg' : '');
+      $data['class'] = empty($data['class']) ? 'astroid-color-picker'.($large ? ' color-picker-lg' : '') : $data['class'].' astroid-color-picker'.($large ? ' color-picker-lg' : '');
 
       return array_merge($data, $extraData, $controlModeData);
    }

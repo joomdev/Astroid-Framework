@@ -11,17 +11,17 @@ jimport('astroid.framework.helper');
 
 extract($displayData);
 $document = \JFactory::getDocument();
-$document->addStyleSheet('https://use.fontawesome.com/releases/v' . AstroidFrameworkConstants::$fontawesome_version . '/css/all.css');
+$document->addStyleSheet('https://use.fontawesome.com/releases/v'.AstroidFrameworkConstants::$fontawesome_version.'/css/all.css');
 $document->addStyleSheet('https://fonts.googleapis.com/css?family=Nunito:300,400,600');
-$document->addStyleSheet(JURI::root(false) . 'media/astroid/assets/css/astroid-menu-options.css' . '?v=' . $document->getMediaVersion());
-$document->addScriptDeclaration('var astroidSearchUrl = "' . JURI::root() . 'administrator/index.php?option=com_ajax&astroid=search";');
+$document->addStyleSheet(JURI::root(false).'media/astroid/assets/css/astroid-menu-options.css'.'?v='.$document->getMediaVersion());
+$document->addScriptDeclaration('var astroidSearchUrl = "'.JURI::root().'administrator/index.php?option=com_ajax&astroid=search";');
 
 $semanticComponents = ['icon', 'api', 'transition', 'dropdown'];
 
 foreach ($semanticComponents as $semanticComponent) {
-   $semanticComponentPath = 'vendor' . '/' . 'semantic-ui' . '/' . 'components' . '/' . $semanticComponent . '.min.css';
-   if (file_exists(JPATH_SITE . '/' . 'media' . '/' . 'astroid' . '/' . 'assets' . '/' . $semanticComponentPath)) {
-      $document->addStyleSheet(JURI::root(false) . 'media/astroid/assets/' . $semanticComponentPath . '?v=' . $document->getMediaVersion());
+   $semanticComponentPath = 'vendor'.'/'.'semantic-ui'.'/'.'components'.'/'.$semanticComponent.'.min.css';
+   if (file_exists(JPATH_SITE.'/'.'media'.'/'.'astroid'.'/'.'assets'.'/'.$semanticComponentPath)) {
+      $document->addStyleSheet(JURI::root(false).'media/astroid/assets/'.$semanticComponentPath.'?v='.$document->getMediaVersion());
    }
 }
 
@@ -317,25 +317,25 @@ foreach ($items as $i => $item) {
 <?php
 $semanticComponents = ['icon', 'transition', 'api', 'dropdown'];
 $document = \JFactory::getDocument();
-$assets = JURI::root() . 'media' . '/' . 'astroid' . '/' . 'assets' . '/';
-$astroid_dir = 'media' . '/' . 'astroid';
+$assets = JURI::root().'media'.'/'.'astroid'.'/'.'assets'.'/';
+$astroid_dir = 'media'.'/'.'astroid';
 $scripts = [];
-$scripts[] = $assets . 'vendor' . '/' . 'spectrum' . '/' . 'spectrum.js?v=' . $document->getMediaVersion();
+$scripts[] = $assets.'vendor'.'/'.'spectrum'.'/'.'spectrum.js?v='.$document->getMediaVersion();
 
 foreach ($semanticComponents as $semanticComponent) {
-   $semanticComponentPath = 'vendor' . '/' . 'semantic-ui' . '/' . 'components' . '/' . $semanticComponent . '.min.js';
-   if (file_exists(JPATH_SITE . '/' . 'media' . '/' . 'astroid' . '/' . 'assets' . '/' . $semanticComponentPath)) {
-      $scripts[] = $assets . $semanticComponentPath . '?v=' . $document->getMediaVersion();
+   $semanticComponentPath = 'vendor'.'/'.'semantic-ui'.'/'.'components'.'/'.$semanticComponent.'.min.js';
+   if (file_exists(JPATH_SITE.'/'.'media'.'/'.'astroid'.'/'.'assets'.'/'.$semanticComponentPath)) {
+      $scripts[] = $assets.$semanticComponentPath.'?v='.$document->getMediaVersion();
    }
 }
 
-$scripts[] = $assets . 'vendor' . '/' . 'angular' . '/' . 'angular.min.js?v=' . $document->getMediaVersion();
-$scripts[] = $assets . 'vendor' . '/' . 'angular' . '/' . 'angular-animate.js?v=' . $document->getMediaVersion();
-$scripts[] = $assets . 'vendor' . '/' . 'angular' . '/' . 'sortable.min.js?v=' . $document->getMediaVersion();
-$scripts[] = $assets . 'vendor' . '/' . 'angular' . '/' . 'angular-legacy-sortable.js?v=' . $document->getMediaVersion();
-$scripts[] = $assets . 'js' . '/' . 'astroid-framework.js?v=' . $document->getMediaVersion();
+$scripts[] = $assets.'vendor'.'/'.'angular'.'/'.'angular.min.js?v='.$document->getMediaVersion();
+$scripts[] = $assets.'vendor'.'/'.'angular'.'/'.'angular-animate.js?v='.$document->getMediaVersion();
+$scripts[] = $assets.'vendor'.'/'.'angular'.'/'.'sortable.min.js?v='.$document->getMediaVersion();
+$scripts[] = $assets.'vendor'.'/'.'angular'.'/'.'angular-legacy-sortable.js?v='.$document->getMediaVersion();
+$scripts[] = $assets.'js'.'/'.'astroid-framework.js?v='.$document->getMediaVersion();
 foreach ($scripts as $script) {
-   echo "<script src='" . $script . "'></script>";
+   echo "<script src='".$script."'></script>";
 }
 ?>
 <script>

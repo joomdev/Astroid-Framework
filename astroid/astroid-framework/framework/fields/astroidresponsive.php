@@ -20,7 +20,7 @@ class JFormFieldAstroidResponsive extends JFormField {
    }
 
    public function getInput() {
-      return '<div class="astroidresponsive"><textarea class="d-none" astroidresponsive ng-model="' . $this->name . '" name="' . $this->name . '" id="' . $this->id . '">' . $this->value . '</textarea></div>';
+      return '<div class="astroidresponsive"><textarea class="d-none" astroidresponsive ng-model="'.$this->name.'" name="'.$this->name.'" id="'.$this->id.'">'.$this->value.'</textarea></div>';
    }
 
 }

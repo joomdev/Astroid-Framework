@@ -39,11 +39,11 @@ $table_head = '';
 if (!empty($groupByFieldset))
 {
 	foreach ($tmpl->getFieldsets() as $fieldset) {
-		$table_head .= '<th>' . JText::_($fieldset->label);
+		$table_head .= '<th>'.JText::_($fieldset->label);
 
 		if (!empty($fieldset->description))
 		{
-			$table_head .= '<br /><small style="font-weight:normal">' . JText::_($fieldset->description) . '</small>';
+			$table_head .= '<br /><small style="font-weight:normal">'.JText::_($fieldset->description).'</small>';
 		}
 
 		$table_head .= '</th>';
@@ -54,8 +54,8 @@ if (!empty($groupByFieldset))
 else
 {
 	foreach ($tmpl->getGroup('') as $field) {
-		$table_head .= '<th>' . strip_tags($field->label);
-		$table_head .= '<br /><small style="font-weight:normal">' . JText::_($field->description) . '</small>';
+		$table_head .= '<th>'.strip_tags($field->label);
+		$table_head .= '<br /><small style="font-weight:normal">'.JText::_($field->description).'</small>';
 		$table_head .= '</th>';
 	}
 
@@ -105,7 +105,7 @@ else
 							array(
 								'form' => $form,
 								'basegroup' => $fieldname,
-								'group' => $fieldname . $k,
+								'group' => $fieldname.$k,
 								'buttons' => $buttons,
 								'unique_subform_id' => $unique_subform_id,
 							)
@@ -121,7 +121,7 @@ else
 						array(
 							'form' => $tmpl,
 							'basegroup' => $fieldname,
-							'group' => $fieldname . 'X',
+							'group' => $fieldname.'X',
 							'buttons' => $buttons,
 							'unique_subform_id' => $unique_subform_id,
 						)

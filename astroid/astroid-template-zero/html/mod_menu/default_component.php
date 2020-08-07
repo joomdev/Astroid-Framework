@@ -44,7 +44,7 @@ if ($item->menu_image)
 
 	if ($item->params->get('menu_text', 1))
 	{
-		$linktype .= '<span class="image-title">' . $item->title . '</span>';
+		$linktype .= '<span class="image-title">'.$item->title.'</span>';
 	}
 }
 
@@ -56,7 +56,7 @@ elseif ($item->browserNav == 2)
 {
 	$options = 'toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes';
 
-	$attributes['onclick'] = "window.open(this.href, 'targetWindow', '" . $options . "'); return false;";
+	$attributes['onclick'] = "window.open(this.href, 'targetWindow', '".$options."'); return false;";
 }
 
 

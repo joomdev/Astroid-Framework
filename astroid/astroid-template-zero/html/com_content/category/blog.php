@@ -6,8 +6,8 @@
  * @license https://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
  */
 defined('_JEXEC') or die;
-require_once(JPATH_COMPONENT . "/models/category.php");
-JHtml::addIncludePath(JPATH_COMPONENT . '/helpers');
+require_once(JPATH_COMPONENT."/models/category.php");
+JHtml::addIncludePath(JPATH_COMPONENT.'/helpers');
 $category = new ContentModelCategory();
 $articles = $category->getItems();
 ?>
@@ -79,7 +79,7 @@ $articles = $category->getItems();
          <?php $rowcount = ((int) $key % (int) $this->columns) + 1; ?>
          <?php if ($rowcount == 1) : ?>
             <?php $row = $counter / $this->columns; ?>
-            <div class="items-row <?php echo 'row-' . $row; ?> row clearfix">
+            <div class="items-row <?php echo 'row-'.$row; ?> row clearfix">
             <?php endif; ?>
             <div class="col-lg-<?php echo round((12 / $this->columns)); ?> p-3">
                <div class="card h-100">

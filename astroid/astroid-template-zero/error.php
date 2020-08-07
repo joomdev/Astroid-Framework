@@ -10,7 +10,7 @@ defined('_JEXEC') or die;
 /** @var JDocumentError $this */
 // Get params
 $app = JFactory::getApplication();
-$lib = JPATH_SITE . '/libraries/astroid/framework/template.php';
+$lib = JPATH_SITE.'/libraries/astroid/framework/template.php';
 if (file_exists($lib)) {
    jimport('astroid.framework.template');
 } else {
@@ -28,33 +28,33 @@ $video = [];
       if($background_setting_404 =="color"){
          $background_color_404 = $template->params->get('background_color_404', '');
          if (!empty($background_color_404)) {
-            $styles[] = 'background-color:' . $background_color_404;
+            $styles[] = 'background-color:'.$background_color_404;
          }
       }
       if($background_setting_404 =="image"){
 
          $img_background_color_404 = $template->params->get('img_background_color_404', '');
          $img_background_color = empty($img_background_color_404) ? 'inherit' : $img_background_color_404;
-         $styles[] = 'background-color:' . $img_background_color_404;
+         $styles[] = 'background-color:'.$img_background_color_404;
 
          $background_image_404 = $template->params->get('background_image_404', '');
          if (!empty($background_image_404)) {
-            $styles[] = 'background-image: url(' . JURI::root() .$template->SeletedMedia().'/' . $background_image_404 . ')';
+            $styles[] = 'background-image: url('.JURI::root() .$template->SeletedMedia().'/'.$background_image_404.')';
             $background_repeat_404 = $template->params->get('background_repeat_404', '');
             $background_repeat_404 = empty($background_repeat_404) ? 'inherit' : $background_repeat_404;
-            $styles[] = 'background-repeat:' . $background_repeat_404;
+            $styles[] = 'background-repeat:'.$background_repeat_404;
 
             $background_size_404 = $template->params->get('background_size_404', '');
             $background_size_404 = empty($background_size_404) ? 'inherit' : $background_size_404;
-            $styles[] = 'background-size:' . $background_size_404;
+            $styles[] = 'background-size:'.$background_size_404;
 
             $background_attchment_404 = $template->params->get('background_attchment_404', '');
             $background_attchment_404 = empty($background_attchment_404) ? 'inherit' : $background_attchment_404;
-            $styles[] = 'background-attachment:' . $background_attchment_404;
+            $styles[] = 'background-attachment:'.$background_attchment_404;
 
             $background_position_404 = $template->params->get('background_position_404', '');
             $background_position_404 = empty($background_position_404) ? 'inherit' : $background_position_404;
-            $styles[] = 'background-position:' . $background_position_404;
+            $styles[] = 'background-position:'.$background_position_404;
          }
       }
 
@@ -62,7 +62,7 @@ $video = [];
             $attributes = [];
             $background_video_404 = $template->params->get('background_video_404', '');
             if (!empty($background_video_404)) {
-               $attributes['data-jd-video-bg'] = JURI::root() .$template->SeletedMedia(). '/' . $background_video_404;
+               $attributes['data-jd-video-bg'] = JURI::root() .$template->SeletedMedia(). '/'.$background_video_404;
 					$videobgjs = 'vendor/jquery.jdvideobg.js';
                if(!isset($template->_js[$videobgjs])){
                 	$template->addScript($videobgjs);
@@ -71,7 +71,7 @@ $video = [];
 
             $return = [];
             foreach ($attributes as $key => $value) {
-               $return[] = $key . '="' . $value . '"';
+               $return[] = $key.'="'.$value.'"';
             }
             $video =  $return;  
 			 }
@@ -89,7 +89,7 @@ $video = [];
       $template->loadLayout('typography', true, ['in_head' => false]);
       $favicon = $template->params->get('favicon', '');
       if (!empty($favicon = $template->params->get('favicon', ''))) {
-         echo '<link href="' . JURI::root() .$template->SeletedMedia(). '/' . $favicon . '" rel="shortcut icon" type="image/x-icon" />';
+         echo '<link href="'.JURI::root() .$template->SeletedMedia(). '/'.$favicon.'" rel="shortcut icon" type="image/x-icon" />';
       }
       ?>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

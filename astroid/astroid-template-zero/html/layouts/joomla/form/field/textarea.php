@@ -47,18 +47,18 @@ JHtml::_('jquery.framework');
 JHtml::_('script', 'system/html5fallback.js', array('version' => 'auto', 'relative' => true, 'conditional' => 'lt IE 9'));
 
 // Initialize some field attributes.
-$autocomplete = !$autocomplete ? 'autocomplete="off"' : 'autocomplete="' . $autocomplete . '"';
+$autocomplete = !$autocomplete ? 'autocomplete="off"' : 'autocomplete="'.$autocomplete.'"';
 $autocomplete = $autocomplete == 'autocomplete="on"' ? '' : $autocomplete;
 
 $attributes = array(
     $columns ?: '',
     $rows ?: '',
-    !empty($class) ? 'class="form-control ' . $class . '"' : 'class="form-control"',
-    strlen($hint) ? 'placeholder="' . htmlspecialchars($hint, ENT_COMPAT, 'UTF-8') . '"' : '',
+    !empty($class) ? 'class="form-control '.$class.'"' : 'class="form-control"',
+    strlen($hint) ? 'placeholder="'.htmlspecialchars($hint, ENT_COMPAT, 'UTF-8').'"' : '',
     $disabled ? 'disabled' : '',
     $readonly ? 'readonly' : '',
-    $onchange ? 'onchange="' . $onchange . '"' : '',
-    $onclick ? 'onclick="' . $onclick . '"' : '',
+    $onchange ? 'onchange="'.$onchange.'"' : '',
+    $onclick ? 'onclick="'.$onclick.'"' : '',
     $required ? 'required aria-required="true"' : '',
     $autocomplete,
     $autofocus ? 'autofocus' : '',

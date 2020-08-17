@@ -31,6 +31,7 @@ $header_mode = $params->get('header_mode', 'horizontal');
 $mode = $params->get('header_sidebar_menu_mode', 'left');
 $dir = $header ? ($header_mode == 'sidebar' ? $mode : $dir) : $dir;
 
+$document->addScript('vendor/astroid/js/offcanvas.js', 'body');
 $document->addScript('vendor/astroid/js/mobilemenu.js', 'body');
 ?>
 <div class="astroid-mobilemenu d-none d-init dir-<?php echo $dir; ?>" data-class-prefix="astroid-mobilemenu" id="astroid-mobilemenu">

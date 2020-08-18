@@ -82,6 +82,10 @@
    }
 }
 
+header logo {
+   align-self: center;
+}
+
 .astroid-logo {
    @include media-breakpoint-down(md) {
       .astroid-logo-default {

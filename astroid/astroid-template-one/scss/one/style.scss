@@ -25,10 +25,22 @@ body.site {
 	}
 }
 
+// Footer Section
 .footer-section {
+	color: #fff;
+	background-color: $primary;
 	.astroid-social-icons {
 		@include media-breakpoint-down(md) {
 			margin-bottom: 35px;
 		}
+	}
+	a {
+		color: #fff;
+		&:hover {
+			color: darken($color: #fff, $amount: 10);
+		}
+	}
+	.astroid-row {
+		padding: 50px 0 10px;
 	}
 }

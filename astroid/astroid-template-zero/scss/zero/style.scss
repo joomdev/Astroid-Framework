@@ -15,3 +15,18 @@ body.site {
 		}
 	}
 }
+
+// Footer Section
+.footer-section {
+	color: #fff;
+	background-color: $primary;
+	a {
+		color: #fff;
+		&:hover {
+			color: darken($color: #fff, $amount: 10);
+		}
+	}
+	.astroid-row {
+		padding: 50px 0 10px;
+	}
+}

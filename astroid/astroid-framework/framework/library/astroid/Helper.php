@@ -433,4 +433,9 @@ class Helper
         }
         return $status;
     }
+
+    public static function orderingFields($a, $b)
+    {
+        return (($a->ordering < $b->ordering) ? -1 : 1);
+    }
 }

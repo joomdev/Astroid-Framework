@@ -29,10 +29,41 @@ $form = Astroid\Framework::getForm();
                 <?php $active = false; ?>
                 <?php foreach ($form->getFieldsets() as $key => $fieldset) { ?>
                     <div class="astroid-tab-pane tab-pane<?php echo $active ? ' active' : ''; ?>" id="astroid-tab-<?php echo $fieldset->name; ?>" role="tabpanel" aria-labelledby="<?php echo $fieldset->name; ?>-astroid-tab" astroid-type="<?php echo isset($fieldset->astroidtype) ? $fieldset->astroidtype : ''; ?>">
-                        <?php $fields = $form->getFields($key); ?>
+                        <?php $fields = $form->getFields($key);
+                        $fields = $form->getFields($key);
+                        $fieldsArr = [];
+                        $order = 1;
+                        $orders = [];
+                        $reorders = [];
+                        foreach ($fields as $field) {
+                            $ordering = $field->getAttribute('after', '');
+                            if (empty($ordering)) {
+                                $field->ordering = $order++;
+                                $fieldsArr[] = $field;
+                                $orders[$field->name] = $field->ordering;
+                            } else {
+                                if (isset($orders[$ordering])) {
+                                    $field->ordering = $orders[$ordering];
+                                    $fieldsArr[] = $field;
+                                    $orders[$field->name] = $field->ordering;
+                                } else {
+                                    $reorders[] = $field;
+                                }
+                            }
+                        }
+
+                        foreach ($reorders as &$reorder) {
+                            $ordering = $reorder->getAttribute('after', '');
+                            $reorder->ordering = $orders[$ordering];
+                            $fieldsArr[] = $reorder;
+                        }
+
+                        usort($fieldsArr, 'Astroid\Helper::orderingFields');
+
+                        ?>
                         <?php
                         $groups = [];
-                        foreach ($fields as $key => $field) {
+                        foreach ($fieldsArr as $key => $field) {
                             if ($field->type == 'astroidgroup') {
                                 $groups[$field->fieldname] = ['title' => $field->getAttribute('title', ''), 'icon' => $field->getAttribute('icon', ''), 'description' => $field->getAttribute('description', ''), 'fields' => [], 'help' => $field->getAttribute('help', '')];
                             }
@@ -40,7 +71,7 @@ $form = Astroid\Framework::getForm();
                         $groups['none'] = ['fields' => []];
 
 
-                        foreach ($fields as $key => $field) {
+                        foreach ($fieldsArr as $key => $field) {
 
                             if ($field->type == 'astroidgroup') {
                                 continue;

@@ -1,17 +1,18 @@
 <?php
+
 /**
  * SCSSPHP
  *
- * @copyright 2012-2018 Leaf Corcoran
+ * @copyright 2012-2020 Leaf Corcoran
  *
  * @license http://opensource.org/licenses/MIT MIT
  *
- * @link http://leafo.github.io/scssphp
+ * @link http://scssphp.github.io/scssphp
  */
 
-namespace Leafo\ScssPhp\SourceMap;
+namespace ScssPhp\ScssPhp\SourceMap;
 
-use Leafo\ScssPhp\Exception\CompilerException;
+use ScssPhp\ScssPhp\Exception\CompilerException;
 
 /**
  * Source Map Generator
@@ -61,7 +62,7 @@ class SourceMapGenerator
     /**
      * The base64 VLQ encoder
      *
-     * @var \Leafo\ScssPhp\SourceMap\Base64VLQ
+     * @var \ScssPhp\ScssPhp\SourceMap\Base64VLQ
      */
     protected $encoder;
 
@@ -127,12 +128,12 @@ class SourceMapGenerator
      *
      * @return string
      *
-     * @throws \Leafo\ScssPhp\Exception\CompilerException If the file could not be saved
+     * @throws \ScssPhp\ScssPhp\Exception\CompilerException If the file could not be saved
      */
     public function saveMap($content)
     {
         $file = $this->options['sourceMapWriteTo'];
-        $dir  = dirname($file);
+        $dir  = \dirname($file);
 
         // directory does not exist
         if (! is_dir($dir)) {
@@ -201,7 +202,7 @@ class SourceMapGenerator
         }
 
         // less.js compat fixes
-        if (count($sourceMap['sources']) && empty($sourceMap['sourceRoot'])) {
+        if (\count($sourceMap['sources']) && empty($sourceMap['sourceRoot'])) {
             unset($sourceMap['sourceRoot']);
         }
 
@@ -235,7 +236,7 @@ class SourceMapGenerator
      */
     public function generateMappings()
     {
-        if (! count($this->mappings)) {
+        if (! \count($this->mappings)) {
             return '';
         }
 
@@ -249,6 +250,7 @@ class SourceMapGenerator
         }
 
         ksort($groupedMap);
+
         $lastGeneratedLine = $lastOriginalIndex = $lastOriginalLine = $lastOriginalColumn = 0;
 
         foreach ($groupedMap as $lineNumber => $lineMap) {
@@ -313,8 +315,8 @@ class SourceMapGenerator
         $basePath = $this->options['sourceMapBasepath'];
 
         // "Trim" the 'sourceMapBasepath' from the output filename.
-        if (strlen($basePath) && strpos($filename, $basePath) === 0) {
-            $filename = substr($filename, strlen($basePath));
+        if (\strlen($basePath) && strpos($filename, $basePath) === 0) {
+            $filename = substr($filename, \strlen($basePath));
         }
 
         // Remove extra leading path separators.

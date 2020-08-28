@@ -13,7 +13,7 @@ defined('_JEXEC') or die;
 
 require_once __DIR__ . "/../scssphp/scss.inc.php";
 
-use Leafo\ScssPhp\Compiler;
+use ScssPhp\ScssPhp\Compiler;
 use MatthiasMullie\Minify;
 
 class Document

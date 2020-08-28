@@ -1,21 +1,22 @@
 <?php
+
 /**
  * SCSSPHP
  *
- * @copyright 2012-2018 Leaf Corcoran
+ * @copyright 2012-2020 Leaf Corcoran
  *
  * @license http://opensource.org/licenses/MIT MIT
  *
- * @link http://leafo.github.io/scssphp
+ * @link http://scssphp.github.io/scssphp
  */
 
-namespace Leafo\ScssPhp\Exception;
+namespace ScssPhp\ScssPhp\Exception;
 
 /**
  * Server Exception
  *
  * @author Anthon Pang <anthon.pang@gmail.com>
  */
-class ServerException extends \Exception
+class ServerException extends \Exception implements SassException
 {
 }

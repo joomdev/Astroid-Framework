@@ -427,6 +427,8 @@ class Menu
         if (!$data->megamenu) {
             if (isset($astroid_menu_options['width']) && !empty($astroid_menu_options['width'])) {
                 $data->width = $astroid_menu_options['width'];
+            } else {
+                $data->width = '320px';
             }
             if (isset($astroid_menu_options['alignment']) && !empty($astroid_menu_options['alignment'])) {
                 $data->alignment = $astroid_menu_options['alignment'];
@@ -436,6 +438,8 @@ class Menu
         } else {
             if (isset($astroid_menu_options['megamenu_width']) && !empty($astroid_menu_options['megamenu_width'])) {
                 $data->width = $astroid_menu_options['megamenu_width'];
+            } else {
+                $data->width = '980px';
             }
             if (isset($astroid_menu_options['megamenu_direction']) && !empty($astroid_menu_options['megamenu_direction'])) {
                 $data->alignment = $astroid_menu_options['megamenu_direction'];

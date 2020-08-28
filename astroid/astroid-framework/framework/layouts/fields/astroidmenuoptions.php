@@ -187,31 +187,37 @@ foreach ($items as $i => $item) {
                   </div>
                   <div ng-hide="<?php echo $id; ?>_megamenu" class="col-8">
                      <label class="astroid-label" id="<?php echo $id; ?>_alignment-lbl" for="<?php echo $id; ?>_alignment"><?php echo JText::_('TPL_ASTROID_MENU_OPTIONS_DROPDOWN_ALIGNMENT'); ?></label>
-                     <div class="ui fluid search selection dropdown astroid-select-ui" select-ui-div>
-                        <input type="hidden" value="<?php echo $alignment; ?>" name="<?php echo $name; ?>[alignment]" id="<?php echo $id; ?>_alignment">
-                        <i class="dropdown icon"></i>
-                        <div class="default text"><?php echo JText::_('TPL_ASTROID_MENU_OPTIONS_SELECT_ALIGNMENT'); ?></div>
-                        <div class="menu">
-                           <div class="item" data-value="left"><i class="fas fa-align-left"></i> <?php echo JText::_('JGLOBAL_LEFT'); ?></div>
-                           <div class="item" data-value="right"><i class="fas fa-align-right"></i> <?php echo JText::_('JGLOBAL_RIGHT'); ?></div>
-                           <div class="item" data-value="center"><i class="fas fa-align-center"></i> <?php echo JText::_('JGLOBAL_CENTER'); ?></div>
-                           <div class="item" data-value="full"><i class="fas fa-window-maximize"></i> <?php echo JText::_('TPL_ASTROID_CONTAINER'); ?></div>
-                           <div class="item" data-value="edge"><i class="fas fa-bars"></i> <?php echo JText::_('TPL_ASTROID_FULL'); ?></div>
+                     <div>
+                        <div class="ui fluid search selection dropdown astroid-direction-selector">
+                           <input type="hidden" value="<?php echo $alignment; ?>" name="<?php echo $name; ?>[alignment]" id="<?php echo $id; ?>_alignment">
+                           <i class="dropdown icon"></i>
+                           <div class="default text"><?php echo JText::_('TPL_ASTROID_MENU_OPTIONS_SELECT_ALIGNMENT'); ?></div>
+                           <div class="menu">
+                              <div class="item" data-value="left"><i class="fas fa-align-left"></i> <?php echo JText::_('JGLOBAL_LEFT'); ?></div>
+                              <div class="item" data-value="right"><i class="fas fa-align-right"></i> <?php echo JText::_('JGLOBAL_RIGHT'); ?></div>
+                              <div class="item" data-value="center"><i class="fas fa-align-center"></i> <?php echo JText::_('JGLOBAL_CENTER'); ?></div>
+                              <div class="item" data-value="full"><i class="fas fa-window-maximize"></i> <?php echo JText::_('TPL_ASTROID_CONTAINER'); ?></div>
+                              <div class="item" data-value="edge"><i class="fas fa-bars"></i> <?php echo JText::_('TPL_ASTROID_FULL'); ?></div>
+                           </div>
                         </div>
                      </div>
+
                   </div>
                   <div ng-show="<?php echo $id; ?>_megamenu" class="col-8">
                      <label class="astroid-label" id="<?php echo $id; ?>_megamenu_direction-lbl" for="<?php echo $id; ?>_megamenu_direction"><?php echo JText::_('TPL_ASTROID_MENU_OPTIONS_DROPDOWN_ALIGNMENT'); ?></label>
-                     <div class="ui fluid search selection dropdown astroid-select-ui" select-ui-div>
-                        <input type="hidden" value="<?php echo $megamenu_direction; ?>" name="<?php echo $name; ?>[megamenu_direction]" id="<?php echo $id; ?>_megamenu_direction">
-                        <i class="dropdown icon"></i>
-                        <div class="default text"><?php echo JText::_('TPL_ASTROID_MENU_OPTIONS_SELECT_DIRECTION'); ?></div>
-                        <div class="menu">
-                           <div class="item" data-value="left"><i class="fas fa-align-left"></i> <?php echo JText::_('JGLOBAL_LEFT'); ?></div>
-                           <div class="item" data-value="right"><i class="fas fa-align-right"></i> <?php echo JText::_('JGLOBAL_RIGHT'); ?></div>
-                           <div class="item" data-value="center"><i class="fas fa-align-center"></i> <?php echo JText::_('JGLOBAL_CENTER'); ?></div>
-                           <div class="item" data-value="full"><i class="fas fa-window-maximize"></i> <?php echo JText::_('TPL_ASTROID_CONTAINER'); ?></div>
-                           <div class="item" data-value="edge"><i class="fas fa-bars"></i> <?php echo JText::_('TPL_ASTROID_FULL'); ?></div>
+
+                     <div>
+                        <div class="ui fluid search selection dropdown astroid-direction-selector">
+                           <input type="hidden" value="<?php echo $megamenu_direction; ?>" name="<?php echo $name; ?>[megamenu_direction]" id="<?php echo $id; ?>_megamenu_direction">
+                           <i class="dropdown icon"></i>
+                           <div class="default text"><?php echo JText::_('TPL_ASTROID_MENU_OPTIONS_SELECT_DIRECTION'); ?></div>
+                           <div class="menu">
+                              <div class="item" data-value="left"><i class="fas fa-align-left"></i> <?php echo JText::_('JGLOBAL_LEFT'); ?></div>
+                              <div class="item" data-value="right"><i class="fas fa-align-right"></i> <?php echo JText::_('JGLOBAL_RIGHT'); ?></div>
+                              <div class="item" data-value="center"><i class="fas fa-align-center"></i> <?php echo JText::_('JGLOBAL_CENTER'); ?></div>
+                              <div class="item" data-value="full"><i class="fas fa-window-maximize"></i> <?php echo JText::_('TPL_ASTROID_CONTAINER'); ?></div>
+                              <div class="item" data-value="edge"><i class="fas fa-bars"></i> <?php echo JText::_('TPL_ASTROID_FULL'); ?></div>
+                           </div>
                         </div>
                      </div>
                   </div>
@@ -364,6 +370,11 @@ foreach ($scripts as $script) {
             fullTextSearch: true,
             filterRemoteData: true,
             saveRemoteData: true
+         });
+         $('.astroid-direction-selector').addClass('ui fluid search selection dropdown').dropdown({
+            placeholder: false,
+            clearable: true,
+            fullTextSearch: true
          });
       });
       $("#<?php echo $id; ?>_badge_color,#<?php echo $id; ?>_badge_bgcolor").spectrum(spectrumConfig);
@@ -561,4 +572,6 @@ foreach ($scripts as $script) {
 
    });
 </script>
-<script>jQuery.noConflict(true);</script>
+<script>
+   jQuery.noConflict(true);
+</script>

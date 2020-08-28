@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @package   Astroid Framework
  * @author    JoomDev https://www.joomdev.com
@@ -11,5 +12,12 @@
 // No direct access.
 defined('_JEXEC') or die;
 extract($displayData);
+$params = $item->params;
 ?>
-<img class="card-img-top" src="<?php echo @$image; ?>" alt="<?php echo @$title; ?>" />
+<?php if ($params->get('link_titles') && $params->get('access-view')) : ?>
+    <a title="<?php echo @$title; ?>" href="<?php echo JRoute::_(ContentHelperRoute::getArticleRoute($item->slug, $item->catid, $item->language)); ?>">
+        <img class="card-img-top" src="<?php echo @$image; ?>" alt="<?php echo @$title; ?>" />
+    </a>
+<?php else : ?>
+    <img class="card-img-top" src="<?php echo @$image; ?>" alt="<?php echo @$title; ?>" title="<?php echo @$title; ?>" />
+<?php endif; ?>

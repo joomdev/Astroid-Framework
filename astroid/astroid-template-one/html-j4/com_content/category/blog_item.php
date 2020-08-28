@@ -31,7 +31,7 @@ $post_format = $post_attribs->get('post_format', 'standard');
    <?php
    $image = $astroidArticle->getImage();
    if (is_string($image) && !empty($image)) {
-      $document->include('blog.modules.image', ['image' => $image, 'title' => $this->item->title]);
+      $document->include('blog.modules.image', ['image' => $image, 'title' => $this->item->title, 'item' => $this->item]);
    } else if ($post_format == 'standard') {
       echo JLayoutHelper::render('joomla.content.intro_image', $this->item);
    } else {

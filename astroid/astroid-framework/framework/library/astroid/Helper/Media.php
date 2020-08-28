@@ -92,6 +92,18 @@ class Media
                         case 'ico':
                         case 'tiff':
                             $info = @getimagesize($tmp->path);
+                            if (!is_array($info)) {
+                                $tmp->width = 0;
+                                $tmp->height = 0;
+                                $tmp->type = '';
+                                $tmp->mime = '';
+                                $tmp->width_60 = 0;
+                                $tmp->height_60 = 0;
+                                $tmp->width_16 = 0;
+                                $tmp->height_16 = 0;
+                                $images[] = $tmp;
+                                break;
+                            }
                             $tmp->width = @$info[0];
                             $tmp->height = @$info[1];
                             $tmp->type = @$info[2];

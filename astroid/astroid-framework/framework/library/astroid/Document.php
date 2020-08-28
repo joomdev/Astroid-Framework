@@ -800,6 +800,7 @@ class Document
 
     public function renderScss($path)
     {
+        ini_set('memory_limit', '1024M');
         Framework::getDebugger()->log('Rendering Scss');
         $template = Framework::getTemplate();
         Helper::clearCache($template->template, ['compiled-scss']);

@@ -45,11 +45,11 @@ abstract class Framework
 
     public static function constants()
     {
-        define('ASTROID_MEDIA', str_replace(JPATH_SITE . '/media/astroid/assets', '\\', '//'));
+        define('ASTROID_MEDIA', JPATH_SITE . '/media/astroid/assets');
         define('ASTROID_MEDIA_URL', \JURI::root() . 'media/astroid/assets/');
         define('ASTROID_LAYOUTS', JPATH_LIBRARIES . '/astroid/framework/layouts');
         define('ASTROID_ELEMENTS', JPATH_LIBRARIES . '/astroid/framework/elements');
-        define('ASTROID_CACHE', str_replace(JPATH_SITE, '\\', '//') . '/cache/astroid');
+        define('ASTROID_CACHE', JPATH_SITE . '/cache/astroid');
 
         $version = new \JVersion;
         $version = $version->getShortVersion();

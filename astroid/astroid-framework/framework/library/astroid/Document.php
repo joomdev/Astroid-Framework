@@ -803,33 +803,38 @@ class Document
         Framework::getDebugger()->log('Rendering Scss');
         $template = Framework::getTemplate();
         Helper::clearCache($template->template, ['compiled-scss']);
-        $templateScssPath = ASTROID_TEMPLATE_PATH . '/scss';
+
+        $mediaPath = '../../../media/astroid/assets';
+        $templatePath = './../../../../../templates/' . $template->template;
+        $templateScssPath = $templatePath . '/scss';
 
         $scss = new Compiler();
+        $scss->setImportPaths(__DIR__ . '/' . $templatePath . '/scss');
         $content = '';
         $functionsIncluded = false;
-        if (file_exists($templateScssPath . '/custom/variable_overrides.scss')) {
+        if (file_exists(__DIR__ . '/' . $templateScssPath . '/custom/variable_overrides.scss')) {
             $functionsIncluded = true;
-            $content .= '@import "' . ASTROID_MEDIA . '/vendor/bootstrap/scss/functions";';
-            $content .= '@import "' . $templateScssPath . '/custom/variable_overrides";';
+            $content .= '@import "' . $mediaPath . '/vendor/bootstrap/scss/functions";';
+            $content .= '@import "custom/variable_overrides";';
         }
 
-        if (file_exists($templateScssPath . '/variable_overrides.scss')) {
+        if (file_exists(__DIR__ . '/' . $templateScssPath . '/variable_overrides.scss')) {
             if (!$functionsIncluded) {
-                $content .= '@import "' . ASTROID_MEDIA . '/vendor/bootstrap/scss/functions";';
+                $content .= '@import "' . $mediaPath . '/vendor/bootstrap/scss/functions";';
             }
-            $content .= '@import "' . $templateScssPath . '/variable_overrides";';
+            $content .= '@import "variable_overrides";';
         }
 
-        $content .= '@import "' . ASTROID_MEDIA . '/vendor/bootstrap/scss/bootstrap";';
-        $content .= '@import "' . ASTROID_MEDIA . '/vendor/astroid/scss/astroid";';
+        $content .= '@import "' . $mediaPath . '/vendor/bootstrap/scss/bootstrap";';
 
-        if (file_exists($templateScssPath . '/style.scss')) {
-            $content .= '@import "' . $templateScssPath . '/style";';
+        $content .= '@import "' . $mediaPath . '/vendor/astroid/scss/astroid";';
+
+        if (file_exists(__DIR__ . '/' . $templateScssPath . '/style.scss')) {
+            $content .= '@import "style";';
         }
 
-        if (file_exists(ASTROID_TEMPLATE_PATH . '/scss/custom/custom.scss')) {
-            $content .= '@import "' . ASTROID_TEMPLATE_PATH . '/scss/custom/custom";';
+        if (file_exists(__DIR__ . '/' . $templateScssPath . '/custom/custom.scss')) {
+            $content .= '@import "custom/custom";';
         }
 
         $variables = $template->getThemeVariables();

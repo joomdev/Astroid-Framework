@@ -49,7 +49,7 @@ abstract class Framework
         define('ASTROID_MEDIA_URL', \JURI::root() . 'media/astroid/assets/');
         define('ASTROID_LAYOUTS', JPATH_LIBRARIES . '/astroid/framework/layouts');
         define('ASTROID_ELEMENTS', JPATH_LIBRARIES . '/astroid/framework/elements');
-        define('ASTROID_CACHE', JPATH_SITE . '/cache/astroid');
+        define('ASTROID_CACHE', str_replace(JPATH_SITE, '\\', '//') . '/cache/astroid');
 
         $version = new \JVersion;
         $version = $version->getShortVersion();

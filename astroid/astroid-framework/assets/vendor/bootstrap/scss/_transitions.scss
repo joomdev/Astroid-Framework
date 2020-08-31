@@ -1,19 +1,13 @@
 .fade {
   @include transition($transition-fade);
 
-  &:not(.show) {
-    opacity: 0;
-  }
-  &:not(.in) {
+  &:not(.show):not(.in) {
     opacity: 0;
   }
 }
 
 .collapse {
-  &:not(.show) {
-    display: none;
-  }
-  &:not(.in) {
+  &:not(.show):not(.in) {
     display: none;
   }
 }

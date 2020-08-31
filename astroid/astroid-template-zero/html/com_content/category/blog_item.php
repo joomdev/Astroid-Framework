@@ -23,6 +23,7 @@ $useDefList = ($params->get('show_modify_date') || $params->get('show_publish_da
 // Post Format
 $post_attribs = new JRegistry(json_decode($this->item->attribs));
 $post_format = $post_attribs->get('post_format', 'standard');
+$images = json_decode($this->item->images);
 ?>
 <?php if ($this->item->state == 0 || strtotime($this->item->publish_up) > strtotime(JFactory::getDate()) || ((strtotime($this->item->publish_down) < strtotime(JFactory::getDate())) && $this->item->publish_down != JFactory::getDbo()->getNullDate())) :
 ?>
@@ -30,10 +31,10 @@ $post_format = $post_attribs->get('post_format', 'standard');
    <?php endif; ?>
    <?php
    $image = $astroidArticle->getImage();
-   if (is_string($image) && !empty($image)) {
-      $document->include('blog.modules.image', ['image' => $image, 'title' => $this->item->title, 'item' => $this->item]);
-   } else if ($post_format == 'standard') {
+   if ((!empty($images->image_intro)) && $post_format == 'standard') {
       echo JLayoutHelper::render('joomla.content.intro_image', $this->item);
+   } else if (is_string($image) && !empty($image)) {
+      $document->include('blog.modules.image', ['image' => $image, 'title' => $this->item->title, 'item' => $this->item]);
    } else {
       echo JLayoutHelper::render('joomla.content.post_formats.post_' . $post_format, array('params' => $post_attribs, 'item' => $this->item));
    }

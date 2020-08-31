@@ -48,6 +48,9 @@
   .modal.show & {
     transform: $modal-show-transform;
   }
+  .modal.in & {
+    transform: $modal-show-transform;
+  }
 
   // When trying to close, animate focus to scale
   .modal.modal-static & {
@@ -134,6 +137,7 @@
   // Fade for backdrop
   &.fade { opacity: 0; }
   &.show { opacity: $modal-backdrop-opacity; }
+  &.in { opacity: $modal-backdrop-opacity; }
 }
 
 // Modal header

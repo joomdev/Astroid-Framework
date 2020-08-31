@@ -13,6 +13,7 @@
   opacity: 0;
 
   &.show { opacity: $tooltip-opacity; }
+  &.in { opacity: $tooltip-opacity; }
 
   .arrow {
     position: absolute;

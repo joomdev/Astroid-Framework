@@ -4,10 +4,16 @@
   &:not(.show) {
     opacity: 0;
   }
+  &:not(.in) {
+    opacity: 0;
+  }
 }
 
 .collapse {
   &:not(.show) {
+    display: none;
+  }
+  &:not(.in) {
     display: none;
   }
 }

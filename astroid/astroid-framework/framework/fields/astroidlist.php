@@ -1,12 +1,9 @@
 <?php
 
-jimport('astroid.framework.helper');
-jimport('astroid.framework.constants');
-
 /**
  * @package   Astroid Framework
  * @author    JoomDev https://www.joomdev.com
- * @copyright Copyright (C) 2009 - 2019 JoomDev.
+ * @copyright Copyright (C) 2009 - 2020 JoomDev.
  * @license https://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
  */
 defined('JPATH_PLATFORM') or die;
@@ -45,11 +42,9 @@ class JFormFieldAstroidList extends JFormField {
       $attr .= $this->multiple ? ' multiple' : '';
       $attr .= $this->required ? ' required aria-required="true"' : '';
       $attr .= $this->autofocus ? ' autofocus' : '';
-      //$attr .= $this->element['ngShow'] ? ' ng-show="' . AstroidFrameworkHelper::replaceRelationshipOperators($this->element['ngShow']) . '"' : '';
-      //$attr .= $this->element['ngHide'] ? ' ng-hide="' . AstroidFrameworkHelper::replaceRelationshipOperators($this->element['ngHide']) . '"' : '';
       $attr .= ' ng-model="' . $this->fieldname . '"';
       $attr .= ' data-fieldname="' . $this->fieldname . '"';
-      $attr .= $this->element['ngRequired'] ? ' ng-required="' . AstroidFrameworkHelper::replaceRelationshipOperators($this->element['ngRequired']) . '"' : '';
+      $attr .= $this->element['ngRequired'] ? ' ng-required="' . Astroid\Helper::replaceRelationshipOperators($this->element['ngRequired']) . '"' : '';
 
       if (isset($this->element['astroid-content-layout']) && !empty($this->element['astroid-content-layout'])) {
          $attr .= ' data-astroid-content-layout="' . $this->element['astroid-content-layout'] . '"';
@@ -111,7 +106,7 @@ class JFormFieldAstroidList extends JFormField {
 
       if (!empty($this->element['bootstrap-color'])) {
          $options = array();
-         $variables = AstroidFrameworkConstants::$bootstrap_colors;
+         $variables = Astroid\Helper\Constants::$bootstrap_colors;
          foreach ($variables as $value => $label) {
             $object = new stdClass();
             $object->value = $value;

@@ -7,8 +7,9 @@
             <field type="astroidtext" class="form-control" label="ASTROID_CUSTOM_ID" description="ASTROID_CUSTOM_ID_DESC" name="customid"></field>
          </fieldset>
          <fieldset name="design-settings" label="ASTROID_ELEMENT_HEAD_DESIGN_SEETINGS_LABEL" addfieldpath="/libraries/astroid/framework/fields">
-            <field name="animation" type="astroidanimations" label="ASTROID_ANIMATION" ></field>
+            <field name="animation" type="astroidanimations" label="ASTROID_ANIMATION"></field>
             <field ngShow="animation AND animation!=''" name="animation_delay" class="form-control" type="astroidtext" hint="500" default="500" label="ASTROID_ANIMATION_DELAY" description="ASTROID_ANIMATION_DELAY_DESC"></field>
+            <field ngShow="animation AND animation!=''" name="animation_duration" class="form-control" type="astroidtext" hint="500" default="500" label="ASTROID_ANIMATION_DURATION" description="ASTROID_ANIMATION_DURATION_DESC"></field>
 
             <field description="TPL_ASTROID_ADVANCED_POPUUP_LAYOUT_SELECT_DESC" name="background_setting" type="astroidradio" default="0" label="TPL_ASTROID_ADVANCED_POPUUP_LAYOUT_SELECT_LABEL">
                <option value="0">ASTROID_NONE</option>
@@ -17,13 +18,13 @@
                <option value="video">TPL_ASTROID_VIDEO</option>
                <option value="gradient">TPL_ASTROID_GRADIENT</option>
             </field>
-            
+
             <field ngShow="background_setting =='color'" description="ASTROID_SELECT_BACKGROUND_COLOR_DESC" name="background_color" type="astroidcolor" label="TPL_ASTROID_BACKGROUND_COLOR_LABEL" />
 
             <field ngShow="background_setting =='image'" name="img_background_color" type="astroidcolor" label="TPL_ASTROID_BACKGROUND_COLOR_LABEL"/>
-            
+
             <field ngShow="background_setting =='image'" name="background_image" type="astroidmedia" label="TPL_ASTROID_BACKGROUND_IMAGE_LABEL"/>
-            
+
             <field ngShow="background_setting =='image'" name="background_repeat" type="astroidlist" label="TPL_ASTROID_BACKGROUND_REPEAT_LABEL" hint="Background Repeat">
                <option value="">JGLOBAL_INHERIT</option>
                <option value="no-repeat">TPL_ASTROID_BACKGROUND_NO_REPEAT_LABEL</option>
@@ -56,6 +57,15 @@
 
             <field ngShow="background_setting =='gradient'" description="ASTROID_SELECT_BACKGROUND_COLOR_DESC" name="background_gradient" type="astroidgradient" label="TPL_ASTROID_BG_GREDIENT_LABEL"></field>
 
+            <field name="custom_colors" type="astroidtext" astroid-switch="true" default="0" label="ASTROID_ELEMENT_CUSTOM_COLORS_LABEL" />
+
+            <field ngShow="custom_colors" name="text_color" type="astroidcolor" label="TPL_ASTROID_TEXT_COLOR_LABEL" />
+            <field ngShow="custom_colors" name="link_color" type="astroidcolor" label="TPL_ASTROID_LINK_COLOR_LABEL" />
+            <field ngShow="custom_colors" name="link_hover_color" type="astroidcolor" label="TPL_ASTROID_LINK_HOVER_COLOR_LABEL" />
+
+            <field name="spacing_settings" type="astroidheading" title="ASTROID_ELEMENT_HEAD_SPACING_LABEL" />
+            <field name="margin" type="astroidspacing" label="Margin" />
+            <field name="padding" type="astroidspacing" label="Padding" />
          </fieldset>
          <fieldset name="responsive-settings" label="ASTROID_ELEMENT_HEAD_RESPONSIVE_SEETINGS_LABEL" addfieldpath="/libraries/astroid/framework/fields">
             <field name="device_settings" type="astroidheading" title="ASTROID_ELEMENT_HEAD_DEVICE_VISIBILITY_LABEL" />

@@ -4,7 +4,7 @@ div .jd-simple-contact-form .btn-primary {
 
 	&:hover,
 	&:focus {
-		background-image: lighten($primary, 10%);
+		background-color: lighten($primary, 10%);
 		border-color: lighten($primary, 10%);
 	}
 }

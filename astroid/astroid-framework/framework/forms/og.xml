@@ -2,7 +2,7 @@
 <form>
    <fields name="params">
       <fieldset label="ASTROID_ARTICLE_OPEN_GRAPH_TITLE_LABEL" name="ogoptions">
-         <field name="astroid_opengraph_menuitem" type="radio" default="0" label="ASTROID_ARTICLE_OPTIONS_OPENGRAPH_LBL" class="btn-group btn-group-yesno">
+         <field name="astroid_opengraph_menuitem" type="radio" default="0" label="ASTROID_ARTICLE_OPTIONS_OPENGRAPH_LBL" class="form-check-inline">
             <option value="1">JYES</option>
             <option value="0">JNO</option>
          </field>

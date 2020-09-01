@@ -11,7 +11,14 @@ function _inherits(subClass, superClass) {
    if (typeof superClass !== "function" && superClass !== null) {
       throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);
    }
-   subClass.prototype = Object.create(superClass && superClass.prototype, {constructor: {value: subClass, enumerable: false, writable: true, configurable: true}});
+   subClass.prototype = Object.create(superClass && superClass.prototype, {
+      constructor: {
+         value: subClass,
+         enumerable: false,
+         writable: true,
+         configurable: true
+      }
+   });
    if (superClass)
       Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
 }
@@ -24,7 +31,7 @@ function _classCallCheck(instance, Constructor) {
 
 String.prototype.shuffle = function () {
    var a = this.split(""),
-           n = a.length;
+      n = a.length;
 
    for (var i = n - 1; i > 0; i--) {
       var j = Math.floor(Math.random() * (i + 1));
@@ -36,6 +43,7 @@ String.prototype.shuffle = function () {
 };
 
 function generateID() {
+   return Math.random().toString(36).substr(2, 9);
    var r = Math.random() >= 0.5;
    if (r) {
       var x = Math.floor((Math.random() * 10) + 1);
@@ -87,9 +95,9 @@ var AstroidElement = function AstroidElement(type, title) {
    this.id = generateID();
    this.type = type;
    this.params = [{
-         name: 'title',
-         value: title
-      }];
+      name: 'title',
+      value: title
+   }];
    this.refreshID = function () {
       this.id = generateID();
    };
@@ -102,9 +110,9 @@ var AstroidSection = function AstroidSection(type, title) {
    this.type = type;
    this.rows = [];
    this.params = [{
-         name: 'title',
-         value: title
-      }];
+      name: 'title',
+      value: title
+   }];
    this.refreshID = function () {
       this.id = generateID();
    };
@@ -151,6 +159,7 @@ var AstroidRow = function AstroidRow() {
 
    this.id = generateID();
    this.cols = [];
+   this.type = "row";
 };
 
 var AstroidColumn = function AstroidColumn() {
@@ -161,9 +170,9 @@ var AstroidColumn = function AstroidColumn() {
    this.size = 12;
    this.type = "column";
    this.params = [{
-         name: 'title',
-         value: ''
-      }];
+      name: 'title',
+      value: ''
+   }];
 };
 
 astroidFramework.controller('layoutController', function ($scope, $compile) {
@@ -182,18 +191,43 @@ astroidFramework.controller('layoutController', function ($scope, $compile) {
    //$scope.sections.push(AstroidSpecialSection);
 
    // Default Page Options
-   $scope.chooseRow = {open: 0, section: null};
-   $scope.chooseRowColumns = {open: 0, row: null, section: null};
-   $scope.chooseElement = {open: 0, column: null, row: null, section: null};
-   $scope.chooseSection = {open: 0, section: null};
-   $scope.savingSection = {open: 0, section: null};
-   $scope.editingElement = {open: 0, element: null, template: ''};
-   $scope.editSectionTitle = {'title': '', editing: false};
+   $scope.chooseRow = {
+      open: 0,
+      section: null
+   };
+   $scope.chooseRowColumns = {
+      open: 0,
+      row: null,
+      section: null
+   };
+   $scope.chooseElement = {
+      open: 0,
+      column: null,
+      row: null,
+      section: null
+   };
+   $scope.chooseSection = {
+      open: 0,
+      section: null
+   };
+   $scope.savingSection = {
+      open: 0,
+      section: null
+   };
+   $scope.editingElement = {
+      open: 0,
+      element: null,
+      template: ''
+   };
+   $scope.editSectionTitle = {
+      'title': '',
+      editing: false
+   };
    // Default Variables
    $scope.layout = _layout;
 
    $scope.save = function () {
-      console.log($scope.layout);
+      // console.log($scope.layout);
    };
 
    $scope.focusEditTitle = function ($event, _section) {
@@ -218,7 +252,10 @@ astroidFramework.controller('layoutController', function ($scope, $compile) {
    // Section Functions
 
    $scope.addingSection = function (_sectionIndex) {
-      $scope.chooseSection = {open: 1, section: _sectionIndex};
+      $scope.chooseSection = {
+         open: 1,
+         section: _sectionIndex
+      };
    };
 
    $scope.addSection = function (_index) {
@@ -241,7 +278,10 @@ astroidFramework.controller('layoutController', function ($scope, $compile) {
          sectionIndex = _index + 1;
       }
       $scope.layout.sections = _sections;
-      $scope.chooseSection = {open: 0, section: null};
+      $scope.chooseSection = {
+         open: 0,
+         section: null
+      };
 
       $scope.editRow(0, sectionIndex);
 
@@ -259,9 +299,12 @@ astroidFramework.controller('layoutController', function ($scope, $compile) {
    };
 
    $scope.addToLibrarySection = function (_section) {
-      console.log(_section);
-      console.log("Added to library");
-      $scope.savingSection = {open: 0, section: null};
+      // console.log(_section);
+      // console.log("Added to library");
+      $scope.savingSection = {
+         open: 0,
+         section: null
+      };
    };
 
    $scope.removeSection = function (_sectionIndex) {
@@ -285,7 +328,11 @@ astroidFramework.controller('layoutController', function ($scope, $compile) {
 
    // Row Functions
    $scope.editRow = function (_rowIndex, _sectionIndex) {
-      $scope.chooseRowColumns = {open: 1, row: _rowIndex, section: _sectionIndex};
+      $scope.chooseRowColumns = {
+         open: 1,
+         row: _rowIndex,
+         section: _sectionIndex
+      };
    };
 
    $scope.updateRow = function (_rowIndex, _sectionIndex, _grid) {
@@ -330,7 +377,11 @@ astroidFramework.controller('layoutController', function ($scope, $compile) {
       }
 
       $scope.layout.sections[_sectionIndex].rows[_rowIndex].cols = _updatedColumns;
-      $scope.chooseRowColumns = {open: 0, row: null, section: null};
+      $scope.chooseRowColumns = {
+         open: 0,
+         row: null,
+         section: null
+      };
       $scope.actionPreformed();
    };
 
@@ -373,7 +424,10 @@ astroidFramework.controller('layoutController', function ($scope, $compile) {
    };
 
    $scope.addingRow = function (_index) {
-      $scope.chooseRow = {open: 1, section: _index};
+      $scope.chooseRow = {
+         open: 1,
+         section: _index
+      };
    };
 
    $scope.addRow = function (_index, _layout) {
@@ -418,7 +472,13 @@ astroidFramework.controller('layoutController', function ($scope, $compile) {
    };
 
    $scope.addingElement = function (_colIndex, _rowIndex, _sectionIndex, _elementIndex) {
-      $scope.chooseElement = {open: 1, column: _colIndex, row: _rowIndex, section: _sectionIndex, element: _elementIndex};
+      $scope.chooseElement = {
+         open: 1,
+         column: _colIndex,
+         row: _rowIndex,
+         section: _sectionIndex,
+         element: _elementIndex
+      };
    };
 
    $scope.addElement = function (_colIndex, _rowIndex, _sectionIndex, _elementIndex, _element) {
@@ -430,7 +490,13 @@ astroidFramework.controller('layoutController', function ($scope, $compile) {
          _elements.splice(_elementIndex + 1, 0, _element);
       }
       $scope.layout.sections[_sectionIndex].rows[_rowIndex].cols[_colIndex].elements = _elements;
-      $scope.chooseElement = {open: 0, column: null, row: null, section: null, element: null};
+      $scope.chooseElement = {
+         open: 0,
+         column: null,
+         row: null,
+         section: null,
+         element: null
+      };
       $scope.actionPreformed();
       $scope.editElement(_element);
    };
@@ -453,6 +519,11 @@ astroidFramework.controller('layoutController', function ($scope, $compile) {
             return false;
          }
       });
+
+      if (_element.type == 'module_position' && _value == '') {
+         _value = $scope.getParam(_element, 'position');
+      }
+
       return _value;
    };
 
@@ -599,7 +670,10 @@ astroidFramework.controller('layoutController', function ($scope, $compile) {
 
    $scope.saveHistory = function () {
       var _history = $scope.layoutHistory;
-      _history.push({date: new Date(), layout: angular.copy($scope.layout)});
+      _history.push({
+         date: new Date(),
+         layout: angular.copy($scope.layout)
+      });
       $scope.layoutHistory = _history;
       $scope.historyIndex = $scope.historyIndex + 1;
       $scope.backIndex = $scope.backIndex + 1;
@@ -733,10 +807,7 @@ astroidFramework.controller('layoutController', function ($scope, $compile) {
 
 function uploadLayoutJSON() {
    var input = document.getElementById('astroid-layout-import');
-   if (!input) {
-   } else if (!input.files) {
-   } else if (!input.files[0]) {
-   } else {
+   if (!input) {} else if (!input.files) {} else if (!input.files[0]) {} else {
       var file = input.files[0];
       var reader = new FileReader();
       reader.addEventListener("load", function () {

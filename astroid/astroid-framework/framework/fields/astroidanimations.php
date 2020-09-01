@@ -2,11 +2,10 @@
 /**
  * @package   Astroid Framework
  * @author    JoomDev https://www.joomdev.com
- * @copyright Copyright (C) 2009 - 2019 JoomDev.
+ * @copyright Copyright (C) 2009 - 2020 JoomDev.
  * @license https://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
  */
 defined('JPATH_PLATFORM') or die;
-jimport('astroid.framework.constants');
 
 /**
  * Form Field class for the Joomla Platform.
@@ -51,7 +50,7 @@ class JFormFieldAstroidanimations extends JFormField {
       $attr .= $this->onchange ? ' onchange="' . $this->onchange . '"' : '';
 
       $html = '<select name="' . $this->name . '" ng-model="' . $this->id . '" animation-selector ' . $attr . '>';
-      $groups = AstroidFrameworkConstants::$animations;
+      $groups = Astroid\Helper\Constants::$animations;
       $options = array();
       foreach ($groups as $group => $animations) {
          if (!empty($group)) {
@@ -78,7 +77,7 @@ class JFormFieldAstroidanimations extends JFormField {
     */
    protected function getOptions() {
 
-      $groups = AstroidFrameworkConstants::$animations;
+      $groups = Astroid\Helper\Constants::$animations;
       $options = array();
       foreach ($groups as $group => $animations) {
          foreach ($animations as $key => $value) {

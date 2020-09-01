@@ -2,7 +2,7 @@
 /**
  * @package   Astroid Framework
  * @author    JoomDev https://www.joomdev.com
- * @copyright Copyright (C) 2009 - 2019 JoomDev.
+ * @copyright Copyright (C) 2009 - 2020 JoomDev.
  * @license https://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
  */
 defined('_JEXEC') or die;
@@ -23,9 +23,9 @@ $active = false;
       </li>
       <?php $active = true; } $active = false; ?>
    </ul>
-   <span class="dismiss" id="element-settings-close"><i class="fa fa-times"></i></span>
-   <span class="compress"><i class="fa fa-compress"></i></span>
-   <span class="expand"><i class="fa fa-expand"></i></span>
+   <span class="dismiss" id="element-settings-close"><i class="fas fa-times"></i></span>
+   <span class="compress"><i class="fas fa-compress"></i></span>
+   <span class="expand"><i class="fas fa-expand"></i></span>
 </div>
 <div class="row">
    <div class="col-12">
@@ -77,8 +77,8 @@ $active = false;
                               if ($field->type == 'layout' || $field->type == 'astroidheading' || $field->type == 'Hidden') {
                                  echo $field->input;
                               } else {
-                                 $ngHide = AstroidFrameworkHelper::replaceRelationshipOperators($field->getAttribute('ngHide'));
-                                 $ngShow = AstroidFrameworkHelper::replaceRelationshipOperators($field->getAttribute('ngShow'));
+                                 $ngHide = Astroid\Helper::replaceRelationshipOperators($field->getAttribute('ngHide'));
+                                 $ngShow = Astroid\Helper::replaceRelationshipOperators($field->getAttribute('ngShow'));
                                  ?>
                                  <div<?php echo!empty($ngHide) ? ' ng-hide="' . $ngHide . '"' : ''; ?><?php echo!empty($ngShow) ? ' ng-show="' . $ngShow . '"' : ''; ?> class="form-group">
                                     <div class="row">

@@ -3,7 +3,7 @@
 /**
  * @package   Astroid Framework
  * @author    JoomDev https://www.joomdev.com
- * @copyright Copyright (C) 2009 - 2019 JoomDev.
+ * @copyright Copyright (C) 2009 - 2020 JoomDev.
  * @license https://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
  */
 defined('_JEXEC') or die;
@@ -27,9 +27,11 @@ class AstroidFrameworkTemplate
    public $_js = [];
    public $mods = array();
    public $modules = array();
+   public static $astroidTemplatePath = JPATH_LIBRARIES . '/astroid/framework/template';
 
    public function __construct($template)
    {
+      Astroid\Framework::getReporter('Auditor')->backtrace(debug_backtrace());
       if (!defined('ASTROID_TEMPLATE_NAME')) {
          define('ASTROID_TEMPLATE_NAME', $template->template);
       }
@@ -101,7 +103,7 @@ class AstroidFrameworkTemplate
       $og_siteurl = JURI::getInstance();
 
       $meta = [];
-      $meta[] = '<meta name="twitter:card" content="summary" />';
+      $meta[] = '<meta name="twitter:card" content="summary_large_image" />';
 
       if ($item->type == 'component' && isset($item->query) && $item->query['option'] == 'com_content' && $item->query['view'] == 'article') {
          $meta[] = '<meta property="og:type" content="article">';
@@ -186,7 +188,8 @@ class AstroidFrameworkTemplate
    }
 
    public function head()
-   { }
+   {
+   }
 
    public function initAgent()
    {
@@ -223,7 +226,8 @@ class AstroidFrameworkTemplate
         ASTROID_TEMPLATE.DEVICE_NAME = "<?php echo config('agent.name'); ?>";
         ASTROID_TEMPLATE.DEVICE_BROWSER = "<?php echo config('agent.browser'); ?>";
         ASTROID_TEMPLATE.BASE_URL = "<?php echo url('/'); ?>";
-       */ }
+       */
+   }
 
    public function body()
    {
@@ -235,6 +239,7 @@ class AstroidFrameworkTemplate
 
    public function renderLayout()
    {
+      define('ASTROID_FRONTEND', 1);
       $params = $this->params;
       $layout = $params->get("layout", NULL);
       if ($layout === NULL) {
@@ -344,7 +349,8 @@ class AstroidFrameworkTemplate
                      $col_stylesEnable = $columnObject->getStyles() ? true : false;
                      $col_animationEnable = $columnObject->getAnimation() ? true : false;
                      $col_animationDelay = $columnObject->getAnimationDelay() ? true : false;
-                     $columnHTML .= '<div id="' . $columnObject->getID() . '" class="' . $columnObject->getClass() . (($col_stylesEnable) ? '" style="' . $columnObject->getStyles() : '') . (($col_animationEnable) ? '" data-animation= "' . $columnObject->getAnimation() : '') . (($col_animationDelay && $col_animationEnable) ? '" data-animation-delay="' . $columnObject->getAnimationDelay() : '') . '" ' . $columnObject->getAttributes() . '>';
+                     $col_animationDuration = $columnObject->getAnimationDuration() ? true : false;
+                     $columnHTML .= '<div id="' . $columnObject->getID() . '" class="' . $columnObject->getClass() . (($col_stylesEnable) ? '" style="' . $columnObject->getStyles() : '') . (($col_animationEnable) ? '" data-animation= "' . $columnObject->getAnimation() : '') . (($col_animationDelay && $col_animationEnable) ? '" data-animation-delay="' . $columnObject->getAnimationDelay() : '') . (($col_animationDuration && $col_animationEnable) ? '" data-animation-duration="' . $columnObject->getAnimationDuration() : '') . '" ' . $columnObject->getAttributes() . '>';
                      $columnHTML .= $renderedHTML;
                      $columnHTML .= '</div>';
                   }
@@ -366,7 +372,8 @@ class AstroidFrameworkTemplate
                $row_stylesEnable = $rowObject->getStyles() ? true : false;
                $row_animationEnable = $rowObject->getAnimation() ? true : false;
                $row_animationDelay = $rowObject->getAnimationDelay() ? true : false;
-               $rowHTML .= '<div  id="' . $rowObject->getID() . '" class="row' . ($no_gutter ? ' no-gutters' : '') . (!empty($rowObject->getClass()) ? ' ' . $rowObject->getClass() : '') . (($row_stylesEnable) ? '" style="' . $rowObject->getStyles() : '') . (($row_animationEnable) ? '" data-animation= "' . $rowObject->getAnimation() : '') . (($row_animationDelay && $row_animationEnable) ? '" data-animation-delay="' . $rowObject->getAnimationDelay() : '') . '" ' . $rowObject->getAttributes() . '>';
+               $row_animationDuration = $rowObject->getAnimationDuration() ? true : false;
+               $rowHTML .= '<div  id="' . $rowObject->getID() . '" class="row' . ($no_gutter ? ' no-gutters' : '') . (!empty($rowObject->getClass()) ? ' ' . $rowObject->getClass() : '') . (($row_stylesEnable) ? '" style="' . $rowObject->getStyles() : '') . (($row_animationEnable) ? '" data-animation= "' . $rowObject->getAnimation() : '') . (($row_animationDelay && $row_animationEnable) ? '" data-animation-delay="' . $rowObject->getAnimationDelay() : '') . (($row_animationDuration && $row_animationEnable) ? '" data-animation-duration="' . $rowObject->getAnimationDuration() : '') . '" ' . $rowObject->getAttributes() . '>';
                $rowHTML .= $columnHTML;
                $rowHTML .= '</div>';
             }
@@ -374,7 +381,7 @@ class AstroidFrameworkTemplate
          if (!empty($rowHTML)) {
             $stylesEnable = $sectionObject->getStyles() ? true : false;
             $animationEnable = $sectionObject->getAnimation() ? true : false;
-            $sectionHTML .= '<section  id="' . $sectionObject->getID() . '" class="' . $sectionObject->getClass() . (($stylesEnable) ? '" style="' . $sectionObject->getStyles() : '') . (($animationEnable) ? '" data-animation= "' . $sectionObject->getAnimation() : '') . ((!empty($sectionObject->getAnimationDelay()) && $animationEnable) ? '" data-animation-delay="' . $sectionObject->getAnimationDelay() : '') . '" ' . $sectionObject->getAttributes() . '>';
+            $sectionHTML .= '<section  id="' . $sectionObject->getID() . '" class="' . $sectionObject->getClass() . (($stylesEnable) ? '" style="' . $sectionObject->getStyles() : '') . (($animationEnable) ? '" data-animation= "' . $sectionObject->getAnimation() : '') . ((!empty($sectionObject->getAnimationDelay()) && $animationEnable) ? '" data-animation-delay="' . $sectionObject->getAnimationDelay() : '')  . ((!empty($sectionObject->getAnimationDuration()) && $animationEnable) ? '" data-animation-duration="' . $sectionObject->getAnimationDuration() : '') . '" ' . $sectionObject->getAttributes() . '>';
 
             $section_layout_type = ($sppb && $hasComponent) ? '' : $section_layout_type;
             if (!empty($section_layout_type)) {
@@ -445,22 +452,6 @@ class AstroidFrameworkTemplate
       return $text;
    }
 
-   public function renderLayoutOld()
-   {
-      // Load Astroid elements classes
-      AstroidFrameworkHelper::loadAstroidElements();
-      $params = $this->params;
-      $layout = $params->get("layout", NULL);
-      if ($layout === NULL) {
-         $value = file_get_contents(JPATH_SITE . '/' . 'media' . '/' . 'astroid' . '/' . 'assets' . '/' . 'json' . '/' . 'layouts' . '/' . 'default.json');
-         $layout = \json_decode($value, true);
-      } else {
-         $layout = \json_decode($layout, true);
-      }
-      $element = new AstroidElement($layout, $this);
-      echo $element->render();
-   }
-
    public function modulePosition($position = '', $style = 'none')
    {
       if (empty($position)) {
@@ -468,7 +459,11 @@ class AstroidFrameworkTemplate
       }
       $this->setLog("Rending Module Position : " . $position);
       $return = '';
-      $return .= '<jdoc:include type="modules" name="' . $position . '" style="' . $style . '" />';
+
+      $modules = JModuleHelper::getModules($position);
+      if (count($modules)) {
+         $return .= '<jdoc:include type="modules" name="' . $position . '" style="' . $style . '" />';
+      }
       return $return;
    }
 
@@ -782,10 +777,13 @@ class AstroidFrameworkTemplate
    public function loadLayout($partial = '', $display = true, $params = null)
    {
       $this->setLog("Rending template partial : " . $partial);
+
       if (file_exists(JPATH_SITE . '/templates/' . $this->template . '/html/frontend/' . str_replace('.', '/', $partial) . '.php')) {
          $layout = new JLayoutFile($partial, JPATH_SITE . '/templates/' . $this->template . '/html/frontend');
+      } else if (file_exists(self::$astroidTemplatePath . '/frontend/' . str_replace('.', '/', $partial) . '.php')) {
+         $layout = new JLayoutFile($partial, self::$astroidTemplatePath . '/frontend');
       } else {
-         $layout = new JLayoutFile($partial, JPATH_SITE . '/templates/' . $this->template . '/frontend');
+         return;
       }
       $data = [];
       $data['template'] = $this;
@@ -902,6 +900,22 @@ class AstroidFrameworkTemplate
          $version = md5($styles);
          $this->buildAstroidCSS($version, $styles);
       }
+   }
+
+   public function getStyleDeclaration()
+   {
+      $styles = [];
+      foreach (['desktop', 'tablet', 'mobile'] as $device) {
+         if ($device == 'mobile') {
+            $styles[] = '@media (max-width: 767.98px) {' . implode('', $this->_styles[$device]) . '}';
+         } elseif ($device == 'tablet') {
+            $styles[] = '@media (max-width: 991.98px) {' . implode('', $this->_styles[$device]) . '}';
+         } else {
+            $styles[] = implode('', $this->_styles[$device]);
+         }
+      }
+      $styles = implode('', $styles);
+      return $styles;
    }
 
    public function loadJS()
@@ -1058,7 +1072,11 @@ class AstroidFrameworkTemplate
    public function inspect()
    {
       // fix for typography
-      if ($this->version < 2.3) {
+      $extension = \JTable::getInstance('extension');
+      $id = $extension->find(array('element' => 'astroid', 'type' => 'library'));
+      $extension->load($id);
+      $frameworkInfo = json_decode($extension->manifest_cache, true);
+      if ($frameworkInfo['version'] < 2.3) {
          foreach (['body', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'] as $typo) {
             $typoType = $this->params->get($typo . '_typography');
             if (trim($typoType) == 'custom') {

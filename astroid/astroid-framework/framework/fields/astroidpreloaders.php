@@ -2,11 +2,10 @@
 /**
  * @package   Astroid Framework
  * @author    JoomDev https://www.joomdev.com
- * @copyright Copyright (C) 2009 - 2019 JoomDev.
+ * @copyright Copyright (C) 2009 - 2020 JoomDev.
  * @license https://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
  */
 defined('JPATH_PLATFORM') or die;
-jimport('astroid.framework.constants');
 
 /**
  * Form Field class for the Joomla Platform.
@@ -33,7 +32,7 @@ class JFormFieldAstroidpreloaders extends JFormField {
     * @since   3.7.0
     */
    protected function getInput() {
-      $selected = AstroidFrameworkConstants::$preloaders['circle'];
+      $selected = Astroid\Helper\Constants::$preloaders['circle'];
       if (empty($this->value)) {
          $this->value = $selected['name'];
       }
@@ -43,11 +42,11 @@ class JFormFieldAstroidpreloaders extends JFormField {
 
       $html .= '<div class="astroid-preloaders-selector">';
       $html .= '<div class="overlay"></div>';
-      $html .= '<div class="head">Select Preloader Style<span class="astroid-preloaders-selector-exit-fs"><i class="fa fa-times"></i></span></div>';
+      $html .= '<div class="head">Select Preloader Style<span class="astroid-preloaders-selector-exit-fs"><i class="fas fa-times"></i></span></div>';
       $html .= '<div class="body">';
       $html .= '<div class="">';
 
-      foreach (AstroidFrameworkConstants::$preloaders as $preloader) {
+      foreach (Astroid\Helper\Constants::$preloaders as $preloader) {
          $html .= '<div class="astroid-preloader-select" data-value="' . $preloader['name'] . '"><div class="astroid-preloader-select-inner">';
          $html .= $preloader['code'];
          $html .= '</div></div>';

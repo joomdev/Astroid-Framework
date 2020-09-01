@@ -2,7 +2,7 @@
 /**
  * @package   Astroid Framework
  * @author    JoomDev https://www.joomdev.com
- * @copyright Copyright (C) 2009 - 2019 JoomDev.
+ * @copyright Copyright (C) 2009 - 2020 JoomDev.
  * @license https://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
  */
 defined('_JEXEC') or die;
@@ -30,28 +30,25 @@ if (version_compare(JVERSION, '3.99999.99999', 'le'))
    <?php if (!empty($this->lead_items)) : ?>
       <div class="items-leading clearfix">
          <?php foreach ($this->lead_items as &$item) : ?>
-            <div class="card-deck mt-0 mb-4">
-                <div class="card h-100">
-                  <article class="item leading-<?php echo $leadingcount; ?><?php echo $item->state == 0 ? ' system-unpublished' : null; ?><?php echo $item->featured ? ' item-featured' : ''; ?>"
-                           itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-                              <?php
-                              $this->item = & $item;
-                              echo $this->loadTemplate('item');
-                              ?>
-                  </article>
+                <div class="article-wraper">
+                  <div class="article-wraper-inner">
+                    <article class="item leading-<?php echo $leadingcount; ?><?php echo $item->state == 0 ? ' system-unpublished' : null; ?><?php echo $item->featured ? ' item-featured' : ''; ?>"
+                            itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+                                <?php
+                                $this->item = & $item;
+                                echo $this->loadTemplate('item');
+                                ?>
+                    </article>
+                  </div>
                  </div>
-			   </div>
             <?php $leadingcount++; ?>
          <?php endforeach; ?>
       </div><!-- end items-leading -->
    <?php endif; ?>
 
-
    <?php
- 
    $introcount = (count($this->intro_items));
    $counter = 0;
-    
    ?>
 
      <?php if (!empty($this->intro_items)) : ?>
@@ -59,34 +56,33 @@ if (version_compare(JVERSION, '3.99999.99999', 'le'))
             <div class="items-row <?php echo 'row-' . $row; ?> row clearfix">
 				 <?php foreach ($this->intro_items as $key => &$item) : ?>
 				  <?php $rowcount = ((int) $key % (int) $this->columns) + 1; ?>
-							<div class="col-lg-<?php echo round((12 / $this->columns)); ?> p-3">
-							   <div class="card h-100">
-									  <article class="item column-<?php echo $rowcount; ?><?php echo $item->state == 0 ? ' system-unpublished' : null; ?><?php echo $item->featured ? ' item-featured' : ''; ?>"
-											   itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-												  <?php
-												  $this->item = & $item;
-												  echo $this->loadTemplate('item');
-												  ?>
-									  </article>
-							   <?php $counter++; ?>
+							<div class="col-lg-<?php echo round((12 / $this->columns)); ?>">
+							   <div class="article-wraper">
+                  <div class="article-wraper-inner">
+                      <article class="item column-<?php echo $rowcount; ?><?php echo $item->state == 0 ? ' system-unpublished' : null; ?><?php echo $item->featured ? ' item-featured' : ''; ?>"
+                          itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+                            <?php
+                            $this->item = & $item;
+                            echo $this->loadTemplate('item');
+                            ?>
+                      </article>
+                  <?php $counter++; ?>
+                    </div>
 								  </div>
 							</div>
 				  <?php endforeach; ?>
 	        </div>
          <?php endif; ?>
-		 
-	 
-		 
- 
+
    <?php if (!empty($this->link_items)) : ?>
       <?php echo $this->loadTemplate('links'); ?>
    <?php endif; ?>
 
   <?php if ($this->params->def('show_pagination', 2) == 1  || ($this->params->get('show_pagination') == 2 && $this->pagination->pagesTotal > 1)) : ?>
-    <div class="mt-3">
+    <div class="pagination-wrapper">
       <?php echo $this->pagination->getPagesLinks(); ?>
       <?php if ($this->params->def('show_pagination_results', 1)) : ?>
-          <p class="counter d-flex justify-content-center"> <?php echo $this->pagination->getPagesCounter(); ?> </p>
+          <p class="counter"> <?php echo $this->pagination->getPagesCounter(); ?> </p>
       <?php endif; ?>
     </div>
   <?php endif; ?>

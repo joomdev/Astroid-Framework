@@ -2,7 +2,7 @@
 <form>
     <fields name="attribs">
         <fieldset label="ASTROID_ARTICLE_TYPE_OPTIONS_TITLE_LABEL" name="articletypeoptions" addfieldpath="/libraries/astroid/framework/fields">
-            <field type="radio" name="astroid_article_type" label="ASTROID_ARTICLE_OPTIONS_TYPE" description="ASTROID_ARTICLE_OPTIONS_TYPE_DESC" class="btn-group" default="regular">
+            <field type="radio" name="astroid_article_type" label="ASTROID_ARTICLE_OPTIONS_TYPE" description="ASTROID_ARTICLE_OPTIONS_TYPE_DESC" class="form-check-inline" default="regular">
                 <option value="regular">ASTROID_ARTICLE_OPTIONS_TYPE_REGULAR</option>
                 <option value="video">ASTROID_ARTICLE_OPTIONS_TYPE_VIDEO</option>
                 <option value="gallery">ASTROID_ARTICLE_OPTIONS_TYPE_GALLERY</option>
@@ -12,24 +12,24 @@
             </field>
             <!-- Video Options -->
             <field type="spacer" showon="astroid_article_type:video" name="astroidarticlevideo" label="ASTROID_ARTICLE_OPTIONS_VIDEO_LABEL" />
-            <field showon="astroid_article_type:video" name="astroid_article_video_type" type="radio" default="youtube" label="ASTROID_VIDEO_TYPE" description="ASTROID_VIDEO_TYPE_DESC" class="btn-group">
+            <field showon="astroid_article_type:video" name="astroid_article_video_type" type="radio" default="youtube" label="ASTROID_VIDEO_TYPE" description="ASTROID_VIDEO_TYPE_DESC" class="form-check-inline">
                 <option value="youtube">ASTROID_YOUTUBE</option>
                 <option value="vimeo">ASTROID_VIMEO</option>
             </field>
             <field type="text" name="astroid_article_video_url" label="ASTROID_VIDEO_ID" description="ASTROID_VIDEO_ID_DESC" showon="astroid_article_type:video" />
             <!-- Gallery Options -->
             <field type="spacer" showon="astroid_article_type:gallery" name="astroidarticlegallery" label="ASTROID_ARTICLE_OPTIONS_GALLERY_LABEL" />
-            <field showon="astroid_article_type:gallery" name="astroid_article_gallery_width" type="text" default="" label="ASTROID_GALLERY_WIDTH_LBL" description="ASTROID_GALLERY_WIDTH_DESC" />
-            <field showon="astroid_article_type:gallery" name="astroid_article_gallery_bullets" type="radio" default="1" label="ASTROID_GALLERY_BULLETS_LBL" description="ASTROID_GALLERY_BULLETS_DESC" class="btn-group btn-group-yesno">
+            <field showon="astroid_article_type:gallery" name="astroid_article_gallery_width" type="text" hint="ASTROID_GALLERY_WIDTH_PLACEHOLDER" label="ASTROID_GALLERY_WIDTH_LBL" description="ASTROID_GALLERY_WIDTH_DESC" />
+            <field showon="astroid_article_type:gallery" name="astroid_article_gallery_bullets" type="radio" default="1" label="ASTROID_GALLERY_BULLETS_LBL" description="ASTROID_GALLERY_BULLETS_DESC" class="form-check-inline">
                 <option value="1">JYES</option>
                 <option value="0">JNO</option>
             </field>
-            <field showon="astroid_article_type:gallery" name="astroid_article_gallery_navigation" type="radio" default="1" label="ASTROID_GALLERY_NAVIGATION_LBL" description="ASTROID_GALLERY_NAVIGATION_DESC" class="btn-group btn-group-yesno">
+            <field showon="astroid_article_type:gallery" name="astroid_article_gallery_navigation" type="radio" default="1" label="ASTROID_GALLERY_NAVIGATION_LBL" description="ASTROID_GALLERY_NAVIGATION_DESC" class="form-check-inline">
                 <option value="1">JYES</option>
                 <option value="0">JNO</option>
             </field>
 
-            <field showon="astroid_article_type:gallery[OR]astroid_article_type:video" name="astroid_article_thumbnail" type="radio" default="1" label="ASTROID_GALLERY_THUMBNAIL_LBL" description="ASTROID_GALLERY_THUMBNAIL_DESC" class="btn-group btn-group-yesno">
+            <field showon="astroid_article_type:gallery[OR]astroid_article_type:video" name="astroid_article_thumbnail" type="radio" default="1" label="ASTROID_GALLERY_THUMBNAIL_LBL" description="ASTROID_GALLERY_THUMBNAIL_DESC" class="form-check-inline">
                 <option value="1">JYES</option>
                 <option value="0">JNO</option>
             </field>
@@ -37,8 +37,7 @@
             <field showon="astroid_article_type:gallery" name="astroid_article_gallery_items" type="subform" formsource="libraries/astroid/framework/forms/galleryitem.xml" multiple="true" label="ASTROID_GALLERY_ITEMS" />
 
             <!-- Audio Options -->
-            <field type="spacer" showon="astroid_article_type:audio" name="astroidarticleaudio" label="ASTROID_ARTICLE_OPTIONS_AUDIO_LABEL" />
-            <field showon="astroid_article_type:audio" name="astroid_article_audio_source" type="radio" class="btn-group" default="soundcloud" label="ASTROID_AUDIO_SOURCE" description="">
+            <field showon="astroid_article_type:audio" name="astroid_article_audio_source" type="radio" class="form-check-inline" default="soundcloud" label="ASTROID_AUDIO_SOURCE" description="">
                 <option value="soundcloud">ASTROID_SOUNDCLOUD_LBL</option>
                 <option value="spotify">ASTROID_SPOTIFY_LBL</option>
             </field>
@@ -58,13 +57,20 @@
             <field type="spacer" showon="astroid_article_type:quote" name="astroidarticlequote" label="ASTROID_ARTICLE_OPTIONS_QUOTE_LABEL" />
             <field type="text" name="astroid_article_quote_text" label="ASTROID_ARTICLE_QUOTE_TEXT" description="ASTROID_ARTICLE_QUOTE_TEXT_DESC" showon="astroid_article_type:quote" />
             <field type="text" name="astroid_article_quote_author" label="ASTROID_ARTICLE_QUOTE_AUTHOR" description="ASTROID_ARTICLE_QUOTE_AUTHOR_DESC" showon="astroid_article_type:quote" />
+
+
+            <field type="list" showon="astroid_article_type!:regular" name="astroid_article_content_position" label="Position" default="above-title">
+                <option value="above-title">Above Title</option>
+                <option value="before-content">Before Content</option>
+                <option value="after-content">After Content</option>
+            </field>
+
             <!-- Badge Options -->
-            <field type="spacer" name="astroidarticlebadge" label="ASTROID_ARTICLE_OPTIONS_BADGE_LABEL" />
-            <field name="astroid_article_badge" type="radio" default="0" label="ASTROID_ARTICLE_BADGE" description="ASTROID_ARTICLE_BADGE_DESC" class="btn-group btn-group-yesno">
+            <field name="astroid_article_badge" type="radio" default="0" label="ASTROID_ARTICLE_BADGE" description="ASTROID_ARTICLE_BADGE_DESC" class="form-check-inline">
                 <option value="1">JYES</option>
                 <option value="0">JNO</option>
             </field>
-            <field type="radio" name="astroid_article_badge_type" label="ASTROID_SELECT_BADGE" description="ASTROID_SELECT_BADGE_DESC" class="btn-group" default="2" showon="astroid_article_badge:1">
+            <field type="radio" name="astroid_article_badge_type" label="ASTROID_SELECT_BADGE" description="ASTROID_SELECT_BADGE_DESC" class="form-check-inline" default="2" showon="astroid_article_badge:1">
                 <option value="2">ASTROID_ARTICLE_OPTIONS_BADGE_2_LBL</option>
                 <option value="3">ASTROID_ARTICLE_OPTIONS_BADGE_3_LBL</option>
                 <option value="4">ASTROID_ARTICLE_OPTIONS_BADGE_4_LBL</option>

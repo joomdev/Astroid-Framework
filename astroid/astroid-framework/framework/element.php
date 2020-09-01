@@ -3,7 +3,7 @@
 /**
  * @package   Astroid Framework
  * @author    JoomDev https://www.joomdev.com
- * @copyright Copyright (C) 2009 - 2019 JoomDev.
+ * @copyright Copyright (C) 2009 - 2020 JoomDev.
  * @license https://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
  */
 defined('_JEXEC') or die;
@@ -41,7 +41,7 @@ class AstroidElement
       $this->app = JFactory::getApplication();
 
       if ($template === null) {
-         $this->template = AstroidFramework::getTemplate();
+         $this->template = Astroid\Framework::getTemplate();
       } else {
          $this->template = $template;
       }
@@ -73,10 +73,12 @@ class AstroidElement
          $this->xml_file = $library_elements_directory . $this->type . '/' . $this->type . '.xml';
          $this->layout = $library_elements_directory . $this->type . '/' . $this->type . '.php';
       }
-      if ($this->xml_file !== null) {
-         $this->loadXML();
+      if (!defined('ASTROID_FRONTEND')) {
+         if ($this->xml_file !== null) {
+            $this->loadXML();
+         }
+         $this->loadForm();
       }
-      $this->loadForm();
    }
 
    protected function setClassName()
@@ -181,7 +183,7 @@ class AstroidElement
          $data = (array) $data;
          $formData[$data['name']] = $data['value'];
       }
-      $params = [];
+      /* $params = [];
       foreach ($this->params as $param) {
          $param = (array) $param;
          if (isset($formData[$param['name']])) {
@@ -189,9 +191,9 @@ class AstroidElement
          } else {
             $params[$param['name']] = $param['value'];
          }
-      }
+      } */
 
-      return $AstroidParams = new AstroidParams($params);
+      return $AstroidParams = new AstroidParams($formData);
    }
 
    public function render()
@@ -222,6 +224,7 @@ class AstroidElement
          if (!empty($this->getAnimation())) {
             $elHtml[] = 'data-animation="' . $this->getAnimation() . '"';
             $elHtml[] = 'data-animation-delay="' . $this->getAnimationDelay() . '"';
+            $elHtml[] = 'data-animation-duration="' . $this->getAnimationDuration() . '"';
          }
          if (!empty($this->getAttributes())) {
             $elHtml[] = $this->getAttributes();
@@ -399,6 +402,13 @@ class AstroidElement
       return $animation;
    }
 
+   public function getAnimationDuration()
+   {
+      $params = $this->getParams();
+      $animation_duration = $params->get('animation_duration', 0);
+      return $animation_duration;
+   }
+
    public function getAnimationDelay()
    {
       $params = $this->getParams();
@@ -438,10 +448,8 @@ class AstroidElement
          }
       }
 
-      if ($this->type == 'section') {
-         $styles = $this->Style();
-         $this->MarginPadding();
-      }
+      $styles = $this->Style();
+      $this->MarginPadding();
 
       if ($this->type == 'column') {
          $styles = $this->Style();

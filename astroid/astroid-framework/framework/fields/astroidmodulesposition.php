@@ -1,16 +1,14 @@
 <?php
+
 /**
  * @package   Astroid Framework
  * @author    JoomDev https://www.joomdev.com
- * @copyright Copyright (C) 2009 - 2019 JoomDev.
+ * @copyright Copyright (C) 2009 - 2020 JoomDev.
  * @license https://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
  */
 defined('JPATH_BASE') or die;
 
 JLoader::register('ModulesHelper', JPATH_ADMINISTRATOR . '/components/com_modules/helpers/modules.php');
-
-jimport('astroid.framework.helper');
-
 JFormHelper::loadFieldClass('list');
 
 /**
@@ -18,7 +16,8 @@ JFormHelper::loadFieldClass('list');
  *
  * @since  3.4.2
  */
-class JFormFieldAstroidModulesPosition extends JFormFieldList {
+class JFormFieldAstroidModulesPosition extends JFormFieldList
+{
 
    /**
     * The form field type.
@@ -35,10 +34,11 @@ class JFormFieldAstroidModulesPosition extends JFormFieldList {
     *
     * @since   3.4.2
     */
-   public function getOptions() {
+   public function getOptions()
+   {
       $clientId = JFactory::getApplication()->input->get('client_id', 0, 'int');
       $options = ModulesHelper::getPositions($clientId);
-      $positions = AstroidFrameworkHelper::getPositions();
+      $positions = Astroid\Helper::getPositions();
       //$options = array();
       $options = array_merge(parent::getOptions(), $options);
 
@@ -51,18 +51,20 @@ class JFormFieldAstroidModulesPosition extends JFormFieldList {
       return array_unique($positions);
    }
 
-   protected function getLayoutData() {
+   protected function getLayoutData()
+   {
       $data = parent::getLayoutData();
       $extraData = array(
-          'ngShow' => $this->element['ngShow'],
-          'ngHide' => $this->element['ngHide'],
-          'ngModel' => $this->element['ngModel'],
-          'ngRequired' => $this->element['ngRequired'],
+         'ngShow' => $this->element['ngShow'],
+         'ngHide' => $this->element['ngHide'],
+         'ngModel' => $this->element['ngModel'],
+         'ngRequired' => $this->element['ngRequired'],
       );
       return array_merge($data, $extraData);
    }
 
-   protected function getInput() {
+   protected function getInput()
+   {
       $html = array();
       $attr = '';
 
@@ -72,11 +74,9 @@ class JFormFieldAstroidModulesPosition extends JFormFieldList {
       $attr .= $this->multiple ? ' multiple' : '';
       $attr .= $this->required ? ' required aria-required="true"' : '';
       $attr .= $this->autofocus ? ' autofocus' : '';
-      //$attr .= $this->element['ngShow'] ? ' ng-show="' . AstroidFrameworkHelper::replaceRelationshipOperators($this->element['ngShow']) . '"' : '';
-      //$attr .= $this->element['ngHide'] ? ' ng-hide="' . AstroidFrameworkHelper::replaceRelationshipOperators($this->element['ngHide']) . '"' : '';
       $attr .= ' ng-model="' . $this->fieldname . '"';
       $attr .= ' data-fieldname="' . $this->fieldname . '"';
-      $attr .= $this->element['ngRequired'] ? ' ng-required="' . AstroidFrameworkHelper::replaceRelationshipOperators($this->element['ngRequired']) . '"' : '';
+      $attr .= $this->element['ngRequired'] ? ' ng-required="' . Astroid\Helper::replaceRelationshipOperators($this->element['ngRequired']) . '"' : '';
 
       if (isset($this->element['astroid-content-layout']) && !empty($this->element['astroid-content-layout'])) {
          $attr .= ' data-astroid-content-layout="' . $this->element['astroid-content-layout'] . '"';
@@ -126,5 +126,4 @@ class JFormFieldAstroidModulesPosition extends JFormFieldList {
 
       return implode($html);
    }
-
 }

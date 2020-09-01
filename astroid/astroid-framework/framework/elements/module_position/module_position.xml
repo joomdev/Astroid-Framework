@@ -2,7 +2,7 @@
 <element>
    <title>TPL_ASTROID_MODULE_POSITION_LABEL</title>
    <description>ASTROID_ELEMENT_MODULE_TITLE_DESC</description>
-   <icon>fa fa-cube</icon>
+   <icon>fas fa-cube</icon>
    <color>#00B8D8</color>
    <form>
       <fields>

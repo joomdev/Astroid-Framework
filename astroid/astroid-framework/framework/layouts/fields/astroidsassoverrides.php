@@ -2,11 +2,10 @@
 /**
  * @package   Astroid Framework
  * @author    JoomDev https://www.joomdev.com
- * @copyright Copyright (C) 2009 - 2019 JoomDev.
+ * @copyright Copyright (C) 2009 - 2020 JoomDev.
  * @license https://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
  */
 defined('JPATH_BASE') or die;
-jimport('astroid.framework.constants');
 extract($displayData);
 if (empty($value)) {
    $value = json_encode([]);
@@ -42,7 +41,7 @@ if (empty($value)) {
                   </div>
                </td>
                <td>
-                  <button ng-click="removeOverride(overrideIndex)" type="button" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                  <button ng-click="removeOverride(overrideIndex)" type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button>
                </td>
             </tr>
          </table>

@@ -3,7 +3,7 @@
 /**
  * @package   Astroid Framework
  * @author    JoomDev https://www.joomdev.com
- * @copyright Copyright (C) 2009 - 2019 JoomDev.
+ * @copyright Copyright (C) 2009 - 2020 JoomDev.
  * @license https://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
  */
 defined('_JEXEC') or die;
@@ -11,7 +11,7 @@ jimport('astroid.framework.constants');
 jimport('joomla.application.module.helper');
 jimport('astroid.framework.astroid');
 
-if(!defined('ASTROID_JOOMLA_VERSION')){
+if (!defined('ASTROID_JOOMLA_VERSION')) {
    $version = new \JVersion;
    $version = $version->getShortVersion();
    $version = substr($version, 0, 1);
@@ -199,7 +199,8 @@ class AstroidMenu
                         echo '</ul>';
                      }
                   }
-               } catch (\Exception $e) { }
+               } catch (\Exception $e) {
+               }
                echo '</div>';
             }
             echo '</div>';
@@ -490,7 +491,9 @@ class AstroidMenu
    public static function getLiClass($item, $options, $default_id, $active_id, $path)
    {
       $template = AstroidFramework::getTemplate();
+
       $header_endLevel = $template->params->get('header_endLevel', 0);
+
       $class = [];
       if ($item->level != 1) {
          $class[] = 'nav-item-submenu';

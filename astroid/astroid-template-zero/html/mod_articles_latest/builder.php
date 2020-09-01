@@ -2,7 +2,7 @@
 /**
  * @package   Astroid Framework
  * @author    JoomDev https://www.joomdev.com
- * @copyright Copyright (C) 2009 - 2019 JoomDev.
+ * @copyright Copyright (C) 2009 - 2020 JoomDev.
  * @license https://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
  */
 
@@ -20,11 +20,11 @@ defined('_JEXEC') or die;
 					<div class="item-title">
 
 						<div class="page-header">
-							<h2 itemprop="name">
+							<h4 itemprop="name">
 								<a href="<?php echo $item->link; ?>" itemprop="url">
 									<?php echo $item->title; ?>
 								</a>
-							</h2>
+							</h4>
 						</div>
 					</div>
 					<dl class="article-info muted">
@@ -35,8 +35,7 @@ defined('_JEXEC') or die;
 					</dl>
 					<?php echo $item->introtext; ?>
 					<div class="readmore">
-						<a class="btn btn-primary readmore-btn" href="<?php echo $item->link; ?>" itemprop="url" aria-label="Read more: <?php echo $item->title; ?>">
-							Read more ... </a>
+						<a class="btn btn-primary readmore-btn" href="<?php echo $item->link; ?>" itemprop="url"><?php echo JText::_('ASTROID_READ_MORE'); ?> </a>
 					</div>
 				</div>
 			</article>

@@ -2,7 +2,7 @@
 /**
  * @package   Astroid Framework
  * @author    JoomDev https://www.joomdev.com
- * @copyright Copyright (C) 2009 - 2019 JoomDev.
+ * @copyright Copyright (C) 2009 - 2020 JoomDev.
  * @license https://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
  */
 defined('JPATH_BASE') or die;
@@ -65,6 +65,6 @@ $attributes = array(
 <textarea <?php echo!empty($code) ? 'data-code="' . $code . '"' : ''; ?> name="<?php echo $name; ?>" id="<?php echo $id; ?>" <?php echo implode(' ', $attributes); ?> ><?php echo htmlspecialchars($value, ENT_COMPAT, 'UTF-8'); ?></textarea>
 <?php
 if (!empty($code)) {
-   echo '<div class="astroid-code-editor"><div class="overlay"></div><div class="head">' . $label . '<span class="astroid-code-editor-exit-fs"><i class="fa fa-compress"></i></span></div><div class="body"><div id="' . $id . '_editor"></div></div><span class="astroid-code-editor-fs"><i class="fa fa-expand"></i></span></div>';
+   echo '<div class="astroid-code-editor"><div class="overlay"></div><div class="head">' . $label . '<span class="astroid-code-editor-exit-fs"><i class="fas fa-compress"></i></span></div><div class="body"><div id="' . $id . '_editor"></div></div><span class="astroid-code-editor-fs"><i class="fas fa-expand"></i></span></div>';
 }
 ?>

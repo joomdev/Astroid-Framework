@@ -3,7 +3,7 @@
 /**
  * @package   Astroid Framework
  * @author    JoomDev https://www.joomdev.com
- * @copyright Copyright (C) 2009 - 2019 JoomDev.
+ * @copyright Copyright (C) 2009 - 2020 JoomDev.
  * @license https://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
  */
 // Check to ensure this file is included in Joomla!
@@ -34,7 +34,7 @@ class JFormFieldAstroidTypography extends JFormField
       }
 
       foreach (['font_size', 'font_size_unit', 'letter_spacing', 'letter_spacing_unit', 'line_height', 'line_height_unit'] as $responsiveField) {
-         if (!isset($value[$responsiveField]) || is_string($value[$responsiveField])) {
+         if (isset($value[$responsiveField]) && is_string($value[$responsiveField])) {
             $object = new \stdClass();
             $object->desktop = $value[$responsiveField];
             $object->tablet = $value[$responsiveField];

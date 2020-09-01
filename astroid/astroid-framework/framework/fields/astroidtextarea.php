@@ -1,7 +1,5 @@
 <?php
 
-jimport('astroid.framework.helper');
-
 /**
  * @package     Joomla.Platform
  * @subpackage  Form
@@ -166,9 +164,9 @@ class JFormFieldAstroidTextarea extends JFormField {
           'maxlength' => $maxlength,
           'rows' => $rows,
           'columns' => $columns,
-          'ngShow' => AstroidFrameworkHelper::replaceRelationshipOperators($this->element['ngShow']),
-          'ngHide' => AstroidFrameworkHelper::replaceRelationshipOperators($this->element['ngHide']),
-          'ngRequired' => AstroidFrameworkHelper::replaceRelationshipOperators($this->element['ngRequired']),
+          'ngShow' => Astroid\Helper::replaceRelationshipOperators($this->element['ngShow']),
+          'ngHide' => Astroid\Helper::replaceRelationshipOperators($this->element['ngHide']),
+          'ngRequired' => Astroid\Helper::replaceRelationshipOperators($this->element['ngRequired']),
           'code' => $this->element['code'],
       );
 

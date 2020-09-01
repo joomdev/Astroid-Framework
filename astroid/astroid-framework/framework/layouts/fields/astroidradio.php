@@ -2,7 +2,7 @@
 /**
  * @package   Astroid Framework
  * @author    JoomDev https://www.joomdev.com
- * @copyright Copyright (C) 2009 - 2019 JoomDev.
+ * @copyright Copyright (C) 2009 - 2020 JoomDev.
  * @license https://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
  */
 defined('JPATH_BASE') or die;
@@ -38,6 +38,7 @@ extract($displayData);
  * @var   array    $options         Options available for this field.
  */
 
+$template = Astroid\Framework::getTemplate();
 $imageRadio = false;
 if (isset($images) && $images == 'true') {
    $imageRadio = true;
@@ -85,7 +86,7 @@ $alt = preg_replace('/[^a-zA-Z0-9_\-]/', '_', $name);
          $optionclass = empty($optionclass) ? 'btn-success' : $optionclass;
          if ($imageRadio) {
             $optionclass = 'btn-light';
-            $optiontext = '<img ' . (!empty($imageWidth) ? 'width="' . $imageWidth . '"' : '') . ' src="' . JURI::root() . $optiontext . '" />' . (!empty($option->label) ? '<span>' . $option->label . '</span>' : '');
+            $optiontext = '<img ' . (!empty($imageWidth) ? 'width="' . $imageWidth . '"' : '') . ' src="' . JURI::root() . str_replace('TEMPLATE_NAME', $template->template, $optiontext) . '" />' . (!empty($option->label) ? '<span>' . $option->label . '</span>' : '');
          }
          ?>
          <?php echo sprintf($format, $oid, $name, $ovalue, implode(' ', $attributes), $optiontext, $ngClass, $optionclass); ?>

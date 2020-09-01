@@ -2,7 +2,7 @@
 /**
  * @package   Astroid Framework
  * @author    JoomDev https://www.joomdev.com
- * @copyright Copyright (C) 2009 - 2019 JoomDev.
+ * @copyright Copyright (C) 2009 - 2020 JoomDev.
  * @license https://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
  */
 defined('JPATH_BASE') or die;
@@ -83,7 +83,7 @@ $params = JComponentHelper::getParams('com_media');
    <div class="ezlb-pop" ng-media-class="{'open':selectMedia}">
       <div class="ezlb-pop-overlay"></div>
       <div class="ezlb-pop-body">
-         <div class="astroid-pop-loading astroid-fade-animation" ng-init="loading = false" ng-show='loading'><span><span class="fa fa-circle-notch fa-spin"></span></span></div>
+         <div class="astroid-pop-loading astroid-fade-animation" ng-init="loading = false" ng-show='loading'><span><span class="fas fa-circle-notch fa-spin"></span></span></div>
          <div class="ezlb-pop-header">
             <ul class="nav nav-tabs" role="tablist">
                <li class="nav-item">
@@ -93,14 +93,14 @@ $params = JComponentHelper::getParams('com_media');
                   <a class="nav-link" href="javascript:void(0);" id="astroid-media-tab-library-<?php echo $id; ?>" data-toggle="tab" data-target="#astroid-media-library-<?php echo $id; ?>" role="tab"><?php echo JText::_('TPL_ASTROID_MEDIA_LIB'); ?></a>
                </li>
             </ul>
-            <span class="dismiss" ng-click="selectMedia = false"><i class="fa fa-times"></i></span>
+            <span class="dismiss" ng-click="selectMedia = false"><i class="fas fa-times"></i></span>
          </div>
          <div class="">
             <div class="tab-content" id="astroid-media-tab-content">
                <div class="tab-pane show active" id="astroid-media-upload-<?php echo $id; ?>" role="tabpanel" aria-labelledby="astroid-media-tab-upload-<?php echo $id; ?>">
                   <div data-media="<?php echo $media; ?>" dropzone data-dropzone-dir="false" data-dropzone-id="<?php echo $id; ?>" class="dropzone astroid-dropzone">
                      <div class="dz-message">
-                        <div class="dz-message-icon"><i class="fa fa-cloud-upload-alt"></i></div>
+                        <div class="dz-message-icon"><i class="fas fa-cloud-upload-alt"></i></div>
                         <div class="dz-message-text"><?php echo JText::_('TPL_ASTROID_DROP_FILES'); ?></div>
                         <div class="dz-message-button"><span class="btn btn-dark btn-round"><?php echo JText::_('TPL_ASTROID_SELECT_FILES'); ?></span></div>
                      </div>
@@ -128,15 +128,15 @@ $params = JComponentHelper::getParams('com_media');
                            <div class="col-auto py-1">
                               <div class="btn-toolbar" role="toolbar">
                                  <div class="btn-group mr-1" role="group">
-                                    <a ng-click="newFolder('astroid-media-tab-library-<?php echo $id; ?>')" href="javascript:void(0);" class="btn btn-secondary"><i class="fa fa-plus"></i> <?php echo JText::_('TPL_ASTROID_NEW_FOLDER'); ?></a>
+                                    <a ng-click="newFolder('astroid-media-tab-library-<?php echo $id; ?>')" href="javascript:void(0);" class="btn btn-secondary"><i class="fas fa-plus"></i> <?php echo JText::_('TPL_ASTROID_NEW_FOLDER'); ?></a>
                                  </div>
                                  <div data-media="<?php echo $media; ?>" data-dropzone-dir="true" dropzone data-dropzone-id="<?php echo $id; ?>" class="dropzone btn-group p-0 border-0 mr-1" role="group">
                                     <div class="dz-message m-0">
-                                    <button type="button" class="dz-message-button btn btn-dark"><i class="fa fa-cloud-upload-alt"></i> <?php echo JText::_('TPL_ASTROID_UPLOAD_BTN_LBL');?></button>
+                                    <button type="button" class="dz-message-button btn btn-dark"><i class="fas fa-cloud-upload-alt"></i> <?php echo JText::_('TPL_ASTROID_UPLOAD_BTN_LBL');?></button>
                                     </div>
                                  </div>
                                  <div class="btn-group" role="group">
-                                    <a ng-click="getLibrary(folder, 'astroid-media-tab-library-<?php echo $id; ?>')" href="javascript:void(0);" class="btn btn-white"><i class="fa fa-sync-alt"></i> <?php echo JText::_('TPL_ASTROID_REFRESH'); ?></a>
+                                    <a ng-click="getLibrary(folder, 'astroid-media-tab-library-<?php echo $id; ?>')" href="javascript:void(0);" class="btn btn-white"><i class="fas fa-sync-alt"></i> <?php echo JText::_('TPL_ASTROID_REFRESH'); ?></a>
                                  </div>
                               </div>
                            </div>
@@ -145,7 +145,7 @@ $params = JComponentHelper::getParams('com_media');
                         <div class="file-manager mb-5">
                            <div class="row">
                               <div ng-click="getLibrary(folder.path_relative,'astroid-media-tab-library-<?php echo $id; ?>')" class="col-2 file-manager-item file-manager-folder" ng-repeat="folder in gallery.folders">
-                                 <span class="icon d-flex fa fa-folder align-items-center justify-content-center"></span>
+                                 <span class="icon d-flex fas fa-folder align-items-center justify-content-center"></span>
                                  <span class="name">{{ folder.name}}</span>
                               </div>
                               <div ng-click="selectImage('<?php echo $id; ?>', image.path_relative)" class="col-2 file-manager-item file-manager-image" ng-repeat="image in gallery.<?php echo $media; ?>">
@@ -154,7 +154,7 @@ $params = JComponentHelper::getParams('com_media');
                                     <img ng-src="{{ getImgUrl(image.path_relative)}}" />
                                     <?php } ?>
                                     <?php if($media=='videos'){ ?>
-                                    <span class="icon d-flex fa fa-video align-items-center justify-content-center"></span>
+                                    <span class="icon d-flex fas fa-video align-items-center justify-content-center"></span>
                                     <?php } ?>
                                  </span>
                                  <span class="name">{{ image.name}}</span>
@@ -168,7 +168,7 @@ $params = JComponentHelper::getParams('com_media');
                      <!--<div class="col-3">
                         <div style="min-height:400px;" data-dropzone-dir="true" dropzone data-dropzone-id="<?php echo $id; ?>" class="dropzone astroid-dropzone">
                            <div class="dz-message">
-                              <div class="dz-message-icon"><i class="fa fa-cloud-upload-alt"></i></div>
+                              <div class="dz-message-icon"><i class="fas fa-cloud-upload-alt"></i></div>
                               <div class="dz-message-text"><?php echo JText::_('TPL_ASTROID_DROP_FILES'); ?></div>
                               <div class="dz-message-button"><span class="btn btn-dark btn-round"><?php echo JText::_('TPL_ASTROID_SELECT_FILES'); ?></span></div>
                            </div>

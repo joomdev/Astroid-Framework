@@ -162,7 +162,7 @@ class AstroidFrameworkHelper
          require_once JPATH_LIBRARIES . '/' . 'astroid' . '/' . 'framework' . '/' . 'library' . '/' . 'scssphp' . '/' . 'scss.inc.php';
          $scss = new Compiler();
          $scss->setImportPaths($sass_path);
-         $scss->setFormatter('Leafo\ScssPhp\Formatter\Compressed');
+         $scss->setFormatter('ScssPhp\ScssPhp\Formatter\Compressed');
          if (!empty($variables)) {
             $scss->setVariables($variables);
          }

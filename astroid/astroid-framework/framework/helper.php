@@ -13,7 +13,7 @@ jimport('joomla.filesystem.file');
 jimport('joomla.filesystem.folder');
 jimport('joomla.filesystem.element');
 
-use Leafo\ScssPhp\Compiler;
+use ScssPhp\ScssPhp\Compiler;
 
 \JModelLegacy::addIncludePath(JPATH_ADMINISTRATOR . '/components/com_cache/models', 'CacheModel');
 

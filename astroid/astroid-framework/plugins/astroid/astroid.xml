@@ -42,7 +42,4 @@
          </fieldset>
       </fields>
    </config>
-   <updateservers>
-      <server type="extension" name="astroid_framework" priority="1">https://cdn.joomdev.com/updates/astroid_system_plugin.xml</server>
-   </updateservers>
 </extension>

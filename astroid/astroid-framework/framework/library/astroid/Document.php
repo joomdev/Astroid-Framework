@@ -56,7 +56,8 @@ class Document
         if (Framework::isAdmin() && file_exists(JPATH_LIBRARIES . '/astroid/framework/layouts/' . $name . '.php')) {
             $path = JPATH_LIBRARIES . '/astroid/framework/layouts';
         } else {
-            foreach (self::$_layout_paths as $layout_path) {
+            $layout_paths = array_reverse(self::$_layout_paths);
+            foreach ($layout_paths as $layout_path) {
                 $layout_path = substr($layout_path, -1) == '/' ? $layout_path : $layout_path . '/';
                 if (file_exists($layout_path . $name . '.php')) {
                     $path = $layout_path;

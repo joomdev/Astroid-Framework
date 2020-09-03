@@ -40,7 +40,6 @@ class Document
 
 
         $template = Framework::getTemplate();
-        $this->addLayoutPath(JPATH_LIBRARIES . '/astroid/framework/frontend/');
         $this->addLayoutPath(JPATH_SITE . '/templates/' . $template->template . '/html/frontend/');
     }
 
@@ -56,7 +55,8 @@ class Document
         if (Framework::isAdmin() && file_exists(JPATH_LIBRARIES . '/astroid/framework/layouts/' . $name . '.php')) {
             $path = JPATH_LIBRARIES . '/astroid/framework/layouts';
         } else {
-            $layout_paths = array_reverse(self::$_layout_paths);
+            $layout_paths = self::$_layout_paths;
+            $layout_paths[] = JPATH_LIBRARIES . '/astroid/framework/frontend/';
             foreach ($layout_paths as $layout_path) {
                 $layout_path = substr($layout_path, -1) == '/' ? $layout_path : $layout_path . '/';
                 if (file_exists($layout_path . $name . '.php')) {

@@ -144,9 +144,15 @@ class Document
 
     public function _cssPath($file)
     {
+        $site_path = parse_url(\JURI::root(), PHP_URL_PATH);
+
+        if (Helper::startsWith($file, $site_path)) {
+            $file = preg_replace('/' . preg_quote($site_path, '/') . '/', '/', $file, 1);
+        }
+
         $file_info = parse_url($file);
         if (isset($file_info['host'])) {
-            if ($file_info['host'] == parse_url(\JURI::root())['host']) {
+            if ($file_info['host'] == parse_url(\JURI::root(), PHP_URL_HOST)) {
                 $file = strtok($file, '?');
                 $file = str_replace(\JURI::root(), '', $file);
                 return $file;

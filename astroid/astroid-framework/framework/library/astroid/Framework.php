@@ -33,6 +33,7 @@ abstract class Framework
         self::$document = new Document(); // Document
 
         self::constants();
+        self::audit();
     }
 
     public static function getVersion()
@@ -123,6 +124,15 @@ abstract class Framework
             if (!empty($redirect)) {
                 $app->redirect(base64_decode(urldecode($redirect)));
             }
+        }
+    }
+
+    public static function audit()
+    {
+        $template = Framework::getTemplate();
+        if (ASTROID_JOOMLA_VERSION == 4 && $template->isAstroid && file_exists(JPATH_SITE . "/templates/{$template->template}/html-j4")) {
+            rename(JPATH_SITE . "/templates/{$template->template}/html", JPATH_SITE . "/templates/{$template->template}/html-j3");
+            rename(JPATH_SITE . "/templates/{$template->template}/html-j4", JPATH_SITE . "/templates/{$template->template}/html");
         }
     }
 

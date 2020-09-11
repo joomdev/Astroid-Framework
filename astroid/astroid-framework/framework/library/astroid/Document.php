@@ -29,6 +29,7 @@ class Document
     protected $minify_js = false;
     protected $minify_html = false;
     protected static $_fontawesome = false;
+    protected static $_layout_paths = [];
 
     public function __construct()
     {
@@ -36,20 +37,36 @@ class Document
         $this->minify_css = $params->get('minify_css', false);
         $this->minify_js = $params->get('minify_js', false);
         $this->minify_html = $params->get('minify_html', false);
+
+
+        $template = Framework::getTemplate();
+        $this->addLayoutPath(JPATH_SITE . '/templates/' . $template->template . '/html/frontend/');
+    }
+
+    public function addLayoutPath($path)
+    {
+        self::$_layout_paths[] = $path;
     }
 
     public function include($section, $data = [], $return = false)
     {
-        $template = Framework::getTemplate();
         $path = null;
         $name = str_replace('.', '/', $section);
         if (Framework::isAdmin() && file_exists(JPATH_LIBRARIES . '/astroid/framework/layouts/' . $name . '.php')) {
             $path = JPATH_LIBRARIES . '/astroid/framework/layouts';
-        } else if (file_exists(JPATH_SITE . '/templates/' . $template->template . '/html/frontend/' . $name . '.php')) {
-            $path = JPATH_SITE . '/templates/' . $template->template . '/html/frontend';
-        } else if (file_exists(JPATH_LIBRARIES . '/astroid/framework/frontend/' . $name . '.php')) {
-            $path = JPATH_LIBRARIES . '/astroid/framework/frontend';
         } else {
+            $layout_paths = self::$_layout_paths;
+            $layout_paths[] = JPATH_LIBRARIES . '/astroid/framework/frontend/';
+            foreach ($layout_paths as $layout_path) {
+                $layout_path = substr($layout_path, -1) == '/' ? $layout_path : $layout_path . '/';
+                if (file_exists($layout_path . $name . '.php')) {
+                    $path = $layout_path;
+                    break;
+                }
+            }
+        }
+
+        if ($path === null) {
             return '';
         }
 
@@ -127,9 +144,15 @@ class Document
 
     public function _cssPath($file)
     {
+        $site_path = parse_url(\JURI::root(), PHP_URL_PATH);
+
+        if (Helper::startsWith($file, $site_path)) {
+            $file = preg_replace('/' . preg_quote($site_path, '/') . '/', '/', $file, 1);
+        }
+
         $file_info = parse_url($file);
         if (isset($file_info['host'])) {
-            if ($file_info['host'] == parse_url(\JURI::root())['host']) {
+            if ($file_info['host'] == parse_url(\JURI::root(), PHP_URL_HOST)) {
                 $file = strtok($file, '?');
                 $file = str_replace(\JURI::root(), '', $file);
                 return $file;
@@ -147,9 +170,15 @@ class Document
 
     public function _jsPath($file)
     {
+        $site_path = parse_url(\JURI::root(), PHP_URL_PATH);
+
+        if (Helper::startsWith($file, $site_path)) {
+            $file = preg_replace('/' . preg_quote($site_path, '/') . '/', '/', $file, 1);
+        }
+
         $file_info = parse_url($file);
         if (isset($file_info['host'])) {
-            if ($file_info['host'] == parse_url(\JURI::root())['host']) {
+            if ($file_info['host'] == parse_url(\JURI::root(), PHP_URL_HOST)) {
                 $file = strtok($file, '?');
                 $file = str_replace(\JURI::root(), '', $file);
                 return $file;

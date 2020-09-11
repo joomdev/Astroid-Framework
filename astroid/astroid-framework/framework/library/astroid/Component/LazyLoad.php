@@ -248,24 +248,29 @@ class LazyLoad
     public static function selectedClasses(&$matches, $classes = '', $toggle = '')
     {
         $classes = array_map('trim', explode("\n", $classes));
-
         foreach ($matches[0] as $key => $match) {
+            $classExists = false;
+
             foreach ($classes as $classname) {
-                $classExists = preg_match('@class=[\"\'].*' . $classname . '.*[\"\']@Ui', $match);
-
-                if ($toggle == 'include') {
-                    if (empty($classExists)) {
-                        unset($matches[0][$key]);
-                        unset($matches[1][$key]);
-                    }
-
-                    continue;
+                $exists = preg_match('@class=[\"\'].*' . $classname . '.*[\"\']@Ui', $match);
+                if (!empty($exists)) {
+                    $classExists = true;
+                    break;
                 }
+            }
 
-                if (!empty($classExists)) {
+            if ($toggle == 'include') {
+                if (!$classExists) {
                     unset($matches[0][$key]);
                     unset($matches[1][$key]);
                 }
+
+                continue;
+            }
+
+            if (!empty($classExists)) {
+                unset($matches[0][$key]);
+                unset($matches[1][$key]);
             }
         }
     }

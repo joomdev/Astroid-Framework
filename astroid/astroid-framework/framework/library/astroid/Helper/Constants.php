@@ -14,7 +14,7 @@ defined('_JEXEC') or die;
 class Constants 
 {
     public static $astroid_version = '2.4.1';
-    public static $fontawesome_version = '5.12.1';
+    public static $fontawesome_version = '5.14.0';
     public static $animatecss_version = '3.7.0';
     public static $forum_link = 'https://www.joomdev.com/forum/astroid-framework';
     public static $documentation_link = 'https://docs.joomdev.com/category/astroid-user-manual/';

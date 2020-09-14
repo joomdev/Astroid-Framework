@@ -2,10 +2,10 @@
    "title": "Raspberry",
    "thumbnail": "astroid/presets/raspberry.jpg",
    "colors": {
-      "preloader_color": "rgb(69, 191, 85)",
+      "preloader_color": "rgb(255, 51, 102)",
       "preloader_bgcolor": "rgb(255, 255, 255)",
       "backtotop_icon_color": "rgb(255, 255, 255)",
-      "backtotop_icon_bgcolor": "rgb(69, 191, 85)",
+      "backtotop_icon_bgcolor": "rgb(255, 51, 102)",
       "body_background_color": "rgb(255, 255, 255)",
       "body_text_color": "rgb(44, 46, 54)",
       "body_link_color": "rgb(44, 46, 54)",

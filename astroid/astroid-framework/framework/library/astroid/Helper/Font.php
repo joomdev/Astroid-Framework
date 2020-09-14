@@ -41,6 +41,11 @@ class Font
         $app = \JFactory::getApplication();
         $fonts = Helper::getJSONData('webfonts');
         $options = [];
+
+        if (!isset($fonts['items'])) {
+            return $options;
+        }
+
         foreach ($fonts['items'] as $font) {
             $variants = [];
             if (count($font['variants']) > 1) {

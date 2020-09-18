@@ -335,6 +335,30 @@ class Utility
 
         $document->addCustomTag($params->get('beforehead', ''));
         $document->addCustomTag($params->get('beforebody', ''), 'body');
+
+        // Page level custom code
+        $app = \JFactory::getApplication();
+        $itemid = $app->input->get('Itemid', '', 'INT');
+        $menu = $app->getMenu();
+        $item = $menu->getItem($itemid);
+        $params = $item->getParams();
+
+        $document->addCustomTag($params->get('astroid_trackingcode', ''));
+        $document->addStyleDeclaration($params->get('astroid_customcss', ''));
+
+        $customcssfiles = explode("\n", $params->get('astroid_customcssfiles'));
+
+        foreach ($customcssfiles as $customcssfile) {
+            @list($file, $shift) = \explode('|', $customcssfile);
+            $shift = $shift ? $shift : 0;
+            $document->addStyleSheet($file, ['rel' => 'stylesheet', 'type' => 'text/css'], $shift);
+        }
+
+        $document->addScriptdeclaration($params->get('astroid_customjs', ''));
+        $document->addScript(explode("\n", $params->get('astroid_customjsfiles', '')));
+
+        $document->addCustomTag($params->get('astroid_beforehead', ''));
+        $document->addCustomTag($params->get('astroid_beforebody', ''), 'body');
     }
 
     public static function error()

@@ -10,6 +10,7 @@
 namespace Astroid\Helper;
 
 use Astroid\Framework;
+use Astroid\Helper;
 
 defined('_JEXEC') or die;
 

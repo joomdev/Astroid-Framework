@@ -779,7 +779,7 @@ class Document
         $this->_styles[$device][] = trim($content);
     }
 
-    public function addStyleSheet($url, $attribs = ['rel' => 'stylesheet', 'type' => 'text/css'])
+    public function addStyleSheet($url, $attribs = ['rel' => 'stylesheet', 'type' => 'text/css'], $shifted = 0)
     {
         if (!is_array($url)) {
             $url = [$url];
@@ -792,7 +792,7 @@ class Document
         }
         foreach ($url as $u) {
             if (!empty(trim($u))) {
-                $stylesheet = ['url' => $u, 'attribs' => $attribs];
+                $stylesheet = ['url' => $u, 'attribs' => $attribs, 'shifted' => $shifted];
                 $this->_stylesheets[md5($u)] = $stylesheet;
             }
         }
@@ -814,15 +814,31 @@ class Document
         Helper\Font::loadFontAwesome();
     }
 
+    public function moveFile(&$array, $a, $b)
+    {
+        $out = array_splice($array, $a, 1);
+        array_splice($array, $b, 0, $out);
+    }
+
     public function getStylesheets()
     {
+        $keys = array_keys($this->_stylesheets);
+
+        foreach ($keys as $index => $key) {
+            if ($this->_stylesheets[$key]['shifted']) {
+                $newindex = $index + $this->_stylesheets[$key]['shifted'];
+                $this->moveFile($keys, $index, $newindex);
+            }
+        }
+
         $content = '';
-        foreach ($this->_stylesheets as $stylesheet) {
+        foreach ($keys as $key) {
+            $stylesheet = $this->_stylesheets[$key];
             $content .= '<link href="' . $this->_systemUrl($stylesheet['url']) . '"';
             foreach ($stylesheet['attribs'] as $prop => $value) {
                 $content .= ' ' . $prop . '="' . $value . '"';
             }
-            $content .= ' />';
+            $content .= ' />' . "\n";
         }
         return $content;
     }

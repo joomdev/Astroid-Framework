@@ -223,7 +223,7 @@ class Utility
 
         // Dropdown Menu
         $dropdown = Style::addCssBySelector('.megamenu-container', 'background-color', $params->get('dropdown_bg_color', ''));
-        
+
         $submenuDropdown = Style::addCssBySelector('.megamenu-container .nav-submenu .nav-submenu', 'background-color', $params->get('dropdown_bg_color', ''));
 
         Style::addCssBySelector('.has-megamenu.open .arrow', 'border-bottom-color', $params->get('dropdown_bg_color', ''));
@@ -321,7 +321,14 @@ class Utility
 
         $document->addCustomTag($params->get('trackingcode', ''));
         $document->addStyleDeclaration($params->get('customcss', ''));
-        $document->addStyleSheet(explode("\n", $params->get('customcssfiles', '')));
+
+        $customcssfiles = explode("\n", $params->get('customcssfiles'));
+
+        foreach ($customcssfiles as $customcssfile) {
+            @list($file, $shift) = \explode('|', $customcssfile);
+            $shift = $shift ? $shift : 0;
+            $document->addStyleSheet($file, ['rel' => 'stylesheet', 'type' => 'text/css'], $shift);
+        }
 
         $document->addScriptdeclaration($params->get('customjs', ''));
         $document->addScript(explode("\n", $params->get('customjsfiles', '')));

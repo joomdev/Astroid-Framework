@@ -499,6 +499,11 @@ class Document
         return $return;
     }
 
+    public function hasModule($position, $module)
+    {
+        return in_array($module, array_column(\JModuleHelper::getModules($position), 'module'));
+    }
+
     public function loadModule($content)
     {
         // Expression to search for(module Position)

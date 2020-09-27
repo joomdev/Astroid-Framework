@@ -30,6 +30,7 @@ class Document
     protected $minify_html = false;
     protected static $_fontawesome = false;
     protected static $_layout_paths = [];
+    protected $type = null;
 
     public function __construct()
     {
@@ -38,9 +39,16 @@ class Document
         $this->minify_js = $params->get('minify_js', false);
         $this->minify_html = $params->get('minify_html', false);
 
+        $doc = \JFactory::getDocument();
+        $this->type = $doc->getType();
 
         $template = Framework::getTemplate();
         $this->addLayoutPath(JPATH_SITE . '/templates/' . $template->template . '/html/frontend/');
+    }
+
+    public function getType()
+    {
+        return $this->type;
     }
 
     public function addLayoutPath($path)
@@ -103,25 +111,16 @@ class Document
     {
         $app = \JFactory::getApplication();
         $body = $app->getBody();
-		
-		// Stop Minification for RSSFeeds and other doc types.
-		$doc = \JFactory::getDocument();
-		if($doc->getType() == 'feed') {
-			$this->minify_css = false;
-			$this->minify_js = false;
-			$this->minify_html = false;
-		}
-        if ($this->minify_css) {
-            $body = $this->minifyCSS($body);
-        }
 
-        if ($this->minify_js && !$this->isFrontendEditing()) {
-            $body = $this->minifyJS($body);
-        }
+        // Stop Minification for RSSFeeds and other doc types.
+        if ($this->type == 'feed') $this->minify_css = $this->minify_js = $this->minify_html = false;
 
-        if ($this->minify_html) {
-            $body = $this->minifyHTML($body);
-        }
+        if ($this->minify_css) $body = $this->minifyCSS($body);
+
+        if ($this->minify_js && !$this->isFrontendEditing()) $body = $this->minifyJS($body);
+
+        if ($this->minify_html) $body = $this->minifyHTML($body);
+        
         $app->setBody($body);
     }
 

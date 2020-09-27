@@ -103,7 +103,14 @@ class Document
     {
         $app = \JFactory::getApplication();
         $body = $app->getBody();
-
+		
+		// Stop Minification for RSSFeeds and other doc types.
+		$doc = \JFactory::getDocument();
+		if($doc->getType() == 'feed') {
+			$this->minify_css = false;
+			$this->minify_js = false;
+			$this->minify_html = false;
+		}
         if ($this->minify_css) {
             $body = $this->minifyCSS($body);
         }

@@ -23,6 +23,11 @@ class LazyLoad
         $template = Framework::getTemplate();
         $params = $template->getParams();
         $run = $params->get('lazyload', 0);
+		// Stop Lazy Load for RSSFeeds
+		$doc = \JFactory::getDocument();
+		if($doc->getType() == 'feed') {
+			$run = false;
+		}
         Helper::createDir(ASTROID_CACHE . '/lazy-load/' . $template->id);
         if (!$run) {
             return;

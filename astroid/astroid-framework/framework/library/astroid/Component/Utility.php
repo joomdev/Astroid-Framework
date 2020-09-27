@@ -339,6 +339,9 @@ class Utility
         // Page level custom code
         $app = \JFactory::getApplication();
         $itemid = $app->input->get('Itemid', '', 'INT');
+		if(empty($itemid)) {
+			return false;
+		}
         $menu = $app->getMenu();
         $item = $menu->getItem($itemid);
         $params = $item->getParams();

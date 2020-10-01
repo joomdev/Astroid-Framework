@@ -15,7 +15,6 @@ use Astroid\Framework;
 
 if (ASTROID_JOOMLA_VERSION == 3) {
     \JLoader::register('ModMenuHelper', JPATH_SITE . '/modules/mod_menu/helper.php');
-    //\JLoader::registerAlias('MenuHelper', 'ModMenuHelper');
 } else {
     \JLoader::registerAlias('MenuHelper', '\\Joomla\\Module\\Menu\\Site\\Helper\\MenuHelper');
 }
@@ -622,10 +621,10 @@ class Menu
         $menu_params = new \JRegistry();
         $menu_params->loadString($header_menu_params);
 
-        $list = \MenuHelper::getList($menu_params);
-        $base = \MenuHelper::getBase($menu_params);
-        $active = \MenuHelper::getActive($menu_params);
-        $default = \MenuHelper::getDefault();
+        $list = \ModMenuHelper::getList($menu_params);
+        $base = \ModMenuHelper::getBase($menu_params);
+        $active = \ModMenuHelper::getActive($menu_params);
+        $default = \ModMenuHelper::getDefault();
 
         $active_id = $active->id;
         $default_id = $default->id;

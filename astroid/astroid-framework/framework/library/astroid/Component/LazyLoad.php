@@ -21,14 +21,18 @@ class LazyLoad
         Framework::getDebugger()->log('Lazy Load');
         $app = \JFactory::getApplication();
         $template = Framework::getTemplate();
+        $document = Framework::getDocument();
         $params = $template->getParams();
         $run = $params->get('lazyload', 0);
-        Helper::createDir(ASTROID_CACHE . '/lazy-load/' . $template->id);
-        if (!$run) {
-            return;
-        }
 
-        Framework::getDocument()->addScript('vendor/astroid/js/lazyload.min.js');
+        // Stop Lazy Load for RSSFeeds
+        if ($document->getType() == 'feed') $run = false;
+
+        // Stop Lazy Load
+        if (!$run) return;
+
+        Helper::createDir(ASTROID_CACHE . '/lazy-load/' . $template->id);
+        $document->addScript('vendor/astroid/js/lazyload.min.js');
 
         if ($params->get('lazyload_components', '')) {
             $run = self::selectedComponents($params->get('lazyload_components', ''), $params->get('lazyload_components_action', 'include'));
@@ -91,7 +95,7 @@ class LazyLoad
                 }
 
                 if (Framework::getDebugger()->debug) {
-                    Framework::getReporter('Lazy Load Images')->add('<a href="' . $matches[1][$key] . '" target="_blank"><code>' . Framework::getDocument()->beutifyURL($matches[1][$key]) . '</code></a>');
+                    Framework::getReporter('Lazy Load Images')->add('<a href="' . $matches[1][$key] . '" target="_blank"><code>' . $document->beutifyURL($matches[1][$key]) . '</code></a>');
                 }
 
                 if (!isset($imageMap[md5($matches[1][$key])])) {

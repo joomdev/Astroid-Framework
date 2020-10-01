@@ -21,9 +21,13 @@ if (!$header || !$enable_offcanvas) {
    return;
 }
 
-$document->addScript('vendor/astroid/js/offcanvas.js', 'body');
-
 $module_position = 'offcanvas';
+$document->addScript('vendor/astroid/js/offcanvas.js', 'body');
+$hasMenu = $document->hasModule($module_position, 'mod_menu');
+if ($hasMenu) {
+   $document->addScript('vendor/astroid/js/mobilemenu.js', 'body');
+}
+
 $togglevisibility = $params->get('offcanvas_togglevisibility', 'd-block');
 $effect = $params->get('offcanvas_animation', 'st-effect-1');
 $panelwidth = $params->get('offcanvas_panelwidth', '320px');

@@ -10,6 +10,7 @@
 namespace Astroid\Helper;
 
 use Astroid\Framework;
+use Astroid\Helper;
 
 defined('_JEXEC') or die;
 
@@ -42,11 +43,13 @@ class Head
         $app = \JFactory::getApplication();
         $layout = $app->input->get('layout', '', 'STRING');
 
-        if ($layout !== 'edit') {
+        $getPluginParams = Helper::getPluginParams();
+
+        if ($layout !== 'edit' && $getPluginParams->get('astroid_bootstrap_js', 1)) {
             $document->addScript('vendor/bootstrap/js/popper.min.js', 'body');
             $document->addScript('vendor/bootstrap/js/bootstrap.min.js', 'body');
         }
-        
+
         $document->addScript('vendor/jquery/jquery.noConflict.js', 'body');
     }
 

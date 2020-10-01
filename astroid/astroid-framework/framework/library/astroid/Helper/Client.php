@@ -169,6 +169,7 @@ class Client
             $form->loadFile('menu', false);
             $form->loadFile('banner', false);
             $form->loadFile('og', false);
+            $form->loadFile('custom', false);
             $loaded = true;
         }
 

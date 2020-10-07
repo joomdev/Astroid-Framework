@@ -83,3 +83,4 @@ if ($header && !empty($header_mode) && $header_mode != 'sidebar') {
 $document->include('preloader'); // load preloader 
 ?>
 <?php Astroid\Framework::getDebugger()->log('Render Body'); ?>
+<jdoc:include type="modules" name="debug" style="none" />

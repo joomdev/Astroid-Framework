@@ -61,4 +61,22 @@ class Video
         }
         return self::$method($id, $meta);
     }
+
+    public static function getVideoThumbnailByTypeUrl($type = '', $url = '')
+    {
+        $thumbnail = '';
+        $id = self::_id($type, $url);
+        if (empty($id)) return $thumbnail;
+
+        switch ($type) {
+            case 'youtube':
+                $thumbnail = 'https://i.ytimg.com/vi/' . $id . '/maxresdefault.jpg';
+                break;
+            case 'vimeo':
+                $thumbnail = 'https://i.vimeocdn.com/video/' . $id . '_640.webp';
+                break;
+        }
+
+        return $thumbnail;
+    }
 }

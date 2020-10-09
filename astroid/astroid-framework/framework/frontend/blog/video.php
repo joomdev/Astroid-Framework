@@ -23,9 +23,12 @@ if (empty($content)) {
    return;
 }
 ?>
-<div itemprop="video" itemscope itemtype="https://schema.org/VideoObject" class="embed-responsive embed-responsive-16by9 article-video">
+<div itemprop="VideoObject" itemscope itemtype="https://schema.org/VideoObject" class="embed-responsive embed-responsive-16by9 article-video">
+   <?php echo $content; ?>
    <meta itemprop="name" content="<?php echo $article->title; ?>" />
+   <meta itemprop="embedUrl" content="<?php echo $url; ?>" />
+   <meta itemprop="contentUrl" content="<?php echo $url; ?>" />
    <meta itemprop="description" content="<?php echo \strip_tags($article->introtext); ?>" />
-   <meta itemprop="uploadDate" content="<?php echo \strip_tags($article->introtext); ?>" />
+   <meta itemprop="uploadDate" content="<?php echo date('Y-m-d', strtotime($article->publish_up)) . 'T' . date('H:i:s', strtotime($article->publish_up)); ?>" />
    <meta itemprop="thumbnailUrl" content="<?php echo $thumbnail; ?>" />
 </div>

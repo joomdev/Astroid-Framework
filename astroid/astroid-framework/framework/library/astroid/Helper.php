@@ -13,8 +13,6 @@ defined('_JEXEC') or die;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-\JModelLegacy::addIncludePath(JPATH_ADMINISTRATOR . '/components/com_cache/models', 'CacheModel');
-
 class Helper
 {
     public static function loadLanguage($extension, $client = 'site')
@@ -202,14 +200,12 @@ class Helper
     public static function clearJoomlaCache()
     {
         $app = \JFactory::getApplication();
-        $model = \JModelLegacy::getInstance('Cache', 'CacheModel', array('ignore_request' => true));
-        $clients    = array(1, 0);
-        foreach ($clients as $client) {
-            $mCache = $model->getCache($client);
-            foreach ($mCache->getAll() as $cache) {
-                $mCache->clean($cache->group);
-            }
-        }
+        $conf = \JFactory::getConfig();
+        $options = array(
+            'cachebase' => $conf->get('cache_path', JPATH_SITE . '/cache')
+        );
+        $cache = \JCache::getInstance('callback', $options);
+        $cache->clean(null, 'notgroup');
         $app->triggerEvent('onAfterPurge', array());
     }
 

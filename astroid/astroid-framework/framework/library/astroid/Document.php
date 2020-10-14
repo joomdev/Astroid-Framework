@@ -120,7 +120,7 @@ class Document
         if ($this->minify_js && !$this->isFrontendEditing()) $body = $this->minifyJS($body);
 
         if ($this->minify_html) $body = $this->minifyHTML($body);
-        
+
         $app->setBody($body);
     }
 
@@ -837,7 +837,7 @@ class Document
 
         foreach ($keys as $index => $key) {
             if ($this->_stylesheets[$key]['shifted']) {
-                $newindex = $index + $this->_stylesheets[$key]['shifted'];
+                $newindex = $index + (int) $this->_stylesheets[$key]['shifted'];
                 $this->moveFile($keys, $index, $newindex);
             }
         }

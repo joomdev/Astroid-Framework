@@ -1051,38 +1051,42 @@ class Document
         // Scss
         if (Framework::isSite()) {
             $template = Framework::getTemplate();
-            $scssVersion = md5(serialize($template->getThemeVariables()) . $template->id . self::scssHash());
-            $scssFile = ASTROID_CACHE . '/compiled/' . $template->id . '-' . $scssVersion . '.css';
 
-            if (!file_exists($scssFile)) {
+            // scss compile version
+            $scssVersion = md5(serialize($template->getThemeVariables())  . self::scssHash());
+
+            // css file to be generated in template folder
+            $cssFile = ASTROID_TEMPLATE_PATH . '/css/compiled-' .  $scssVersion . '.css';
+
+            // $scssFile = ASTROID_CACHE . '/compiled/' . $template->id . '-' . $scssVersion . '.css';
+
+            if (!file_exists($cssFile)) {
+                // rendering scss
                 Framework::getReporter('Logs')->add('Rendering Scss');
+                // clearing previous versions
                 Helper::clearCache($template->template, ['compiled']);
-                $this->renderScss($scssFile);
+                // adding compiled scss in css file
+                $this->renderScss($cssFile);
             } else {
-                Framework::getReporter('Logs')->add('Getting SCSS Compiled CSS <code>' . str_replace(JPATH_SITE . '/', '', $scssFile) . '</code> from cache.');
+                // logging compiled scss
+                Framework::getReporter('Logs')->add('Getting SCSS Compiled CSS <code>' . str_replace(JPATH_SITE . '/', '', $cssFile) . '</code> from cache.');
             }
+            // adding compiled scss
+            $this->addStyleSheet('css/compiled-' . $scssVersion . '.css');
         }
 
         if (Helper::getPluginParams()->get('astroid_debug', 0)) {
             $this->addStyleSheet('vendor/astroid/css/debug.css');
         }
-        // css
+        // css on page
         $css = $this->renderCss();
-
         if (Framework::isSite()) {
-            $cssVersion = md5(md5_file($scssFile) . md5($css) . $template->id);
-            $cssFile = ASTROID_TEMPLATE_PATH . '/css/compiled-' . $cssVersion . '.css';
-            if (!file_exists($cssFile)) {
-                Helper::clearCache($template->template, ['compiled']);
-                Helper::putContents($cssFile, file_get_contents($scssFile) . $css);
-            } else {
-                Framework::getReporter('Logs')->add('Getting Compiled CSS <code>' . str_replace(JPATH_SITE . '/', '', $cssFile) . '</code> from cache.');
-            }
-            $this->addStyleSheet('css/compiled-' . $cssVersion . '.css');
+            // custom css
             if (file_exists(ASTROID_TEMPLATE_PATH . '/css/custom.css')) {
                 $this->addStyleSheet('css/custom.css');
             }
-            return '';
+            // return page css
+            return '<style type="text/css">' . $css . '</style>';
         } else {
             $minifier = new Minify\CSS($css);
             return '<style type="text/css">' . $minifier->minify() . '</style>';

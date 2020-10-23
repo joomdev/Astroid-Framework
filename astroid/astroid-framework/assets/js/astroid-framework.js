@@ -612,19 +612,19 @@ astroidFramework.directive("astroidSwitch", function () {
          };
          var updateElementFromModel = function () {
             if (ngModel.$viewValue == 1) {
-               $($element).siblings(".custom-toggle").children(".custom-control-input").prop("checked", true);
+               $($element).siblings(".ast-custom-toggle").children(".ast-custom--control-input").prop("checked", true);
                $element.val(1)
             } else {
-               $($element).siblings(".custom-toggle").children(".custom-control-input").prop("checked", false);
+               $($element).siblings(".ast-custom-toggle").children(".ast-custom-control-input").prop("checked", false);
                $element.val(0)
             }
          };
          var initElementFromModel = function () {
             if ($element.val() == 1) {
-               $($element).siblings(".custom-toggle").children(".custom-control-input").prop("checked", true);
+               $($element).siblings(".ast-custom-toggle").children(".ast-custom-control-input").prop("checked", true);
                ngModel.$setViewValue(1)
             } else {
-               $($element).siblings(".custom-toggle").children(".custom-control-input").prop("checked", false);
+               $($element).siblings(".ast-custom-toggle").children(".ast-custom-control-input").prop("checked", false);
                ngModel.$setViewValue(0)
             }
          };
@@ -633,8 +633,8 @@ astroidFramework.directive("astroidSwitch", function () {
          $element.removeAttr("id")
          $element.wrap("<div/>");
          var _container = $element.parent("div");
-         $(_container).append('<div class="custom-control custom-toggle"><input type="checkbox" id="' + _id + '" class="custom-control-input" /><label class="custom-control-label" for="' + _id + '"></label></div>');
-         $(_container).find(".custom-control-input").bind("change", function (e) {
+         $(_container).append('<div class="ast-custom-control ast-custom-toggle"><input type="checkbox" id="' + _id + '" class="ast-custom-control-input" /><label class="ast-custom-control-label" for="' + _id + '"></label></div>');
+         $(_container).find(".ast-custom-control-input").bind("change", function (e) {
             var _checked = $(this).is(":checked");
             updateModelFromElement(_checked)
          });

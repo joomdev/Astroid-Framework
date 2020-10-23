@@ -18,11 +18,17 @@ $params = $article->params;
 $type = $params->get('astroid_article_video_type', 'youtube');
 $url = $params->get('astroid_article_video_url', '');
 $content = Astroid\Helper\Video::getVideoByTypeUrl($type, $url, true);
+$thumbnail = Astroid\Helper\Video::getVideoThumbnailByTypeUrl($type, $url);
 if (empty($content)) {
    return;
 }
 ?>
-<div itemprop="video" itemscope itemtype="https://schema.org/VideoObject" class="embed-responsive embed-responsive-16by9 article-video">
-   <meta itemprop="name" content="<?php echo $article->title; ?>" />
+<div itemprop="VideoObject" itemscope itemtype="https://schema.org/VideoObject" class="embed-responsive embed-responsive-16by9 article-video">
    <?php echo $content; ?>
+   <meta itemprop="name" content="<?php echo $article->title; ?>" />
+   <meta itemprop="embedUrl" content="<?php echo $url; ?>" />
+   <meta itemprop="contentUrl" content="<?php echo $url; ?>" />
+   <meta itemprop="description" content="<?php echo \strip_tags($article->introtext); ?>" />
+   <meta itemprop="uploadDate" content="<?php echo date('Y-m-d', strtotime($article->publish_up)) . 'T' . date('H:i:s', strtotime($article->publish_up)); ?>" />
+   <meta itemprop="thumbnailUrl" content="<?php echo $thumbnail; ?>" />
 </div>

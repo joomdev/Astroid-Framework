@@ -13,8 +13,6 @@ defined('_JEXEC') or die;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-\JModelLegacy::addIncludePath(JPATH_ADMINISTRATOR . '/components/com_cache/models', 'CacheModel');
-
 class Helper
 {
     public static function loadLanguage($extension, $client = 'site')
@@ -202,14 +200,12 @@ class Helper
     public static function clearJoomlaCache()
     {
         $app = \JFactory::getApplication();
-        $model = \JModelLegacy::getInstance('Cache', 'CacheModel', array('ignore_request' => true));
-        $clients    = array(1, 0);
-        foreach ($clients as $client) {
-            $mCache = $model->getCache($client);
-            foreach ($mCache->getAll() as $cache) {
-                $mCache->clean($cache->group);
-            }
-        }
+        $conf = \JFactory::getConfig();
+        $options = array(
+            'cachebase' => $conf->get('cache_path', JPATH_SITE . '/cache')
+        );
+        $cache = \JCache::getInstance('callback', $options);
+        $cache->clean(null, 'notgroup');
         $app->triggerEvent('onAfterPurge', array());
     }
 
@@ -371,7 +367,7 @@ class Helper
             if (empty($reporter->reports)) {
                 continue;
             }
-            $tabs[] = '<li class="nav-item"><a class="nav-link' . ($active ? ' active' : '') . '" id="' . $reporter->id . '-tab" data-toggle="tab" href="#' . $reporter->id . '" role="tab" aria-controls="' . $reporter->id . '" aria-selected="' . ($active ? ' active' : '') . '">' . $reporter->title . '</a></li>';
+            $tabs[] = '<li class="nav-item"><a class="nav-link' . ($active ? ' active' : '') . '" id="' . $reporter->id . '-tab" data-toggle="tab" href="#' . $reporter->id . '" role="tab" aria-controls="' . $reporter->id . '" aria-selected="' . ($active ? 'true' : 'false') . '">' . $reporter->title . '</a></li>';
             $content = '<div class="tab-pane fade' . ($active ? ' show active' : '') . '" id="' . $reporter->id . '" role="tabpanel" aria-labelledby="' . $reporter->id . '-tab"><div>';
             foreach ($reporter->reports as $report) {
                 $content .= '<div class="astroid-reporter-item">' . $report . '</div>';

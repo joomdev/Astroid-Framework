@@ -117,10 +117,14 @@ class Utility
         if ($enable_smooth_scroll == '1') {
             $speed = $params->get('smooth_scroll_speed', '');
             $document->addScript('vendor/astroid/js/smooth-scroll.polyfills.min.js', 'body');
+            $header = $params->get('header', TRUE);
+            $mode = $params->get('header_mode', 'horizontal');
+            $sidebar = ($header && $mode == 'sidebar');
+
             $script = '
 			var scroll = new SmoothScroll(\'a[href*="#"]\', {
-            speed: ' . $speed . ',
-            header: ".astroid-header"
+            speed: ' . $speed . '
+            ' . ($sidebar ? '' : ', header: ".astroid-header"') . '
 			});';
             $document->addScriptDeclaration($script, 'body');
         }
@@ -340,7 +344,7 @@ class Utility
         $app = \JFactory::getApplication();
         $itemid = $app->input->get('Itemid', '', 'INT');
         if (empty($itemid)) return false;
-        
+
         $menu = $app->getMenu();
         $item = $menu->getItem($itemid);
         $params = $item->getParams();

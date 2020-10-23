@@ -15,7 +15,7 @@ defined('_JEXEC') or die;
 
 class Section extends BaseElement
 {
-    protected $_tag = 'section';
+    protected $_tag = 'div';
     public $hasComponent = false;
     public $hasHeader = false;
     public $hasFooter = false;

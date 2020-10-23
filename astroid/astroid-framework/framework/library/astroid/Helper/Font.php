@@ -234,7 +234,7 @@ class Font
 
         switch ($source) {
             case 'cdn':
-                Framework::getDocument()->addStyleSheet("https://use.fontawesome.com/releases/v" . Helper\Constants::$fontawesome_version . "/css/all.css", ['version' => Helper\Constants::$fontawesome_version]);
+                Framework::getDocument()->addStyleSheet("https://use.fontawesome.com/releases/v" . Helper\Constants::$fontawesome_version . "/css/all.css", ['data-version' => Helper\Constants::$fontawesome_version]);
                 break;
             case 'local':
                 Framework::getDocument()->addStyleSheet("vendor/fontawesome/css/all.min.css", ['version' => Helper\Constants::$fontawesome_version]);

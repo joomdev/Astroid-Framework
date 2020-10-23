@@ -42,7 +42,7 @@ $navClass = ['nav', 'astroid-nav', 'd-none', 'd-lg-flex'];
 $navWrapperClass = ['align-self-center', 'px-2', 'd-none', 'd-lg-block'];
 ?>
 <!-- header starts -->
-<sidebar id="astroid-header" class="<?php echo implode(' ', $class); ?>">
+<div id="astroid-header" class="<?php echo implode(' ', $class); ?>">
     <div class="astroid-sidebar-content h-100">
         <div class="astroid-sidebar-collapsable">
             <i class="fa"></i>
@@ -95,5 +95,5 @@ $navWrapperClass = ['align-self-center', 'px-2', 'd-none', 'd-lg-block'];
             </div>
         <?php endif; ?>
     </div>
-</sidebar>
+</div>
 <!-- header ends -->

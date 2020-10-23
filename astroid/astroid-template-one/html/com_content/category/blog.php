@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @package   Astroid Framework
  * @author    JoomDev https://www.joomdev.com
@@ -6,10 +7,6 @@
  * @license https://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
  */
 defined('_JEXEC') or die;
-require_once(JPATH_COMPONENT . "/models/category.php");
-JHtml::addIncludePath(JPATH_COMPONENT . '/helpers');
-$category = new ContentModelCategory();
-$articles = $category->getItems();
 ?>
 <div class="blog<?php echo $this->pageclass_sfx; ?>" itemscope itemtype="https://schema.org/Blog">
    <?php if ($this->params->get('show_page_heading', 1)) : ?>
@@ -36,7 +33,7 @@ $articles = $category->getItems();
    <?php if ($this->params->get('show_description', 1) || $this->params->def('show_description_image', 1)) : ?>
       <div class="category-desc clearfix">
          <?php if ($this->params->get('show_description_image') && $this->category->getParams()->get('image')) : ?>
-            <img src="<?php echo $this->category->getParams()->get('image'); ?>" alt="<?php echo htmlspecialchars($this->category->getParams()->get('image_alt')); ?>"/>
+            <img src="<?php echo $this->category->getParams()->get('image'); ?>" alt="<?php echo htmlspecialchars($this->category->getParams()->get('image_alt')); ?>" />
          <?php endif; ?>
          <?php if ($this->params->get('show_description') && $this->category->description) : ?>
             <?php echo JHtml::_('content.prepare', $this->category->description, '', 'com_content.category'); ?>
@@ -56,12 +53,11 @@ $articles = $category->getItems();
          <?php foreach ($this->lead_items as &$item) : ?>
             <div class="article-wraper">
                <div class="article-wraper-inner">
-                  <article class="item leading-<?php echo $leadingcount; ?><?php echo $item->state == 0 ? ' system-unpublished' : null; ?><?php echo $item->featured ? ' item-featured' : ''; ?>"
-                           itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-                              <?php
-                              $this->item = & $item;
-                                 echo $this->loadTemplate('item');
-                              ?>
+                  <article class="item leading-<?php echo $leadingcount; ?><?php echo $item->state == 0 ? ' system-unpublished' : null; ?><?php echo $item->featured ? ' item-featured' : ''; ?>" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+                     <?php
+                     $this->item = &$item;
+                     echo $this->loadTemplate('item');
+                     ?>
                   </article>
                </div>
             </div>
@@ -84,19 +80,18 @@ $articles = $category->getItems();
             <?php endif; ?>
             <div class="col-lg-<?php echo round((12 / $this->columns)); ?>">
                <div class="article-wraper">
-               <div class="article-wraper-inner">
-                  <article class="item column-<?php echo $rowcount; ?><?php echo $item->state == 0 ? ' system-unpublished' : null; ?><?php echo $item->featured ? ' item-featured' : ''; ?>"
-                           itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-                              <?php
-                              $this->item = & $item;
-                              echo $this->loadTemplate('item');
-                              ?>
-                  </article>
+                  <div class="article-wraper-inner">
+                     <article class="item column-<?php echo $rowcount; ?><?php echo $item->state == 0 ? ' system-unpublished' : null; ?><?php echo $item->featured ? ' item-featured' : ''; ?>" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+                        <?php
+                        $this->item = &$item;
+                        echo $this->loadTemplate('item');
+                        ?>
+                     </article>
                   </div>
-                  </div>
+               </div>
                <?php $counter++; ?>
             </div>
-            <?php if (($rowcount == $this->columns) or ( $counter == $introcount)) : ?>
+            <?php if (($rowcount == $this->columns) or ($counter == $introcount)) : ?>
             </div>
          <?php endif; ?>
       <?php endforeach; ?>
@@ -122,5 +117,3 @@ $articles = $category->getItems();
       </div>
    <?php endif; ?>
 </div>
-
-

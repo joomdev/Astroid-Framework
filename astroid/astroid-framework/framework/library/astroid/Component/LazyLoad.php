@@ -126,26 +126,30 @@ class LazyLoad
 
     public static function getBase64Thumbnail($sourceImage)
     {
-        $info = getimagesize($sourceImage);
-        if (!in_array($info['mime'], ['image/jpeg', 'image/gif', 'image/png'])) {
+        try {
+            $info = getimagesize($sourceImage);
+            if (!is_array($info) || !in_array($info['mime'], ['image/jpeg', 'image/gif', 'image/png'])) {
+                return false;
+            }
+
+            list($origWidth, $origHeight) = $info;
+            $image = imagecreatetruecolor($origWidth, $origHeight);
+
+            imagesavealpha($image, true);
+            $transparent = imagecolorallocatealpha($image, 255, 0, 0, 127);
+            imagefill($image, 0, 0, $transparent);
+
+            ob_start();
+            imagepng($image);
+            $blankImageBuffer = ob_get_clean();
+            if (ob_get_length() > 0) {
+                ob_end_clean();
+            }
+            $blankImage = 'data:image/png;base64,' . base64_encode($blankImageBuffer);
+            return $blankImage;
+        } catch (\Exception $e) {
             return false;
         }
-
-        list($origWidth, $origHeight) = $info;
-        $image = imagecreatetruecolor($origWidth, $origHeight);
-
-        imagesavealpha($image, true);
-        $transparent = imagecolorallocatealpha($image, 255, 0, 0, 127);
-        imagefill($image, 0, 0, $transparent);
-
-        ob_start();
-        imagepng($image);
-        $blankImageBuffer = ob_get_clean();
-        if (ob_get_length() > 0) {
-            ob_end_clean();
-        }
-        $blankImage = 'data:image/png;base64,' . base64_encode($blankImageBuffer);
-        return $blankImage;
     }
 
     public static function selectedImages(&$matches, $images = '', $toggle = '')

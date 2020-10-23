@@ -124,7 +124,11 @@ class Menu
                 // The next item is shallower.
                 elseif ($item->shallower) {
                     echo '</li>';
-                    echo str_repeat('</ul></div>' . '</li>', $item->level_diff);
+                    if ($item->level == 1 && $item->parent) {
+                        echo str_repeat('</ul></div>' . '</li>', $item->level_diff);
+                    } else {
+                        echo str_repeat('</ul>' . '</li>', $item->level_diff);
+                    }
                 }
                 // The next item is on the same level.
                 else {

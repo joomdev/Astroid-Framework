@@ -367,7 +367,7 @@ class Helper
             if (empty($reporter->reports)) {
                 continue;
             }
-            $tabs[] = '<li class="nav-item"><a class="nav-link' . ($active ? ' active' : '') . '" id="' . $reporter->id . '-tab" data-toggle="tab" href="#' . $reporter->id . '" role="tab" aria-controls="' . $reporter->id . '" aria-selected="' . ($active ? ' active' : '') . '">' . $reporter->title . '</a></li>';
+            $tabs[] = '<li class="nav-item"><a class="nav-link' . ($active ? ' active' : '') . '" id="' . $reporter->id . '-tab" data-toggle="tab" href="#' . $reporter->id . '" role="tab" aria-controls="' . $reporter->id . '" aria-selected="' . ($active ? 'true' : 'false') . '">' . $reporter->title . '</a></li>';
             $content = '<div class="tab-pane fade' . ($active ? ' show active' : '') . '" id="' . $reporter->id . '" role="tabpanel" aria-labelledby="' . $reporter->id . '-tab"><div>';
             foreach ($reporter->reports as $report) {
                 $content .= '<div class="astroid-reporter-item">' . $report . '</div>';

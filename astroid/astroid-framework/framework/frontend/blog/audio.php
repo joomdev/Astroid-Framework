@@ -25,7 +25,7 @@ $spotify = $params->get('astroid_article_audio_spotify', '');
 ?>
 <?php if ($source == 'spotify' && !empty($spotify)) { ?>
    <div class="mb-3">
-      <iframe src="https://embed.spotify.com/?uri=<?php echo $spotify; ?>" width="100%" height="80" frameborder="0" allowtransparency="true"></iframe>
+      <iframe src="https://embed.spotify.com/?uri=<?php echo $spotify; ?>" width="100%" height="80" style="border:0" allowtransparency="true"></iframe>
    </div>
    <?php
 }?>

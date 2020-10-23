@@ -108,7 +108,7 @@ if ($astroid_banner_enabled) {
          echo '<div class="' . $astroid_banner_wrapper . '">';
       }
       if ($astroid_banner_title_enabled) {
-         echo '<' . $astroid_banner_title_tag . ' class="astroid-banner-title"' . $styletext . '>' . $astroid_banner_title . '</' . $astroid_banner_title_tag . '>';
+         echo '<' . $astroid_banner_title_tag . ' class="astroid-banner-title"' . (!empty($styletext) ? ' ' . $styletext : '') . '>' . $astroid_banner_title . '</' . $astroid_banner_title_tag . '>';
          if (!empty($astroid_banner_subtitle)) {
             echo '<' . $astroid_banner_subtitle_tag . ' class="astroid-banner-subtitle"' . $stylesubtext . '>' . $astroid_banner_subtitle . '</' . $astroid_banner_subtitle_tag . '>';
          }

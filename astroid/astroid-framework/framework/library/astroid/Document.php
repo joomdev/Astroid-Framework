@@ -334,7 +334,7 @@ class Document
             Framework::getReporter('Logs')->add('Getting Minified JS <code>' . (str_replace(JPATH_SITE . '/', '', $jsFile)) . '</code>.');
         }
 
-        $html = Helper::str_lreplace('</body>', '<script src="' . \JURI::root() . 'cache/astroid/js/' . $version . '.js?' . Helper::joomlaMediaVersion() . '" type="text/javascript"></script></body>', $html);
+        $html = Helper::str_lreplace('</body>', '<script src="' . \JURI::root() . 'cache/astroid/js/' . $version . '.js?' . Helper::joomlaMediaVersion() . '"></script></body>', $html);
         Framework::getDebugger()->log('Minifying JS');
         return $html;
     }
@@ -1086,10 +1086,10 @@ class Document
                 $this->addStyleSheet('css/custom.css');
             }
             // return page css
-            return '<style type="text/css">' . $css . '</style>';
+            return '<style>' . $css . '</style>';
         } else {
             $minifier = new Minify\CSS($css);
-            return '<style type="text/css">' . $minifier->minify() . '</style>';
+            return '<style>' . $minifier->minify() . '</style>';
         }
     }
 }

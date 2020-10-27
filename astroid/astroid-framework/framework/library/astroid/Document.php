@@ -1081,12 +1081,19 @@ class Document
         // css on page
         $css = $this->renderCss();
         if (Framework::isSite()) {
+            // page css
+            $pageCSSHash = md5($css);
+            $pageCSS = ASTROID_TEMPLATE_PATH . '/css/compiled-' . $pageCSSHash . '.css';
+            if (!file_exists($pageCSS)) {
+                Helper::putContents($pageCSS, $css);
+            }
+            $this->addStyleSheet('css/compiled-' . $pageCSSHash . '.css');
             // custom css
             if (file_exists(ASTROID_TEMPLATE_PATH . '/css/custom.css')) {
                 $this->addStyleSheet('css/custom.css');
             }
-            // return page css
-            return '<style>' . $css . '</style>';
+            // return
+            return '';
         } else {
             $minifier = new Minify\CSS($css);
             return '<style>' . $minifier->minify() . '</style>';

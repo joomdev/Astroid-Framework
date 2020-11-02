@@ -160,6 +160,11 @@
 
          <field ngShow="header==true AND header_mode!='sidebar'" astroidgroup="header_element" class="sticky-header-switch" name="enable_sticky_menu" type="astroidtext" astroid-switch="true" default="0" label="TPL_ASTROID_HEADER_STICKY_HEADER_ENABLE_LABEL" description="TPL_ASTROID_HEADER_STICKY_HEADER_ENABLE_DESC"></field>
 
+         <field ngShow="header==true AND enable_sticky_menu==true AND header_mode!='sidebar'" astroidgroup="header_element" name="enable_sticky_menu_width" ngModel="enable_sticky_menu" type="astroidradio" default="default" label="Sticky Content Width">
+            <option value="container">Contained</option>
+            <option value="container-fluid">Full Width</option>
+         </field>
+
          <field ngShow="header==true AND enable_sticky_menu==true AND header_mode!='sidebar'" astroidgroup="header_element" name="stickey_horizontal_menu_mode" type="astroidradio" image-width="150" radio-image="true" default="left" label="TPL_ASTROID_STICKY_HORIZONTAL_HEADER_MODE_LABEL" description="TPL_ASTROID_STICKY_HORIZONTAL_HEADER_MODE_DESC">
             <option label="JGLOBAL_LEFT" value="left">media/astroid/assets/images/header/horizontal-left.svg</option>
             <option label="JGLOBAL_CENTER" value="center">media/astroid/assets/images/header/horizontal-center.svg</option>

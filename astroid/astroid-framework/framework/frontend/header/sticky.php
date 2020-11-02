@@ -23,6 +23,7 @@ $offcanvas_direction = $params->get('offcanvas_direction', 'offcanvasDirLeft');
 $offcanvas_togglevisibility = $params->get('offcanvas_togglevisibility', 'd-block');
 $class = ['astroid-header', 'astroid-header-sticky'];
 $stickyheader = $params->get('stickyheader', 'static');
+$enable_sticky_menu_width = $params->get('enable_sticky_menu_width', 'container');
 $header_mobile_menu = $params->get('header_mobile_menu', '');
 $class[] = 'header-' . $stickyheader . '-desktop';
 $stickyheadermobile = $params->get('stickyheadermobile', 'static');
@@ -50,7 +51,7 @@ switch ($stickey_mode) {
 ?>
 <!-- header starts -->
 <header id="astroid-sticky-header" data-megamenu data-megamenu-class=".has-megamenu" data-megamenu-content-class=".megamenu-container" data-dropdown-arrow="<?php echo $params->get('dropdown_arrow', 0) ? 'true' : 'false'; ?>" data-header-offset="true" data-transition-speed="<?php echo $params->get('dropdown_animation_speed', 300); ?>" data-megamenu-animation="<?php echo $params->get('dropdown_animation_type', 'fade'); ?>" data-easing="<?php echo $params->get('dropdown_animation_ease', 'linear'); ?>" data-astroid-trigger="<?php echo $params->get('dropdown_trigger', 'hover'); ?>" data-megamenu-submenu-class=".nav-submenu" class="<?php echo implode(' ', $class); ?> d-none">
-   <div class="container d-flex flex-row justify-content-between">
+   <div class="<?php echo $enable_sticky_menu_width; ?> d-flex flex-row justify-content-between">
       <?php if (!empty($header_mobile_menu)) { ?>
          <div class="d-flex d-lg-none justify-content-start">
             <div class="header-mobilemenu-trigger d-lg-none burger-menu-button align-self-center" data-offcanvas="#astroid-mobilemenu" data-effect="mobilemenu-slide">

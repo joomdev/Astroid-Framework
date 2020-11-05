@@ -970,8 +970,6 @@ class Document
                 $class[] = $menu_params->get('pageclass_sfx');
             }
             if ($menu->alias) {
-                // menu alias without -alias appended will be removed in the next version.
-                $class[] = $menu->alias;
                 $class[] = $menu->alias . '-alias';
             }
         }

@@ -98,25 +98,35 @@ JHtml::_('script', $helperPath, false, true, false, false, true);
 JHtml::_('script', 'system/fields/calendar.min.js', false, true, false, false, true);
 JHtml::_('stylesheet', 'system/fields/calendar' . $cssFileExt, array(), true);
 ?>
-<div class="field-calendar input-group">
-   <input type="text" class="form-control" id="<?php echo $id; ?>" name="<?php echo $name; ?>" value="<?php echo htmlspecialchars(($value !== '0000-00-00 00:00:00') ? $value : '', ENT_COMPAT, 'UTF-8'); ?>" <?php echo $attributes; ?>
-          <?php echo!empty($hint) ? 'placeholder="' . htmlspecialchars($hint, ENT_COMPAT, 'UTF-8') . '"' : ''; ?> data-alt-value="<?php echo htmlspecialchars($value, ENT_COMPAT, 'UTF-8'); ?>" autocomplete="off" />
-   <div class="input-group-append">
-      <button type="button" class="<?php echo ($readonly || $disabled) ? 'hidden ' : ''; ?>btn btn-outline-secondary"
-              id="<?php echo $id; ?>_btn"
-              data-inputfield="<?php echo $id; ?>"
-              data-dayformat="<?php echo $format; ?>"
-              data-button="<?php echo $id; ?>_btn"
-              data-firstday="<?php echo JFactory::getLanguage()->getFirstDay(); ?>"
-              data-weekend="<?php echo JFactory::getLanguage()->getWeekEnd(); ?>"
-              data-today-btn="<?php echo $todaybutton; ?>"
-              data-week-numbers="<?php echo $weeknumbers; ?>"
-              data-show-time="<?php echo $showtime; ?>"
-              data-show-others="<?php echo $filltable; ?>"
-              data-time-24="<?php echo $timeformat; ?>"
-              data-only-months-nav="<?php echo $singleheader; ?>"
-              <?php echo!empty($minYear) ? 'data-min-year="' . $minYear . '"' : ''; ?>
-              <?php echo!empty($maxYear) ? 'data-max-year="' . $maxYear . '"' : ''; ?>
-              ><span class="fas fa-calendar"></span></button>
+<div class="field-calendar">
+	<?php if (!$readonly && !$disabled) : ?>
+	<div class="input-group">
+		<?php endif; ?>
+		<input type="text" id="<?php echo $id; ?>" name="<?php
+		echo $name; ?>" value="<?php
+		echo htmlspecialchars(($value !== '0000-00-00 00:00:00') ? $value : '', ENT_COMPAT, 'UTF-8'); ?>" <?php echo $attributes; ?>
+		<?php echo !empty($hint) ? 'placeholder="' . htmlspecialchars($hint, ENT_COMPAT, 'UTF-8') . '"' : ''; ?> data-alt-value="<?php
+      echo htmlspecialchars($value, ENT_COMPAT, 'UTF-8'); ?>" autocomplete="off"/>
+      <div class="input-group-append">
+		<button type="button" class="<?php echo ($readonly || $disabled) ? 'hidden ' : ''; ?>btn btn-outline-secondary"
+			id="<?php echo  $id; ?>_btn"
+			data-inputfield="<?php echo $id; ?>"
+			data-dayformat="<?php echo $format; ?>"
+			data-button="<?php echo $id; ?>_btn"
+			data-firstday="<?php echo JFactory::getLanguage()->getFirstDay(); ?>"
+			data-weekend="<?php echo JFactory::getLanguage()->getWeekEnd(); ?>"
+			data-today-btn="<?php echo $todaybutton; ?>"
+			data-week-numbers="<?php echo $weeknumbers; ?>"
+			data-show-time="<?php echo $showtime; ?>"
+			data-show-others="<?php echo $filltable; ?>"
+			data-time-24="<?php echo $timeformat; ?>"
+			data-only-months-nav="<?php echo $singleheader; ?>"
+			<?php echo isset($minYear) && strlen($minYear) ? 'data-min-year="' . $minYear . '"' : ''; ?>
+			<?php echo isset($maxYear) && strlen($maxYear) ? 'data-max-year="' . $maxYear . '"' : ''; ?>
+			title="<?php echo JText::_('JLIB_HTML_BEHAVIOR_OPEN_CALENDAR'); ?>"
+      ><span class="fas fa-calendar" aria-hidden="true"></span></button>
    </div>
+		<?php if (!$readonly && !$disabled) : ?>
+	</div>
+<?php endif; ?>
 </div>

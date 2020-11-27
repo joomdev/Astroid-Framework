@@ -56,7 +56,7 @@ class Article
             $return["rating"] = $this->getRating();
             return $return;
         } else {
-            throw new \Exception('COM_CONTENT_ARTICLE_VOTE_FAILURE', 0);
+            throw new \Exception(\JText::_('COM_CONTENT_ARTICLE_VOTE_FAILURE'), 0);
         }
     }
 

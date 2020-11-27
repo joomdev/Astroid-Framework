@@ -98,7 +98,7 @@ if (!$template->params->get('article_rating', 1)) {
                            ratingtimer2 = setTimeout(function () {
                               $('.article-rating-message-<?php echo $row->id; ?>').addClass('d-none').text('').removeClass('error').removeClass('success').removeClass('animated').removeClass('fadeIn').removeClass('fadeOut');
                            }, 600);
-                        }, 2000);
+                        }, 5000);
 
                         if (response.status == 'success') {
                            var _votes = $('.vote-count').data('votes');

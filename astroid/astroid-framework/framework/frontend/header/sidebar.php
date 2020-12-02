@@ -51,7 +51,7 @@ $navWrapperClass = ['align-self-center', 'px-2', 'd-none', 'd-lg-block'];
             <?php if (!empty($header_mobile_menu)) { ?>
                 <div class="justify-content-start astroid-sidebar-mobile-menu">
                     <div class="header-mobilemenu-trigger burger-menu-button align-self-center" data-offcanvas="#astroid-mobilemenu" data-effect="mobilemenu-slide">
-                        <button class="button" type="button"><span class="box"><span class="inner"></span></span></button>
+                        <button aria-label="Mobile Menu Toggle" class="button" type="button"><span class="box"><span class="inner"></span></span></button>
                     </div>
                 </div>
             <?php } ?>

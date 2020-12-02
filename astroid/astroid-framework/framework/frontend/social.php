@@ -42,7 +42,7 @@ $styles = [];
             break;
       }
       $sid = md5($social_profile->color . $social_profile_link . $social_profile->icon);
-      echo '<li><a ' . ($style != 1 ? ' aria-label="'.$social_profile->title.'" style="color:' . $social_profile->color . '"' : '') . ' href="' . $social_profile_link . '" target="_blank" rel="noopener"><i class="' . $social_profile->icon . '"></i></a></li>';
+      echo '<li><a title="' . ($social_profile->title ? $social_profile->title : 'Social Icon') . '" ' . ($style != 1 ? ' aria-label="' . $social_profile->title . '" style="color:' . $social_profile->color . '"' : '') . ' href="' . $social_profile_link . '" target="_blank" rel="noopener"><i class="' . $social_profile->icon . '"></i></a></li>';
    }
    ?>
 </ul>

@@ -73,7 +73,7 @@ $navWrapperClass = ['align-self-center', 'px-2', 'd-none', 'd-lg-block'];
             ?>
             <?php if ($enable_offcanvas) { ?>
                <div class="header-offcanvas-trigger burger-menu-button align-self-center <?php echo $offcanvas_togglevisibility; ?>" data-offcanvas="#astroid-offcanvas" data-effect="<?php echo $offcanvas_animation; ?>" data-direction="<?php echo $offcanvas_direction; ?>">
-                  <button type="button" class="button">
+                  <button type="button" aria-label="Off-Canvas Toggle" class="button">
                      <span class="box">
                         <span class="inner"></span>
                      </span>

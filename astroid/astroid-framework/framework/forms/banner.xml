@@ -92,6 +92,9 @@
 			<field showon="astroid_banner_enabled:1" name="astroid_banner_class" type="text" label="ASTROID_BANNER_CLASS_LABEL">
 			</field>
 
+			<field showon="astroid_banner_enabled:1" name="astroid_banner_height" type="text" label="ASTROID_BANNER_HEIGHT_LABEL">
+			</field>
+
 			<field showon="astroid_banner_enabled:1" name="astroid_banner_wrapper" type="list" default="container" label="ASTROID_BANNER_LAUOUT_LABEL">
 				<option value="">TPL_ASTROID_DEFAULT</option>
 				<option value="container">ASTROID_CONTAINER</option>

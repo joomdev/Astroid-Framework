@@ -31,7 +31,12 @@ if ($astroid_banner_visibility == "currentPage") {
       return;
    }
 }
-$style = [];
+$style = ['display:flex', 'align-items:center'];
+
+$banner_height = $params->get('astroid_banner_height', '');
+if (!empty($banner_height)) {
+   $style[] = 'height:' . $banner_height;
+}
 
 $astroid_banner_enabled = $params->get('astroid_banner_enabled');
 if ($astroid_banner_enabled) {

@@ -25,15 +25,21 @@ abstract class Framework
 
     public static function init()
     {
-        define('_ASTROID', 1); // define astroid
         self::check(); // check for astroid redirection
 
         self::$debugger = new Debugger(); // Debuuger
+
+        self::audit();
+    }
+
+    public static function preInit()
+    {
+        define('_ASTROID', 1); // define astroid
+
         self::$template = new Template(); // Template
         self::$document = new Document(); // Document
 
         self::constants();
-        self::audit();
     }
 
     public static function getVersion()

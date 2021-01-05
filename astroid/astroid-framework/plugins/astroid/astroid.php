@@ -26,6 +26,7 @@ class plgSystemAstroid extends JPlugin
 
    public function __construct(&$subject, $config)
    {
+      Framework::preInit();
       parent::__construct($subject, $config);
    }
 

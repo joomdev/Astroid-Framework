@@ -62,7 +62,7 @@ elseif ($item->browserNav == 2)
 
 // Show icon html start here
 	if(isset($astroid_menu_options['icon']) && !empty($astroid_menu_options['icon'])){
-		$iconHtml = '<i class="'.$astroid_menu_options['icon'].'"></i>';
+		$iconHtml = '<i class="'.$astroid_menu_options['icon'].'"></i> ';
 	}else{
 		$iconHtml = "";
 	}
@@ -78,7 +78,7 @@ elseif ($item->browserNav == 2)
 // Show icon badge End here
 
 // Show icon showtitle here
-	if(isset($astroid_menu_options['showtitle']) && !empty($astroid_menu_options['showtitle'])){
+	if(isset($astroid_menu_options['subtitle']) && !empty($astroid_menu_options['subtitle'])){
 		$subtitle = '<small class="nav-subtitle">'.$astroid_menu_options['subtitle'].'</small>';
 	}else{
 		$subtitle="";

@@ -53,7 +53,7 @@ $badge_color = (string) @$value['badge_color'];
 $badge_bgcolor = (string) @$value['badge_bgcolor'];
 $app = JFactory::getApplication('site');
 $menu = $app->getMenu('site');
-$items = $menu->getItems(['menutype', 'language'], $menu_type);
+$items = $menu->getItems(['menutype'], $menu_type);
 
 $children = [];
 

@@ -216,8 +216,12 @@ class Document
         $stylesheets = [];
         $stylesheetsUrls = [];
         $html = preg_replace_callback('/(<link\s[^>]*href=")([^"]*)("[^>][^>]*rel=")([^"]*)("[^>]*\/>)/siU', function ($matches) use (&$stylesheets, &$stylesheetsUrls) {
+
             if (isset($matches[4]) && $matches[4] === 'stylesheet') {
-                $stylesheets[] = $this->_cssPath($matches[2]);
+                $url = $this->_cssPath($matches[2]);
+                $ext = pathinfo($url, PATHINFO_EXTENSION);
+                if ($ext !== 'css') return '';
+                $stylesheets[] = $url;
                 $stylesheetsUrls[] = $this->beutifyURL($matches[2]);
                 return '';
             }

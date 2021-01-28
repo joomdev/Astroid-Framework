@@ -220,7 +220,7 @@ class Document
             if (isset($matches[4]) && $matches[4] === 'stylesheet') {
                 $url = $this->_cssPath($matches[2]);
                 $ext = pathinfo($url, PATHINFO_EXTENSION);
-                if ($ext !== 'css') return '';
+                if ($ext !== 'css' && !Helper::startsWith($url, '@import')) return '';
                 $stylesheets[] = $url;
                 $stylesheetsUrls[] = $this->beutifyURL($matches[2]);
                 return '';

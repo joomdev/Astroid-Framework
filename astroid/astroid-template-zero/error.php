@@ -7,7 +7,13 @@
  * @license https://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
  */
 defined('_JEXEC') or die;
-defined('_ASTROID') or die('Please install and activate <a href="https://www.astroidframework.com/" target="_blank">Astroid Framework</a> in order to use this template.');
+if (!defined('_ASTROID')) {
+   try {
+      Astroid\Framework::init();
+   } catch (\Exception $e) {
+      die('Please install and activate <a href="https://www.astroidframework.com/" target="_blank">Astroid Framework</a> in order to use this template.');
+   }
+}
 
 require_once "helper.php"; // Template's Helper
 

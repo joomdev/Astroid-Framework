@@ -24,12 +24,6 @@ class plgSystemAstroid extends JPlugin
 
    protected $app;
 
-   public function __construct(&$subject, $config)
-   {
-      Framework::preInit();
-      parent::__construct($subject, $config);
-   }
-
    public function onAfterRoute()
    {
       Framework::init();

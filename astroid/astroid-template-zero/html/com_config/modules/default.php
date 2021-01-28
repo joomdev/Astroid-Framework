@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @package     Joomla.Site
  * @subpackage  com_config
@@ -9,21 +10,26 @@
 
 defined('_JEXEC') or die;
 
-JHtml::_('bootstrap.tooltip');
-JHtml::_('behavior.formvalidator');
-JHtml::_('behavior.keepalive');
-JHtml::_('behavior.combobox');
-JHtml::_('formbehavior.chosen', 'select');
+use Joomla\CMS\Factory;
+use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
+use Joomla\CMS\Router\Route;
+use Joomla\CMS\Language\Multilanguage;
+
+HTMLHelper::_('bootstrap.tooltip');
+HTMLHelper::_('behavior.formvalidator');
+HTMLHelper::_('behavior.keepalive');
+HTMLHelper::_('behavior.combobox');
+HTMLHelper::_('formbehavior.chosen', 'select');
 
 $hasContent = empty($this->item['module']) || $this->item['module'] === 'custom' || $this->item['module'] === 'mod_custom';
 
 // If multi-language site, make language read-only
-if (JLanguageMultilang::isEnabled())
-{
+if (Multilanguage::isEnabled()) {
 	$this->form->setFieldAttribute('language', 'readonly', 'true');
 }
 
-JFactory::getDocument()->addScriptDeclaration("
+Factory::getDocument()->addScriptDeclaration("
 	Joomla.submitbutton = function(task)
 	{
 		if (task == 'config.cancel.modules' || document.formvalidator.isValid(document.getElementById('modules-form')))
@@ -34,49 +40,43 @@ JFactory::getDocument()->addScriptDeclaration("
 ");
 ?>
 
-<form
-	action="<?php echo JRoute::_('index.php?option=com_config'); ?>"
-	method="post" name="adminForm" id="modules-form"
-	class="form-validate">
+<form action="<?php echo Route::_('index.php?option=com_config'); ?>" method="post" name="adminForm" id="modules-form" class="form-validate">
 
 	<div class="row-fluid">
 
 		<!-- Begin Content -->
 		<div class="col-12">
 
-			<div class="btn-toolbar" role="toolbar" aria-label="<?php echo JText::_('JTOOLBAR'); ?>">
+			<div class="btn-toolbar" role="toolbar" aria-label="<?php echo Text::_('JTOOLBAR'); ?>">
 				<div class="btn-group">
-					<button type="button" class="btn btn-primary mr-2"
-						onclick="Joomla.submitbutton('config.save.modules.apply')">
+					<button type="button" class="btn btn-primary mr-2" onclick="Joomla.submitbutton('config.save.modules.apply')">
 						<i class="fas fa-edit"></i>
-						<?php echo JText::_('JAPPLY'); ?>
+						<?php echo Text::_('JAPPLY'); ?>
 					</button>
 				</div>
 				<div class="btn-group">
-					<button type="button" class="btn mr-2"
-						onclick="Joomla.submitbutton('config.save.modules.save')">
+					<button type="button" class="btn mr-2" onclick="Joomla.submitbutton('config.save.modules.save')">
 						<i class="fas fa-save"></i>
-						<?php echo JText::_('ASTROID_SAVE'); ?>
+						<?php echo Text::_('ASTROID_SAVE'); ?>
 					</button>
 				</div>
 				<div class="btn-group">
-					<button type="button" class="btn "
-						onclick="Joomla.submitbutton('config.cancel.modules')">
+					<button type="button" class="btn " onclick="Joomla.submitbutton('config.cancel.modules')">
 						<i class="fas fa-times-circle"></i>
-						<?php echo JText::_('JCANCEL'); ?>
+						<?php echo Text::_('JCANCEL'); ?>
 					</button>
 				</div>
 			</div>
 
 			<hr class="hr-condensed" />
 
-			<legend><?php echo JText::_('COM_CONFIG_MODULES_SETTINGS_TITLE'); ?></legend>
+			<legend><?php echo Text::_('COM_CONFIG_MODULES_SETTINGS_TITLE'); ?></legend>
 
 			<div>
-				<?php echo JText::_('COM_CONFIG_MODULES_MODULE_NAME'); ?>
+				<?php echo Text::_('COM_CONFIG_MODULES_MODULE_NAME'); ?>
 				<span class="label label-default bg-dark text-white p-1 rounded"><?php echo $this->item['title']; ?></span>
 				&nbsp;&nbsp;
-				<?php echo JText::_('COM_CONFIG_MODULES_MODULE_TYPE'); ?>
+				<?php echo Text::_('COM_CONFIG_MODULES_MODULE_TYPE'); ?>
 				<span class="label label-default bg-dark text-white p-1 rounded"><?php echo $this->item['module']; ?></span>
 			</div>
 			<hr />
@@ -111,15 +111,15 @@ JFactory::getDocument()->addScriptDeclaration("
 
 						<hr />
 
-						<?php if (JFactory::getUser()->authorise('core.edit.state', 'com_modules.module.' . $this->item['id'])) : ?>
-						<div class="control-group">
-							<div class="control-label">
-								<?php echo $this->form->getLabel('published'); ?>
+						<?php if (Factory::getUser()->authorise('core.edit.state', 'com_modules.module.' . $this->item['id'])) : ?>
+							<div class="control-group">
+								<div class="control-label">
+									<?php echo $this->form->getLabel('published'); ?>
+								</div>
+								<div class="controls">
+									<?php echo $this->form->getInput('published'); ?>
+								</div>
 							</div>
-							<div class="controls">
-								<?php echo $this->form->getInput('published'); ?>
-							</div>
-						</div>
 						<?php endif ?>
 
 						<div class="control-group">
@@ -188,9 +188,9 @@ JFactory::getDocument()->addScriptDeclaration("
 				</div>
 
 				<input type="hidden" name="id" value="<?php echo $this->item['id']; ?>" />
-				<input type="hidden" name="return" value="<?php echo JFactory::getApplication()->input->get('return', null, 'base64'); ?>" />
+				<input type="hidden" name="return" value="<?php echo Factory::getApplication()->input->get('return', null, 'base64'); ?>" />
 				<input type="hidden" name="task" value="" />
-				<?php echo JHtml::_('form.token'); ?>
+				<?php echo HTMLHelper::_('form.token'); ?>
 
 			</div>
 

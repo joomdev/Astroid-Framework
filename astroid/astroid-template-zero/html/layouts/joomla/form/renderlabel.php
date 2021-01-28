@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @package     Joomla.Site
  * @subpackage  Layout
@@ -7,6 +8,9 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 defined('JPATH_BASE') or die;
+
+use Joomla\CMS\Factory;
+use Joomla\CMS\HTML\HTMLHelper;
 
 extract($displayData);
 
@@ -28,13 +32,13 @@ $title = '';
 if (!empty($description)) {
    if ($text && $text !== $description) {
       $title = ' title="' . htmlspecialchars(trim($text, ':')) . '"'
-              . ' data-content="' . htmlspecialchars($description) . '"';
+         . ' data-content="' . htmlspecialchars($description) . '"';
 
-      if (!$position && JFactory::getLanguage()->isRtl()) {
+      if (!$position && Factory::getApplication()->getLanguage()->isRtl()) {
          $position = ' data-placement="left" ';
       }
    } else {
-      $title = ' title="' . JHtml::_('tooltipText', trim($text, ':'), $description, 0) . '"';
+      $title = ' title="' . HTMLHelper::_('tooltipText', trim($text, ':'), $description, 0) . '"';
    }
 }
 
@@ -42,6 +46,6 @@ if ($required) {
    $classes[] = 'required';
 }
 ?>
-<label data-toggle="popover" id="<?php echo $id; ?>" for="<?php echo $for; ?>"<?php if (!empty($classes)) echo ' class="' . implode(' ', $classes) . '"'; ?><?php echo $title; ?><?php echo $position; ?>>
+<label data-toggle="popover" id="<?php echo $id; ?>" for="<?php echo $for; ?>" <?php if (!empty($classes)) echo ' class="' . implode(' ', $classes) . '"'; ?><?php echo $title; ?><?php echo $position; ?>>
    <?php echo $text; ?><?php if ($required) : ?><span class="star">&#160;*</span><?php endif; ?>
 </label>

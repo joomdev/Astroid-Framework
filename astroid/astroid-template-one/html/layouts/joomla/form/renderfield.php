@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @package     Joomla.Site
  * @subpackage  Layout
@@ -7,6 +8,8 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 defined('JPATH_BASE') or die;
+
+use Joomla\CMS\HTML\HTMLHelper;
 
 extract($displayData);
 
@@ -18,14 +21,14 @@ extract($displayData);
  * 	$input           : (string) The input field html code
  */
 if (!empty($options['showonEnabled'])) {
-   JHtml::_('jquery.framework');
-   JHtml::_('script', 'jui/cms.js', array('version' => 'auto', 'relative' => true));
+   HTMLHelper::_('jquery.framework');
+   HTMLHelper::_('script', 'jui/cms.js', array('version' => 'auto', 'relative' => true));
 }
 
 $class = empty($options['class']) ? '' : ' ' . $options['class'];
 $rel = empty($options['rel']) ? '' : ' ' . $options['rel'];
 ?>
-<div class="form-group<?php echo $class; ?>"<?php echo $rel; ?>>
+<div class="form-group<?php echo $class; ?>" <?php echo $rel; ?>>
    <?php if (empty($options['hiddenLabel'])) : ?>
       <?php echo $label; ?>
    <?php endif; ?>

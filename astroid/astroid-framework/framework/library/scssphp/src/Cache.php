@@ -13,7 +13,6 @@
 namespace ScssPhp\ScssPhp;
 
 use Exception;
-use ScssPhp\ScssPhp\Version;
 
 /**
  * The scss cache manager.
@@ -157,7 +156,6 @@ class Cache
     {
         $t = [
           'version' => self::CACHE_VERSION,
-          'scssphpVersion' => Version::VERSION,
           'operation' => $operation,
           'what' => $what,
           'options' => $options

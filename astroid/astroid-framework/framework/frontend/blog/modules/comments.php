@@ -12,15 +12,15 @@
 // No direct access.
 defined('_JEXEC') or die;
 extract($displayData);
-
+$document = Astroid\Framework::getDocument();
 $params = Astroid\Framework::getTemplate()->getParams();
 
 $article_comments = $params->get('article_comments', 'none');
 ?>
 <?php
 if ($article_comments == 'none') return;
-if ($article_comments == 'default') {
-   
+if ($article_comments == 'custom') {
+   $document->include('blog.modules.custom_comments', ['article' => $article]);
 }
 if ($article_comments == 'facebook') {
    $fb_id = $params->get('article_comments_fb_id', '');

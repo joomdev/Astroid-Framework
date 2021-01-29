@@ -49,11 +49,11 @@
 
 			<field astroidgroup="article_single_options" name="article_comments" type="astroidradio" default="none" label="ASTROID_ARTICLE_OPTIONS_COMMENTS_LBL" description="ASTROID_ARTICLE_OPTIONS_COMMENTS_DESC">
 				<option class="btn-danger" value="none">ASTROID_NONE</option>
-				<option class="btn-secondary" value="default">TPL_ASTROID_DEFAULT</option>
 				<option class="btn-facebook" value="facebook">ASTROID_FACEBOOK_LBL</option>
 				<option class="btn-info" value="disqus">ASTROID_DISQUS_LBL</option>
 				<option class="btn-warning" value="hyper">ASTROID_HYPER_LBL</option>
 				<option class="btn-info" value="intense">ASTROID_INTENSE_LBL</option>
+				<option class="btn-secondary" value="custom">TPL_ASTROID_OPTIONS_CUSTOM</option>
 			</field>
 
 			<field ngShow="article_comments=='facebook'" astroidgroup="article_single_options" name="article_comments_fb_id" type="astroidtext" filter="raw" class="form-control" label="ASTROID_FACEBOOK_APPID_LBL" description="ASTROID_FACEBOOK_APPID_DESC" />

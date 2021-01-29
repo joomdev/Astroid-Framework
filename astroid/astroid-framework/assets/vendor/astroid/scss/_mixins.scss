@@ -7,77 +7,88 @@
 
    $foreground-color: nth($color, 1);
    $background-color: transparent !default;
-   @if (length($color) == 2) {
+
+   @if (length($color)==2) {
       $background-color: nth($color, 2);
    }
 
-   @if ($direction == up) or ($direction == down) or ($direction == right) or ($direction == left) {
+   @if ($direction==up) or ($direction==down) or ($direction==right) or ($direction==left) {
 
       $width: $width / 2;
 
-      @if $direction == up {
+      @if $direction==up {
          border-left: $width solid $background-color;
          border-right: $width solid $background-color;
          border-bottom: $height solid $foreground-color;
 
-      } @else if $direction == right {
+      }
+
+      @else if $direction==right {
          border-top: $width solid $background-color;
          border-bottom: $width solid $background-color;
          border-left: $height solid $foreground-color;
 
-      } @else if $direction == down {
+      }
+
+      @else if $direction==down {
          border-left: $width solid $background-color;
          border-right: $width solid $background-color;
          border-top: $height solid $foreground-color;
 
-      } @else if $direction == left {
+      }
+
+      @else if $direction==left {
          border-top: $width solid $background-color;
          border-bottom: $width solid $background-color;
          border-right: $height solid $foreground-color;
       }
    }
 
-   @else if ($direction == up-right) or ($direction == up-left) {
+   @else if ($direction==up-right) or ($direction==up-left) {
       border-top: $height solid $foreground-color;
 
-      @if $direction == up-right {
-         border-left:  $width solid $background-color;
+      @if $direction==up-right {
+         border-left: $width solid $background-color;
 
-      } @else if $direction == up-left {
+      }
+
+      @else if $direction==up-left {
          border-right: $width solid $background-color;
       }
    }
 
-   @else if ($direction == down-right) or ($direction == down-left) {
+   @else if ($direction==down-right) or ($direction==down-left) {
       border-bottom: $height solid $foreground-color;
 
-      @if $direction == down-right {
-         border-left:  $width solid $background-color;
+      @if $direction==down-right {
+         border-left: $width solid $background-color;
 
-      } @else if $direction == down-left {
+      }
+
+      @else if $direction==down-left {
          border-right: $width solid $background-color;
       }
    }
 
-   @else if ($direction == inset-up) {
+   @else if ($direction==inset-up) {
       border-width: $height $width;
       border-style: solid;
       border-color: $background-color $background-color $foreground-color;
    }
 
-   @else if ($direction == inset-down) {
+   @else if ($direction==inset-down) {
       border-width: $height $width;
       border-style: solid;
       border-color: $foreground-color $background-color $background-color;
    }
 
-   @else if ($direction == inset-right) {
+   @else if ($direction==inset-right) {
       border-width: $width $height;
       border-style: solid;
       border-color: $background-color $background-color $background-color $foreground-color;
    }
 
-   @else if ($direction == inset-left) {
+   @else if ($direction==inset-left) {
       border-width: $width $height;
       border-style: solid;
       border-color: $background-color $foreground-color $background-color $background-color;
@@ -90,12 +101,14 @@
    height: $size;
    width: $size;
    color: $color;
-   &:before{
+
+   &:before {
       border-radius: 50%;
       border: $border solid currentColor;
       opacity: .15;
    }
-   &:after{
+
+   &:after {
       -webkit-animation: loader $speed linear;
       animation: loader $speed linear;
       -webkit-animation-iteration-count: infinite;
@@ -106,7 +119,9 @@
       border-top-color: currentColor;
       box-shadow: 0 0 0 1px transparent;
    }
-   &:before, &:after{
+
+   &:before,
+   &:after {
       width: $size;
       height: $size;
       margin: -($size/2) 0 0 -($size/2);

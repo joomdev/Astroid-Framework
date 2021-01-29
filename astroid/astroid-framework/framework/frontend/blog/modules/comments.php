@@ -18,6 +18,10 @@ $params = Astroid\Framework::getTemplate()->getParams();
 $article_comments = $params->get('article_comments', 'none');
 ?>
 <?php
+if ($article_comments == 'none') return;
+if ($article_comments == 'default') {
+   
+}
 if ($article_comments == 'facebook') {
    $fb_id = $params->get('article_comments_fb_id', '');
 ?>

@@ -49,6 +49,7 @@
 
 			<field astroidgroup="article_single_options" name="article_comments" type="astroidradio" default="none" label="ASTROID_ARTICLE_OPTIONS_COMMENTS_LBL" description="ASTROID_ARTICLE_OPTIONS_COMMENTS_DESC">
 				<option class="btn-danger" value="none">ASTROID_NONE</option>
+				<option class="btn-secondary" value="default">TPL_ASTROID_DEFAULT</option>
 				<option class="btn-facebook" value="facebook">ASTROID_FACEBOOK_LBL</option>
 				<option class="btn-info" value="disqus">ASTROID_DISQUS_LBL</option>
 				<option class="btn-warning" value="hyper">ASTROID_HYPER_LBL</option>

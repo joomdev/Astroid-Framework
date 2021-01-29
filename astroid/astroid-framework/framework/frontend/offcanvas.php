@@ -34,13 +34,7 @@ $panelwidth = $params->get('offcanvas_panelwidth', '320px');
 $openfrom = $params->get('offcanvas_openfrom', 'left');
 ?>
 <div class="astroid-offcanvas d-none d-init" id="astroid-offcanvas">
-   <div class="burger-menu-button active">
-      <button aria-label="Off-Canvas Toggle" type="button" class="button close-offcanvas offcanvas-close-btn">
-         <span class="box">
-            <span class="inner"></span>
-         </span>
-      </button>
-   </div>
+   <?php echo $document->include('offcanvas.close'); ?>
    <div class="astroid-offcanvas-inner">
       <?php $content = $document->position($module_position, 'astroidxhtml');
 

@@ -220,7 +220,7 @@ class Document
             if (isset($matches[4]) && $matches[4] === 'stylesheet') {
                 $url = $this->_cssPath($matches[2]);
                 $ext = pathinfo($url, PATHINFO_EXTENSION);
-                if ($ext !== 'css' && !Helper::startsWith($url, '@import')) return '';
+                if ($ext !== 'css' && !Helper::startsWith($url, '@import')) return $matches[0];
                 $stylesheets[] = $url;
                 $stylesheetsUrls[] = $this->beutifyURL($matches[2]);
                 return '';
@@ -248,7 +248,11 @@ class Document
             Helper::putContents($cssFile, '');
             $minifier = new Minify\CSS($cssFile);
             foreach ($stylesheets as $stylesheet) {
-                $minifier->add($stylesheet);
+                if (file_exists(JPATH_SITE . '/' . $stylesheet)) {
+                    $minifier->add(JPATH_SITE . '/' . $stylesheet);
+                } else {
+                    $minifier->add($stylesheet);
+                }
             }
             $minifier->minify($cssFile);
         } else {

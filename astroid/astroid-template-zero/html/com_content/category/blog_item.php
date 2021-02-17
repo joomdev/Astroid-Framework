@@ -67,10 +67,6 @@ $isUnpublished = $this->item->state == 0 || strtotime($this->item->publish_up) >
 
       <?php if ($useDefList && ($info == 0 || $info == 2)) : ?>
          <?php echo LayoutHelper::render($info_block_layout, array('item' => $this->item, 'params' => $params, 'astroidArticle' => $astroidArticle, 'position' => 'above')); ?>
-
-         <?php if ($info == 0 && $params->get('show_tags', 1) && !empty($this->item->tags->itemTags)) : ?>
-            <?php echo LayoutHelper::render('joomla.content.tags', $this->item->tags->itemTags); ?>
-         <?php endif; ?>
       <?php endif; ?>
 
       <div class="article-title item-title">
@@ -84,10 +80,6 @@ $isUnpublished = $this->item->state == 0 || strtotime($this->item->publish_up) >
       <?php if ($info == 1 || $info == 2) : ?>
          <?php if ($useDefList) : ?>
             <?php echo LayoutHelper::render($info_block_layout, array('item' => $this->item, 'params' => $params, 'astroidArticle' => $astroidArticle, 'position' => 'below')); ?>
-         <?php endif; ?>
-
-         <?php if ($info == 0 && $params->get('show_tags', 1) && !empty($this->item->tags->itemTags)) : ?>
-            <?php echo LayoutHelper::render('joomla.content.tags', $this->item->tags->itemTags); ?>
          <?php endif; ?>
       <?php endif; ?>
 

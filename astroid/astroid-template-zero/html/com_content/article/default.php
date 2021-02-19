@@ -19,6 +19,8 @@ use Joomla\CMS\Layout\LayoutHelper;
 use Joomla\CMS\Router\Route;
 use Joomla\CMS\Uri\Uri;
 
+HTMLHelper::addIncludePath(JPATH_COMPONENT . '/helpers');
+
 if (ASTROID_JOOMLA_VERSION > 3) {
    \JLoader::registerAlias('ContentHelperRoute', 'Joomla\Component\Content\Site\Helper\RouteHelper');
 } else {

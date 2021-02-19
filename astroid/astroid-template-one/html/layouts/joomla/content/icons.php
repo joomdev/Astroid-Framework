@@ -11,6 +11,7 @@ defined('JPATH_BASE') or die;
 
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
+use Joomla\CMS\Layout\LayoutHelper;
 
 HTMLHelper::_('bootstrap.framework');
 
@@ -32,13 +33,17 @@ $articleId = $displayData['item']->id;
 				?>
 				<div class="dropdown-menu" aria-labelledby="dropdownMenuButton-<?php echo $articleId; ?>">
 					<?php if ($displayData['params']->get('show_print_icon')) : ?>
-						<li class="dropdown-item print-icon"> <?php echo HTMLHelper::_('icon.print_popup', $displayData['item'], $displayData['params']); ?> </li>
+						<li class="dropdown-item print-icon"> <?php echo LayoutHelper::render('icon.print_popup', ['legacy' => $displayData['item'], 'params' => $displayData['params']]); ?> </li>
 					<?php endif; ?>
 					<?php if ($displayData['params']->get('show_email_icon')) : ?>
-						<li class="dropdown-item email-icon"> <?php echo HTMLHelper::_('icon.email', $displayData['item'], $displayData['params']); ?> </li>
+						<li class="dropdown-item email-icon">
+							<?php echo LayoutHelper::render('icon.email', ['legacy' => $displayData['item'], 'params' => $displayData['params']]); ?>
+						</li>
 					<?php endif; ?>
 					<?php if ($canEdit) : ?>
-						<li class="dropdown-item edit-icon"> <?php echo HTMLHelper::_('icon.edit', $displayData['item'], $displayData['params']); ?> </li>
+						<li class="dropdown-item edit-icon">
+							<?php echo LayoutHelper::render('icon.edit', ['legacy' => $displayData['item'], 'params' => $displayData['params']]); ?>
+						</li>
 					<?php endif; ?>
 				</div>
 			</div>

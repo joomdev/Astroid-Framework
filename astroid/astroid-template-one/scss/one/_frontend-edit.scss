@@ -1,4 +1,13 @@
 #adminForm {
+	@import "../../../media/jui/css/icomoon.css";
+
+	[class^="icon-"],
+	[class*=" icon-"] {
+		height: auto;
+		width: auto;
+		line-height: 1;
+	}
+
 	.controls {
 
 		>textarea,
@@ -26,6 +35,10 @@
 				@extend .form-control;
 			}
 		}
+
+		.field-media-input {
+			@extend .form-control;
+		}
 	}
 
 	input[type="checkbox"],
@@ -50,13 +63,41 @@
 		@extend .form-group
 	}
 
-	.btn:not(.btn-primary) {
+	.btn {
+
+		[class^="icon-"],
+		[class*=" icon-"] {
+			margin-right: 10px;
+		}
+	}
+
+	.btn:not(.btn-primary):not(.btn-secondary):not(.btn-success):not(.btn-danger) {
 		@extend .btn-outline-secondary;
 	}
 
 	.btn-toolbar {
 		.btn-group:not(:last-child) {
 			margin-right: 10px;
+		}
+	}
+}
+
+.layout-edit {
+	.tip-wrap {
+		box-shadow: 2px 2px 9px rgb(0 0 0 / 6%);
+		border: 1px solid #fdfdfd;
+		padding: 10px;
+		background-color: #fff;
+	}
+
+	.input-prepend.input-append {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		gap: 10px;
+
+		.btn {
+			width: auto;
 		}
 	}
 }

@@ -1,0 +1,62 @@
+#adminForm {
+	.controls {
+
+		>textarea,
+		>select,
+		>input[type="text"],
+		>input[type="password"],
+		>input[type="datetime"],
+		>input[type="datetime-local"],
+		>input[type="date"],
+		>input[type="month"],
+		>input[type="time"],
+		>input[type="week"],
+		>input[type="number"],
+		>input[type="email"],
+		>input[type="url"],
+		>input[type="search"],
+		>input[type="tel"],
+		>input[type="color"],
+		>.uneditable-input {
+			@extend .form-control;
+		}
+
+		.field-calendar {
+			input[type="text"] {
+				@extend .form-control;
+			}
+		}
+	}
+
+	input[type="checkbox"],
+	input[type="radio"] {
+		@extend .form-check;
+		margin-right: 5px;
+
+		+label {
+			@extend .form-check-label;
+			margin-right: 10px;
+		}
+	}
+
+	input[type="date"],
+	input[type="time"],
+	input[type="datetime-local"],
+	input[type="month"] {
+		appearance: none;
+	}
+
+	.controls {
+		@extend .form-group
+	}
+
+	.btn:not(.btn-primary) {
+		@extend .btn-outline-secondary;
+	}
+
+	.btn-toolbar {
+		.btn-group:not(:last-child) {
+			margin-right: 10px;
+		}
+	}
+}

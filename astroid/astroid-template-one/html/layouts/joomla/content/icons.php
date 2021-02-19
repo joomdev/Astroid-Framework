@@ -33,16 +33,16 @@ $articleId = $displayData['item']->id;
 				?>
 				<div class="dropdown-menu" aria-labelledby="dropdownMenuButton-<?php echo $articleId; ?>">
 					<?php if ($displayData['params']->get('show_print_icon')) : ?>
-						<li class="dropdown-item print-icon"> <?php echo LayoutHelper::render('icon.print_popup', ['legacy' => $displayData['item'], 'params' => $displayData['params']]); ?> </li>
+						<li class="dropdown-item print-icon"> <?php echo $this->sublayout('icons.print_popup', ['legacy' => $displayData['item'], 'params' => $displayData['params']]); ?> </li>
 					<?php endif; ?>
 					<?php if ($displayData['params']->get('show_email_icon')) : ?>
 						<li class="dropdown-item email-icon">
-							<?php echo LayoutHelper::render('icon.email', ['legacy' => $displayData['item'], 'params' => $displayData['params']]); ?>
+							<?php echo $this->sublayout('icons.email', ['legacy' => $displayData['item'], 'params' => $displayData['params']]); ?>
 						</li>
 					<?php endif; ?>
 					<?php if ($canEdit) : ?>
 						<li class="dropdown-item edit-icon">
-							<?php echo LayoutHelper::render('icon.edit', ['legacy' => $displayData['item'], 'params' => $displayData['params']]); ?>
+							<?php echo $this->sublayout('icons.edit', ['legacy' => $displayData['item'], 'params' => $displayData['params']]); ?>
 						</li>
 					<?php endif; ?>
 				</div>
@@ -52,7 +52,7 @@ $articleId = $displayData['item']->id;
 	<?php else : ?>
 
 		<div class="float-right">
-			<?php echo HTMLHelper::_('icon.print_screen', $displayData['item'], $displayData['params']); ?>
+			<?php echo $this->sublayout('icons.print_screen', ['legacy' => $displayData['item'], 'params' => $displayData['params']]); ?>
 		</div>
 
 	<?php endif; ?>

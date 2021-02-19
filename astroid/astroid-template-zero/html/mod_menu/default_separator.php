@@ -15,7 +15,7 @@ $anchor_css = $item->anchor_css ?: '';
 
 $linktype   = $item->title;
 
-$astroid_menu_options = $item->params->get('astroid_menu_options', []);
+$astroid_menu_options = $item->getParams()->get('astroid_menu_options', []);
 $astroid_menu_options = (array) $astroid_menu_options;
 
 if ($item->menu_image) {
@@ -26,7 +26,7 @@ if ($item->menu_image) {
 		$linktype = JHtml::_('image', $item->menu_image, $item->title);
 	}
 
-	if ($item->params->get('menu_text', 1)) {
+	if ($item->getParams()->get('menu_text', 1)) {
 		$linktype .= '<span class="image-title">' . $item->title . '</span>';
 	}
 }

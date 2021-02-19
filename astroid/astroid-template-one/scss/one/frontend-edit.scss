@@ -1,6 +1,4 @@
 #adminForm {
-	@import "../../../media/jui/css/icomoon.css";
-
 	[class^="icon-"],
 	[class*=" icon-"] {
 		height: auto;
@@ -45,6 +43,7 @@
 	input[type="radio"] {
 		@extend .form-check;
 		margin-right: 5px;
+		display: inline-block;
 
 		+label {
 			@extend .form-check-label;

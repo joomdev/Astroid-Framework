@@ -15,7 +15,7 @@ use Astroid\Framework;
 
 if (ASTROID_JOOMLA_VERSION == 3) {
     \JLoader::register('ModMenuHelper', JPATH_SITE . '/modules/mod_menu/helper.php');
-    \JLoader::registerAlias('MenuHelper', 'ModMenuHelper');
+    \JLoader::registerAlias('MenuHelper', '\\ModMenuHelper');
 } else {
     \JLoader::registerAlias('MenuHelper', '\\Joomla\\Module\\Menu\\Site\\Helper\\MenuHelper');
 }

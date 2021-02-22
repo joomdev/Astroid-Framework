@@ -18,30 +18,26 @@ defined('_JEXEC') or die;
 class Overrides
 {
     public static $rename = [
-        '2.5.0' => [
-            'com_content/form',
-            'layouts/joomla/form',
-            'layouts/joomla/content/icons/email.php',
-            'layouts/joomla/content/icons/print_popup.php',
-            'layouts/joomla/content/icons/print_screen.php'
-        ]
+        'com_content/form',
+        'layouts/joomla/form',
+        'layouts/joomla/content/icons/email.php',
+        'layouts/joomla/content/icons/print_popup.php',
+        'layouts/joomla/content/icons/print_screen.php'
     ];
 
     public static function fix()
     {
-        $version = Framework::getVersion();
-
-        if (isset(self::$rename[$version])) self::rename(self::$rename[$version]);
+        self::rename();
     }
 
-    public static function rename($files)
+    public static function rename()
     {
         $templates = Template::getAstroidTemplates(true);
         $templates = array_unique(array_column($templates, 'template'));
 
         foreach ($templates as $template) {
             $path = JPATH_ROOT . '/templates/' . $template . '/html/';
-            foreach ($files as $file) {
+            foreach (self::$rename as $file) {
                 if (is_dir($path . $file)) {
                     Folder::move($path . $file, $path . (str_replace(basename($file), basename($file) . '-' . date('Y-m-d'), $file)));
                 } else if (file_exists($path . $file)) {

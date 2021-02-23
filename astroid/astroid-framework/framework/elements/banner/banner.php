@@ -96,8 +96,8 @@ if ($astroid_banner_enabled) {
       $style[] = 'background-image:url(' . $astroid_banner_bgimage . ')';
    }
    $style = !empty($style) ? 'style="' . implode(';', $style) . '"' : '';
-   $styletext = [];
-   $stylesubtext = [];
+   $styletext = ['width:100%'];
+   $stylesubtext = ['width:100%'];
    if (!empty($astroid_banner_textcolor)) {
       $styletext[] = 'color:' . $astroid_banner_textcolor;
    }

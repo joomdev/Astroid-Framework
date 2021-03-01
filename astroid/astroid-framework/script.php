@@ -6,17 +6,22 @@
  * @copyright Copyright (C) 2009 - 2020 JoomDev.
  * @license https://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
  */
+
+use Astroid\Helper\Overrides;
+
 // no direct access
 defined('_JEXEC') or die;
 jimport('joomla.filesystem.file');
 
-class astroidInstallerScript {
+class astroidInstallerScript
+{
 
    /**
     * 
     * Function to run before installing the component	 
     */
-   public function preflight($type, $parent) {
+   public function preflight($type, $parent)
+   {
       $plugin_dir = JPATH_LIBRARIES . '/' . 'astroid' . '/' . 'plugins' . '/';
       $plugins = array_filter(glob($plugin_dir . '*'), 'is_dir');
       foreach ($plugins as $plugin) {
@@ -30,7 +35,8 @@ class astroidInstallerScript {
     * 
     * Function to run after installing the component	 
     */
-   public function postflight($type, $parent) {
+   public function postflight($type, $parent)
+   {
       $plugin_dir = JPATH_LIBRARIES . '/' . 'astroid' . '/' . 'plugins' . '/';
       $plugins = array_filter(glob($plugin_dir . '*'), 'is_dir');
       foreach ($plugins as $plugin) {
@@ -38,9 +44,12 @@ class astroidInstallerScript {
             $this->installPlugin($plugin, $plugin_dir);
          }
       }
+
+      Overrides::fix();
    }
 
-   public function installPlugin($plugin, $plugin_dir) {
+   public function installPlugin($plugin, $plugin_dir)
+   {
       $db = JFactory::getDbo();
       $plugin_name = str_replace($plugin_dir, '', $plugin);
 
@@ -57,7 +66,8 @@ class astroidInstallerScript {
       return true;
    }
 
-   public function uninstallPlugin($plugin, $plugin_dir) {
+   public function uninstallPlugin($plugin, $plugin_dir)
+   {
       $db = JFactory::getDbo();
       $plugin_name = str_replace($plugin_dir, '', $plugin);
       $query = $db->getQuery(true);
@@ -69,5 +79,4 @@ class astroidInstallerScript {
       $db->execute();
       return true;
    }
-
 }

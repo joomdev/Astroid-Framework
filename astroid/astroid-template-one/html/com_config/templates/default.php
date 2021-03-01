@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @package     Joomla.Site
  * @subpackage  com_config
@@ -9,11 +10,16 @@
 
 defined('_JEXEC') or die;
 
-JHtml::_('behavior.formvalidator');
-JHtml::_('behavior.keepalive');
-$user = JFactory::getUser();
+use Joomla\CMS\Factory;
+use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
+use Joomla\CMS\Router\Route;
 
-JFactory::getDocument()->addScriptDeclaration("
+HTMLHelper::_('behavior.formvalidator');
+HTMLHelper::_('behavior.keepalive');
+$user = Factory::getUser();
+
+Factory::getDocument()->addScriptDeclaration("
 	Joomla.submitbutton = function(task)
 	{
 		if (task == 'config.cancel' || document.formvalidator.isValid(document.getElementById('templates-form')))
@@ -24,7 +30,7 @@ JFactory::getDocument()->addScriptDeclaration("
 ");
 ?>
 
-<form action="<?php echo JRoute::_('index.php?option=com_config'); ?>" method="post" name="adminForm" id="templates-form" class="form-validate">
+<form action="<?php echo Route::_('index.php?option=com_config'); ?>" method="post" name="adminForm" id="templates-form" class="form-validate">
 
 	<div class="row-fluid">
 		<!-- Begin Content -->
@@ -32,12 +38,12 @@ JFactory::getDocument()->addScriptDeclaration("
 		<div class="btn-toolbar" role="toolbar" aria-label="<?php echo JText::_('JTOOLBAR'); ?>">
 			<div class="btn-group">
 				<button type="button" class="btn btn-primary mr-2" onclick="Joomla.submitbutton('config.save.templates.apply')">
-					<span class="icon-ok"></span> <?php echo JText::_('ASTROID_SAVE') ?>
+					<span class="icon-ok"></span> <?php echo Text::_('ASTROID_SAVE') ?>
 				</button>
 			</div>
 			<div class="btn-group">
 				<button type="button" class="btn mr-2" onclick="Joomla.submitbutton('config.cancel')">
-					<span class="icon-cancel"></span> <?php echo JText::_('JCANCEL') ?>
+					<span class="icon-cancel"></span> <?php echo Text::_('JCANCEL') ?>
 				</button>
 			</div>
 		</div>
@@ -52,7 +58,7 @@ JFactory::getDocument()->addScriptDeclaration("
 		</div>
 
 		<input type="hidden" name="task" value="" />
-		<?php echo JHtml::_('form.token'); ?>
+		<?php echo HTMLHelper::_('form.token'); ?>
 
 		<!-- End Content -->
 	</div>

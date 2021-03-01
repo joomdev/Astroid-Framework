@@ -58,6 +58,11 @@ class Head
         $styles = '';
         $document = Framework::getDocument();
         $document->loadFontAwesome();
+        if (ASTROID_JOOMLA_VERSION != 4) {
+            $document->addStyleSheet('media/jui/css/icomoon.css');
+        } else {
+            $document->addStyleSheet('templates/cassiopeia/css/vendor/fontawesome-free/fontawesome.min.css');
+        }
         $styles .= $document->astroidCSS();
         return $styles;
     }

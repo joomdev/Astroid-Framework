@@ -1,45 +1,26 @@
 <?php
+
 /**
  * @package     Joomla.Site
  * @subpackage  Layout
  *
- * @copyright   Copyright (C) 2005 - 2019 Open Source Matters, Inc. All rights reserved.
+ * @copyright   (C) 2016 Open Source Matters, Inc. <https://www.joomla.org>
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
-defined('JPATH_BASE') or die;
+defined('_JEXEC') or die;
 
-JHtml::_('bootstrap.tooltip');
+use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 
 $article = $displayData['article'];
-$overlib = $displayData['overlib'];
-$legacy  = $displayData['legacy'];
+$nowDate = strtotime(Factory::getDate());
 
-if ($legacy)
-{
-	$icon = $article->state ? 'edit.png' : 'edit_unpublished.png';
-
-	if (strtotime($article->publish_up) > strtotime(JFactory::getDate())
-		|| ((strtotime($article->publish_down) < strtotime(JFactory::getDate())) && $article->publish_down != JFactory::getDbo()->getNullDate()))
-	{
-		$icon = 'edit_unpublished.png';
-	}
-}
-else
-{
-	$icon = $article->state ? 'edit' : 'eye-close';
-
-	if (strtotime($article->publish_up) > strtotime(JFactory::getDate())
-		|| ((strtotime($article->publish_down) < strtotime(JFactory::getDate())) && $article->publish_down != JFactory::getDbo()->getNullDate()))
-	{
-		$icon = 'eye-close';
-	}
-}
+$currentDate   = Factory::getDate()->format('Y-m-d H:i:s');
+$isUnpublished = ($article->publish_up > $currentDate)
+	|| !is_null($article->publish_down) && ($article->publish_down < $currentDate);
+$aria_described = 'editarticle-' . (int) $article->id;
 
 ?>
-<?php if ($legacy) : ?>
-	<?php echo JHtml::_('image', 'system/' . $icon, JText::_('JGLOBAL_EDIT'), null, true); ?>
-<?php else : ?>
-	<span class="hasTooltip icon-<?php echo $icon; ?> tip" title="<?php echo JHtml::tooltipText(JText::_('COM_CONTENT_EDIT_ITEM'), $overlib, 0, 0); ?>"></span>
-	<?php echo JText::_('JGLOBAL_EDIT'); ?>
-<?php endif; ?>
+<span class="fas fa-edit" aria-hidden="true"></span>
+<?php echo Text::_('JGLOBAL_EDIT'); ?>

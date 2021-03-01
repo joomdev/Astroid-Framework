@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @package   Astroid Framework
  * @author    JoomDev https://www.joomdev.com
@@ -26,14 +27,16 @@ $class = [];
 $html = '';
 $backtotop_icon = $params->get('backtotop_icon', 'fas fa-arrow-up');
 $backtotop_icon_size = $params->get('backtotop_icon_size', 20);
-$backtotop_icon_color = $params->get('backtotop_icon_color', '#000');
+$backtotop_icon_color = $params->get('backtotop_icon_color', '');
 $backtotop_icon_bgcolor = $params->get('backtotop_icon_bgcolor', '');
 $backtotop_icon_style = $params->get('backtotop_icon_style', 'circle');
 $backtotop_on_mobile = $params->get('backtotop_on_mobile', 1);
 $paddingpercent = 10;
 $padding = ($backtotop_icon_size / $paddingpercent);
-$style .= 'font-size:' . $backtotop_icon_size . 'px; color:' . $backtotop_icon_color . ';';
-
+$style .= 'font-size:' . $backtotop_icon_size . 'px;';
+if ($backtotop_icon_color) {
+   $style .= 'color:' . $backtotop_icon_color . ';';
+}
 switch ($backtotop_icon_style) {
    case 'rounded':
       $astyle .= 'border-radius : ' . round($padding) . 'px;';
@@ -53,6 +56,5 @@ if (!$backtotop_on_mobile) {
    $class[] = 'hideonxs';
 }
 
-$html .= '<a id="astroid-backtotop" class="' . implode(' ', $class) . '" href="javascript:void(0)" style="' . $astyle . '"><i class="' . $backtotop_icon . '" style="' . $style . '"></i></a>';
+$html .= '<a title="Back to Top" id="astroid-backtotop" class="' . implode(' ', $class) . '" href="javascript:void(0)" style="' . $astyle . '"><i class="' . $backtotop_icon . '" style="' . $style . '"></i></a>';
 echo $html;
-?>

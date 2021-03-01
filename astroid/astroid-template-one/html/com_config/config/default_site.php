@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @package     Joomla.Site
  * @subpackage  com_config
@@ -8,9 +9,12 @@
  */
 
 defined('_JEXEC') or die;
+
+use Joomla\CMS\Language\Text;
+
 ?>
 <fieldset class="form-horizontal">
-	<legend><?php echo JText::_('COM_CONFIG_SITE_SETTINGS'); ?></legend>
+	<legend><?php echo Text::_('COM_CONFIG_SITE_SETTINGS'); ?></legend>
 	<?php
 	foreach ($this->form->getFieldset('site') as $field) :
 	?>

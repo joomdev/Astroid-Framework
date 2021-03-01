@@ -13,6 +13,8 @@ define('COMPILE_SASS', 0);
 JLoader::registerNamespace('Astroid', JPATH_LIBRARIES . '/astroid/framework/library/astroid', false, false, 'psr4');
 
 use Astroid\Framework;
+use Astroid\Helper;
+use Astroid\Helper\Template;
 
 /**
  * Astroid system plugin
@@ -24,34 +26,30 @@ class plgSystemAstroid extends JPlugin
 
    protected $app;
 
-   public function __construct(&$subject, $config)
-   {
-      parent::__construct($subject, $config);
-   }
-
    public function onAfterRoute()
    {
       Framework::init();
       $option = $this->app->input->get('option', '');
       $astroid = $this->app->input->get('astroid', '');
       if ($option == 'com_ajax' && !empty($astroid)) {
-         Astroid\Framework::getClient()->execute($astroid);
+         Framework::getClient()->execute($astroid);
       }
    }
 
    public function onContentPrepareForm($form, $data)
    {
-      Astroid\Framework::getClient()->onContentPrepareForm($form, $data);
+      Framework::getClient()->onContentPrepareForm($form, $data);
    }
 
    public function onAfterRender()
    {
-      Astroid\Framework::getClient()->onAfterRender();
+      if (Framework::isAdmin()) return;
+      Framework::getClient()->onAfterRender();
    }
 
    public function onAfterRespond()
    {
-      if (!(Astroid\Helper::getPluginParams()->get('astroid_debug', 0)) || Framework::isAdmin()) {
+      if (!(Helper::getPluginParams()->get('astroid_debug', 0)) || Framework::isAdmin()) {
          return;
       }
 
@@ -66,15 +64,15 @@ class plgSystemAstroid extends JPlugin
       if ($contents) {
          ob_end_clean();
       }
-      echo Astroid\Helper::str_lreplace('</body>', Astroid\Helper::debug() . '</body>', $contents);
+      echo Helper::str_lreplace('</body>', Helper::debug() . '</body>', $contents);
    }
 
    public function onExtensionAfterSave($context, $table, $isNew)
    {
-      if (Astroid\Framework::isAdmin() && $context == "com_templates.style" && $isNew && Astroid\Helper\Template::isAstroidTemplate($table->template)) {
+      if (Framework::isAdmin() && $context == "com_templates.style" && $isNew && Template::isAstroidTemplate($table->template)) {
          $params = \json_decode($table->params, TRUE);
          $parent_id = $params['astroid'];
-         Astroid\Helper\Template::setTemplateDefaults($table->template, $table->id, $parent_id);
+         Template::setTemplateDefaults($table->template, $table->id, $parent_id);
       }
    }
 

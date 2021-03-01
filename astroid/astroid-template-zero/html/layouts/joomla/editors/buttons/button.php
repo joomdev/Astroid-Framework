@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @package     Joomla.Site
  * @subpackage  Layout
@@ -9,21 +10,23 @@
 
 defined('JPATH_BASE') or die;
 
+use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Uri\Uri;
+
 $button = $displayData;
 
 ?>
 <?php if ($button->get('name')) : ?>
 	<?php
-		$class    = $button->get('class') ?: null;
-		$class	 .= $button->get('modal') ? ' modal-button' : null;
-		$href     = $button->get('link') ? ' href="' . JUri::base() . $button->get('link') . '"' : null;
-		$onclick  = $button->get('onclick') ? ' onclick="' . $button->get('onclick') . '"' : '';
-		$title    = $button->get('title') ?: $button->get('text');
+	$class    = $button->get('class') ?: null;
+	$class	 .= $button->get('modal') ? ' modal-button' : null;
+	$href     = $button->get('link') ? ' href="' . Uri::base() . $button->get('link') . '"' : null;
+	$onclick  = $button->get('onclick') ? ' onclick="' . $button->get('onclick') . '"' : '';
+	$title    = $button->get('title') ?: $button->get('text');
 
 	// Load modal popup behavior
-	if ($button->get('modal'))
-	{
-		JHtml::_('behavior.modal', 'a.modal-button');
+	if ($button->get('modal')) {
+		HTMLHelper::_('behavior.modal', 'a.modal-button');
 	}
 	?>
 	<a class="<?php echo $class; ?>" title="<?php echo $title; ?>" <?php echo $href, $onclick; ?> rel="<?php echo $button->get('options'); ?>">

@@ -43,14 +43,14 @@ astroidFramework.directive("astroidmediagallery", ["$http", function ($http) {
             ngModel.$setViewValue("");
             try {
                Admin.checkForm();
-            } catch (e) {}
+            } catch (e) { }
          };
          $scope.selectImage = function (_id, _value) {
             ngModel.$setViewValue(_value);
             $scope.selectMedia = false;
             try {
                Admin.checkForm();
-            } catch (e) {}
+            } catch (e) { }
          };
          $scope.getLibrary = function (folder, tab) {
             $("a#" + tab).tab("show");
@@ -59,7 +59,7 @@ astroidFramework.directive("astroidmediagallery", ["$http", function ($http) {
             $scope.bradcrumb = [];
             $.ajax({
                method: "GET",
-               url: BASE_URL + "index.php?option=com_ajax&astroid=media&action=library&folder=" + folder + "&asset=com_templates&author=",
+               url: BASE_URL + "index.php?option=com_ajax&astroid=media&action=library&folder=" + folder + "&asset=com_templates&ts=" + Date.now() + "&author=",
                success: function (response) {
                   if (response.status == "error") {
                      $.notify(response.message, {
@@ -321,7 +321,7 @@ astroidFramework.directive("astroidsocialprofiles", ["$http", function ($http) {
             try {
                $scope.setProfiles();
                Admin.checkForm();
-            } catch (e) {}
+            } catch (e) { }
          };
          $scope.setProfiles = function () {
             var _profiles = [];
@@ -412,13 +412,13 @@ astroidFramework.directive("dropzone", function () {
                }
                try {
                   Admin.checkForm();
-               } catch (e) {}
+               } catch (e) { }
             },
             complete: function (file) {
                this.removeAllFiles(true);
                try {
                   Admin.checkForm();
-               } catch (e) {}
+               } catch (e) { }
             },
             sending: function (file, xhr, formData) {
                if (_dir) {
@@ -608,7 +608,7 @@ astroidFramework.directive("astroidSwitch", function () {
             }
             try {
                Admin.checkForm();
-            } catch (e) {}
+            } catch (e) { }
          };
          var updateElementFromModel = function () {
             if (ngModel.$viewValue == 1) {

@@ -8,6 +8,9 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 defined('_JEXEC') or die;
+
+use Joomla\CMS\Language\Text;
+
 /**
  * Layout variables
  * -----------------
@@ -42,7 +45,7 @@ if (!$template->params->get('article_rating', 1)) {
 ?>
    <div class="content_rating" itemprop="aggregateRating" itemscope itemtype="https://schema.org/AggregateRating">
       <p class="unseen element-invisible sr-only">
-         <?php echo JText::sprintf('PLG_VOTE_USER_RATING', '<span itemprop="ratingValue">' . $rating . '</span>', '<span itemprop="bestRating">5</span>'); ?>
+         <?php echo Text::sprintf('PLG_VOTE_USER_RATING', '<span itemprop="ratingValue">' . $rating . '</span>', '<span itemprop="bestRating">5</span>'); ?>
          <meta itemprop="ratingCount" content="<?php echo (int) $row->rating_count; ?>" />
          <meta itemprop="worstRating" content="0" />
       </p>

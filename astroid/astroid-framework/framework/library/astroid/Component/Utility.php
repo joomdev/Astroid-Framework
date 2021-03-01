@@ -99,7 +99,7 @@ class Utility
         $layout_background_image = $params->get('layout_background_image', '');
 
         if (!empty($layout_background_image)) {
-            $style = new Style('.astroid-layout.astroid-layout-boxed');
+            $style = new Style('body');
             $style->addCss('background-image', 'url(' . \JURI::root() . Helper\Media::getPath() . '/' . $layout_background_image . ')');
             $style->addCss('background-repeat', $params->get('layout_background_repeat', 'inherit'));
             $style->addCss('background-size', $params->get('layout_background_size', 'inherit'));

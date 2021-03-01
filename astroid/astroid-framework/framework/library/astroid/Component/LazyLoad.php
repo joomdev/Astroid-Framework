@@ -126,6 +126,7 @@ class LazyLoad
 
     public static function getBase64Thumbnail($sourceImage)
     {
+        error_reporting(E_ERROR | E_PARSE);
         try {
             $info = getimagesize($sourceImage);
             if (!is_array($info) || !in_array($info['mime'], ['image/jpeg', 'image/gif', 'image/png'])) {

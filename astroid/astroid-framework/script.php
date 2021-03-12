@@ -45,7 +45,9 @@ class astroidInstallerScript
          }
       }
 
-      Overrides::fix();
+      if ($type == "update") {
+         Overrides::fix();
+      }
    }
 
    public function installPlugin($plugin, $plugin_dir)

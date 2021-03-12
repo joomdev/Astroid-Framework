@@ -43,7 +43,6 @@ class plgSystemAstroid extends JPlugin
 
    public function onAfterRender()
    {
-      if (Framework::isAdmin()) return;
       Framework::getClient()->onAfterRender();
    }
 

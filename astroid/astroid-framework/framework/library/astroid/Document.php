@@ -876,8 +876,8 @@ class Document
         $scss = new Compiler();
         $scss->setImportPaths(__DIR__ . '/' . $templatePath . '/scss');
         $bootstrapPath = $mediaPath . '/vendor/bootstrap/scss';
-        if (file_exists($templateScssPath . '/bootstrap')) {
-            $bootstrapPath = $templateScssPath . '/bootstrap';
+        if (file_exists(__DIR__ . '/' . $templateScssPath . '/bootstrap')) {
+            $bootstrapPath = 'bootstrap';
         }
         $content = '';
         $functionsIncluded = false;

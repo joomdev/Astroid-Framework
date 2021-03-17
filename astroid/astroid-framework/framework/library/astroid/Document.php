@@ -875,22 +875,26 @@ class Document
 
         $scss = new Compiler();
         $scss->setImportPaths(__DIR__ . '/' . $templatePath . '/scss');
+        $bootstrapPath = $mediaPath . '/vendor/bootstrap/scss';
+        if (file_exists($templateScssPath . '/bootstrap')) {
+            $bootstrapPath = $templateScssPath . '/bootstrap';
+        }
         $content = '';
         $functionsIncluded = false;
         if (file_exists(__DIR__ . '/' . $templateScssPath . '/custom/variable_overrides.scss')) {
             $functionsIncluded = true;
-            $content .= '@import "' . $mediaPath . '/vendor/bootstrap/scss/functions";';
+            $content .= '@import "' . $bootstrapPath . '/functions";';
             $content .= '@import "custom/variable_overrides";';
         }
 
         if (file_exists(__DIR__ . '/' . $templateScssPath . '/variable_overrides.scss')) {
             if (!$functionsIncluded) {
-                $content .= '@import "' . $mediaPath . '/vendor/bootstrap/scss/functions";';
+                $content .= '@import "' . $bootstrapPath . '/functions";';
             }
             $content .= '@import "variable_overrides";';
         }
 
-        $content .= '@import "' . $mediaPath . '/vendor/bootstrap/scss/bootstrap";';
+        $content .= '@import "' . $bootstrapPath . '/bootstrap";';
 
         $content .= '@import "' . $mediaPath . '/vendor/astroid/scss/astroid";';
 

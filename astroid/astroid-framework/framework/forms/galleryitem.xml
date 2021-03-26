@@ -6,14 +6,26 @@
              type="text"
              description="ASTROID_GALLERY_ITEM_CAPTION_DESC"
       />
+      <field name="link"
+             type="menuitem"
+             label="ASTROID_GALLERY_ITEM_LINK_LBL"
+             description="ASTROID_GALLERY_ITEM_LINK_DESC" >
+             <option value=""></option>
+      </field>
       <field name="image"
              label="ASTROID_GALLERY_ITEM_IMAGE_LBL"
              description="ASTROID_GALLERY_ITEM_IMAGE_DESC"
              type="media"
       />
+      <field name="copyright"
+             label="ASTROID_GALLERY_ITEM_COPYRIGHT_LBL"
+             type="text"
+             description="ASTROID_GALLERY_ITEM_COPYRIGHT_DESC"
+      />
       <field name="description"
              label="ASTROID_GALLERY_ITEM_DESCRIPTION_LBL"
              description="ASTROID_GALLERY_ITEM_DESCRIPTION_DESC"
-             type="textarea" />
+             type="textarea"
+      />
    </fieldset>
 </form>

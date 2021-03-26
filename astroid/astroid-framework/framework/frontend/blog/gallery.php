@@ -58,11 +58,21 @@ $hasItems = false;
             <?php if (!empty($item['title']) || !empty($item['description'])) { ?>
                <div class="carousel-caption d-none d-md-block">
                   <?php if (!empty($item['title'])) { ?>
-                     <h5><?php echo $item['title']; ?></h5>
+                     <h5><?php if (!empty($item['link'])) { ?>
+                       <a href="<?php echo JRoute::_("index.php?Itemid=" . $item['link']); ?>">
+                       <?php } ?>
+                       <?php echo $item['title']; ?>
+                       <?php if (!empty($item['link'])) { ?> </a> <?php } ?>
+                     </h5>
                   <?php } ?>
                   <?php if (!empty($item['description'])) { ?>
                      <p><?php echo $item['description']; ?></p>
                   <?php } ?>
+               </div>
+            <?php } ?>
+            <?php if (!empty($item['copyright'])) { ?>
+               <div class="carousel-copyright d-none d-md-block">
+                 <?php echo $item['copyright']; ?>
                </div>
             <?php } ?>
          </div>

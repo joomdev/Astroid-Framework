@@ -207,7 +207,7 @@ class Font
         $value = str_replace(',', ';', $value);
 
         $document->addCustomTag('<link rel="preconnect" href="https://fonts.gstatic.com">');
-        $document->addStyleSheet('https://fonts.googleapis.com/css?family=' . $value . '&display=swap');
+        $document->addStyleSheet('https://fonts.googleapis.com/css2?family=' . $value . '&display=swap');
 
         @list($font, $variants) = explode(":", $value);
 

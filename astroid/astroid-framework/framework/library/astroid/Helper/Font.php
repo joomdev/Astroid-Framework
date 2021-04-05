@@ -202,7 +202,13 @@ class Font
     public static function loadGoogleFont($value)
     {
         $document = Framework::getDocument();
-        $document->addStyleSheet('https://fonts.googleapis.com/css?family=' . $value);
+
+        $value = str_replace(':', ':wght@', $value);
+        $value = str_replace(',', ';', $value);
+
+        $document->addCustomTag('<link rel="preconnect" href="https://fonts.gstatic.com">');
+        $document->addStyleSheet('https://fonts.googleapis.com/css?family=' . $value . '&display=swap');
+
         @list($font, $variants) = explode(":", $value);
 
         if (preg_match('~[0-9]+~', $font)) {

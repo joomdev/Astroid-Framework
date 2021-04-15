@@ -58,11 +58,18 @@ $hasItems = false;
             <?php if (!empty($item['title']) || !empty($item['description'])) { ?>
                <div class="carousel-caption d-none d-md-block">
                   <?php if (!empty($item['title'])) { ?>
-                     <h5><?php if (!empty($item['link'])) { ?>
-                       <a href="<?php echo JRoute::_("index.php?Itemid=" . $item['link']); ?>">
-                       <?php } ?>
-                       <?php echo $item['title']; ?>
-                       <?php if (!empty($item['link'])) { ?> </a> <?php } ?>
+                     <h5>
+                       <?php switch($item['linktype']) {
+                       	       case 'menuitem':
+                       	         echo '<a href="' . JRoute::_("index.php?Itemid=" . $item['linkmenuitem']) . '">' . $item['title'] . '</a>';
+                       	         break;
+                       	       case 'url':
+                       	         echo '<a href="'. $item['linkurl'] . '">' . $item['title'] . '</a>';
+                       	         break;
+                       	       default:
+                       	         echo $item['title'];
+                       	      }
+                   	  ?>
                      </h5>
                   <?php } ?>
                   <?php if (!empty($item['description'])) { ?>

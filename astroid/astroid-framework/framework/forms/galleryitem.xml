@@ -6,12 +6,30 @@
              type="text"
              description="ASTROID_GALLERY_ITEM_CAPTION_DESC"
       />
-      <field name="link"
+      <field name="linktype" 
+             label="ASTROID_GALLERY_ITEM_LINKTYPE_LBL"
+             type="radio"
+             description="ASTROID_GALLERY_ITEM_LINKTYPE_DESC"
+             default="0"
+             class="btn-group">
+         <option value="0">None</option>
+         <option value="menuitem">MenuItem</option>
+         <option value="url">URL</option>
+      </field>
+      <field name="linkmenuitem"
              type="menuitem"
-             label="ASTROID_GALLERY_ITEM_LINK_LBL"
-             description="ASTROID_GALLERY_ITEM_LINK_DESC" >
+             label="ASTROID_GALLERY_ITEM_LINKMENUITEM_LBL"
+             description="ASTROID_GALLERY_ITEM_LINKMENUITEM_DESC"
+             showon="linktype:menuitem" >
              <option value=""></option>
       </field>
+      <field name="linkurl"
+             type="url"
+             label="ASTROID_GALLERY_ITEM_LINKURL_LBL"
+             description="ASTROID_GALLERY_ITEM_LINKURL_DESC"
+             relative="true"
+             showon="linktype:url"
+      />
       <field name="image"
              label="ASTROID_GALLERY_ITEM_IMAGE_LBL"
              description="ASTROID_GALLERY_ITEM_IMAGE_DESC"

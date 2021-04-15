@@ -28,7 +28,7 @@
    font-size: 20px;
    &[class*="article-icon-"] {
       color: #fff;
-      background-color: $primary;      
+      background-color: $primary;
    }
    &:before,
    &:after {
@@ -69,4 +69,21 @@
 
 .article-wraper .card-body:not(.has-image) {
    padding-top: 50px;
+}
+
+.carousel-caption a {
+    color: white;
+}
+
+.carousel-copyright {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-image: linear-gradient(to right, rgba(0,0,0,0.0), rgba(0, 0, 0, 0.5));
+    color: lightgrey;
+    padding: 0px 1.0em;
+    font-size: smaller;
+    line-height: 1.5em;
+    width: 66%;
+    text-align: right;
 }

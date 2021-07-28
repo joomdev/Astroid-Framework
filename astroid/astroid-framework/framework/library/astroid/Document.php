@@ -276,6 +276,9 @@ class Document
             // print_r($matches);
             $script = [];
             if (isset($matches[5]) && $matches[5] == '</script>' && !empty($matches[2])) {
+                if (strpos($matches[0], 'type="module"') > 0) {
+                    return $matches[0];
+                }
                 $script = ['content' => $this->beutifyURL($matches[2]), 'type' => 'url'];
                 $javascriptFiles[] = $this->beutifyURL($matches[2]);
             } else if (isset($matches[8]) && $matches[8] == '</script>' && !empty($matches[7])) {

@@ -17,6 +17,7 @@ class Video
     {
         $parts = parse_url($url);
         $id = '';
+        $query = null;
         switch ($type) {
             case 'youtube':
                 parse_str($parts['query'], $query);

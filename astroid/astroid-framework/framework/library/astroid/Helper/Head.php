@@ -62,6 +62,10 @@ class Head
             $document->addStyleSheet('media/jui/css/icomoon.css');
         } else {
             $document->addStyleSheet('templates/cassiopeia/css/vendor/fontawesome-free/fontawesome.min.css');
+            if ($document->isFrontendEditing()) {
+                $document->addStyleSheet('templates/cassiopeia/css/template.css');
+                $document->addStyleSheet('media/astroid/assets/css/frontend-editing-j4.css');
+            }
         }
         $styles .= $document->astroidCSS();
         return $styles;

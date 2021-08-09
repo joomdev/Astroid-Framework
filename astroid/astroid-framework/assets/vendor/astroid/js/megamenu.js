@@ -108,13 +108,18 @@
                   var _rightoverflow = _container.offset().left + _container.outerWidth();
                   _content.css('max-width', _container.outerWidth());
                }
-               var _top = _container.outerHeight() - $(this).outerHeight();
+
+               if ($(this).height() * 2 <= _container.height()) {
+                  var _top = 0
+               } else {
+                  var _top = _container.outerHeight() - $(this).outerHeight();
+               }
+
                var _arrow = $(this).children('.arrow');
                _content.css('left', '0px');
 
                if (settings.headerOffset) {
                   _arrow.css('margin-bottom', -(_top / 2));
-                  var _top = _container.outerHeight() - $(this).outerHeight();
                   _content.css('top', (_top / 2) + $(this).outerHeight());
                } else {
                   _content.css('top', '100%');

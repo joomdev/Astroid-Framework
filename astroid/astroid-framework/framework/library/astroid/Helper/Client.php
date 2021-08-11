@@ -174,9 +174,15 @@ class Client
         }
 
         if ($form->getName() == 'com_content.article' && ((Framework::isSite() && $frontendVisibility) || Framework::isAdmin())) {
-            $form->loadFile('article', false);
-            $form->loadFile('blog', false);
-            $form->loadFile('opengraph', false);
+            if (Framework::isSite()) {
+                $form->loadFile('article', false);
+                $form->loadFile('blog', false);
+                $form->loadFile('opengraph', false);
+            } else {
+                $form->loadFile('article-attribs', false);
+                $form->loadFile('blog-attribs', false);
+                $form->loadFile('opengraph-attribs', false);
+            }
             $loaded = true;
         }
 

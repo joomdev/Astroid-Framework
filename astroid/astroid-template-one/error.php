@@ -51,6 +51,7 @@ if ($params->get('background_setting_404') == 'video' && !empty($params->get('ba
    echo Astroid\Helper\Head::styles();
    echo $document->renderLinks();
    echo $document->getStylesheets();
+   echo $document->getScripts('head');
    echo $document->getCustomTags('head');
    ?>
 </head>

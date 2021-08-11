@@ -13,6 +13,10 @@ use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Layout\FileLayout;
 
+if (ASTROID_JOOMLA_VERSION < 4) {
+   JHtml::_('behavior.caption');
+}
+
 $app = Factory::getApplication();
 
 $this->category->text = $this->category->description;

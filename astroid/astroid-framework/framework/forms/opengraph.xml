@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form>
-   <fields name="params">
+   <fields name="attribs">
       <fieldset label="ASTROID_ARTICLE_OPEN_GRAPH_TITLE_LABEL" name="articleogoptions">
          <field
             type="text"

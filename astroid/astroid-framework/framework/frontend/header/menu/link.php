@@ -107,9 +107,9 @@ if ($item->type == 'url') {
          <?php if (!empty($item->menu_image)) { ?>
             <img src="<?php echo JURI::root() . $item->menu_image; ?>" />
          <?php } ?>
-         <?php if (!empty($item->menu_image) && $item->params->get('menu_text', 1)) { ?>
+         <?php if (!empty($item->menu_image) && $item->getParams()->get('menu_text', 1)) { ?>
             <?php echo $item->title; ?>
-         <?php } else if (!empty($item->menu_image) && !$item->params->get('menu_text', 1)) { ?>
+         <?php } else if (!empty($item->menu_image) && !$item->getParams()->get('menu_text', 1)) { ?>
 
          <?php } else { ?>
             <?php echo $item->title; ?>

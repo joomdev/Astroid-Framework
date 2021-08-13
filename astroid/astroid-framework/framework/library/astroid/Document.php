@@ -825,7 +825,10 @@ class Document
         if (empty($content)) {
             return;
         }
-        $this->_customtags[$position][] = trim($content);
+        $content = trim($content);
+        if (!in_array($content, $this->_customtags[$position])) {
+            $this->_customtags[$position][] = trim($content);
+        }
     }
 
     public function loadFontAwesome()

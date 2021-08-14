@@ -76,7 +76,7 @@ $afterDisplayContent = trim(implode("\n", $results));
    <?php if (!empty($this->lead_items)) : ?>
       <div class="items-leading clearfix">
          <?php foreach ($this->lead_items as &$item) : ?>
-            <div class="article-wraper">
+            <div class="article-wraper <?php echo $this->params->get('blog_class_leading'); ?>">
                <div class="article-wraper-inner">
                   <article class="item leading-<?php echo $leadingcount; ?><?php echo $item->state == 0 ? ' system-unpublished' : null; ?><?php echo $item->featured ? ' item-featured' : ''; ?>" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
                      <?php
@@ -94,7 +94,7 @@ $afterDisplayContent = trim(implode("\n", $results));
    <?php
    $introcount = (count($this->intro_items));
    $counter = 0;
-   $columns = ASTROID_JOOMLA_VERSION > 3 ? 1 : $this->columns;
+   $columns = ASTROID_JOOMLA_VERSION > 3 ? $this->params->get('num_columns', 1) : $this->columns;
    ?>
 
    <?php if (!empty($this->intro_items)) : ?>
@@ -105,7 +105,7 @@ $afterDisplayContent = trim(implode("\n", $results));
             <div class="items-row <?php echo 'row-' . $row; ?> row clearfix">
             <?php endif; ?>
             <div class="col-lg-<?php echo round((12 / $columns)); ?>">
-               <div class="article-wraper">
+               <div class="article-wraper <?php echo $this->params->get('blog_class', ''); ?>">
                   <div class="article-wraper-inner">
                      <article class="item column-<?php echo $rowcount; ?><?php echo $item->state == 0 ? ' system-unpublished' : null; ?><?php echo $item->featured ? ' item-featured' : ''; ?>" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
                         <?php

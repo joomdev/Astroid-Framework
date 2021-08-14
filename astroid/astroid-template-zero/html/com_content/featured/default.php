@@ -7,6 +7,11 @@
  * @license https://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
  */
 defined('_JEXEC') or die;
+
+if (ASTROID_JOOMLA_VERSION < 4) {
+  JHtml::_('behavior.caption');
+}
+
 ?>
 
 <div class="blog-featured<?php echo $this->pageclass_sfx; ?>" itemscope itemtype="https://schema.org/Blog">

@@ -21,9 +21,13 @@ if(isset($attribs->spfeatured_image) && $attribs->spfeatured_image != '') {
 
 <?php if(!empty($full_image) || (isset($images->image_fulltext) && !empty($images->image_fulltext))) { ?>
 	<?php $imgfloat = (empty($images->float_fulltext)) ? $params->get('float_fulltext') : $images->float_fulltext; ?>
-	<div class="text-<?php echo htmlspecialchars($imgfloat); ?> entry-image full-image"> <img
+	<figure class="text-<?php echo htmlspecialchars($imgfloat); ?> entry-image full-image"> <img
 		<?php if ($images->image_fulltext_caption):
 		echo 'class="caption"' . ' title="' . htmlspecialchars($images->image_fulltext_caption) . '"';
 		endif; ?>
-		src="<?php echo htmlspecialchars($full_image); ?>" alt="<?php echo htmlspecialchars($images->image_fulltext_alt); ?>" itemprop="image" class="img-fluid"/> </div>
+		src="<?php echo htmlspecialchars($full_image); ?>" alt="<?php echo htmlspecialchars($images->image_fulltext_alt); ?>" itemprop="image" class="img-fluid"/>
+		<?php if (ASTROID_JOOMLA_VERSION > 3 && $images->image_fulltext_caption !== '') : ?>
+			<figcaption class="caption"><?php echo htmlspecialchars($images->image_fulltext_caption, ENT_COMPAT, 'UTF-8'); ?></figcaption>
+		<?php endif; ?>
+	</figure>
 <?php } ?>

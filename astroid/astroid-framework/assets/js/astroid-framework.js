@@ -340,7 +340,7 @@ astroidFramework.directive("astroidsocialprofiles", ["$http", function ($http) {
                icons: [],
                id: "custom",
                link: "#",
-               title: "Custom social profile"
+               title: "My Social Link"
             };
             var _profiles = $scope.profiles;
             _profiles.push(angular.copy(_profile));

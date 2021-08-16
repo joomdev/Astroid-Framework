@@ -21,6 +21,7 @@ $document = Astroid\Framework::getDocument(); // Astroid Document
 $params = Astroid\Framework::getTemplate()->getParams(); // Astroid Params
 
 Astroid\Helper\Head::meta(); // site meta
+Astroid\Component\Utility::custom(); // custom code
 Astroid\Helper\Head::scripts(); // site scripts
 Astroid\Helper\Head::favicon(); // site favicon
 Astroid\Component\Utility::error(); // error page styling
@@ -50,6 +51,8 @@ if ($params->get('background_setting_404') == 'video' && !empty($params->get('ba
    echo Astroid\Helper\Head::styles();
    echo $document->renderLinks();
    echo $document->getStylesheets();
+   echo $document->getScripts('head');
+   echo $document->getCustomTags('head');
    ?>
 </head>
 

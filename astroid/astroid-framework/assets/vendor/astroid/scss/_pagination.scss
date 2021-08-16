@@ -1,9 +1,15 @@
-.pagination{
+ul.pagination{
 	justify-content: center;
 	.page-item:first-child .page-link,
 	.page-item:last-child .page-link	{
-		border-radius: 0;
+		// border-radius: 0;
 	}
+}
+
+div.pagination {
+	display: block;
+	width: 100%;
+	text-align: center;
 }
 
 .pagenavigation .pagination{

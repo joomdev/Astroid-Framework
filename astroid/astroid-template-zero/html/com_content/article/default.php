@@ -27,6 +27,10 @@ if (ASTROID_JOOMLA_VERSION > 3) {
    include_once(JPATH_COMPONENT . '/helpers/route.php');
 }
 
+if (ASTROID_JOOMLA_VERSION < 4) {
+   JHtml::_('behavior.caption');
+}
+
 // Astroid Article/Blog
 $astroidArticle = new AstroidFrameworkArticle($this->item);
 

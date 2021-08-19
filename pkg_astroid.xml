@@ -17,5 +17,6 @@
    <files folder="astroid">
       <folder type="library" id="astroid" client="site">astroid-framework</folder>
       <folder type="template" id="astroid_template_one" client="site">astroid-template-one</folder>
+      <folder type="template" id="astroid_template_zero" client="site">astroid-template-zero</folder>
    </files>
 </extension>

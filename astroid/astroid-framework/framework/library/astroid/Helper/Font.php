@@ -219,7 +219,9 @@ class Font
         }
         sort($_value);
 
-        $value = str_replace($wght, implode(';', $_value), $value);
+        if (strpos($value, "@") > 0) {
+            $value = str_replace($wght, implode(';', $_value), $value);
+        }
 
         $document->addCustomTag('<link rel="preconnect" href="https://fonts.gstatic.com">');
         $document->addStyleSheet('https://fonts.googleapis.com/css2?family=' . $value . '&display=swap');

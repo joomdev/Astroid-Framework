@@ -25,7 +25,14 @@ class Template
 
     public function __construct()
     {
-        $jtemplate = \JFactory::getApplication()->getTemplate(true);
+        $menu = \JFactory::getApplication()->getMenu()->getActive();
+        $template_id = isset($menu->template_style_id) ? $menu->template_style_id : 0;
+
+        if (!empty($template_id)) {
+            $jtemplate = $this->_getById($template_id);
+        } else {
+            $jtemplate = \JFactory::getApplication()->getTemplate(true);
+        }
         $this->template = $jtemplate->template;
 
         $this->language = \JFactory::getLanguage()->getTag();
@@ -189,9 +196,14 @@ class Template
     private function _getById($id)
     {
         $db = \JFactory::getDbo();
-        $query = "SELECT `template`,`id`,`title` FROM `#__template_styles` WHERE `id`='$id'";
+        $query = "SELECT `template`,`id`,`title`,`params`,`home` FROM `#__template_styles` WHERE `id`='$id'";
         $db->setQuery($query);
         $result = $db->loadObject();
+
+        $params = new \JRegistry();
+        $params->loadString($result->params);
+
+        $result->params = $params;
         return $result;
     }
 

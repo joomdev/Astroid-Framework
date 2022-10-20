@@ -17,10 +17,13 @@ class Video
     {
         $parts = parse_url($url);
         $id = '';
+        $query = null;
         switch ($type) {
             case 'youtube':
-                parse_str($parts['query'], $query);
-                $id = (isset($query['v']) ? $query['v'] : '');
+                if (isset($parts['query'])) {
+                    parse_str($parts['query'], $query);
+                    $id = (isset($query['v']) ? $query['v'] : '');
+                }
                 break;
             case 'vimeo':
                 $id = (isset($parts['path']) ? str_replace('/', '', $parts['path']) : '');

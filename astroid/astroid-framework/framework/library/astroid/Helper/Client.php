@@ -154,7 +154,7 @@ class Client
         }
     }
 
-    public function onContentPrepareForm($form, $data)
+    public function onContentPrepareForm($form, &$data)
     {
         $pluginParams = Helper::getPluginParams();
         $astroid_dir = 'libraries/astroid';
@@ -174,6 +174,9 @@ class Client
         }
 
         if ($form->getName() == 'com_content.article' && ((Framework::isSite() && $frontendVisibility) || Framework::isAdmin())) {
+            if (Framework::isSite()) {
+                $data->attribs = $data->params;
+            }
             $form->loadFile('article', false);
             $form->loadFile('blog', false);
             $form->loadFile('opengraph', false);

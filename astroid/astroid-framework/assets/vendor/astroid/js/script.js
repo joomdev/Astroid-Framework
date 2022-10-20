@@ -168,11 +168,12 @@
                $(_this).css('animation-duration', _duration + 'ms');
                setTimeout(function () {
                   $(_this).css('visibility', 'visible');
-                  $(_this).addClass('animated');
+                  $(_this).addClass('animate');
                   $(_this).addClass(_animation);
                   $(_this).addClass('animation-done');
                   setTimeout(function () {
-                     $(_this).removeClass('animated');
+                     $(_this).removeClass('animate');
+                     $(_this).addClass('animated');
                      $(_this).removeClass(_animation);
                   }, (_duration + _delay));
                }, _delay);

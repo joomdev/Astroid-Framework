@@ -89,9 +89,11 @@ if ($cs_logo = $params->get('coming_soon_logo')) {
    $comingsoon_logo = JURI::root() . Astroid\Helper\Media::getPath() . '/' . $cs_logo;
    $hascs_logo = 1;
 }
-$comingsoon_date = $params->get("coming_soon_countdown_date", 'January 1st 2022, 00:00 am');
-$date = new DateTime($comingsoon_date, new DateTimeZone(JFactory::getConfig()->get('offset')));
-$comingsoon_date = $date->format('Y/m/d H:i:s');
+$comingsoon_date = $params->get("coming_soon_countdown_date");
+if(isset($comingsoon_date)){
+   $date = new DateTime($comingsoon_date, new DateTimeZone(JFactory::getConfig()->get('offset')));
+   $comingsoon_date = $date->format('Y/m/d H:i:s');
+}
 
 ?>
 

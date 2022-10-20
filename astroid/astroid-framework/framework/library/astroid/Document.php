@@ -276,6 +276,9 @@ class Document
             // print_r($matches);
             $script = [];
             if (isset($matches[5]) && $matches[5] == '</script>' && !empty($matches[2])) {
+                if (strpos($matches[0], 'type="module"') > 0) {
+                    return $matches[0];
+                }
                 $script = ['content' => $this->beutifyURL($matches[2]), 'type' => 'url'];
                 $javascriptFiles[] = $this->beutifyURL($matches[2]);
             } else if (isset($matches[8]) && $matches[8] == '</script>' && !empty($matches[7])) {
@@ -822,7 +825,10 @@ class Document
         if (empty($content)) {
             return;
         }
-        $this->_customtags[$position][] = trim($content);
+        $content = trim($content);
+        if (!in_array($content, $this->_customtags[$position])) {
+            $this->_customtags[$position][] = trim($content);
+        }
     }
 
     public function loadFontAwesome()
@@ -875,22 +881,26 @@ class Document
 
         $scss = new Compiler();
         $scss->setImportPaths(__DIR__ . '/' . $templatePath . '/scss');
+        $bootstrapPath = $mediaPath . '/vendor/bootstrap/scss';
+        if (file_exists(__DIR__ . '/' . $templateScssPath . '/vendor/bootstrap')) {
+            $bootstrapPath = 'vendor/bootstrap';
+        }
         $content = '';
         $functionsIncluded = false;
         if (file_exists(__DIR__ . '/' . $templateScssPath . '/custom/variable_overrides.scss')) {
             $functionsIncluded = true;
-            $content .= '@import "' . $mediaPath . '/vendor/bootstrap/scss/functions";';
+            $content .= '@import "' . $bootstrapPath . '/functions";';
             $content .= '@import "custom/variable_overrides";';
         }
 
         if (file_exists(__DIR__ . '/' . $templateScssPath . '/variable_overrides.scss')) {
             if (!$functionsIncluded) {
-                $content .= '@import "' . $mediaPath . '/vendor/bootstrap/scss/functions";';
+                $content .= '@import "' . $bootstrapPath . '/functions";';
             }
             $content .= '@import "variable_overrides";';
         }
 
-        $content .= '@import "' . $mediaPath . '/vendor/bootstrap/scss/bootstrap";';
+        $content .= '@import "' . $bootstrapPath . '/bootstrap";';
 
         $content .= '@import "' . $mediaPath . '/vendor/astroid/scss/astroid";';
 

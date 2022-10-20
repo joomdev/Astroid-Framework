@@ -68,6 +68,14 @@ if (empty($value)) {
                         <input type="text" ng-model="profile.icon" class="form-control" autocomplete="off" placeholder="fab fa-youtube">
                      </div>
                   </div>
+                  <div ng-if="profile.id == 'custom'" class="row mt-2">
+                     <div class="col-sm-4">
+                        <label class="astroid-label"><?php echo JText::_('TPL_ASTROID_TITLE'); ?></label>
+                     </div>
+                     <div class="col-sm-8">
+                        <input type="text" ng-model="profile.title" class="form-control" autocomplete="off" placeholder="Youtube">
+                     </div>
+                  </div>
                   <div ng-if="profile.id != 'custom'" class="row mt-2" ng-show="profile.icons.length > 1">
                      <div class="col-sm-4">
                         <label class="astroid-label"><?php echo JText::_('TPL_ASTROID_ICON'); ?></label>

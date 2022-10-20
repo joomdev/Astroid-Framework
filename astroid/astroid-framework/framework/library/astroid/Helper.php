@@ -159,6 +159,7 @@ class Helper
 
     public static function getXml($url)
     {
+        if (!file_exists($url)) return;
         return simplexml_load_file($url, 'SimpleXMLElement');
     }
 
@@ -349,6 +350,7 @@ class Helper
     {
         Framework::getDebugger()->log('Getting Template Version');
         $xml = self::getXML(JPATH_SITE . "/templates/{$template}/templateDetails.xml");
+        if (!$xml) return;
         $version = (string) $xml->version;
         Framework::getDebugger()->log('Getting Template Version');
         return $version;
